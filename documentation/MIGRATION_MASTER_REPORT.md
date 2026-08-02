@@ -333,7 +333,7 @@ No toda capacidad mencionada en el material es una skill — solo las que son re
 - **Prioridad**: **P2**.
 - **Relación**: alimenta a SK-01 para auditar el resultado generado.
 
-### SK-03 · `rentabilidad-calculator`
+### SK-03 · `rentabilidad-calculator` — ✅ IMPLEMENTADA (2026-08-02, `skills/rentabilidad-calculator/`)
 - **Propósito**: envolver `calculadora.py` como una capacidad consultable en lenguaje natural.
 - **Trigger**: "¿cuál es la rentabilidad de esta propiedad?", cifras de clase/precio/renta.
 - **Inputs**: clase de activo, precio de compra, renta mensual, nivel de neto.
@@ -404,7 +404,7 @@ Formato INPUT → PROCESS → DECISION → ACTION → VALIDATION → OUTPUT → 
 - **LEARNING**: registrar en qué etapa se caen los inversores para encontrar puntos de fricción.
 - **Prioridad para automatizar primero**: **alta en valor, pero bloqueada** — no tiene sentido automatizar un flujo con huecos operativos sin dueño (OPS-03, OPS-04, OPS-05) sin resolverlos primero.
 
-### WF-02 · Rentabilidad Evaluation Workflow
+### WF-02 · Rentabilidad Evaluation Workflow — ✅ IMPLEMENTADO (2026-08-02, `workflows/rentabilidad-evaluation/`)
 - **INPUT**: datos de una propiedad (clase, precio, renta).
 - **PROCESS**: ejecutar `evaluar_renta` / `evaluar_reventa` / `evaluar_retorno_combinado` (SK-03).
 - **DECISION**: ¿pasa el piso? Si no, ¿la plusvalía combinada lo compensa?
@@ -479,8 +479,8 @@ Memoria limpia, no el historial completo. Lo que debería vivir en el sistema de
 | 03 | Decision Register | ✅ Hecho (26 CURRENT, 2 HISTORICAL, 3 PROPOSED, 11 UNRESOLVED) |
 | 04 | Requirements Register | ✅ v1 hecho, ✅ v2 reclasificado en este reporte (9 categorías) |
 | 05 | Contradiction Register | ✅ Nuevo en este reporte (8 contradicciones, 1 hallazgo nuevo: C-007) |
-| 06 | Skill Registry | ✅ Diseñado en este reporte (8 candidatas), 🔶 no implementado |
-| 07 | Workflow Registry | ✅ Diseñado en este reporte (4 candidatos), 🔶 1 parcialmente vivo |
+| 06 | Skill Registry | ✅ Diseñado (8 candidatas), ✅ SK-03 (`rentabilidad-calculator`) implementada 2026-08-02, resto 🔶 pendiente |
+| 07 | Workflow Registry | ✅ Diseñado (4 candidatos), ✅ WF-02 (`rentabilidad-evaluation`) implementado 2026-08-02, resto 🔶 pendiente |
 | 08 | Connector Map | 🔶 Esbozado (Fase 5 del roadmap), sin connectors reales todavía |
 | 09 | Project Architecture | 🔶 Propuesta en Fase 7, pendiente de tu aprobación para ejecutar |
 | 10 | Source of Truth Map | ✅ Nuevo en este reporte |

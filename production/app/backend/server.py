@@ -2,7 +2,7 @@
 """
 Servidor de la app funcional de Meridiano Capital.
 
-Sirve el frontend estatico (app/frontend/) y expone una API JSON minima que
+Sirve el frontend estatico (production/app/frontend/) y expone una API JSON minima que
 envuelve la Calculadora de rentabilidad ya existente (calculadora.py, sin
 modificar su logica) y recibe envios reales del formulario de contacto.
 
@@ -23,6 +23,7 @@ from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from calculadora import Calculadora  # noqa: E402
+from advertencias import advertencias_renta, advertencias_venta  # noqa: E402
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = BASE_DIR / "frontend"
@@ -30,54 +31,6 @@ DATA_DIR = Path(__file__).resolve().parent / "data"
 CONTACTOS_FILE = DATA_DIR / "contactos.jsonl"
 
 calc = Calculadora()
-
-# ----------------------------------------------------------------------------
-# Advertencias de integridad de datos — ver decisions/DECISION_REGISTER.md
-# D-001 (IVA) fue RESUELTA por el founder el 2026-08-02: IVA diferenciado por
-# clase/operacion. D-002 (pisos brutos vs netos) sigue UNRESOLVED — no se
-# "arregla" silenciosamente aca. Se muestra siempre junto a cualquier
-# resultado de renta para que nadie tome el veredicto pasa_piso como final
-# sin revisar.
-# ----------------------------------------------------------------------------
-NOTA_IVA_RESUELTA = (
-    "IVA aplicado: {iva}% ({detalle}). Regla confirmada por el founder el "
-    "2026-08-02 (resuelve D-001): alquiler comercial 10%, alquiler residencial 5%, "
-    "venta 5%. Ver decisions/DECISION_REGISTER.md#D-001."
-)
-NOTA_IVA_TEMPORAL_EXTENSION = (
-    "Esta clase es renta temporal (Urbannit). Se le aplico el IVA residencial (5%) "
-    "por defecto -- no fue confirmado explicitamente para renta temporal/turistica, "
-    "que en Paraguay puede tener tratamiento distinto. Marcado [EXTENSION]: "
-    "confirmar con contadora antes de uso en firme."
-)
-ADVERTENCIA_PISOS = (
-    "El piso de rentabilidad usado (pisos_renta_neta) esta etiquetado como NETO en "
-    "el codigo, pero pisos_base_bruto_o_neto en el mismo config lo etiqueta como "
-    "BRUTO con rangos netos mas bajos. El veredicto 'pasa_piso' puede no ser "
-    "confiable hasta resolver esto. Ver decisions/DECISION_REGISTER.md#D-002."
-)
-
-
-def advertencias_renta(clase):
-    iva_pct = calc.iva_alquiler_pct(clase)
-    detalle = "comercial" if clase == "comercial" else "residencial"
-    advertencias = [NOTA_IVA_RESUELTA.format(iva=iva_pct, detalle=detalle)]
-    if clase.startswith("temporal"):
-        advertencias.append(NOTA_IVA_TEMPORAL_EXTENSION)
-    advertencias.append(ADVERTENCIA_PISOS)
-    return advertencias
-
-
-ADVERTENCIAS_VENTA = [
-    (
-        "IVA de venta aplicado: 5% sobre el valor de salida/cesion, confirmado por el "
-        "founder el 2026-08-02 (resuelve D-001 para venta). La BASE de calculo (precio "
-        "total vs. solo el margen) es una interpretacion [EXTENSION] -- confirmar con "
-        "contadora. Las cifras '_neto_iva' son adicionales; las originales (brutas, sin "
-        "IVA) se preservan sin cambios para no alterar los casos ya auditados "
-        "(Habitalis 9A, Edificio Austria)."
-    ),
-]
 
 
 def json_response(handler, status, payload):
@@ -127,17 +80,17 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path == "/api/calcular/renta":
                 resultado = calc.evaluar_renta(**body)
-                resultado["advertencias"] = advertencias_renta(body.get("clase", ""))
+                resultado["advertencias"] = advertencias_renta(calc, body.get("clase", ""))
                 return json_response(self, 200, resultado)
 
             if path == "/api/calcular/reventa":
                 resultado = calc.evaluar_reventa(**body)
-                resultado["advertencias"] = list(ADVERTENCIAS_VENTA)
+                resultado["advertencias"] = advertencias_venta()
                 return json_response(self, 200, resultado)
 
             if path == "/api/calcular/reventa-temprana":
                 resultado = calc.evaluar_reventa_temprana(**body)
-                resultado["advertencias"] = list(ADVERTENCIAS_VENTA)
+                resultado["advertencias"] = advertencias_venta()
                 return json_response(self, 200, resultado)
 
             if path == "/api/calcular/combinado":
