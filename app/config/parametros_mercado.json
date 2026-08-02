@@ -1,0 +1,239 @@
+{
+  "_meta": {
+    "descripcion": "Parametros de mercado de Meridiano Capital. Editar SOLO este archivo para adaptarse a cambios de mercado. La logica de calculo (calculadora.py) NO se toca. Todos los porcentajes se expresan en numeros enteros o decimales (8 = 8%, 7.5 = 7.5%).",
+    "version": "1.4",
+    "fecha": "2026-07-31",
+    "politica_origen": "P07 + refinamientos validados (Habitalis 9A, Edificio Austria)"
+  },
+  "pisos_renta_neta": {
+    "_nota": "Piso de rentabilidad neta anual por clase. Tradicional se mide en Neto Completo (Nivel 3); temporal en Neto Temporal (Nivel 4).",
+    "comercial": 8.0,
+    "residencial_casa": 6.0,
+    "departamento_sin_muebles": 6.0,
+    "departamento_amoblado": 7.5,
+    "temporal_departamento": 14.0,
+    "temporal_casa": 12.0
+  },
+  "promedio_objetivo_cartera_neto": 10.0,
+  "pisos_capital": {
+    "_nota": "Terreno y aporte se miden anualizados. Terreno como plusvalia anualizada minima; aporte como retorno preferencial anual.",
+    "terreno_plusvalia_anual_min": 30.0,
+    "aporte_construccion_preferencial_anual": 22.0
+  },
+  "matriz_plusvalia_reventa": {
+    "_nota": "Plusvalia total (no anual) por tipo de edificio, etapa de ingreso y momento de salida. Editables segun mercado. 'lanzamiento' son valores propuestos a confirmar.",
+    "tradicional": {
+      "_plazo_obra_meses_referencia": 24,
+      "pre_pozo": {
+        "vende_al_terminar": 25.0,
+        "vende_mas_un_ano": 35.0
+      },
+      "lanzamiento": {
+        "vende_al_terminar": 23.0,
+        "vende_mas_un_ano": 33.0
+      },
+      "pozo_durante_obra": {
+        "vende_al_terminar": 20.0,
+        "vende_mas_un_ano": 30.0
+      }
+    },
+    "torre": {
+      "_plazo_obra_meses_referencia": 42,
+      "pre_pozo": {
+        "vende_al_terminar": 45.0,
+        "vende_mas_un_ano": 50.0
+      },
+      "lanzamiento": {
+        "vende_al_terminar": 40.0,
+        "vende_mas_un_ano": 47.0
+      },
+      "pozo_durante_obra": {
+        "vende_al_terminar": 30.0,
+        "vende_mas_un_ano": 40.0
+      }
+    }
+  },
+  "supuestos_reventa_temprana": {
+    "_nota": "Reventa por cesion de derechos antes de terminar de pagar. Solo edificios exitosos con demanda de cesion.",
+    "apreciacion_post_lanzamiento_pct": 10.0,
+    "mes_cesion_tipico": 6,
+    "apreciacion_rango_pct": [
+      10.0,
+      20.0
+    ],
+    "_apreciacion_nota": "10% conservador; en proyectos exitosos 15-20%. Usar el rango para escenarios."
+  },
+  "cronograma_cuotas_default": {
+    "_nota": "Estructura de pago tipica del mercado de Asuncion: entrega inicial + saldo en cuotas sin intereses durante la obra. Editable por proyecto.",
+    "entrega_inicial_pct": 20.0,
+    "cuotas_sin_interes": true,
+    "saldo_a_entrega_pct": 0.0
+  },
+  "conceptos_neto": {
+    "_nota": "Que se descuenta en cada nivel de neto. Acumulativo: cada nivel incluye los anteriores.",
+    "nivel_1_basico": [
+      "impuesto_inmobiliario",
+      "iva",
+      "impuesto_renta",
+      "expensas"
+    ],
+    "nivel_2_administrado": [
+      "honorarios_administracion",
+      "honorarios_alquiler"
+    ],
+    "nivel_3_completo": [
+      "seguros",
+      "mantenimiento",
+      "amortizacion",
+      "vacancia"
+    ],
+    "nivel_4_temporal": [
+      "impuestos",
+      "limpieza",
+      "seguros_obligatorios",
+      "mantenimiento",
+      "canon_agencia"
+    ]
+  },
+  "supuestos_operativos_default": {
+    "_nota": "Gastos operativos por defecto como % de la renta BRUTA anual. Vacancia calibrada al mercado real (~97% ocupacion). Editar con valores reales para evaluaciones en firme.",
+    "expensas_pct": 0.0,
+    "_expensas_nota": "0 = las paga el inquilino (tipico). Si las paga el propietario, cargar el %.",
+    "impuesto_inmobiliario_pct": 4.0,
+    "vacancia_pct": 3.0,
+    "mantenimiento_pct": 5.0,
+    "seguro_pct": 2.0,
+    "honorarios_administracion_pct": 10.0,
+    "honorarios_alquiler_meses": 0.5,
+    "amortizacion_muebles_pct": 8.0,
+    "_amortizacion_nota": "Solo aplica a amoblado y temporal.",
+    "_honorarios_nota": "Administración 10% de la renta; colocación 50% de un mes (0.5). Confirmado (Habitalis 9A + Edificio Austria).",
+    "iva_pct": 10.0,
+    "impuesto_renta_pct": 10.0,
+    "_fiscal_nota": "Paraguay: IVA 10% (Ley 125/91) e IRE 10%. SIEMPRE aplicarlos — no dejarlos en 0 (error detectado en el modelo Edificio Austria)."
+  },
+  "fiscal": {
+    "_nota": "A CONFIRMAR CON CONTADORA.",
+    "iva_pct": 5.0,
+    "_iva_nota": "IVA sobre la renta bruta. Verificar tratamiento real.",
+    "impuesto_renta_pct": 10.0,
+    "_impuesto_renta_nota": "IRP 10% aplicado sobre la renta NETA (no bruta).",
+    "grava_ganancia_capital": false,
+    "_ganancia_capital_nota": "Confirmado por el usuario: la reventa NO se grava como actividad habitual. Plusvalia neta = bruta."
+  },
+  "descuento_por_etapa_mercado": {
+    "_nota": "Descuento tipico contra precio terminado, por etapa (dato de mercado Asuncion 2026). Referencia para calibrar la matriz de plusvalia.",
+    "preventa_pozo_planos": [
+      20,
+      30
+    ],
+    "en_construccion_obra_iniciada": [
+      10,
+      20
+    ],
+    "terminado": 0
+  },
+  "vacancia_por_tipologia_pct": {
+    "_nota": "Vacancia por clase de activo. El escalar vacancia_pct (3%) es el default de departamento; para oficinas/comercial/edificios mixtos usar estos. Validado con el Edificio Austria (mixto).",
+    "departamento": 4.0,
+    "oficina": 10.0,
+    "comercial": 8.0
+  },
+  "regla_neto_despues_de_todo": {
+    "_nota": "REGLA DE ORO: el titular presentado al inversor es SIEMPRE el neto, después de vacancia, expensas no cubiertas, IVA, IRE y el 10% de administración de Meridiano. Nunca el bruto.",
+    "obligatorio": true
+  },
+  "fondo_emergencia_expensas_pct": 8.0,
+  "uplift_remodelacion_objetivo_pct": 40.0,
+  "renta_temporal_default": {
+    "_nota": "Supuestos para renta temporal/Airbnb. Ocupación REALISTA 55-65% (nunca 90%+). Modelar capex de amoblado y costos reales. Validado corrigiendo el Edificio Austria (usaba 93%).",
+    "ocupacion_realista_pct": [
+      55.0,
+      65.0
+    ],
+    "capex_amoblado_usd_por_depto": 4500.0,
+    "mix_largo_plazo_pct": 40.0,
+    "mix_temporal_pct": 60.0,
+    "ocupacion_underwriting_base_pct": [
+      55.0,
+      69.0
+    ],
+    "ocupacion_urbannit_gestionada_pct": [
+      76.0,
+      88.0
+    ],
+    "_ocupacion_nota": "Underwriting base (conservador): 55-69% (media de mercado). Urbannit-gestionada estabilizada: 76-88%. 90%+ solo techo aspiracional, nunca base."
+  },
+  "comision_intermediacion": {
+    "_nota": "Marco completo de comisiones de intermediación de Meridiano. VENTA la paga el vendedor; ALQUILER se financia 50% dueño + 50% inquilino.",
+    "venta": {
+      "total_pct": 5.5,
+      "la_paga": "el vendedor",
+      "solo_comprador_pct": 50.0,
+      "solo_comprador_efectivo_pct": 2.75,
+      "propiedad_propia_mas_comprador_pct": 100.0,
+      "propiedad_propia_mas_comprador_efectivo_pct": 5.5,
+      "_regla": "Solo la punta compradora → 50% (2.75%). Propiedad en cartera de venta de Meridiano + comprador → 100% (5.5%)."
+    },
+    "alquiler": {
+      "total_meses": 1.0,
+      "financiacion": "50% dueño + 50% inquilino",
+      "un_rol_meses": 0.5,
+      "administra_mas_inquilino_meses": 1.0,
+      "_regla": "Comisión = 1 mes de alquiler, financiada 50% dueño + 50% inquilino. Un solo rol → 50% (0.5 mes). Meridiano administra la propiedad + aporta el inquilino → 100% (1 mes).",
+      "_nota_calculo_neto": "En el cálculo del NETO del inversor-propietario se descuenta SU parte (0.5 mes = honorarios_alquiler_meses en supuestos_operativos), porque el inquilino paga la otra mitad. El 1 mes completo es INGRESO de Meridiano cuando tiene ambos roles."
+    }
+  },
+  "escenarios_obligatorios": {
+    "_nota": "Antes de presentar a un inversor, correr 3 escenarios.",
+    "escenarios": [
+      "pesimista",
+      "base",
+      "optimista"
+    ]
+  },
+  "categorias_de_gestion": {
+    "_nota": "El TIPO de gestión define el honorario y el piso. No confundir renta pasiva con operación.",
+    "renta_pasiva_cartera_a": {
+      "honorario": "10% de la renta",
+      "piso": "según tipología (P07): comercial 8, depto s/muebles 6, amoblado 7.5",
+      "opex": "bajo — gestión de contratos de largo plazo"
+    },
+    "renta_temporal_urbannit": {
+      "marca": "Urbannit (sub-marca de renta temporal)",
+      "honorario": "canon de agencia temporal (Nivel 4)",
+      "piso": "temporal depto 14 / temporal casa 12",
+      "opex": "medio — limpieza por turnover, channel manager, self check-in",
+      "_nota": "Un EDIFICIO ENTERO puede operarse 100% Airbnb bajo Urbannit. Opex menor que un hotel (sin recepción diaria); capex de amoblado en TODAS las unidades (~USD 4.500/unidad)."
+    },
+    "operacion_hotelera": {
+      "honorario": "honorarios de OPERADOR (a definir) — NO el 10% de administración",
+      "piso": "debe superar el opex hotelero (40-55% de ingresos) — típicamente exige mayor rendimiento bruto",
+      "opex": "alto — personal, recepción 24h, limpieza diaria, OTAs, PMS",
+      "_nota": "Hotel/apart-hotel operado = NEGOCIO OPERATIVO, no renta pasiva. El modelo de administración de renta (10%) NO aplica. Requiere estructura y honorarios de operador. Validado con el estudio Hotel Plaza Uruguaya (rendimiento operativo ~0-8%, muy por debajo del piso temporal)."
+    }
+  },
+  "pisos_base_bruto_o_neto": {
+    "_nota": "Etiquetado de los pisos de rentabilidad (P07), tras auditoría.",
+    "pisos_por_tipologia": "BRUTO — rendimiento bruto mínimo aceptable por clase de activo (comercial 8, casa 6, depto s/muebles 6, amoblado 7.5, temporal depto 14, temporal casa 12)",
+    "cartera_objetivo_10": "NETO — objetivo neto de cartera (10%)",
+    "renta_temporal": {
+      "bruto_pct": [
+        10.0,
+        16.0
+      ],
+      "neto_pct": [
+        8.0,
+        11.0
+      ],
+      "_nota": "Temporal gestionada (Urbannit): bruto 10-16% → neto 8-11%. Urbannit comunica el NETO al propietario."
+    },
+    "tradicional": {
+      "neto_pct": [
+        5.0,
+        7.0
+      ],
+      "_nota": "Alquiler tradicional: 5-7% neto (referencia de contraste)."
+    }
+  }
+}
