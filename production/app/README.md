@@ -12,7 +12,7 @@ Primera versión funcional de la Fase 5 (software funcional) de la migración. U
 ## Cómo correrlo
 
 ```bash
-cd app/backend
+cd production/app/backend
 python server.py
 ```
 
@@ -33,18 +33,18 @@ Abre `http://localhost:8000`.
 
 ## ⚠️ Antes de usar esto con inversores reales
 
-`POST /api/calcular/renta` devuelve un campo `advertencias` en cada respuesta. Estas no son cosméticas — señalan dos contradicciones reales sin resolver entre la política escrita y lo que el código efectivamente calcula (ver `../decisions/DECISION_REGISTER.md#D-001` y `#D-002`):
+`POST /api/calcular/renta` devuelve un campo `advertencias` en cada respuesta — no son cosméticas. Estado al 2026-08-02 (ver `../../governance/decisions/DECISION_REGISTER.md`):
 
-1. **IVA**: el código usa 5% (`fiscal.iva_pct`, marcado "A CONFIRMAR CON CONTADORA"), pero la política declara 10% obligatorio. El yield neto mostrado hoy puede estar sobrestimado.
-2. **Pisos de rentabilidad**: se usan como netos en el código, pero otra parte del mismo config los etiqueta como brutos con rangos netos más bajos. El veredicto `pasa_piso` puede no ser confiable.
+1. **IVA — ✅ RESUELTO (D-027)**: el founder confirmó IVA diferenciado (comercial 10%, residencial 5%, venta 5%) el 2026-08-02. Ya implementado en `backend/calculadora.py` y `config/parametros_mercado.json`. Las clases `temporal_*` (Urbannit) usan el residencial 5% por inferencia `[EXTENSION]` no confirmada explícitamente — la advertencia lo sigue marcando.
+2. **Pisos de rentabilidad — sigue UNRESOLVED (D-002)**: se usan como netos en el código, pero otra parte del mismo config los etiqueta como brutos con rangos netos más bajos. El veredicto `pasa_piso` puede no ser confiable hasta que el founder lo confirme.
 
-No se "corrigieron" estos valores unilateralmente porque son decisiones de negocio, no técnicas — ver `decisions/REQUIREMENTS.md` (RI-05, RI-06, RT-06).
+No se "corrigen" estos valores unilateralmente porque son decisiones de negocio, no técnicas — ver `../../governance/decisions/REQUIREMENTS.md` (RI-05 resuelto, RI-06/RT-06 pendientes).
 
 ## Qué falta (deuda de producto conocida, no bloqueante)
 
 - Notificación real (email/Slack/CRM) al recibir un contacto — hoy solo se persiste en un archivo local.
 - Hosting/dominio de producción.
-- Endpoints de reventa/reventa-temprana/combinado no tienen UI todavía (sí funcionan vía API — ver tabla arriba).
-- Tests: `backend/test_calculadora.py` es el mismo test suite original (16 asserts), no se agregaron tests del servidor HTTP en esta primera versión.
+- Endpoints de reventa/reventa-temprana/combinado no tienen UI todavía (sí funcionan vía API, incluyendo los campos `_neto_iva` del IVA de venta — ver tabla arriba).
+- Tests: `backend/test_calculadora.py` — test suite original más los casos de IVA diferenciado agregados el 2026-08-02.
 
-Ver `../knowledge-base/technology/03-arquitectura-propuesta.md` para la propuesta de evolución (envoltura FastAPI, etc.) — esta versión stdlib es deliberadamente más simple que esa propuesta para no introducir una dependencia de `pip install` en la primera iteración funcional.
+Ver `../../knowledge-base/technology/03-arquitectura-propuesta.md` para la propuesta de evolución (envoltura FastAPI, etc.) — esta versión stdlib es deliberadamente más simple que esa propuesta para no introducir una dependencia de `pip install` en la primera iteración funcional.

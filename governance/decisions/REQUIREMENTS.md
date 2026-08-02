@@ -1,6 +1,6 @@
 # REQUIREMENTS EXTRACTION — Meridiano Capital
 
-Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en el material) e implícitos (se derivan necesariamente de una regla o decisión existente aunque no se enuncien como "requisito"), clasificados por dominio y por tipo. Cada uno enlaza a su fuente en `knowledge-base/` o a su entrada en `decisions/DECISION_REGISTER.md`.
+Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en el material) e implícitos (se derivan necesariamente de una regla o decisión existente aunque no se enuncien como "requisito"), clasificados por dominio y por tipo. Cada uno enlaza a su fuente en `knowledge-base/` o a su entrada en `governance/decisions/DECISION_REGISTER.md`.
 
 ## Cómo leer esta tabla
 
@@ -43,9 +43,9 @@ Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en
 | RI-02 | Mostrar siempre las dos TIR juntas (sobre precio total y sobre capital desembolsado) | Negocio | Explícito | `investment/02-politica-de-rentabilidad.md`, D-022 |
 | RI-03 | Presentar 3 escenarios (pesimista/base/optimista) antes de mostrar cualquier cifra a un inversor | Negocio | Explícito | `investment/00-overview.md` |
 | RI-04 | Las tres categorías de gestión (pasiva / Urbannit-temporal / operador hotelero) no deben mezclarse en materiales de venta | Negocio | Explícito | `investment/00-overview.md` |
-| RI-05 | ~~Bloqueante~~ **RESUELTO 2026-08-02** (D-027): IVA diferenciado — comercial 10%, residencial 5%, venta 5% — implementado en `app/backend/calculadora.py` | Técnico+Negocio | Implícito (deriva de D-001) | `decisions/DECISION_REGISTER.md#D-027` |
-| RI-06 | **Bloqueante**: fijar si los pisos de rentabilidad son brutos o netos antes de confiar en cualquier veredicto `pasa_piso` | Técnico+Negocio | Implícito (deriva de D-002) | `decisions/DECISION_REGISTER.md#D-002` |
-| RI-07 | La ocupación realista (55–65%) del refinamiento #8 debe aplicarse también a la rama de alquiler temporal, no solo al genérico | Técnico | Implícito (deriva de D-003) | `decisions/DECISION_REGISTER.md#D-003` |
+| RI-05 | ~~Bloqueante~~ **RESUELTO 2026-08-02** (D-027): IVA diferenciado — comercial 10%, residencial 5%, venta 5% — implementado en `production/app/backend/calculadora.py` | Técnico+Negocio | Implícito (deriva de D-001) | `governance/decisions/DECISION_REGISTER.md#D-027` |
+| RI-06 | **Bloqueante**: fijar si los pisos de rentabilidad son brutos o netos antes de confiar en cualquier veredicto `pasa_piso` | Técnico+Negocio | Implícito (deriva de D-002) | `governance/decisions/DECISION_REGISTER.md#D-002` |
+| RI-07 | La ocupación realista (55–65%) del refinamiento #8 debe aplicarse también a la rama de alquiler temporal, no solo al genérico | Técnico | Implícito (deriva de D-003) | `governance/decisions/DECISION_REGISTER.md#D-003` |
 
 ## REQ-TECH — Requisitos técnicos (para la fase de software funcional)
 

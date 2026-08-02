@@ -28,9 +28,9 @@ Si no querés esperar el export completo o solo te importan ciertos hilos (por e
 
 Esta carpeta es **solo de lectura para el proceso de migración** — nunca se edita, se sobreescribe ni se borra nada acá (regla de no-destrucción). Cuando haya contenido:
 
-1. Se analiza contra lo que ya existe en `knowledge-base/` y `decisions/DECISION_REGISTER.md`.
+1. Se analiza contra lo que ya existe en `knowledge-base/` y `governance/decisions/DECISION_REGISTER.md`.
 2. Si confirma algo ya migrado → se anota la fuente adicional, no se duplica.
-3. Si agrega contexto nuevo (el "por qué" de una decisión, una versión anterior reemplazada) → se añade a `decisions/DECISION_REGISTER.md` como entrada HISTORICAL, con trazabilidad a este archivo.
-4. Si **contradice** algo ya migrado → se documenta en el Contradiction Register (ver `MIGRATION_MASTER_REPORT.md`) y se te pregunta explícitamente cuál versión es la correcta. Nunca se resuelve en silencio.
+3. Si agrega contexto nuevo (el "por qué" de una decisión, una versión anterior reemplazada) → se añade a `governance/decisions/DECISION_REGISTER.md` como entrada HISTORICAL, con trazabilidad a este archivo.
+4. Si **contradice** algo ya migrado → se documenta en el Contradiction Register (ver `documentation/MIGRATION_MASTER_REPORT.md`) y se te pregunta explícitamente cuál versión es la correcta. Nunca se resuelve en silencio.
 
 Hasta que haya material acá, todo lo migrado se apoya únicamente en las 3 skills ya destiladas — que es la mejor fuente disponible hoy, pero no es lo mismo que el historial completo de razonamiento.

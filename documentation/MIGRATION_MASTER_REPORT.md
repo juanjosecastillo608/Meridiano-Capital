@@ -1,7 +1,7 @@
 # MERIDIANO CAPITAL — MIGRATION MASTER REPORT
 
 **Estado: PROPUESTA — pendiente de tu aprobación antes de iniciar la fase de BUILD.**
-Nada de lo que este reporte propone en las Fases 6-12 se ha implementado todavía. Lo único que existe físicamente en el repo a la fecha de este reporte es lo de las Fases 1-4 originales (`inventory/`, `knowledge-base/`, `decisions/DECISION_REGISTER.md`, `decisions/REQUIREMENTS.md`) y la app funcional (`app/`), todo generado en el turno anterior. Este reporte añade el análisis de las Fases 4 (reclasificada)-12 y dos carpetas nuevas de bajo riesgo (`00_RAW_MIGRATION/`, este mismo archivo) — no toca, mueve ni sobrescribe nada existente.
+Nada de lo que este reporte propone en las Fases 6-12 se ha implementado todavía. Lo único que existe físicamente en el repo a la fecha de este reporte es lo de las Fases 1-4 originales (`inventory/`, `knowledge-base/`, `governance/decisions/DECISION_REGISTER.md`, `governance/decisions/REQUIREMENTS.md`) y la app funcional (`app/`), todo generado en el turno anterior. Este reporte añade el análisis de las Fases 4 (reclasificada)-12 y dos carpetas nuevas de bajo riesgo (`00_RAW_MIGRATION/`, este mismo archivo) — no toca, mueve ni sobrescribe nada existente.
 
 ---
 
@@ -38,7 +38,7 @@ Aplico tu regla tal como la diste: **"Migrar el conocimiento, no necesariamente 
 
 ## FASE 4 (v2) — REQUIREMENTS REGISTER
 
-Reclasificación completa de los 37 requisitos ya extraídos (v1, en `decisions/REQUIREMENTS.md`) en las 9 categorías pedidas, más los nuevos requisitos de SECURITY, SCALABILITY y FUTURE que v1 no cubría explícitamente. Cada fila enlaza a su origen real — nada se inventó de cero, salvo SEC/SCA/FUT donde se marca explícitamente como inferencia razonada, no como regla ya dicha en el material.
+Reclasificación completa de los 37 requisitos ya extraídos (v1, en `governance/decisions/REQUIREMENTS.md`) en las 9 categorías pedidas, más los nuevos requisitos de SECURITY, SCALABILITY y FUTURE que v1 no cubría explícitamente. Cada fila enlaza a su origen real — nada se inventó de cero, salvo SEC/SCA/FUT donde se marca explícitamente como inferencia razonada, no como regla ya dicha en el material.
 
 **Prioridad**: P0 crítico · P1 alto · P2 medio · P3 bajo · P4 archivo.
 **Estado**: `IMPLEMENTADO` (ya construido y probado) · `VIGENTE` (regla activa, no requiere construcción) · `PENDIENTE` (por construir) · `BLOQUEADO` (requiere decisión externa primero).
@@ -59,7 +59,7 @@ Reclasificación completa de los 37 requisitos ya extraídos (v1, en `decisions/
 
 | ID | Descripción | Origen | Prioridad | Estado | Dependencia |
 |---|---|---|---|---|---|
-| FUN-01 | La app debe permitir calcular yield bruto/neto de una propiedad dado clase, precio y renta mensual | RT-01 | P0 | IMPLEMENTADO (`app/backend/server.py` → `/api/calcular/renta`, probado en navegador) | TEC-01 |
+| FUN-01 | La app debe permitir calcular yield bruto/neto de una propiedad dado clase, precio y renta mensual | RT-01 | P0 | IMPLEMENTADO (`production/app/backend/server.py` → `/api/calcular/renta`, probado en navegador) | TEC-01 |
 | FUN-02 | La app debe permitir capturar un lead (nombre, email, país, mensaje) y persistirlo | derivado de RT-03/U-002 | P0 | IMPLEMENTADO (`/api/contacto`, probado en navegador) | — |
 | FUN-03 | Todo resultado de cálculo de renta debe mostrar las advertencias de integridad de datos (D-001/D-002) junto al número | RT-06 | P0 | IMPLEMENTADO (campo `advertencias` en la respuesta + banner visible en UI) | INV-related decisions |
 | FUN-04 | Exponer también reventa, reventa-temprana y retorno-combinado como funciones de cálculo consultables | RT-01 (implícito, la calculadora ya los tiene) | P1 | IMPLEMENTADO en API (`/api/calcular/reventa`, `/reventa-temprana`, `/combinado`), SIN UI todavía | FUN-01 |
@@ -88,7 +88,7 @@ Reclasificación completa de los 37 requisitos ya extraídos (v1, en `decisions/
 | BRA-04 | Todo documento/deck cierra con firma canónica + pantalla tierra-colorada | RB-04 | P1 | VIGENTE | — |
 | BRA-05 | Disclaimer "cifras ilustrativas, no constituyen garantía" en slides de retorno | RB-05 | P0 | VIGENTE | — |
 | BRA-06 | Emails/teléfono de firma correctos (`juancastillo@...`, `urbannit@meridianocapital.net`, `+595 982 853 111`) | RB-06 | P1 | VIGENTE — **ver contradicción histórica C-005/C-006** | — |
-| BRA-07 | Lista de países de origen debe leer "Europa, Argentina, Brasil, Chile" | RB-07 | P1 | **NO VIGENTE EN LA APP ACTUAL — ver C-007, contradicción nueva encontrada en este reporte** | Corregir `app/frontend/index.html` |
+| BRA-07 | Lista de países de origen debe leer "Europa, Argentina, Brasil, Chile" | RB-07 | P1 | **NO VIGENTE EN LA APP ACTUAL — ver C-007, contradicción nueva encontrada en este reporte** | Corregir `production/app/frontend/index.html` |
 | BRA-08 | Sub-identidad de proyecto inmobiliario sigue Marca Endosada | RB-08, D-019 | P2 | VIGENTE (framework, sin proyecto activo todavía) | — |
 | BRA-09 | Sitio/presentación de Urbannit debe mostrar el endoso "gestionado por Meridiano Capital" | RB-09, U-001 | P1 | PENDIENTE — no implementado en el material de referencia disponible | — |
 
@@ -119,7 +119,7 @@ Reclasificación completa de los 37 requisitos ya extraídos (v1, en `decisions/
 
 | ID | Descripción | Origen | Prioridad | Estado | Dependencia |
 |---|---|---|---|---|---|
-| SEC-01 `[EXTENSION]` | Los datos de contacto/leads (`contactos.jsonl`) contienen PII (nombre, email) — no deben commitearse a git ni exponerse públicamente | Inferido de buenas prácticas + ya implementado vía `.gitignore` | P0 | IMPLEMENTADO (`app/backend/data/*.jsonl` en `.gitignore`) | — |
+| SEC-01 `[EXTENSION]` | Los datos de contacto/leads (`contactos.jsonl`) contienen PII (nombre, email) — no deben commitearse a git ni exponerse públicamente | Inferido de buenas prácticas + ya implementado vía `.gitignore` | P0 | IMPLEMENTADO (`production/app/backend/data/*.jsonl` en `.gitignore`) | — |
 | SEC-02 `[EXTENSION]` | Datos bancarios/fiscales del onboarding (origen de fondos, CRS/FATCA) son información sensible — necesitan un canal de manejo distinto a un archivo de texto plano | Inferido de `knowledge-base/operations/01-onboarding-bancario.md` | P1 | PENDIENTE (no hay ningún sistema de manejo de esos datos todavía, ni bueno ni malo) | OPS-05 |
 | SEC-03 `[EXTENSION]` | El tarifario y las cifras de fee/carry son información competitivamente sensible — la regla "solo etapa avanzada" (OPS-02) es también un control de seguridad de información, no solo una regla de venta | Inferido de D-021 | P2 | VIGENTE (regla ya existe, reencuadrada) | — |
 | SEC-04 `[EXTENSION]` | El servidor de la app (`server.py`) no tiene autenticación en ningún endpoint — aceptable para prototipo local, no para producción pública | Inferido del código actual | P1 | PENDIENTE — bloqueante antes de exponer la app fuera de `localhost` | TEC-06 |
@@ -154,11 +154,11 @@ Formato exigido: (1) Contradicción · (2) Fuentes · (3) Decisión más recient
 
 **Ninguna de estas contradicciones se resolvió unilateralmente.** Las C-001 a C-003 ya estaban documentadas como UNRESOLVED en `DECISION_REGISTER.md` (D-001 a D-003); C-004 a C-006 estaban implícitas en las reglas de marca pero no se habían registrado formalmente como contradicción histórica; **C-007 es un hallazgo nuevo de este reporte** (no se había detectado en la extracción anterior); C-008 ya estaba anotada como ambigüedad de ownership.
 
-> **✅ RESOLUCIÓN (2026-08-02)**: el founder confirmó la regla — IVA 10% para alquileres comerciales, 5% para alquileres residenciales, 5% para venta/reventa. Implementado en `app/config/parametros_mercado.json` (bloque `fiscal`) y `app/backend/calculadora.py` como `D-027`. Las clases `temporal_*` (Urbannit) usan el residencial 5% por inferencia `[EXTENSION]` no confirmada explícitamente — ver advertencia en la API. Entrada original preservada sin editar por trazabilidad.
+> **✅ RESOLUCIÓN (2026-08-02)**: el founder confirmó la regla — IVA 10% para alquileres comerciales, 5% para alquileres residenciales, 5% para venta/reventa. Implementado en `production/app/config/parametros_mercado.json` (bloque `fiscal`) y `production/app/backend/calculadora.py` como `D-027`. Las clases `temporal_*` (Urbannit) usan el residencial 5% por inferencia `[EXTENSION]` no confirmada explícitamente — ver advertencia en la API. Entrada original preservada sin editar por trazabilidad.
 
 ### C-001 · IVA: 5% (código) vs. 10% (política) — ✅ RESUELTA, ver D-027
 1. **Contradicción**: `calculadora.py` usa `fiscal.iva_pct = 5.0` para calcular renta neta; la política declara `supuestos_operativos_default.iva_pct = 10.0` como obligatorio ("SIEMPRE aplicarlo").
-2. **Fuentes**: `app/backend/calculadora.py` (código) vs. `app/config/parametros_mercado.json` bloque `supuestos_operativos_default` (política).
+2. **Fuentes**: `production/app/backend/calculadora.py` (código) vs. `production/app/config/parametros_mercado.json` bloque `supuestos_operativos_default` (política).
 3. **Decisión más reciente aparente**: ninguna — el propio bloque `fiscal` está anotado "A CONFIRMAR CON CONTADORA", es decir, el propio material admite que nunca se cerró.
 4. **Impacto**: **alto** — todo yield neto mostrado hoy puede estar sobrestimado, afecta directamente decisiones de inversión reales.
 5. **Recomendación**: fijar 10% (la política) como valor por defecto hasta que la contadora confirme lo contrario, ya que la política es explícita ("SIEMPRE") y el código es el que está marcado como no confirmado.
@@ -204,14 +204,14 @@ Formato exigido: (1) Contradicción · (2) Fuentes · (3) Decisión más recient
 5. **Recomendación**: verificar que ningún material de Urbannit en circulación (fuera de este repo) siga usando la dirección de Gmail.
 6. **Confirmación requerida**: no bloqueante para este repo; sí vale auditoría externa.
 
-> **✅ RESOLUCIÓN (2026-08-02)**: el founder confirmó que Chile es mercado activo. Corregido en `app/frontend/index.html` (hero + dropdown de país del formulario de contacto), `knowledge-base/brand/02-identidad-verbal.md` (one-liner + posicionamiento formal) y `knowledge-base/brand/08-sistema-de-imagen.md`. Registrado como `D-028`. `assets/source-docs/meridiano-capital-sitio-web.html` (referencia archivada) e `inventory/_raw-copies/` quedan sin tocar — son material histórico/archivo, no la copia viva.
+> **✅ RESOLUCIÓN (2026-08-02)**: el founder confirmó que Chile es mercado activo. Corregido en `production/app/frontend/index.html` (hero + dropdown de país del formulario de contacto), `knowledge-base/brand/02-identidad-verbal.md` (one-liner + posicionamiento formal) y `knowledge-base/brand/08-sistema-de-imagen.md`. Registrado como `D-028`. `assets/source-docs/meridiano-capital-sitio-web.html` (referencia archivada) e `inventory/_raw-copies/` quedan sin tocar — son material histórico/archivo, no la copia viva.
 
 ### C-007 · Países de origen de clientes: "Europa, Argentina y Brasil" (copy real del sitio) vs. "Europa, Argentina, Brasil, Chile" (regla de marca documentada) — ✅ RESUELTA, ver D-028
-1. **Contradicción**: el copy del hero del sitio (heredado sin cambios del sitio de referencia original hacia `app/frontend/index.html`) dice *"Ayudamos a inversores de Europa, Argentina y Brasil..."* — **tres orígenes, sin Chile**. La regla de marca ya documentada (RB-07, `knowledge-base/brand/00-overview.md`) dice explícitamente que las listas de origen de clientes deben leer *"Europa, Argentina, Brasil, Chile"* — **cuatro orígenes**.
-2. **Fuentes**: `app/frontend/index.html` (hero, heredado de `assets/source-docs/meridiano-capital-sitio-web.html`) vs. `knowledge-base/brand/00-overview.md` (regla RB-07).
+1. **Contradicción**: el copy del hero del sitio (heredado sin cambios del sitio de referencia original hacia `production/app/frontend/index.html`) dice *"Ayudamos a inversores de Europa, Argentina y Brasil..."* — **tres orígenes, sin Chile**. La regla de marca ya documentada (RB-07, `knowledge-base/brand/00-overview.md`) dice explícitamente que las listas de origen de clientes deben leer *"Europa, Argentina, Brasil, Chile"* — **cuatro orígenes**.
+2. **Fuentes**: `production/app/frontend/index.html` (hero, heredado de `assets/source-docs/meridiano-capital-sitio-web.html`) vs. `knowledge-base/brand/00-overview.md` (regla RB-07).
 3. **Decisión más reciente aparente**: no se puede determinar con el material disponible — podría ser que la regla de 4 países sea posterior al copy del sitio (sitio desactualizado), o que el copy del sitio sea deliberadamente distinto de la regla general de "listas de origen" (por ejemplo, si Chile se agregó como mercado después de escribir el hero). El material no lo aclara.
 4. **Impacto**: **medio** — es la primera línea que lee cualquier visitante del sitio; si Chile es un mercado real y activo, el sitio actual lo está excluyendo del mensaje principal.
-5. **Recomendación**: actualizar el hero de `app/frontend/index.html` a "Europa, Argentina, Brasil y Chile" para alinear con RB-07 — **pendiente de tu confirmación antes de tocar el copy**, ya que no hay certeza de cuál versión es la vigente.
+5. **Recomendación**: actualizar el hero de `production/app/frontend/index.html` a "Europa, Argentina, Brasil y Chile" para alinear con RB-07 — **pendiente de tu confirmación antes de tocar el copy**, ya que no hay certeza de cuál versión es la vigente.
 6. **Confirmación requerida**: **sí** — del founder. ¿Chile es un mercado activo? Si sí, corregir el sitio. Si no, la regla RB-07 debería ajustarse en vez del sitio.
 
 ### C-008 · Narrativa Urbannit: "15 años" (histórico) vs. "20+ años, origen Barcelona 2010" (vigente)
@@ -236,8 +236,8 @@ Cada elemento del repo clasificado en una de las 9 categorías. Esto determina c
 | **SKILL** | Capacidad reutilizable y estructurada (no todavía implementada como Claude Skill nativa de este entorno) | Las 8 candidatas de la Fase 9 |
 | **WORKFLOW** | Proceso ejecutable con pasos de decisión | Los 4 candidatos de la Fase 10 |
 | **PROJECT** | Contexto activo específico | "Meridiano Capital" como proyecto activo hoy; "Urbannit" como proyecto parcialmente activo (marca definida, sin sistema propio todavía) |
-| **DOCUMENTATION** | Referencia sobre el sistema mismo, no sobre el negocio | `README.md`, `app/README.md`, `CLAUDE.md`, este mismo reporte |
-| **CONFIGURATION** | Valores que cambian con el mercado/operación, no lógica | `app/config/parametros_mercado.json` |
+| **DOCUMENTATION** | Referencia sobre el sistema mismo, no sobre el negocio | `README.md`, `production/app/README.md`, `CLAUDE.md`, este mismo reporte |
+| **CONFIGURATION** | Valores que cambian con el mercado/operación, no lógica | `production/app/config/parametros_mercado.json` |
 | **HISTORICAL** | Ya reemplazado, se conserva por trazabilidad | H-001, H-002, C-005/C-006 (emails viejos), la versión pre-refinamientos del modelo P07 |
 | **ARCHIVE** | Se conserva pero no se usa activamente | `inventory/_raw-copies/` completo (copia cruda de las 3 skills originales) |
 
@@ -258,7 +258,7 @@ Arquitectura de 10 capas pedida, con la función de cada una aplicada a lo que y
 | **CONNECTORS** | Integraciones con sistemas externos (CRM, banca, email, etc.) | No existen — la app hoy es deliberadamente cero-dependencias |
 | **WORKFLOWS** | Procesos ejecutables con decisión/validación | Diseñados (Fase 10); 1 parcialmente vivo (cálculo de rentabilidad, vía API) |
 | **PROJECTS** | Contexto activo por unidad de negocio/marca | Implícito (todo el repo ES el proyecto Meridiano Capital); no hay separación explícita `projects/meridiano-capital/` vs `projects/urbannit/` |
-| **DOCUMENTATION** | Referencia sobre el sistema mismo | ✅ `README.md`, `app/README.md`, `CLAUDE.md`, este reporte |
+| **DOCUMENTATION** | Referencia sobre el sistema mismo | ✅ `README.md`, `production/app/README.md`, `CLAUDE.md`, este reporte |
 | **GOVERNANCE** | Control: decisiones, requisitos, contradicciones, reglas de comportamiento de IA | ✅ `decisions/`, `CLAUDE.md`, `knowledge-base/ai/` |
 | **PRODUCTION** | El sistema real, en uso, de cara a inversores/usuarios | ✅ `app/` (prototipo funcional, probado) |
 
@@ -297,15 +297,15 @@ Meridiano-Capital/                    (o renombrado a nivel holding, ver nota ab
 | Brand Identity | `knowledge-base/brand/` (el `.docx` oficial es la autoridad última) | Cualquier deck/web — deben *citar*, no *redefinir* |
 | Business Strategy | `knowledge-base/business/` | — |
 | Investment Methodology (concepto) | `knowledge-base/investment/` | — |
-| Investment Calculation (ejecución) | `app/backend/calculadora.py` + `app/config/parametros_mercado.json` | `knowledge-base/investment/` solo lo *explica*, no debe tener sus propios números que puedan desincronizarse |
+| Investment Calculation (ejecución) | `production/app/backend/calculadora.py` + `production/app/config/parametros_mercado.json` | `knowledge-base/investment/` solo lo *explica*, no debe tener sus propios números que puedan desincronizarse |
 | Operational Processes | `knowledge-base/operations/` | — |
 | Marketing/Channel Rules | `knowledge-base/marketing/` | — |
 | AI Governance/Behavior | `knowledge-base/ai/` (contenido) + `CLAUDE.md` (el que lo carga automáticamente) | `CLAUDE.md` nunca debe copiar el contenido de `knowledge-base/ai/`, solo apuntar a él |
-| Decisiones y trazabilidad | `decisions/DECISION_REGISTER.md` | — |
-| Requisitos | Este reporte (Fase 4 v2) pasa a ser la versión vigente; `decisions/REQUIREMENTS.md` (v1) queda como HISTORICAL una vez apruebes este reporte | — |
+| Decisiones y trazabilidad | `governance/decisions/DECISION_REGISTER.md` | — |
+| Requisitos | Este reporte (Fase 4 v2) pasa a ser la versión vigente; `governance/decisions/REQUIREMENTS.md` (v1) queda como HISTORICAL una vez apruebes este reporte | — |
 | Contradicciones | Este reporte (Fase 5) — se propone que viva permanentemente en `governance/CONTRADICTION_REGISTER.md` tras la reestructuración | — |
-| Parámetros de mercado (valores) | `app/config/parametros_mercado.json` | Ningún otro archivo debe tener su propia copia de estos números |
-| Datos de contacto/leads | `app/backend/data/contactos.jsonl` (temporal — ver TEC-07) | — |
+| Parámetros de mercado (valores) | `production/app/config/parametros_mercado.json` | Ningún otro archivo debe tener su propia copia de estos números |
+| Datos de contacto/leads | `production/app/backend/data/contactos.jsonl` (temporal — ver TEC-07) | — |
 | Memoria persistente de IA | El sistema de memoria nativo de Claude Code (Fase 11) — no `knowledge-base/` | — |
 
 ---
@@ -338,8 +338,8 @@ No toda capacidad mencionada en el material es una skill — solo las que son re
 - **Trigger**: "¿cuál es la rentabilidad de esta propiedad?", cifras de clase/precio/renta.
 - **Inputs**: clase de activo, precio de compra, renta mensual, nivel de neto.
 - **Outputs**: yield bruto/neto, desglose, veredicto vs. piso, **advertencias D-001/D-002/D-003 siempre incluidas**.
-- **Dependencias**: `app/backend/calculadora.py`, `app/config/parametros_mercado.json`.
-- **Herramientas/Connectors**: ejecución Python o llamada HTTP a `app/backend/server.py`.
+- **Dependencias**: `production/app/backend/calculadora.py`, `production/app/config/parametros_mercado.json`.
+- **Herramientas/Connectors**: ejecución Python o llamada HTTP a `production/app/backend/server.py`.
 - **Prioridad**: **P0** — ya tiene código funcional, es "el corazón del negocio" según el propio docstring del archivo.
 - **Relación**: alimenta a WF-02 (Rentabilidad Evaluation Workflow).
 
@@ -366,7 +366,7 @@ No toda capacidad mencionada en el material es una skill — solo las que son re
 - **Trigger**: "registra esta decisión", o automáticamente al detectar una decisión de negocio/marca/técnica nueva en la conversación.
 - **Inputs**: la decisión, su motivo, qué reemplaza (si algo).
 - **Outputs**: entrada añadida al registro con ID secuencial correcto.
-- **Dependencias**: `decisions/DECISION_REGISTER.md` (formato).
+- **Dependencias**: `governance/decisions/DECISION_REGISTER.md` (formato).
 - **Prioridad**: **P1** — es lo que evita que el sistema completo se pudra con el tiempo.
 - **Relación**: trabaja junto a SK-07.
 
@@ -375,7 +375,7 @@ No toda capacidad mencionada en el material es una skill — solo las que son re
 - **Trigger**: bajo demanda ("revisa contradicciones") o disparado automáticamente cuando entra material nuevo.
 - **Inputs**: el corpus completo o el material nuevo a comparar contra el existente.
 - **Outputs**: entradas nuevas al Contradiction Register, en el mismo formato de 6 campos.
-- **Dependencias**: todo `knowledge-base/`, `decisions/DECISION_REGISTER.md`.
+- **Dependencias**: todo `knowledge-base/`, `governance/decisions/DECISION_REGISTER.md`.
 - **Prioridad**: **P3** — valioso pero no urgente mientras el corpus es chico y manejable a mano (como en este mismo reporte).
 - **Relación**: alimenta a SK-06.
 

@@ -60,5 +60,5 @@ Copia cruda preservada sin modificar en `inventory/_raw-copies/` como respaldo a
 ## Totales
 
 - **3 skills**, **35 recursos** catalogados (18 Markdown/JSON de conocimiento, 1 DOCX oficial, 6 SVG, 24 PNG, 1 HTML de referencia, 2 scripts Python).
-- **Estado**: 100% marcado como CURRENT — no se encontraron versiones HISTORICAL/DEPRECATED explícitas dentro del material disponible. Esto no significa que no existan decisiones anteriores reemplazadas durante las conversaciones originales — significa que **esas conversaciones no están disponibles para este proceso** (ver Fuentes en decisions/DECISION_REGISTER.md, ítem sobre limitación de trazabilidad).
+- **Estado**: 100% marcado como CURRENT — no se encontraron versiones HISTORICAL/DEPRECATED explícitas dentro del material disponible. Esto no significa que no existan decisiones anteriores reemplazadas durante las conversaciones originales — significa que **esas conversaciones no están disponibles para este proceso** (ver Fuentes en governance/decisions/DECISION_REGISTER.md, ítem sobre limitación de trazabilidad).
 - **Pendiente**: ninguno bloqueante para iniciar Fase 2. Pendientes de negocio se documentan en Fase 3 (Decision Register) como UNRESOLVED.

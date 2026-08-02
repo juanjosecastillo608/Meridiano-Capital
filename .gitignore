@@ -1,3 +1,3 @@
-app/backend/data/*.jsonl
+production/app/backend/data/*.jsonl
 __pycache__/
 *.pyc

@@ -113,7 +113,7 @@
     "_fiscal_nota": "Paraguay: IVA 10% (Ley 125/91) e IRE 10%. SIEMPRE aplicarlos — no dejarlos en 0 (error detectado en el modelo Edificio Austria)."
   },
   "fiscal": {
-    "_nota": "Confirmado por Juan Jose Castillo (founder) el 2026-08-02. Resuelve D-001 del Decision Register (reemplaza el iva_pct unico de 5.0 marcado 'A CONFIRMAR CON CONTADORA'). Version historica preservada en decisions/DECISION_REGISTER.md.",
+    "_nota": "Confirmado por Juan Jose Castillo (founder) el 2026-08-02. Resuelve D-001 del Decision Register (reemplaza el iva_pct unico de 5.0 marcado 'A CONFIRMAR CON CONTADORA'). Version historica preservada en governance/decisions/DECISION_REGISTER.md.",
     "iva_alquiler_comercial_pct": 10.0,
     "iva_alquiler_residencial_pct": 5.0,
     "_iva_alquiler_nota": "Alquiler COMERCIAL: IVA 10%. Alquiler RESIDENCIAL (casa, departamento con o sin muebles): IVA 5%. Las clases temporal_departamento/temporal_casa (Urbannit) usan el residencial 5% por defecto -- es una inferencia [EXTENSION], no confirmada explicitamente para renta temporal/turistica. Confirmar con contadora.",
