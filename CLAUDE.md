@@ -12,12 +12,11 @@ Este repo es el sistema operativo de conocimiento y desarrollo de Meridiano Capi
 
 ## Bloqueantes financieros activos — no ignorar
 
-Antes de confiar en o mostrar cualquier cifra de rentabilidad (propia o generada por `app/backend/calculadora.py`), ver `decisions/DECISION_REGISTER.md` sección "UNRESOLVED de máxima prioridad":
+Antes de confiar en o mostrar cualquier cifra de rentabilidad (propia o generada por `app/backend/calculadora.py`), ver `decisions/DECISION_REGISTER.md`:
 
-- **D-001**: el código usa IVA 5%, la política declara 10% obligatorio — el neto mostrado puede estar sobrestimado.
-- **D-002**: los "pisos de rentabilidad neta" están etiquetados como NETO en el código pero como BRUTO en otra parte del mismo config.
-
-No corrijas estos valores unilateralmente — son decisiones de negocio que requieren al responsable (Juan José Castillo) y a la contadora. Si el usuario te pide trabajar con cifras de rentabilidad, menciona estas advertencias.
+- **D-001 — RESUELTA (2026-08-02)**: IVA diferenciado, confirmado por Juan José Castillo (founder): alquiler comercial 10%, alquiler residencial 5%, venta/reventa 5%. Implementado como `D-027`. Las clases `temporal_*` (Urbannit) usan el residencial 5% por inferencia `[EXTENSION]` — no confirmado explícitamente para renta temporal/turística.
+- **D-002 — sigue UNRESOLVED**: los "pisos de rentabilidad neta" están etiquetados como NETO en el código pero como BRUTO en otra parte del mismo config. No corrijas este valor unilateralmente — requiere al founder y a la contadora. Si el usuario te pide trabajar con veredictos `pasa_piso`, menciona esta advertencia.
+- **D-003 — sigue UNRESOLVED**: la ocupación realista (55-65%) no se aplica en la rama de alquiler temporal de `evaluar_renta()`.
 
 ## Estructura del repo
 

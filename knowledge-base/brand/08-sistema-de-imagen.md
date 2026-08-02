@@ -35,7 +35,7 @@ Dominio: BRAND
 
 - Personas reales o representadas de forma autentica, en situaciones genuinas (trabajando, conversando, recorriendo una obra) — nunca poses forzadas de banco de imagenes.
 - Retrato de fundador/equipo: luz natural de ventana, expresion segura y calida (coherente con arquetipo Sabio + Gobernante), entorno de oficina u obra — nunca fondo de estudio artificial ni sonrisa forzada a camara.
-- Diversidad de inversores representados debe reflejar honestamente los mercados de origen reales (Europa, Argentina, Brasil) sin caer en estereotipo.
+- Diversidad de inversores representados debe reflejar honestamente los mercados de origen reales (Europa, Argentina, Brasil, Chile) sin caer en estereotipo.
 
 ## Imagenes generadas por IA
 

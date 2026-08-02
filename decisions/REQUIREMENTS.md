@@ -43,7 +43,7 @@ Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en
 | RI-02 | Mostrar siempre las dos TIR juntas (sobre precio total y sobre capital desembolsado) | Negocio | Explícito | `investment/02-politica-de-rentabilidad.md`, D-022 |
 | RI-03 | Presentar 3 escenarios (pesimista/base/optimista) antes de mostrar cualquier cifra a un inversor | Negocio | Explícito | `investment/00-overview.md` |
 | RI-04 | Las tres categorías de gestión (pasiva / Urbannit-temporal / operador hotelero) no deben mezclarse en materiales de venta | Negocio | Explícito | `investment/00-overview.md` |
-| RI-05 | **Bloqueante**: fijar si IVA es 5% o 10% antes de confiar en cualquier cifra neta ya calculada o de publicar la app | Técnico+Negocio | Implícito (deriva de D-001) | `decisions/DECISION_REGISTER.md#D-001` |
+| RI-05 | ~~Bloqueante~~ **RESUELTO 2026-08-02** (D-027): IVA diferenciado — comercial 10%, residencial 5%, venta 5% — implementado en `app/backend/calculadora.py` | Técnico+Negocio | Implícito (deriva de D-001) | `decisions/DECISION_REGISTER.md#D-027` |
 | RI-06 | **Bloqueante**: fijar si los pisos de rentabilidad son brutos o netos antes de confiar en cualquier veredicto `pasa_piso` | Técnico+Negocio | Implícito (deriva de D-002) | `decisions/DECISION_REGISTER.md#D-002` |
 | RI-07 | La ocupación realista (55–65%) del refinamiento #8 debe aplicarse también a la rama de alquiler temporal, no solo al genérico | Técnico | Implícito (deriva de D-003) | `decisions/DECISION_REGISTER.md#D-003` |
 
@@ -79,8 +79,8 @@ Estos requisitos deben trasladarse a un `CLAUDE.md` raíz del proyecto para que 
 
 Estos son los únicos ítems que, si no se resuelven, dejan a la futura app funcional produciendo cifras potencialmente incorrectas a inversores reales:
 
-1. **RI-05 / D-001** — IVA 5% vs 10%.
-2. **RI-06 / D-002** — pisos de rentabilidad brutos vs. netos.
+1. ~~RI-05 / D-001 — IVA 5% vs 10%.~~ **RESUELTO 2026-08-02**, ver D-027.
+2. **RI-06 / D-002** — pisos de rentabilidad brutos vs. netos. **Sigue sin respuesta del founder — pendiente.**
 3. **RI-07 / D-003** — ocupación realista no aplicada a alquiler temporal.
 
 Todo lo demás (formulario de contacto sin backend, enlaces muertos, hosting sin definir, etc.) es deuda de producto normal, no un riesgo de integridad financiera.

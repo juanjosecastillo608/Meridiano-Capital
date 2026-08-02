@@ -108,6 +108,17 @@ class Calculadora:
         with open(ruta_config, encoding="utf-8") as f:
             self.p = json.load(f)
 
+    def iva_alquiler_pct(self, clase):
+        """
+        IVA de alquiler segun clase (resuelve D-001, confirmado por el founder
+        2026-08-02): comercial 10%, residencial 5%. Las clases temporal_* usan
+        el residencial por defecto -- ver fiscal._iva_alquiler_nota en config.
+        """
+        f = self.p["fiscal"]
+        if clase == "comercial":
+            return f["iva_alquiler_comercial_pct"]
+        return f["iva_alquiler_residencial_pct"]
+
     # ---- RENTA ----
     def evaluar_renta(self, clase, precio_compra, renta_mensual_bruta,
                       nivel_neto=3, gastos_reales=None):
@@ -140,7 +151,7 @@ class Calculadora:
         # --- Nivel 1: siempre ---
         desglose["expensas"] = bruto_anual * s["expensas_pct"] / 100.0
         desglose["impuesto_inmobiliario"] = bruto_anual * s["impuesto_inmobiliario_pct"] / 100.0
-        desglose["iva"] = bruto_anual * f["iva_pct"] / 100.0
+        desglose["iva"] = bruto_anual * self.iva_alquiler_pct(clase) / 100.0
 
         if es_temporal:
             # Nivel 4: stack temporal propio
@@ -211,7 +222,7 @@ class Calculadora:
             meses_hasta_entrega = max(1, meses_obra // 2)
         meses_total = meses_hasta_entrega + (12 if salida == "vende_mas_un_ano" else 0)
 
-        # TIR sobre precio total (como si pagara todo al inicio)
+        # TIR sobre precio total (como si pagara todo al inicio) -- BRUTO, sin IVA de venta
         tir_precio_total = cagr(precio_entrada, valor_salida, meses_total)
 
         # TIR sobre capital desembolsado (cuotas reales)
@@ -227,6 +238,19 @@ class Calculadora:
         tir_mensual = tir(flujos)
         tir_desembolsado = anualizar(tir_mensual)
 
+        # IVA de venta (resuelve D-001 para venta, confirmado por el founder 2026-08-02):
+        # 5% sobre el valor de salida. Figuras BRUTAS arriba se preservan sin tocar
+        # (compatibilidad con los casos ya auditados); estas son adicionales, netas de IVA.
+        iva_venta_pct = self.p["fiscal"]["iva_venta_pct"]
+        iva_venta_monto = valor_salida * iva_venta_pct / 100.0
+        valor_salida_neto_iva = valor_salida - iva_venta_monto
+        tir_precio_total_neto_iva = cagr(precio_entrada, valor_salida_neto_iva, meses_total)
+        flujos_neto_iva = [-x for x in pagos]
+        while len(flujos_neto_iva) <= meses_total:
+            flujos_neto_iva.append(0.0)
+        flujos_neto_iva[meses_total] += valor_salida_neto_iva
+        tir_desembolsado_neto_iva = anualizar(tir(flujos_neto_iva))
+
         return {
             "tipo_edificio": tipo_edificio,
             "etapa_ingreso": etapa_ingreso,
@@ -236,6 +260,11 @@ class Calculadora:
             "valor_salida": round(valor_salida, 2),
             "tir_precio_total_pct": round(tir_precio_total * 100, 2) if tir_precio_total else None,
             "tir_capital_desembolsado_pct": round(tir_desembolsado * 100, 2) if tir_desembolsado else None,
+            "iva_venta_pct": iva_venta_pct,
+            "iva_venta_monto": round(iva_venta_monto, 2),
+            "valor_salida_neto_iva": round(valor_salida_neto_iva, 2),
+            "tir_precio_total_neto_iva_pct": round(tir_precio_total_neto_iva * 100, 2) if tir_precio_total_neto_iva else None,
+            "tir_capital_desembolsado_neto_iva_pct": round(tir_desembolsado_neto_iva * 100, 2) if tir_desembolsado_neto_iva else None,
         }
 
     # ---- REVENTA TEMPRANA (cesion de derechos) ----
@@ -264,11 +293,21 @@ class Calculadora:
         cobra_cedente = valor_posicion - saldo_pendiente
         ganancia = cobra_cedente - desembolsado
 
-        # TIR sobre capital desembolsado
+        # TIR sobre capital desembolsado -- BRUTO, sin IVA de venta
         flujos = [-x for x in pagos[:mes_cesion + 1]]
         flujos[mes_cesion] += cobra_cedente
         tir_mensual = tir(flujos)
         tir_anual = anualizar(tir_mensual)
+
+        # IVA de venta (D-001, confirmado por el founder 2026-08-02): 5% sobre lo que
+        # cobra el cedente. Figuras BRUTAS arriba se preservan; estas son adicionales.
+        iva_venta_pct = self.p["fiscal"]["iva_venta_pct"]
+        iva_venta_monto = cobra_cedente * iva_venta_pct / 100.0
+        cobra_cedente_neto_iva = cobra_cedente - iva_venta_monto
+        ganancia_neta_iva = cobra_cedente_neto_iva - desembolsado
+        flujos_neto_iva = [-x for x in pagos[:mes_cesion + 1]]
+        flujos_neto_iva[mes_cesion] += cobra_cedente_neto_iva
+        tir_anual_neto_iva = anualizar(tir(flujos_neto_iva))
 
         return {
             "mes_cesion": mes_cesion,
@@ -279,6 +318,12 @@ class Calculadora:
             "ganancia": round(ganancia, 2),
             "ganancia_sobre_desembolsado_pct": round(ganancia / desembolsado * 100, 2) if desembolsado else None,
             "tir_capital_desembolsado_pct": round(tir_anual * 100, 2) if tir_anual else None,
+            "iva_venta_pct": iva_venta_pct,
+            "iva_venta_monto": round(iva_venta_monto, 2),
+            "cobra_cedente_neto_iva": round(cobra_cedente_neto_iva, 2),
+            "ganancia_neta_iva": round(ganancia_neta_iva, 2),
+            "ganancia_neta_iva_sobre_desembolsado_pct": round(ganancia_neta_iva / desembolsado * 100, 2) if desembolsado else None,
+            "tir_capital_desembolsado_neto_iva_pct": round(tir_anual_neto_iva * 100, 2) if tir_anual_neto_iva else None,
         }
 
     # ---- TERRENO / APORTE ----

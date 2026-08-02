@@ -113,13 +113,16 @@
     "_fiscal_nota": "Paraguay: IVA 10% (Ley 125/91) e IRE 10%. SIEMPRE aplicarlos — no dejarlos en 0 (error detectado en el modelo Edificio Austria)."
   },
   "fiscal": {
-    "_nota": "A CONFIRMAR CON CONTADORA.",
-    "iva_pct": 5.0,
-    "_iva_nota": "IVA sobre la renta bruta. Verificar tratamiento real.",
+    "_nota": "Confirmado por Juan Jose Castillo (founder) el 2026-08-02. Resuelve D-001 del Decision Register (reemplaza el iva_pct unico de 5.0 marcado 'A CONFIRMAR CON CONTADORA'). Version historica preservada en decisions/DECISION_REGISTER.md.",
+    "iva_alquiler_comercial_pct": 10.0,
+    "iva_alquiler_residencial_pct": 5.0,
+    "_iva_alquiler_nota": "Alquiler COMERCIAL: IVA 10%. Alquiler RESIDENCIAL (casa, departamento con o sin muebles): IVA 5%. Las clases temporal_departamento/temporal_casa (Urbannit) usan el residencial 5% por defecto -- es una inferencia [EXTENSION], no confirmada explicitamente para renta temporal/turistica. Confirmar con contadora.",
+    "iva_venta_pct": 5.0,
+    "_iva_venta_nota": "Venta/reventa (evaluar_reventa, evaluar_reventa_temprana): IVA 5% para todas las clases. Se aplica sobre el valor total de salida/cesion. La base de calculo (precio total vs. solo el margen) es una interpretacion [EXTENSION] -- confirmar con contadora.",
     "impuesto_renta_pct": 10.0,
     "_impuesto_renta_nota": "IRP 10% aplicado sobre la renta NETA (no bruta).",
     "grava_ganancia_capital": false,
-    "_ganancia_capital_nota": "Confirmado por el usuario: la reventa NO se grava como actividad habitual. Plusvalia neta = bruta."
+    "_ganancia_capital_nota": "Confirmado por el usuario: la reventa NO se grava como actividad habitual (impuesto a la renta/ganancia de capital). El IVA de venta (iva_venta_pct) es un impuesto distinto, separado de este punto."
   },
   "descuento_por_etapa_mercado": {
     "_nota": "Descuento tipico contra precio terminado, por etapa (dato de mercado Asuncion 2026). Referencia para calibrar la matriz de plusvalia.",

@@ -24,13 +24,13 @@ Dominio: BRAND
 | 1 — Categoria (SEO) | "Real Estate & Desarrollo en Paraguay para Inversores Extranjeros" | Titulo de sitio web, meta title, encabezado de LinkedIn — donde un lector nuevo necesita entender el rubro en 2 segundos |
 | 2A — Diferenciador (contraste) | "No mostramos departamentos: construimos, estructuramos y gestionamos tu inversion." | Web, redes sociales, primer contacto — captacion y gancho inicial |
 | 2B — Diferenciador (autoridad) | "La mirada de un constructor, la precision de un estructurador legal, el cuidado de un gestor de patrimonio." | Deck de inversores, Sobre Nosotros, pitch en profundidad |
-| 3 — One-liner largo | "Ayudamos a inversores de Europa, Argentina y Brasil a construir y proteger patrimonio inmobiliario en Paraguay — desde la cedula y la cuenta bancaria hasta la gestion de la renta, con la mirada tecnica de 16 años desarrollando y construyendo." | Bio, Quienes Somos, presentaciones, LinkedIn About |
+| 3 — One-liner largo | "Ayudamos a inversores de Europa, Argentina, Brasil y Chile a construir y proteger patrimonio inmobiliario en Paraguay — desde la cedula y la cuenta bancaria hasta la gestion de la renta, con la mirada tecnica de 16 años desarrollando y construyendo." | Bio, Quienes Somos, presentaciones, LinkedIn About |
 
 **Regla dura:** no crear una cuarta variante de tagline sin verificar contra esta tabla primero. Si ninguna capa encaja perfecto, adaptar la mas cercana — no inventar desde cero. Si se necesita una variante nueva para un contexto no cubierto, generarla y marcarla explicitamente como **[EXTENSION] — recomendacion, no regla oficial**.
 
 ## Posicionamiento formal (OFICIAL)
 
-"Para inversores extranjeros de Europa, Argentina y Brasil que quieren construir patrimonio inmobiliario en Paraguay sin conocer el terreno legal, bancario ni tecnico del pais, Meridiano Capital es el operador que estructura y gestiona la inversion de punta a punta. A diferencia de una inmobiliaria tradicional, cuya base es la intermediacion, la base de Meridiano Capital es la construccion: evaluamos, estructuramos y administramos con la mirada de quien construye, no de quien solo vende."
+"Para inversores extranjeros de Europa, Argentina, Brasil y Chile que quieren construir patrimonio inmobiliario en Paraguay sin conocer el terreno legal, bancario ni tecnico del pais, Meridiano Capital es el operador que estructura y gestiona la inversion de punta a punta. A diferencia de una inmobiliaria tradicional, cuya base es la intermediacion, la base de Meridiano Capital es la construccion: evaluamos, estructuramos y administramos con la mirada de quien construye, no de quien solo vende."
 
 ---
 
