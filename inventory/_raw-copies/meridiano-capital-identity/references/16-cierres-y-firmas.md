@@ -1,0 +1,58 @@
+# Modulo 16 — Cierres y Firmas
+
+**Estado: [EXTENSION]** — estandar de cierre y firma formalizado por Juan Jose Castillo, derivado de Modulos 02 (identidad verbal), 03 (identidad visual), 05 (sistema cromatico) y 10 (presentaciones). Aplica a TODO documento de marca: decks, one-pagers, propuestas, cartas, term sheets, PDFs y comunicaciones institucionales.
+
+## Principio
+
+Todo documento de Meridiano cierra de la misma manera. La homogeneidad del cierre y de la firma es una senal de seriedad y consistencia: el inversor debe poder reconocer a Meridiano por como termina cada pieza, no solo por como empieza. El titular del cierre puede cambiar de una pieza a otra; el bloque de firma nunca cambia.
+
+## La firma canonica (bloque identico en TODO documento)
+
+Se compone SIEMPRE de estas lineas, en este orden, sin variacion:
+
+- **Juan Jose Castillo** — en Lora, negrita
+- Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay — en Poppins
+- +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net — en Poppins, contacto en una sola linea separado por " · "
+- Disclaimer legal segun el tipo de documento — en Poppins italica, cuerpo chico
+
+Reglas de la firma:
+- El titulo es SIEMPRE **"Operador Tecnico y Legal de Inversiones Inmobiliarias"**. Nunca "asesor inmobiliario", "agente", "desarrollador" u otra variante en la firma.
+- El Modulo 01 describe a JJC como "asesor y desarrollador inmobiliario" a nivel biografico/ADN. Eso es la descripcion de su trayectoria; la FIRMA formal de todo documento es la de este modulo. No confundir descripcion con firma.
+- El mail correcto es **juancastillo@meridianocapital.net** (NO juanjosecastillo).
+- El telefono correcto es **+595 982 853 111**.
+
+## El cierre (ultima pagina o diapositiva)
+
+- Fondo: **tierra colorada #8B3323** — color de cierre de marca (Modulo 05).
+- Arriba: isotipo inverso + "MERIDIANO CAPITAL" en Lora.
+- Centro: un titular en Lora Bold (crema) con el mensaje de llamada a la accion PROPIO de cada pieza. **Este titular SI varia** — es lo unico que cambia de un cierre a otro. Ejemplos ya producidos: "Comencemos su ingreso al mercado paraguayo" (Programa de Ingreso); "Coinverti en el desarrollo inmobiliario de Asuncion" (Coinversion).
+- Abajo: el bloque de firma canonico (ver arriba).
+
+Regla clave: **el titular del cierre puede variar; el bloque de firma es siempre identico.** Esto da homogeneidad sin volver los cierres monotonos.
+
+## La frase de posicionamiento (cuerpo del documento, NUNCA la firma)
+
+Es la linea que separa a JJC del agente tradicional. Vive en el cuerpo del documento —tipicamente en la seccion "Quien soy" o equivalente—, no al pie, y no reemplaza a la firma.
+
+- **Apertura:** "No soy un agente inmobiliario tradicional. Soy el operador tecnico y legal que convierte a un extranjero en inversor inmobiliario paraguayo — de la cedula al alquiler, de punta a punta."
+- **Remate:** "Donde otros ven una comision, yo veo una responsabilidad que empieza antes de la compra y no termina en la firma."
+
+Uso: la apertura abre la seccion "Quien soy"; el remate la cierra. Pueden usarse juntas o por separado segun el espacio, pero siempre en el cuerpo, nunca como firma. El remate deriva directamente del ADN de marca (Modulo 01).
+
+## Origen de clientes
+
+Cuando se listen los origenes de los inversores de Meridiano, la lista correcta es: **Europa, Argentina, Brasil y Chile.** NUNCA incluir Alemania como item separado — esta dentro de Europa y seria redundante.
+
+Distinto es el **dato macro de radicaciones en Paraguay** (estadistica de mercado sobre origenes de extranjeros que se radican en el pais): ese es un dato de contexto y puede listar paises especificos (ej. Brasil, Argentina, Alemania, Espana). No confundir el dato de contexto de mercado con el origen de la cartera de clientes de Meridiano.
+
+## Checklist de cierre (antes de dar por final cualquier documento)
+
+- [ ] Cierre en fondo tierra colorada #8B3323
+- [ ] Isotipo inverso + "MERIDIANO CAPITAL" arriba del cierre
+- [ ] Titular de cierre propio de la pieza, en Lora Bold
+- [ ] Firma: "Juan Jose Castillo" + "Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay"
+- [ ] Contacto en una linea: +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
+- [ ] Mail juancastillo@meridianocapital.net (no juanjosecastillo)
+- [ ] Disclaimer legal acorde al documento
+- [ ] Si hay origenes de clientes: Europa, Argentina, Brasil, Chile (sin Alemania)
+- [ ] Frase de posicionamiento en el cuerpo (si aplica), nunca en la firma

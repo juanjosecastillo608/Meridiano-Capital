@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Meridiano Capital — isotipo "el mojon" -->
+  <!-- Uso: fondo claro. Para fondo oscuro reemplazar stroke="#14313A" por "#F3EDE3" -->
+  <path d="M60 6 L14 100 L106 100 Z" fill="none" stroke="#14313A" stroke-width="6" stroke-linejoin="round"/>
+  <line x1="4" y1="112" x2="116" y2="112" stroke="#14313A" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="60" cy="72" r="9" fill="#C9982E"/>
+</svg>

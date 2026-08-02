@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Meridiano Capital — isotipo, version inversa para fondo oscuro (petroleo, tierra colorada) -->
+  <path d="M60 6 L14 100 L106 100 Z" fill="none" stroke="#F3EDE3" stroke-width="6" stroke-linejoin="round"/>
+  <line x1="4" y1="112" x2="116" y2="112" stroke="#F3EDE3" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="60" cy="72" r="9" fill="#C9982E"/>
+</svg>
