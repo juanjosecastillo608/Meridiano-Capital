@@ -57,8 +57,34 @@ Copia cruda preservada sin modificar en `inventory/_raw-copies/` como respaldo a
 | REN-04 | scripts/calculadora.py | Calculadora funcional de rentabilidad | sync 2026-08-01 | Crítica | CURRENT | Implementa REN-01; depende de REN-03 |
 | REN-05 | scripts/test_calculadora.py | Tests de la calculadora | sync 2026-08-01 | Media | CURRENT | Depende de REN-04 |
 
+## Addendum — Segunda fuente: paquete de recuperación (2026-08-02)
+
+El usuario entregó un segundo paquete (157 archivos, 11MB), producido por él en otra sesión de Claude, con la intención explícita de recuperar contexto que la migración original (3 skills) no capturaba. Depositado sin modificar en `00_RAW_MIGRATION/claude-recovery-2026-08-02/` (regla de no-destrucción del pipeline RAW). Re-procesado siguiendo el mismo rigor de Fase 2-5.
+
+**Hallazgo clave del diff**: las carpetas `skills/` de este paquete son **byte-idénticas** a `inventory/_raw-copies/` (verificado con `diff -q` sobre los 3 SKILL.md, todos los `references/*.md` y `scripts/*.py`) — no aportan nada nuevo por sí mismas. Todo el valor agregado real está en `historico/`, `entregables/` y `generadores/`, que no tienen equivalente en la migración original.
+
+| ID | Recurso | Tipo | Relevancia | Estado | Dependencias |
+|---|---|---|---|---|---|
+| REC-00 | `CLAUDE.md` / `MERIDIANO_RECUPERACION.md` (idénticos) | Síntesis + transcripción destilada de 4 sesiones (~52 turnos) | Crítica | CURRENT | Fuente de la mayoría de las decisiones nuevas registradas en esta ronda |
+| REC-01 | `historico/Master_Project_Map.md` | Índice maestro, Fase 0 cerrada | Alta | CURRENT (histórico, 24-jul) | Consolidado por REC-00 |
+| REC-02 | `historico/Capa_01_Registro_Patrimonial_v3.md` | Estructura societaria + portfolio 53 unidades | Crítica | CURRENT | Migrado a `knowledge-base/business/06-*.md` |
+| REC-03 | `historico/Chat_Architecture_Report_01/02/03_Marca.md` | Reportes intermedios, superados por Master_Project_Map | Media | HISTORICAL | No releídos línea por línea — consolidados en REC-01 |
+| REC-04 | `historico/P07_Politica_Rentabilidad_borrador1..6` + `_FINAL` + `_referencia_v7.md` | Evolución de la política de rentabilidad | Alta (trazabilidad) | HISTORICAL | Superados por `skills/meridiano-rentabilidad` (ya migrado); no releídos en detalle esta ronda — quedan como rastro de auditoría disponible si hace falta reconstruir el "por qué" de un valor puntual |
+| REC-05 | `historico/Project_Charters_P07_P08_P09_P10.md`, `Verificacion_y_Plan_de_Proyectos.md`, `Plan_de_Desarrollo_Fase_2.md`, `Prompt_Transferencia_Proyecto.md` | Planificación interna de la sesión de recuperación | Baja para este repo | ARCHIVE | No releídos — son meta-proceso de cómo se armó el paquete, no conocimiento de negocio |
+| REC-06 | `entregables/auditorias/*.md` (3 archivos) | Auditorías financieras reales | Crítica | CURRENT | Migrado a `knowledge-base/investment/04-auditorias-financieras.md` |
+| REC-07 | `entregables/legal/Meridiano_P04_Manual_Compliance.pdf/.docx` | Manual de compliance PLA/FT | Crítica | CURRENT | Migrado a `knowledge-base/legal/` (dominio nuevo) |
+| REC-08 | `entregables/decks/*.pptx/.pdf` (4 piezas) | Entregables de marca terminados | Alta | CURRENT | Migrado a `knowledge-base/marketing/05-entregables-producidos.md` |
+| REC-09 | `entregables/outreach/*` | Piezas de outreach en frío | Media | CURRENT | Migrado a `knowledge-base/marketing/05-entregables-producidos.md` |
+| REC-10 | `generadores/*.js` + `deck_build/` | Pipeline Node.js de generación de decks | Alta | CURRENT | Migrado a `knowledge-base/technology/04-generadores-de-entregables.md` |
+| REC-11 | `skills/*` (3 skills completas) | Idéntico a `inventory/_raw-copies/` | — | DUPLICADO CONFIRMADO | Ya migrado — no reprocesado |
+
 ## Totales
 
+### Fuente 1 — 3 skills originales (2026-08-02, primera entrega)
 - **3 skills**, **35 recursos** catalogados (18 Markdown/JSON de conocimiento, 1 DOCX oficial, 6 SVG, 24 PNG, 1 HTML de referencia, 2 scripts Python).
-- **Estado**: 100% marcado como CURRENT — no se encontraron versiones HISTORICAL/DEPRECATED explícitas dentro del material disponible. Esto no significa que no existan decisiones anteriores reemplazadas durante las conversaciones originales — significa que **esas conversaciones no están disponibles para este proceso** (ver Fuentes en governance/decisions/DECISION_REGISTER.md, ítem sobre limitación de trazabilidad).
-- **Pendiente**: ninguno bloqueante para iniciar Fase 2. Pendientes de negocio se documentan en Fase 3 (Decision Register) como UNRESOLVED.
+- **Estado**: 100% marcado como CURRENT al momento de esa entrega — no se encontraron versiones HISTORICAL/DEPRECATED explícitas.
+
+### Fuente 2 — paquete de recuperación (2026-08-02, segunda entrega, ver Addendum arriba)
+- **157 archivos, 11MB.** De estos, ~65 archivos (las 3 carpetas `skills/`) son duplicado confirmado de la Fuente 1. El resto (~92 archivos: `historico/`, `entregables/`, `generadores/`) es contenido genuinamente nuevo.
+- **Con esta segunda fuente, ya no es cierto que "no existan versiones HISTORICAL"** — `historico/` contiene 6 borradores + 1 versión de referencia de la política de rentabilidad (P07), y la transcripción de sesión documenta explícitamente decisiones descartadas (ver `governance/decisions/DECISION_REGISTER.md`).
+- **Pendiente**: ninguno bloqueante. Los `historico/P07_Politica_Rentabilidad_borrador*.md` y los `Chat_Architecture_Report_*.md` no se releyeron línea por línea en esta ronda (quedaron consolidados por `Master_Project_Map.md` y el propio `CLAUDE.md` de recuperación) — disponibles para una relectura futura si hace falta reconstruir el detalle de una decisión puntual.

@@ -164,13 +164,13 @@ Formato exigido: (1) Contradicción · (2) Fuentes · (3) Decisión más recient
 5. **Recomendación**: fijar 10% (la política) como valor por defecto hasta que la contadora confirme lo contrario, ya que la política es explícita ("SIEMPRE") y el código es el que está marcado como no confirmado.
 6. **Confirmación requerida**: sí — del founder + contadora, antes de usar la calculadora con inversores reales.
 
-### C-002 · Pisos de rentabilidad: NETO (uso en código) vs. BRUTO (etiqueta del refinamiento #10)
+### C-002 · Pisos de rentabilidad: NETO (uso en código) vs. BRUTO (etiqueta del refinamiento #10) — sigue abierta, con evidencia contradictoria nueva (2026-08-02)
 1. **Contradicción**: `pisos_renta_neta` se usa en el código como piso neto; `pisos_base_bruto_o_neto` (mismo archivo de config) etiqueta esos mismos números como brutos, con rangos netos más bajos.
-2. **Fuentes**: `parametros_mercado.json` bloques `pisos_renta_neta` vs. `pisos_base_bruto_o_neto`.
-3. **Decisión más reciente aparente**: `pisos_base_bruto_o_neto` está descrito como resultado de una "auditoría" posterior — sugiere que es la corrección más reciente, pero el código nunca se actualizó para usarla.
-4. **Impacto**: **alto** — el veredicto `pasa_piso` puede aprobar oportunidades que en términos netos reales no alcanzan el piso.
-5. **Recomendación**: adoptar la interpretación de `pisos_base_bruto_o_neto` (post-auditoría) y actualizar `pisos_renta_neta` o el código para que dejen de contradecirse.
-6. **Confirmación requerida**: sí — del founder, antes de confiar en cualquier veredicto `pasa_piso` ya emitido.
+2. **Fuentes**: `production/app/config/parametros_mercado.json` bloques `pisos_renta_neta` vs. `pisos_base_bruto_o_neto`. **Más el paquete de recuperación** (`00_RAW_MIGRATION/claude-recovery-2026-08-02/`): su `CLAUDE.md` §5 afirma "BRUTO" sin matices; su propia auditoría (`entregables/auditorias/Meridiano_Auditoria_Integral.md §6.4`, 31-jul) presenta la pregunta como abierta, pidiéndole al founder que decida — no hay una respuesta explícita registrada en la transcripción.
+3. **Decisión más reciente aparente**: se intentó verificar empíricamente cuál interpretación es consistente con el propio motor ya auditado contra un caso real (Habitalis 9A, `test_calculadora.py`). Resultado: **comparar contra BRUTO hace que el test pierda toda capacidad de discriminar** (a 120k y a 75k, ambos "pasan" el piso de 7,5 con yields brutos de 9,5% y 15,2%) — contradice el propio caso documentado ("a 120k, 4,84% neto, candidato a venta; a ~75k, pasa"). **Comparar contra NETO sí reproduce el resultado real auditado.** Es decir: la fuente más reciente en fecha (`CLAUDE.md`, 02-ago) contradice la fuente más verificable (el motor, calibrado contra una operación real) — no hay una "más reciente" limpia, hay dos fuentes del mismo material en conflicto directo.
+4. **Impacto**: **alto**, sin cambios — el veredicto `pasa_piso` puede aprobar oportunidades que en términos netos reales no alcanzan el piso.
+5. **Recomendación**: no se ejecutó ningún cambio de código a partir de esta verificación — hacerlo habría sido resolver en silencio la contradicción más financieramente sensible de todo el proceso. Preguntarle directamente al founder, mostrándole esta evidencia específica (los números 9,5%/15,2% vs. 5,03%/8,05% del caso Habitalis 9A) en vez de una pregunta abstracta "¿bruto o neto?".
+6. **Confirmación requerida**: sí, más urgente que antes — del founder.
 
 ### C-003 · Ocupación temporal: 3% genérico (código) vs. 55-65% realista (refinamiento #8)
 1. **Contradicción**: la rama de alquiler temporal en `evaluar_renta()` usa `vacancia_pct` genérico (3%), no el rango de ocupación realista que el refinamiento #8 introdujo específicamente para corregir el error de Edificio Austria (que usaba 93%).

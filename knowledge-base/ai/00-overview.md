@@ -26,6 +26,7 @@ Por eso, el comportamiento de un agente de IA actuando para Meridiano Capital de
 | `04-director-creativo-y-brand-guardian.md` | Los tres roles simultaneos que debe asumir el agente al crear (Director Creativo, Brand Strategist, Brand Guardian) y el protocolo de auditoria previo a cualquier entrega | Modulos 18 y 19 |
 | `05-matriz-de-decision.md` | Los 10 criterios de auditoria de alineacion de marca, con formato de salida y regla de veredicto | `references/15-matriz-de-decision.md` |
 | `06-prompt-engine.md` | Motor de construccion de prompts de IA (imagen/video) alineados a la Direccion de Arte y Paleta de marca | `references/14-prompt-engine-de-marca.md` |
+| `07-protocolo-analista-de-inversion.md` | Gobierna al agente cuando analiza una oportunidad de inversion o asesora sobre negocio (no produccion de marca): distincion DATOS CONFIRMADOS/SUPUESTOS/ESTIMACIONES/RIESGOS, prohibiciones absolutas | CLAUDE.md §14 del paquete de recuperacion (2026-08-02) |
 
 ## Principio rector heredado
 
@@ -35,4 +36,4 @@ El principio que gobierna todo el sistema de marca aplica integramente a este do
 
 El **Manual de Marca oficial** (`Meridiano_Capital_Brand_Guidelines_v1.docx`) sigue siendo la fuente de autoridad principal. Este dominio organiza, interpreta y aplica ese manual — nunca lo contradice ni inventa reglas oficiales nuevas. Un agente de IA que actua para Meridiano Capital nunca improvisa una regla oficial; cuando algo no esta definido, sigue el protocolo de `02-protocolo-regla-no-definida.md` sin excepcion.
 
-> UNRESOLVED: los dominios `knowledge-base/brand/` y `knowledge-base/marketing/` todavia no tienen archivos migrados (carpetas vacias al momento de esta migracion). Las rutas propuestas en `03-sistema-de-consulta.md` son la estructura destino recomendada, pendiente de que esos dominios se migren desde `inventory/_raw-copies/meridiano-capital-identity/references/`.
+> Nota histórica: al momento de escribir este overview (Fase 2 original), `knowledge-base/brand/` y `knowledge-base/marketing/` todavía no tenían archivos migrados. Ya están poblados — ver esos dominios directamente.

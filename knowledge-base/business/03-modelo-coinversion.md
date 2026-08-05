@@ -8,7 +8,7 @@ Dominio: BUSINESS
 > - **Individual** (la mayoría): compra su unidad, se la administra, comisión de venta 5,5%.
 > - **Coinversión** (tickets grandes): varios inversores en un vehículo común para un desarrollo, con fees + hurdle + carried interest. Este documento detalla el segundo.
 >
-> Datos extraídos del Deck de Inversores. Los valores marcados en la fuente original entre corchetes `[ ]` son los documentados en el deck — **confirmar los valores finales** antes de presentarlos como definitivos en material comercial.
+> Datos extraídos del Deck de Inversores. Los valores marcados en la fuente original entre corchetes `[ ]` eran los documentados en el deck sin confirmar — **ya confirmados** (ver nota al final: `DECISIÓN FIRME`, resuelve U-005 del Requirements Register, con validación cuantitativa de una auditoría financiera real).
 
 ## Cuándo aplica
 
@@ -93,4 +93,12 @@ El retorno preferente (hurdle 8%) se calcula distinto según el plazo:
 
 El motor de cálculo del dominio INVESTMENT (`meridiano-rentabilidad`) aplica esta regla automáticamente (`hurdle_tipo="auto"` en el config). Se puede forzar simple o compuesto por operación si un inversor lo negocia distinto.
 
-> UNRESOLVED: los rangos de fee (`[1,5%–3%]`, `[2%–4%]`, `[15%–20%]`) y el hurdle (`[8%]`) están explícitamente marcados como pendientes de confirmación final en la fuente original — no presentarlos a un inversor como cifras cerradas sin verificar primero con Juan José Castillo el valor vigente actual.
+## `DECISIÓN FIRME` — hurdle 8% + carried 15-20%, nunca TIR fija
+
+Confirmado por Juan José Castillo. Los rangos de fee (1,5–3%, 2–4%, 15–20%) y el hurdle (8%) **ya no son `[deck]` pendiente** — resuelven `U-005` del Requirements Register.
+
+**Por qué se descartó la alternativa (TIR fija 18% terreno / 20% obra) — evidencia cuantitativa:** un modelo financiero externo de 939 fórmulas (un "chat desarrollador" previo, no de Meridiano) se auditó celda por celda usando exactamente ese esquema de TIR fija. Resultado: el proyecto terminaba con **USD −4,1M de déficit**, en parte porque el 18-20% fijo es una obligación que el desarrollador debe pagar aunque el proyecto rinda menos — el margen del desarrollador es el primer amortiguador que se consume, y en este caso se volvió negativo (−USD 984k). Bajo hurdle+carry el inversor participa del **resultado real** del proyecto sobre un piso del 8%, y Meridiano nunca carga una obligación fija que no puede cumplir si el proyecto rinde menos de lo esperado. La auditoría completa (con las celdas y montos exactos) vive en `knowledge-base/investment/04-auditorias-financieras.md`.
+
+**Trazabilidad:** este esquema de TIR fija fue una propuesta de un chat/documento externo previo (no una decisión de Meridiano que se haya revertido) — se registra como `HISTORICAL` en `governance/decisions/DECISION_REGISTER.md` únicamente porque circuló como alternativa considerada, no porque Meridiano la haya aplicado y luego abandonado.
+
+**Fuente:** `00_RAW_MIGRATION/claude-recovery-2026-08-02/entregables/auditorias/Meridiano_Auditoria_Modelo_Financiero.md` y `Meridiano_Estructura_Desarrolladora_Analisis_Plan.md §1`.

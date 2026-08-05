@@ -34,6 +34,18 @@ Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en
 | RN-04 | El tarifario solo se comparte en etapa avanzada del journey del inversor, nunca en primer contacto | Negocio | Explícito | `operations/03-tarifario.md`, D-021 |
 | RN-05 | La S.A. sin cédula debe mantener representación legal/síndico de Meridiano mientras el inversor no tenga cédula propia (fee USD 350/mes) | Negocio | Explícito | `business/02-camino-migratorio.md` |
 | RN-06 | El journey de 6 etapas debe estar soportado operativamente por la red de aliados nombrada (abogado, escribano, contadora, operador de renta temporal) | Negocio+Operativo | Implícito | `business/04-etapas-del-inversor.md` |
+| RN-07 | ~~Pendiente~~ **RESUELTO 2026-08-02** (D-031): fee estructuración 1,5-3% + gestión de obra 2-4% + carried 15-20% sobre hurdle 8% son cifras firmes, validadas cuantitativamente por auditoría | Negocio | Implícito (deriva de D-031, resuelve U-005) | `governance/decisions/DECISION_REGISTER.md#D-031` |
+| RN-08 | Ninguna de las 6 sociedades de la Capa 1 (Campo Agreste + 5 S.A. propietarias) puede aparecer en piezas públicas de marca — solo en contratos, facturas y documentación institucional | Negocio+Marca | Explícito `[EXTENSION]` | `business/06-estructura-societaria-y-portfolio.md`, D-029 |
+
+## REQ-LEGAL — Requisitos de cumplimiento (PLA/FT)
+
+| ID | Requisito | Tipo | E/I | Fuente |
+|---|---|---|---|---|
+| RL-01 | Meridiano/Campo Agreste S.A. debe designar e inscribir un Oficial de Cumplimiento ante SEPRELAD (plataforma SIRO) antes de que el programa P04 tenga plena aplicación | Negocio+Gobernanza | Explícito | `legal/01-p04-manual-compliance.md`, D-032 |
+| RL-02 | Todo inversor extranjero (Europa/Argentina/Brasil/Chile) debe pasar por el proceso de DDC/KYC del manual P04 antes de recibir cualquier transferencia de fondos — es el vector de mayor riesgo del negocio | Negocio+Gobernanza | Explícito | `legal/01-p04-manual-compliance.md#2.3` |
+| RL-03 | Ante cualquier señal de alerta, nunca informar al cliente (tipping off = delito) — comunicar solo al Oficial de Cumplimiento dentro de 24hs | Gobernanza | Explícito | `legal/01-p04-manual-compliance.md#3.3` |
+| RL-04 | Remitir el Reporte de Operaciones (RO) anual dentro de los primeros 20 días de marzo | Operativo | Explícito | `legal/01-p04-manual-compliance.md#4.4` |
+| RL-05 | Revisar y actualizar el manual P04 al menos anualmente o ante cambios normativos de SEPRELAD — nunca tratar sus umbrales/plazos como fijos sin verificar la resolución vigente | Gobernanza | Explícito | `legal/01-p04-manual-compliance.md#1.2` |
 
 ## REQ-INVESTMENT — Requisitos de cálculo/rentabilidad
 
@@ -44,7 +56,7 @@ Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en
 | RI-03 | Presentar 3 escenarios (pesimista/base/optimista) antes de mostrar cualquier cifra a un inversor | Negocio | Explícito | `investment/00-overview.md` |
 | RI-04 | Las tres categorías de gestión (pasiva / Urbannit-temporal / operador hotelero) no deben mezclarse en materiales de venta | Negocio | Explícito | `investment/00-overview.md` |
 | RI-05 | ~~Bloqueante~~ **RESUELTO 2026-08-02** (D-027): IVA diferenciado — comercial 10%, residencial 5%, venta 5% — implementado en `production/app/backend/calculadora.py` | Técnico+Negocio | Implícito (deriva de D-001) | `governance/decisions/DECISION_REGISTER.md#D-027` |
-| RI-06 | **Bloqueante**: fijar si los pisos de rentabilidad son brutos o netos antes de confiar en cualquier veredicto `pasa_piso` | Técnico+Negocio | Implícito (deriva de D-002) | `governance/decisions/DECISION_REGISTER.md#D-002` |
+| RI-06 | **Bloqueante**: fijar si los pisos de rentabilidad son brutos o netos antes de confiar en cualquier veredicto `pasa_piso`. Al 2026-08-02 esto es MÁS urgente, no menos: el `CLAUDE.md` de recuperación afirma "BRUTO" pero los tests ya auditados contra un caso real (Habitalis 9A) solo tienen sentido bajo "NETO" — las dos fuentes del propio material se contradicen | Técnico+Negocio | Implícito (deriva de D-002) | `governance/decisions/DECISION_REGISTER.md#D-002` |
 | RI-07 | La ocupación realista (55–65%) del refinamiento #8 debe aplicarse también a la rama de alquiler temporal, no solo al genérico | Técnico | Implícito (deriva de D-003) | `governance/decisions/DECISION_REGISTER.md#D-003` |
 
 ## REQ-TECH — Requisitos técnicos (para la fase de software funcional)
@@ -72,6 +84,11 @@ Estos requisitos deben trasladarse a un `CLAUDE.md` raíz del proyecto para que 
 | RA-04 | Antes de entregar cualquier pieza creativa, correr el audit interno de Brand Guardian (4 pasos) incluida la Matriz de Decisión de 10 criterios; un veredicto NO ALINEADO en reglas duras de logo/color bloquea la entrega sin importar el resto del puntaje | Gobernanza | Explícito | `ai/04-director-creativo-y-brand-guardian.md`, `ai/05-matriz-de-decision.md` |
 | RA-05 | Al generar prompts de imagen/video con IA, usar siempre el Prompt Engine de 5 bloques, nunca improvisar paleta u omitir la lista de negativos/a-evitar | Gobernanza | Explícito | `ai/06-prompt-engine.md` |
 | RA-06 | Nunca presentar una recomendación creativa nueva como si fuera una regla oficial ya establecida | Gobernanza | Explícito | D-025 |
+| RA-07 | Al analizar cualquier oportunidad de inversión, distinguir explícitamente DATOS CONFIRMADOS / SUPUESTOS / ESTIMACIONES / RIESGOS — nunca presentar una estimación con la certeza de un dato confirmado | Gobernanza | Explícito | `ai/07-protocolo-analista-de-inversion.md` |
+| RA-08 | Nunca inventar un dato faltante (superficie, renta vigente, valor de adquisición, etc.) — señalarlo explícitamente como faltante | Gobernanza | Explícito | `ai/07-protocolo-analista-de-inversion.md` |
+| RA-09 | Nunca prometer rentabilidad garantizada — el 10% neto de cartera es objetivo de referencia, no garantía | Gobernanza | Explícito | `ai/07-protocolo-analista-de-inversion.md` |
+| RA-10 | Nunca sustituir al abogado/escribano/contador — Meridiano acompaña y coordina, el acto profesional es siempre del especialista | Gobernanza | Explícito | `ai/07-protocolo-analista-de-inversion.md` |
+| RA-11 | Tratar a Juan José Castillo como asesor+desarrollador+operador+estratega de inversión — nunca como corredor/intermediario tradicional que solo necesita precio y ubicación | Gobernanza | Explícito | `ai/07-protocolo-analista-de-inversion.md` |
 
 ---
 
@@ -80,7 +97,13 @@ Estos requisitos deben trasladarse a un `CLAUDE.md` raíz del proyecto para que 
 Estos son los únicos ítems que, si no se resuelven, dejan a la futura app funcional produciendo cifras potencialmente incorrectas a inversores reales:
 
 1. ~~RI-05 / D-001 — IVA 5% vs 10%.~~ **RESUELTO 2026-08-02**, ver D-027.
-2. **RI-06 / D-002** — pisos de rentabilidad brutos vs. netos. **Sigue sin respuesta del founder — pendiente.**
+2. **RI-06 / D-002** — pisos de rentabilidad brutos vs. netos. **Sigue pendiente y ahora con evidencia contradictoria de las dos fuentes disponibles (ver D-002 en el Decision Register) — necesita respuesta directa del founder, ninguna fuente escrita alcanza para decidir.**
 3. **RI-07 / D-003** — ocupación realista no aplicada a alquiler temporal.
 
 Todo lo demás (formulario de contacto sin backend, enlaces muertos, hosting sin definir, etc.) es deuda de producto normal, no un riesgo de integridad financiera.
+
+## Actualización 2026-08-02 — segunda ronda (paquete de recuperación)
+
+- **RESUELTOS en esta ronda**: RN-07/U-005 (hurdle+carry confirmado y validado por auditoría).
+- **NUEVOS bloqueantes de datos** (no de definición, sino de información faltante para poder modelar con precisión): U-012 (cronograma de pagos de obra), U-013 (datos por unidad), U-014 (desagregado de Canarias) — ver `governance/decisions/DECISION_REGISTER.md`. Ninguno bloquea el funcionamiento de la calculadora en sí (que sigue operando con supuestos de mercado), pero sí bloquean cualquier evaluación "en firme" del portfolio real de 53 unidades.
+- **Nuevo dominio**: REQ-LEGAL (compliance PLA/FT), no existía en el Requirements Register v1.
