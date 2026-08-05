@@ -1,0 +1,156 @@
+{
+  "_meta": {
+    "descripcion": "Parametros de mercado de Meridiano Capital. Editar SOLO este archivo para adaptarse a cambios de mercado. La logica de calculo (calculadora.py) NO se toca. Todos los porcentajes se expresan en numeros enteros o decimales (8 = 8%, 7.5 = 7.5%).",
+    "version": "1.0",
+    "fecha": "2026-07-24",
+    "politica_origen": "P07 borrador 6"
+  },
+  "pisos_renta_neta": {
+    "_nota": "Piso de rentabilidad neta anual por clase. Tradicional se mide en Neto Completo (Nivel 3); temporal en Neto Temporal (Nivel 4).",
+    "comercial": 8.0,
+    "residencial_casa": 6.0,
+    "departamento_sin_muebles": 6.0,
+    "departamento_amoblado": 7.5,
+    "temporal_departamento": 14.0,
+    "temporal_casa": 12.0
+  },
+  "promedio_objetivo_cartera_neto": 10.0,
+  "pisos_capital": {
+    "_nota": "Terreno y aporte se miden anualizados. Terreno como plusvalia anualizada minima; aporte como retorno preferencial anual.",
+    "terreno_plusvalia_anual_min": 30.0,
+    "aporte_construccion_preferencial_anual": 22.0
+  },
+  "matriz_plusvalia_reventa": {
+    "_nota": "Plusvalia total (no anual) por tipo de edificio, etapa de ingreso y momento de salida. Editables segun mercado. 'lanzamiento' son valores propuestos a confirmar.",
+    "tradicional": {
+      "_plazo_obra_meses_referencia": 24,
+      "pre_pozo": {
+        "vende_al_terminar": 25.0,
+        "vende_mas_un_ano": 35.0
+      },
+      "lanzamiento": {
+        "vende_al_terminar": 23.0,
+        "vende_mas_un_ano": 33.0
+      },
+      "pozo_durante_obra": {
+        "vende_al_terminar": 20.0,
+        "vende_mas_un_ano": 30.0
+      }
+    },
+    "torre": {
+      "_plazo_obra_meses_referencia": 42,
+      "pre_pozo": {
+        "vende_al_terminar": 45.0,
+        "vende_mas_un_ano": 50.0
+      },
+      "lanzamiento": {
+        "vende_al_terminar": 40.0,
+        "vende_mas_un_ano": 47.0
+      },
+      "pozo_durante_obra": {
+        "vende_al_terminar": 30.0,
+        "vende_mas_un_ano": 40.0
+      }
+    }
+  },
+  "supuestos_reventa_temprana": {
+    "_nota": "Reventa por cesion de derechos antes de terminar de pagar. Solo edificios exitosos con demanda de cesion.",
+    "apreciacion_post_lanzamiento_pct": 10.0,
+    "mes_cesion_tipico": 6,
+    "apreciacion_rango_pct": [
+      10.0,
+      20.0
+    ],
+    "_apreciacion_nota": "10% conservador; en proyectos exitosos 15-20%. Usar el rango para escenarios."
+  },
+  "cronograma_cuotas_default": {
+    "_nota": "Estructura de pago tipica del mercado de Asuncion: entrega inicial + saldo en cuotas sin intereses durante la obra. Editable por proyecto.",
+    "entrega_inicial_pct": 20.0,
+    "cuotas_sin_interes": true,
+    "saldo_a_entrega_pct": 0.0
+  },
+  "conceptos_neto": {
+    "_nota": "Que se descuenta en cada nivel de neto. Acumulativo: cada nivel incluye los anteriores.",
+    "nivel_1_basico": [
+      "impuesto_inmobiliario",
+      "iva",
+      "impuesto_renta",
+      "expensas"
+    ],
+    "nivel_2_administrado": [
+      "honorarios_administracion",
+      "honorarios_alquiler"
+    ],
+    "nivel_3_completo": [
+      "seguros",
+      "mantenimiento",
+      "amortizacion",
+      "vacancia"
+    ],
+    "nivel_4_temporal": [
+      "impuestos",
+      "limpieza",
+      "seguros_obligatorios",
+      "mantenimiento",
+      "canon_agencia"
+    ]
+  },
+  "supuestos_operativos_default": {
+    "_nota": "Gastos operativos por defecto como % de la renta BRUTA anual. Vacancia calibrada al mercado real (~97% ocupacion). Editar con valores reales para evaluaciones en firme.",
+    "expensas_pct": 0.0,
+    "_expensas_nota": "0 = las paga el inquilino (tipico). Si las paga el propietario, cargar el %.",
+    "impuesto_inmobiliario_pct": 4.0,
+    "vacancia_pct": 3.0,
+    "mantenimiento_pct": 5.0,
+    "seguro_pct": 2.0,
+    "honorarios_administracion_pct": 8.0,
+    "honorarios_alquiler_meses": 1.0,
+    "amortizacion_muebles_pct": 8.0,
+    "_amortizacion_nota": "Solo aplica a amoblado y temporal."
+  },
+  "fiscal": {
+    "_nota": "A CONFIRMAR CON CONTADORA.",
+    "iva_pct": 5.0,
+    "_iva_nota": "IVA sobre la renta bruta. Verificar tratamiento real.",
+    "impuesto_renta_pct": 10.0,
+    "_impuesto_renta_nota": "IRP 10% aplicado sobre la renta NETA (no bruta).",
+    "grava_ganancia_capital": false,
+    "_ganancia_capital_nota": "Confirmado por el usuario: la reventa NO se grava como actividad habitual. Plusvalia neta = bruta."
+  },
+  "descuento_por_etapa_mercado": {
+    "_nota": "Descuento tipico contra precio terminado, por etapa (dato de mercado Asuncion 2026). Referencia para calibrar la matriz de plusvalia.",
+    "preventa_pozo_planos": [
+      20,
+      30
+    ],
+    "en_construccion_obra_iniciada": [
+      10,
+      20
+    ],
+    "terminado": 0
+  },
+  "coinversion": {
+    "_nota": "Modelo B — vehiculo de coinversion estilo private equity. Economia distinta del modelo individual. Valores del deck — confirmar finales.",
+    "hurdle_anual_pct": 8.0,
+    "hurdle_tipo": "auto",
+    "_hurdle_nota": "REGLA MERIDIANO: 'auto' = simple si horizonte <= 24 meses, compuesto si > 24 meses. Se puede forzar pasando hurdle_tipo='simple' o 'compuesto' en la llamada.",
+    "carry_pct": 20.0,
+    "carry_rango_pct": [
+      15.0,
+      20.0
+    ],
+    "split_remanente_inversor_pct": 80.0,
+    "fee_estructuracion_pct": 3.0,
+    "fee_estructuracion_rango_pct": [
+      1.5,
+      3.0
+    ],
+    "fee_gestion_obra_pct": 4.0,
+    "fee_gestion_obra_rango_pct": [
+      2.0,
+      4.0
+    ],
+    "hurdle_umbral_meses": 24,
+    "_hurdle_regla": "REGLA MERIDIANO: 'auto' aplica simple hasta 24 meses (favorece al sponsor, mas simple de explicar) y compuesto por encima de 24 meses (justo para el inversor por el valor tiempo del dinero). Forzar 'simple' o 'compuesto' para anular la regla."
+  }
+}

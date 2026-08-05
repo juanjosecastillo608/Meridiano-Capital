@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridiano Capital — Real Estate & Desarrollo en Paraguay para Inversores Extranjeros</title>
+<meta name="description" content="Meridiano Capital: desarrollo, estructuración legal-fiscal y gestión de inversiones inmobiliarias en Paraguay para inversores extranjeros. 16 años de trayectoria en Asunción.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14313A;
+    --navy-2:#0D2226;
+    --navy-tint:#1D414D;
+    --tierra:#8B3323;
+    --tierra-2:#6E2819;
+    --gold:#C9982E;
+    --gold-d:#A87D22;
+    --cream:#F3EDE3;
+    --cream-2:#EDE4D4;
+    --grey:#6B6154;
+    --kaa:#45573A;
+    --kaa-2:#374630;
+    --sand:#F1E8D8;
+    --charcoal:#3A2E22;
+    --white:#FFFFFF;
+    --line:#DAD2C0;
+
+    --serif: 'Lora', Georgia, serif;
+    --sans: 'Poppins', 'Segoe UI', sans-serif;
+
+    --maxw: 1180px;
+    --radius: 3px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family: var(--sans);
+    color: var(--navy);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  .wrap{ max-width: var(--maxw); margin:0 auto; padding:0 32px; }
+
+  h1,h2,h3,h4{ font-family: var(--serif); font-weight:700; line-height:1.15; color:var(--navy); }
+  .eyebrow{
+    font-family: var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.16em;
+    text-transform:uppercase; color: var(--gold-d);
+  }
+  .eyebrow.on-dark{ color: var(--gold); }
+  .lede{ font-size:18px; color:var(--grey); max-width: 640px; }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--sans); font-weight:600; font-size:15px;
+    padding:14px 26px; border-radius:2px; border:1.5px solid transparent;
+    cursor:pointer; transition: all .2s ease;
+  }
+  .btn-primary{ background:var(--gold); color:var(--navy-2); }
+  .btn-primary:hover{ background:#DCAE47; transform: translateY(-1px); }
+  .btn-ghost{ border-color: rgba(255,255,255,.35); color:var(--white); }
+  .btn-ghost:hover{ border-color: var(--white); background: rgba(255,255,255,.06); }
+  .btn-ghost-dark{ border-color: var(--navy); color:var(--navy); }
+  .btn-ghost-dark:hover{ background: var(--navy); color:var(--white); }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* ============ NAV ============ */
+  header.site{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background: transparent;
+    transition: background .35s ease, box-shadow .35s ease, padding .35s ease;
+    padding: 22px 0;
+  }
+  header.site.scrolled{
+    background: rgba(20,49,58,.96);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 24px rgba(0,0,0,.12);
+    padding: 14px 0;
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand .mark{ width:30px; height:30px; }
+  .brand .word{ font-family:var(--serif); font-weight:700; font-size:17px; letter-spacing:.02em; color:var(--white); }
+  .brand .word b{ display:block; font-size:11px; font-weight:400; letter-spacing:.18em; color:var(--gold); margin-top:1px;}
+  .navlinks{ display:flex; align-items:center; gap:34px; }
+  .navlinks a{ font-size:14px; font-weight:500; color: rgba(255,255,255,.85); transition: color .2s; }
+  .navlinks a:hover{ color: var(--gold); }
+  .nav-cta{ display:flex; align-items:center; gap:22px; }
+  .navToggle{ display:none; background:none; border:none; color:var(--white); font-size:26px; cursor:pointer; line-height:1; padding:8px; min-width:44px; min-height:44px; }
+
+  /* Skip-to-content (accesibilidad de teclado) */
+  .skip-link{
+    position:absolute; top:-60px; left:16px; z-index:1000;
+    background:var(--gold); color:var(--navy-2); font-weight:700; font-size:14px;
+    padding:12px 20px; border-radius:2px; transition: top .2s ease;
+  }
+  .skip-link:focus{ top:16px; }
+
+  /* Mobile nav panel */
+  .mobile-panel{
+    position:fixed; inset:0; z-index:99; background: var(--navy);
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:8px;
+    padding: 32px; transform: translateX(100%); transition: transform .3s ease;
+  }
+  .mobile-panel.open{ transform: translateX(0); }
+  .mobile-panel a{
+    font-family:var(--serif); font-size:26px; color:var(--white); font-weight:700;
+    padding:14px 6px; min-height:44px; display:flex; align-items:center; width:100%;
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .mobile-panel a:hover, .mobile-panel a:focus-visible{ color:var(--gold); }
+  .mobile-panel .btn{ margin-top:20px; }
+  .mobile-close{
+    position:absolute; top:22px; right:24px; background:none; border:none; color:var(--white);
+    font-size:28px; cursor:pointer; min-width:44px; min-height:44px;
+  }
+  body.no-scroll{ overflow:hidden; }
+
+  /* Ajuste de scroll bajo header fijo (scroll-margin-top) */
+  section[id]{ scroll-margin-top: 88px; }
+  @media (max-width: 880px){ section[id]{ scroll-margin-top: 76px; } }
+
+  @media (max-width: 880px){
+    .navlinks{ display:none; }
+    .navToggle{ display:flex; align-items:center; justify-content:center; }
+    .nav-cta .btn{ padding:12px 18px; font-size:13px; min-height:44px; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative; min-height:100vh;
+    background: radial-gradient(120% 120% at 85% -10%, var(--navy-tint) 0%, var(--navy) 45%, var(--navy-2) 100%);
+    color:var(--white);
+    display:flex; align-items:center;
+    padding-top: 120px; padding-bottom: 80px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.10) 50%, transparent 51%),
+      radial-gradient(1px 1px at 70% 65%, rgba(255,255,255,.08) 50%, transparent 51%),
+      radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,.07) 50%, transparent 51%);
+    pointer-events:none;
+  }
+  .hero-grid{ position:relative; display:grid; grid-template-columns: 1.15fr 0.85fr; gap:60px; align-items:center; width:100%; }
+  @media (max-width: 980px){ .hero-grid{ grid-template-columns: 1fr; } }
+
+  .hero h1{ color:var(--white); font-size: clamp(34px, 4.6vw, 58px); margin: 18px 0 22px; letter-spacing:-.01em; }
+  .hero h1 em{ font-style: italic; color: var(--gold); }
+  .hero .lede{ color: rgba(255,255,255,.78); font-size:17px; max-width: 540px; }
+  .hero-ctas{ display:flex; gap:16px; margin-top:34px; flex-wrap:wrap; }
+  .hero-foot{ margin-top:56px; display:flex; gap:36px; flex-wrap:wrap; }
+  .hero-foot .stat b{ display:block; font-family:var(--serif); font-size:26px; color:var(--white); }
+  .hero-foot .stat span{ font-size:12.5px; color: rgba(255,255,255,.6); }
+
+  .hero-mark{ position:relative; display:flex; align-items:center; justify-content:center; }
+  .hero-mark svg{ width:min(420px, 80vw); height:auto; }
+  .mojon-draw path, .mojon-draw line{
+    stroke-dasharray: 700; stroke-dashoffset:700;
+    animation: draw 2.1s ease forwards .3s;
+  }
+  .mojon-draw circle{ opacity:0; animation: fadein .6s ease forwards 1.9s; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fadein{ to{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){
+    .mojon-draw path, .mojon-draw line{ stroke-dashoffset:0; animation:none; }
+    .mojon-draw circle{ opacity:1; animation:none; }
+  }
+
+  /* ============ SECTION shells ============ */
+  section{ padding: 108px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size: clamp(28px, 3.4vw, 40px); margin-top:12px; }
+  .bg-cream{ background: var(--cream); }
+  .bg-sand{ background: var(--sand); }
+
+  .reveal{ opacity:0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ============ PILARES (DNA) ============ */
+  .pillars{ display:grid; grid-template-columns: repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .pillar{ background:var(--white); padding:38px 30px; }
+  .pillar .num{ font-family:var(--serif); font-size:14px; color:var(--gold-d); font-weight:700; }
+  .pillar h3{ font-size:19px; margin: 14px 0 10px; }
+  .pillar p{ font-size:14.5px; color:var(--grey); }
+  @media (max-width: 980px){ .pillars{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px){ .pillars{ grid-template-columns: 1fr; } }
+
+  /* ============ PROCESO ============ */
+  .timeline{ position:relative; display:grid; grid-template-columns: repeat(4,1fr); gap:28px; margin-top: 60px; }
+  .timeline::before{
+    content:""; position:absolute; top:29px; left:60px; right:60px; height:1px; background: var(--line);
+  }
+  @media (max-width: 880px){ .timeline{ grid-template-columns: 1fr 1fr; } .timeline::before{ display:none; } }
+  .step{ position:relative; }
+  .step .circle{
+    width:58px; height:58px; border-radius:50%; background:var(--navy); color:var(--white);
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-weight:700; font-size:22px;
+    position:relative; z-index:2;
+  }
+  .step:last-child .circle{ background:var(--gold); color:var(--navy-2); }
+  .step h3{ font-size:16px; margin: 18px 0 8px; }
+  .step p{ font-size:13.5px; color:var(--grey); }
+
+  /* ============ SERVICIOS ============ */
+  .services-group{ margin-bottom: 46px; }
+  .services-group > .glabel{ font-family:var(--sans); font-weight:600; font-size:13px; letter-spacing:.06em; color:var(--navy); text-transform:uppercase; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:26px; display:flex; align-items:center; justify-content:space-between;}
+  .services-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:22px; }
+  .services-grid.three{ grid-template-columns: repeat(3,1fr); }
+  @media (max-width: 880px){ .services-grid, .services-grid.three{ grid-template-columns: 1fr; } }
+  .service-card{
+    border:1px solid var(--line); padding:30px; background:var(--white);
+    transition: border-color .25s ease, transform .25s ease;
+  }
+  .service-card:hover{ border-color: var(--gold); transform: translateY(-3px); }
+  .service-card h3{ font-size:19px; margin-bottom:10px; }
+  .service-card p{ font-size:14px; color:var(--grey); }
+  .service-card .tag{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-d); margin-bottom:12px; }
+
+  /* ============ PORTAFOLIO DUAL (split) ============ */
+  .split{ display:grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+  @media (max-width: 880px){ .split{ grid-template-columns: 1fr; } }
+  .split-panel{ padding: 70px 56px; display:flex; flex-direction:column; justify-content:center; }
+  .split-panel.navy{ background: var(--navy); color:var(--white); }
+  .split-panel.kaa{ background: var(--kaa); color:var(--white); }
+  .split-panel h3{ color:var(--white); font-size:30px; margin: 14px 0 16px; }
+  .split-panel p{ color: rgba(255,255,255,.82); font-size:15px; margin-bottom: 22px; }
+  .split-panel ul li{ font-size:14px; color: rgba(255,255,255,.82); padding-left:18px; position:relative; margin-bottom:10px; }
+  .split-panel ul li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
+  .split-badge{ display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color: var(--gold); margin-bottom: 6px;}
+
+  /* ============ ALIADOS ============ */
+  .allies{ display:grid; grid-template-columns: repeat(4,1fr); gap:22px; }
+  @media (max-width: 880px){ .allies{ grid-template-columns: repeat(2,1fr); } }
+  .ally{ text-align:center; padding: 30px 18px; }
+  .ally .ico{
+    width:56px; height:56px; border-radius:50%; background:var(--cream); border:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center; margin: 0 auto 16px;
+    font-family:var(--serif); font-weight:700; color:var(--navy); font-size:15px;
+  }
+  .ally h3{ font-size:15px; margin-bottom:6px; }
+  .ally p{ font-size:13px; color:var(--grey); }
+
+  /* ============ CTA FINAL ============ */
+  .cta-final{
+    background: linear-gradient(120deg, var(--tierra) 0%, var(--tierra-2) 100%);
+    color:var(--white); text-align:center; padding: 110px 0;
+  }
+  .cta-final h2{ color:var(--white); font-size: clamp(30px,4vw,44px); }
+  .cta-final .lede{ color: rgba(255,255,255,.85); margin: 18px auto 34px; }
+  .cta-final .btn-primary{ background:var(--white); color:var(--tierra-2); }
+  .cta-final .btn-primary:hover{ background: var(--cream); }
+
+  /* ============ FORMULARIO ============ */
+  .contact-form{ text-align:left; margin-top:30px; }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:13px; font-weight:600; color:rgba(255,255,255,.85); margin-bottom:6px; }
+  .field input, .field select, .field textarea{
+    width:100%; font-family:var(--sans); font-size:15px; color:var(--navy);
+    background:var(--white); border:1.5px solid transparent; border-radius:2px;
+    padding:12px 14px; min-height:44px; transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .field textarea{ min-height:88px; resize:vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--gold); box-shadow: 0 0 0 3px rgba(201,152,46,.25);
+  }
+  .field input:invalid[data-touched="true"], .field select:invalid[data-touched="true"]{ border-color:#E7A090; }
+  .field-error{ display:block; font-size:12.5px; color:#F3B7A6; margin-top:5px; min-height:16px; }
+  .form-note{ font-size:12.5px; color:rgba(255,255,255,.6); margin-top:6px; }
+  .form-success{
+    margin-top:16px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3);
+    color:var(--white); padding:14px 16px; border-radius:2px; font-size:14.5px;
+  }
+  .contact-form .btn-primary{ min-height:44px; }
+
+  /* ============ FOOTER ============ */
+  footer{ background: var(--navy-2); color: rgba(255,255,255,.65); padding: 64px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom: 50px; }
+  @media (max-width: 780px){ .foot-grid{ grid-template-columns: 1fr 1fr; } }
+  footer h5{ color:var(--white); font-size:13px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:16px; font-family:var(--sans); font-weight:600;}
+  footer ul li{ margin-bottom:10px; font-size:14px; }
+  footer ul li a:hover{ color: var(--gold); }
+  .foot-brand .word{ color:var(--white); }
+  .foot-brand p{ font-size:13.5px; margin-top:14px; max-width:280px; color: rgba(255,255,255,.55); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.12); padding-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12.5px; color: rgba(255,255,255,.45); }
+
+  ::selection{ background: var(--gold); color: var(--navy-2); }
+</style>
+</head>
+<body>
+
+<!-- Reusable SVG mark (mojon) -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="mojon" viewBox="0 0 120 120">
+    <path d="M60 6 L14 100 L106 100 Z" fill="none" stroke-width="6" stroke-linejoin="round"/>
+    <line x1="4" y1="112" x2="116" y2="112" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="60" cy="72" r="9"/>
+  </symbol>
+  <symbol id="keyhole" viewBox="0 0 100 100">
+    <circle cx="50" cy="34" r="22"/>
+    <path d="M36 50 L64 50 L50 88 Z"/>
+  </symbol>
+</svg>
+
+<a href="#main-content" class="skip-link">Saltar al contenido</a>
+
+<header class="site" id="siteHeader">
+  <nav class="wrap">
+    <a class="brand" href="#top" aria-label="Meridiano Capital — inicio">
+      <svg class="mark" viewBox="0 0 120 120"><use href="#mojon" fill="none" stroke="#F3EDE3"/><circle cx="60" cy="72" r="9" fill="#C9982E"/></svg>
+      <span class="word">MERIDIANO<b>CAPITAL</b></span>
+    </a>
+    <ul class="navlinks">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contacto" class="btn btn-primary">Agendar consulta</a>
+      <button class="navToggle" id="navToggle" aria-label="Abrir menu de navegacion" aria-expanded="false" aria-controls="mobilePanel">☰</button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="Menu de navegacion">
+  <button class="mobile-close" id="mobileClose" aria-label="Cerrar menu">✕</button>
+  <a href="#servicios">Servicios</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#portafolio">Portafolio</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#contacto">Contacto</a>
+  <a href="#contacto" class="btn btn-primary">Agendar consulta</a>
+</div>
+
+
+<main id="top">
+  <span id="main-content"></span>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow on-dark">Real Estate &amp; Desarrollo en Paraguay para Inversores Extranjeros</p>
+        <h1>No mostramos departamentos: <em>construimos, estructuramos<br>y gestionamos</em> tu inversión.</h1>
+        <p class="lede">Ayudamos a inversores de Europa, Argentina y Brasil a construir y proteger patrimonio inmobiliario en Paraguay — desde la cédula y la cuenta bancaria hasta la gestión de la renta, con la mirada técnica de 16 años desarrollando y construyendo.</p>
+        <div class="hero-ctas">
+          <a href="#contacto" class="btn btn-primary">Agendar una consulta de inversión</a>
+          <a href="#proceso" class="btn btn-ghost">Ver el proceso completo</a>
+        </div>
+        <div class="hero-foot">
+          <div class="stat"><b>16 años</b><span>de trayectoria en Asunción</span></div>
+          <div class="stat"><b>Grado de inversión</b><span>otorgado a Paraguay por Moody's</span></div>
+          <div class="stat"><b>10%</b><span>rentabilidad neta anual objetivo</span></div>
+        </div>
+      </div>
+      <div class="hero-mark" aria-hidden="true">
+        <svg class="mojon-draw" viewBox="0 0 120 120">
+          <path d="M60 6 L14 100 L106 100 Z" fill="none" stroke="#F3EDE3" stroke-width="2.4" stroke-linejoin="round"/>
+          <line x1="4" y1="112" x2="116" y2="112" stroke="#F3EDE3" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="60" cy="72" r="7" fill="#C9982E"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POR QUE MERIDIANO (DNA) ============ -->
+  <section id="nosotros">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">El concepto</p>
+        <h2>Un mojón, plantado en tierra colorada.</h2>
+        <p class="lede" style="margin-top:14px;">Cuatro principios no negociables sostienen todo lo que hacemos — si alguno faltara, dejaríamos de ser esta empresa.</p>
+      </div>
+    </div>
+    <div class="wrap reveal">
+      <div class="pillars">
+        <div class="pillar">
+          <span class="num">01</span>
+          <h3>Técnica antes que venta</h3>
+          <p>Cada oportunidad se evalúa primero con criterio de construcción — terreno, materiales, obra — y recién después con criterio comercial.</p>
+        </div>
+        <div class="pillar">
+          <span class="num">02</span>
+          <h3>Estructura legal-fiscal como producto</h3>
+          <p>La cédula, la cuenta bancaria y la Sociedad Anónima son parte del servicio, con el mismo cuidado que la elección del activo.</p>
+        </div>
+        <div class="pillar">
+          <span class="num">03</span>
+          <h3>Gestión activa, no abandono</h3>
+          <p>La relación continúa en la administración del activo. La rentabilidad objetivo se sostiene con trabajo, no con una promesa inicial.</p>
+        </div>
+        <div class="pillar">
+          <span class="num">04</span>
+          <h3>Raíz paraguaya, mirada internacional</h3>
+          <p>Hablamos desde Asunción, con estándares que un inversor europeo o brasileño reconoce como serios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESO ============ -->
+  <section id="proceso" class="bg-cream">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2>El proceso de inversión, paso a paso</h2>
+        <p class="lede" style="margin-top:14px;">Cuatro etapas, siempre en este orden, acompañadas por nuestra Red de Aliados Profesionales.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="step">
+          <div class="circle">1</div>
+          <h3>Cédula paraguaya</h3>
+          <p>Requisito habilitante para operar en el país. Acompañamos el trámite de principio a fin.</p>
+        </div>
+        <div class="step">
+          <div class="circle">2</div>
+          <h3>Apertura bancaria</h3>
+          <p>Como persona física o jurídica, según el volumen y perfil de la inversión.</p>
+        </div>
+        <div class="step">
+          <div class="circle">3</div>
+          <h3>Constitución de SA</h3>
+          <p>Cuando el volumen de inversión lo justifica, con abogado y escribano de confianza.</p>
+        </div>
+        <div class="step">
+          <div class="circle">4</div>
+          <h3>Selección y cierre</h3>
+          <p>Ingreso a la oportunidad — tierra, construcción o preventa en pozo — con estructura ya lista.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Arquitectura de negocio</p>
+        <h2>Cinco unidades, no un agente con varios servicios</h2>
+        <p class="lede" style="margin-top:14px;">Cada unidad tiene su propia lógica — dos te acompañan antes de invertir, tres te acompañan después.</p>
+      </div>
+
+      <div class="services-group reveal">
+        <div class="glabel"><span>Antes de invertir</span><span style="color:var(--grey); font-weight:400;">Originación &amp; estructuración</span></div>
+        <div class="services-grid">
+          <div class="service-card">
+            <span class="tag">Unidad 01</span>
+            <h3>Originación &amp; Asesoría de Inversión</h3>
+            <p>Selección de oportunidades en tierra, construcción o preventa en pozo, con criterio técnico de desarrollador, no solo comercial.</p>
+          </div>
+          <div class="service-card">
+            <span class="tag">Unidad 02</span>
+            <h3>Onboarding Legal-Bancario-Fiscal</h3>
+            <p>Cédula, apertura bancaria y constitución de Sociedad Anónima, coordinados con nuestra Red de Aliados Profesionales.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-group reveal">
+        <div class="glabel"><span>Después de invertir</span><span style="color:var(--grey); font-weight:400;">Gestión, desarrollo &amp; valor</span></div>
+        <div class="services-grid three">
+          <div class="service-card">
+            <span class="tag">Unidad 03</span>
+            <h3>Gestión Patrimonial</h3>
+            <p>Administración de renta tradicional y renta temporal (vía Urbannit), para sostener la rentabilidad neta anual objetivo.</p>
+          </div>
+          <div class="service-card">
+            <span class="tag">Unidad 04</span>
+            <h3>Desarrollo &amp; Coinversión</h3>
+            <p>Vehículos estructurados de coinversión en proyectos propios o coliderados, con economics claros y reporte periódico.</p>
+          </div>
+          <div class="service-card">
+            <span class="tag">Unidad 05</span>
+            <h3>Value-Add / Reposicionamiento</h3>
+            <p>Identificación y refacción de propiedades subvaluadas, con coordinación técnica de obra propia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTAFOLIO DUAL ============ -->
+  <section id="portafolio" style="padding:0;">
+    <div class="split reveal">
+      <div class="split-panel navy">
+        <svg width="46" height="46" viewBox="0 0 120 120" aria-hidden="true"><use href="#mojon" fill="none" stroke="#F3EDE3" stroke-width="7"/><circle cx="60" cy="72" r="10" fill="#C9982E"/></svg>
+        <span class="split-badge">Renta tradicional</span>
+        <h3>Estabilidad, gestionada por Meridiano Capital</h3>
+        <p>Contrato de locación de largo plazo, inquilino estable, baja intensidad operativa. Rentabilidad bruta de referencia: 6%–10% anual.</p>
+        <ul>
+          <li>Búsqueda de inquilino, contrato y cobranza mensual</li>
+          <li>Coordinación de mantenimiento y reparaciones</li>
+          <li>Reporte periódico y liquidación transparente</li>
+        </ul>
+      </div>
+      <div class="split-panel kaa">
+        <svg width="42" height="42" viewBox="0 0 100 100" aria-hidden="true"><use href="#keyhole" fill="#FFFFFF"/></svg>
+        <span class="split-badge">Renta temporal</span>
+        <h3>urbannit — hospitalidad, en alianza estratégica</h3>
+        <p>Estadías cortas en zonas de alta demanda, operadas junto a un aliado con más de 20 años en el rubro. Rentabilidad bruta de referencia: 10%–16%+ anual.</p>
+        <ul>
+          <li>Publicación y gestión en plataformas de reserva</li>
+          <li>Check-in, check-out y limpieza entre estadías</li>
+          <li>Un solo fee, un solo interlocutor: Meridiano Capital</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ALIADOS ============ -->
+  <section class="bg-sand">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Red de aliados profesionales</p>
+        <h2>Cada etapa, respaldada por especialistas de confianza</h2>
+      </div>
+      <div class="allies reveal">
+        <div class="ally">
+          <div class="ico">Ab</div>
+          <h3>Abogado</h3>
+          <p>Constitución societaria y revisión contractual</p>
+        </div>
+        <div class="ally">
+          <div class="ico">Es</div>
+          <h3>Escribano</h3>
+          <p>Escrituración y protocolización</p>
+        </div>
+        <div class="ally">
+          <div class="ico">Co</div>
+          <h3>Contadora</h3>
+          <p>RUC, facturación y cumplimiento fiscal</p>
+        </div>
+        <div class="ally">
+          <div class="ico">Op</div>
+          <h3>Operador Urbannit</h3>
+          <p>20+ años en renta temporal</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL / FORMULARIO ============ -->
+  <section class="cta-final" id="contacto">
+    <div class="wrap" style="max-width:640px;">
+      <p class="eyebrow on-dark" style="color:rgba(255,255,255,.85)">Hablemos</p>
+      <h2>Hablemos de tu próxima inversión en Paraguay</h2>
+      <p class="lede">Documento confidencial disponible para inversores calificados. Sin compromiso — una primera conversación para entender tu perfil y horizonte.</p>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="f-name">Nombre completo</label>
+          <input type="text" id="f-name" name="name" required autocomplete="name">
+          <span class="field-error" id="err-name" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" required autocomplete="email">
+          <span class="field-error" id="err-email" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-country">País desde donde invertís</label>
+          <select id="f-country" name="country" required>
+            <option value="" disabled selected>Elegí una opción</option>
+            <option>España</option>
+            <option>Alemania</option>
+            <option>Otro país europeo</option>
+            <option>Argentina</option>
+            <option>Brasil</option>
+            <option>Otro</option>
+          </select>
+          <span class="field-error" id="err-country" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-message">Contanos tu interés (opcional)</label>
+          <textarea id="f-message" name="message" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar consulta</button>
+        <p class="form-note">Al enviar aceptás que te contactemos por email o teléfono. No compartimos tus datos con terceros.</p>
+        <p class="form-success" id="formSuccess" role="status" hidden>Gracias — recibimos tu consulta y te vamos a escribir a la brevedad.</p>
+      </form>
+
+      <p class="lede" style="margin-top:22px; font-size:14px;">¿Preferís escribir directo? <a href="mailto:contacto@meridianocapital.com.py" style="color:var(--white); text-decoration:underline;">contacto@meridianocapital.com.py</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg class="mark" viewBox="0 0 120 120"><use href="#mojon" fill="none" stroke="#F3EDE3"/><circle cx="60" cy="72" r="9" fill="#C9982E"/></svg>
+          <span class="word">MERIDIANO<b>CAPITAL</b></span>
+        </a>
+        <p>Fundada por Juan José Castillo. Real Estate &amp; Desarrollo en Asunción, Paraguay, para inversores extranjeros.</p>
+      </div>
+      <div>
+        <h5>Navegación</h5>
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#portafolio">Portafolio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#">Urbannit</a></li>
+          <li><a href="#">Coinversión</a></li>
+          <li><a href="#">Recursos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li>contacto@meridianocapital.com.py</li>
+          <li>+595 ___ ___ ___</li>
+          <li>Asunción, Paraguay</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Meridiano Capital. Todos los derechos reservados.</span>
+      <span>Urbannit es una marca gestionada por Meridiano Capital.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Menu mobile
+  const navToggle = document.getElementById('navToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  const mobileClose = document.getElementById('mobileClose');
+
+  function openMobileMenu(){
+    mobilePanel.classList.add('open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('no-scroll');
+    mobileClose.focus();
+  }
+  function closeMobileMenu(){
+    mobilePanel.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('no-scroll');
+    navToggle.focus();
+  }
+  navToggle.addEventListener('click', openMobileMenu);
+  mobileClose.addEventListener('click', closeMobileMenu);
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobilePanel.classList.contains('open')) closeMobileMenu();
+  });
+
+  // Validacion de formulario (client-side; conectar a un endpoint real antes de produccion)
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('formSuccess');
+  const fields = [
+    { id: 'f-name', err: 'err-name', msg: 'Contanos tu nombre.' },
+    { id: 'f-email', err: 'err-email', msg: 'Ingresa un email valido.' },
+    { id: 'f-country', err: 'err-country', msg: 'Elegi una opcion.' },
+  ];
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const errEl = document.getElementById(f.err);
+      el.dataset.touched = 'true';
+      if (!el.checkValidity()) {
+        errEl.textContent = f.msg;
+        valid = false;
+      } else {
+        errEl.textContent = '';
+      }
+    });
+    if (!valid) {
+      form.querySelector(':invalid')?.focus();
+      return;
+    }
+    // Sin backend conectado todavia: mostrar confirmacion visual.
+    // Reemplazar este bloque por un fetch() real a un servicio de formularios (Formspree, Netlify Forms, backend propio).
+    form.hidden = true;
+    successMsg.hidden = false;
+  });
+
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
