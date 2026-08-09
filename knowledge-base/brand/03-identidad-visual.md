@@ -15,9 +15,20 @@ El isotipo es **"el mojon"**: un punto de triangulacion geodesica que un agrimen
 2. Contiene el significado de "Meridiano" sin ilustrarlo literalmente — un mojon fija un punto de referencia exacto, igual que un meridiano en un mapa.
 3. Es geometricamente simple, lo que garantiza legibilidad de un favicon de 16px a una fachada de edificio.
 
-**Construccion:** triangulo de trazo fino (estructura de medicion) + linea base horizontal (nivel del terreno) + punto solido dorado en el centroide (el valor/capital que se fija y se protege). El punto es el unico elemento que lleva el color de acento.
+### Construccion vigente — "Partido por el meridiano" (D-034, 2026-08-09)
 
-Isotipo de Urbannit: **"la cerradura"** — circulo + trapecio, en Ka'a verde. Ver `04-tipografia.md` y `05-sistema-cromatico.md` para las especificaciones de cada marca; ver `10-arquitectura-meridiano-urbannit.md` para las reglas de convivencia entre ambos isotipos.
+El mojon se abre exactamente donde lo cruza una linea de longitud continua, que sigue de largo mas alla de la marca (no es un adorno, es la que separa las dos mitades). Nace de una auditoria de marca que encontro el triangulo original **geometricamente arbitrario** (isosceles simetrico, sin construccion propia) — indistinguible de cualquier icono de stock de la categoria inmobiliaria.
+
+- Dos mitades del triangulo, separadas por un vacio vertical en el apice y en la base.
+- Una linea dorada continua (el meridiano) atraviesa ambas mitades de punta a punta.
+- Un punto dorado marca el lugar exacto donde el meridiano cruza el mojon — el punto geodesico real, no un adorno.
+- El punto es, junto con la linea, el unico elemento que lleva el color de acento; las dos mitades del trazo heredan el color de fondo (petroleo en claro, crema en oscuro).
+
+**Construccion HISTORICA (v1.0 del Brand Guidelines, hasta 2026-08-09):** triangulo isosceles simetrico de trazo unico + linea base horizontal + punto solido dorado en el centroide, sin gap ni linea meridiana. Se conserva esta descripcion por trazabilidad — no se debe usar en ninguna pieza nueva. Archivos que todavia muestran esta version: `inventory/_raw-copies/` (archivo, nunca editar) y `Meridiano_Capital_Brand_Guidelines_v1.docx` (el manual oficial fisico **todavia no fue actualizado** a v1.1 — ver nota de gobernanza abajo).
+
+Isotipo de Urbannit: **"la cerradura"**, ahora en trazo abierto sin relleno (D-035, 2026-08-09) — mismo lenguaje de linea que el mojon, para maxima coherencia entre marca madre y sub-marca (antes era circulo + trapecio solidos en Ka'a verde, sin negativo real: el "ojo" de la cerradura no se veia). Ver `04-tipografia.md` y `05-sistema-cromatico.md` para las especificaciones de cada marca; ver `10-arquitectura-meridiano-urbannit.md` para las reglas de convivencia entre ambos isotipos.
+
+> **Nota de gobernanza:** esta actualizacion (D-034/D-035) modifica una construccion que el Brand Guidelines oficial (`.docx`) define explicitamente — no es una extension menor. El manual fisico v1.0 sigue mostrando el triangulo simetrico viejo. Mismo patron ya señalado en `business/06-estructura-societaria-y-portfolio.md` para Campo Agreste: el manual necesita pasar a v1.1 para reflejar esto formalmente. Hasta entonces, **este archivo digital es la fuente de verdad vigente**, por decision explicita registrada en `governance/decisions/DECISION_REGISTER.md#D-034`.
 
 ## Archivos fuente vectoriales (usar siempre estos, no recrear desde cero)
 

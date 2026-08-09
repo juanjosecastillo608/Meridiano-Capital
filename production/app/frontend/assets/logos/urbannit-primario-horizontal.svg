@@ -1,8 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100">
   <!-- Urbannit — logotipo primario horizontal. Fondo claro. -->
-  <g transform="translate(10,8)">
-    <circle cx="34" cy="30" r="20" fill="#45573A"/>
-    <path d="M21 44 L47 44 L34 80" fill="#45573A"/>
+  <!-- Isotipo: cerradura en trazo abierto (D-035). Wordmark sigue en Poppins -- sin cambios, -->
+  <!-- la regla de "solo Poppins, sin serif" para Urbannit no la toca la actualizacion tipografica de Meridiano (D-036). -->
+  <g transform="translate(8,6)">
+    <circle cx="34" cy="30" r="16" fill="none" stroke="#45573A" stroke-width="6.5"/>
+    <path d="M34 46 L52 84 L16 84 Z" fill="none" stroke="#45573A" stroke-width="6.5" stroke-linejoin="round"/>
   </g>
-  <text x="80" y="62" font-family="Poppins, 'Segoe UI', sans-serif" font-weight="700" font-size="42" fill="#3A2E22">urbannit</text>
+  <text x="90" y="62" font-family="Poppins, 'Segoe UI', sans-serif" font-weight="700" font-size="42" fill="#3A2E22">urbannit</text>
 </svg>

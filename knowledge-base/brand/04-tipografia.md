@@ -10,9 +10,20 @@ Dominio: BRAND
 
 ## Meridiano Capital
 
-- **Lora** (serif, Regular/Medium/SemiBold/Bold) — SOLO para: nombre de marca, titulares H1/H2, citas destacadas. Serif contemporanea con contraste caligrafico moderado: suficiente caracter para transmitir peso editorial sin caer en decoracion excesiva. Alternativa de sistema: Georgia o Cambria.
-- **Poppins** (sans geometrica, Light/Regular/Medium/Bold) — para: cuerpo de texto, UI, tablas, subtitulos, etiquetas, redes sociales. Alternativa de sistema: Calibri o Arial.
+- **Fraunces** (serif variable, ejes `opsz`/`SOFT`/`WONK`/`wght`) — SOLO para: nombre de marca, titulares H1/H2, citas destacadas. Reemplaza a Lora (D-036, 2026-08-09) — ver nota de reemplazo abajo. Alternativa de sistema: Georgia o Cambria (igual que Lora, no cambia la alternativa de respaldo).
+- **Poppins** (sans geometrica, Light/Regular/Medium/Bold) — para: cuerpo de texto, UI, tablas, subtitulos, etiquetas, redes sociales. Sin cambios — se evaluo reemplazarla junto con Lora y se decidio mantenerla: concentrar el caracter distintivo en un solo lugar (el titular) es mas fuerte que dos tipografias compitiendo por atencion, y Poppins sigue siendo limpia, legible y gratuita. Alternativa de sistema: Calibri o Arial.
 - Ambas son Google Fonts de codigo abierto (SIL Open Font License) — uso comercial gratuito, sin restriccion de instalacion.
+
+### Por que Lora se reemplazo por Fraunces (D-036)
+
+La auditoria de marca del 2026-08-09 encontro que Lora + Poppins, aunque funcionan bien tipograficamente, son de las combinaciones serif+sans mas usadas del mundo — no aportan distincion (cualquier competidor puede usar exactamente las mismas dos fuentes gratis). Fraunces es tambien una Google Font gratuita, pero con caracter editorial propio: contraste optico variable (`opsz`) que se ajusta segun el tamaño, y un eje de calidez (`SOFT`) que ningun otro serif "seguro" (Lora, Playfair, Merriweather) ofrece.
+
+**Ajuste tipografico aplicado** (no son los valores por defecto de instalacion — es una decision deliberada, ver `production/app/frontend/index.html`):
+- `opsz 80` — contraste optico alto, pensado para titulares grandes, no para texto corrido.
+- `SOFT 24` — un toque de calidez en las curvas (coherente con "raices" del ADN de marca) sin perder formalidad.
+- `WONK 0` en el logotipo y titulares — mantiene las letras en su forma estandar, mas seria. `WONK 1` reservado unicamente para el acento en `<em>` (la palabra destacada del hero) — una sola pincelada de personalidad, no en toda la pagina.
+
+**No se toco Camino 1** (logotipo con letterforms 100% propios, dibujados a mano) — quedo evaluado y descartado por ahora en favor de este camino, que sube el techo de todo el sistema tipografico en vez de una sola pieza.
 
 ## Jerarquia de tamaños
 

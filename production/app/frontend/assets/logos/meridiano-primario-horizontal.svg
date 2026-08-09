@@ -1,10 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 170">
   <!-- Meridiano Capital — logotipo primario horizontal. Fondo claro. -->
+  <!-- Isotipo: "partido por el meridiano" (D-034). Wordmark: Fraunces, no Lora (D-036) -- -->
+  <!-- variable font tuneada (opsz 80 / SOFT 24 / WONK 0) para caracter propio sin perder formalidad. -->
   <g transform="translate(10,10)">
-    <path d="M60 6 L14 100 L106 100 Z" fill="none" stroke="#14313A" stroke-width="5.5" stroke-linejoin="round"/>
-    <line x1="4" y1="112" x2="116" y2="112" stroke="#14313A" stroke-width="5.5" stroke-linecap="round"/>
-    <circle cx="60" cy="72" r="8" fill="#C9982E"/>
+    <path d="M52 6 L14 100 L56 100" fill="none" stroke="#14313A" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M68 6 L106 100 L64 100" fill="none" stroke="#14313A" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="4" y1="112" x2="49" y2="112" stroke="#14313A" stroke-width="5.5" stroke-linecap="round"/>
+    <line x1="71" y1="112" x2="116" y2="112" stroke="#14313A" stroke-width="5.5" stroke-linecap="round"/>
+    <line x1="60" y1="0" x2="60" y2="120" stroke="#C9982E" stroke-width="2.8"/>
+    <circle cx="60" cy="60" r="5.5" fill="#C9982E"/>
   </g>
-  <text x="150" y="70" font-family="Lora, Georgia, serif" font-weight="700" font-size="46" fill="#14313A" letter-spacing="1">MERIDIANO</text>
-  <text x="150" y="112" font-family="Lora, Georgia, serif" font-weight="700" font-size="46" fill="#14313A" letter-spacing="6">CAPITAL</text>
+  <text x="150" y="70" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="46" fill="#14313A" letter-spacing="0.5" style="font-variation-settings:'opsz' 80,'SOFT' 24,'WONK' 0;">MERIDIANO</text>
+  <text x="150" y="112" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="46" fill="#14313A" letter-spacing="5" style="font-variation-settings:'opsz' 80,'SOFT' 24,'WONK' 0;">CAPITAL</text>
 </svg>
