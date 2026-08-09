@@ -182,6 +182,11 @@ class Calculadora:
         neto_anual = neto_antes_renta - imp_renta
         yield_neto = neto_anual / precio_compra * 100.0
 
+        # D-033 (2026-08-09): pisos y techos SIEMPRE en bruto (decision del founder).
+        # Comparamos yield_bruto contra el piso, no yield_neto. Los VALORES de
+        # pisos_renta_neta todavia no fueron recalibrados para bruto -- ver
+        # knowledge-base/investment/05-matriz-pisos-techos.md (P-004, incompleta).
+        # No confiar en pasa_piso para decisiones reales hasta que esa matriz cierre.
         piso = self.p["pisos_renta_neta"].get(clase)
         return {
             "clase": clase,
@@ -194,7 +199,7 @@ class Calculadora:
             "desglose_gastos": {k: round(v, 2) for k, v in desglose.items()},
             "total_gastos": round(gastos_pre_impuesto_renta + imp_renta, 2),
             "piso_pct": piso,
-            "pasa_piso": None if piso is None else round(yield_neto, 2) >= piso,
+            "pasa_piso": None if piso is None else round(yield_bruto, 2) >= piso,
         }
 
     # ---- REVENTA (venta con unidad terminada) ----

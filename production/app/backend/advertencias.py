@@ -8,9 +8,13 @@ Compartido entre server.py (API HTTP) y skills/rentabilidad-calculator/
 Ver governance/decisions/DECISION_REGISTER.md:
   - D-001 fue RESUELTA por el founder el 2026-08-02 (IVA diferenciado por
     clase/operacion) -> implementada como D-027.
-  - D-002 (pisos brutos vs netos) sigue UNRESOLVED -- no se "arregla"
-    silenciosamente aca. Se muestra siempre junto a cualquier resultado de
-    renta para que nadie tome el veredicto pasa_piso como final sin revisar.
+  - D-002 fue RESUELTA por el founder el 2026-08-09 (pisos y techos siempre
+    en BRUTO) -> implementada como D-033. El MECANISMO ya compara bruto vs
+    bruto; los VALORES numericos de piso son provisionales hasta que la
+    matriz por zona/calidad (P-004, knowledge-base/investment/05-matriz-
+    pisos-techos.md) este completa. Se muestra siempre junto a cualquier
+    resultado de renta para que nadie tome el veredicto pasa_piso como final
+    sin revisar.
 """
 
 NOTA_IVA_RESUELTA = (
@@ -25,10 +29,14 @@ NOTA_IVA_TEMPORAL_EXTENSION = (
     "confirmar con contadora antes de uso en firme."
 )
 ADVERTENCIA_PISOS = (
-    "El piso de rentabilidad usado (pisos_renta_neta) esta etiquetado como NETO en "
-    "el codigo, pero pisos_base_bruto_o_neto en el mismo config lo etiqueta como "
-    "BRUTO con rangos netos mas bajos. El veredicto 'pasa_piso' puede no ser "
-    "confiable hasta resolver esto. Ver governance/decisions/DECISION_REGISTER.md#D-002."
+    "Piso comparado en BRUTO (resuelve D-002, confirmado por el founder el "
+    "2026-08-09 como D-033: pisos y techos siempre en bruto). PERO el valor "
+    "numerico del piso (pisos_renta_neta) todavia NO fue recalibrado para bruto "
+    "-- son los mismos numeros pensados originalmente para comparacion neta, asi "
+    "que casi cualquier propiedad va a 'pasar el piso' hasta que la matriz real "
+    "por zona/calidad este lista. No usar 'pasa_piso' para decisiones reales "
+    "todavia. Ver knowledge-base/investment/05-matriz-pisos-techos.md (P-004) y "
+    "governance/decisions/DECISION_REGISTER.md#D-033."
 )
 
 ADVERTENCIAS_VENTA = [
