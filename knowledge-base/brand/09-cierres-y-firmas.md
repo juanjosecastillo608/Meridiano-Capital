@@ -28,6 +28,31 @@ Reglas de la firma:
 - El mail correcto es **juancastillo@meridianocapital.net** (NO juanjosecastillo).
 - El telefono correcto es **+595 982 853 111**.
 
+## Respaldo institucional — dos variantes segun el tipo de pieza (D-039, 2026-08-09)
+
+El titulo personal nunca cambia. Lo que varia es cuanto se hace explicito el respaldo de la marca/firma detras de JJC:
+
+**Variante A — decks de venta y WhatsApp** (Programa de Ingreso, Coinversion, MVV, Urbannit, pieza de outreach frio): la marca va como respaldo arriba de la firma, no adentro del bloque:
+
+```
+MERIDIANO CAPITAL
+
+Juan Jose Castillo
+Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay
++595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
+```
+
+**Variante B — Investment Memorandum** (cuando se construya, ver `governance/decisions/DECISION_REGISTER.md#U-016`): la representacion queda explicita dentro del bloque de firma mismo, porque un IM es una pieza donde el inversor deposita confianza en la institucion, no solo en la persona:
+
+```
+Juan Jose Castillo
+Operador Tecnico y Legal de Inversiones Inmobiliarias
+En representacion de Meridiano Capital · Asuncion, Paraguay
++595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
+```
+
+**Nunca usar en ninguna de las dos**: "Campo Agreste S.A." — esa sociedad esta protegida por la regla de invisibilidad (`D-029`, `business/06-estructura-societaria-y-portfolio.md`) y solo puede aparecer en documentacion institucional/legal en sentido estricto (contratos, facturas; el P04 de compliance ya la incluye correctamente en su pie porque es justamente ese tipo de documento, no una pieza de venta).
+
 ## El cierre (ultima pagina o diapositiva)
 
 - Fondo: **tierra colorada #8B3323** — color de cierre de marca (ver `05-sistema-cromatico.md`).
@@ -58,6 +83,7 @@ Distinto es el **dato macro de radicaciones en Paraguay** (estadistica de mercad
 - [ ] Isotipo inverso + "MERIDIANO CAPITAL" arriba del cierre
 - [ ] Titular de cierre propio de la pieza, en Lora Bold
 - [ ] Firma: "Juan Jose Castillo" + "Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay"
+- [ ] Respaldo institucional correcto segun la pieza: Variante A (deck/WhatsApp) o Variante B (Investment Memorandum) — nunca Campo Agreste S.A. en ninguna de las dos
 - [ ] Contacto en una linea: +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
 - [ ] Mail juancastillo@meridianocapital.net (no juanjosecastillo)
 - [ ] Disclaimer legal acorde al documento
