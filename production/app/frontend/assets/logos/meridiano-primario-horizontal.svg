@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 170">
   <!-- Meridiano Capital — logotipo primario horizontal. Fondo claro. -->
-  <!-- Isotipo: "partido por el meridiano" (D-034). Wordmark: Fraunces, no Lora (D-036) -- -->
-  <!-- variable font tuneada (opsz 80 / SOFT 24 / WONK 0) para caracter propio sin perder formalidad. -->
+  <!-- Isotipo: "partido por el meridiano" (D-034). Wordmark: Fraunces, no Lora (D-036). -->
+  <!-- Variable font tuneada (opsz 80, SOFT 24, WONK 0) para caracter propio sin perder formalidad. -->
   <g transform="translate(10,10)">
     <path d="M52 6 L14 100 L56 100" fill="none" stroke="#14313A" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
     <path d="M68 6 L106 100 L64 100" fill="none" stroke="#14313A" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>

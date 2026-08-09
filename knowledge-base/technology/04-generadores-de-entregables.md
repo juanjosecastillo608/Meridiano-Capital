@@ -2,10 +2,11 @@ Estado: CURRENT
 Fuente original: 00_RAW_MIGRATION/claude-recovery-2026-08-02/generadores/
 Dominio: TECHNOLOGY
 Incorporado: 2026-08-02
+Actualizado: 2026-08-09 — pipeline movido a `production/generadores/`, marca nueva aplicada
 
 # Pipeline de generación de entregables (`generadores/`)
 
-Scripts Node.js que generan los decks y piezas comerciales programáticamente, con la identidad de marca codificada directamente en el script (colores, tipografía, isotipos) en vez de editarse a mano en Canva/PowerPoint. Copia preservada sin modificar en `00_RAW_MIGRATION/claude-recovery-2026-08-02/generadores/` — no se movió a `production/` todavía (ver pendiente al final).
+Scripts Node.js que generan los decks y piezas comerciales programáticamente, con la identidad de marca codificada directamente en el script (colores, tipografía, isotipos) en vez de editarse a mano en Canva/PowerPoint. **Vive en `production/generadores/`** (Node.js + LibreOffice instalados, `npm install` corrido, pipeline funcional de punta a punta: `.pptx`/`.docx` → `.pdf`). Copia original preservada sin modificar en `00_RAW_MIGRATION/claude-recovery-2026-08-02/generadores/` por regla de no-destrucción. Los entregables finales listos para enviar están en `production/entregables/` (ver `knowledge-base/marketing/05-entregables-producidos.md`).
 
 ## Stack técnico
 
@@ -26,8 +27,10 @@ Scripts Node.js que generan los decks y piezas comerciales programáticamente, c
 | `build_onepager.js` | One-pager de outreach en frío (PDF) | Meridiano |
 | `build_whatsapp.js` | Pieza de WhatsApp en frío (imagen 1080×1920) | Meridiano |
 | `build_p04.js` | `Meridiano_P04_Manual_Compliance.docx/.pdf` | Meridiano (documento legal, no de venta) |
+| `build_info_completa.js` | `Meridiano_Info_Completa.pptx/.pdf` (nuevo, 2026-08-09) | Meridiano — entregable integral para clientes, 11 slides |
+| `build_deck.RETIRADO.js.txt` | — (no se ejecuta) | Deck híbrido retirado — mezclaba modelos, título personal incorrecto. Ver `H-005` |
 
-`generadores/deck_build/` contiene una segunda copia de varios de estos scripts más los assets/renders intermedios (JPG por slide) — parece ser el directorio de trabajo activo donde se ejecutaron las últimas builds; `generadores/build_*.js` (raíz) son versiones más tempranas o de un solo entregable. No se investigó cuál es la versión canónica — ver pendiente.
+Todos los scripts comparten la constante `LORA="Fraunces"` para el titular — **siempre usado en peso Regular** (`bold:false`), nunca Bold literal, por el bug documentado en `D-040` (`governance/decisions/DECISION_REGISTER.md`).
 
 ## Por qué importa (relación con `RT-04`)
 
@@ -35,6 +38,7 @@ Este pipeline es la prueba de que **ya existe una implementación real** de "gen
 
 ## Pendientes técnicos (no bloqueantes, deuda de producto)
 
-1. Decidir cuál de las dos copias (`generadores/` raíz vs. `generadores/deck_build/`) es la fuente de verdad, y mover el pipeline a `skills/` o `production/` según corresponda (hoy vive únicamente dentro de `00_RAW_MIGRATION/`, que es de solo lectura por regla de no-destrucción — cualquier uso activo del pipeline requiere primero copiarlo fuera de esa carpeta).
-2. Extraer la paleta/tipografía a un archivo de config compartido (mismo principio que `production/app/config/parametros_mercado.json` aplica a los números de rentabilidad) en vez de constantes duplicadas en cada script.
-3. No se verificó si estos scripts corren con `npm install` limpio (falta un `package.json` visible en la copia recibida) — confirmar antes de depender de ellos en producción.
+1. ~~Decidir cuál de las dos copias es la fuente de verdad y mover el pipeline a `production/`~~ — ✅ **RESUELTO 2026-08-09**. `production/generadores/` es la fuente de verdad; corre con `npm install` limpio (Node.js LTS + LibreOffice instalados vía `winget`).
+2. Extraer la paleta/tipografía a un archivo de config compartido (mismo principio que `production/app/config/parametros_mercado.json` aplica a los números de rentabilidad) en vez de constantes duplicadas en cada script. Sigue pendiente.
+3. ~~No se verificó si estos scripts corren con `npm install` limpio~~ — ✅ **RESUELTO 2026-08-09**, ver punto 1.
+4. **Nuevo (2026-08-09)**: los assets de logo se generan desde SVG fuente vía `rasterize_assets.js` (usa `sharp`) — si se vuelve a tocar el isotipo (`production/app/frontend/assets/logos/`), correr ese script de nuevo antes de regenerar los decks, o los PNG quedan desincronizados con la marca vigente.

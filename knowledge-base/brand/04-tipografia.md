@@ -25,6 +25,12 @@ La auditoria de marca del 2026-08-09 encontro que Lora + Poppins, aunque funcion
 
 **No se toco Camino 1** (logotipo con letterforms 100% propios, dibujados a mano) — quedo evaluado y descartado por ahora en favor de este camino, que sube el techo de todo el sistema tipografico en vez de una sola pieza.
 
+### Excepcion: peso Bold en el pipeline de generadores (D-040)
+
+El sitio web (`production/app/frontend/`, CSS/navegador) usa Fraunces con normalidad, incluyendo `font-weight: bold` donde corresponda — sin problema conocido ahi.
+
+**En cambio, el pipeline de generadores de documentos** (`production/generadores/*.js`, que produce los PPTX/DOCX vía `pptxgenjs`/`docx`) **nunca debe usar Fraunces en peso Bold literal** (`bold:true`/`bold: true`). Se detecto (2026-08-09) que el peso 700 de esta fuente variable en particular produce espaciado corrupto entre letras al renderizar en LibreOffice, sin importar como se instancie (estatico o variable, con cualquier combinacion de `opsz`/`SOFT`/`WONK`). El peso visual de los titulares en documentos se logra con tamaño de fuente y color, nunca con negrita. Ver `D-040` en `governance/decisions/DECISION_REGISTER.md` para el diagnostico completo.
+
 ## Jerarquia de tamaños
 
 | Nivel | Tipografia / peso | Web | Impreso | Uso |

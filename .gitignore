@@ -2,3 +2,11 @@ production/app/backend/data/*.jsonl
 workflows/rentabilidad-evaluation/historial_evaluaciones.jsonl
 __pycache__/
 *.pyc
+node_modules/
+
+# Outputs regenerables del pipeline de generadores/ -- la copia final versionada
+# vive en production/entregables/, no acá (evita duplicar binarios grandes en git).
+production/generadores/*.pptx
+production/generadores/*.pdf
+production/generadores/*.docx
+production/generadores/Meridiano_WhatsApp_Frio.png
