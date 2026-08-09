@@ -8,7 +8,7 @@ Fase 3 del proceso de migración. Compilado a partir de la extracción por domin
 
 ## 🔴 UNRESOLVED de máxima prioridad — impacto financiero directo
 
-Estas contradicciones existen entre la política escrita y el código que efectivamente calcula lo que se le muestra a un inversor. Se recomienda resolverlas con el responsable de negocio/contadora antes de dar por buena cualquier cifra de rentabilidad ya entregada o de lanzar la app funcional. **D-001 fue resuelta el 2026-08-02** (ver más abajo, movida a CURRENT como D-027). **D-002 fue resuelta el 2026-08-09** (ver más abajo, movida a CURRENT como D-033) — quedan D-003 y D-004.
+Estas contradicciones existen entre la política escrita y el código que efectivamente calcula lo que se le muestra a un inversor. Se recomienda resolverlas con el responsable de negocio/contadora antes de dar por buena cualquier cifra de rentabilidad ya entregada o de lanzar la app funcional. **D-001 fue resuelta el 2026-08-02** (ver más abajo, movida a CURRENT como D-027). **D-002 fue resuelta el 2026-08-09** (ver más abajo, movida a CURRENT como D-033) — quedan D-003, D-004 y **D-037 (nueva, 2026-08-09 — composición societaria 100% vs. 50/50, ver abajo)**.
 
 ### D-001 · IVA aplicado en el cálculo de renta neta — CONTRADICCIÓN DOC vs. CÓDIGO — ✅ RESUELTA, ver D-027
 - **Qué dice la política**: `supuestos_operativos_default.iva_pct = 10.0` en `parametros_mercado.json`, anotado explícitamente "SIEMPRE aplicarlo" (Ley 125/91).
@@ -39,6 +39,15 @@ Estas contradicciones existen entre la política escrita y el código que efecti
 - El principio declarado es "la lógica nunca cambia, solo el config" — pero el costo de limpieza para alquiler temporal está hardcodeado (`12.0`) dentro del código sin clave de config, y `meses_hasta_pre_pozo=7` es un default de función Python, no un valor de config.
 - **Estado**: UNRESOLVED (deuda técnica, no bloqueante para negocio pero sí para mantenibilidad).
 - **Fuente**: `knowledge-base/technology/02-calculadora-rentabilidad.md`.
+
+### D-037 · Composición societaria de la S.A. — ¿100% extranjera o 50/50 con socio paraguayo? — CONTRADICCIÓN NUEVA (2026-08-09)
+- **Qué dice el material ya migrado** (`business/02-camino-migratorio.md`, D-017, y el `CLAUDE.md` de recuperación §7): la S.A. puede constituirse con **socios 100% extranjeros**, sin ningún socio paraguayo — es presentado como el diferenciador comercial más fuerte ("elimina la fricción de entrada más grande").
+- **Qué dice `Origen Borrador programa ingreso paraguay.pptx`** (fuente aportada por el founder el 2026-08-09, slide 4 y slide 9): *"Composición societaria: Hasta 50% de participación para socios extranjeros y 50% para socios paraguayos"* / *"Estructura societaria flexible: Participación mixta entre socios extranjeros y paraguayos"*.
+- **Efecto**: son dos afirmaciones legales incompatibles sobre cuánto puede poseer un inversor extranjero de su propia S.A. — 100% vs. un tope de 50%. Es un hecho legal/regulatorio central de la propuesta de valor ("empezá a invertir sin cédula"), no un matiz de redacción.
+- **Posible explicación no confirmada**: el `pptx` adjunto es un **"Origen Borrador"** (nombre del propio archivo) — podría ser una versión anterior a la corrección "100% extranjeros", igual que el mismo archivo todavía lista "Alemania" como país separado y omite Chile (ya sabemos que esa lista se corrigió después — ver D-028/RB-07). Pero no hay evidencia de que la corrección al 100% haya pasado por el mismo proceso de auditoría documentado que sí existe para otros cambios (ej. D-015 Urbannit, D-027 IVA) — así que no se puede asumir que "más nueva estructuralmente" signifique "más correcta legalmente" en este caso puntual.
+- **Estado**: UNRESOLVED — **bloqueante para regenerar el deck de Programa de Ingreso** y cualquier pieza que mencione la composición societaria. No se generó ningún entregable nuevo con esta cifra hasta resolverlo.
+- **Fuente**: `business/02-camino-migratorio.md`, `00_RAW_MIGRATION/claude-recovery-2026-08-02/CLAUDE.md §7`, `C:\Users\Usuario\OneDrive\Escritorio\111\MERIDIANO CAPITAL + DESARROLLADORA INMOB\ARMADO CONCEPTO DE EMPRESA\Origen Borrador programa ingreso paraguay.pptx` (slides 4 y 9).
+- **Acción antes de producción**: confirmar con el founder (y verificar con el abogado/escribano de la red de aliados) cuál es la composición societaria real y vigente de la S.A. que se ofrece al inversor.
 
 ---
 
