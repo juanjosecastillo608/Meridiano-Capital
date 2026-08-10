@@ -33,6 +33,27 @@ CONTACTOS_FILE = DATA_DIR / "contactos.jsonl"
 calc = Calculadora()
 
 
+def _notificar_crm(entrada):
+    """
+    Punto de integracion preparado para notificar un CRM cuando llega un
+    contacto nuevo -- hoy es un no-op deliberado.
+
+    PENDIENTE (ver governance/decisions/DECISION_REGISTER.md#D-048 y
+    documentation/website-audit/WEBSITE-ROADMAP.md, Fase 01 item 4):
+    el founder confirmo (2026-08-10) que la notificacion de leads va a
+    ser via integracion con un CRM, todavia sin elegir. Mientras no se
+    elija, el contacto sigue guardandose de forma confiable en
+    CONTACTOS_FILE (ver _guardar_contacto) -- esta funcion no debe fallar
+    silenciosamente ni bloquear ese guardado si se implementa mas
+    adelante y el CRM no responde.
+
+    Cuando se elija el CRM, implementar aca la llamada real (API REST,
+    webhook, etc.) y quitar el "pass". No inventar un proveedor ni una
+    integracion sin que el founder confirme cual CRM se usa.
+    """
+    pass
+
+
 def json_response(handler, status, payload):
     body = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
     handler.send_response(status)
@@ -123,6 +144,8 @@ class Handler(BaseHTTPRequestHandler):
         }
         with open(CONTACTOS_FILE, "a", encoding="utf-8") as f:
             f.write(json.dumps(entrada, ensure_ascii=False) + "\n")
+
+        _notificar_crm(entrada)
 
         json_response(self, 200, {"ok": True})
 
