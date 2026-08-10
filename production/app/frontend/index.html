@@ -57,8 +57,11 @@
   em{ font-variation-settings: 'opsz' 80, 'SOFT' 30, 'WONK' 1; }
   .eyebrow{
     font-family: var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.16em;
-    text-transform:uppercase; color: var(--gold-d);
+    text-transform:uppercase; color: var(--tierra);
   }
+  /* WEBSITE-AUDIT.md / COLOR-AUDIT.md (2026-08-10): --gold-d sobre --cream daba 3.21:1,
+     no cumple WCAG AA (4.5:1) a este tamaño/peso. --tierra da 6.95:1 -- ya es un color
+     oficial de marca (brand/05-sistema-cromatico.md), no se introduce ningun HEX nuevo. */
   .eyebrow.on-dark{ color: var(--gold); }
   .lede{ font-size:18px; color:var(--grey); max-width: 640px; }
 
@@ -66,7 +69,7 @@
   .btn{
     display:inline-flex; align-items:center; gap:8px;
     font-family:var(--sans); font-weight:600; font-size:15px;
-    padding:14px 26px; border-radius:2px; border:1.5px solid transparent;
+    padding:14px 26px; border-radius:var(--radius); border:1.5px solid transparent;
     cursor:pointer; transition: all .2s ease;
   }
   .btn-primary{ background:var(--gold); color:var(--navy-2); }
@@ -104,7 +107,7 @@
   .skip-link{
     position:absolute; top:-60px; left:16px; z-index:1000;
     background:var(--gold); color:var(--navy-2); font-weight:700; font-size:14px;
-    padding:12px 20px; border-radius:2px; transition: top .2s ease;
+    padding:12px 20px; border-radius:var(--radius); transition: top .2s ease;
   }
   .skip-link:focus{ top:16px; }
 
@@ -163,6 +166,9 @@
   .hero-foot{ margin-top:56px; display:flex; gap:36px; flex-wrap:wrap; }
   .hero-foot .stat b{ display:block; font-family:var(--serif); font-size:26px; color:var(--white); }
   .hero-foot .stat span{ font-size:12.5px; color: rgba(255,255,255,.6); }
+  /* RB-05 / WEBSITE-AUDIT.md (2026-08-10): toda cifra de retorno lleva el disclaimer
+     visible en la misma pieza -- faltaba junto al stat "10%". */
+  .hero-disclaimer{ margin-top:14px; font-size:11.5px; color: rgba(255,255,255,.45); }
 
   .hero-mark{ position:relative; display:flex; align-items:center; justify-content:center; }
   .hero-mark svg{ width:min(420px, 80vw); height:auto; }
@@ -259,7 +265,7 @@
   .calc-box label{ display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:6px; }
   .calc-box input, .calc-box select{
     width:100%; font-family:var(--sans); font-size:15px; color:var(--navy);
-    background:var(--cream); border:1.5px solid var(--line); border-radius:2px;
+    background:var(--cream); border:1.5px solid var(--line); border-radius:var(--radius);
     padding:12px 14px; min-height:44px;
   }
   .calc-box input:focus, .calc-box select:focus{ outline:none; border-color:var(--gold); }
@@ -289,7 +295,7 @@
   .field label{ display:block; font-size:13px; font-weight:600; color:rgba(255,255,255,.85); margin-bottom:6px; }
   .field input, .field select, .field textarea{
     width:100%; font-family:var(--sans); font-size:15px; color:var(--navy);
-    background:var(--white); border:1.5px solid transparent; border-radius:2px;
+    background:var(--white); border:1.5px solid transparent; border-radius:var(--radius);
     padding:12px 14px; min-height:44px; transition: border-color .15s ease, box-shadow .15s ease;
   }
   .field textarea{ min-height:88px; resize:vertical; }
@@ -301,11 +307,11 @@
   .form-note{ font-size:12.5px; color:rgba(255,255,255,.6); margin-top:6px; }
   .form-success{
     margin-top:16px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3);
-    color:var(--white); padding:14px 16px; border-radius:2px; font-size:14.5px;
+    color:var(--white); padding:14px 16px; border-radius:var(--radius); font-size:14.5px;
   }
   .form-error{
     margin-top:16px; background:rgba(139,51,35,.35); border:1px solid rgba(255,255,255,.3);
-    color:var(--white); padding:14px 16px; border-radius:2px; font-size:14.5px;
+    color:var(--white); padding:14px 16px; border-radius:var(--radius); font-size:14.5px;
   }
   .contact-form .btn-primary{ min-height:44px; }
   .contact-form .btn-primary[disabled]{ opacity:.6; cursor:default; }
@@ -398,6 +404,7 @@
           <div class="stat"><b>Grado de inversión</b><span>otorgado a Paraguay por Moody's</span></div>
           <div class="stat"><b>10%</b><span>rentabilidad neta anual objetivo</span></div>
         </div>
+        <p class="hero-disclaimer">Cifra ilustrativa, no constituye garantía de rentabilidad.</p>
       </div>
       <div class="hero-mark" aria-hidden="true">
         <svg class="mojon-draw" viewBox="0 0 120 120">

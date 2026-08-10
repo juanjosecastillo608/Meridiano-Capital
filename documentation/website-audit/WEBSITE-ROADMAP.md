@@ -9,10 +9,10 @@ Diez fases, en el orden del brief (sección 34), con el contenido real de esta a
 
 ## PHASE 01 — Critical corrections (bajo esfuerzo, alto impacto o riesgo de compliance)
 
-1. Agregar el disclaimer de RB-05 junto al stat "10% rentabilidad neta anual objetivo" del hero.
-2. Corregir el contraste de `.eyebrow` sobre fondo claro (3.21:1 → ≥4.5:1).
-3. Corregir el token `--radius` no usado (`.btn` debe usar `var(--radius)`).
-4. Decidir el flujo de notificación de leads (email/Slack/CRM) — hoy los contactos quedan en un archivo local sin que nadie se entere. **Bloqueante de negocio real, no cosmético.**
+1. ✅ **Hecho (2026-08-10)** — Disclaimer de RB-05 agregado junto al stat "10% rentabilidad neta anual objetivo" del hero.
+2. ✅ **Hecho (2026-08-10)** — Contraste de `.eyebrow` sobre fondo claro corregido (3.21:1 → 6.95:1, `--gold-d` → `--tierra`).
+3. ✅ **Hecho (2026-08-10)** — Token `--radius` ahora usado consistentemente (6 instancias corregidas, no solo `.btn`).
+4. **Pendiente — requiere decisión del founder.** Flujo de notificación de leads (email/Slack/CRM) — hoy los contactos quedan en un archivo local sin que nadie se entere. **Bloqueante de negocio real, no cosmético.**
 
 ## PHASE 02 — Brand refinement
 

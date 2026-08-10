@@ -16,9 +16,9 @@ Parte de: WEBSITE-AUDIT.md
 | Multilenguaje | Solo español | ES/EN/PT según plan de contenido ya escrito | Total | Requiere traducción real, no solo código — esfuerzo de contenido, no solo técnico |
 | Formulario segmentado | Genérico (nombre/email/país/mensaje) | Segmentado por tipo de consulta (Perfil Profesional, sección 6.7) | Medio | Cambio de UI + lógica de backend menor |
 | Notificación de leads | Se guarda en `.jsonl` local, nadie se entera | Email/Slack/CRM al recibir un contacto real | Alto (riesgo de negocio, no solo técnico) | Requiere decisión de hosting (U-011) antes de poder resolverse en firme |
-| Disclaimer del 10% en el hero | Ausente junto al stat | Presente, según RB-05 | Bajo, alto cumplimiento | Una línea de texto pequeño |
-| Contraste `.eyebrow` sobre fondo claro | 3.21:1 (falla AA) | ≥4.5:1 | Bajo | Ajustar color o peso/tamaño de fuente — cambio de una línea CSS |
-| Token `--radius` no usado | Botones usan `2px` hardcodeado | Usar `var(--radius)` consistentemente | Trivial | Una línea CSS |
+| ~~Disclaimer del 10% en el hero~~ | ✅ **Resuelto 2026-08-10** — `<p class="hero-disclaimer">` agregado junto al stat | — | — | — |
+| ~~Contraste `.eyebrow` sobre fondo claro~~ | ✅ **Resuelto 2026-08-10** — `--gold-d` (3.21:1) → `--tierra` (6.95:1), color ya oficial de marca | — | — | — |
+| ~~Token `--radius` no usado~~ | ✅ **Resuelto 2026-08-10** — las 6 instancias de `border-radius:2px` ahora usan `var(--radius)` | — | — | — |
 | Sistema tipográfico formalizado | Tamaños hardcodeados por selector | Escala nombrada (tokens) documentada en `DESIGN-SYSTEM.md` | Medio | Refactor de CSS, sin cambio visual |
 | Self-host / preload de fuentes | 100% dependiente de Google Fonts CDN | Preload + fallback verificado | Bajo-medio | Mejora de robustez, no crítico hoy |
 
