@@ -51,9 +51,9 @@ Pedido directo del founder antes de arrancar la Fase 03 formal — corrección d
 
 **Bug encontrado y corregido durante la implementación**: agregar el selector de idioma al header desbordaba el botón "Agendar consulta" fuera del viewport en el rango 881-1180px (verificado con medición real en navegador, no solo visual) — se angostó el propio nav en ese rango (gaps y tamaños de fuente reducidos) en vez de esconder el selector.
 
-## PHASE 05 — Copywriting
+## PHASE 05 — Copywriting ✅ COMPLETA (2026-08-10)
 
-15. 🟡 **Parcial (2026-08-10)** — Terminología de los 4 títulos de "Proceso" corregida (batch pre-Fase 03: "Cédula de identidad paraguaya", "Apertura de cuenta bancaria"). Sigue pendiente la reescritura con más voz técnica que `CONTENT-AUDIT.md` señalaba (hoy son correctos pero genéricos en tono).
+15. ✅ **Hecho (D-052)** — Reescritura de "Proceso" con voz técnica, **ampliada a corrección de secuencia**: se encontró que la versión anterior decía "siempre en este orden" con cédula como paso 1, contradiciendo `business/02-camino-migratorio.md` (D-038) — la cédula es opcional/paralela, la vía real es S.A. sin cédula (Meridiano como representante legal y síndico, compra inmediata sin trámite migratorio). Founder eligió explícitamente corregir la secuencia, no solo el tono, entre 2 opciones presentadas. Nuevo orden: (1) Constitución de SA sin cédula, (2) Apertura de cuenta bancaria, (3) Cédula de identidad paraguaya (opcional, en paralelo), (4) Selección y cierre — última a propósito para conservar el círculo dorado de cierre del diseño existente.
 16. ✅ **Hecho (2026-08-10, Fase 02)** — La narrativa de "16 años" ahora tiene evidencia concreta: bio del CEO + portfolio real (53/11/35/18) en "Quiénes somos".
 
 ## PHASE 06 — Photography
