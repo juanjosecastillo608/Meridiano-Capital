@@ -194,10 +194,27 @@
   .reveal{ opacity:0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:none; }
 
+  /* ============ QUIENES SOMOS (fundador + portfolio) ============ */
+  .founder{ display:flex; gap:34px; align-items:flex-start; margin-top:52px; max-width:760px; }
+  @media (max-width: 640px){ .founder{ flex-direction:column; align-items:flex-start; gap:20px; } }
+  .founder-mark{
+    flex:none; width:88px; height:88px; border-radius:50%; background:var(--navy); color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-weight:700; font-size:26px; letter-spacing:.02em;
+  }
+  .founder-role{ display:block; font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--tierra); margin-bottom:6px; }
+  .founder-bio h3{ font-size:23px; margin-bottom:10px; }
+  .founder-bio p{ font-size:15px; color:var(--grey); max-width:560px; }
+  .portfolio-stats{ display:flex; gap:44px; flex-wrap:wrap; margin-top:48px; padding-top:36px; border-top:1px solid var(--line); }
+  .portfolio-stats .pstat b{ display:block; font-family:var(--serif); font-size:32px; color:var(--navy); }
+  .portfolio-stats .pstat span{ font-size:12.5px; color:var(--grey); text-transform:uppercase; letter-spacing:.05em; }
+
   /* ============ PILARES (DNA) ============ */
   .pillars{ display:grid; grid-template-columns: repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
   .pillar{ background:var(--white); padding:38px 30px; }
-  .pillar .num{ font-family:var(--serif); font-size:14px; color:var(--gold-d); font-weight:700; }
+  /* WEBSITE-AUDIT.md (2026-08-10): mismo hallazgo de contraste que .eyebrow -- --gold-d
+     sobre fondo claro no cumple WCAG AA a este tamaño. --tierra ya es color oficial. */
+  .pillar .num{ font-family:var(--serif); font-size:14px; color:var(--tierra); font-weight:700; }
   .pillar h3{ font-size:19px; margin: 14px 0 10px; }
   .pillar p{ font-size:14.5px; color:var(--grey); }
   @media (max-width: 980px){ .pillars{ grid-template-columns: repeat(2,1fr); } }
@@ -232,7 +249,7 @@
   .service-card:hover{ border-color: var(--gold); transform: translateY(-3px); }
   .service-card h3{ font-size:19px; margin-bottom:10px; }
   .service-card p{ font-size:14px; color:var(--grey); }
-  .service-card .tag{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-d); margin-bottom:12px; }
+  .service-card .tag{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tierra); margin-bottom:12px; }
 
   /* ============ PORTAFOLIO DUAL (split) ============ */
   .split{ display:grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
@@ -419,8 +436,33 @@
     </div>
   </section>
 
-  <!-- ============ POR QUE MERIDIANO (DNA) ============ -->
+  <!-- ============ QUIENES SOMOS (D-041/042, Website Roadmap Fase 02) ============ -->
   <section id="nosotros">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Quiénes somos</p>
+        <h2>Liderado por quien construye, no solo por quien vende.</h2>
+        <p class="lede" style="margin-top:14px;">Meridiano Capital es la marca bajo la que Juan José Castillo acompaña a inversores extranjeros de punta a punta — de la cédula al alquiler.</p>
+      </div>
+      <div class="founder reveal">
+        <div class="founder-mark" aria-hidden="true">JJC</div>
+        <div class="founder-bio">
+          <span class="founder-role">CEO · Meridiano Capital</span>
+          <h3>Juan José Castillo</h3>
+          <p>16 años desarrollando y comercializando proyectos inmobiliarios en Asunción, Paraguay. Formación técnica en construcción aplicada a evaluar terrenos, obras y oportunidades de valor real — no solo precio y ubicación. Lidera la Red de Aliados Profesionales que estructura cada operación con respaldo legal, notarial e impositivo.</p>
+        </div>
+      </div>
+      <div class="portfolio-stats reveal">
+        <div class="pstat"><b>53</b><span>unidades en cartera</span></div>
+        <div class="pstat"><b>11</b><span>edificios</span></div>
+        <div class="pstat"><b>35</b><span>operativas hoy</span></div>
+        <div class="pstat"><b>18</b><span>en obra, entregas hasta 2029</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POR QUE MERIDIANO (DNA) ============ -->
+  <section id="concepto" class="bg-cream">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">El concepto</p>
@@ -568,28 +610,29 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Red de aliados profesionales</p>
-        <h2>Cada etapa, respaldada por especialistas de confianza</h2>
+        <h2>Nunca estás solo frente a un trámite</h2>
+        <p class="lede" style="margin-top:14px;">Un inversor extranjero no tiene forma de verificar por sí mismo la seriedad de un abogado o un escribano paraguayo. Nosotros ya la verificamos — y coordinamos cada etapa para que no tengas que hablar con cuatro personas distintas.</p>
       </div>
       <div class="allies reveal">
         <div class="ally">
           <div class="ico">Ab</div>
           <h3>Abogado</h3>
-          <p>Constitución societaria y revisión contractual</p>
+          <p>Constituye la sociedad y revisa cada contrato antes de que lo firmes — sin sorpresas después.</p>
         </div>
         <div class="ally">
           <div class="ico">Es</div>
           <h3>Escribano</h3>
-          <p>Escrituración y protocolización</p>
+          <p>Escritura y protocoliza cada acto societario, con la formalidad que exige la ley paraguaya.</p>
         </div>
         <div class="ally">
           <div class="ico">Co</div>
           <h3>Contadora</h3>
-          <p>RUC, facturación y cumplimiento fiscal</p>
+          <p>Mantiene tu RUC, tu facturación y tu cumplimiento fiscal en orden, todo el año.</p>
         </div>
         <div class="ally">
           <div class="ico">Op</div>
           <h3>Operador Urbannit</h3>
-          <p>20+ años en renta temporal</p>
+          <p>20+ años operando renta temporal en Asunción — la experiencia que tu propiedad necesita del otro lado.</p>
         </div>
       </div>
     </div>

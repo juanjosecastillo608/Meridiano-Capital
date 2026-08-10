@@ -8,8 +8,8 @@ Parte de: WEBSITE-AUDIT.md
 | Área | Actual | Objetivo | Gap | Acción |
 |---|---|---|---|---|
 | Fotografía | 0 imágenes reales, 100% CSS/SVG | Dirección fotográfica editorial en hero, proceso, portafolio | Total | Bloqueado por U-022 (banco de imagen no producido) — no se puede resolver desde el código |
-| Perfil del CEO | 1 mención textual sin foto en el footer | Sección "Nosotros" con bio del CEO, usando `Meridiano_Perfil_Profesional_CEO.docx` ya construido | Alto, pero con contenido ya listo | Trasladar bios copy-ready al sitio — bajo esfuerzo, contenido ya existe |
-| Portfolio visible | No se muestra ningún proyecto real | Mostrar cifras/casos del portfolio real (53 unidades, 11 edificios) respetando D-029 (invisibilidad societaria) | Alto, con dato ya disponible | Redactar sección "Portfolio" sin mencionar las 6 S.A. — dato ya en `business/06-estructura-societaria-y-portfolio.md` |
+| ~~Perfil del CEO~~ | ✅ **Resuelto 2026-08-10** — sección "Quiénes somos" con bio, rol y monograma "JJC" (sin fabricar foto falsa) | — | — | — |
+| ~~Portfolio visible~~ | ✅ **Resuelto 2026-08-10** — 4 cifras reales (53/11/35/18) en la sección "Quiénes somos", sin mencionar ninguna de las 6 S.A. | — | — | — |
 | Catálogo de oportunidades | No existe | Sección/página "Oportunidades de Inversión" navegable | Total | Requiere decisión de contenido (¿qué proyectos mostrar, con qué nivel de detalle público?) antes de construir |
 | Meta tags sociales | Sin Open Graph ni Twitter Card | Preview correcto al compartir en LinkedIn/WhatsApp | Total, bajo esfuerzo | ~10-15 líneas de `<meta>`, cambio de bajo riesgo |
 | Schema.org | Ausente | `Organization`/`RealEstateAgent` JSON-LD | Total, bajo esfuerzo | Bloque JSON-LD nuevo, no afecta nada existente |

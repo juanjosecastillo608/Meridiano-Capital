@@ -23,7 +23,7 @@ Aplicando las 6 preguntas de la sección 8 del brief a cada bloque de copy relev
 | Sección Proceso — títulos de los 4 pasos ("Cédula paraguaya", "Apertura bancaria"...) | 🟡 Parcial | 🟡 Parcial | 🟡 **Podría pertenecer a cualquier consultora de radicación** — el texto es correcto pero genérico; no lleva la voz de "criterio técnico de construcción" que sí aparece en otras secciones |
 | Sección Servicios — las 5 unidades | ✅ Sí | ✅ Sí | ❌ No — específico y bien diferenciado |
 | Portafolio dual (renta tradicional/temporal) | ✅ Sí | ✅ Sí | ❌ No |
-| Red de Aliados — descripciones ("Constitución societaria y revisión contractual") | 🟡 Parcial | 🟡 Parcial | 🟡 Correcto pero seco — es la sección con menos "voz" de todo el sitio, funciona como listado de tareas más que como narrativa de confianza |
+| ~~Red de Aliados — descripciones~~ | ✅ **Reescrita 2026-08-10** (Fase 02) | ✅ | Pasó de listado de tareas a lenguaje de acompañamiento ("Constituye la sociedad y revisa cada contrato antes de que lo firmes — sin sorpresas después.") |
 | CTA final: "Hablemos de tu próxima inversión en Paraguay" | ✅ Sí | 🟡 Parcial | 🟡 Es un CTA correcto pero bastante estándar — cumple, no destaca |
 
 ## Hallazgo — falta el "por qué 16 años importa", no solo la cifra

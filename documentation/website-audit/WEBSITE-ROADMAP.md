@@ -14,11 +14,13 @@ Diez fases, en el orden del brief (sección 34), con el contenido real de esta a
 3. ✅ **Hecho (2026-08-10)** — Token `--radius` ahora usado consistentemente (6 instancias corregidas, no solo `.btn`).
 4. 🟡 **Parcial (2026-08-10, D-048)** — El founder confirmó la vía: **integración con un CRM, todavía sin elegir cuál** (U-026). Se preparó el punto de integración en `server.py` (`_notificar_crm()`, hoy no-op documentado) para que conectar el CRM sea un cambio acotado el día que se elija — el guardado local (`contactos.jsonl`) sigue siendo el respaldo confiable mientras tanto. **No queda cerrado del todo** — falta elegir el CRM y escribir la llamada real.
 
-## PHASE 02 — Brand refinement
+## PHASE 02 — Brand refinement ✅ COMPLETA (2026-08-10)
 
-5. Construir la sección "Nosotros" real (bio del CEO) usando `Meridiano_Perfil_Profesional_CEO.docx` ya existente (D-041/042).
-6. Incorporar cifras de portfolio real (53 unidades / 11 edificios) respetando D-029 — sin mencionar las 6 S.A.
-7. Reescribir la sección "Aliados" con más voz de marca (hoy es la más genérica del sitio).
+5. ✅ **Hecho** — Nueva sección "Quiénes somos" (`#nosotros`) con bio del CEO (adaptada de `Meridiano_Perfil_Profesional_CEO.docx`, D-041/042): monograma "JJC" (sin fabricar una foto falsa — bloqueado por U-022, se usó el mismo lenguaje visual de círculos con iniciales que ya existía en Aliados), rol "CEO · Meridiano Capital", bio de ~50 palabras. La sección de los 4 Pilares (ADN) se preservó intacta, ahora en su propia `<section id="concepto">` inmediatamente después — no se destruyó nada, se reordenó y se sumó contenido.
+6. ✅ **Hecho** — Cifras de portfolio real agregadas (53 unidades / 11 edificios / 35 operativas / 18 en obra, entregas hasta 2029) — **sin mencionar ninguna de las 6 S.A.** (Campo Agreste, Jumacabe, WICA, Quintero, Canarias, ARL), respetando D-029 de forma más estricta que el propio `Meridiano_Info_Completa.pptx` (que sí menciona "5 sociedades propietarias" en una nota al pie — el sitio web, al ser una pieza pública permanente, no repite ni esa mención agregada).
+7. ✅ **Hecho** — Sección "Aliados" reescrita con voz de marca: nuevo lede ("Un inversor extranjero no tiene forma de verificar por sí mismo..."), y las 4 descripciones de tarjeta pasaron de listas de tareas a lenguaje de acompañamiento ("Constituye la sociedad y revisa cada contrato antes de que lo firmes — sin sorpresas después.").
+
+**Extra, descubierto al ejecutar la Fase 02**: se encontraron 2 instancias más del mismo problema de contraste de la Fase 01 (`.pillar .num` y `.service-card .tag`, ambos `--gold-d` sobre fondo claro) — corregidas con el mismo criterio (`--tierra`), sin esperar a una futura pasada de accesibilidad dedicada.
 
 ## PHASE 03 — Typography & color
 
