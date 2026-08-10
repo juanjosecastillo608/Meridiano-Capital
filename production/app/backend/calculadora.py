@@ -110,13 +110,16 @@ class Calculadora:
 
     def iva_alquiler_pct(self, clase):
         """
-        IVA de alquiler segun clase (resuelve D-001, confirmado por el founder
-        2026-08-02): comercial 10%, residencial 5%. Las clases temporal_* usan
-        el residencial por defecto -- ver fiscal._iva_alquiler_nota en config.
+        IVA de alquiler segun clase: comercial 10% (D-001/D-027, 2026-08-02),
+        residencial 5% (D-001/D-027), renta temporal/Airbnb 10% (D-045,
+        confirmado por el founder 2026-08-10 -- ya NO usa el 5% residencial
+        por defecto).
         """
         f = self.p["fiscal"]
         if clase == "comercial":
             return f["iva_alquiler_comercial_pct"]
+        if clase.startswith("temporal"):
+            return f["iva_alquiler_temporal_pct"]
         return f["iva_alquiler_residencial_pct"]
 
     # ---- RENTA ----
@@ -183,11 +186,12 @@ class Calculadora:
         yield_neto = neto_anual / precio_compra * 100.0
 
         # D-033 (2026-08-09): pisos y techos SIEMPRE en bruto (decision del founder).
-        # Comparamos yield_bruto contra el piso, no yield_neto. D-044 (2026-08-10):
-        # los valores de pisos_renta_neta ya son datos reales (Tabla de
-        # Rentabilidades Alquiler.xlsx) para la mayoria de las clases -- excepto
-        # temporal_casa (sin dato real todavia) y la matriz por zona/calidad
-        # (P-004, sigue incompleta). Ver knowledge-base/investment/05-matriz-pisos-techos.md.
+        # Comparamos yield_bruto contra el piso, no yield_neto. D-044/D-045
+        # (2026-08-10): los valores de pisos_renta_neta ya son datos confirmados
+        # por el founder para las 6 clases (temporal_casa = temporal_departamento,
+        # sin diferenciacion casa/depto en renta temporal). Sigue pendiente,
+        # deliberadamente sin trabajo activo, la matriz por zona/calidad (P-004)
+        # mas alla de Eje Corporativo. Ver knowledge-base/investment/05-matriz-pisos-techos.md.
         piso = self.p["pisos_renta_neta"].get(clase)
         return {
             "clase": clase,

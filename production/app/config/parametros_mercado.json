@@ -13,8 +13,8 @@
     "departamento_sin_muebles": 8.0,
     "departamento_amoblado": 10.0,
     "temporal_departamento": 15.0,
-    "temporal_casa": 12.0,
-    "_nota_temporal_casa": "Sin dato real todavia -- la planilla 2026-08-10 solo trae Departamentos AIRBNB, no Casas AIRBNB. Se mantiene la estimacion anterior (12.0) sin cambios, marcada [EXTENSION].",
+    "temporal_casa": 15.0,
+    "_nota_temporal_casa": "Confirmado por el founder 2026-08-10 (D-045): mismo piso que Departamentos AIRBNB (15% bruto) -- no hay diferenciacion casa/depto en renta temporal.",
     "_pisos_reales_2026_08_10_bruto_y_neto": {
       "_nota": "Tabla completa tal como la aporto el founder (Tabla de Rentabilidades Alquiler.xlsx) -- incluye clases mas granulares que las que el motor de calculo usa hoy (arriba). Referencia para completar P-004 y para una futura extension de calculadora.py.",
       "tinglados_depositos": {
@@ -44,6 +44,11 @@
       "departamentos_airbnb": {
         "bruto": 15.0,
         "neto": 12.0
+      },
+      "casas_airbnb": {
+        "bruto": 15.0,
+        "neto": 12.0,
+        "_nota": "No es un dato nuevo de planilla -- confirmado igual a departamentos_airbnb por el founder 2026-08-10 (D-045)."
       }
     }
   },
@@ -149,7 +154,9 @@
     "_nota": "Confirmado por Juan Jose Castillo (founder) el 2026-08-02. Resuelve D-001 del Decision Register (reemplaza el iva_pct unico de 5.0 marcado 'A CONFIRMAR CON CONTADORA'). Version historica preservada en governance/decisions/DECISION_REGISTER.md.",
     "iva_alquiler_comercial_pct": 10.0,
     "iva_alquiler_residencial_pct": 5.0,
-    "_iva_alquiler_nota": "Alquiler COMERCIAL: IVA 10%. Alquiler RESIDENCIAL (casa, departamento con o sin muebles): IVA 5%. Las clases temporal_departamento/temporal_casa (Urbannit) usan el residencial 5% por defecto -- es una inferencia [EXTENSION], no confirmada explicitamente para renta temporal/turistica. Confirmar con contadora.",
+    "iva_alquiler_temporal_pct": 10.0,
+    "_iva_alquiler_temporal_nota": "Renta temporal/Airbnb (Urbannit): IVA 10%, confirmado por el founder 2026-08-10 (D-045) -- reemplaza la inferencia anterior que usaba el 5% residencial por defecto.",
+    "_iva_alquiler_nota": "Alquiler COMERCIAL: IVA 10%. Alquiler RESIDENCIAL (casa, departamento con o sin muebles): IVA 5%. Renta TEMPORAL/Airbnb (Urbannit): IVA 10% -- ver iva_alquiler_temporal_pct y su nota (D-045, confirmado por el founder 2026-08-10, ya NO es el 5% residencial por defecto).",
     "iva_venta_pct": 5.0,
     "_iva_venta_nota": "Venta/reventa (evaluar_reventa, evaluar_reventa_temprana): IVA 5% para todas las clases. Se aplica sobre el valor total de salida/cesion. La base de calculo (precio total vs. solo el margen) es una interpretacion [EXTENSION] -- confirmar con contadora.",
     "impuesto_renta_pct": 10.0,

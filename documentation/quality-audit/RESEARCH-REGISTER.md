@@ -13,8 +13,8 @@ Este registro es deliberadamente corto. Regla aplicada (sección 2 del brief del
 |---|---|---|---|
 | 1 | ¿Existe la Ley N° 6984/22 y regula el régimen SUACE/Investor Pass como afirma `Modelo Paraguay para Inversión extranjero.docx`? | Si se cita mal una ley a un inversor extranjero en material comercial, es riesgo legal y reputacional directo — bloquea poder usar ese documento como fuente para marketing/journey | Legislación paraguaya oficial (Gaceta Oficial / SUACE oficial), o confirmación del abogado de la Red de Aliados |
 | 2 | ~~IVA sobre renta de alquiler: ¿5% o 10%?~~ | ✅ **Cerrado 2026-08-10** — ya estaba resuelto desde el 2026-08-02 (D-001/D-027: comercial 10%, residencial 5%). El hallazgo venía de documentación desactualizada, ya corregida | — |
-| 2b | IVA sobre renta temporal/Airbnb: ¿corresponde el mismo 5% residencial, o una tasa propia? | Afecta el neto mostrado en evaluaciones de Urbannit/renta temporal específicamente | Contadora |
-| 3 | ¿Los pisos de rentabilidad por tipología (comercial 8%, casa 6%, etc.) siguen siendo válidos ahora que se miden en BRUTO (D-033), o deben recalibrarse con datos reales? | Cambia el veredicto `pasa_piso` de cada evaluación — actualmente casi todo "pasa" porque los números no se recalibraron tras el cambio de bruto/neto | Founder + la planilla "Alquileres Amoblados Tradicionales" que mencionó pero no llegó adjunta |
+| 2b | ~~IVA sobre renta temporal/Airbnb: ¿5% o tasa propia?~~ | ✅ **Cerrado 2026-08-10** — el founder confirmó 10% (D-045), ya implementado | — |
+| 3 | ~~¿Los pisos de rentabilidad por tipología siguen siendo válidos en BRUTO?~~ | ✅ **Cerrado 2026-08-10** — planilla real recibida y aplicada (D-044/D-045). Matriz por zona/calidad (P-004) queda pendiente por decisión explícita del founder, no por falta de dato | — |
 
 ## Investigaciones deliberadamente descartadas (y por qué)
 

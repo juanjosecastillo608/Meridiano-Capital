@@ -30,15 +30,15 @@ Parte de: FINAL-AUDIT.md
 | Brand Strategy | 🟢 CLOSED | 93 | Ninguna | Ninguna | Ninguna |
 | Brand Identity | 🟢 CLOSED | 90 | Ninguna | Ninguna | Corregir `marketing/02-presentaciones.md` (DO NOW #3) |
 | Brand OS 2.0 / 2.1 | ⚪ N/A | — | — | — | No existe como tal en este repo — no forzar |
-| Investment System | 🟡 CLOSED c/gap menor | 87 | Ítem 2b de `RESEARCH-REGISTER.md` (IVA temporal, menor) | Ninguna crítica — pisos recalibrados con datos reales (D-044, 2026-08-10) | Falta solo el piso de "casa Airbnb" y la matriz por zona/calidad (P-004) |
+| Investment System | 🟢 CLOSED | 93 | Ninguna | Ninguna — cerrado en su totalidad (D-044/D-045, 2026-08-10) | Matriz por zona/calidad (P-004) queda pendiente por decisión explícita, no bloquea nada |
 | Operations | 🟡 CLOSED c/tarea | 82 | Ninguna | Ninguna crítica | DO NOW #4 (plantilla) |
 | Marketing | 🟡 CLOSED c/corrección | 79 | Ninguna | Ninguna | DO NEXT #8 (disclaimer + bruto/neto en 4 docs) |
 | Sales | 🟡 CLOSED (cubierto en Business/Operations) | 85 | Ninguna | Ninguna | Ninguna |
 | Investor Experience | 🟡 CLOSED | 83 | Ninguna | Ninguna crítica | Completar `[COMPLETAR]` con datos reales (DO LATER #10) |
 | Property Management | 🟢 CLOSED | 87 | Ninguna | Ninguna — resuelto 2026-08-10 (D-043) | Incorporar las dos propuestas STAY WISE como material operativo de Urbannit |
 | AI System | 🟢 CLOSED | 91 | Ninguna | Ninguna | Ninguna |
-| Skills | 🟡 CLOSED c/herencia técnica | 78 | Ítem #2 de research | IVA/pisos (heredado) | Ninguna nueva |
-| Workflows | 🟡 CLOSED c/herencia técnica | 76 | Ítem #2 de research | IVA/pisos (heredado) | Ninguna nueva |
+| Skills | 🟡 CLOSED c/herencia técnica | 85 | Ninguna | D-003 (ocupación temporal no aplicada en el código) — heredado, no resuelto en esta ronda | Ninguna nueva |
+| Workflows | 🟡 CLOSED c/herencia técnica | 83 | Ninguna | D-003 (heredado) | Ninguna nueva |
 | Connectors | ⚪ ARCHIVO | — | Ninguna | Ninguna | Ninguna — no prioritario |
 | Documentation | 🟢 CLOSED | 91 | Ninguna | Ninguna | Ninguna |
 | **(añadida)** Entregables de producción (`production/entregables/`) | 🟢 CLOSED | 92 | Ninguna | Ninguna | Ninguna |

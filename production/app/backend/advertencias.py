@@ -24,20 +24,21 @@ NOTA_IVA_RESUELTA = (
     "venta 5%. Ver governance/decisions/DECISION_REGISTER.md#D-001."
 )
 NOTA_IVA_TEMPORAL_EXTENSION = (
-    "Esta clase es renta temporal (Urbannit). Se le aplico el IVA residencial (5%) "
-    "por defecto -- no fue confirmado explicitamente para renta temporal/turistica, "
-    "que en Paraguay puede tener tratamiento distinto. Marcado [EXTENSION]: "
-    "confirmar con contadora antes de uso en firme."
+    "Esta clase es renta temporal (Urbannit). Se le aplica IVA 10%, confirmado "
+    "por el founder el 2026-08-10 (D-045) -- reemplaza la inferencia anterior "
+    "que usaba el 5% residencial por defecto. Ver governance/decisions/"
+    "DECISION_REGISTER.md#D-045."
 )
 ADVERTENCIA_PISOS = (
-    "Piso comparado en BRUTO (resuelve D-002, D-033). Desde D-044 (2026-08-10) "
-    "el piso numerico usado para 'comercial', 'residencial_casa', "
-    "'departamento_sin_muebles', 'departamento_amoblado' y 'temporal_departamento' "
-    "es un dato real (Tabla de Rentabilidades Alquiler.xlsx, founder). El piso de "
-    "'temporal_casa' (12%) sigue siendo una estimacion sin dato real -- la planilla "
-    "solo trae Airbnb departamento. Falta ademas la matriz por zona/calidad "
-    "(P-004). Ver knowledge-base/investment/05-matriz-pisos-techos.md y "
-    "governance/decisions/DECISION_REGISTER.md#D-044."
+    "Piso comparado en BRUTO (resuelve D-002, D-033). Desde D-044/D-045 "
+    "(2026-08-10) el piso numerico de las 6 clases ('comercial', "
+    "'residencial_casa', 'departamento_sin_muebles', 'departamento_amoblado', "
+    "'temporal_departamento', 'temporal_casa') es un dato confirmado por el "
+    "founder -- 'temporal_casa' se fijo igual a 'temporal_departamento' (15%), "
+    "sin diferenciacion casa/depto en renta temporal. Pendiente, sin trabajo "
+    "activo hasta nuevo dato: la matriz por zona/calidad (P-004) mas alla de "
+    "la zona Eje Corporativo. Ver knowledge-base/investment/05-matriz-pisos-"
+    "techos.md y governance/decisions/DECISION_REGISTER.md#D-045."
 )
 
 ADVERTENCIAS_VENTA = [
@@ -55,7 +56,12 @@ ADVERTENCIAS_VENTA = [
 def advertencias_renta(calc, clase):
     """Advertencias para un resultado de evaluar_renta(). calc: instancia de Calculadora."""
     iva_pct = calc.iva_alquiler_pct(clase)
-    detalle = "comercial" if clase == "comercial" else "residencial"
+    if clase == "comercial":
+        detalle = "comercial"
+    elif clase.startswith("temporal"):
+        detalle = "renta temporal/Airbnb"
+    else:
+        detalle = "residencial"
     advertencias = [NOTA_IVA_RESUELTA.format(iva=iva_pct, detalle=detalle)]
     if clase.startswith("temporal"):
         advertencias.append(NOTA_IVA_TEMPORAL_EXTENSION)

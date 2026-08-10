@@ -25,7 +25,7 @@ Piso de rentabilidad **bruta** anual por clase de activo (D-033: mecanismo bruto
 | `departamento_sin_muebles` | 8.0 | Piso % anual bruto, depto sin amoblar (dato real) |
 | `departamento_amoblado` | 10.0 | Piso % anual bruto, depto amoblado (dato real: "Departamento Tradicional Con Muebles") |
 | `temporal_departamento` | 15.0 | Piso % anual bruto, depto en renta temporal (dato real: "Departamentos AIRBNB") |
-| `temporal_casa` | 12.0 | Piso % anual bruto, casa en renta temporal — **sin dato real todavía**, estimación sin cambios (la planilla no trae "Casas AIRBNB") |
+| `temporal_casa` | 15.0 | Piso % anual bruto, casa en renta temporal — confirmado por el founder (D-045, 2026-08-10) igual a `temporal_departamento`, sin diferenciación casa/depto en renta temporal |
 
 El config guarda también, bajo `_pisos_reales_2026_08_10_bruto_y_neto`, la tabla completa de 7 clases con **bruto y neto** (agrega "Tinglados/Depósitos" y separa "Locales Comerciales" del resto de comercial) — ver `investment/05-matriz-pisos-techos.md` para la tabla completa y su lectura.
 
@@ -127,7 +127,8 @@ Gastos operativos por defecto, expresados como % de la renta **bruta anual**. Va
 | Clave | Valor | Significado |
 |---|---|---|
 | `iva_alquiler_comercial_pct` | 10.0 | IVA sobre renta bruta, alquiler **comercial** |
-| `iva_alquiler_residencial_pct` | 5.0 | IVA sobre renta bruta, alquiler **residencial** (casa, depto con/sin muebles) — usado también por defecto para las clases `temporal_*` (Urbannit), como inferencia `[EXTENSION]` sin confirmar explícitamente |
+| `iva_alquiler_residencial_pct` | 5.0 | IVA sobre renta bruta, alquiler **residencial** (casa, depto con/sin muebles) |
+| `iva_alquiler_temporal_pct` | 10.0 | IVA sobre renta bruta, **renta temporal/Airbnb** (Urbannit) — confirmado por el founder (D-045, 2026-08-10); ya no usa el 5% residencial que se aplicaba antes por inferencia `[EXTENSION]` |
 | `iva_venta_pct` | 5.0 | IVA sobre venta/reventa, todas las clases — base de cálculo (precio total vs. solo margen) es interpretación `[EXTENSION]`, a confirmar con contadora |
 | `impuesto_renta_pct` | 10.0 | IRP aplicado sobre la renta NETA (no bruta) |
 | `grava_ganancia_capital` | false | Confirmado por el usuario: la reventa NO se grava como actividad habitual — plusvalía neta = plusvalía bruta |
@@ -244,5 +245,5 @@ Etiquetado de los pisos de rentabilidad (P07), agregado tras auditoría — **va
 ## Requisitos para el dominio de tecnología
 
 - Este archivo (o su equivalente estructurado) debe copiarse literalmente a la configuración de la app nueva; la calculadora de la app debe leer todos sus parámetros de mercado desde ahí, nunca hardcodeados en el código de la lógica.
-- Antes de portar la lógica de cálculo, resolver explícitamente los `UNRESOLVED` de este documento — el IVA diferenciado (comercial 10% / residencial 5%) ya está resuelto (D-001/D-027) y debe copiarse tal cual; lo que sigue pendiente es la contradicción bruto/neto de los pisos (D-002) y si la renta temporal/Airbnb debe usar el 5% residencial o una tasa propia — porque de lo contrario la migración simplemente reproduce los mismos errores silenciosos en la nueva app.
+- Antes de portar la lógica de cálculo: el IVA diferenciado (comercial 10% / residencial 5% / renta temporal 10%, D-001/D-027 + D-045) y los pisos bruto/neto (D-033/D-044/D-045) ya están resueltos — copiar tal cual. Lo único pendiente, deliberadamente sin trabajo activo, es la matriz por zona/calidad (P-004).
 - Si se corrige cualquiera de estos parámetros como parte de la migración (por ejemplo, decidir el IVA real o unificar la vacancia por tipología), la corrección debe registrarse como una decisión explícita (ver Fase 3, Decision Register) y no aplicarse silenciosamente.

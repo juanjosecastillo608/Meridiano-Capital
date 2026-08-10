@@ -97,7 +97,7 @@ Estos requisitos deben trasladarse a un `CLAUDE.md` raíz del proyecto para que 
 Estos son los únicos ítems que, si no se resuelven, dejan a la futura app funcional produciendo cifras potencialmente incorrectas a inversores reales:
 
 1. ~~RI-05 / D-001 — IVA 5% vs 10%.~~ **RESUELTO 2026-08-02**, ver D-027.
-2. ~~RI-06 / D-002 — pisos de rentabilidad brutos vs. netos.~~ **RESUELTO** — mecanismo D-033 (2026-08-09), valores reales D-044 (2026-08-10). Sigue pendiente solo el piso de "casa Airbnb" (sin dato real) y la matriz por zona/calidad (P-004).
+2. ~~RI-06 / D-002 — pisos de rentabilidad brutos vs. netos.~~ **RESUELTO en su totalidad** — mecanismo D-033, valores reales D-044/D-045 (2026-08-10, incluye "casa Airbnb" e IVA de renta temporal 10%). Pendiente solo la matriz por zona/calidad (P-004), deliberadamente sin trabajo activo por decisión del founder.
 3. **RI-07 / D-003** — ocupación realista no aplicada a alquiler temporal.
 
 Todo lo demás (formulario de contacto sin backend, enlaces muertos, hosting sin definir, etc.) es deuda de producto normal, no un riesgo de integridad financiera.

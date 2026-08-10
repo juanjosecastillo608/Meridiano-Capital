@@ -14,8 +14,8 @@ Este repo es el sistema operativo de conocimiento y desarrollo de Meridiano Capi
 
 Antes de confiar en o mostrar cualquier cifra de rentabilidad (propia o generada por `production/app/backend/calculadora.py`), ver `governance/decisions/DECISION_REGISTER.md`:
 
-- **D-001 — RESUELTA (2026-08-02)**: IVA diferenciado, confirmado por Juan José Castillo (founder): alquiler comercial 10%, alquiler residencial 5%, venta/reventa 5%. Implementado como `D-027`. Las clases `temporal_*` (Urbannit) usan el residencial 5% por inferencia `[EXTENSION]` — no confirmado explícitamente para renta temporal/turística.
-- **D-002 — RESUELTA (mecanismo D-033, 2026-08-09; valores reales D-044, 2026-08-10)**: los pisos de rentabilidad se comparan siempre en BRUTO, con valores reales de mercado (`Tabla de Rentabilidades Alquiler.xlsx`) para comercial, casa, departamento sin/con muebles y Airbnb-departamento. Sigue sin dato real "casa Airbnb" (`temporal_casa`, estimación sin cambios) y la matriz por zona/calidad (P-004) — ver `knowledge-base/investment/05-matriz-pisos-techos.md`.
+- **D-001/D-045 — RESUELTA (2026-08-02, ampliada 2026-08-10)**: IVA diferenciado, confirmado por Juan José Castillo (founder): alquiler comercial 10%, alquiler residencial 5%, **renta temporal/Airbnb 10%** (D-045, ya no el 5% residencial), venta/reventa 5%.
+- **D-002/D-044/D-045 — RESUELTA (2026-08-09/10)**: los pisos de rentabilidad se comparan siempre en BRUTO, con valores reales de mercado (`Tabla de Rentabilidades Alquiler.xlsx`) para las 6 clases del motor, incluida `temporal_casa` (= `temporal_departamento`, 15%, D-045). **Pendiente, sin trabajo activo por decisión del founder**: la matriz por zona/calidad (P-004) más allá de Eje Corporativo — ver `knowledge-base/investment/05-matriz-pisos-techos.md`.
 - **D-003 — sigue UNRESOLVED**: la ocupación realista (55-65%) no se aplica en la rama de alquiler temporal de `evaluar_renta()`.
 
 ## Estructura del repo
