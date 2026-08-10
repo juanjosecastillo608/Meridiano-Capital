@@ -19,8 +19,8 @@ Parte de: WEBSITE-AUDIT.md
 | ~~Disclaimer del 10% en el hero~~ | ✅ **Resuelto 2026-08-10** — `<p class="hero-disclaimer">` agregado junto al stat | — | — | — |
 | ~~Contraste `.eyebrow` sobre fondo claro~~ | ✅ **Resuelto 2026-08-10** — `--gold-d` (3.21:1) → `--tierra` (6.95:1), color ya oficial de marca | — | — | — |
 | ~~Token `--radius` no usado~~ | ✅ **Resuelto 2026-08-10** — las 6 instancias de `border-radius:2px` ahora usan `var(--radius)` | — | — | — |
-| Sistema tipográfico formalizado | Tamaños hardcodeados por selector | Escala nombrada (tokens) documentada en `DESIGN-SYSTEM.md` | Medio | Refactor de CSS, sin cambio visual |
-| Self-host / preload de fuentes | 100% dependiente de Google Fonts CDN | Preload + fallback verificado | Bajo-medio | Mejora de robustez, no crítico hoy |
+| ~~Sistema tipográfico formalizado~~ | ✅ **Resuelto 2026-08-10 (Fase 03)** — 7 tokens (`--font-*`) en `:root`, aplicados sin cambio visual; 2 valores del `DESIGN-SYSTEM.md` original se corrigieron contra el CSS real al implementar (ver `WEBSITE-ROADMAP.md` Fase 03, ítem 8) | — | — | — |
+| Preload de fuentes | ✅ **Resuelto 2026-08-10 (Fase 03)** — `<link rel="preload">` agregado para el woff2 variable de Fraunces (URL versionada, requiere revisión si Google la rota) | Self-host completo (sin depender de Google Fonts CDN) | Bajo — el preload ya cubre la mayor parte del beneficio de performance | Sigue quedando la migración a self-host como mejora de robustez de menor prioridad, no crítica hoy |
 
 ## Precisión sobre U-002 y U-010 — dos archivos distintos, no un error de documentación
 

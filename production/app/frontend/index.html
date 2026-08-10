@@ -7,6 +7,15 @@
 <meta name="description" content="Meridiano Capital: desarrollo, estructuración legal-fiscal y gestión de inversiones inmobiliarias en Paraguay para inversores extranjeros. 16 años de trayectoria en Asunción.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- WEBSITE-ROADMAP.md Fase 03, item 10: preload del archivo variable de Fraunces (peso 400-700,
+     estilo normal, subset latin) -- es el que usan h1/h2/h3/h4 y .brand .word, la tipografia
+     de mayor peso visual del sitio. URL fija tomada de la respuesta real de fonts.googleapis.com
+     (versionada, "v38" al 2026-08-10) -- Google Fonts sirve URLs de contenido con hash por
+     subset/version, no hay una URL estable "oficial"; si Google rota la version, este preload
+     deja de acertar el archivo real y simplemente no aporta (no rompe nada, degrada a como
+     estaba antes). Revisar si cambia de version en una futura auditoria de performance. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeA.woff2">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,500..600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -32,12 +41,28 @@
 
     --maxw: 1180px;
     --radius: 3px;
+
+    /* DESIGN-SYSTEM.md (2026-08-10, Fase 03): escala tipografica formalizada como tokens
+       nombrados -- valores identicos a los que ya usaba cada selector, sin cambio visual.
+       Dos ajustes contra el valor que proponia DESIGN-SYSTEM.md de memoria, corregidos
+       contra el CSS real al implementar: --font-body-lg es 18px (el valor real de .lede;
+       .hero .lede lo pisa a 17px a proposito, se deja como literal, no como token) y
+       --font-body-sm es 14px pero .pillar p usa 14.5px real (medio pixel de diferencia
+       deliberada, tambien se deja como literal). */
+    --font-display: clamp(34px, 4.6vw, 58px);   /* .hero h1 */
+    --font-h2: clamp(28px, 3.4vw, 40px);         /* .section-head h2 */
+    --font-h3: 19px;                             /* .pillar h3, .service-card h3 */
+    --font-body-lg: 18px;                        /* .lede */
+    --font-body: 16px;                           /* body, tamaño base */
+    --font-body-sm: 14px;                        /* .service-card p */
+    --font-caption: 12.5px;                      /* .eyebrow */
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
   body{
     font-family: var(--sans);
+    font-size: var(--font-body);
     color: var(--navy);
     background: var(--white);
     line-height: 1.6;
@@ -55,15 +80,20 @@
   /* D-036: Fraunces reemplaza a Lora. opsz sube el contraste optico en titulares grandes; */
   /* SOFT 24 da calidez a las curvas (raices) sin perder formalidad; WONK se reserva para acentos puntuales. */
   em{ font-variation-settings: 'opsz' 80, 'SOFT' 30, 'WONK' 1; }
+  /* DESIGN-SYSTEM.md (2026-08-10, Fase 03): .eyebrow/.tag/.split-badge son el mismo
+     concepto visual (texto pequeno, mayusculas, letter-spacing amplio, color de acento)
+     con 3 implementaciones CSS distintas -- .label agrupa lo compartido, cada selector
+     de abajo conserva solo lo que realmente varia (tamano, peso, spacing, color, margen).
+     Ningun valor visual cambia con esta unificacion. */
+  .label{ font-family: var(--sans); text-transform:uppercase; }
   .eyebrow{
-    font-family: var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.16em;
-    text-transform:uppercase; color: var(--tierra);
+    font-weight:700; font-size:var(--font-caption); letter-spacing:.16em; color: var(--tierra);
   }
   /* WEBSITE-AUDIT.md / COLOR-AUDIT.md (2026-08-10): --gold-d sobre --cream daba 3.21:1,
      no cumple WCAG AA (4.5:1) a este tamaño/peso. --tierra da 6.95:1 -- ya es un color
      oficial de marca (brand/05-sistema-cromatico.md), no se introduce ningun HEX nuevo. */
   .eyebrow.on-dark{ color: var(--gold); }
-  .lede{ font-size:18px; color:var(--grey); max-width: 640px; }
+  .lede{ font-size:var(--font-body-lg); color:var(--grey); max-width: 640px; }
 
   /* Buttons */
   .btn{
@@ -159,7 +189,7 @@
   .hero-grid{ position:relative; display:grid; grid-template-columns: 1.15fr 0.85fr; gap:60px; align-items:center; width:100%; }
   @media (max-width: 980px){ .hero-grid{ grid-template-columns: 1fr; } }
 
-  .hero h1{ color:var(--white); font-size: clamp(34px, 4.6vw, 58px); margin: 18px 0 22px; letter-spacing:-.01em; }
+  .hero h1{ color:var(--white); font-size: var(--font-display); margin: 18px 0 22px; letter-spacing:-.01em; }
   .hero h1 em{ font-style: italic; color: var(--gold); }
   .hero .lede{ color: rgba(255,255,255,.78); font-size:17px; max-width: 540px; }
   .hero-ctas{ display:flex; gap:16px; margin-top:34px; flex-wrap:wrap; }
@@ -187,7 +217,7 @@
   /* ============ SECTION shells ============ */
   section{ padding: 108px 0; }
   .section-head{ max-width:640px; margin-bottom:56px; }
-  .section-head h2{ font-size: clamp(28px, 3.4vw, 40px); margin-top:12px; }
+  .section-head h2{ font-size: var(--font-h2); margin-top:12px; }
   .bg-cream{ background: var(--cream); }
   .bg-sand{ background: var(--sand); }
 
@@ -215,7 +245,7 @@
   /* WEBSITE-AUDIT.md (2026-08-10): mismo hallazgo de contraste que .eyebrow -- --gold-d
      sobre fondo claro no cumple WCAG AA a este tamaño. --tierra ya es color oficial. */
   .pillar .num{ font-family:var(--serif); font-size:14px; color:var(--tierra); font-weight:700; }
-  .pillar h3{ font-size:19px; margin: 14px 0 10px; }
+  .pillar h3{ font-size:var(--font-h3); margin: 14px 0 10px; }
   .pillar p{ font-size:14.5px; color:var(--grey); }
   @media (max-width: 980px){ .pillars{ grid-template-columns: repeat(2,1fr); } }
   @media (max-width: 560px){ .pillars{ grid-template-columns: 1fr; } }
@@ -247,9 +277,9 @@
     transition: border-color .25s ease, transform .25s ease;
   }
   .service-card:hover{ border-color: var(--gold); transform: translateY(-3px); }
-  .service-card h3{ font-size:19px; margin-bottom:10px; }
-  .service-card p{ font-size:14px; color:var(--grey); }
-  .service-card .tag{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tierra); margin-bottom:12px; }
+  .service-card h3{ font-size:var(--font-h3); margin-bottom:10px; }
+  .service-card p{ font-size:var(--font-body-sm); color:var(--grey); }
+  .service-card .tag{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--tierra); margin-bottom:12px; }
 
   /* ============ PORTAFOLIO DUAL (split) ============ */
   .split{ display:grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
@@ -261,7 +291,7 @@
   .split-panel p{ color: rgba(255,255,255,.82); font-size:15px; margin-bottom: 22px; }
   .split-panel ul li{ font-size:14px; color: rgba(255,255,255,.82); padding-left:18px; position:relative; margin-bottom:10px; }
   .split-panel ul li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
-  .split-badge{ display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color: var(--gold); margin-bottom: 6px;}
+  .split-badge{ display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.05em; color: var(--gold); margin-bottom: 6px;}
 
   /* ============ ALIADOS ============ */
   .allies{ display:grid; grid-template-columns: repeat(4,1fr); gap:22px; }
@@ -409,7 +439,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow on-dark">Real Estate &amp; Desarrollo en Paraguay para Inversores Extranjeros</p>
+        <p class="label eyebrow on-dark">Real Estate &amp; Desarrollo en Paraguay para Inversores Extranjeros</p>
         <h1>No mostramos propiedades: <em>construimos, estructuramos<br>y gestionamos</em> tu inversión.</h1>
         <p class="lede">Ayudamos a inversores de Europa, Argentina, Brasil y Chile a construir y proteger patrimonio inmobiliario en Paraguay — desde la cédula de identidad paraguaya y la cuenta bancaria hasta la gestión de la renta, con la mirada técnica de 16 años desarrollando y construyendo.</p>
         <div class="hero-ctas">
@@ -440,7 +470,7 @@
   <section id="nosotros">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Quiénes somos</p>
+        <p class="label eyebrow">Quiénes somos</p>
         <h2>Liderado por quien construye, no solo por quien vende.</h2>
         <p class="lede" style="margin-top:14px;">Meridiano Capital es la marca bajo la que Juan José Castillo acompaña a inversores extranjeros de punta a punta — de la cédula al alquiler.</p>
       </div>
@@ -465,7 +495,7 @@
   <section id="concepto" class="bg-cream">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">El concepto</p>
+        <p class="label eyebrow">El concepto</p>
         <h2>Un mojón, plantado en tierra colorada.</h2>
         <p class="lede" style="margin-top:14px;">Cuatro principios no negociables sostienen todo lo que hacemos — si alguno faltara, dejaríamos de ser esta empresa.</p>
       </div>
@@ -500,7 +530,7 @@
   <section id="proceso" class="bg-cream">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Cómo trabajamos</p>
+        <p class="label eyebrow">Cómo trabajamos</p>
         <h2>El proceso de inversión, paso a paso</h2>
         <p class="lede" style="margin-top:14px;">Cuatro etapas, siempre en este orden, acompañadas por nuestra Red de Aliados Profesionales.</p>
       </div>
@@ -533,7 +563,7 @@
   <section id="servicios">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Arquitectura de negocio</p>
+        <p class="label eyebrow">Arquitectura de negocio</p>
         <h2>Cinco unidades, no un agente con varios servicios</h2>
         <p class="lede" style="margin-top:14px;">Cada unidad tiene su propia lógica — dos te acompañan antes de invertir, tres te acompañan después.</p>
       </div>
@@ -542,12 +572,12 @@
         <div class="glabel"><span>Antes de invertir</span><span style="color:var(--grey); font-weight:400;">Originación &amp; estructuración</span></div>
         <div class="services-grid">
           <div class="service-card">
-            <span class="tag">Unidad 01</span>
+            <span class="label tag">Unidad 01</span>
             <h3>Originación &amp; Asesoría de Inversión</h3>
             <p>Selección de oportunidades en tierra, construcción o preventa en pozo, con criterio técnico de desarrollador, no solo comercial.</p>
           </div>
           <div class="service-card">
-            <span class="tag">Unidad 02</span>
+            <span class="label tag">Unidad 02</span>
             <h3>Onboarding Legal-Bancario-Fiscal</h3>
             <p>Cédula de identidad paraguaya, apertura de cuenta bancaria y constitución de Sociedad Anónima, coordinados con nuestra Red de Aliados Profesionales.</p>
           </div>
@@ -558,17 +588,17 @@
         <div class="glabel"><span>Después de invertir</span><span style="color:var(--grey); font-weight:400;">Gestión, desarrollo &amp; valor</span></div>
         <div class="services-grid three">
           <div class="service-card">
-            <span class="tag">Unidad 03</span>
+            <span class="label tag">Unidad 03</span>
             <h3>Gestión Patrimonial</h3>
             <p>Administración de renta tradicional y renta temporal (vía Urbannit), para sostener la rentabilidad neta anual objetivo.</p>
           </div>
           <div class="service-card">
-            <span class="tag">Unidad 04</span>
+            <span class="label tag">Unidad 04</span>
             <h3>Desarrollo &amp; Coinversión</h3>
             <p>Coinvertí en proyectos propios o coliderados de Meridiano, con números claros y reporte periódico en cada etapa.</p>
           </div>
           <div class="service-card">
-            <span class="tag">Unidad 05</span>
+            <span class="label tag">Unidad 05</span>
             <h3>Value-Add / Reposicionamiento</h3>
             <p>Identificación y refacción de propiedades subvaluadas, con criterio técnico de construcción propio.</p>
           </div>
@@ -582,7 +612,7 @@
     <div class="split reveal">
       <div class="split-panel navy">
         <svg width="46" height="46" viewBox="0 0 120 120" aria-hidden="true"><use href="#mojon" fill="none" stroke="#F3EDE3" stroke-width="7"/></svg>
-        <span class="split-badge">Renta tradicional</span>
+        <span class="label split-badge">Renta tradicional</span>
         <h3>Estabilidad, gestionada por Meridiano Capital</h3>
         <p>Contrato de locación de largo plazo, inquilino estable, baja intensidad operativa. Rentabilidad bruta de referencia: 6%–10% anual.</p>
         <ul>
@@ -593,7 +623,7 @@
       </div>
       <div class="split-panel kaa">
         <svg width="42" height="42" viewBox="0 0 100 100" aria-hidden="true"><use href="#keyhole" fill="none" stroke="#FFFFFF"/></svg>
-        <span class="split-badge">Renta temporal</span>
+        <span class="label split-badge">Renta temporal</span>
         <h3>urbannit — hospitalidad, en alianza estratégica</h3>
         <p>Estadías cortas en zonas de alta demanda, operadas junto a un aliado con más de 20 años en el rubro. Rentabilidad bruta de referencia: 10%–16%+ anual.</p>
         <ul>
@@ -609,7 +639,7 @@
   <section class="bg-sand">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Red de aliados profesionales</p>
+        <p class="label eyebrow">Red de aliados profesionales</p>
         <h2>Nunca estás solo frente a un trámite</h2>
         <p class="lede" style="margin-top:14px;">Un inversor extranjero no tiene forma de verificar por sí mismo la seriedad de un abogado o un escribano paraguayo. Nosotros ya la verificamos — y coordinamos cada etapa para que no tengas que hablar con cuatro personas distintas.</p>
       </div>
@@ -642,7 +672,7 @@
   <section id="calculadora" class="bg-cream">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Herramienta</p>
+        <p class="label eyebrow">Herramienta</p>
         <h2>Calculadora de rentabilidad</h2>
         <p class="lede" style="margin-top:14px;">Estimación de yield bruto y neto según la metodología de Meridiano Capital. Motor real conectado a <code>calculadora.py</code> — mismos números que usa el equipo internamente.</p>
       </div>
@@ -698,7 +728,7 @@
   <!-- ============ CTA FINAL / FORMULARIO ============ -->
   <section class="cta-final" id="contacto">
     <div class="wrap" style="max-width:640px;">
-      <p class="eyebrow on-dark" style="color:rgba(255,255,255,.85)">Hablemos</p>
+      <p class="label eyebrow on-dark" style="color:rgba(255,255,255,.85)">Hablemos</p>
       <h2>Hablemos de tu próxima inversión en Paraguay</h2>
       <p class="lede">Documento confidencial disponible para inversores calificados. Sin compromiso — una primera conversación para entender tu perfil y horizonte.</p>
 

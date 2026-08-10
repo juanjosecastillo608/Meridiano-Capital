@@ -36,11 +36,11 @@ Pedido directo del founder antes de arrancar la Fase 03 formal — corrección d
 
 **Extra, descubierto al ejecutar este batch**: el pie de firma del footer decía "Fundada por Juan José Castillo. Real Estate & Desarrollo..." — un título genérico que no correspondía a ninguna firma oficial de marca. Corregido a la firma institucional canónica de `brand/09-cierres-y-firmas.md` (D-039): "Juan José Castillo — Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay". Este hallazgo estaba señalado también en `BRAND-AUDIT.md` y quedó resuelto en el mismo movimiento.
 
-## PHASE 03 — Typography & color
+## PHASE 03 — Typography & color ✅ COMPLETA (2026-08-10)
 
-8. Formalizar el sistema tipográfico como tokens nombrados (`DESIGN-SYSTEM.md`) — sin cambiar ningún valor visual.
-9. Unificar `.tag`/`.split-badge`/`.eyebrow` en un componente `.label` único con variantes.
-10. Agregar `<link rel="preload">` para el archivo de fuente variable, además del `preconnect` ya existente.
+8. ✅ **Hecho** — Sistema tipográfico formalizado como 7 tokens nombrados en `:root` (`--font-display`, `--font-h2`, `--font-h3`, `--font-body-lg`, `--font-body`, `--font-body-sm`, `--font-caption`), aplicados en `.hero h1`, `.section-head h2`, `.pillar h3`/`.service-card h3`, `.lede`, `body`, `.service-card p`, `.eyebrow`. Dos valores del `DESIGN-SYSTEM.md` original no coincidían con el CSS real (`.lede` es 18px, no 17px — el 17px es un override deliberado de `.hero .lede`; `.pillar p` es 14.5px, no 14px) — se corrigieron los tokens contra el valor real y `DESIGN-SYSTEM.md` en vez de forzar un cambio visual; ambos overrides quedaron como literales documentados, no como token. **Cero cambios visuales.**
+9. ✅ **Hecho** — `.tag`/`.split-badge`/`.eyebrow` unificados: nueva clase base `.label` (font-family + text-transform, lo único 100% compartido) agregada a los 14 elementos que usan estas 3 clases; cada selector conserva solo lo que realmente varía (tamaño, peso, letter-spacing, color, margen). Verificado visualmente — sin cambios.
+10. ✅ **Hecho** — `<link rel="preload" as="font">` agregado para el archivo variable de Fraunces (peso 400-700 normal, subset latin — el usado por h1-h4 y `.brand .word`), con la URL real tomada de la respuesta de `fonts.googleapis.com`. Es una URL versionada (Google Fonts no publica una URL estable) — si Google rota la versión, el preload deja de acertar el archivo exacto pero no rompe nada, solo pierde el beneficio de performance hasta la próxima revisión.
 
 ## PHASE 04 — UX/UI
 
