@@ -6,13 +6,46 @@
     "politica_origen": "P07 + refinamientos validados (Habitalis 9A, Edificio Austria)"
   },
   "pisos_renta_neta": {
-    "_nota": "Piso de rentabilidad neta anual por clase. Tradicional se mide en Neto Completo (Nivel 3); temporal en Neto Temporal (Nivel 4).",
-    "comercial": 8.0,
-    "residencial_casa": 6.0,
-    "departamento_sin_muebles": 6.0,
-    "departamento_amoblado": 7.5,
-    "temporal_departamento": 14.0,
-    "temporal_casa": 12.0
+    "_nota": "Piso de rentabilidad, medido en BRUTO (D-033). Valores reales por clase: Tabla de Rentabilidades Alquiler.xlsx, aportada por el founder 2026-08-10 (D-044). El nombre de la clave (pisos_renta_neta) queda sin renombrar por compatibilidad de codigo -- ver _nota_nombre.",
+    "_nota_nombre": "Historicamente esta clave se penso para valores NETOS; desde D-033 el motor compara bruto vs bruto y desde D-044 los valores de abajo SI son BRUTOS reales (no la vieja estimacion neta). No renombrar la clave sin actualizar production/app/backend/calculadora.py y advertencias.py.",
+    "comercial": 10.0,
+    "residencial_casa": 7.0,
+    "departamento_sin_muebles": 8.0,
+    "departamento_amoblado": 10.0,
+    "temporal_departamento": 15.0,
+    "temporal_casa": 12.0,
+    "_nota_temporal_casa": "Sin dato real todavia -- la planilla 2026-08-10 solo trae Departamentos AIRBNB, no Casas AIRBNB. Se mantiene la estimacion anterior (12.0) sin cambios, marcada [EXTENSION].",
+    "_pisos_reales_2026_08_10_bruto_y_neto": {
+      "_nota": "Tabla completa tal como la aporto el founder (Tabla de Rentabilidades Alquiler.xlsx) -- incluye clases mas granulares que las que el motor de calculo usa hoy (arriba). Referencia para completar P-004 y para una futura extension de calculadora.py.",
+      "tinglados_depositos": {
+        "bruto": 9.0,
+        "neto": 7.0
+      },
+      "locales_comerciales": {
+        "bruto": 10.0,
+        "neto": 8.0
+      },
+      "casas_tradicional_sin_muebles": {
+        "bruto": 7.0,
+        "neto": 5.0
+      },
+      "casas_tradicional_con_muebles": {
+        "bruto": 11.0,
+        "neto": 8.0
+      },
+      "departamento_tradicional_sin_muebles": {
+        "bruto": 8.0,
+        "neto": 5.0
+      },
+      "departamento_tradicional_con_muebles": {
+        "bruto": 10.0,
+        "neto": 7.0
+      },
+      "departamentos_airbnb": {
+        "bruto": 15.0,
+        "neto": 12.0
+      }
+    }
   },
   "promedio_objetivo_cartera_neto": 10.0,
   "pisos_capital": {

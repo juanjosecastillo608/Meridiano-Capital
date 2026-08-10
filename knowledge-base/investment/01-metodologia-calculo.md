@@ -184,7 +184,9 @@ Nota importante (documentada y coherente con el código): la plusvalía es una g
 
 ---
 
-## 7. Contradicción crítica: ¿los pisos de `pisos_renta_neta` son bruto o neto?
+## 7. Contradicción crítica: ¿los pisos de `pisos_renta_neta` son bruto o neto? — ✅ RESUELTA (D-033 + D-044)
+
+> **Resuelta.** D-033 (2026-08-09) fijó el mecanismo: se compara siempre bruto vs. bruto. D-044 (2026-08-10) reemplazó los valores numéricos por datos reales ya en bruto (`Tabla de Rentabilidades Alquiler.xlsx`). Esta sección se conserva como registro histórico de la auditoría que detectó el problema — ver `investment/05-matriz-pisos-techos.md` para el estado vigente.
 
 Este es el hallazgo más consecuente de la auditoría, porque afecta el veredicto `pasa_piso` que el motor le da a **toda** evaluación de renta.
 

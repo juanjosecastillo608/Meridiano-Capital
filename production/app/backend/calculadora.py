@@ -183,10 +183,11 @@ class Calculadora:
         yield_neto = neto_anual / precio_compra * 100.0
 
         # D-033 (2026-08-09): pisos y techos SIEMPRE en bruto (decision del founder).
-        # Comparamos yield_bruto contra el piso, no yield_neto. Los VALORES de
-        # pisos_renta_neta todavia no fueron recalibrados para bruto -- ver
-        # knowledge-base/investment/05-matriz-pisos-techos.md (P-004, incompleta).
-        # No confiar en pasa_piso para decisiones reales hasta que esa matriz cierre.
+        # Comparamos yield_bruto contra el piso, no yield_neto. D-044 (2026-08-10):
+        # los valores de pisos_renta_neta ya son datos reales (Tabla de
+        # Rentabilidades Alquiler.xlsx) para la mayoria de las clases -- excepto
+        # temporal_casa (sin dato real todavia) y la matriz por zona/calidad
+        # (P-004, sigue incompleta). Ver knowledge-base/investment/05-matriz-pisos-techos.md.
         piso = self.p["pisos_renta_neta"].get(clase)
         return {
             "clase": clase,

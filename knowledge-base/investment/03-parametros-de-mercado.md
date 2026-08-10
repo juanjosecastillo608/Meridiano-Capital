@@ -14,20 +14,22 @@ Metadatos de la versión fuente auditada: `version: "1.4"`, `fecha: "2026-07-31"
 
 ---
 
-## Pisos de renta neta — `pisos_renta_neta`
+## Pisos de renta — `pisos_renta_neta` (nombre de clave legado — valores son BRUTOS desde D-044)
 
-Piso de rentabilidad neta anual por clase de activo. Tradicional se mide en Neto Completo (Nivel 3); temporal en Neto Temporal (Nivel 4).
+Piso de rentabilidad **bruta** anual por clase de activo (D-033: mecanismo bruto vs. bruto; D-044, 2026-08-10: valores reales, `Tabla de Rentabilidades Alquiler.xlsx`). La clave sigue llamándose `pisos_renta_neta` por compatibilidad con el código (`calculadora.py`) — no renombrar sin actualizarlo ahí también.
 
-| Clave | Valor | Significado |
+| Clave | Valor (bruto) | Significado |
 |---|---|---|
-| `comercial` | 8.0 | Piso % anual, local comercial |
-| `residencial_casa` | 6.0 | Piso % anual, casa |
-| `departamento_sin_muebles` | 6.0 | Piso % anual, depto sin amoblar |
-| `departamento_amoblado` | 7.5 | Piso % anual, depto amoblado |
-| `temporal_departamento` | 14.0 | Piso % anual, depto en renta temporal |
-| `temporal_casa` | 12.0 | Piso % anual, casa en renta temporal |
+| `comercial` | 10.0 | Piso % anual bruto, local comercial (dato real: "Locales Comerciales") |
+| `residencial_casa` | 7.0 | Piso % anual bruto, casa sin muebles (dato real: "Casas Tradicional Sin Muebles") |
+| `departamento_sin_muebles` | 8.0 | Piso % anual bruto, depto sin amoblar (dato real) |
+| `departamento_amoblado` | 10.0 | Piso % anual bruto, depto amoblado (dato real: "Departamento Tradicional Con Muebles") |
+| `temporal_departamento` | 15.0 | Piso % anual bruto, depto en renta temporal (dato real: "Departamentos AIRBNB") |
+| `temporal_casa` | 12.0 | Piso % anual bruto, casa en renta temporal — **sin dato real todavía**, estimación sin cambios (la planilla no trae "Casas AIRBNB") |
 
-> UNRESOLVED: ver `01-metodologia-calculo.md` sección 7 — el bloque `pisos_base_bruto_o_neto` (más abajo) etiqueta estos mismos valores como pisos BRUTOS, contradiciendo el nombre de esta clave (`..._neta`) y el uso que el código le da (los compara contra el yield neto).
+El config guarda también, bajo `_pisos_reales_2026_08_10_bruto_y_neto`, la tabla completa de 7 clases con **bruto y neto** (agrega "Tinglados/Depósitos" y separa "Locales Comerciales" del resto de comercial) — ver `investment/05-matriz-pisos-techos.md` para la tabla completa y su lectura.
+
+> ~~UNRESOLVED: contradicción bruto/neto...~~ ✅ **RESUELTO** — D-033 fijó el mecanismo (bruto vs. bruto) y D-044 (2026-08-10) reemplazó los valores por datos reales ya en bruto. Ver `governance/decisions/DECISION_REGISTER.md#D-044`.
 
 ## Objetivo de cartera — `promedio_objetivo_cartera_neto`
 
@@ -109,24 +111,26 @@ Gastos operativos por defecto, expresados como % de la renta **bruta anual**. Va
 | `honorarios_administracion_pct` | 10.0 | Honorario de administración de Meridiano |
 | `honorarios_alquiler_meses` | 0.5 | Colocación — medio mes de alquiler (la mitad que corresponde al propietario) |
 | `amortizacion_muebles_pct` | 8.0 | Amortización de muebles — solo aplica a amoblado y temporal |
-| `iva_pct` | 10.0 | IVA — nota: este valor **no** es el que usa el código; ver la sección "fiscal" abajo |
+| `iva_pct` | 10.0 | Valor legado, no usado por el código — ver nota abajo |
 | `impuesto_renta_pct` | 10.0 | Impuesto a la renta |
 
-> UNRESOLVED: hay dos claves `iva_pct` en el config completo — una acá (`supuestos_operativos_default.iva_pct = 10.0`) y otra en el bloque `fiscal` (`fiscal.iva_pct = 5.0`, marcada "A CONFIRMAR CON CONTADORA"). El código (`calculadora.py`) lee el IVA **del bloque `fiscal`**, es decir, usa 5%, no el 10% que aparece acá y que coincide con lo que dice la política ("IVA 10%, Ley 125/91"). Ver detalle completo en `01-metodologia-calculo.md` sección 4.1 y en el bloque "fiscal" más abajo.
+> ~~UNRESOLVED: hay dos claves `iva_pct`...~~ ✅ **RESUELTO — D-001/D-027, confirmado por el founder el 2026-08-02.** El bloque `fiscal` del config real (`production/app/config/parametros_mercado.json`) **ya no tiene un único `iva_pct`** — fue reemplazado por dos claves diferenciadas (`iva_alquiler_comercial_pct: 10.0`, `iva_alquiler_residencial_pct: 5.0`) y `calculadora.py` (método `iva_alquiler_pct(clase)`) ya lee de ahí correctamente: **comercial 10%, residencial 5%** (casa, departamento con o sin muebles). Este archivo documentaba una versión desactualizada del config (la de antes de D-001) — corregido el 2026-08-10 tras una auditoría de conocimiento que detectó el desfasaje. La clave `iva_pct=10.0` de `supuestos_operativos_default` de arriba queda como valor legado sin uso real, coherente con el 10% comercial pero no aplicado directamente por el código (que resuelve por clase, no por este escalar único).
+
+> UNRESOLVED (nuevo, más acotado que antes): las clases `temporal_departamento`/`temporal_casa` (Urbannit/Airbnb) usan el 5% residencial **por defecto/inferencia `[EXTENSION]`** — no está confirmado explícitamente que la renta temporal/turística deba tributar igual que la residencial tradicional. Ver `governance/decisions/DECISION_REGISTER.md`.
 
 > UNRESOLVED: `vacancia_pct` (3.0) está etiquetado en el refinamiento #2 de la política como "default de departamento", pero la tabla `vacancia_por_tipologia_pct` (ver abajo) asigna a `departamento` el valor 4.0, no 3.0. Y el código nunca consulta esa tabla de todos modos — siempre usa este escalar genérico de 3.0 sin importar la clase evaluada.
 
 ## Fiscal — `fiscal`
 
-Bloque marcado internamente como **"A CONFIRMAR CON CONTADORA"**.
+**IVA diferenciado ya resuelto (D-001/D-027, 2026-08-02)** — ver nota arriba. El bloque real es:
 
 | Clave | Valor | Significado |
 |---|---|---|
-| `iva_pct` | 5.0 | IVA sobre la renta bruta — **este es el valor que efectivamente usa el código**, no el 10% de `supuestos_operativos_default` ni el 10% que declara la política |
+| `iva_alquiler_comercial_pct` | 10.0 | IVA sobre renta bruta, alquiler **comercial** |
+| `iva_alquiler_residencial_pct` | 5.0 | IVA sobre renta bruta, alquiler **residencial** (casa, depto con/sin muebles) — usado también por defecto para las clases `temporal_*` (Urbannit), como inferencia `[EXTENSION]` sin confirmar explícitamente |
+| `iva_venta_pct` | 5.0 | IVA sobre venta/reventa, todas las clases — base de cálculo (precio total vs. solo margen) es interpretación `[EXTENSION]`, a confirmar con contadora |
 | `impuesto_renta_pct` | 10.0 | IRP aplicado sobre la renta NETA (no bruta) |
 | `grava_ganancia_capital` | false | Confirmado por el usuario: la reventa NO se grava como actividad habitual — plusvalía neta = plusvalía bruta |
-
-> UNRESOLVED: `iva_pct = 5.0` está marcado "a confirmar con contadora" pero ya está en uso productivo por el motor de cálculo en toda evaluación de renta. La política P07 (refinamiento #3) es taxativa: "IVA e IRE SIEMPRE aplicados... IVA 10% (Ley 125/91)". Hay una discrepancia de 5 puntos porcentuales entre lo que dice la política que debe aplicarse y lo que el motor efectivamente aplica.
 
 ## Descuento por etapa de mercado — `descuento_por_etapa_mercado`
 
@@ -224,21 +228,21 @@ Notas de la fuente:
 - Un edificio entero puede operarse 100% Airbnb bajo Urbannit. Opex menor que un hotel (sin recepción diaria); capex de amoblado en todas las unidades (~USD 4.500/unidad).
 - Hotel/apart-hotel operado = negocio operativo, no renta pasiva. El modelo de administración de renta (10%) no aplica; requiere estructura y honorarios de operador. Validado con el estudio Hotel Plaza Uruguaya (rendimiento operativo ~0-8%, muy por debajo del piso temporal).
 
-## Pisos etiquetados bruto/neto — `pisos_base_bruto_o_neto`
+## Pisos etiquetados bruto/neto — `pisos_base_bruto_o_neto` (histórico, bloque anterior a D-044)
 
-Etiquetado de los pisos de rentabilidad (P07), agregado tras auditoría.
+Etiquetado de los pisos de rentabilidad (P07), agregado tras auditoría — **valores históricos, previos a la matriz real de D-044**. Se conserva sin borrar por la regla de no-destrucción; los valores vigentes están en `pisos_renta_neta` (arriba) y en `investment/05-matriz-pisos-techos.md`.
 
 - `pisos_por_tipologia`: **BRUTO** — rendimiento bruto mínimo aceptable por clase de activo (comercial 8, casa 6, depto s/muebles 6, amoblado 7.5, temporal depto 14, temporal casa 12).
 - `cartera_objetivo_10`: **NETO** — objetivo neto de cartera (10%).
 - `renta_temporal`: bruto [10.0, 16.0] → neto [8.0, 11.0]. Temporal gestionada (Urbannit): Urbannit comunica el NETO al propietario.
 - `tradicional`: neto [5.0, 7.0] — referencia de contraste para alquiler tradicional.
 
-> UNRESOLVED: este bloque es la fuente directa de la contradicción documentada en `01-metodologia-calculo.md` sección 7 y en `02-politica-de-rentabilidad.md` refinamiento #10 — etiqueta como BRUTO exactamente los mismos números que `pisos_renta_neta` etiqueta (por nombre) como netos, y que el código compara contra el yield neto. Sin resolver.
+> ~~UNRESOLVED: este bloque es la fuente directa de la contradicción...~~ ✅ **RESUELTO** — D-033 (mecanismo) + D-044 (valores reales bruto y neto, 2026-08-10) reemplazan este bloque como fuente vigente. Se mantiene como referencia histórica de cómo se etiquetaba el dato antes de tener la planilla real.
 
 ---
 
 ## Requisitos para el dominio de tecnología
 
 - Este archivo (o su equivalente estructurado) debe copiarse literalmente a la configuración de la app nueva; la calculadora de la app debe leer todos sus parámetros de mercado desde ahí, nunca hardcodeados en el código de la lógica.
-- Antes de portar la lógica de cálculo, resolver explícitamente los `UNRESOLVED` de este documento — en particular la doble definición de `iva_pct` (10% vs. 5%, con el código usando 5%) y la contradicción bruto/neto de los pisos — porque de lo contrario la migración simplemente reproduce los mismos errores silenciosos en la nueva app.
+- Antes de portar la lógica de cálculo, resolver explícitamente los `UNRESOLVED` de este documento — el IVA diferenciado (comercial 10% / residencial 5%) ya está resuelto (D-001/D-027) y debe copiarse tal cual; lo que sigue pendiente es la contradicción bruto/neto de los pisos (D-002) y si la renta temporal/Airbnb debe usar el 5% residencial o una tasa propia — porque de lo contrario la migración simplemente reproduce los mismos errores silenciosos en la nueva app.
 - Si se corrige cualquiera de estos parámetros como parte de la migración (por ejemplo, decidir el IVA real o unificar la vacancia por tipología), la corrección debe registrarse como una decisión explícita (ver Fase 3, Decision Register) y no aplicarse silenciosamente.

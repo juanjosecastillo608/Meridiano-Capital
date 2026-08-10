@@ -1,7 +1,7 @@
-Estado: D-033 (mecanismo) CURRENT · matriz de valores PROPOSED (P-004), incompleta
-Fuente original: C:\Users\Usuario\OneDrive\Escritorio\111\MERIDIANO CAPITAL + DESARROLLADORA INMOB\Tabla Rentabilidad Alquiler Mono y 1 Dormitorio.xlsx (planilla real del usuario, no del paquete de recuperación)
+Estado: D-033 (mecanismo) CURRENT · D-044 (valores generales por clase) CURRENT · matriz por zona/calidad (P-004) sigue PROPOSED, incompleta
+Fuente original: Tabla Rentabilidad Alquiler Mono y 1 Dormitorio.xlsx (2026-08-09) + Tabla de Rentabilidades Alquiler.xlsx (2026-08-10), ambas planillas reales del founder
 Dominio: INVESTMENT
-Incorporado: 2026-08-09
+Incorporado: 2026-08-09, actualizado 2026-08-10
 
 # Matriz de pisos y techos de rentabilidad — siempre en BRUTO
 
@@ -33,6 +33,26 @@ Confirmado por el founder el 2026-08-09: **tanto los pisos como los techos de re
 
 **Lectura**: en esta zona, un monoambiente amoblado con alquiler de mercado típico ronda 6-10% bruto según el precio de entrada; un 1 dormitorio con cochera ronda 7,4-12,7% bruto. Esto ya es un dato mucho más granular que un solo número "piso 7,5" para toda la clase "departamento amoblado".
 
+## Dato real #2 (D-044, 2026-08-10) — pisos generales por clase, Asunción, bruto Y neto
+
+Segunda planilla real del founder (`Tabla de Rentabilidades Alquiler.xlsx`), sin desagregar por zona pero con las **7 clases más granulares** que existían hasta ahora, y por primera vez con el piso **neto** explícito junto al bruto (no solo un mecanismo de comparación).
+
+| Clase | Piso Bruto | Piso Neto |
+|---|---|---|
+| Tinglados / Depósitos | 9% | 7% |
+| Locales Comerciales | 10% | 8% |
+| Casas Tradicional — Sin Muebles | 7% | 5% |
+| Casas Tradicional — Con Muebles | 11% | 8% |
+| Departamento Tradicional — Sin Muebles | 8% | 5% |
+| Departamento Tradicional — Con Muebles | 10% | 7% |
+| Departamentos AIRBNB | 15% | 12% |
+
+**Esto reemplaza los valores (no el mecanismo) de `pisos_renta_neta`** en `production/app/config/parametros_mercado.json` — ver "Estado de la implementación" más abajo. La clave del config sigue llamándose `pisos_renta_neta` por compatibilidad con el código existente, pero desde D-044 sus valores son los **brutos** de esta tabla (no una estimación neta desactualizada).
+
+**Gap que sigue abierto**: la planilla no trae "Casas AIRBNB" — solo "Departamentos AIRBNB". El piso de `temporal_casa` (12%) sigue siendo la estimación anterior, sin dato real. No inventar el dato — dejarlo marcado hasta que llegue.
+
+**Las 3 clasificaciones que el founder confirmó** (2026-08-10) como estructura de la matriz — Tradicional / Amoblado / Airbnb — se reflejan en esta tabla como "Sin Muebles" (Tradicional), "Con Muebles" (Amoblado) y "AIRBNB" respectivamente, tanto para casa como para departamento.
+
 ## Estructura propuesta de la matriz completa `[PROPOSED — P-004, incompleta]`
 
 ```
@@ -46,17 +66,17 @@ calidad:        [pendiente: criterio de calidad — ¿antigüedad? ¿amenities? 
 
 **Por qué no se completa todavía**: el founder mencionó una segunda planilla ("Alquileres Amoblados Tradicionales") que no llegó adjunta a este mensaje — solo se recibió la de Mono/1 Dormitorio de la zona Eje Corporativo. Completar la matriz con una sola zona y sin definir el criterio de "calidad" sería inventar las demás celdas — exactamente lo que `ai/07-protocolo-analista-de-inversion.md` prohíbe (nunca inventar un dato faltante).
 
-**Lo que hace falta para cerrar P-004**:
-1. La planilla de Alquileres Amoblados Tradicionales (mencionada, no recibida).
-2. Datos equivalentes para las otras zonas donde Meridiano opera (ver el portfolio real en `business/06-estructura-societaria-y-portfolio.md` — Jumacabe, WICA, Quintero, Canarias y ARL están en zonas distintas a Eje Corporativo: Villa Morra, Recoleta, Los Laureles, etc.).
+**Lo que hace falta para cerrar P-004** (actualizado 2026-08-10, con dato real #2 ya incorporado):
+1. ~~Los pisos generales por clase (comercial, casa, depto, Airbnb)~~ — ✅ recibidos (Dato real #2, D-044). Falta solo "Casas AIRBNB".
+2. Datos equivalentes **por zona** (hoy solo Eje Corporativo tiene desagregado por precio — Dato real #1) para las otras zonas donde Meridiano opera (ver el portfolio real en `business/06-estructura-societaria-y-portfolio.md` — Jumacabe, WICA, Quintero, Canarias y ARL están en zonas distintas a Eje Corporativo: Villa Morra, Recoleta, Los Laureles, etc.).
 3. Un criterio explícito de "calidad" (¿categoría de edificio, antigüedad, amenities?) — todavía no definido por el founder.
-4. Los rangos equivalentes para **comercial** (hoy solo hay dato de residencial/monoambiente-1dormitorio) y para **temporal** (hoy la matriz de `renta_temporal_default` sigue en neto, pendiente de rehacerse en bruto).
+4. Techos (ver sección siguiente) — sin dato todavía, ni real ni estimado.
 
 ## Estado de la implementación en el motor de cálculo
 
-`production/app/backend/calculadora.py`, función `evaluar_renta()`: el veredicto `pasa_piso` ahora compara **`yield_bruto_pct`** contra `pisos_renta_neta[clase]` (antes comparaba el neto) — ver commit de esta fecha. **Los valores numéricos del piso (comercial 8, casa 6, amoblado 7,5, etc.) NO se recalibraron todavía** — son los mismos números que antes, que fueron pensados/calibrados en un contexto de comparación neta. Con la comparación ahora en bruto, es esperable que **casi todas las evaluaciones "pasen el piso"** hasta que la matriz real (P-004) reemplace estos valores — la API ya devuelve una advertencia explícita sobre esto en cada respuesta (ver `production/app/backend/advertencias.py`).
+`production/app/backend/calculadora.py`, función `evaluar_renta()`: el veredicto `pasa_piso` compara **`yield_bruto_pct`** contra `pisos_renta_neta[clase]`. **Actualizado 2026-08-10 (D-044)**: los valores de `pisos_renta_neta` en `production/app/config/parametros_mercado.json` ya son los datos reales de la tabla de arriba (Dato real #2) para `comercial` (10, tomado de "Locales Comerciales"), `residencial_casa` (7, "Casas... Sin Muebles"), `departamento_sin_muebles` (8), `departamento_amoblado` (10) y `temporal_departamento` (15, "Departamentos AIRBNB"). El config también guarda la tabla completa de 7 clases (bruto y neto) bajo `_pisos_reales_2026_08_10_bruto_y_neto`, para cuando el motor extienda su taxonomía de `clase` a distinguir casa sin/con muebles y comercial en sus dos subtipos (tinglados/depósitos vs. locales).
 
-**No usar el veredicto `pasa_piso` actual para decisiones reales** hasta que P-004 esté completo — solo sirve hoy para verificar que el mecanismo (bruto vs. bruto) funciona técnicamente.
+**Sigue sin dato real**: `temporal_casa` (12%, estimación anterior sin cambios) y toda la dimensión de zona/calidad — **no usar `pasa_piso` como veredicto final para esas dos cosas todavía**, sí para las cinco clases con dato real de arriba.
 
 ## Techos (nuevo concepto, sin implementar)
 

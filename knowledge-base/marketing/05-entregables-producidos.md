@@ -42,6 +42,12 @@ Los 7 entregables existentes se regeneraron completos contra `Origen Borrador pr
 |---|---|
 | `Meridiano_P04_Manual_Compliance` | .docx + .pdf — ver `knowledge-base/legal/01-p04-manual-compliance.md` para el contenido completo. Única pieza donde Campo Agreste S.A. sí aparece (documento legal/institucional, no de venta — D-029 solo prohíbe la mención en piezas públicas) |
 
+## Institucional / posicionamiento personal
+
+| Pieza | Formato | Detalle |
+|---|---|---|
+| `Meridiano_Perfil_Profesional_CEO` | .docx + .pdf | **Nuevo (2026-08-10, D-041/D-042).** Perfil profesional de Juan José Castillo como CEO de Meridiano Capital — one-liner y bios copy-ready (corta/media/larga), arquitectura de las 5 unidades de negocio, Red de Aliados, proceso de 6 etapas, guía de contenido LinkedIn/Instagram. Fuente de verdad para "Quiénes Somos" y redes sociales; no reproduce cifras de tarifario (regla RN-04) |
+
 ## Regla de verificación aplicada a todos estos entregables
 
 Antes de darse por terminada cada pieza se corrió una verificación explícita (0 menciones de nombres de marca viejos, contacto correcto, firma canónica homogénea, sin gaps tipográficos) — el mismo estándar que exige el audit de Brand Guardian (`knowledge-base/ai/04-director-creativo-y-brand-guardian.md`). Cualquier entregable nuevo debe pasar el mismo nivel de verificación antes de considerarse terminado.

@@ -56,7 +56,7 @@ Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en
 | RI-03 | Presentar 3 escenarios (pesimista/base/optimista) antes de mostrar cualquier cifra a un inversor | Negocio | Explícito | `investment/00-overview.md` |
 | RI-04 | Las tres categorías de gestión (pasiva / Urbannit-temporal / operador hotelero) no deben mezclarse en materiales de venta | Negocio | Explícito | `investment/00-overview.md` |
 | RI-05 | ~~Bloqueante~~ **RESUELTO 2026-08-02** (D-027): IVA diferenciado — comercial 10%, residencial 5%, venta 5% — implementado en `production/app/backend/calculadora.py` | Técnico+Negocio | Implícito (deriva de D-001) | `governance/decisions/DECISION_REGISTER.md#D-027` |
-| RI-06 | **Bloqueante**: fijar si los pisos de rentabilidad son brutos o netos antes de confiar en cualquier veredicto `pasa_piso`. Al 2026-08-02 esto es MÁS urgente, no menos: el `CLAUDE.md` de recuperación afirma "BRUTO" pero los tests ya auditados contra un caso real (Habitalis 9A) solo tienen sentido bajo "NETO" — las dos fuentes del propio material se contradicen | Técnico+Negocio | Implícito (deriva de D-002) | `governance/decisions/DECISION_REGISTER.md#D-002` |
+| RI-06 | ~~Bloqueante: fijar si los pisos de rentabilidad son brutos o netos~~ — ✅ **RESUELTO** (D-033 mecanismo, 2026-08-09; D-044 valores reales, 2026-08-10) | Técnico+Negocio | Implícito (deriva de D-002) | `governance/decisions/DECISION_REGISTER.md#D-044` |
 | RI-07 | La ocupación realista (55–65%) del refinamiento #8 debe aplicarse también a la rama de alquiler temporal, no solo al genérico | Técnico | Implícito (deriva de D-003) | `governance/decisions/DECISION_REGISTER.md#D-003` |
 
 ## REQ-TECH — Requisitos técnicos (para la fase de software funcional)
@@ -97,7 +97,7 @@ Estos requisitos deben trasladarse a un `CLAUDE.md` raíz del proyecto para que 
 Estos son los únicos ítems que, si no se resuelven, dejan a la futura app funcional produciendo cifras potencialmente incorrectas a inversores reales:
 
 1. ~~RI-05 / D-001 — IVA 5% vs 10%.~~ **RESUELTO 2026-08-02**, ver D-027.
-2. **RI-06 / D-002** — pisos de rentabilidad brutos vs. netos. **Sigue pendiente y ahora con evidencia contradictoria de las dos fuentes disponibles (ver D-002 en el Decision Register) — necesita respuesta directa del founder, ninguna fuente escrita alcanza para decidir.**
+2. ~~RI-06 / D-002 — pisos de rentabilidad brutos vs. netos.~~ **RESUELTO** — mecanismo D-033 (2026-08-09), valores reales D-044 (2026-08-10). Sigue pendiente solo el piso de "casa Airbnb" (sin dato real) y la matriz por zona/calidad (P-004).
 3. **RI-07 / D-003** — ocupación realista no aplicada a alquiler temporal.
 
 Todo lo demás (formulario de contacto sin backend, enlaces muertos, hosting sin definir, etc.) es deuda de producto normal, no un riesgo de integridad financiera.

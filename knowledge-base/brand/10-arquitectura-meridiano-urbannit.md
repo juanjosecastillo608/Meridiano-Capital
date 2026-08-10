@@ -8,6 +8,8 @@ Dominio: BRAND
 
 **Estado: OFICIAL** (modelo de arquitectura, reglas de convivencia, lockup — Brand Guidelines Parte 7) **+ datos operativos auditados** (seccion final, marcada explicitamente abajo).
 
+**Nomenclatura (D-043, confirmado por el founder 2026-08-10)**: "Meridiano Inmobiliaria" y "STAY WISE" son nombres alternativos ya usados en material interno/de trabajo para **Meridiano Capital** y **Urbannit** respectivamente — no son entidades ni marcas distintas. Cualquier documento operativo que use esos nombres (ej. las propuestas de gestión de alquiler temporal recibidas el 2026-08-10) se trata como material de Urbannit.
+
 Fuente de verdad: `Meridiano_Capital_Brand_Guidelines_v1.docx`, Parte 7.
 
 ## Modelo adoptado: Endorsed Brand
