@@ -46,6 +46,8 @@ Cuando Meridiano origina, coinvierte o gestiona un desarrollo (edificio, barrio,
 - `03-modelo-coinversion.md` — detalle operativo del vehículo de coinversión: economics, waterfall, gobernanza, red de aliados, riesgo.
 - `04-etapas-del-inversor.md` — las seis etapas operativas del investor journey con documentos, responsables y errores comunes.
 - `05-proyectos-inmobiliarios.md` — sistema de marca/identidad para proyectos inmobiliarios individuales dentro del portafolio de Meridiano.
+- `06-estructura-societaria-y-portfolio.md` — Capa 1 societaria (Campo Agreste S.A. + 5 S.A. propietarias) y el portfolio real de 53 unidades/11 edificios.
+- `07-residencia-fiscal.md` — residencia fiscal del inversor extranjero (distinta de la migratoria de `02-camino-migratorio.md`), comparación de carga fiscal Paraguay vs. otros países.
 
 ## Requisitos que este dominio impone a otros dominios
 

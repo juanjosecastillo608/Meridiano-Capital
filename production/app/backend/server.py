@@ -80,7 +80,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path == "/api/calcular/renta":
                 resultado = calc.evaluar_renta(**body)
-                resultado["advertencias"] = advertencias_renta(calc, body.get("clase", ""))
+                resultado["advertencias"] = advertencias_renta(calc, body.get("clase", ""), resultado)
                 return json_response(self, 200, resultado)
 
             if path == "/api/calcular/reventa":

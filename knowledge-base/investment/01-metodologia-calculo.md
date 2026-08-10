@@ -109,11 +109,12 @@ Detalle de qué entra en cada nivel según la política: `02-politica-de-rentabi
 > ```
 > El `12.0` es un **número literal dentro de la lógica**, no un parámetro leído de `config/parametros_mercado.json` (no existe una clave `limpieza_pct` en el config). Esto contradice directamente el principio rector de arquitectura ("la lógica de cálculo NO se toca al cambiar el mercado"; "todos los parámetros de mercado viven en config"). Si el costo real de limpieza cambia, hoy solo se puede corregir editando el script.
 
-> UNRESOLVED: doc/code mismatch — la ocupación realista NO se aplica al yield. La Política P07 (refinamiento #8, ver `02-politica-de-rentabilidad.md`) es explícita: la renta temporal debe modelarse con **ocupación realista 55-65% (nunca 90%+)**, y esto fue precisamente la corrección de un error detectado en un modelo auditado (Edificio Austria, que usaba 93%). Sin embargo, `evaluar_renta()` en su rama temporal **no usa en ningún momento** `renta_temporal_default.ocupacion_realista_pct` ni `ocupacion_underwriting_base_pct` del config. En su lugar, aplica el mismo `vacancia_pct` genérico (3% por defecto) que usa la renta tradicional:
+> ~~UNRESOLVED: doc/code mismatch — la ocupación realista NO se aplica al yield.~~ ✅ **RESUELTO (D-003/D-046, 2026-08-10).** La Política P07 (refinamiento #8, ver `02-politica-de-rentabilidad.md`) es explícita: la renta temporal debe modelarse con **ocupación realista 55-65% (nunca 90%+)**, y esto fue precisamente la corrección de un error detectado en un modelo auditado (Edificio Austria, que usaba 93%). `evaluar_renta()` en su rama temporal ahora aplica esa ocupación (nuevo parámetro `ocupacion_pct`, default 60% = punto medio del rango, si no se pasa un valor real) como vacancia, en vez del `vacancia_pct` genérico (3%) que usa la renta tradicional:
 > ```python
-> desglose["vacancia"] = bruto_anual * s["vacancia_pct"] / 100.0
+> vacancia_temporal_pct = max(0.0, 100.0 - ocupacion_pct)
+> desglose["vacancia"] = bruto_anual * vacancia_temporal_pct / 100.0
 > ```
-> Esto significa que, tal como está implementado hoy, una evaluación de `temporal_departamento` o `temporal_casa` **sobreestima materialmente el yield neto**, porque no descuenta la brecha entre ocupación de mercado real (55-65%) y ocupación asumida — a menos que quien llama a `evaluar_renta()` le pase manualmente un `renta_mensual_bruta` ya ajustado por ocupación (algo que ni la firma de la función ni la documentación del skill indican como obligatorio). Es el mismo tipo de error que la política dice haber corregido en el Edificio Austria, reintroducido en el motor.
+> Efecto confirmado: el yield neto de `temporal_departamento`/`temporal_casa` baja materialmente frente al cálculo anterior (ej. depto Airbnb USD 100k/USD 1.073 renta mensual: yield neto pasa a 1,04% al 60% de ocupación, con `pasa_piso=False`) — exactamente el error que este hallazgo señalaba, ahora corregido.
 
 > UNRESOLVED: doc/code mismatch (ambigüedad de política) — canon de agencia igual al honorario de administración pasiva. El código usa el mismo parámetro para ambos:
 > ```python

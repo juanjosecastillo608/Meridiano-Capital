@@ -60,6 +60,10 @@ El trámite de cédula puede correr **en paralelo** mientras ya se invierte vía
               y liberar el acompañamiento (o mantenerlo por comodidad).
 ```
 
+## Residencia migratoria ≠ residencia fiscal
+
+Este documento cubre la residencia **migratoria** (cédula, Investor Pass). La residencia **fiscal** (dónde tributa el inversor) es un concepto legal distinto, con sus propios criterios — ver `business/07-residencia-fiscal.md` (D-047, 2026-08-10). El paquete "de la cédula al alquiler" de Meridiano ya cubre ambos caminos en la práctica, aunque hasta ahora no se comunicaban por separado.
+
 ## Puntos de atención (compliance)
 
 - El origen de fondos debe ser legítimo y verificable (**UAF**, ex-SEPRELAD) — aplica igual con o sin cédula.

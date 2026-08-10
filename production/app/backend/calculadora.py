@@ -124,7 +124,7 @@ class Calculadora:
 
     # ---- RENTA ----
     def evaluar_renta(self, clase, precio_compra, renta_mensual_bruta,
-                      nivel_neto=3, gastos_reales=None):
+                      nivel_neto=3, gastos_reales=None, ocupacion_pct=None):
         """
         Evalua una operacion de renta.
 
@@ -137,6 +137,15 @@ class Calculadora:
         nivel_neto: 1=basico, 2=administrado, 3=completo (temporal usa su stack)
         gastos_reales: dict opcional con lineas reales (en % de renta bruta) para
                        sobrescribir los defaults. Para evaluaciones en firme.
+        ocupacion_pct: SOLO para clases temporal_*. Ocupacion real esperada
+                       (0-100). Si no se pasa, usa el punto medio del rango
+                       realista del config (renta_temporal_default.
+                       ocupacion_realista_pct, 55-65% -> default 60%,
+                       D-003/D-046, 2026-08-10). Se asume que
+                       renta_mensual_bruta representa el ingreso a ocupacion
+                       plena (100%); la brecha de ocupacion se descuenta como
+                       vacancia real, no el vacancia_pct generico (3%) que
+                       aplica a renta tradicional.
 
         Devuelve yield bruto, yield neto, desglose linea por linea y veredicto.
         """
@@ -163,7 +172,14 @@ class Calculadora:
             desglose["mantenimiento"] = bruto_anual * s["mantenimiento_pct"] / 100.0
             desglose["canon_agencia"] = bruto_anual * s["honorarios_administracion_pct"] / 100.0
             desglose["amortizacion_muebles"] = bruto_anual * s["amortizacion_muebles_pct"] / 100.0
-            desglose["vacancia"] = bruto_anual * s["vacancia_pct"] / 100.0
+            # D-003/D-046 (resuelto 2026-08-10): la vacancia de renta temporal
+            # es la brecha de OCUPACION REAL (55-65%, nunca el vacancia_pct
+            # generico de 3% pensado para renta tradicional).
+            if ocupacion_pct is None:
+                rango = self.p["renta_temporal_default"]["ocupacion_realista_pct"]
+                ocupacion_pct = sum(rango) / len(rango)
+            vacancia_temporal_pct = max(0.0, 100.0 - ocupacion_pct)
+            desglose["vacancia"] = bruto_anual * vacancia_temporal_pct / 100.0
             nivel_efectivo = 4
         else:
             if nivel_neto >= 2:
@@ -193,7 +209,7 @@ class Calculadora:
         # deliberadamente sin trabajo activo, la matriz por zona/calidad (P-004)
         # mas alla de Eje Corporativo. Ver knowledge-base/investment/05-matriz-pisos-techos.md.
         piso = self.p["pisos_renta_neta"].get(clase)
-        return {
+        resultado = {
             "clase": clase,
             "precio_compra": precio_compra,
             "renta_mensual": renta_mensual_bruta,
@@ -206,6 +222,9 @@ class Calculadora:
             "piso_pct": piso,
             "pasa_piso": None if piso is None else round(yield_bruto, 2) >= piso,
         }
+        if es_temporal:
+            resultado["ocupacion_pct"] = round(ocupacion_pct, 2)
+        return resultado
 
     # ---- REVENTA (venta con unidad terminada) ----
     def evaluar_reventa(self, tipo_edificio, etapa_ingreso, salida,

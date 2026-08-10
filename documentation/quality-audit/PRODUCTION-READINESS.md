@@ -37,8 +37,8 @@ Parte de: FINAL-AUDIT.md
 | Investor Experience | 🟡 CLOSED | 83 | Ninguna | Ninguna crítica | Completar `[COMPLETAR]` con datos reales (DO LATER #10) |
 | Property Management | 🟢 CLOSED | 87 | Ninguna | Ninguna — resuelto 2026-08-10 (D-043) | Incorporar las dos propuestas STAY WISE como material operativo de Urbannit |
 | AI System | 🟢 CLOSED | 91 | Ninguna | Ninguna | Ninguna |
-| Skills | 🟡 CLOSED c/herencia técnica | 85 | Ninguna | D-003 (ocupación temporal no aplicada en el código) — heredado, no resuelto en esta ronda | Ninguna nueva |
-| Workflows | 🟡 CLOSED c/herencia técnica | 83 | Ninguna | D-003 (heredado) | Ninguna nueva |
+| Skills | 🟢 CLOSED | 91 | Ninguna | Ninguna — D-003 resuelto (D-046, 2026-08-10) | Ninguna |
+| Workflows | 🟢 CLOSED | 89 | Ninguna | Ninguna — D-003 resuelto (D-046) | Ninguna |
 | Connectors | ⚪ ARCHIVO | — | Ninguna | Ninguna | Ninguna — no prioritario |
 | Documentation | 🟢 CLOSED | 91 | Ninguna | Ninguna | Ninguna |
 | **(añadida)** Entregables de producción (`production/entregables/`) | 🟢 CLOSED | 92 | Ninguna | Ninguna | Ninguna |

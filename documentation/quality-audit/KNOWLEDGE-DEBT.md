@@ -27,7 +27,7 @@ Deuda de conocimiento = información incompleta que impide cerrar un componente.
 | 7 | Ownership ambiguo de `business/05-proyectos-inmobiliarios.md` entre BUSINESS y BRAND (U-009) |
 | 8 | Sin condición de salida documentada para el Asesoramiento Mensual (USD 350/mes) cuando el inversor obtiene su cédula |
 | 9 | Sin tabla de precio de cédula por nacionalidad (rango USD 2.200-2.500 "según nacionalidad", sin desglose) |
-| 10 | Falta ángulo de **residencia fiscal** (distinto de residencia migratoria) como sección explícita del journey/marketing — gap señalado por el propio founder |
+~~10. Falta ángulo de residencia fiscal~~ — ✅ **RESUELTO** (D-047, 2026-08-10) — ver `business/07-residencia-fiscal.md`.
 | 5 | Matriz de pisos/techos por zona y calidad (P-004) — **pendiente por decisión explícita del founder (2026-08-10), no por falta de trabajo**. No requiere acción hasta que llegue nuevo dato |
 | 11 | Los 4 documentos "Paraguay vs. X" sin disclaimer RB-05 ni distinción bruto/neto antes de poder usarse como contenido publicado |
 

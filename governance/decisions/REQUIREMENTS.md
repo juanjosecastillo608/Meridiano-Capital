@@ -57,7 +57,7 @@ Fase 4 del proceso de migración. Requisitos explícitos (dichos literalmente en
 | RI-04 | Las tres categorías de gestión (pasiva / Urbannit-temporal / operador hotelero) no deben mezclarse en materiales de venta | Negocio | Explícito | `investment/00-overview.md` |
 | RI-05 | ~~Bloqueante~~ **RESUELTO 2026-08-02** (D-027): IVA diferenciado — comercial 10%, residencial 5%, venta 5% — implementado en `production/app/backend/calculadora.py` | Técnico+Negocio | Implícito (deriva de D-001) | `governance/decisions/DECISION_REGISTER.md#D-027` |
 | RI-06 | ~~Bloqueante: fijar si los pisos de rentabilidad son brutos o netos~~ — ✅ **RESUELTO** (D-033 mecanismo, 2026-08-09; D-044 valores reales, 2026-08-10) | Técnico+Negocio | Implícito (deriva de D-002) | `governance/decisions/DECISION_REGISTER.md#D-044` |
-| RI-07 | La ocupación realista (55–65%) del refinamiento #8 debe aplicarse también a la rama de alquiler temporal, no solo al genérico | Técnico | Implícito (deriva de D-003) | `governance/decisions/DECISION_REGISTER.md#D-003` |
+| RI-07 | ~~La ocupación realista (55–65%) del refinamiento #8 debe aplicarse también a la rama de alquiler temporal~~ — ✅ **RESUELTO** (D-046, 2026-08-10) | Técnico | Implícito (deriva de D-003) | `governance/decisions/DECISION_REGISTER.md#D-046` |
 
 ## REQ-TECH — Requisitos técnicos (para la fase de software funcional)
 
@@ -98,9 +98,9 @@ Estos son los únicos ítems que, si no se resuelven, dejan a la futura app func
 
 1. ~~RI-05 / D-001 — IVA 5% vs 10%.~~ **RESUELTO 2026-08-02**, ver D-027.
 2. ~~RI-06 / D-002 — pisos de rentabilidad brutos vs. netos.~~ **RESUELTO en su totalidad** — mecanismo D-033, valores reales D-044/D-045 (2026-08-10, incluye "casa Airbnb" e IVA de renta temporal 10%). Pendiente solo la matriz por zona/calidad (P-004), deliberadamente sin trabajo activo por decisión del founder.
-3. **RI-07 / D-003** — ocupación realista no aplicada a alquiler temporal.
+3. ~~RI-07 / D-003 — ocupación realista no aplicada a alquiler temporal.~~ **RESUELTO** — D-046, 2026-08-10.
 
-Todo lo demás (formulario de contacto sin backend, enlaces muertos, hosting sin definir, etc.) es deuda de producto normal, no un riesgo de integridad financiera.
+**Los tres bloqueantes originales de esta lista están resueltos.** Todo lo demás (formulario de contacto sin backend, enlaces muertos, hosting sin definir, etc.) es deuda de producto normal, no un riesgo de integridad financiera.
 
 ## Actualización 2026-08-02 — segunda ronda (paquete de recuperación)
 

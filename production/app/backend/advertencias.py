@@ -6,16 +6,19 @@ Compartido entre server.py (API HTTP) y skills/rentabilidad-calculator/
 (uso en lenguaje natural) para no duplicar el texto en dos lugares.
 
 Ver governance/decisions/DECISION_REGISTER.md:
-  - D-001 fue RESUELTA por el founder el 2026-08-02 (IVA diferenciado por
-    clase/operacion) -> implementada como D-027.
-  - D-002 fue RESUELTA por el founder el 2026-08-09 (pisos y techos siempre
-    en BRUTO) -> implementada como D-033. El MECANISMO ya compara bruto vs
-    bruto. Desde D-044 (2026-08-10) los VALORES numericos de piso tambien
-    son datos reales (Tabla de Rentabilidades Alquiler.xlsx) para comercial,
-    casa, departamento sin/con muebles y Airbnb -- sigue pendiente el piso
-    de "casa Airbnb" (sin dato real) y la matriz por zona/calidad (P-004,
-    knowledge-base/investment/05-matriz-pisos-techos.md), que sigue
-    incompleta. Se muestra siempre junto a cualquier resultado de renta.
+  - D-001/D-045 RESUELTAS (IVA diferenciado: comercial 10%, residencial 5%,
+    renta temporal/Airbnb 10%) -> D-027 (2026-08-02) + D-045 (2026-08-10).
+  - D-002/D-044/D-045 RESUELTAS (pisos y techos siempre en BRUTO, con
+    valores reales para las 6 clases del motor, incluida "casa Airbnb" =
+    "depto Airbnb") -> D-033 (mecanismo) + D-044/D-045 (valores, 2026-08-10).
+    Sigue pendiente, deliberadamente sin trabajo activo, la matriz por
+    zona/calidad (P-004, knowledge-base/investment/05-matriz-pisos-techos.md).
+  - D-003/D-046 RESUELTA por el founder el 2026-08-10 (aplicar la ocupacion
+    realista 55-65% en la rama de renta temporal de evaluar_renta(), en vez
+    del vacancia_pct generico de 3% pensado para renta tradicional) ->
+    implementada como D-046. Baja materialmente el yield neto reportado para
+    temporal_departamento/temporal_casa frente al calculo anterior.
+Se muestra siempre junto a cualquier resultado de renta.
 """
 
 NOTA_IVA_RESUELTA = (
@@ -41,6 +44,16 @@ ADVERTENCIA_PISOS = (
     "techos.md y governance/decisions/DECISION_REGISTER.md#D-045."
 )
 
+NOTA_OCUPACION_TEMPORAL = (
+    "Ocupacion real aplicada: {ocupacion}%. Regla confirmada por el founder el "
+    "2026-08-10 (D-003/D-046): la renta temporal usa la brecha de ocupacion "
+    "REAL (55-65%, nunca 90%+) como vacancia, no el 3% generico de renta "
+    "tradicional. Si no se paso 'ocupacion_pct' explicito, se uso el punto "
+    "medio del rango realista (60%) -- pasar el dato real de ocupacion del "
+    "activo especifico si se conoce. Ver governance/decisions/"
+    "DECISION_REGISTER.md#D-046."
+)
+
 ADVERTENCIAS_VENTA = [
     (
         "IVA de venta aplicado: 5% sobre el valor de salida/cesion, confirmado por el "
@@ -53,8 +66,12 @@ ADVERTENCIAS_VENTA = [
 ]
 
 
-def advertencias_renta(calc, clase):
-    """Advertencias para un resultado de evaluar_renta(). calc: instancia de Calculadora."""
+def advertencias_renta(calc, clase, resultado=None):
+    """
+    Advertencias para un resultado de evaluar_renta().
+    calc: instancia de Calculadora. resultado: dict devuelto por
+    evaluar_renta() (opcional, permite reportar la ocupacion real usada).
+    """
     iva_pct = calc.iva_alquiler_pct(clase)
     if clase == "comercial":
         detalle = "comercial"
@@ -65,6 +82,11 @@ def advertencias_renta(calc, clase):
     advertencias = [NOTA_IVA_RESUELTA.format(iva=iva_pct, detalle=detalle)]
     if clase.startswith("temporal"):
         advertencias.append(NOTA_IVA_TEMPORAL_EXTENSION)
+        ocupacion = resultado.get("ocupacion_pct") if resultado else None
+        if ocupacion is None:
+            rango = calc.p["renta_temporal_default"]["ocupacion_realista_pct"]
+            ocupacion = sum(rango) / len(rango)
+        advertencias.append(NOTA_OCUPACION_TEMPORAL.format(ocupacion=ocupacion))
     advertencias.append(ADVERTENCIA_PISOS)
     return advertencias
 
