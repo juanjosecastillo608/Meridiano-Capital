@@ -22,9 +22,11 @@ Dominio: BRAND
 | Capa | Texto | Cuando usarla |
 |---|---|---|
 | 1 — Categoria (SEO) | "Real Estate & Desarrollo en Paraguay para Inversores Extranjeros" | Titulo de sitio web, meta title, encabezado de LinkedIn — donde un lector nuevo necesita entender el rubro en 2 segundos |
-| 2A — Diferenciador (contraste) | "No mostramos departamentos: construimos, estructuramos y gestionamos tu inversion." | Web, redes sociales, primer contacto — captacion y gancho inicial |
+| 2A — Diferenciador (contraste) | "No mostramos propiedades: construimos, estructuramos y gestionamos tu inversion." | Web, redes sociales, primer contacto — captacion y gancho inicial |
 | 2B — Diferenciador (autoridad) | "La mirada de un constructor, la precision de un estructurador legal, el cuidado de un gestor de patrimonio." | Deck de inversores, Sobre Nosotros, pitch en profundidad |
-| 3 — One-liner largo | "Ayudamos a inversores de Europa, Argentina, Brasil y Chile a construir y proteger patrimonio inmobiliario en Paraguay — desde la cedula y la cuenta bancaria hasta la gestion de la renta, con la mirada tecnica de 16 años desarrollando y construyendo." | Bio, Quienes Somos, presentaciones, LinkedIn About |
+| 3 — One-liner largo | "Ayudamos a inversores de Europa, Argentina, Brasil y Chile a construir y proteger patrimonio inmobiliario en Paraguay — desde la cedula de identidad paraguaya y la cuenta bancaria hasta la gestion de la renta, con la mirada tecnica de 16 años desarrollando y construyendo." | Bio, Quienes Somos, presentaciones, LinkedIn About |
+
+> **Actualizado 2026-08-10 (D-049)**: "No mostramos departamentos" → "No mostramos propiedades" en la Capa 2A. Confirmado por el founder: "departamentos" nombra un solo tipo de propiedad (Meridiano tambien opera casas, locales comerciales, tierra) — "propiedades" es el termino correcto e inclusivo. Se propaga a `01-adn-de-marca.md` (Manifiesto) y a `production/app/frontend/index.html` (hero H1). No se encontraron usos de la frase vieja en el pipeline de generadores de decks.
 
 **Regla dura:** no crear una cuarta variante de tagline sin verificar contra esta tabla primero. Si ninguna capa encaja perfecto, adaptar la mas cercana — no inventar desde cero. Si se necesita una variante nueva para un contexto no cubierto, generarla y marcarla explicitamente como **[EXTENSION] — recomendacion, no regla oficial**.
 
@@ -74,4 +76,4 @@ No definidas explicitamente en el manual — derivadas directamente del tono de 
 ## Ejemplo de transformacion (generico a marca)
 
 - Generico: "Ofrecemos servicios inmobiliarios integrales para inversores extranjeros."
-- Meridiano Capital: "No mostramos departamentos: construimos, estructuramos y gestionamos tu inversion — con la mirada de 16 años construyendo en Paraguay."
+- Meridiano Capital: "No mostramos propiedades: construimos, estructuramos y gestionamos tu inversion — con la mirada de 16 años construyendo en Paraguay."

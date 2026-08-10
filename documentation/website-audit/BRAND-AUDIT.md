@@ -16,27 +16,27 @@ Parte de: WEBSITE-AUDIT.md
 | Regla de invisibilidad Capa 1 (D-029) | ✅ Correcto | Ningún RUC, ninguna de las 6 S.A. aparece en el sitio — solo "Meridiano Capital" |
 | Endorsed Brand de Urbannit (D-019/D-035) | ✅ Correcto | El footer dice explícitamente "Urbannit es una marca gestionada por Meridiano Capital"; la sección de portafolio dual también lo refuerza |
 | Origen de clientes "Europa, Argentina, Brasil, Chile" (RB-07) | ✅ Correcto | Coincide textualmente en el hero |
-| Golden Circle (POR QUÉ → CÓMO → QUÉ) | 🟡 Parcial | El hero abre con la Capa 2A de identidad verbal ("No mostramos departamentos...") — correcto para hero/captación según `brand/02-identidad-verbal.md`, pero la sección "Nosotros" (que debería llevar el peso del POR QUÉ) es más corta que el resto de secciones y no incluye el Manifiesto ni la Misión/Visión completos |
+| Golden Circle (POR QUÉ → CÓMO → QUÉ) | 🟡 Parcial | El hero abre con la Capa 2A de identidad verbal (~~"No mostramos departamentos..."~~ → "No mostramos propiedades...", D-049, 2026-08-10) — correcto para hero/captación según `brand/02-identidad-verbal.md`; la sección "Nosotros" (que debería llevar el peso del POR QUÉ) sigue sin el Manifiesto ni la Misión/Visión completos, pero ya incluye bio del CEO y portfolio real (ver hallazgo siguiente, resuelto en Fase 02) |
 
-## Hallazgo — el sitio no incluye al fundador/CEO
+## ~~Hallazgo — el sitio no incluye al fundador/CEO~~
 
-El footer dice "Fundada por Juan José Castillo" — una sola mención, sin foto, sin bio, sin ningún vínculo a su perfil profesional. Con D-041/D-042 (2026-08-10) ya resueltos y el documento `Meridiano_Perfil_Profesional_CEO.docx` ya construido con bios copy-ready, el sitio tiene contenido listo para usar que hoy no está aprovechando. Esto contradice directamente la sección 39 de este mismo brief ("mi experiencia de 16 años... debe convertirse en un activo de posicionamiento") — hoy esa experiencia es una frase suelta en el hero ("con la mirada técnica de 16 años"), no una narrativa desarrollada.
+✅ **Resuelto 2026-08-10 (Fase 02).** La sección "Quiénes somos" ahora incluye bio del CEO (monograma "JJC", 16 años de trayectoria, formación técnica) con el título canónico "CEO · Meridiano Capital" (D-042). El footer, por su parte, usaba "Fundada por Juan José Castillo" — un título genérico que no correspondía a ninguna de las dos firmas oficiales de marca; corregido 2026-08-10 (D-049/D-050) a "Juan José Castillo — Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay" (el título de firma institucional de `brand/09-cierres-y-firmas.md`, D-039, correcto para un contexto de cierre/pie de página — distinto del "CEO" usado en la bio de "Quiénes somos", D-042).
 
-## Hallazgo — falta la sección "Nosotros" real (Quiénes Somos)
+## ~~Hallazgo — falta la sección "Nosotros" real (Quiénes Somos)~~
 
-La sección `id="nosotros"` del sitio actual **no es una sección "Quiénes Somos"** — es la sección de los 4 Pilares del ADN de marca (correcta y bien ejecutada, pero es "en qué creemos", no "quiénes somos"). No hay biografía del CEO, no hay historia de la empresa, no hay mención del portfolio real (53 unidades / 11 edificios, ya documentado en `business/06-estructura-societaria-y-portfolio.md` y perfectamente comunicable sin violar la regla de invisibilidad societaria).
+✅ **Resuelto 2026-08-10 (Fase 02).** La sección `id="nosotros"` ahora abre con bio real del CEO y 4 cifras de portfolio (53 unidades / 11 edificios / 35 operativas / 18 en obra), sin violar la regla de invisibilidad societaria (D-029) — ninguna de las 6 S.A. se menciona. Los 4 Pilares del ADN de marca (contenido original de esta sección) se preservaron íntegros, movidos a la nueva sección `id="concepto"`.
 
 ## Verificación contra las 9 preguntas de posicionamiento (sección 05 del brief)
 
 | Pregunta | ¿La responde el sitio hoy? |
 |---|---|
-| ¿Quiénes somos? | 🟡 Parcial — el ADN está, la identidad humana (CEO) no |
+| ¿Quiénes somos? | ✅ **Resuelto Fase 02** — bio del CEO + portfolio real en "Quiénes somos" (antes: 🟡 solo el ADN, sin identidad humana) |
 | ¿Qué hacemos? | ✅ Sí — sección Servicios clara, 5 unidades bien explicadas |
 | ¿Para quién? | ✅ Sí — "inversores de Europa, Argentina, Brasil y Chile" repetido consistentemente |
-| ¿Por qué somos diferentes? | ✅ Sí — "no mostramos departamentos", técnica antes que venta |
-| ¿Por qué confiar? | 🟡 Parcial — Red de Aliados está, pero sin prueba social (testimonios, casos reales) ni portfolio visible |
-| ¿Qué experiencia tenemos? | 🟡 Parcial — "16 años" mencionado 2 veces, nunca desarrollado con evidencia (proyectos, cifras de portfolio) |
-| ¿Qué resultado busca el inversor? | ✅ Sí — "10% rentabilidad neta anual objetivo" en el hero, con el disclaimer correcto en el resto del sitio (aunque el hero mismo no lleva el disclaimer de "cifras ilustrativas" junto al 10% — ver `CONTENT-AUDIT.md`) |
+| ¿Por qué somos diferentes? | ✅ Sí — "no mostramos propiedades" (D-049), técnica antes que venta |
+| ¿Por qué confiar? | ✅ **Mejorado Fase 02** — Red de Aliados con descripciones reescritas + 4 cifras de portfolio visibles (53/11/35/18); sigue sin testimonios/casos reales (fuera de alcance sin material fuente) |
+| ¿Qué experiencia tenemos? | ✅ **Mejorado Fase 02** — "16 años" ahora respaldado por la bio del CEO y el portfolio real, no solo la frase suelta del hero |
+| ¿Qué resultado busca el inversor? | ✅ **Resuelto Fase 01** — el hero ya lleva `<p class="hero-disclaimer">` junto al stat "10%" ("Cifra ilustrativa, no constituye garantía de rentabilidad") |
 | ¿Qué pasa después de la compra? | ✅ Sí — sección de portafolio dual (renta tradicional/temporal) lo cubre bien |
 | ¿Por qué Meridiano y no una inmobiliaria tradicional? | ✅ Sí — es el mensaje más fuerte y mejor ejecutado del sitio |
 

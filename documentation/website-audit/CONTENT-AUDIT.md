@@ -17,22 +17,22 @@ Aplicando las 6 preguntas de la sección 8 del brief a cada bloque de copy relev
 
 | Bloque | ¿Transmite autoridad? | ¿Diferencia? | ¿Podría ser de cualquier inmobiliaria? |
 |---|---|---|---|
-| Hero H1: "No mostramos departamentos: construimos, estructuramos y gestionamos tu inversión." | ✅ Sí | ✅ Sí — es el mensaje de marca de mayor fuerza de todo el sitio | ❌ No — frase única, imposible de confundir con un competidor genérico |
-| Hero lede: "Ayudamos a inversores de Europa, Argentina, Brasil y Chile..." | ✅ Sí | ✅ Sí | ❌ No — específico, con datos (16 años, cédula, cuenta bancaria) |
+| Hero H1: ~~"No mostramos departamentos..."~~ → **"No mostramos propiedades: construimos, estructuramos y gestionamos tu inversión."** (D-049, 2026-08-10) | ✅ Sí | ✅ Sí — es el mensaje de marca de mayor fuerza de todo el sitio | ❌ No — frase única, imposible de confundir con un competidor genérico |
+| Hero lede: "Ayudamos a inversores de Europa, Argentina, Brasil y Chile..." — actualizado a "cédula de identidad paraguaya y la cuenta bancaria" (D-049) | ✅ Sí | ✅ Sí | ❌ No — específico, con datos (16 años, cédula, cuenta bancaria) |
 | Pilares (4 principios del ADN) | ✅ Sí | ✅ Sí | ❌ No — lenguaje propio, coherente con el Manifiesto de marca |
-| Sección Proceso — títulos de los 4 pasos ("Cédula paraguaya", "Apertura bancaria"...) | 🟡 Parcial | 🟡 Parcial | 🟡 **Podría pertenecer a cualquier consultora de radicación** — el texto es correcto pero genérico; no lleva la voz de "criterio técnico de construcción" que sí aparece en otras secciones |
-| Sección Servicios — las 5 unidades | ✅ Sí | ✅ Sí | ❌ No — específico y bien diferenciado |
+| ~~Sección Proceso — títulos de los 4 pasos ("Cédula paraguaya", "Apertura bancaria"...)~~ | ✅ **Resuelto 2026-08-10** (D-049) — "Cédula de identidad paraguaya", "Apertura de cuenta bancaria" (corrige un error de redacción señalado por el founder). Sigue siendo un bloque correcto pero genérico en tono — no bloqueante, no requiere más trabajo en este ciclo | — | — |
+| Sección Servicios — las 5 unidades | ✅ Sí — Unidad 02 ("Cédula de identidad paraguaya, apertura de cuenta bancaria..."), Unidad 04 ("números claros", D-049/D-050) y Unidad 05 ("criterio técnico de construcción propio", D-050) corregidas 2026-08-10 | ✅ Sí | ❌ No — específico y bien diferenciado |
 | Portafolio dual (renta tradicional/temporal) | ✅ Sí | ✅ Sí | ❌ No |
 | ~~Red de Aliados — descripciones~~ | ✅ **Reescrita 2026-08-10** (Fase 02) | ✅ | Pasó de listado de tareas a lenguaje de acompañamiento ("Constituye la sociedad y revisa cada contrato antes de que lo firmes — sin sorpresas después.") |
 | CTA final: "Hablemos de tu próxima inversión en Paraguay" | ✅ Sí | 🟡 Parcial | 🟡 Es un CTA correcto pero bastante estándar — cumple, no destaca |
 
-## Hallazgo — falta el "por qué 16 años importa", no solo la cifra
+## ~~Hallazgo — falta el "por qué 16 años importa", no solo la cifra~~
 
-El brief (sección 7) pide explícitamente convertir la experiencia en autoridad, no dejarla como frase promocional. El sitio menciona "16 años" tres veces (hero eyebrow implícito, hero lede, hero-foot stat) — siempre como número aislado, nunca como evidencia (un caso, un dato de portfolio, una cifra de unidades gestionadas). El repo ya tiene ese material (`business/06-estructura-societaria-y-portfolio.md`: 53 unidades, 11 edificios, portfolio real) y no está siendo usado en el sitio.
+✅ **Resuelto 2026-08-10 (Fase 02).** La sección "Quiénes somos" ahora respalda los "16 años" con la bio del CEO y 4 cifras reales de portfolio (53 unidades / 11 edificios / 35 operativas / 18 en obra) — sin mencionar ninguna de las 6 S.A. (regla de invisibilidad, D-029).
 
-## Hallazgo — la cifra "10% rentabilidad neta anual objetivo" en el hero no lleva su disclaimer junto
+## ~~Hallazgo — la cifra "10% rentabilidad neta anual objetivo" en el hero no lleva su disclaimer junto~~
 
-`brand/09-cierres-y-firmas.md` (RB-05) exige: "toda cifra de retorno lleva la nota 'cifras ilustrativas, no constituyen garantía' visible en la misma pieza". En el hero-foot, el stat "10% — rentabilidad neta anual objetivo" no tiene ningún disclaimer visible cerca — la palabra "objetivo" sola cumple parcialmente la intención (no es una promesa absoluta) pero no es el texto de disclaimer que la regla especifica textualmente. Es el hallazgo de compliance de marca más concreto de todo este audit de contenido.
+✅ **Resuelto 2026-08-10 (Fase 01).** El hero ya lleva `<p class="hero-disclaimer">Cifra ilustrativa, no constituye garantía de rentabilidad.</p>` junto al stat "10%", cumpliendo RB-05 con el texto exacto de la regla.
 
 ## Frases prohibidas — verificación
 
@@ -40,4 +40,4 @@ Se revisó el sitio completo contra la lista de `brand/02-identidad-verbal.md` (
 
 ## Veredicto
 
-**Score de Content: 7/10.** La escritura es limpia y sin errores; el mensaje central (hero, servicios, portafolio) es fuerte y diferenciado. Pierde puntos en dos secciones concretas (Proceso, Aliados) que caen en tono genérico, y en un hallazgo de compliance puntual (disclaimer del 10%) — ambos correctos con ediciones específicas, no con una reescritura general.
+**Score de Content original: 7/10** (auditoría inicial). Tras Fase 01 (disclaimer del 10%), Fase 02 (Quiénes Somos con bio/portfolio, Red de Aliados reescrita) y Fase 03 — terminología (D-049/D-050: "no mostramos propiedades", cédula de identidad paraguaya, cuenta bancaria, apertura de cuenta bancaria, Unidad 04/05, calculadora) — los tres hallazgos concretos de este documento están cerrados. No se re-puntúa formalmente sin una nueva pasada completa, pero no quedan pendientes abiertos de este audit.

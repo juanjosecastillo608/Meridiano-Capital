@@ -22,6 +22,20 @@ Diez fases, en el orden del brief (sección 34), con el contenido real de esta a
 
 **Extra, descubierto al ejecutar la Fase 02**: se encontraron 2 instancias más del mismo problema de contraste de la Fase 01 (`.pillar .num` y `.service-card .tag`, ambos `--gold-d` sobre fondo claro) — corregidas con el mismo criterio (`--tierra`), sin esperar a una futura pasada de accesibilidad dedicada.
 
+## Batch de terminología (pre-Fase 03) ✅ COMPLETO (2026-08-10)
+
+Pedido directo del founder antes de arrancar la Fase 03 formal — corrección de 7 términos/errores de copy, aplicados en simultáneo al sitio (`index.html`) y a la fuente de verdad de marca (`knowledge-base/brand/`). Registrado como **D-049** (cambios directos + oficiales) y **D-050** (los 3 términos donde el founder eligió entre 3 opciones presentadas):
+
+1. ✅ "No mostramos departamentos" → **"No mostramos propiedades"** — modifica la Capa 2A oficial de `identidad-verbal.md` (hero H1, Manifiesto de marca).
+2. ✅ "cédula" (suelta) → **"cédula de identidad paraguaya"** — hero lede, Pilar 02, Proceso paso 1, Servicios Unidad 02.
+3. ✅ "cuenta" (suelta) → **"cuenta bancaria"** — hero lede, Pilar 02.
+4. ✅ Error de redacción: "apertura bancaria" → **"apertura de cuenta bancaria"** — Proceso paso 2, Servicios Unidad 02.
+5. ✅ Error en Unidad 04: "economics" → **"números claros"** (se mantiene "y reporte periódico").
+6. ✅ Unidad 05, término poco claro "coordinación técnica de obra propia" → **"criterio técnico de construcción propio"** (elegido por el founder entre 3 opciones, D-050).
+7. ✅ Campo de calculadora "Nivel de neto" (mal comprendido) → **"Profundidad del descuento"** (elegido por el founder entre 3 opciones, D-050; solo el label visible, sin tocar `id`/lógica).
+
+**Extra, descubierto al ejecutar este batch**: el pie de firma del footer decía "Fundada por Juan José Castillo. Real Estate & Desarrollo..." — un título genérico que no correspondía a ninguna firma oficial de marca. Corregido a la firma institucional canónica de `brand/09-cierres-y-firmas.md` (D-039): "Juan José Castillo — Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay". Este hallazgo estaba señalado también en `BRAND-AUDIT.md` y quedó resuelto en el mismo movimiento.
+
 ## PHASE 03 — Typography & color
 
 8. Formalizar el sistema tipográfico como tokens nombrados (`DESIGN-SYSTEM.md`) — sin cambiar ningún valor visual.
@@ -37,8 +51,8 @@ Diez fases, en el orden del brief (sección 34), con el contenido real de esta a
 
 ## PHASE 05 — Copywriting
 
-15. Reescribir los 4 títulos de pasos de "Proceso" con más voz técnica (hoy son genéricos, ver `CONTENT-AUDIT.md`).
-16. Desarrollar la narrativa de "16 años" con evidencia concreta, no solo la cifra suelta.
+15. 🟡 **Parcial (2026-08-10)** — Terminología de los 4 títulos de "Proceso" corregida (batch pre-Fase 03: "Cédula de identidad paraguaya", "Apertura de cuenta bancaria"). Sigue pendiente la reescritura con más voz técnica que `CONTENT-AUDIT.md` señalaba (hoy son correctos pero genéricos en tono).
+16. ✅ **Hecho (2026-08-10, Fase 02)** — La narrativa de "16 años" ahora tiene evidencia concreta: bio del CEO + portfolio real (53/11/35/18) en "Quiénes somos".
 
 ## PHASE 06 — Photography
 

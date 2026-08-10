@@ -51,7 +51,7 @@ Descartados deliberadamente: el Explorador (asociado a riesgo, contradice la pro
 
 ## Manifiesto de marca
 
-> No mostramos departamentos.
+> No mostramos propiedades.
 > Construimos el camino completo: del terreno al titulo, del titulo a la cedula, de la cedula al alquiler cobrado a tiempo.
 > Donde otros ven una comision, nosotros vemos una responsabilidad que sigue despues de la firma.
 > Medimos el terreno antes de venderlo, porque 16 años de construccion nos enseñaron que el error mas caro es el que no se ve a simple vista.
