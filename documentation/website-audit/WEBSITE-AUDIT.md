@@ -38,7 +38,7 @@ El sitio actual **no es una maqueta ni un MVP genérico** — es una implementac
 1. **Fotografía real** — el cambio de mayor impacto perceptual posible; hoy cero imágenes reales.
 2. **Meta tags + Open Graph + schema.org** — invisible hoy al compartir en LinkedIn/WhatsApp o en resultados de Google.
 3. **Profundizar "Nosotros"** con el Perfil Profesional del CEO ya construido (D-041/042) — hoy la home no menciona a Juan José Castillo en ningún lado visible.
-4. **Página/sección de "Oportunidades de Inversión"** — el catálogo dinámico que el propio plan de contenido de Meridiano ya define (`Perfil Profesional`, sección 6.4) no existe todavía.
+4. **Página/sección de "Oportunidades de Inversión"** — un catálogo dinámico de proyectos activos no existe todavía. **Corrección 2026-08-10**: la versión anterior de este hallazgo atribuía la idea a "`Perfil Profesional`, sección 6.4" — esa cita es incorrecta, no existe tal sección en ningún documento del repo (verificado por grep). La necesidad sigue siendo real (ver `knowledge-base/marketing/01-aplicacion-digital.md` §1, que sí describe la ruta `/oportunidades` como parte de la arquitectura multi-página futura), pero requiere una decisión de contenido del founder (¿qué proyectos mostrar, con qué nivel de detalle público?) antes de construirse — ver `GAP-ANALYSIS.md`.
 5. **Self-host de Fraunces/Poppins** (o al menos `font-display` + preload) — dependencia 100% de Google Fonts CDN sin red de seguridad.
 
 ## Estructura de esta auditoría

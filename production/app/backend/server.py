@@ -29,6 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = BASE_DIR / "frontend"
 DATA_DIR = Path(__file__).resolve().parent / "data"
 CONTACTOS_FILE = DATA_DIR / "contactos.jsonl"
+CALC_LEADS_FILE = DATA_DIR / "calculadora_leads.jsonl"
 
 calc = Calculadora()
 
@@ -42,10 +43,13 @@ def _notificar_crm(entrada):
     documentation/website-audit/WEBSITE-ROADMAP.md, Fase 01 item 4):
     el founder confirmo (2026-08-10) que la notificacion de leads va a
     ser via integracion con un CRM, todavia sin elegir. Mientras no se
-    elija, el contacto sigue guardandose de forma confiable en
-    CONTACTOS_FILE (ver _guardar_contacto) -- esta funcion no debe fallar
-    silenciosamente ni bloquear ese guardado si se implementa mas
-    adelante y el CRM no responde.
+    elija, cada lead sigue guardandose de forma confiable en su archivo
+    local (CONTACTOS_FILE via _guardar_contacto, CALC_LEADS_FILE via
+    _guardar_lead_calculadora desde Fase 04 item 13) -- esta funcion no
+    debe fallar silenciosamente ni bloquear ese guardado si se implementa
+    mas adelante y el CRM no responde. "entrada" trae un campo "origen"
+    ("formulario_contacto" | "calculadora_rentabilidad") para que el CRM
+    elegido pueda distinguir la fuente del lead.
 
     Cuando se elija el CRM, implementar aca la llamada real (API REST,
     webhook, etc.) y quitar el "pass". No inventar un proveedor ni una
@@ -100,8 +104,17 @@ class Handler(BaseHTTPRequestHandler):
 
         try:
             if path == "/api/calcular/renta":
+                # WEBSITE-ROADMAP.md Fase 04, item 13: el sitio pide email antes de
+                # mostrar el resultado. "email" no es un parametro de evaluar_renta
+                # (calculadora.py no se toca) -- se extrae del body antes de llamarla
+                # y, si vino, se guarda como lead. La API sigue funcionando sin email
+                # para otros consumidores (skill de CLI, tests) que no pasan por el
+                # formulario del sitio.
+                email = (body.pop("email", "") or "").strip()
                 resultado = calc.evaluar_renta(**body)
                 resultado["advertencias"] = advertencias_renta(calc, body.get("clase", ""), resultado)
+                if email:
+                    self._guardar_lead_calculadora(email, body, resultado)
                 return json_response(self, 200, resultado)
 
             if path == "/api/calcular/reventa":
@@ -136,10 +149,15 @@ class Handler(BaseHTTPRequestHandler):
 
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         entrada = {
+            "origen": "formulario_contacto",
             "recibido_en": datetime.now(timezone.utc).isoformat(),
             "name": nombre,
             "email": email,
             "country": body.get("country", ""),
+            # WEBSITE-ROADMAP.md Fase 04, item 11: segmentacion por tipo de consulta,
+            # 4 categorias confirmadas por el founder el 2026-08-10. Opcional en el
+            # backend (no bloquea el guardado) aunque el frontend lo pide siempre.
+            "tipo_consulta": body.get("tipo_consulta", ""),
             "message": body.get("message", ""),
         }
         with open(CONTACTOS_FILE, "a", encoding="utf-8") as f:
@@ -148,6 +166,25 @@ class Handler(BaseHTTPRequestHandler):
         _notificar_crm(entrada)
 
         json_response(self, 200, {"ok": True})
+
+    # ---- Calculadora: lead capturado antes de mostrar el resultado (Fase 04, item 13) ----
+    def _guardar_lead_calculadora(self, email, payload_calculo, resultado):
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        entrada = {
+            "origen": "calculadora_rentabilidad",
+            "recibido_en": datetime.now(timezone.utc).isoformat(),
+            "email": email,
+            "clase": payload_calculo.get("clase", ""),
+            "precio_compra": payload_calculo.get("precio_compra"),
+            "renta_mensual_bruta": payload_calculo.get("renta_mensual_bruta"),
+            "nivel_neto": payload_calculo.get("nivel_neto"),
+            "yield_bruto_pct": resultado.get("yield_bruto_pct"),
+            "yield_neto_pct": resultado.get("yield_neto_pct"),
+        }
+        with open(CALC_LEADS_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entrada, ensure_ascii=False) + "\n")
+
+        _notificar_crm(entrada)
 
     # ---- Estaticos ----
     def _serve_static(self, path):

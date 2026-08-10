@@ -56,6 +56,12 @@
     --font-body: 16px;                           /* body, tamaño base */
     --font-body-sm: 14px;                        /* .service-card p */
     --font-caption: 12.5px;                      /* .eyebrow */
+
+    /* DESIGN-SYSTEM.md (2026-08-10, Fase 04): --space-section-sm es nuevo [EXTENSION] --
+       no existia en el CSS anterior (todas las secciones usaban 108px fijo). Crea el
+       ritmo "respiro" que pedia UI-AUDIT.md, ver .section-sm mas abajo. */
+    --space-section: 108px;
+    --space-section-sm: 72px;
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
@@ -133,6 +139,35 @@
   .navlinks a:hover{ color: var(--gold); }
   .nav-cta{ display:flex; align-items:center; gap:22px; }
   .navToggle{ display:none; background:none; border:none; color:var(--white); font-size:26px; cursor:pointer; line-height:1; padding:8px; min-width:44px; min-height:44px; }
+
+  /* ============ IDIOMA (Fase 04, item 12 -- estructura, ver i18n/README.md) ============ */
+  .lang-switch{ display:flex; align-items:center; gap:2px; border:1px solid rgba(255,255,255,.25); border-radius:var(--radius); padding:3px; }
+  .lang-switch button{
+    background:none; border:none; color:rgba(255,255,255,.65); font-family:var(--sans);
+    font-size:12px; font-weight:600; letter-spacing:.03em; padding:6px 9px; border-radius:2px;
+    cursor:pointer; transition: all .2s ease; min-height:28px;
+  }
+  .lang-switch button:hover{ color:var(--white); }
+  .lang-switch button.active{ background:var(--gold); color:var(--navy-2); }
+  .lang-switch-mobile{ margin-bottom:24px; align-self:flex-start; }
+  @media (max-width: 560px){ .lang-switch:not(.lang-switch-mobile){ display:none; } }
+  /* 881-1180px: el header ya venia justo de espacio con navlinks + boton CTA solos --
+     agregar el lang-switch lo desborda (verificado en navegador real, Fase 04). Se
+     angosta el propio nav en ese rango en vez de esconder el selector de idioma. */
+  @media (max-width: 1180px) and (min-width: 881px){
+    .navlinks{ gap:20px; }
+    .navlinks a{ font-size:13px; }
+    .nav-cta{ gap:14px; }
+    .lang-switch:not(.lang-switch-mobile){ padding:2px; }
+    .lang-switch:not(.lang-switch-mobile) button{ padding:5px 7px; font-size:11px; min-height:24px; }
+  }
+
+  .i18n-notice{
+    position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:200;
+    background:var(--navy-2); color:var(--white); font-family:var(--sans); font-size:13px;
+    padding:12px 20px; border-radius:var(--radius); box-shadow:0 8px 24px rgba(0,0,0,.25);
+    max-width:90vw; text-align:center;
+  }
 
   .skip-link{
     position:absolute; top:-60px; left:16px; z-index:1000;
@@ -215,7 +250,11 @@
   }
 
   /* ============ SECTION shells ============ */
-  section{ padding: 108px 0; }
+  /* UI-AUDIT.md (2026-08-10, Fase 04): hallazgo de ritmo visual -- casi todas las secciones
+     tenian el mismo padding/peso. --space-section-sm crea secciones "respiro" mas cortas
+     (Proceso, Aliados) intercaladas con las densas, sin tocar contenido ni layout interno. */
+  section{ padding: var(--space-section, 108px) 0; }
+  .section-sm{ padding: var(--space-section-sm, 72px) 0; }
   .section-head{ max-width:640px; margin-bottom:56px; }
   .section-head h2{ font-size: var(--font-h2); margin-top:12px; }
   .bg-cream{ background: var(--cream); }
@@ -325,6 +364,7 @@
   .calc-warn{ background:#FBEFE6; border:1px solid var(--gold-d); color:var(--charcoal); font-size:13px; padding:12px 14px; margin-top:12px; }
   .calc-warn strong{ display:block; margin-bottom:4px; }
   .calc-error{ color:var(--tierra); font-size:13.5px; margin-top:10px; }
+  .calc-note{ font-size:12.5px; color:var(--grey); margin-top:12px; }
 
   /* ============ CTA FINAL ============ */
   .cta-final{
@@ -406,15 +446,22 @@
       <span class="word">MERIDIANO<b>CAPITAL</b></span>
     </a>
     <ul class="navlinks">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#proceso">Proceso</a></li>
-      <li><a href="#portafolio">Portafolio</a></li>
-      <li><a href="#calculadora">Calculadora</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#servicios" data-i18n="nav.servicios">Servicios</a></li>
+      <li><a href="#proceso" data-i18n="nav.proceso">Proceso</a></li>
+      <li><a href="#portafolio" data-i18n="nav.portafolio">Portafolio</a></li>
+      <li><a href="#calculadora" data-i18n="nav.calculadora">Calculadora</a></li>
+      <li><a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a></li>
+      <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="#contacto" class="btn btn-primary">Agendar consulta</a>
+      <!-- WEBSITE-ROADMAP.md Fase 04, item 12: estructura i18n (ES/EN/PT) sin traducir
+           todavia -- ver production/app/frontend/i18n/README.md para el alcance real. -->
+      <div class="lang-switch" role="group" aria-label="Idioma">
+        <button type="button" data-lang="es" class="active" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+      </div>
+      <a href="#contacto" class="btn btn-primary" data-i18n="nav.cta">Agendar consulta</a>
       <button class="navToggle" id="navToggle" aria-label="Abrir menu de navegacion" aria-expanded="false" aria-controls="mobilePanel">☰</button>
     </div>
   </nav>
@@ -422,14 +469,21 @@
 
 <div class="mobile-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="Menu de navegacion">
   <button class="mobile-close" id="mobileClose" aria-label="Cerrar menu">✕</button>
-  <a href="#servicios">Servicios</a>
-  <a href="#proceso">Proceso</a>
-  <a href="#portafolio">Portafolio</a>
-  <a href="#calculadora">Calculadora</a>
-  <a href="#nosotros">Nosotros</a>
-  <a href="#contacto">Contacto</a>
-  <a href="#contacto" class="btn btn-primary">Agendar consulta</a>
+  <div class="lang-switch lang-switch-mobile" role="group" aria-label="Idioma">
+    <button type="button" data-lang="es" class="active" aria-pressed="true">ES</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+  </div>
+  <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+  <a href="#proceso" data-i18n="nav.proceso">Proceso</a>
+  <a href="#portafolio" data-i18n="nav.portafolio">Portafolio</a>
+  <a href="#calculadora" data-i18n="nav.calculadora">Calculadora</a>
+  <a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a>
+  <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
+  <a href="#contacto" class="btn btn-primary" data-i18n="nav.cta">Agendar consulta</a>
 </div>
+
+<div class="i18n-notice" id="i18nNotice" role="status" hidden></div>
 
 
 <main id="top">
@@ -439,12 +493,15 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="label eyebrow on-dark">Real Estate &amp; Desarrollo en Paraguay para Inversores Extranjeros</p>
+        <p class="label eyebrow on-dark" data-i18n="hero.eyebrow">Real Estate &amp; Desarrollo en Paraguay para Inversores Extranjeros</p>
+        <!-- h1 lleva <em>/<br> inline -- fuera del alcance de data-i18n (ver i18n/README.md),
+             textContent lo reemplazaria y perderia el enfasis tipografico. Queda en espanol
+             en las 3 variantes de idioma hasta que el mecanismo soporte HTML seguro. -->
         <h1>No mostramos propiedades: <em>construimos, estructuramos<br>y gestionamos</em> tu inversión.</h1>
-        <p class="lede">Ayudamos a inversores de Europa, Argentina, Brasil y Chile a construir y proteger patrimonio inmobiliario en Paraguay — desde la cédula de identidad paraguaya y la cuenta bancaria hasta la gestión de la renta, con la mirada técnica de 16 años desarrollando y construyendo.</p>
+        <p class="lede" data-i18n="hero.lede">Ayudamos a inversores de Europa, Argentina, Brasil y Chile a construir y proteger patrimonio inmobiliario en Paraguay — desde la cédula de identidad paraguaya y la cuenta bancaria hasta la gestión de la renta, con la mirada técnica de 16 años desarrollando y construyendo.</p>
         <div class="hero-ctas">
-          <a href="#contacto" class="btn btn-primary">Agendar una consulta de inversión</a>
-          <a href="#proceso" class="btn btn-ghost">Ver el proceso completo</a>
+          <a href="#contacto" class="btn btn-primary" data-i18n="hero.cta_primary">Agendar una consulta de inversión</a>
+          <a href="#proceso" class="btn btn-ghost" data-i18n="hero.cta_secondary">Ver el proceso completo</a>
         </div>
         <div class="hero-foot">
           <div class="stat"><b>16 años</b><span>de trayectoria en Asunción</span></div>
@@ -470,7 +527,7 @@
   <section id="nosotros">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="label eyebrow">Quiénes somos</p>
+        <p class="label eyebrow" data-i18n="section.nosotros_eyebrow">Quiénes somos</p>
         <h2>Liderado por quien construye, no solo por quien vende.</h2>
         <p class="lede" style="margin-top:14px;">Meridiano Capital es la marca bajo la que Juan José Castillo acompaña a inversores extranjeros de punta a punta — de la cédula al alquiler.</p>
       </div>
@@ -495,7 +552,7 @@
   <section id="concepto" class="bg-cream">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="label eyebrow">El concepto</p>
+        <p class="label eyebrow" data-i18n="section.concepto_eyebrow">El concepto</p>
         <h2>Un mojón, plantado en tierra colorada.</h2>
         <p class="lede" style="margin-top:14px;">Cuatro principios no negociables sostienen todo lo que hacemos — si alguno faltara, dejaríamos de ser esta empresa.</p>
       </div>
@@ -527,10 +584,10 @@
   </section>
 
   <!-- ============ PROCESO ============ -->
-  <section id="proceso" class="bg-cream">
+  <section id="proceso" class="bg-cream section-sm">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="label eyebrow">Cómo trabajamos</p>
+        <p class="label eyebrow" data-i18n="section.proceso_eyebrow">Cómo trabajamos</p>
         <h2>El proceso de inversión, paso a paso</h2>
         <p class="lede" style="margin-top:14px;">Cuatro etapas, siempre en este orden, acompañadas por nuestra Red de Aliados Profesionales.</p>
       </div>
@@ -563,7 +620,7 @@
   <section id="servicios">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="label eyebrow">Arquitectura de negocio</p>
+        <p class="label eyebrow" data-i18n="section.servicios_eyebrow">Arquitectura de negocio</p>
         <h2>Cinco unidades, no un agente con varios servicios</h2>
         <p class="lede" style="margin-top:14px;">Cada unidad tiene su propia lógica — dos te acompañan antes de invertir, tres te acompañan después.</p>
       </div>
@@ -636,10 +693,10 @@
   </section>
 
   <!-- ============ ALIADOS ============ -->
-  <section class="bg-sand">
+  <section class="bg-sand section-sm">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="label eyebrow">Red de aliados profesionales</p>
+        <p class="label eyebrow" data-i18n="section.aliados_eyebrow">Red de aliados profesionales</p>
         <h2>Nunca estás solo frente a un trámite</h2>
         <p class="lede" style="margin-top:14px;">Un inversor extranjero no tiene forma de verificar por sí mismo la seriedad de un abogado o un escribano paraguayo. Nosotros ya la verificamos — y coordinamos cada etapa para que no tengas que hablar con cuatro personas distintas.</p>
       </div>
@@ -672,7 +729,7 @@
   <section id="calculadora" class="bg-cream">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="label eyebrow">Herramienta</p>
+        <p class="label eyebrow" data-i18n="section.calculadora_eyebrow">Herramienta</p>
         <h2>Calculadora de rentabilidad</h2>
         <p class="lede" style="margin-top:14px;">Estimación de yield bruto y neto según la metodología de Meridiano Capital. Motor real conectado a <code>calculadora.py</code> — mismos números que usa el equipo internamente.</p>
       </div>
@@ -706,10 +763,15 @@
               <label for="c-renta">Renta mensual bruta (USD)</label>
               <input type="number" id="c-renta" min="1" step="1" required placeholder="900">
             </div>
+            <div>
+              <label for="c-email">Tu email (para ver el resultado)</label>
+              <input type="email" id="c-email" required autocomplete="email" placeholder="vos@email.com">
+            </div>
           </div>
           <div class="calc-actions">
             <button type="submit" class="btn btn-ghost-dark">Calcular rentabilidad</button>
           </div>
+          <p class="calc-note">Usamos tu email solo para enviarte este resultado y, si querés, conversarlo con nuestro equipo. No lo compartimos con terceros.</p>
           <p class="calc-error" id="calcError" hidden></p>
         </form>
         <div class="calc-result" id="calcResult">
@@ -728,7 +790,7 @@
   <!-- ============ CTA FINAL / FORMULARIO ============ -->
   <section class="cta-final" id="contacto">
     <div class="wrap" style="max-width:640px;">
-      <p class="label eyebrow on-dark" style="color:rgba(255,255,255,.85)">Hablemos</p>
+      <p class="label eyebrow on-dark" style="color:rgba(255,255,255,.85)" data-i18n="section.contacto_eyebrow">Hablemos</p>
       <h2>Hablemos de tu próxima inversión en Paraguay</h2>
       <p class="lede">Documento confidencial disponible para inversores calificados. Sin compromiso — una primera conversación para entender tu perfil y horizonte.</p>
 
@@ -742,6 +804,17 @@
           <label for="f-email">Email</label>
           <input type="email" id="f-email" name="email" required autocomplete="email">
           <span class="field-error" id="err-email" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-tipo">Tipo de consulta</label>
+          <select id="f-tipo" name="tipo_consulta" required>
+            <option value="" disabled selected>Elegí una opción</option>
+            <option value="inversion">Inversión</option>
+            <option value="gestion">Gestión de mi propiedad</option>
+            <option value="coinversion">Coinversión o desarrollo</option>
+            <option value="otra">Otra consulta</option>
+          </select>
+          <span class="field-error" id="err-tipo" role="alert"></span>
         </div>
         <div class="field">
           <label for="f-country">País desde donde invertís</label>
@@ -784,24 +857,24 @@
         <p>Juan José Castillo — Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay, para inversores extranjeros.</p>
       </div>
       <div>
-        <h5>Navegación</h5>
+        <h5 data-i18n="footer.nav_title">Navegación</h5>
         <ul>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#proceso">Proceso</a></li>
-          <li><a href="#portafolio">Portafolio</a></li>
-          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios" data-i18n="nav.servicios">Servicios</a></li>
+          <li><a href="#proceso" data-i18n="nav.proceso">Proceso</a></li>
+          <li><a href="#portafolio" data-i18n="nav.portafolio">Portafolio</a></li>
+          <li><a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a></li>
         </ul>
       </div>
       <div>
-        <h5>Empresa</h5>
+        <h5 data-i18n="footer.empresa_title">Empresa</h5>
         <ul>
           <li><a href="#portafolio">Urbannit</a></li>
-          <li><a href="#contacto">Coinversión</a></li>
-          <li><a href="#contacto">Recursos</a></li>
+          <li><a href="#contacto" data-i18n="footer.coinversion">Coinversión</a></li>
+          <li><a href="#contacto" data-i18n="footer.recursos">Recursos</a></li>
         </ul>
       </div>
       <div>
-        <h5>Contacto</h5>
+        <h5 data-i18n="footer.contacto_title">Contacto</h5>
         <ul>
           <li>contacto@meridianocapital.com.py</li>
           <li>+595 982 853 111</li>
@@ -841,6 +914,83 @@
     if (e.key === 'Escape' && mobilePanel.classList.contains('open')) closeMobileMenu();
   });
 
+  // ============ i18n (Fase 04, item 12) — estructura preparada, sin traducir todavia ============
+  // El texto en espanol vive una sola vez: en el HTML. No hay un es.json que lo duplique
+  // (evitaria exactamente el problema de "dos fuentes de verdad" que el resto de este repo
+  // ya viene resolviendo). en.json/pt.json son los unicos archivos de traduccion: hoy son
+  // stubs vacios (ver i18n/README.md). El loader NUNCA inventa texto -- si una clave no tiene
+  // traduccion real, se deja el espanol original y se avisa con una nota breve, nunca un
+  // parrafo a medias en otro idioma.
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.dataset.i18nDefault = el.textContent; });
+
+  const i18nCache = {};
+  const i18nNotice = document.getElementById('i18nNotice');
+
+  async function i18nLoad(lang) {
+    if (i18nCache[lang]) return i18nCache[lang];
+    try {
+      const res = await fetch(`/i18n/${lang}.json`);
+      if (!res.ok) throw new Error('sin archivo de i18n');
+      const data = await res.json();
+      i18nCache[lang] = data;
+      return data;
+    } catch {
+      return null;
+    }
+  }
+
+  function i18nShowNotice(msg) {
+    if (!i18nNotice) return;
+    i18nNotice.textContent = msg;
+    i18nNotice.hidden = false;
+    clearTimeout(i18nNotice._hideTimer);
+    i18nNotice._hideTimer = setTimeout(() => { i18nNotice.hidden = true; }, 6000);
+  }
+
+  function i18nSetActiveButtons(lang) {
+    document.querySelectorAll('.lang-switch button').forEach(b => {
+      const active = b.dataset.lang === lang;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  async function setLang(lang, opts) {
+    opts = opts || {};
+    const persist = opts.persist !== false;
+    if (lang === 'es') {
+      document.documentElement.lang = 'es';
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = el.dataset.i18nDefault; });
+      i18nSetActiveButtons('es');
+      if (persist) localStorage.setItem('meridiano_lang', 'es');
+      return;
+    }
+    const data = await i18nLoad(lang);
+    const realKeys = data ? Object.keys(data).filter(k => !k.startsWith('_')) : [];
+    if (!realKeys.length) {
+      i18nShowNotice(lang === 'en'
+        ? 'English version coming soon — showing the Spanish site for now.'
+        : 'Versão em português em preparação — mostrando o site em espanhol por enquanto.');
+      i18nSetActiveButtons('es');
+      if (persist) localStorage.setItem('meridiano_lang', 'es');
+      return;
+    }
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      el.textContent = data[key] || el.dataset.i18nDefault; // clave faltante -> fallback ES, nunca vacio
+    });
+    i18nSetActiveButtons(lang);
+    if (persist) localStorage.setItem('meridiano_lang', lang);
+  }
+
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  const savedLang = localStorage.getItem('meridiano_lang');
+  if (savedLang && savedLang !== 'es') setLang(savedLang, { persist: false });
+
   // Validacion + envio real del formulario de contacto
   const form = document.getElementById('contactForm');
   const successMsg = document.getElementById('formSuccess');
@@ -849,6 +999,7 @@
   const fields = [
     { id: 'f-name', err: 'err-name', msg: 'Contanos tu nombre.' },
     { id: 'f-email', err: 'err-email', msg: 'Ingresa un email valido.' },
+    { id: 'f-tipo', err: 'err-tipo', msg: 'Elegi el tipo de consulta.' },
     { id: 'f-country', err: 'err-country', msg: 'Elegi una opcion.' },
   ];
   form.addEventListener('submit', async (e) => {
@@ -880,6 +1031,7 @@
         body: JSON.stringify({
           name: document.getElementById('f-name').value,
           email: document.getElementById('f-email').value,
+          tipo_consulta: document.getElementById('f-tipo').value,
           country: document.getElementById('f-country').value,
           message: document.getElementById('f-message').value,
         }),
@@ -907,6 +1059,10 @@
       nivel_neto: Number(document.getElementById('c-nivel').value),
       precio_compra: Number(document.getElementById('c-precio').value),
       renta_mensual_bruta: Number(document.getElementById('c-renta').value),
+      // Fase 04, item 13: el resultado solo se muestra si dejaste tu email --
+      // el backend lo guarda como lead (_guardar_lead_calculadora en server.py)
+      // y no se lo pasa a evaluar_renta(), que no lo espera como parametro.
+      email: document.getElementById('c-email').value,
     };
     try {
       const res = await fetch('/api/calcular/renta', {

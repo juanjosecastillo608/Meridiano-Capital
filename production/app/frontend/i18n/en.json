@@ -1,0 +1,4 @@
+{
+  "_status": "pending_translation",
+  "_note": "Stub file, no real English copy yet. WEBSITE-ROADMAP.md Fase 04 item 12 built the i18n mechanism (loader, language switcher, data-i18n attributes) without translating content -- the founder chose 'preparar la estructura i18n, sin traducir todavia' (2026-08-10). Never fill this file with machine-translated or invented copy: real English text needs to come from the founder or an approved translator, matching the brand voice rules in knowledge-base/brand/02-identidad-verbal.md. Until then the site loader (index.html, setLang()) falls back to the Spanish DOM content and shows a short notice instead of a half-translated page."
+}

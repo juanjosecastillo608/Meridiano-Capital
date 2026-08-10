@@ -25,11 +25,11 @@ Abre `http://localhost:8000`.
 | GET | `/` | Sitio (frontend/index.html) |
 | GET | `/api/parametros` | Devuelve `config/parametros_mercado.json` completo |
 | GET | `/api/salud` | Chequeo simple |
-| POST | `/api/calcular/renta` | `Calculadora.evaluar_renta(**body)` |
+| POST | `/api/calcular/renta` | `Calculadora.evaluar_renta(**body)`. `email` es opcional y no se le pasa a `evaluar_renta` (se extrae antes) — si viene, se guarda como lead en `backend/data/calculadora_leads.jsonl` (Fase 04, item 13: el sitio lo pide antes de mostrar el resultado, la API sigue funcionando sin él para otros consumidores) |
 | POST | `/api/calcular/reventa` | `Calculadora.evaluar_reventa(**body)` |
 | POST | `/api/calcular/reventa-temprana` | `Calculadora.evaluar_reventa_temprana(**body)` |
 | POST | `/api/calcular/combinado` | `Calculadora.evaluar_retorno_combinado(**body)` |
-| POST | `/api/contacto` | Guarda `{name, email, country, message}` en `backend/data/contactos.jsonl` |
+| POST | `/api/contacto` | Guarda `{name, email, tipo_consulta, country, message}` en `backend/data/contactos.jsonl` (`tipo_consulta` agregado en Fase 04, item 11: segmentación por tipo de consulta) |
 
 ## ⚠️ Antes de usar esto con inversores reales
 

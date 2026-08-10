@@ -42,12 +42,14 @@ Pedido directo del founder antes de arrancar la Fase 03 formal — corrección d
 9. ✅ **Hecho** — `.tag`/`.split-badge`/`.eyebrow` unificados: nueva clase base `.label` (font-family + text-transform, lo único 100% compartido) agregada a los 14 elementos que usan estas 3 clases; cada selector conserva solo lo que realmente varía (tamaño, peso, letter-spacing, color, margen). Verificado visualmente — sin cambios.
 10. ✅ **Hecho** — `<link rel="preload" as="font">` agregado para el archivo variable de Fraunces (peso 400-700 normal, subset latin — el usado por h1-h4 y `.brand .word`), con la URL real tomada de la respuesta de `fonts.googleapis.com`. Es una URL versionada (Google Fonts no publica una URL estable) — si Google rota la versión, el preload deja de acertar el archivo exacto pero no rompe nada, solo pierde el beneficio de performance hasta la próxima revisión.
 
-## PHASE 04 — UX/UI
+## PHASE 04 — UX/UI ✅ COMPLETA (2026-08-10)
 
-11. Rediseñar el formulario de contacto con segmentación por tipo de consulta (Perfil Profesional, sección 6.7).
-12. Agregar selector de idioma (ES/EN/PT) — requiere decisión de alcance (¿traducción completa o solo hero/CTAs inicialmente?).
-13. Evaluar si la calculadora debe llevar algún paso de calificación previo (decisión de producto, no ejecutar sin validar con el founder).
-14. Variar el ritmo visual entre secciones (hoy casi todas tienen el mismo peso).
+11. ✅ **Hecho** — Formulario de contacto segmentado: nuevo campo `<select id="f-tipo">` ("Inversión / Gestión de mi propiedad / Coinversión o desarrollo / Otra consulta", las 4 categorías elegidas por el founder), validado igual que los demás campos requeridos, persistido como `tipo_consulta` en `contactos.jsonl`. **Corrección 2026-08-10**: la cita "Perfil Profesional, sección 6.7" de la versión anterior de este ítem era incorrecta — no existe esa sección en ningún documento del repo (corregido también en `UX-AUDIT.md`, `GAP-ANALYSIS.md`, `WEBSITE-AUDIT.md`).
+12. ✅ **Hecho** — Estructura i18n (ES/EN/PT) preparada sin traducir, alcance elegido explícitamente por el founder entre 3 opciones. Selector de idioma funcional en header desktop + panel mobile, loader JS (`data-i18n` + `en.json`/`pt.json`), ~25 elementos etiquetados (nav, hero eyebrow/lede/CTAs, 7 eyebrows de sección, footer). El español nunca se duplica — vive una sola vez en el HTML, es el fallback automático. `en.json`/`pt.json` son stubs vacíos: seleccionar EN/PT muestra una nota breve ("coming soon") y deja el sitio en español, nunca una traducción a medias o inventada. Detalle completo de alcance y cómo continuar en `production/app/frontend/i18n/README.md`.
+13. ✅ **Hecho** — La calculadora pide email antes de mostrar el resultado (elegido por el founder sobre mantenerla abierta). Nuevo campo `c-email` (requerido, nativo HTML5), el backend lo extrae del body antes de llamar a `evaluar_renta()` (que no lo espera como parámetro) y lo guarda como lead en `backend/data/calculadora_leads.jsonl` vía `_guardar_lead_calculadora()`; la API sigue funcionando sin email para otros consumidores (CLI de `skills/rentabilidad-calculator/`). Ambos archivos de leads ahora comparten un campo `origen` para que el futuro CRM (D-048) distinga la fuente.
+14. ✅ **Hecho** — Ritmo visual variado: nuevo token `--space-section-sm` (72px) vs. `--space-section` (108px, ya existente). Proceso y Aliados —las 2 secciones más livianas en contenido— usan el padding corto ("respiro"), intercaladas entre las secciones densas (Nosotros, Concepto, Servicios, Calculadora), tal como pedía el hallazgo de `UI-AUDIT.md`.
+
+**Bug encontrado y corregido durante la implementación**: agregar el selector de idioma al header desbordaba el botón "Agendar consulta" fuera del viewport en el rango 881-1180px (verificado con medición real en navegador, no solo visual) — se angostó el propio nav en ese rango (gaps y tamaños de fuente reducidos) en vez de esconder el selector.
 
 ## PHASE 05 — Copywriting
 

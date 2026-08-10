@@ -1,0 +1,4 @@
+{
+  "_status": "pending_translation",
+  "_note": "Arquivo stub, ainda sem conteudo real em portugues. WEBSITE-ROADMAP.md Fase 04 item 12 construiu o mecanismo de i18n (loader, seletor de idioma, atributos data-i18n) sem traduzir o conteudo -- o founder escolheu 'preparar a estrutura i18n, sem traduzir ainda' (2026-08-10). Nunca preencher este arquivo com traducao automatica ou inventada: o texto real em portugues precisa vir do founder ou de um tradutor aprovado, respeitando as regras de voz de marca em knowledge-base/brand/02-identidad-verbal.md. Ate la, o loader do site (index.html, setLang()) volta para o conteudo em espanhol do DOM e mostra um aviso curto em vez de uma pagina meio traduzida."
+}
