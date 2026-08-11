@@ -1,0 +1,187 @@
+--- boleto_A.txt	2026-08-11 19:15:55.554139000 -0300
++++ boleto_B.txt	2026-08-11 19:15:55.619482600 -0300
+@@ -54,14 +54,15 @@
+ inmobiliario edificio uon Calathea situado en el lugar  antes mencionado, individualizado 
+ como sigue: un inmueble que se construye bajo el régimen de propiedad horizontal, 
+ ubicado en el piso segundo, identificado como departamento número 201, con una 
+-superficie propia de m2 63,36 aprox. con distribución de cocina, estar comedor, un 
+-dormitorio con mampara vidriada un baño y balcón de ubicación contrafrente, más un 
+-lugar de estacionamiento (cochera) ubicada en planta baja , identificada como cochera 
+-número 10. . 
++superficie propia de m2 63,36 aprox. Con un porcentual de copropiedad de 4,64% 
++distribución de cocina, estar comedor, un dormitorio con mampara vidriada un baño y 
++balcón de ubicación contrafrente, más un lugar de estacionamiento cochera descubierta 
++ubicada en planta baja , identificada como cochera número 10, con un área propia de 
+ 
+ --- PAGE 2 ---
+ . 
+  
++terreno de 18,70 m2 con un porcentual de copropiedd de 0,40%. 
+  
+ Cuentas catastrales: El trámite para la obtención de las mismas de cada unidad ya se encuentra 
+ iniciado, siendo menester de la municipalidad y los entes involucrados su finalización 
+@@ -106,22 +107,27 @@
+ COMPRADOR abonará a EL VENDEDOR de la siguiente forma: 
+  
+ 2.1.2 
+- Abona EL COMPRADOR a la firma del presente contrato el 40% del monto total o sea la suma 
+-de DÓLARES DE LOS ESTADOS UNIDOS DE NORTEAMERICA CUARENTA Y CUATRO MIL 
+-OCHOCIENTOS (U$S 44.800.-) considerándose efectivizado, una vez que el dinero se encuentre 
+-acreditado en la cuenta de destino de EL VENDEDOR. 
++ Abona EL COMPRADOR a la firma del presente contrato el a modo de seña la suma de 
++DÓLARES DE LOS ESTADOS UNIDOS DE NORTEAMERICA DOS MIL (U$S 2.000.-) considerándose 
++efectivizado, una vez que el dinero se encuentre acreditado en la cuenta de destino de EL 
++VENDEDOR. 
+ 2.1.3 
+ Y el saldo o sea la suma de DÓLARES DE LOS ESTADOS UNIDOS DE NORTEAMERICA 
+-SESENTA Y SIETE MIL DOSCIENTOS (U$S 67.200.-) EL COMPRADOR lo abonara a EL 
+-VENDEDOR antes del día 2 de septiembre del corriente año. Todos los pagos deberán 
+-realizarse por transferencia bancaria a la Cuenta corriente en USD N° 1445027, en Banco 
+-Atlas, a nombre de ADESA E.A.S código SWIFT banco atlas: BNITPYPAXXX. Los pagos se 
+-considerarán efectivizados una vez que sean debidamente acreditados en la cuenta 
++CIENTO DIEZ MIL (U$S 110.000.-) EL COMPRADOR lo abonara a EL VENDEDOR de la 
++siguiente forma: la cantidad de DÓLARES DE LOS ESTADOS UNIDOS DE NORTEAMERICA 
++CINCUENTA Y CINCO MIL (U$S 55.000.-), dentro de los 5 días hábiles posteriores a la firma 
++del presente y la suma de DÓLARES DE LOS ESTADOS UNIDOS DE NORTEAMERICA 
+ 
+ --- PAGE 3 ---
+ . 
+  
+-provista por EL VENDEDOR. 
++CINCUENTA Y CINCO MIL (U$S 55.000.-) dentro del plazo que comprende los primeros 
++diez días del mes de septiembre del corriente año, una vez acreditado este pago en la 
++cuenta de destino recibirá EL COMPRADOR la posesión de las unidades. Todos los pagos 
++deberán realizarse por transferencia bancaria a la Cuenta corriente en USD N° 1445027, 
++en Banco Atlas, a nombre de ADESA E.A.S código SWIFT banco atlas: BNITPYPAXXX. Los 
++pagos se considerarán efectivizados una vez que sean debidamente acreditados en la 
++cuenta provista por EL VENDEDOR. 
+ Todas las sumas expresadas en la presente cláusula deberán ser abonadas en DÓLARES DE LOS 
+ ESTADOS UNIDOS DE NORTEAMÉRICA. Podrá, no obstante, realizarse el pago en guaraníes 
+ conforme al tipo de cambio vendedor de DÓLARES DE LOS ESTADOS UNIDOS DE NORTEAMÉRICA 
+@@ -168,16 +174,16 @@
+  
+ CLAUSULA CUARTA: FALLECIMIENTO DEL COMPRADOR 
+ En caso de fallecimiento quiebra o incapacidad de pago de una de las partes sus herederos 
++
++--- PAGE 4 ---
++. 
++ 
+ sucesores o curador deberán unificar su representación dentro del término de 60 (sesenta) días 
+ de producido el hecho y dar cumplimiento a todas y cada una de las condiciones establecidas en 
+ el presente contrato. En caso de que no lo hicieran, cualquiera de las partes podrá exigir 
+ judicialmente su cumplimiento o rescindir este contrato. 
+  
+ CLÁUSULA QUINTA: INCUMPLIMIENTO DEL BOLETO DE COMPRAVENTA Y SU RESCISIÓN 
+-
+---- PAGE 4 ---
+-. 
+- 
+ El incumplimiento de las cláusulas y condiciones de este boleto de compraventa por cualquiera 
+ de las PARTES autorizará a la otra PARTE a exigir su cumplimiento o a rescindirlo 
+ inmediatamente sin necesidad de interpelación o notificación previa sea judicial o extrajudicial. 
+@@ -225,16 +231,16 @@
+ puntualmente las expensas comunes, impuestos, tasas especiales, servicios básicos y demás 
+ servicios municipales u otros correspondientes que afectan o gravan la UNIDAD. El pago de 
+ las expensas deberá realizarse dentro de los 5 (cinco) primeros días de cada mes a la 
++
++--- PAGE 5 ---
++. 
++ 
+ administración designada por EL VENDEDOR en el Reglamento de Copropiedad y 
+ Administración. Asimismo, responderá por las obras de conexión e instalación adicionales 
+ que realicen los órganos competentes o se realicen por decisión de los copropietarios del 
+ edificio uon Calathea, tanto en la UNIDAD como en sus partes comunes. Queda igualmente 
+ EL COMPRADOR obligado a pagar los impuestos, tasas y demás gastos que afecten la 
+ copropiedad y administración del edificio uon Calathea. El COMPRADOR será responsable 
+-
+---- PAGE 5 ---
+-. 
+- 
+ de dichos pagos aun cuando la factura sea emitida a nombre EL VENDEDOR. 
+ 7.3 En oportunidad de que la UNIDAD esté lista para posesión y se dé noticia de ello EL 
+ COMPRADOR, y como condición de ello y de la firma de la escritura pública traslativa de 
+@@ -245,15 +251,9 @@
+ CLAUSULA OCTAVA: RECEPCION DE LA UNIDAD 
+ 8. Desde la posesión de la UNIDAD, EL COMPRADOR asume la responsabilidad de los hechos y 
+ actos que sucedan en la UNIDAD y los realizados por éste y sus invitados y/o inquilinos en el 
+-edificio uno Calathea. EL COMPRADOR no podrá oponerse a recibir la posesión de la UNIDAD 
+-por no haberse concluido totalmente los trabajos del edificio uon Calathea, cuando en la 
+-UNIDAD, las vías de acceso centrales y los servicios básicos se encuentren completamente 
+-terminados y por ende la UNIDAD se considere habitable. Se considerará habitable la UNIDAD 
+-cuando las obras dentro de la misma se encuentren totalmente culminadas, cuente con la 
+-provisión de los servicios básicos de electricidad, agua corriente, las vías de acceso centrales y 
+-a la cochera se encuentren completamente terminados y seguras para su uso. La falta de 
+-recepción de la UNIDAD en la fecha indicada por EL VENDEDOR se considerará un 
+-incumplimiento del presente boleto de compraventa 
++edificio uno Calathea. La unidad al día de hoy se encuentra terminada y habitable, como el 
++total del edificio. La falta de recepción de la UNIDAD en la fecha indicada por EL VENDEDOR se 
++considerará un incumplimiento del presente boleto de compraventa 
+  
+    CLÁUSULA NOVENA: RESERVA DE PROPIEDAD A FAVOR DEL VENDEDOR 
+ 9.1. La operación instrumentada en este documento se realiza con reserva de la propiedad a 
+@@ -265,9 +265,14 @@
+ la propiedad de la UNIDAD ante el escribano público designado por EL VENDEDOR. Dicha 
+ suscripción deberá realizarse en un plazo que no podrá exceder los 90 (noventa) días hábiles 
+ contados a partir de la fecha en que EL VENDEDOR notifique su voluntad de proceder con la 
+-escritura, siempre que haya cancelado todos los pagos en virtud del presente contrato, siempre 
+-y cuando la UNIDAD se encuentre construida y habitable conforme a los términos y alcances 
+-establecidos en el presente boleto de compraventa. 
++escritura, siempre que haya cancelado todos los pagos en virtud del presente contrato. La 
++escritura será suscripta en un plazo no mayor a 5 meses posteriores a la inscripción de 
++protocolización del reglamento de copropiedad que EL VENDEDOR se compromete a gestionar 
++en la escribanía interviniente una vez concluido el trámite de cuentas catastrales municipales, 
++no siendo causa imputable para EL VENDEDOR, cualquier retraso comprobable al registro de la 
++propiedad o cualquier ente interviniente, pudiendo exigir EL COMPRADOR el cumplimiento de 
++los plazos contractuales según lo establece la ley, si existiera negligencia o inoperancia de EL 
++VENDEDOR. 
+  
+ 10.2. Al efecto, EL VENDEDOR comunicará con una antelación de por lo menos 30 días corridos 
+ el día y lugar de firma de la escritura pública. En caso de incomparecencia, la firma se postergará 
+@@ -283,15 +288,15 @@
+ obstáculo de que se trate, sin penalidad para las PARTES. 
+ 10.4. Los gastos relacionados con la escritura pública de transferencia de la UNIDAD, incluyendo 
+ todos los costos, impuestos, gastos y honorarios profesionales del escribano serán soportados 
++
++--- PAGE 6 ---
++. 
++ 
+ íntegramente por EL COMPRADOR. 
+  
+ 10.5. De común acuerdo, las PARTES acuerdan que es EL VENDEDOR quien tiene la facultad para 
+ designar el escribano la confección, gestión y otorgamiento de la escritura pública 
+ correspondiente, y de todos los demás trámites notariales que sean necesarios. 
+-
+---- PAGE 6 ---
+-. 
+- 
+  
+ CLÁUSULA DÉCIMA PRIMERA: ORIGEN DE LOS FONDOS 
+ 11.1. El COMPRADOR declara bajo fe de juramento que las informaciones proporcionadas a EL 
+@@ -340,15 +345,15 @@
+  
+ CLÁUSULA DÉCIMA QUINTA: MODIFICACIONES 
+ 15.1. Las PARTES entienden y aceptan que los anexos al presente boleto de compraventa 
++
++--- PAGE 7 ---
++. 
++ 
+ pueden sufrir variaciones ajenas a la voluntad de EL VENDEDOR, basadas en disposiciones de 
+ autoridad administrativa y/o por razones técnicas que obliguen a adecuar la estructura edilicia 
+ del edificio uon Calathea. Igualmente, las PARTES comprenden que la memoria descriptiva 
+ representa cualidades enunciativas y meramente ejemplificativas, y que de existir faltantes EL 
+ VENDEDOR podrá reemplazarlos por otros de igual o superior calidad , siempre en base al 
+-
+---- PAGE 7 ---
+-. 
+- 
+ principio de buena fe y buscando mantener el estándar de calidad del Proyecto. 
+  
+    CLÁUSULA DÉCIMA SEXTA: INVALIDEZ 
+@@ -390,7 +395,6 @@
+  
+  
+  
+- 
+  
+  
+  

@@ -20,7 +20,7 @@ Antes de confiar en o mostrar cualquier cifra de rentabilidad (propia o generada
 
 ## Estructura del repo
 
-Reestructurada el 2026-08-02 según la arquitectura de 10 capas aprobada en `documentation/MIGRATION_MASTER_REPORT.md` (Fase 7). Los movimientos se hicieron con `git mv` — el historial se conserva.
+Reestructurada el 2026-08-02 según la arquitectura de 10 capas aprobada en `documentation/MIGRATION_MASTER_REPORT.md` (Fase 7). Los movimientos se hicieron con `git mv` — el historial se conserva. Ampliada a 11 capas el 2026-08-11 (ver `contracts/` abajo, D-054).
 
 - `00_RAW_MIGRATION/` — depósito para el export real de Claude.ai cuando llegue (vacío hasta entonces, ver su `README.md`). Solo lectura para el proceso de migración, nunca se edita.
 - `inventory/` — Fase 1: inventario de todo el material fuente + copias crudas sin modificar (`_raw-copies/`, ARCHIVE).
@@ -28,6 +28,7 @@ Reestructurada el 2026-08-02 según la arquitectura de 10 capas aprobada en `doc
 - `governance/decisions/` — capa GOVERNANCE: `DECISION_REGISTER.md` (CURRENT/HISTORICAL/DEPRECATED/UNRESOLVED/PROPOSED) y `REQUIREMENTS.md`.
 - `assets/` — logos fuente (`.svg`), brandbook (`.png`), manual de marca oficial (`.docx`), sitio de referencia (`.html`, archivado — no editar, la copia viva está en `production/app/frontend/`).
 - `production/app/` — capa PRODUCTION: software funcional. Ver `production/app/README.md` para cómo correrlo.
+- `contracts/` — capa CONTRACTS (agregada 2026-08-11, D-054): gestión operativa de casos contractuales inmobiliarios reales, uno por operación, en `contracts/cases/<CASO>/` (p. ej. `UON-001/`). Cada caso sigue el protocolo Meridiano Capital Real Estate Contract & Negotiation Intelligence — documento fuente → extracción → hechos verificados → conflictos → versionado de boleto (`contract-versions/CONTRACT_CHANGE_LOG.md`) → decisiones (`resolution/DECISION_HISTORY.md`) → revisión legal (`legal-review/`). Contiene PII real de clientes (cédula, domicilio, cifras de la operación) — **no tratar como `knowledge-base/` ni citar en piezas públicas de marca**. Ver el `README.md` de cada caso como índice.
 - `core/`, `memory/`, `skills/`, `connectors/`, `workflows/`, `projects/` — resto de la arquitectura de 10 capas. Se van poblando durante el Implementation Roadmap (`documentation/MIGRATION_MASTER_REPORT.md`, Fase 12); `skills/` y `workflows/` ya tienen su primer contenido real (`rentabilidad-calculator`, `rentabilidad-evaluation`).
 - `documentation/` — capa DOCUMENTATION: `MIGRATION_MASTER_REPORT.md` y demás referencia sobre el sistema mismo. (`README.md` y este `CLAUDE.md` quedan en la raíz por convención — GitHub y Claude Code los cargan desde ahí.)
 

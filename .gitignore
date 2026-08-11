@@ -10,3 +10,8 @@ production/generadores/*.pptx
 production/generadores/*.pdf
 production/generadores/*.docx
 production/generadores/Meridiano_WhatsApp_Frio.png
+
+# Renders de página de trabajo usados para leer PDFs escaneados en un caso de
+# contracts/ (OCR visual) -- derivados, regenerables desde source-documents/,
+# no un entregable. Mismo criterio que la regla de generadores/ de arriba.
+contracts/cases/*/extracted-data/page-renders/

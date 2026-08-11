@@ -1,0 +1,83 @@
+
+--- PAGE 1 ---
+TOTAL: 15 AUTOS, 6 MOTOS
+PLANTA BAJA
+ESCALA 1/100
+01
+02
+03
+04
+05
+06
+07
+08
+10
+11
+12
+14
+15
+M01
+M02
+M03
+M04
+M05
+M06
+13
+09
+TRANSFORMADOR
+EN PEDESTAL
+GENERADOR
+-0.10
+-0.20
++0.00
+-0.40
+-0.20
+-0.55
+-0.20
+LOBBY
+SSHH
+DEPÓSITO
+ESTACIONAMIENTO
+ÁREA TÉCNICA
+TANQUE INFERIOR
+25,6m3
+A
+A
+B
+B
+Portón eléctrico corredizo
+Salida de emergencia
+secundaria
+BASURERO
+EVAPORADOR
+24000 BTU
+EVAPORADOR
+24000 BTU
+COMPRESOR multisplit
+con estructura metálica de
+soporte adosada al muro
+h=2m
+MEDIDORES
+-0.40
+4.35
+0.50
+0.70
+1.57
+1.09
+3.12
+1.25
+3.00
+1.44
+1.25
+0.34
+2.68
+0.45
+0.59
+0.55
+0.45
+3.48
+1.30
+2.68
+1.85
+2.80
+1.60
