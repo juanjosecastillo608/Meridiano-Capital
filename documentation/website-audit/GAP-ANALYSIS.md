@@ -7,7 +7,7 @@ Parte de: WEBSITE-AUDIT.md
 
 | Área | Actual | Objetivo | Gap | Acción |
 |---|---|---|---|---|
-| Fotografía | 0 imágenes reales, 100% CSS/SVG | Dirección fotográfica editorial en hero, proceso, portafolio | Total | Bloqueado por U-022 (banco de imagen no producido) — no se puede resolver desde el código |
+| Fotografía | 0 imágenes reales, 100% CSS/SVG (+ nuevo símbolo decorativo `#contornos`, D-053, 2026-08-10 — sigue sin ser fotografía) | Dirección fotográfica editorial en hero, proceso, portafolio | Total | **Sigue bloqueado por U-022** (banco de imagen no producido). Se evaluaron y descartaron 2 alternativas: IA simulando propiedades reales (prohibido por la propia regla de U-022) y el servicio pago de generación de imágenes disponible en esta sesión (descartado por costo) — no se puede resolver desde el código sin material fuente real |
 | ~~Perfil del CEO~~ | ✅ **Resuelto 2026-08-10** — sección "Quiénes somos" con bio, rol y monograma "JJC" (sin fabricar foto falsa) | — | — | — |
 | ~~Portfolio visible~~ | ✅ **Resuelto 2026-08-10** — 4 cifras reales (53/11/35/18) en la sección "Quiénes somos", sin mencionar ninguna de las 6 S.A. | — | — | — |
 | Catálogo de oportunidades | No existe | Sección/página "Oportunidades de Inversión" navegable | Total | Requiere decisión de contenido (¿qué proyectos mostrar, con qué nivel de detalle público?) antes de construir |

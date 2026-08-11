@@ -56,31 +56,32 @@ Pedido directo del founder antes de arrancar la Fase 03 formal — corrección d
 15. ✅ **Hecho (D-052)** — Reescritura de "Proceso" con voz técnica, **ampliada a corrección de secuencia**: se encontró que la versión anterior decía "siempre en este orden" con cédula como paso 1, contradiciendo `business/02-camino-migratorio.md` (D-038) — la cédula es opcional/paralela, la vía real es S.A. sin cédula (Meridiano como representante legal y síndico, compra inmediata sin trámite migratorio). Founder eligió explícitamente corregir la secuencia, no solo el tono, entre 2 opciones presentadas. Nuevo orden: (1) Constitución de SA sin cédula, (2) Apertura de cuenta bancaria, (3) Cédula de identidad paraguaya (opcional, en paralelo), (4) Selección y cierre — última a propósito para conservar el círculo dorado de cierre del diseño existente.
 16. ✅ **Hecho (2026-08-10, Fase 02)** — La narrativa de "16 años" ahora tiene evidencia concreta: bio del CEO + portfolio real (53/11/35/18) en "Quiénes somos".
 
-## PHASE 06 — Photography
+## PHASE 06 — Photography 🟡 PARCIAL (2026-08-10) — U-022 sigue bloqueada
 
-17. **Bloqueada por U-022** (banco de imagen no producido) — no se puede ejecutar desde el código. Es la fase de mayor impacto perceptual de todo el roadmap, y la única que no depende de trabajo de desarrollo.
-18. Una vez exista el banco de imagen: definir el sistema de tratamiento (crops, proporción, filtro de color) como parte de `DESIGN-SYSTEM.md`.
+17. **Sigue bloqueada por U-022** (banco de imagen no producido) — no se puede ejecutar desde el código. Se evaluaron 2 alternativas y se descartaron ambas por gobernanza antes de tocar el sitio: (a) fabricar fotos de propiedades reales con IA — prohibido explícitamente por la propia regla de U-022 ("IA solo para piezas de marca"), y (b) usar el único servicio de generación de imágenes disponible en esta sesión — es pago (créditos reales de terceros), descartado por el founder al confirmarlo. Sigue siendo la fase de mayor impacto perceptual pendiente, y la única que de verdad requiere material nuevo (fotos/renders reales), no solo trabajo de desarrollo.
+18. ✅ **Hecho (D-053), como paso intermedio explícitamente parcial** — Nuevo símbolo SVG decorativo `#contornos` (líneas de nivel topográfico + línea de meridiano dorada, extendiendo la construcción de `#mojon`), aplicado como fondo sutil de la sección `#concepto`. Construido a mano, sin costo, colores exactos de `brand/05-sistema-cromatico.md`, no representa ninguna propiedad real. **No resuelve U-022** ni el hallazgo de fondo de `UI-AUDIT.md` ("falta un segundo lenguaje visual de fotografía") — es una mejora acotada de un componente, no un sistema de imagen completo.
+19. Una vez exista el banco de imagen real: definir el sistema de tratamiento (crops, proporción, filtro de color) como parte de `DESIGN-SYSTEM.md`.
 
 ## PHASE 07 — Design System
 
-19. Documentar formalmente el Design System ya real (este ciclo ya produjo la base en `DESIGN-SYSTEM.md` — falta la costura de imagen e iconografía, dependiente de Fase 06).
+20. Documentar formalmente el Design System ya real (este ciclo ya produjo la base en `DESIGN-SYSTEM.md`, más el nuevo símbolo `#contornos` de Fase 06 — sigue faltando la costura de fotografía real, dependiente de U-022).
 
 ## PHASE 08 — Performance
 
-20. Verificar `font-display`/fallback real con una prueba de red bloqueada.
-21. Medir Core Web Vitals reales con Lighthouse una vez el sitio tenga hosting (bloqueado por U-011).
-22. Resolver el hosting/dominio del backend (U-011) — condición previa para que el formulario de contacto sea productivo de verdad, no solo funcional localmente.
+21. Verificar `font-display`/fallback real con una prueba de red bloqueada.
+22. Medir Core Web Vitals reales con Lighthouse una vez el sitio tenga hosting (bloqueado por U-011).
+23. Resolver el hosting/dominio del backend (U-011) — condición previa para que el formulario de contacto sea productivo de verdad, no solo funcional localmente.
 
 ## PHASE 09 — SEO
 
-23. Agregar Open Graph + Twitter Card (bajo esfuerzo, cambio de alto impacto para compartir en LinkedIn/WhatsApp).
-24. Agregar schema.org (`Organization`/`RealEstateAgent`) en JSON-LD.
-25. `sitemap.xml` y `robots.txt` — de baja prioridad mientras el sitio siga siendo de una sola página, pero preparar la estructura antes de que exista más de una página real (catálogo de oportunidades, blog).
+24. Agregar Open Graph + Twitter Card (bajo esfuerzo, cambio de alto impacto para compartir en LinkedIn/WhatsApp).
+25. Agregar schema.org (`Organization`/`RealEstateAgent`) en JSON-LD.
+26. `sitemap.xml` y `robots.txt` — de baja prioridad mientras el sitio siga siendo de una sola página, pero preparar la estructura antes de que exista más de una página real (catálogo de oportunidades, blog).
 
 ## PHASE 10 — Final QA
 
-26. Segunda auditoría completa (protocolo de cierre, sección 35 del brief): BEFORE / AFTER / WHY / IMPACT / SCORE, comparando contra el score inicial de 74/100 de `WEBSITE-AUDIT.md`.
-27. Verificación cruzada del Brand Guardian (`ai/04-director-creativo-y-brand-guardian.md`) sobre la versión final, como exige `CLAUDE.md` para cualquier pieza de marca antes de considerarse entregada.
+27. Segunda auditoría completa (protocolo de cierre, sección 35 del brief): BEFORE / AFTER / WHY / IMPACT / SCORE, comparando contra el score inicial de 74/100 de `WEBSITE-AUDIT.md`.
+28. Verificación cruzada del Brand Guardian (`ai/04-director-creativo-y-brand-guardian.md`) sobre la versión final, como exige `CLAUDE.md` para cualquier pieza de marca antes de considerarse entregada.
 
 ## Regla de ejecución
 

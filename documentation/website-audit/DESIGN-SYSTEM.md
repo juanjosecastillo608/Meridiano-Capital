@@ -48,7 +48,7 @@ El sitio ya tenía un sistema de tamaños consistente (ver `TYPOGRAPHY-AUDIT.md`
 
 ## Iconography / Image System
 
-**No existe todavía** — el sitio usa exclusivamente 2 símbolos SVG (`#mojon`, `#keyhole`) más iniciales de texto en círculos para la Red de Aliados. No hay un sistema de íconos de línea ni un sistema de imagen (crops, tratamiento de color, proporción) porque no hay fotografía. Este es el componente de mayor prioridad a construir, no a "auditar" — depende de que exista el banco de imagen (U-022).
+**Sigue sin existir un sistema de fotografía** (bloqueado por U-022, sin cambios). El sitio ahora usa 3 símbolos SVG — `#mojon`, `#keyhole` y, desde 2026-08-10 (D-053, Fase 06), `#contornos` (líneas de nivel topográfico + meridiano dorado, decoración abstracta de marca, aplicada como fondo de `#concepto`) — más iniciales de texto en círculos para la Red de Aliados. `#contornos` es una mejora acotada de un componente puntual, elegida explícitamente en vez de fabricar fotos falsas de propiedades o pagar un servicio de generación de imágenes de terceros — **no sustituye** un sistema de íconos de línea completo ni un sistema de imagen real (crops, tratamiento de color, proporción), que sigue siendo el componente de mayor prioridad a construir cuando exista el banco de imagen real.
 
 ## Responsive Rules (ya reales, ver `UI-AUDIT.md`)
 

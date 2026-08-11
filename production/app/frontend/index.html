@@ -256,6 +256,12 @@
   section{ padding: var(--space-section, 108px) 0; }
   .section-sm{ padding: var(--space-section-sm, 72px) 0; }
   .section-head{ max-width:640px; margin-bottom:56px; }
+
+  /* WEBSITE-ROADMAP.md Fase 06 (D-053): capa de fondo decorativa (#contornos), ver el
+     <symbol> junto a #mojon/#keyhole para la nota de gobernanza completa. */
+  #concepto{ position:relative; overflow:hidden; }
+  #concepto .wrap{ position:relative; z-index:1; }
+  .concept-bg{ position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
   .section-head h2{ font-size: var(--font-h2); margin-top:12px; }
   .bg-cream{ background: var(--cream); }
   .bg-sand{ background: var(--sand); }
@@ -435,6 +441,24 @@
     <circle cx="50" cy="35" r="14" fill="none" stroke-width="6"/>
     <path d="M50 48 L64 80 L36 80 Z" fill="none" stroke-width="6" stroke-linejoin="round"/>
   </symbol>
+  <!-- WEBSITE-ROADMAP.md Fase 06 (2026-08-10, D-053): pieza de marca abstracta/grafica --
+       lineas de nivel topografico ("medimos el terreno") atravesadas por una linea de
+       meridiano dorada con el punto de cruce, extendiendo la construccion del isotipo
+       #mojon (linea de longitud + punto dorado). No representa ninguna propiedad real --
+       decoracion geometrica, no fotografia. Colores exactos de brand/05-sistema-cromatico.md
+       (--tierra #8B3323, --gold #C9982E), sin HEX improvisados. Alternativa elegida por el
+       founder frente a fotografia real (bloqueada por U-022) y a generacion de imagen IA
+       (servicio pago de terceros, descartado). -->
+  <symbol id="contornos" viewBox="0 0 1200 400">
+    <path d="M0,52 C150,30 150,74 300,52 C450,30 450,74 600,52 C750,30 750,74 900,52 C1050,30 1050,74 1200,52" fill="none" stroke="#8B3323" stroke-width="1.5" stroke-opacity="0.35"/>
+    <path d="M0,108 C160,85 160,131 320,108 C480,85 480,131 640,108 C800,85 800,131 960,108 C1120,85 1120,131 1200,108" fill="none" stroke="#8B3323" stroke-width="1.5" stroke-opacity="0.3"/>
+    <path d="M0,172 C140,145 140,199 280,172 C420,145 420,199 560,172 C700,145 700,199 840,172 C980,145 980,199 1120,172 C1160,166 1180,168 1200,172" fill="none" stroke="#8B3323" stroke-width="1.5" stroke-opacity="0.28"/>
+    <path d="M0,238 C170,210 170,266 340,238 C510,210 510,266 680,238 C850,210 850,266 1020,238 C1110,226 1155,232 1200,238" fill="none" stroke="#8B3323" stroke-width="1.5" stroke-opacity="0.24"/>
+    <path d="M0,304 C155,278 155,330 310,304 C465,278 465,330 620,304 C775,278 775,330 930,304 C1065,290 1135,298 1200,304" fill="none" stroke="#8B3323" stroke-width="1.5" stroke-opacity="0.18"/>
+    <path d="M0,364 C180,340 180,388 360,364 C540,340 540,388 720,364 C900,340 900,388 1080,364 C1130,356 1170,360 1200,364" fill="none" stroke="#8B3323" stroke-width="1.5" stroke-opacity="0.13"/>
+    <line x1="760" y1="0" x2="760" y2="400" stroke="#C9982E" stroke-width="2" stroke-opacity="0.55"/>
+    <circle cx="760" cy="172" r="5" fill="#C9982E" fill-opacity="0.7"/>
+  </symbol>
 </svg>
 
 <a href="#main-content" class="skip-link">Saltar al contenido</a>
@@ -550,6 +574,7 @@
 
   <!-- ============ POR QUE MERIDIANO (DNA) ============ -->
   <section id="concepto" class="bg-cream">
+    <svg class="concept-bg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#contornos"/></svg>
     <div class="wrap">
       <div class="section-head reveal">
         <p class="label eyebrow" data-i18n="section.concepto_eyebrow">El concepto</p>
