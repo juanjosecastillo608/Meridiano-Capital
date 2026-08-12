@@ -27,3 +27,7 @@ Sistema jurídico-operativo de Urbannit (contratos, reglamentos, políticas, for
 **Auditoría documental (D-062, 2026-08-12)**: ✅ completada. 1 inconsistencia real corregida (título del Anexo I, distinto entre la Cláusula 2.3 del contrato y el propio documento). Sin contradicciones de fondo en cifras, plazos ni responsabilidades entre los 5 documentos, ni contra el material comercial ya aprobado (D-056/057/058). Ver `04-auditoria-documental.md`.
 
 **Pendiente**: `URB-REG-001` (reglamento de huéspedes) descartado por ahora — el founder confirmó que `URB-CON-005` ya alcanza. Sigue bloqueado por validación legal externa: `URB-POL-001` (seguro) y `URB-POL-002` (SENATUR).
+
+**Agendado como pendiente (2026-08-12)** — ver `governance/decisions/DECISION_REGISTER.md`:
+- **U-032**: enviar el paquete completo (5 documentos, ya auditado) a un abogado paraguayo real — validar seguro de responsabilidad civil y alcance de SENATUR/Registur. Ninguno de los 5 documentos debe firmarse antes de esto.
+- **U-033**: decidir si `URB-REP-001` (Liquidación Mensual) debe incluir la razón social/RUC de Campo Agreste S.A.
