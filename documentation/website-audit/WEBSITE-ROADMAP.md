@@ -78,10 +78,12 @@ Pedido directo del founder antes de arrancar la Fase 03 formal — corrección d
 25. ✅ **Hecho** — `schema.org` `RealEstateAgent` en JSON-LD (nombre, email, teléfono, dirección de Asunción sin domicilio exacto, países atendidos, founder). Verificado como JSON válido en el navegador (`JSON.parse` sin error).
 26. ✅ **Hecho** — `sitemap.xml` (una entrada, la home) y `robots.txt` con referencia al sitemap. **Bug encontrado y corregido en el camino**: (a) el servidor no tenía `.xml`/`.txt` en su mapa de content-types — caían a `application/octet-stream`, que fuerza descarga en vez de mostrar el contenido (un rastreador real igual lo habría leído, pero se corrigió por prolijidad — ver `server.py`); (b) el comentario XML original de `sitemap.xml` tenía guiones dobles (`--`), inválido en comentarios XML — el navegador lo rechazaba con error de parseo. Se quitó el comentario, el XML quedó mínimo y válido (verificado renderizando el árbol del documento en el navegador).
 
-## PHASE 10 — Final QA
+## PHASE 10 — Final QA ✅ COMPLETA (2026-08-12) — ver `FINAL-QA.md`
 
-27. Segunda auditoría completa (protocolo de cierre, sección 35 del brief): BEFORE / AFTER / WHY / IMPACT / SCORE, comparando contra el score inicial de 74/100 de `WEBSITE-AUDIT.md`.
-28. Verificación cruzada del Brand Guardian (`ai/04-director-creativo-y-brand-guardian.md`) sobre la versión final, como exige `CLAUDE.md` para cualquier pieza de marca antes de considerarse entregada.
+27. ✅ **Hecho** — Segunda auditoría completa, protocolo BEFORE/AFTER/WHY/IMPACT/SCORE. Score final: **88/100** (antes 74/100, +14) — cruza el umbral "Premium/Production Ready (80-89)" que marcaba la auditoría inicial. Barrido de contraste de accesibilidad del dorado repetido desde cero contra el CSS final: cero violaciones en las 11 apariciones de `var(--gold)`/`var(--gold-d)`. Detalle completo, criterio por criterio, en `FINAL-QA.md`.
+28. ✅ **Hecho** — Matriz de Decisión del Brand Guardian (10 criterios) corrida formalmente contra el sitio final. **Veredicto: REQUIERE AJUSTE** (2 criterios — Fotografía/imagen y Premiumización — ambos apuntando al mismo gap de fondo: fotografía real bloqueada por U-022, no un problema de ejecución). Cero criterios NO ALINEADO — ninguna de las 6 violaciones duras del logo ni la regla de accesibilidad del dorado fallan. Detalle en `FINAL-QA.md`.
+
+**Con esto se cierran las 10 fases del roadmap.** Los pendientes que quedan (fotografía real, deploy en GoDaddy, traducción EN/PT, catálogo de Oportunidades, CTA final, elegir CRM) están todos documentados explícitamente en `FINAL-QA.md` con la razón de por qué no se ejecutaron en este ciclo — ninguno es un olvido, cada uno depende de una decisión o insumo del founder que no estaba disponible en este ciclo.
 
 ## Regla de ejecución
 
