@@ -1,4 +1,7 @@
 # UON-001 — DECISION HISTORY
+
+> ⚠️ **Superado como fuente de consulta.** Desde el Step 6 de `contracts/V2_IMPLEMENTATION_BLUEPRINT.md` (11/08/2026), la fuente vigente es **`DECISION_LOG.md`** (misma carpeta) — mismo contenido, con estado formal (`PROPOSED`/`UNDER_REVIEW`/`APPROVED`/`REJECTED`/`SUPERSEDED`) y el formato completo de la Sección 10 del prompt maestro V2. Este archivo se conserva sin editar por trazabilidad, no se borra ni se actualiza más.
+
 Registro de decisiones adoptadas durante la negociación, separado del "Current Truth" (el boleto vigente). Objetivo: que ninguna cláusula ya decidida vuelva a proponerse por desconocimiento en una futura revisión.
 
 ---
