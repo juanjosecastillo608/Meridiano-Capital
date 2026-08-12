@@ -16,4 +16,6 @@ Catálogos centralizados que hoy viven como prosa dispersa dentro de los reporte
 - `change-request-catalog.md` ✅ creado (Step 8) — estados de Change Request, escala de impacto.
 - `negotiation-catalog.md` ✅ creado (Step 9) — estados de Negotiation Case, reglas duras de negociación.
 - `commitment-catalog.md` ✅ creado (Step 10) — estados de Commitment, regla de fecha límite relativa.
-- Resto (Action) pendiente, se centraliza en Step 11.
+- `action-catalog.md` ✅ creado (Step 11) — estados de Action, criterio de creación y de agrupación.
+
+Con esto quedan pobladas todas las capas de `config/` previstas en el modelo de datos original (Blueprint, Sección 5). Faltaría solo el catálogo del Case Dashboard (Step 12), que no introduce una entidad nueva — lee las demás.

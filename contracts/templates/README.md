@@ -10,5 +10,6 @@ Archivo en blanco de cada registro del modelo de datos V2 (Blueprint, Sección 5
 - `CHANGE_REQUESTS_template.md` ✅ creado (Step 8)
 - `NEGOTIATION_CASE_template.md` ✅ creado (Step 9)
 - `COMMITMENT_REGISTER_template.md` ✅ creado (Step 10)
+- `ACTION_REGISTER_template.md` ✅ creado (Step 11)
 
-Pendientes (Step 11 del Blueprint): `ACTION_REGISTER_template.md`, `CASE_DASHBOARD_template.md`.
+Pendiente: `CASE_DASHBOARD_template.md` (Step 12 — el Dashboard no es una entidad con datos propios, es una vista que lee todo lo demás; su plantilla se arma al construir el primero real).

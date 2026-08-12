@@ -1,1 +1,1 @@
-Se puebla en el **Step 11** del `V2_IMPLEMENTATION_BLUEPRINT.md` — `ACTION_REGISTER.md` con seguimiento de las acciones abiertas por los Issues (Step 5) que todavía no tienen una Decision ni un Commitment que las cierre.
+✅ **Step 11 completo.** Ver `ACTION_REGISTER.md` — 11 acciones, todas `OPEN`, ninguna iniciada todavía (dato real, no un hueco del registro). Incluye la confirmación de Juan José Castillo (11/08/2026) de que la carta al cliente no fue enviada (`ACTION-009`).

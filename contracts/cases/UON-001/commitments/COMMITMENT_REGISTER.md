@@ -3,6 +3,8 @@ Migrado desde `client-response/INTERNO_no_enviar_Nivel3_argumentacion.md` (Step 
 
 **Nota honesta que corrige una imprecisión del documento de origen:** el anexo interno decía *"la carta enviada al cliente"* — pero, verificado contra el `UON-001_CASE_DASHBOARD` (Step 12, en preparación) y el propio flujo del caso, **no consta que la carta se haya enviado realmente a COMPRADORA-A (ver FACT-010)**, solo que se redactó y se entregó a Meridiano para su revisión (Gate 6, Sección 11, sigue pendiente). Los dos compromisos de abajo quedan registrados igual — son compromisos reales una vez que la carta salga — pero la "Fecha límite" se calcula **desde el envío**, no desde la redacción, porque hoy esa fecha de envío es `UNKNOWN`.
 
+**Actualización 11/08/2026 (confirmado por Juan José Castillo):** la carta **no fue enviada** — sigue en revisión (Gate 6, sin aprobar). Deja de ser `UNKNOWN` para pasar a un hecho confirmado: ninguno de los dos compromisos es exigible todavía, y ninguno tiene fecha límite calculable hasta que se decida enviarla.
+
 **Estados:** `OPEN` · `FULFILLED` · `OVERDUE` · `CANCELLED`.
 
 ---
