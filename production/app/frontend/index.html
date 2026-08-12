@@ -62,6 +62,13 @@
        ritmo "respiro" que pedia UI-AUDIT.md, ver .section-sm mas abajo. */
     --space-section: 108px;
     --space-section-sm: 72px;
+    /* DESIGN-SYSTEM.md (2026-08-11, Fase 07): --space-head y --space-card estaban
+       documentados como "formalizacion propuesta" pero nunca se habian tokenizado --
+       .section-head y .service-card seguian con 56px/30px literales. Mismos valores,
+       ahora nombrados; cero cambio visual, igual que la tokenizacion de tipografia
+       de la Fase 03. */
+    --space-head: 56px;
+    --space-card: 30px;
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
@@ -255,7 +262,7 @@
      (Proceso, Aliados) intercaladas con las densas, sin tocar contenido ni layout interno. */
   section{ padding: var(--space-section, 108px) 0; }
   .section-sm{ padding: var(--space-section-sm, 72px) 0; }
-  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head{ max-width:640px; margin-bottom:var(--space-head); }
 
   /* WEBSITE-ROADMAP.md Fase 06 (D-053): capa de fondo decorativa (#contornos), ver el
      <symbol> junto a #mojon/#keyhole para la nota de gobernanza completa. */
@@ -318,7 +325,7 @@
   .services-grid.three{ grid-template-columns: repeat(3,1fr); }
   @media (max-width: 880px){ .services-grid, .services-grid.three{ grid-template-columns: 1fr; } }
   .service-card{
-    border:1px solid var(--line); padding:30px; background:var(--white);
+    border:1px solid var(--line); padding:var(--space-card); background:var(--white);
     transition: border-color .25s ease, transform .25s ease;
   }
   .service-card:hover{ border-color: var(--gold); transform: translateY(-3px); }

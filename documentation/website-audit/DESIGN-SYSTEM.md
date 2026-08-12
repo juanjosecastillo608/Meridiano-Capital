@@ -25,13 +25,16 @@ El sitio ya tenía un sistema de tamaños consistente (ver `TYPOGRAPHY-AUDIT.md`
 
 **Corrección contra la propuesta original de este documento** (escrita de memoria antes de implementar, dos valores no coincidían con el CSS real): `--font-body-lg` es **18px**, no 17px — 17px es un override deliberado de `.hero .lede` en un solo contexto, se dejó como literal, no como token. `--font-body-sm` cubre `.service-card p` (14px exacto); `.pillar p` usa 14.5px real, medio píxel distinto a propósito, también dejado como literal. Ningún valor visual cambió al implementar — se corrigió el token contra la realidad, no al revés.
 
-## Spacing (ya consistente — formalización propuesta)
+## Spacing ✅ IMPLEMENTADO (2026-08-10 Fase 04 / 2026-08-11 Fase 07)
 
 ```css
---space-section: 108px;   /* padding vertical de section */
---space-head: 56px;       /* margin-bottom de .section-head */
---space-card: 30px;       /* padding interno de .service-card */
+--space-section: 108px;      /* padding vertical de section */
+--space-section-sm: 72px;    /* [EXTENSION], Fase 04: secciones "respiro" (Proceso, Aliados) */
+--space-head: 56px;          /* margin-bottom de .section-head */
+--space-card: 30px;          /* padding interno de .service-card */
 ```
+
+`--space-section`/`--space-section-sm` se tokenizaron en la Fase 04 (junto con el hallazgo de ritmo visual de `UI-AUDIT.md`). `--space-head`/`--space-card` quedaron documentados pero sin implementar hasta la Fase 07 — `.section-head` y `.service-card` seguían con `56px`/`30px` literales. Mismos valores, ahora nombrados; verificado en navegador que el cómputo no cambió (`getComputedStyle` devuelve los mismos px de antes).
 
 ## Componentes ya existentes (inventario, no propuesta)
 
@@ -64,4 +67,4 @@ Transiciones de 0.2s–0.35s en hovers y el header al hacer scroll; animación d
 
 ## Veredicto
 
-El sitio **ya tiene un Design System real**. La tipografía está tokenizada, las 3 variantes de "badge" están unificadas en `.label`, y el `--radius` se usa consistentemente — los tres pendientes de este documento quedaron resueltos el 2026-08-10 (Fase 03). Lo único que sigue sin construirse es el sistema de imagen (bloqueado por U-022, banco de imagen no producido).
+El sitio **ya tiene un Design System real y ya está formalmente documentado**: tipografía tokenizada (Fase 03), las 3 variantes de "badge" unificadas en `.label` (Fase 03), `--radius` consistente (Fase 01), spacing completo (`--space-section`/`--space-section-sm`/`--space-head`/`--space-card`, Fases 04 y 07), y un primer símbolo decorativo de marca (`#contornos`, Fase 06) documentado junto a `#mojon`/`#keyhole`. Lo único que sigue sin construirse es el sistema de imagen real (bloqueado por U-022, banco de imagen no producido) — no es un pendiente de documentación, es un pendiente de material fuente.

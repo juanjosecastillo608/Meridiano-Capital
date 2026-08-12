@@ -62,9 +62,9 @@ Pedido directo del founder antes de arrancar la Fase 03 formal — corrección d
 18. ✅ **Hecho (D-053), como paso intermedio explícitamente parcial** — Nuevo símbolo SVG decorativo `#contornos` (líneas de nivel topográfico + línea de meridiano dorada, extendiendo la construcción de `#mojon`), aplicado como fondo sutil de la sección `#concepto`. Construido a mano, sin costo, colores exactos de `brand/05-sistema-cromatico.md`, no representa ninguna propiedad real. **No resuelve U-022** ni el hallazgo de fondo de `UI-AUDIT.md` ("falta un segundo lenguaje visual de fotografía") — es una mejora acotada de un componente, no un sistema de imagen completo.
 19. Una vez exista el banco de imagen real: definir el sistema de tratamiento (crops, proporción, filtro de color) como parte de `DESIGN-SYSTEM.md`.
 
-## PHASE 07 — Design System
+## PHASE 07 — Design System ✅ COMPLETA salvo fotografía (2026-08-11)
 
-20. Documentar formalmente el Design System ya real (este ciclo ya produjo la base en `DESIGN-SYSTEM.md`, más el nuevo símbolo `#contornos` de Fase 06 — sigue faltando la costura de fotografía real, dependiente de U-022).
+20. ✅ **Hecho** — Design System formalmente documentado en `DESIGN-SYSTEM.md`: tipografía (Fase 03), `.label` (Fase 03), `--radius` (Fase 01) y spacing completo ya estaban tokenizados o se terminaron de tokenizar acá — `--space-head`/`--space-card` seguían como valores literales (`56px`/`30px` hardcodeados en `.section-head`/`.service-card`) pese a estar "propuestos" desde el audit inicial; se tokenizaron sin cambiar ningún valor visual (verificado con `getComputedStyle` en navegador real). El símbolo `#contornos` de Fase 06 quedó documentado junto a `#mojon`/`#keyhole`. **Única costura que sigue pendiente**: fotografía/iconografía real, bloqueada por U-022 — no es un pendiente de documentación del sistema, es un pendiente de material fuente que no se puede resolver desde el código.
 
 ## PHASE 08 — Performance
 
