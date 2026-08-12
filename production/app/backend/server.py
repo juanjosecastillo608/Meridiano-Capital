@@ -204,6 +204,11 @@ class Handler(BaseHTTPRequestHandler):
             ".svg": "image/svg+xml",
             ".json": "application/json; charset=utf-8",
             ".png": "image/png",
+            # WEBSITE-ROADMAP.md Fase 09, item 26 (2026-08-11): sitemap.xml/robots.txt
+            # faltaban aca -- caian a application/octet-stream (fuerza descarga en vez
+            # de mostrarse como texto), lo que rastreadores como Googlebot no esperan.
+            ".xml": "application/xml; charset=utf-8",
+            ".txt": "text/plain; charset=utf-8",
         }.get(file_path.suffix, "application/octet-stream")
 
         data = file_path.read_bytes()

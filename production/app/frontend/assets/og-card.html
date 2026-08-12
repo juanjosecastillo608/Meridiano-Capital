@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+  WEBSITE-ROADMAP.md Fase 09, item 24 (2026-08-11): tarjeta para generar el og-image.png
+  estatico (1200x630, tamano estandar Open Graph/Twitter Card). No es parte del sitio --
+  se abre una sola vez en el navegador a 1200x630 y se captura como screenshot para
+  producir assets/og-image.png. Reutiliza exactamente los tokens de brand/05-sistema-cromatico.md
+  y el trazo del isotipo #mojon ya usado en index.html -- ningun color/elemento nuevo.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  html,body{ margin:0; padding:0; width:1200px; height:630px; overflow:hidden; }
+  body{
+    background: linear-gradient(135deg, #14313A 0%, #0D2226 100%);
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+  }
+  .mojon-bg{
+    position:absolute; right:-60px; top:50%; transform:translateY(-50%);
+    width:640px; height:640px; opacity:.9;
+  }
+  .content{
+    position:relative; z-index:1;
+    padding: 90px 0 0 90px;
+    max-width: 680px;
+  }
+  .eyebrow{
+    font-weight:700; font-size:19px; letter-spacing:.16em; text-transform:uppercase;
+    color:#C9982E; margin:0 0 28px;
+  }
+  .word{
+    font-family: Georgia, serif; font-weight:700; font-size:64px; letter-spacing:.01em;
+    color:#FFFFFF; margin:0; line-height:1.05;
+  }
+  .word b{ display:block; font-family:'Segoe UI', sans-serif; font-weight:400; font-size:22px; letter-spacing:.24em; color:#C9982E; margin-top:10px; }
+  .tagline{
+    margin-top:40px; font-size:23px; line-height:1.5; color:rgba(255,255,255,.82);
+    max-width:560px; font-weight:400;
+  }
+</style>
+</head>
+<body>
+  <svg class="mojon-bg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <path d="M52 6 L14 100 L56 100" fill="none" stroke="#F3EDE3" stroke-opacity="0.16" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M68 6 L106 100 L64 100" fill="none" stroke="#F3EDE3" stroke-opacity="0.16" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="4" y1="112" x2="49" y2="112" stroke="#F3EDE3" stroke-opacity="0.16" stroke-width="6" stroke-linecap="round"/>
+    <line x1="71" y1="112" x2="116" y2="112" stroke="#F3EDE3" stroke-opacity="0.16" stroke-width="6" stroke-linecap="round"/>
+    <line x1="60" y1="0" x2="60" y2="120" stroke="#C9982E" stroke-opacity="0.55" stroke-width="3"/>
+    <circle cx="60" cy="60" r="6" fill="#C9982E" fill-opacity="0.55"/>
+  </svg>
+  <div class="content">
+    <p class="eyebrow">Real Estate &amp; Desarrollo en Paraguay</p>
+    <p class="word">MERIDIANO<b>CAPITAL</b></p>
+    <p class="tagline">Estructuramos y gestionamos inversión inmobiliaria para inversores extranjeros — de la cédula al alquiler.</p>
+  </div>
+</body>
+</html>

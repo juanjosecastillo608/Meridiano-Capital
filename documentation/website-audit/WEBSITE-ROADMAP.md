@@ -66,17 +66,17 @@ Pedido directo del founder antes de arrancar la Fase 03 formal — corrección d
 
 20. ✅ **Hecho** — Design System formalmente documentado en `DESIGN-SYSTEM.md`: tipografía (Fase 03), `.label` (Fase 03), `--radius` (Fase 01) y spacing completo ya estaban tokenizados o se terminaron de tokenizar acá — `--space-head`/`--space-card` seguían como valores literales (`56px`/`30px` hardcodeados en `.section-head`/`.service-card`) pese a estar "propuestos" desde el audit inicial; se tokenizaron sin cambiar ningún valor visual (verificado con `getComputedStyle` en navegador real). El símbolo `#contornos` de Fase 06 quedó documentado junto a `#mojon`/`#keyhole`. **Única costura que sigue pendiente**: fotografía/iconografía real, bloqueada por U-022 — no es un pendiente de documentación del sistema, es un pendiente de material fuente que no se puede resolver desde el código.
 
-## PHASE 08 — Performance
+## PHASE 08 — Performance 🟡 PARCIAL (2026-08-11) — falta el deploy real
 
-21. Verificar `font-display`/fallback real con una prueba de red bloqueada.
-22. Medir Core Web Vitals reales con Lighthouse una vez el sitio tenga hosting (bloqueado por U-011).
-23. Resolver el hosting/dominio del backend (U-011) — condición previa para que el formulario de contacto sea productivo de verdad, no solo funcional localmente.
+21. ✅ **Hecho** — Verificado con la hoja de estilo de Google Fonts deshabilitada en tiempo de ejecución: `--serif`/`--sans` resuelven a `Georgia`/`Segoe UI` (fallbacks reales, no genéricos), el `<h1>` del hero sigue visible y con layout intacto. `display=swap` ya estaba en la URL del `<link>` de Google Fonts desde antes (evita texto invisible mientras carga la fuente — FOIT).
+22. 🟡 **Sigue bloqueada, pero ya no por U-011** — U-011 se resolvió (ver ítem 23). Medir Core Web Vitals reales con Lighthouse requiere el sitio desplegado de verdad en `meridianocapital.net`, no localhost — el deploy en sí es una acción fuera de este entorno (requiere credenciales de GoDaddy) y no se ejecutó en este ciclo.
+23. ✅ **Hecho (D-055) — resuelve U-011 por completo.** Dominio confirmado por el founder: `meridianocapital.net`, comprado en GoDaddy, **hosting directo de GoDaddy** (no DNS externo). Emails reales: `contacto@`, `juancastillo@`, `urbannit@meridianocapital.net`. Esto corrigió un error real que ya estaba en producción: el sitio usaba `contacto@meridianocapital.com.py` (dominio `.com.py` desactualizado/incorrecto) en el footer, el mensaje de error del formulario y el `mailto:` — las 5 apariciones se corrigieron a `.net`, igual que `og:url`/`og:image`/`twitter:image`/canonical/schema.org que ya se habían escrito con `.net` en el ítem 24.
 
-## PHASE 09 — SEO
+## PHASE 09 — SEO ✅ COMPLETA (2026-08-11)
 
-24. Agregar Open Graph + Twitter Card (bajo esfuerzo, cambio de alto impacto para compartir en LinkedIn/WhatsApp).
-25. Agregar schema.org (`Organization`/`RealEstateAgent`) en JSON-LD.
-26. `sitemap.xml` y `robots.txt` — de baja prioridad mientras el sitio siga siendo de una sola página, pero preparar la estructura antes de que exista más de una página real (catálogo de oportunidades, blog).
+24. ✅ **Hecho** — Open Graph completo (`og:type/site_name/locale/url/title/description/image` + dimensiones) y Twitter Card (`summary_large_image`). Se generó `assets/og-image.png` (1200×630 real, no placeholder) con una tarjeta de marca propia (`assets/og-card.html`, capturada con Chrome headless) — wordmark + tagline + el mismo trazo del isotipo `#mojon`, sin fabricar ninguna foto de propiedad.
+25. ✅ **Hecho** — `schema.org` `RealEstateAgent` en JSON-LD (nombre, email, teléfono, dirección de Asunción sin domicilio exacto, países atendidos, founder). Verificado como JSON válido en el navegador (`JSON.parse` sin error).
+26. ✅ **Hecho** — `sitemap.xml` (una entrada, la home) y `robots.txt` con referencia al sitemap. **Bug encontrado y corregido en el camino**: (a) el servidor no tenía `.xml`/`.txt` en su mapa de content-types — caían a `application/octet-stream`, que fuerza descarga en vez de mostrar el contenido (un rastreador real igual lo habría leído, pero se corrigió por prolijidad — ver `server.py`); (b) el comentario XML original de `sitemap.xml` tenía guiones dobles (`--`), inválido en comentarios XML — el navegador lo rechazaba con error de parseo. Se quitó el comentario, el XML quedó mínimo y válido (verificado renderizando el árbol del documento en el navegador).
 
 ## PHASE 10 — Final QA
 

@@ -1,0 +1,5 @@
+# WEBSITE-ROADMAP.md Fase 09, item 26 (2026-08-11)
+User-agent: *
+Allow: /
+
+Sitemap: https://meridianocapital.net/sitemap.xml
