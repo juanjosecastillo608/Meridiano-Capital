@@ -4,12 +4,14 @@ Proyecto UON Calathea · Departamento 201 + Cochera 10 · Meridiano Capital
 
 ## Empezar por acá
 👉 **`UON-001_CASE_DASHBOARD.md`** — estado del caso de un vistazo: issues abiertos, conflictos, riesgo general, ¿listo para firma?
+👉 **`UON-001_TRANSACTION_READINESS.md`** — evaluación cualitativa por categoría (Documentation, Contract, Legal, Financial, Commercial, Delivery, Customer, Negotiation). Resultado general: `NOT READY`, con las 2 acciones puntuales que lo destraban.
 
-## Estado actual: V2 Step 11 completo (de 14) — sistema de registros con estado formal
+## Estado actual: V2 Step 13 completo (de 14) — sistema de registros con estado formal
 
 | Archivo/carpeta | Contenido |
 |---|---|
 | `UON-001_CASE_DASHBOARD.md` | Vista consolidada — leer primero |
+| `UON-001_TRANSACTION_READINESS.md` | Evaluación de madurez por categoría — leer segundo |
 | `UON-001_DISCOVERY_REPORT.md` | Fase 0 (V1) — inventario documental original. Parcialmente superado por los registros de abajo |
 | `UON-001_CONTRACT_AUDIT.md` | Fase 6 (V1) — auditoría cláusula por cláusula del Boleto vigente |
 | `facts/FACT_REGISTER.md` | 22 Facts con `Estado` (`VERIFIED`/`PARTIALLY_VERIFIED`/etc.) — fuente vigente, reemplaza `evidence/CASE_FACTS.md` |
@@ -27,9 +29,9 @@ Proyecto UON Calathea · Departamento 201 + Cochera 10 · Meridiano Capital
 | `extracted-data/` | Texto extraído + renders de páginas escaneadas |
 | `evidence/CASE_FACTS.md`, `resolution/DECISION_HISTORY.md`, `contract-versions/CONTRACT_CHANGE_LOG.md` | Versiones de V1, conservadas sin editar por trazabilidad — ver el aviso al tope de cada una |
 
-## Próximos pasos (Steps 12-14 del Blueprint)
+## Próximos pasos (Step 14 del Blueprint)
 1. ~~Step 12: Case Dashboard~~ ✅
-2. Step 13: Transaction Readiness Score (evaluación cualitativa por categoría)
+2. ~~Step 13: Transaction Readiness Score~~ ✅ — resultado `NOT READY`, ver el archivo
 3. Step 14: Closing Checklist formal
 4. Recién al cerrar: Step 15 — Knowledge Engine + Playbooks (aprendizaje general, sin datos de UON-001)
 
