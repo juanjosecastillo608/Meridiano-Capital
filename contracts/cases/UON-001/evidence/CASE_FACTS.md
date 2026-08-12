@@ -1,4 +1,7 @@
 # UON-001 — CASE FACTS
+
+> ⚠️ **Superado como fuente de consulta.** Desde el Step 3 de `contracts/V2_IMPLEMENTATION_BLUEPRINT.md` (11/08/2026), la fuente vigente es **`../facts/FACT_REGISTER.md`** — mismos datos, con `Estado` explícito y una corrección importante (FACT-013, número de finca). Este archivo se conserva sin editar por trazabilidad (regla de no-destrucción), no se borra ni se actualiza más.
+
 Actualizado tras Fase 1 (lectura profunda de Escritura y Poder). Cada hecho indica fuente y nivel de evidencia. E1 = documental primaria, E2 = documental técnica/secundaria verificada en múltiples fuentes.
 
 | ID | Dato | Valor | Fuente(s) | Evidencia |

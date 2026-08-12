@@ -7,4 +7,6 @@ Catálogos centralizados que hoy viven como prosa dispersa dentro de los reporte
 - Niveles de evidencia (E1-E5)
 - Estados válidos por entidad (Fact, Issue, Conflict, Decision, Contract Version, etc.)
 
-**Estado:** vacío. Se centraliza acá en el Step 2b/3, tomando como base lo ya usado en `cases/UON-001/UON-001_DISCOVERY_REPORT.md`.
+**Estado:**
+- `fact-catalog.md` ✅ creado (Step 3) — categorías de Fact, estados, niveles de fuente y de evidencia.
+- Resto (tipos de Issue, estados de Conflict/Decision/Contract Version/etc.) pendiente, se centraliza a medida que cada entidad se estabiliza (Steps 4-11).
