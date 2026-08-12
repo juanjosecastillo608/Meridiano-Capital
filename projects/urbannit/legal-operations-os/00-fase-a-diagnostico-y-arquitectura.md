@@ -130,8 +130,8 @@ Nomenclatura propuesta (punto 20 del prompt maestro), consistente con el resto d
 | URB-CORP-001 | Manual de organización de Urbannit (Nivel 03) | Corporativo | Falta | P1 |
 | URB-CORP-002 | Matriz de responsabilidades (RACI) | Corporativo | Falta | P1 |
 | URB-CORP-003 | Política de confidencialidad y datos personales | Corporativo | Falta | P2 |
-| URB-CON-001 | **Contrato de administración de alquiler temporal** (Urbannit ↔ Propietario) | Contrato — propietario | Falta | **P0** |
-| URB-CON-002 | Anexo I — Inventario del inmueble | Contrato — propietario | Falta | P0 |
+| URB-CON-001 | **Contrato de administración de alquiler temporal** (Urbannit ↔ Propietario) | Contrato — propietario | ✅ **Borrador v1.0** (D-059, 2026-08-12) — `production/entregables/Urbannit_Contrato_Administracion_BORRADOR.docx/.pdf`. **No firmar** — ver `01-notas-urb-con-001.md` para qué está confirmado vs. propuesto vs. pendiente de validación legal | **P0** |
+| URB-CON-002 | Anexo I — Inventario del inmueble | Contrato — propietario | Falta — referenciado por URB-CON-001, siguiente paso natural | P0 |
 | URB-CON-003 | Anexo — Tarifas y comisiones | Contrato — propietario | Falta | P0 |
 | URB-CON-004 | Acta de entrega / recepción del inmueble | Contrato — propietario | Falta | P1 |
 | URB-CON-005 | Términos y condiciones de estadía (huésped) | Contrato — huésped | Falta | P0 |
@@ -150,15 +150,17 @@ Nomenclatura propuesta (punto 20 del prompt maestro), consistente con el resto d
 
 ---
 
-## 6. DECISIONES PENDIENTES DEL FOUNDER (para poder avanzar a Fase B)
+## 6. DECISIONES DEL FOUNDER — ✅ resueltas 2026-08-12 (D-059)
 
-Siguiendo el punto 31 del prompt maestro ("al finalizar cada fase: identifica decisiones pendientes, solicita aprobación, solo después continúa"), estas quedan registradas también como pendientes formales en `governance/decisions/DECISION_REGISTER.md` (U-027 a U-031):
+Siguiendo el punto 31 del prompt maestro ("al finalizar cada fase: identifica decisiones pendientes, solicita aprobación, solo después continúa"), el founder respondió las 5 preguntas el mismo día. Registradas en `governance/decisions/DECISION_REGISTER.md` como D-059 (resuelve U-027, U-029, U-030, U-031; avanza parcialmente U-028):
 
-- **D-URB-01** — ¿Campo Agreste S.A. (RUC 80093513-6) es la entidad que va a firmar el futuro contrato de administración de alquiler temporal en nombre de "Urbannit, gestionado por Meridiano Capital"? (inferencia directa de `business/06`, pendiente de confirmación explícita — ver U-027)
-- **D-URB-02** — ¿Se contrata seguro de responsabilidad civil? ¿A cargo de quién (propietario, como GoHost, o Urbannit)? (ver U-028)
-- **D-URB-03** — ¿Las propiedades gestionadas por Urbannit están o van a estar inscriptas en SENATUR/Registur? (ver U-029)
-- **D-URB-04** — ¿El 20% de comisión ya incluye IVA o es neto? (ver U-030)
-- **D-URB-05** — ¿Se redacta el contrato ahora (Fase B) con estos puntos marcados como placeholder, o se espera a resolver las validaciones legales primero? (ver U-031)
+- **D-URB-01** — ✅ Campo Agreste S.A. (RUC 80093513-6) firma en nombre de "Urbannit, gestionado por Meridiano Capital".
+- **D-URB-02** — ✅ Sí se contrata seguro de responsabilidad civil. El founder pidió verificar qué corresponde en Paraguay antes de fijar el detalle — investigado (ver `01-notas-urb-con-001.md` §4.2): no se encontró mandato legal específico, el monto queda como placeholder pendiente de validación por un abogado paraguayo real.
+- **D-URB-03** — ✅ NO se registran las propiedades en SENATUR/Registur por el momento — decisión operativa consciente, no un olvido. La cláusula se omitió del contrato a propósito.
+- **D-URB-04** — ✅ El 20% de comisión es bruto e incluye IVA.
+- **D-URB-05** — ✅ Redactar el contrato ahora, sin esperar a resolver el resto de las validaciones legales.
+
+**Resultado**: primer borrador de `URB-CON-001` construido y verificado visualmente — ver `01-notas-urb-con-001.md` para el detalle completo de qué quedó confirmado, qué es propuesta sin confirmar, y qué sigue pendiente de validación legal.
 
 ---
 
