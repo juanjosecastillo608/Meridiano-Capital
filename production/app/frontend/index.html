@@ -81,6 +81,14 @@
     --charcoal:#3A2E22;
     --white:#FFFFFF;
     --line:#DAD2C0;
+    /* D-057 Parte B (2026-08-12): tokens propios de la paleta Ka'a de Urbannit, exactos a
+       los HEX que ya usan los generadores docx.js (production/generadores/build_urbannit_*.js)
+       -- --grey/--line de arriba son los de Meridiano y difieren a proposito. Se usan solo
+       dentro de la seccion #urbannit-detalle, autocontenida, nunca junto a --navy/--tierra
+       ni --serif en la misma pieza (brand/10-arquitectura-meridiano-urbannit.md). */
+    --kaa-grey:#7C7264;
+    --kaa-line:#D8CDB8;
+    --kaa-cream:#FBF7EF;
 
     --serif: 'Fraunces', Georgia, serif;
     --sans: 'Poppins', 'Segoe UI', sans-serif;
@@ -390,6 +398,29 @@
   .split-panel ul li{ font-size:14px; color: rgba(255,255,255,.82); padding-left:18px; position:relative; margin-bottom:10px; }
   .split-panel ul li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
   .split-badge{ display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.05em; color: var(--gold); margin-bottom: 6px;}
+
+  /* ============ URBANNIT — DETALLE (D-057 Parte B, 2026-08-12) ============ */
+  /* Seccion autocontenida en el sistema Ka'a de Urbannit: tokens --kaa-*, tipografia
+     Poppins unica (var(--sans) en headings, nunca var(--serif)) -- nunca mezclado con
+     --navy/--tierra ni Fraunces en la misma pieza (brand/10-arquitectura-meridiano-
+     urbannit.md). Resume el proceso (Propuesta de trabajo para propietarios) y el
+     modelo de negocio (Propuesta de Gestion de Alquiler Temporal, D-056) SIN la
+     comision exacta de Urbannit (20%) ni los checklists operativos granulares --
+     mismo criterio de no publicar tarifario exacto que ya rige para Meridiano (RN-04). */
+  #urbannit-detalle{ background: var(--kaa-cream); }
+  .urbannit-head .eyebrow{ color: var(--kaa); }
+  .urbannit-head h2{ font-family: var(--sans); color: var(--kaa-2); }
+  .urbannit-head .lede{ color: var(--kaa-grey); }
+  .urbannit-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:22px; margin-top:8px; }
+  @media (max-width: 880px){ .urbannit-grid{ grid-template-columns: 1fr; } }
+  .urbannit-card{ background: var(--white); border:1px solid var(--kaa-line); padding: var(--space-card); border-radius: var(--radius); }
+  .urbannit-card h3{ font-family: var(--sans); color: var(--kaa-2); font-size:19px; margin:16px 0 16px; }
+  .urbannit-card ul li{ font-size:14.5px; color: var(--kaa-grey); padding-left:18px; position:relative; margin-bottom:12px; line-height:1.55; }
+  .urbannit-card ul li::before{ content:"—"; position:absolute; left:0; color:var(--gold-d); }
+  .urbannit-foot{ margin-top:40px; padding-top:30px; border-top:1px solid var(--kaa-line); display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .urbannit-foot p{ font-family: var(--sans); font-size:14.5px; color: var(--kaa-grey); max-width:520px; margin:0; }
+  .btn-kaa{ background: var(--kaa); color: var(--white); }
+  .btn-kaa:hover{ background: var(--kaa-2); transform: translateY(-1px); }
 
   /* ============ ALIADOS ============ */
   .allies{ display:grid; grid-template-columns: repeat(4,1fr); gap:22px; }
@@ -777,6 +808,46 @@
     </div>
   </section>
 
+  <!-- ============ URBANNIT — DETALLE (D-057 Parte B) ============ -->
+  <section id="urbannit-detalle" class="section-sm">
+    <div class="wrap">
+      <div class="section-head reveal urbannit-head">
+        <p class="label eyebrow">Renta temporal, en detalle</p>
+        <h2>Así funciona la gestión con urbannit</h2>
+        <p class="lede" style="margin-top:14px;">Meridiano Capital gestiona la relación comercial; urbannit opera la hospitalidad día a día. Esto es lo que pasa desde el primer contacto hasta tu primera liquidación.</p>
+      </div>
+      <div class="urbannit-grid reveal">
+        <div class="urbannit-card">
+          <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true" fill="none" stroke="#C9982E" stroke-width="2" stroke-linecap="round"><path d="M4 26 L4 18 M12 26 L12 12 M20 26 L20 6 M28 26 L28 15"/></svg>
+          <h3>El proceso, paso a paso</h3>
+          <ul>
+            <li>Relevamos tu propiedad y evaluamos si está lista para alquiler temporal o necesita ajustes previos.</li>
+            <li>La preparamos con estándar hotelero — el detalle de equipamiento se define en la propuesta formal, no a ciegas.</li>
+            <li>Fotografía profesional y redacción del anuncio, pensados para cada plataforma de reserva.</li>
+            <li>Publicamos y administramos tu propiedad en Airbnb y Booking, con calendario y precios optimizados.</li>
+            <li>Coordinamos cada check-in, check-out y limpieza entre estadías — vos no coordinás nada operativo.</li>
+            <li>Te enviamos una liquidación mensual con el detalle de cada estadía, antes de transferirte tu parte.</li>
+          </ul>
+        </div>
+        <div class="urbannit-card">
+          <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true" fill="none" stroke="#C9982E" stroke-width="2"><circle cx="13" cy="13" r="9"/><circle cx="21" cy="21" r="9"/></svg>
+          <h3>El modelo, sin letra chica</h3>
+          <ul>
+            <li>Definimos juntos la tarifa por noche, según la demanda real de tu zona y tipo de propiedad.</li>
+            <li>La tarifa de limpieza la paga el huésped, aparte — no se descuenta de tu ingreso.</li>
+            <li>Airbnb y Booking cobran su propia comisión de servicio al huésped o al anfitrión, según la plataforma — no es un cobro de urbannit.</li>
+            <li>urbannit gestiona toda la operación diaria a cambio de una comisión de gestión, detallada en la propuesta formal antes de firmar cualquier acuerdo.</li>
+            <li>Cada mes recibís un reporte claro: noches ocupadas, tarifa cobrada, comisiones y el neto que te corresponde a vos.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="urbannit-foot reveal">
+        <p>urbannit es una marca operada en alianza estratégica y <strong>gestionada por Meridiano Capital</strong> — un solo interlocutor, un solo contrato.</p>
+        <a href="#contacto" class="btn btn-kaa" onclick="var t=document.getElementById('f-tipo'); if(t){t.value='gestion';}">Pedí la propuesta completa</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ALIADOS ============ -->
   <section class="bg-sand section-sm">
     <div class="wrap">
@@ -953,7 +1024,7 @@
       <div>
         <h5 data-i18n="footer.empresa_title">Empresa</h5>
         <ul>
-          <li><a href="#portafolio">Urbannit</a></li>
+          <li><a href="#urbannit-detalle">Urbannit</a></li>
           <li><a href="#contacto" data-i18n="footer.coinversion">Coinversión</a></li>
           <li><a href="#contacto" data-i18n="footer.recursos">Recursos</a></li>
         </ul>
