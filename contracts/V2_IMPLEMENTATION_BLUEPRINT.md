@@ -2,7 +2,7 @@
 ## V2 IMPLEMENTATION BLUEPRINT
 ### Real Estate Intelligence OS — Resolution & Transaction Engine
 
-**Fecha:** 11/08/2026 · **Estado:** Blueprint para revisión — **no se modificó ningún componente crítico todavía**, por instrucción explícita del prompt maestro V2 (Sección 52).
+**Fecha:** 11/08/2026 · **Estado:** ✅ **Ejecutado — los 14 Steps completos** (ver la Sección 14 de este documento, actualizada con el resultado real de cada uno). El caso UON-001 tiene hoy el sistema completo de registros con estado formal — Facts, Conflicts, Issues, Decisions, Contract Versions, Change Requests, Negotiation Cases, Commitments, Actions, Dashboard, Transaction Readiness y Closing Checklist. Resultado final de la aplicación al Caso Fundador: `NOT READY` para firma, con 2 de 20 ítems de cierre marcados — no por falta de trabajo, sino porque la auditoría es real y ningún Gate formal (3, 4, 5 o 6) se cerró todavía. Ver `cases/UON-001/UON-001_CLOSING_CHECKLIST.md`.
 
 > **Corrección de estatus registrada:** a partir de esta versión, UON-001 deja de tratarse como caso de prueba. Es el **Caso Fundador** — el expediente sobre el que se construye y valida el estándar operativo de Meridiano Capital. Esto cambia una decisión de diseño concreta (ver punto 6, Arquitectura V2): el modelo de datos y las plantillas que se diseñan acá no se descartan al cerrar UON-001, se promueven a `contracts/engine/` y `contracts/templates/` como el estándar para todo caso futuro.
 
@@ -249,20 +249,20 @@ Mapeo a las 7 Gates de la Sección 11, estado actual de UON-001:
 Step 1 (este documento) ya se ejecutó. Orden propuesto para lo que sigue, cada uno como una entrega separada con tu visto bueno antes de avanzar al siguiente (no todo de una sesión):
 
 1. ~~Auditar V1~~ ✅ (este Blueprint)
-2. Crear la estructura de carpetas de la Sección 8 (vacía, sin migrar datos todavía)
-3. Migrar Facts → Fact Register
-4. Migrar Conflicts → Conflict Register
-5. Migrar Issues (9 del Audit + 7 del LRR) → Issue Register
-6. Migrar Decisions → Decision Log con estados
-7. Formalizar Contract Version Control (marcar v1/v2 `SUPERSEDED`, v3 `DRAFT`)
-8. Migrar Change Log → Change Requests
-9. Armar el primer Negotiation Case (forma de pago)
-10. Armar Commitment Register (2 compromisos ya identificados)
-11. Armar Action Register
-12. Construir el Case Dashboard (lee todo lo anterior)
-13. Calcular el Transaction Readiness (cualitativo, con justificación)
-14. Cerrar la Closing Checklist (probablemente casi todo sin ✓ todavía — es correcto que así sea)
-15. (Recién al cerrar el caso) Knowledge Engine + Playbooks
+2. ~~Crear la estructura de carpetas de la Sección 8~~ ✅
+3. ~~Migrar Facts → Fact Register~~ ✅ — 22 Facts, corrigió el número de finca (`FACT-013`)
+4. ~~Migrar Conflicts → Conflict Register~~ ✅ — 3 Conflicts, todos `OPEN`
+5. ~~Migrar Issues → Issue Register~~ ✅ — 13 Issues (9+7 con 3 solapamientos), recuperó `LRR-04` que se había perdido antes del resumen del Contract Audit
+6. ~~Migrar Decisions → Decision Log con estados~~ ✅ — 2 `APPROVED`, 1 `UNDER_REVIEW`
+7. ~~Formalizar Contract Version Control~~ ✅ — v1/v2 `SUPERSEDED`, v3 `DRAFT`, **ninguna `CURRENT`**
+8. ~~Migrar Change Log → Change Requests~~ ✅ — solo 1 de 6 sin ningún pendiente
+9. ~~Armar el primer Negotiation Case~~ ✅ — `NEG-001`, forma de pago
+10. ~~Armar Commitment Register~~ ✅ — 2 compromisos, confirmado que la carta al cliente no se envió
+11. ~~Armar Action Register~~ ✅ — 11 acciones, todas `OPEN`
+12. ~~Construir el Case Dashboard~~ ✅
+13. ~~Calcular el Transaction Readiness~~ ✅ — resultado general `NOT READY`
+14. ~~Cerrar la Closing Checklist~~ ✅ — 2 de 20 ítems marcados, resultado esperado dado lo anterior
+15. (Recién al cerrar el caso) Knowledge Engine + Playbooks — **pendiente**, UON-001 sigue `RESOLUTION_IN_PROGRESS`
 
 ## 15. QUÉ SE APLICA INMEDIATAMENTE A UON-001
 
@@ -276,6 +276,4 @@ Todo el rango Step 2 a Step 14 — es exactamente lo que le da a UON-001 la traz
 
 ## Próximo paso
 
-Este Blueprint no modificó ningún archivo existente. Si lo aprobás, arranco por el **Step 2** (crear la estructura de carpetas vacía) y voy avanzando Step por Step, mostrándote cada entrega antes de seguir — tal como pide la Sección 50 ("no implementar todo de golpe").
-
-¿Confirmás el orden, y la nota de diseño del punto 6 (`contracts/knowledge/` y `contracts/playbooks/` separados de los `knowledge-base/`/`playbooks/` generales del repo)?
+**Los 14 Steps están completos** (11/08/2026). El sistema V2 quedó aplicado por entero al Caso Fundador. Lo que sigue ya no es construir más andamiaje — es avanzar las 11 acciones reales de `cases/UON-001/actions/ACTION_REGISTER.md` para que el caso deje de estar `NOT READY`. El Step 15 (Knowledge Engine + Playbooks) queda pendiente hasta que UON-001 llegue a `CLOSED`.
