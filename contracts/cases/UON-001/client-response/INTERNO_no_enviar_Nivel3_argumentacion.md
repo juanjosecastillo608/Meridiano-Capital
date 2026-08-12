@@ -31,6 +31,8 @@ Este documento existe porque el protocolo del caso exige separar la **Respuesta 
 
 ---
 
+> ⚠️ **Superado como fuente de consulta para el seguimiento de estos compromisos.** Desde el Step 10 de `contracts/V2_IMPLEMENTATION_BLUEPRINT.md`, la fuente vigente es `../commitments/COMMITMENT_REGISTER.md` — mismos 2 compromisos, con estado formal y una corrección: no consta que esta carta se haya enviado realmente todavía.
+
 ## ⚠️ Acción pendiente antes de que las promesas de la carta sean ciertas
 
 La carta enviada al cliente incluye dos compromisos concretos que **todavía no están cumplidos** y que Meridiano debe resolver antes de que venzan como expectativa:

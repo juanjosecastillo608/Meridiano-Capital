@@ -9,5 +9,6 @@ Archivo en blanco de cada registro del modelo de datos V2 (Blueprint, Sección 5
 - `CONTRACT_VERSION_CONTROL_template.md` ✅ creado (Step 7)
 - `CHANGE_REQUESTS_template.md` ✅ creado (Step 8)
 - `NEGOTIATION_CASE_template.md` ✅ creado (Step 9)
+- `COMMITMENT_REGISTER_template.md` ✅ creado (Step 10)
 
-Pendientes (Steps 10-11 del Blueprint): `COMMITMENT_REGISTER_template.md`, `ACTION_REGISTER_template.md`, `CASE_DASHBOARD_template.md`.
+Pendientes (Step 11 del Blueprint): `ACTION_REGISTER_template.md`, `CASE_DASHBOARD_template.md`.

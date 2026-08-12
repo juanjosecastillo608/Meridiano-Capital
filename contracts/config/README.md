@@ -15,4 +15,5 @@ Catálogos centralizados que hoy viven como prosa dispersa dentro de los reporte
 - `contract-version-catalog.md` ✅ creado (Step 7) — estados de Contract Version, cómo calcular el hash.
 - `change-request-catalog.md` ✅ creado (Step 8) — estados de Change Request, escala de impacto.
 - `negotiation-catalog.md` ✅ creado (Step 9) — estados de Negotiation Case, reglas duras de negociación.
-- Resto (Commitment/Action) pendiente, se centraliza en Steps 10-11.
+- `commitment-catalog.md` ✅ creado (Step 10) — estados de Commitment, regla de fecha límite relativa.
+- Resto (Action) pendiente, se centraliza en Step 11.
