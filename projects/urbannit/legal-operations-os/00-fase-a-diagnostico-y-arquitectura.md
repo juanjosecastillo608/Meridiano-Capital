@@ -131,10 +131,10 @@ Nomenclatura propuesta (punto 20 del prompt maestro), consistente con el resto d
 | URB-CORP-002 | Matriz de responsabilidades (RACI) | Corporativo | Falta | P1 |
 | URB-CORP-003 | Política de confidencialidad y datos personales | Corporativo | Falta | P2 |
 | URB-CON-001 | **Contrato de administración de alquiler temporal** (Urbannit ↔ Propietario) | Contrato — propietario | ✅ **Borrador v1.0** (D-059, 2026-08-12) — `production/entregables/Urbannit_Contrato_Administracion_BORRADOR.docx/.pdf`. **No firmar** — ver `01-notas-urb-con-001.md` para qué está confirmado vs. propuesto vs. pendiente de validación legal | **P0** |
-| URB-CON-002 | Anexo I — Inventario del inmueble | Contrato — propietario | Falta — referenciado por URB-CON-001, siguiente paso natural | P0 |
+| URB-CON-002 | Anexo I — Inventario del inmueble | Contrato — propietario | ✅ **Borrador v1.0** (2026-08-12) — `production/entregables/Urbannit_Anexo_I_Inventario_BORRADOR.docx/.pdf`. Checklist por categoría (mobiliario, electrodomésticos, ropa de cama, cocina, baño, limpieza, lavado, llaves) con campos en blanco para completar por propiedad | **P0** |
 | URB-CON-003 | Anexo — Tarifas y comisiones | Contrato — propietario | Falta | P0 |
-| URB-CON-004 | Acta de entrega / recepción del inmueble | Contrato — propietario | Falta | P1 |
-| URB-CON-005 | Términos y condiciones de estadía (huésped) | Contrato — huésped | Falta | P0 |
+| URB-CON-004 | Acta de entrega / recepción del inmueble | Contrato — propietario | Falta — el Anexo I (URB-CON-002) ya cubre parte de esta función (bloque de firma "entrega/recibe") | P1 |
+| URB-CON-005 | Términos y condiciones de estadía (huésped) | Contrato — huésped | ✅ **Borrador v1.0** (2026-08-12) — `production/entregables/Urbannit_Terminos_Condiciones_Huesped_BORRADOR.docx/.pdf`. Aceptación digital (vía reserva), no firma manuscrita — incluye acuse de recibo opcional para check-in presencial | **P0** |
 | URB-CON-006 | Contrato/acuerdo con proveedores de limpieza y mantenimiento | Contrato — proveedor | Falta | P1 |
 | URB-REG-001 | Reglamento de huéspedes | Reglamento | Falta | P0 |
 | URB-REG-002 | Reglamento de mantenimiento e inventario | Reglamento | Falta | P2 |

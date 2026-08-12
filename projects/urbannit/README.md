@@ -10,5 +10,12 @@ Sistema jurídico-operativo de Urbannit (contratos, reglamentos, políticas, for
 
 - `00-fase-a-diagnostico-y-arquitectura.md` — Fase A (Auditoría): diagnóstico, qué falta, riesgos, arquitectura de 10 niveles, Master Document Index, prioridades y roadmap.
 - `01-notas-urb-con-001.md` — bitácora de redacción del primer contrato real (`URB-CON-001`, ver abajo): qué quedó confirmado por el founder, qué es propuesta mía sin confirmar, y qué requiere validación de un abogado paraguayo.
+- `02-notas-anexo-i-y-terminos-huesped.md` — misma bitácora para `URB-CON-002` y `URB-CON-005` (ver abajo).
 
-**`URB-CON-001` — Contrato de Administración de Alquiler Temporal**: primer borrador construido el 2026-08-12 (D-059), tras las 5 confirmaciones del founder al cierre de la Fase A. Vive en `production/entregables/Urbannit_Contrato_Administracion_BORRADOR.docx/.pdf` (generado por `production/generadores/build_urbannit_contrato_administracion.js`) — **marcado explícitamente como borrador, no firmar sin revisión legal**.
+**Documentos borrador construidos hasta ahora** (todos en `production/entregables/`, generados desde `production/generadores/build_urbannit_*.js`, **ninguno para firmar sin revisión legal**):
+
+| Código | Documento | Decisión |
+|---|---|---|
+| `URB-CON-001` | Contrato de Administración de Alquiler Temporal | D-059 (2026-08-12) — aprobado por el founder |
+| `URB-CON-002` | Anexo I — Inventario del Inmueble | D-060 (2026-08-12) |
+| `URB-CON-005` | Términos y Condiciones de Estadía (huésped) | D-060 (2026-08-12) |
