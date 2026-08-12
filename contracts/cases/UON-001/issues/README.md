@@ -1,0 +1,1 @@
+Se puebla en el **Step 5** del `V2_IMPLEMENTATION_BLUEPRINT.md` — convierte las 9 acciones del `UON-001_CONTRACT_AUDIT.md` y los 7 puntos de `legal-review/LEGAL_REVIEW_REQUESTS.md` en `ISSUE_REGISTER.md`, con `UON-ISSUE-001`…`016`, tipo (catálogo en `contracts/config/`), prioridad P0-P4 justificada, y estado.

@@ -1,0 +1,1 @@
+Se puebla en el **Step 4** del `V2_IMPLEMENTATION_BLUEPRINT.md` — migra los 3 conflictos del `UON-001_DISCOVERY_REPORT.md` (Sección 8: cantidad de cocheras, calle transversal, nombre "Solar") a `CONFLICT_REGISTER.md` con `CONFLICT-001/002/003`, todos en estado `OPEN`.

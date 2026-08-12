@@ -1,0 +1,1 @@
+Se puebla en el **Step 10** del `V2_IMPLEMENTATION_BLUEPRINT.md` — migra los 2 compromisos hoy descritos en prosa en `client-response/INTERNO_no_enviar_Nivel3_argumentacion.md` (licencia ambiental, plano técnico municipal) a `COMMITMENT_REGISTER.md`, cada uno con fecha límite y estado.

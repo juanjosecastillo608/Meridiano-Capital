@@ -1,0 +1,1 @@
+Se puebla en el **Step 11** del `V2_IMPLEMENTATION_BLUEPRINT.md` — `ACTION_REGISTER.md` con seguimiento de las acciones abiertas por los Issues (Step 5) que todavía no tienen una Decision ni un Commitment que las cierre.

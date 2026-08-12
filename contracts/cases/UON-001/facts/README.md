@@ -1,0 +1,1 @@
+Se puebla en el **Step 3** del `V2_IMPLEMENTATION_BLUEPRINT.md` — migra `evidence/CASE_FACTS.md` a `FACT_REGISTER.md` con `FACT-001`…`FACT-020` y campo `Estado` explícito. No se re-verifica ningún dato, solo se reestructura.
