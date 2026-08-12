@@ -4,6 +4,7 @@ Archivo en blanco de cada registro del modelo de datos V2 (Blueprint, Sección 5
 
 - `FACT_REGISTER_template.md` ✅ creado (Step 3)
 - `CONFLICT_REGISTER_template.md` ✅ creado (Step 4)
+- `ISSUE_REGISTER_template.md` ✅ creado (Step 5)
 
-Pendientes (se crean a medida que cada entidad se estabiliza trabajando UON-001, Steps 5-11 del Blueprint):
-`ISSUE_REGISTER_template.md`, `DECISION_LOG_template.md`, `CONTRACT_VERSION_CONTROL_template.md`, `CHANGE_REQUESTS_template.md`, `NEGOTIATION_CASE_template.md`, `COMMITMENT_REGISTER_template.md`, `ACTION_REGISTER_template.md`, `CASE_DASHBOARD_template.md`.
+Pendientes (se crean a medida que cada entidad se estabiliza trabajando UON-001, Steps 6-11 del Blueprint):
+`DECISION_LOG_template.md`, `CONTRACT_VERSION_CONTROL_template.md`, `CHANGE_REQUESTS_template.md`, `NEGOTIATION_CASE_template.md`, `COMMITMENT_REGISTER_template.md`, `ACTION_REGISTER_template.md`, `CASE_DASHBOARD_template.md`.
