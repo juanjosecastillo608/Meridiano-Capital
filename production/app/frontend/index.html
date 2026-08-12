@@ -843,7 +843,7 @@
       </div>
       <div class="urbannit-foot reveal">
         <p>urbannit es una marca operada en alianza estratégica y <strong>gestionada por Meridiano Capital</strong> — un solo interlocutor, un solo contrato.</p>
-        <a href="#contacto" class="btn btn-kaa" onclick="var t=document.getElementById('f-tipo'); if(t){t.value='gestion';}">Pedí la propuesta completa</a>
+        <a href="#contacto" class="btn btn-kaa" onclick="var t=document.getElementById('f-tipo'), w=document.getElementById('wrap-modalidad'), m=document.getElementById('f-modalidad'); if(t){t.value='gestion'; t.dispatchEvent(new Event('change'));} if(m){m.value='temporal';}">Pedí la propuesta completa</a>
       </div>
     </div>
   </section>
@@ -971,6 +971,21 @@
             <option value="otra">Otra consulta</option>
           </select>
           <span class="field-error" id="err-tipo" role="alert"></span>
+        </div>
+        <!-- D-058 (2026-08-12): "Gestión de mi propiedad" no es un solo servicio -- puede ser
+             renta tradicional (sin muebles o amoblada, la gestiona directo Meridiano Capital)
+             o renta temporal/Airbnb (la opera Urbannit). Solo esta ultima dispara el envio de
+             las propuestas de Urbannit (D-057) -- ver server.py _guardar_contacto. Oculto por
+             defecto, visible solo cuando se elige "Gestión de mi propiedad" (ver script abajo). -->
+        <div class="field" id="wrap-modalidad" hidden>
+          <label for="f-modalidad">¿Qué tipo de gestión necesitás?</label>
+          <select id="f-modalidad" name="modalidad_gestion">
+            <option value="" disabled selected>Elegí una opción</option>
+            <option value="tradicional">Renta tradicional (sin muebles)</option>
+            <option value="tradicional_amoblado">Renta tradicional amoblada</option>
+            <option value="temporal">Renta temporal / Airbnb (vía Urbannit)</option>
+          </select>
+          <span class="field-error" id="err-modalidad" role="alert"></span>
         </div>
         <div class="field">
           <label for="f-country">País desde donde invertís</label>
@@ -1158,6 +1173,27 @@
     { id: 'f-tipo', err: 'err-tipo', msg: 'Elegi el tipo de consulta.' },
     { id: 'f-country', err: 'err-country', msg: 'Elegi una opcion.' },
   ];
+
+  // D-058 (2026-08-12): "Gestión de mi propiedad" se abre en un segundo campo
+  // (modalidad de gestión) para distinguir renta tradicional (la gestiona Meridiano)
+  // de renta temporal/Airbnb (la opera Urbannit) -- solo esta ultima corresponde a
+  // las propuestas de Urbannit que dispara el backend. Oculto y no-requerido salvo
+  // que "Gestión de mi propiedad" este elegido.
+  const tipoSelect = document.getElementById('f-tipo');
+  const modalidadWrap = document.getElementById('wrap-modalidad');
+  const modalidadSelect = document.getElementById('f-modalidad');
+  function syncModalidadVisibility() {
+    const esGestion = tipoSelect.value === 'gestion';
+    modalidadWrap.hidden = !esGestion;
+    modalidadSelect.required = esGestion;
+    if (!esGestion) {
+      modalidadSelect.value = '';
+      document.getElementById('err-modalidad').textContent = '';
+    }
+  }
+  tipoSelect.addEventListener('change', syncModalidadVisibility);
+  syncModalidadVisibility();
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     let valid = true;
@@ -1172,6 +1208,10 @@
         errEl.textContent = '';
       }
     });
+    if (!modalidadWrap.hidden && !modalidadSelect.checkValidity()) {
+      document.getElementById('err-modalidad').textContent = 'Elegi el tipo de gestion.';
+      valid = false;
+    }
     if (!valid) {
       form.querySelector(':invalid')?.focus();
       return;
@@ -1188,6 +1228,7 @@
           name: document.getElementById('f-name').value,
           email: document.getElementById('f-email').value,
           tipo_consulta: document.getElementById('f-tipo').value,
+          modalidad_gestion: modalidadWrap.hidden ? '' : modalidadSelect.value,
           country: document.getElementById('f-country').value,
           message: document.getElementById('f-message').value,
         }),

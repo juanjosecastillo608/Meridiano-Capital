@@ -29,11 +29,13 @@ Abre `http://localhost:8000`.
 | POST | `/api/calcular/reventa` | `Calculadora.evaluar_reventa(**body)` |
 | POST | `/api/calcular/reventa-temprana` | `Calculadora.evaluar_reventa_temprana(**body)` |
 | POST | `/api/calcular/combinado` | `Calculadora.evaluar_retorno_combinado(**body)` |
-| POST | `/api/contacto` | Guarda `{name, email, tipo_consulta, country, message}` en `backend/data/contactos.jsonl` (`tipo_consulta` agregado en Fase 04, item 11: segmentación por tipo de consulta). **D-057 (2026-08-12)**: si `tipo_consulta === "gestion"`, además dispara en segundo plano `urbannit_automation.py`, que genera (no envía) las dos propuestas personalizadas de Urbannit — ver sección siguiente |
+| POST | `/api/contacto` | Guarda `{name, email, tipo_consulta, modalidad_gestion, country, message}` en `backend/data/contactos.jsonl` (`tipo_consulta` agregado en Fase 04, item 11: segmentación por tipo de consulta; `modalidad_gestion` agregado en D-058, solo relevante cuando `tipo_consulta === "gestion"`). **D-057/D-058 (2026-08-12)**: si `tipo_consulta === "gestion"` **y** `modalidad_gestion === "temporal"`, además dispara en segundo plano `urbannit_automation.py`, que genera (no envía) las dos propuestas personalizadas de Urbannit — ver sección siguiente |
 
-## Automatización de propuestas Urbannit (D-057)
+## Automatización de propuestas Urbannit (D-057, corregido por D-058)
 
-Cuando un contacto real elige "Gestión de mi propiedad" (`tipo_consulta === "gestion"`, la categoría de Urbannit por D-051), `backend/urbannit_automation.py` genera en segundo plano, sin bloquear la respuesta del formulario, las dos propuestas de D-056 (`Urbannit_Propuesta_Propietarios`, `Urbannit_Propuesta_Gestion_Temporal`) personalizadas con el nombre real del contacto, en `.docx` y `.pdf`:
+Cuando un contacto real elige "Gestión de mi propiedad" **y** especifica que es para renta temporal/Airbnb (`tipo_consulta === "gestion" && modalidad_gestion === "temporal"`), `backend/urbannit_automation.py` genera en segundo plano, sin bloquear la respuesta del formulario, las dos propuestas de D-056 (`Urbannit_Propuesta_Propietarios`, `Urbannit_Propuesta_Gestion_Temporal`) personalizadas con el nombre real del contacto, en `.docx` y `.pdf`.
+
+**D-058 (2026-08-12)**: "Gestión de mi propiedad" agrupa dos servicios distintos — renta tradicional (sin muebles o amoblada, la gestiona **Meridiano Capital directamente**) y renta temporal/Airbnb (la opera **Urbannit**). Las dos propuestas de D-056 son exclusivas de renta temporal; el formulario ahora pide un segundo campo condicional (`modalidad_gestion`) para no enviarlas a un contacto de renta tradicional, donde serían incorrectas.
 
 - Corre `node production/generadores/build_urbannit_propuesta_*.js "<nombre>" "<carpeta_salida>"` (subprocess con argumentos en lista, nunca `shell=True` — el nombre viene de un formulario público) y convierte a PDF con LibreOffice headless (`soffice --headless --convert-to pdf`).
 - Salida: `backend/data/urbannit_docs_generados/<timestamp>_<nombre_slug>/`, con un manifiesto acumulativo en `backend/data/urbannit_docs_generados.jsonl` (ambos con PII real, `.gitignore`d).

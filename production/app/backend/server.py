@@ -159,6 +159,13 @@ class Handler(BaseHTTPRequestHandler):
             # 4 categorias confirmadas por el founder el 2026-08-10. Opcional en el
             # backend (no bloquea el guardado) aunque el frontend lo pide siempre.
             "tipo_consulta": body.get("tipo_consulta", ""),
+            # D-058 (2026-08-12): "Gestión de mi propiedad" no es un solo servicio -- el
+            # founder senalo que puede ser renta tradicional (sin muebles o amoblada,
+            # la gestiona Meridiano Capital directamente) o renta temporal/Airbnb (la
+            # opera Urbannit). Solo se pide/usa cuando tipo_consulta == "gestion" (el
+            # frontend lo oculta y no lo requiere en los demas casos); valores:
+            # "tradicional" | "tradicional_amoblado" | "temporal" | "" (no aplica).
+            "modalidad_gestion": body.get("modalidad_gestion", ""),
             "message": body.get("message", ""),
         }
         with open(CONTACTOS_FILE, "a", encoding="utf-8") as f:
@@ -166,12 +173,14 @@ class Handler(BaseHTTPRequestHandler):
 
         _notificar_crm(entrada)
 
-        # D-057 (2026-08-12): "Gestión de mi propiedad" es la categoria de Urbannit
-        # (D-051) -- para ese tipo de consulta, y solo para esa, se generan en segundo
-        # plano las 2 propuestas personalizadas (Propietarios + Gestion Temporal),
-        # listas para enviar. No bloquea esta respuesta ni falla si Node/LibreOffice
-        # no estan disponibles en el entorno -- ver urbannit_automation.py.
-        if entrada["tipo_consulta"] == "gestion":
+        # D-057 (2026-08-12), corregido por D-058: las propuestas de Urbannit (D-056)
+        # son exclusivas de renta temporal/Airbnb -- la renta tradicional (con o sin
+        # muebles) la gestiona Meridiano Capital directamente, sin intervencion de
+        # Urbannit, y enviarle esos documentos seria incorrecto. Por eso la automatizacion
+        # exige AMBAS condiciones, no solo la categoria "Gestión de mi propiedad". No
+        # bloquea esta respuesta ni falla si Node/LibreOffice no estan disponibles en el
+        # entorno -- ver urbannit_automation.py.
+        if entrada["tipo_consulta"] == "gestion" and entrada["modalidad_gestion"] == "temporal":
             generar_propuestas_urbannit_en_segundo_plano(nombre, email, origen_id=entrada["recibido_en"])
 
         json_response(self, 200, {"ok": True})
