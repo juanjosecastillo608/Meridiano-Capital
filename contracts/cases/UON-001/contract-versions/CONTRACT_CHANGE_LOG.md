@@ -1,4 +1,7 @@
 # UON-001 — CONTRACT CHANGE LOG
+
+> ⚠️ **Superado como fuente de consulta.** Desde el Step 8 de `contracts/V2_IMPLEMENTATION_BLUEPRINT.md` (11/08/2026), la fuente vigente es **`CHANGE_REQUESTS.md`** (misma carpeta) — mismos 6 cambios, cada uno como `CR-ID` individual con su propio estado de aprobación (`PROPOSED`/`APPROVED`/`INCORPORATED`/`REJECTED`). Este archivo se conserva sin editar por trazabilidad, no se actualiza más.
+
 Boleto de Compraventa — Depto. 201 + Cochera 10, Edificio UON Calathea
 
 | ID | Cláusula | Versión anterior (v1, 10/08/2026) | Versión nueva (v2 VIGENTE, 11/08/2026) | Tipo de cambio | Motivo | Origen | Solicitado por | Estado | Validación necesaria | Impacto comercial | Impacto legal |

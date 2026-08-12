@@ -13,4 +13,5 @@ Catálogos centralizados que hoy viven como prosa dispersa dentro de los reporte
 - `issue-catalog.md` ✅ creado (Step 5) — tipos, prioridad P0-P4 y estados de Issue.
 - `decision-catalog.md` ✅ creado (Step 6) — estados de Decision.
 - `contract-version-catalog.md` ✅ creado (Step 7) — estados de Contract Version, cómo calcular el hash.
-- Resto (Change Request/Negotiation/Commitment/Action) pendiente, se centraliza a medida que cada entidad se estabiliza (Steps 8-11).
+- `change-request-catalog.md` ✅ creado (Step 8) — estados de Change Request, escala de impacto.
+- Resto (Negotiation/Commitment/Action) pendiente, se centraliza a medida que cada entidad se estabiliza (Steps 9-11).
