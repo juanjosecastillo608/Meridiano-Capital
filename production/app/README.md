@@ -29,7 +29,16 @@ Abre `http://localhost:8000`.
 | POST | `/api/calcular/reventa` | `Calculadora.evaluar_reventa(**body)` |
 | POST | `/api/calcular/reventa-temprana` | `Calculadora.evaluar_reventa_temprana(**body)` |
 | POST | `/api/calcular/combinado` | `Calculadora.evaluar_retorno_combinado(**body)` |
-| POST | `/api/contacto` | Guarda `{name, email, tipo_consulta, country, message}` en `backend/data/contactos.jsonl` (`tipo_consulta` agregado en Fase 04, item 11: segmentación por tipo de consulta) |
+| POST | `/api/contacto` | Guarda `{name, email, tipo_consulta, country, message}` en `backend/data/contactos.jsonl` (`tipo_consulta` agregado en Fase 04, item 11: segmentación por tipo de consulta). **D-057 (2026-08-12)**: si `tipo_consulta === "gestion"`, además dispara en segundo plano `urbannit_automation.py`, que genera (no envía) las dos propuestas personalizadas de Urbannit — ver sección siguiente |
+
+## Automatización de propuestas Urbannit (D-057)
+
+Cuando un contacto real elige "Gestión de mi propiedad" (`tipo_consulta === "gestion"`, la categoría de Urbannit por D-051), `backend/urbannit_automation.py` genera en segundo plano, sin bloquear la respuesta del formulario, las dos propuestas de D-056 (`Urbannit_Propuesta_Propietarios`, `Urbannit_Propuesta_Gestion_Temporal`) personalizadas con el nombre real del contacto, en `.docx` y `.pdf`:
+
+- Corre `node production/generadores/build_urbannit_propuesta_*.js "<nombre>" "<carpeta_salida>"` (subprocess con argumentos en lista, nunca `shell=True` — el nombre viene de un formulario público) y convierte a PDF con LibreOffice headless (`soffice --headless --convert-to pdf`).
+- Salida: `backend/data/urbannit_docs_generados/<timestamp>_<nombre_slug>/`, con un manifiesto acumulativo en `backend/data/urbannit_docs_generados.jsonl` (ambos con PII real, `.gitignore`d).
+- **Envío por email: todavía NO** — mismo patrón de no-op que `_notificar_crm()` (D-048). Cada entrada del manifiesto queda con `"enviado": false`; por ahora hay que enviar el documento generado a mano desde la carpeta indicada.
+- Si Node.js o LibreOffice no están disponibles en el entorno (p. ej. el hosting de producción, D-055, todavía sin confirmar si los trae), la automatización se degrada con un error claro en el manifiesto — nunca tumba el request del formulario de contacto.
 
 ## ⚠️ Antes de usar esto con inversores reales
 

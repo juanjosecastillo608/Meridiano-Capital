@@ -1,5 +1,9 @@
 production/app/backend/data/*.jsonl
 workflows/rentabilidad-evaluation/historial_evaluaciones.jsonl
+
+# Propuestas Urbannit generadas automaticamente por contacto real (D-057) -- llevan
+# el nombre real del prospecto, PII, nunca al repo. Mismo criterio que contactos.jsonl.
+production/app/backend/data/urbannit_docs_generados/
 __pycache__/
 *.pyc
 node_modules/

@@ -24,6 +24,7 @@ from urllib.parse import urlparse
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from calculadora import Calculadora  # noqa: E402
 from advertencias import advertencias_renta, advertencias_venta  # noqa: E402
+from urbannit_automation import generar_propuestas_urbannit_en_segundo_plano  # noqa: E402
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = BASE_DIR / "frontend"
@@ -164,6 +165,14 @@ class Handler(BaseHTTPRequestHandler):
             f.write(json.dumps(entrada, ensure_ascii=False) + "\n")
 
         _notificar_crm(entrada)
+
+        # D-057 (2026-08-12): "Gestión de mi propiedad" es la categoria de Urbannit
+        # (D-051) -- para ese tipo de consulta, y solo para esa, se generan en segundo
+        # plano las 2 propuestas personalizadas (Propietarios + Gestion Temporal),
+        # listas para enviar. No bloquea esta respuesta ni falla si Node/LibreOffice
+        # no estan disponibles en el entorno -- ver urbannit_automation.py.
+        if entrada["tipo_consulta"] == "gestion":
+            generar_propuestas_urbannit_en_segundo_plano(nombre, email, origen_id=entrada["recibido_en"])
 
         json_response(self, 200, {"ok": True})
 

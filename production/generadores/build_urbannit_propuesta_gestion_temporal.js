@@ -8,6 +8,13 @@
 const docx = require("docx");
 const { Document, Packer, Paragraph, TextRun, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType, ImageRun, PageBreak, Footer, PageNumber } = docx;
 const fs = require("fs");
+const path = require("path");
+
+// Automatizacion (2026-08-12, D-057): ver la nota identica en
+// build_urbannit_propuesta_propietarios.js -- mismo mecanismo, mismas precauciones
+// (nombre nunca inventado, nunca interpolado en shell).
+const NOMBRE = (process.argv[2] || "").trim().slice(0, 120) || "[NOMBRE DEL PROPIETARIO]";
+const OUT_DIR = process.argv[3] ? path.resolve(process.argv[3]) : __dirname;
 
 const KAA="45573A", KAA_D="374630", SAND="F1E8D8", CARBON="3A2E22", GOLD="C9982E", GOLD_D="A87D22", GREY="7C7264", LINE="D8CDB8";
 const POP="Poppins";
@@ -52,7 +59,7 @@ const portada=[
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:80},children:[new TextRun({text:"PROPUESTA DE GESTIÓN",font:POP,bold:true,size:38,color:KAA})]}),
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:340},children:[new TextRun({text:"de alquiler temporal",font:POP,size:26,color:CARBON,italics:true})]}),
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:500},children:[new TextRun({text:"Cómo funciona nuestro modelo de trabajo: de dónde vienen tus ingresos, cómo se calcula la comisión, y cómo te pagamos cada mes.",font:POP,size:20,color:GREY})]}),
-  new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[new TextRun({text:"Documento confidencial preparado para [NOMBRE DEL PROPIETARIO]",font:POP,size:18,color:"2A2620"})]}),
+  new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[new TextRun({text:"Documento confidencial preparado para "+NOMBRE,font:POP,size:18,color:"2A2620"})]}),
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[new TextRun({text:"Asunción, Paraguay",font:POP,size:18,color:GREY})]}),
   new Paragraph({children:[new PageBreak()]}),
 ];
@@ -183,4 +190,6 @@ const doc=new Document({
   }],
 });
 
-Packer.toBuffer(doc).then(buf=>{fs.writeFileSync("Urbannit_Propuesta_Gestion_Temporal.docx",buf);console.log("OK: Urbannit_Propuesta_Gestion_Temporal.docx");});
+const slug = NOMBRE === "[NOMBRE DEL PROPIETARIO]" ? "" : "_" + NOMBRE.normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-zA-Z0-9]+/g,"_").replace(/^_+|_+$/g,"").slice(0,60);
+const outFile = path.join(OUT_DIR, `Urbannit_Propuesta_Gestion_Temporal${slug}.docx`);
+Packer.toBuffer(doc).then(buf=>{fs.writeFileSync(outFile,buf);console.log("OK:",outFile);});

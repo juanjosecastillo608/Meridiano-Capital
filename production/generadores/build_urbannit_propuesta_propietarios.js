@@ -9,6 +9,17 @@
 const docx = require("docx");
 const { Document, Packer, Paragraph, TextRun, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType, ImageRun, PageBreak, Footer, PageNumber } = docx;
 const fs = require("fs");
+const path = require("path");
+
+// Automatizacion (2026-08-12, D-057): argv[2] = nombre real del propietario (opcional,
+// cae al placeholder si no se pasa -- nunca se envia un documento con un nombre inventado);
+// argv[3] = carpeta de salida (opcional, default = cwd, que es donde vive este script y el
+// "master" de referencia). El nombre se recorta y se limita en longitud -- viene de un
+// formulario publico, nunca se interpola en un comando de shell (ver
+// production/app/backend/urbannit_automation.py, que invoca este script con subprocess y
+// argumentos en lista, no con shell=True).
+const NOMBRE = (process.argv[2] || "").trim().slice(0, 120) || "[NOMBRE DEL PROPIETARIO]";
+const OUT_DIR = process.argv[3] ? path.resolve(process.argv[3]) : __dirname;
 
 const KAA="45573A", KAA_D="374630", SAND="F1E8D8", CARBON="3A2E22", GOLD="C9982E", GOLD_D="A87D22", CREAM="FBF7EF", GREY="7C7264", LINE="D8CDB8";
 const POP="Poppins";
@@ -53,7 +64,7 @@ const portada=[
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:80},children:[new TextRun({text:"PROPUESTA DE TRABAJO",font:POP,bold:true,size:38,color:KAA})]}),
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:340},children:[new TextRun({text:"para propietarios",font:POP,size:26,color:CARBON,italics:true})]}),
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:500},children:[new TextRun({text:"Cómo trabajamos tu propiedad en alquiler temporal, paso a paso: qué necesitamos de tu parte, qué hacemos nosotros, y cómo se organizan los pagos.",font:POP,size:20,color:GREY})]}),
-  new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[new TextRun({text:"Documento confidencial preparado para [NOMBRE DEL PROPIETARIO]",font:POP,size:18,color:"2A2620"})]}),
+  new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[new TextRun({text:"Documento confidencial preparado para "+NOMBRE,font:POP,size:18,color:"2A2620"})]}),
   new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[new TextRun({text:"Asunción, Paraguay",font:POP,size:18,color:GREY})]}),
   new Paragraph({children:[new PageBreak()]}),
 ];
@@ -221,4 +232,6 @@ const doc=new Document({
   }],
 });
 
-Packer.toBuffer(doc).then(buf=>{fs.writeFileSync("Urbannit_Propuesta_Propietarios.docx",buf);console.log("OK: Urbannit_Propuesta_Propietarios.docx");});
+const slug = NOMBRE === "[NOMBRE DEL PROPIETARIO]" ? "" : "_" + NOMBRE.normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-zA-Z0-9]+/g,"_").replace(/^_+|_+$/g,"").slice(0,60);
+const outFile = path.join(OUT_DIR, `Urbannit_Propuesta_Propietarios${slug}.docx`);
+Packer.toBuffer(doc).then(buf=>{fs.writeFileSync(outFile,buf);console.log("OK:",outFile);});
