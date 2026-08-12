@@ -132,7 +132,7 @@ const s2 = [
   bullet("Coordinación de mantenimiento y notificación al PROPIETARIO de arreglos o gastos de conservación necesarios;"),
   bullet("Recepción de los pagos abonados por las plataformas y liquidación mensual al PROPIETARIO."),
   cl("2.2", "EL PROPIETARIO será responsable del pago de todos los gastos de EL INMUEBLE (expensas, internet, ANDE, y otros servicios), salvo lo dispuesto en la Cláusula Sexta respecto de la tarifa de limpieza."),
-  cl("2.3", "EL INMUEBLE cuenta con bienes y equipamiento que se entregan en este acto, detallados en el documento individualizado como “ANEXO I — Inventario”, que se adjunta y forma parte integral de este contrato."),
+  cl("2.3", "EL INMUEBLE cuenta con bienes y equipamiento que se entregan en este acto, detallados en el documento individualizado como “ANEXO I — Inventario del Inmueble”, que se adjunta y forma parte integral de este contrato."),
   cl("2.4", "EL PROPIETARIO entiende que, debido al uso que se dará a EL INMUEBLE y a los bienes del ANEXO I, estos sufrirán un desgaste natural por el cual URBANNIT no será responsable."),
 ];
 

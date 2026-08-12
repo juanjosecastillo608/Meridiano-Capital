@@ -11,7 +11,8 @@ Sistema jurídico-operativo de Urbannit (contratos, reglamentos, políticas, for
 - `00-fase-a-diagnostico-y-arquitectura.md` — Fase A (Auditoría): diagnóstico, qué falta, riesgos, arquitectura de 10 niveles, Master Document Index, prioridades y roadmap.
 - `01-notas-urb-con-001.md` — bitácora de redacción del primer contrato real (`URB-CON-001`, ver abajo): qué quedó confirmado por el founder, qué es propuesta mía sin confirmar, y qué requiere validación de un abogado paraguayo.
 - `02-notas-anexo-i-y-terminos-huesped.md` — misma bitácora para `URB-CON-002` y `URB-CON-005`.
-- `03-notas-anexo-tarifas-y-liquidacion.md` — misma bitácora para `URB-CON-003` y `URB-REP-001` (ver abajo).
+- `03-notas-anexo-tarifas-y-liquidacion.md` — misma bitácora para `URB-CON-003` y `URB-REP-001`.
+- `04-auditoria-documental.md` — auditoría de consistencia entre los 5 documentos del lote (nombres, cifras, referencias cruzadas contra el material comercial ya aprobado). 1 inconsistencia real encontrada y corregida (título del Anexo I).
 
 **Documentos borrador construidos hasta ahora** (todos en `production/entregables/`, generados desde `production/generadores/build_urbannit_*.js`, **ninguno para firmar sin revisión legal**):
 
@@ -23,4 +24,6 @@ Sistema jurídico-operativo de Urbannit (contratos, reglamentos, políticas, for
 | `URB-CON-005` | Términos y Condiciones de Estadía (huésped) | D-060 (2026-08-12) |
 | `URB-REP-001` | Formato de Liquidación Mensual al propietario | D-061 (2026-08-12) |
 
-**Pendiente**: auditoría documental de todo lo construido hasta ahora, a pedido del founder (D-061) — próximo paso de este proyecto.
+**Auditoría documental (D-062, 2026-08-12)**: ✅ completada. 1 inconsistencia real corregida (título del Anexo I, distinto entre la Cláusula 2.3 del contrato y el propio documento). Sin contradicciones de fondo en cifras, plazos ni responsabilidades entre los 5 documentos, ni contra el material comercial ya aprobado (D-056/057/058). Ver `04-auditoria-documental.md`.
+
+**Pendiente**: `URB-REG-001` (reglamento de huéspedes) descartado por ahora — el founder confirmó que `URB-CON-005` ya alcanza. Sigue bloqueado por validación legal externa: `URB-POL-001` (seguro) y `URB-POL-002` (SENATUR).
