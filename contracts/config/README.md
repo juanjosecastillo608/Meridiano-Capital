@@ -9,4 +9,5 @@ Catálogos centralizados que hoy viven como prosa dispersa dentro de los reporte
 
 **Estado:**
 - `fact-catalog.md` ✅ creado (Step 3) — categorías de Fact, estados, niveles de fuente y de evidencia.
-- Resto (tipos de Issue, estados de Conflict/Decision/Contract Version/etc.) pendiente, se centraliza a medida que cada entidad se estabiliza (Steps 4-11).
+- `conflict-catalog.md` ✅ creado (Step 4) — estados de Conflict.
+- Resto (tipos de Issue, estados de Decision/Contract Version/etc.) pendiente, se centraliza a medida que cada entidad se estabiliza (Steps 5-11).
