@@ -10,7 +10,8 @@ Sistema jurídico-operativo de Urbannit (contratos, reglamentos, políticas, for
 
 - `00-fase-a-diagnostico-y-arquitectura.md` — Fase A (Auditoría): diagnóstico, qué falta, riesgos, arquitectura de 10 niveles, Master Document Index, prioridades y roadmap.
 - `01-notas-urb-con-001.md` — bitácora de redacción del primer contrato real (`URB-CON-001`, ver abajo): qué quedó confirmado por el founder, qué es propuesta mía sin confirmar, y qué requiere validación de un abogado paraguayo.
-- `02-notas-anexo-i-y-terminos-huesped.md` — misma bitácora para `URB-CON-002` y `URB-CON-005` (ver abajo).
+- `02-notas-anexo-i-y-terminos-huesped.md` — misma bitácora para `URB-CON-002` y `URB-CON-005`.
+- `03-notas-anexo-tarifas-y-liquidacion.md` — misma bitácora para `URB-CON-003` y `URB-REP-001` (ver abajo).
 
 **Documentos borrador construidos hasta ahora** (todos en `production/entregables/`, generados desde `production/generadores/build_urbannit_*.js`, **ninguno para firmar sin revisión legal**):
 
@@ -18,4 +19,8 @@ Sistema jurídico-operativo de Urbannit (contratos, reglamentos, políticas, for
 |---|---|---|
 | `URB-CON-001` | Contrato de Administración de Alquiler Temporal | D-059 (2026-08-12) — aprobado por el founder |
 | `URB-CON-002` | Anexo I — Inventario del Inmueble | D-060 (2026-08-12) |
+| `URB-CON-003` | Anexo — Tarifas y Comisiones | D-061 (2026-08-12) |
 | `URB-CON-005` | Términos y Condiciones de Estadía (huésped) | D-060 (2026-08-12) |
+| `URB-REP-001` | Formato de Liquidación Mensual al propietario | D-061 (2026-08-12) |
+
+**Pendiente**: auditoría documental de todo lo construido hasta ahora, a pedido del founder (D-061) — próximo paso de este proyecto.

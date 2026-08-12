@@ -132,7 +132,7 @@ Nomenclatura propuesta (punto 20 del prompt maestro), consistente con el resto d
 | URB-CORP-003 | Política de confidencialidad y datos personales | Corporativo | Falta | P2 |
 | URB-CON-001 | **Contrato de administración de alquiler temporal** (Urbannit ↔ Propietario) | Contrato — propietario | ✅ **Borrador v1.0** (D-059, 2026-08-12) — `production/entregables/Urbannit_Contrato_Administracion_BORRADOR.docx/.pdf`. **No firmar** — ver `01-notas-urb-con-001.md` para qué está confirmado vs. propuesto vs. pendiente de validación legal | **P0** |
 | URB-CON-002 | Anexo I — Inventario del inmueble | Contrato — propietario | ✅ **Borrador v1.0** (2026-08-12) — `production/entregables/Urbannit_Anexo_I_Inventario_BORRADOR.docx/.pdf`. Checklist por categoría (mobiliario, electrodomésticos, ropa de cama, cocina, baño, limpieza, lavado, llaves) con campos en blanco para completar por propiedad | **P0** |
-| URB-CON-003 | Anexo — Tarifas y comisiones | Contrato — propietario | Falta | P0 |
+| URB-CON-003 | Anexo — Tarifas y comisiones | Contrato — propietario | ✅ **Borrador v1.0** (2026-08-12) — `production/entregables/Urbannit_Anexo_Tarifas_Comisiones_BORRADOR.docx/.pdf`. Consolida en una tabla todo lo que ya dice URB-CON-001, más el ejemplo numérico ya aprobado de la Propuesta de Gestión de Alquiler Temporal (D-056) | **P0** |
 | URB-CON-004 | Acta de entrega / recepción del inmueble | Contrato — propietario | Falta — el Anexo I (URB-CON-002) ya cubre parte de esta función (bloque de firma "entrega/recibe") | P1 |
 | URB-CON-005 | Términos y condiciones de estadía (huésped) | Contrato — huésped | ✅ **Borrador v1.0** (2026-08-12) — `production/entregables/Urbannit_Terminos_Condiciones_Huesped_BORRADOR.docx/.pdf`. Aceptación digital (vía reserva), no firma manuscrita — incluye acuse de recibo opcional para check-in presencial | **P0** |
 | URB-CON-006 | Contrato/acuerdo con proveedores de limpieza y mantenimiento | Contrato — proveedor | Falta | P1 |
@@ -146,7 +146,7 @@ Nomenclatura propuesta (punto 20 del prompt maestro), consistente con el resto d
 | URB-CHK-001 | Checklist de preparación y equipamiento de la propiedad | Checklist | Falta (contenido existe como texto en la Propuesta de propietarios) | P1 |
 | URB-CHK-002 | Checklist de check-in / check-out | Checklist | Falta | P1 |
 | URB-CHK-003 | Checklist de turnover (limpieza entre estadías) | Checklist | Falta | P2 |
-| URB-REP-001 | Formato de liquidación mensual al propietario | Reporte | Falta (contenido descrito en la Propuesta de Gestión de Alquiler Temporal, sin formato fijo) | P0 |
+| URB-REP-001 | Formato de liquidación mensual al propietario | Reporte | ✅ **Borrador v1.0** (2026-08-12) — `production/entregables/Urbannit_Liquidacion_Mensual_FORMATO.docx/.pdf`. Detalle de reservas + resumen de deducciones (plataforma, honorarios, reposiciones) + importe neto — formaliza la Cláusula 4.2 de URB-CON-001 | **P0** |
 
 ---
 
