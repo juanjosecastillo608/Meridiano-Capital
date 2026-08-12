@@ -62,7 +62,7 @@ Ver `inventory/_raw-copies/meridiano-capital-identity/assets/brandbook/21_brand_
 
 **Regla de endoso (recordatorio, ya vigente):** toda pieza formal y el sitio web de Urbannit deben exhibir "gestionado por Meridiano Capital". La presentacion actual de Urbannit NO lo hace y debe corregirse.
 
-> UNRESOLVED: el manual señala explicitamente que la presentacion/sitio actual de Urbannit "NO" exhibe el endoso "gestionado por Meridiano Capital" y "debe corregirse". No hay evidencia en el material migrado de que esto ya se haya resuelto — queda como accion pendiente de verificar/ejecutar, no como hecho consumado.
+> ~~UNRESOLVED: el manual señala explicitamente que la presentacion/sitio actual de Urbannit "NO" exhibe el endoso...~~ ✅ **RESUELTO** — verificado en las piezas de Urbannit ya construidas: el footer del sitio (`production/app/frontend/index.html`) dice "Urbannit es una marca gestionada por Meridiano Capital"; `Urbannit_Presentacion.pptx` (`build_urbannit.js`) lo repite en cada diapositiva vía la funcion `endorso()`; y las dos propuestas de propietarios (`Urbannit_Propuesta_Propietarios`/`Urbannit_Propuesta_Gestion_Temporal`, D-056, 2026-08-12) lo agregan en portada, pie de pagina y cierre. No queda ninguna pieza formal de Urbannit conocida sin el endoso.
 
 **Rentabilidad que comunica Urbannit al propietario (etiquetada):**
 - Renta temporal gestionada: **bruto 10-16% → neto 8-11%** anual. Urbannit comunica el NETO al propietario (8-11%), coherente con la regla de nunca prometer rentabilidad como garantia (ver `02-identidad-verbal.md`).

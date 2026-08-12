@@ -48,6 +48,15 @@ Los 7 entregables existentes se regeneraron completos contra `Origen Borrador pr
 |---|---|---|
 | `Meridiano_Perfil_Profesional_CEO` | .docx + .pdf | **Nuevo (2026-08-10, D-041/D-042).** Perfil profesional de Juan José Castillo como CEO de Meridiano Capital — one-liner y bios copy-ready (corta/media/larga), arquitectura de las 5 unidades de negocio, Red de Aliados, proceso de 6 etapas, guía de contenido LinkedIn/Instagram. Fuente de verdad para "Quiénes Somos" y redes sociales; no reproduce cifras de tarifario (regla RN-04) |
 
+## Urbannit — propuestas para propietarios (papelería formal)
+
+| Pieza | Formato | Detalle |
+|---|---|---|
+| `Urbannit_Propuesta_Propietarios` | .docx + .pdf | **Nuevo (2026-08-12, D-056).** Propuesta de trabajo para propietarios — el proceso completo de onboarding en 7 secciones: relevamiento de la propiedad, preparación y equipamiento (checklists completos de ropa de cama, cocina, baño, limpieza, stock), fotografía, precios y gestión diaria, coordinación operativa, pagos y liquidación mensual, y qué aporta cada parte. Fuente: `Propuesta de trabajo para propietarios.pdf` (D-043, material operativo de Urbannit), reformateado con identidad de marca completa |
+| `Urbannit_Propuesta_Gestion_Temporal` | .docx + .pdf | **Nuevo (2026-08-12, D-056).** Propuesta de Gestión de Alquiler Temporal — foco en el modelo de negocio: cómo funciona Airbnb/Booking, cómo se generan los ingresos, el modelo a comisión, la limpieza como cargo del huésped, cómo se cobran las reservas y se paga al propietario, y un ejemplo numérico completo de liquidación mensual. Fuente: `Propuesta de Gestión de Alquiler Temporal.pdf` (D-043) |
+
+Ambas piezas: Poppins única familia, paleta Ka'a verde/sand/carbón/dorado (nunca la paleta de Meridiano Capital, regla de convivencia de `brand/10-arquitectura-meridiano-urbannit.md`), respaldo **"gestionado por Meridiano Capital"** visible en portada, footer de cada página y firma de cierre (antes ausente en el material fuente — ver D-056), firma institucional canónica Variante A (`brand/09-cierres-y-firmas.md`, D-039), contacto `urbannit@meridianocapital.net`. Se corrigió el tuteo/formas neutras del material fuente a voseo paraguayo, consistente con el resto del sistema de marca (hallazgo ya señalado en `documentation/quality-audit/GRAMMAR-AUDIT.md`). **Pendiente antes de enviar al cliente real**: reemplazar el placeholder `[NOMBRE DEL PROPIETARIO]` de la portada por el nombre real del destinatario.
+
 ## Regla de verificación aplicada a todos estos entregables
 
 Antes de darse por terminada cada pieza se corrió una verificación explícita (0 menciones de nombres de marca viejos, contacto correcto, firma canónica homogénea, sin gaps tipográficos) — el mismo estándar que exige el audit de Brand Guardian (`knowledge-base/ai/04-director-creativo-y-brand-guardian.md`). Cualquier entregable nuevo debe pasar el mismo nivel de verificación antes de considerarse terminado.
