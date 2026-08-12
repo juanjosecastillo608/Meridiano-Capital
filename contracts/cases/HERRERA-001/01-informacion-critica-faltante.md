@@ -1,38 +1,46 @@
-Estado: CURRENT
+Estado: CURRENT — actualizado tras la primera carga real de documentación (2026-08-12)
 Fuente original: prompt maestro "MERIDIANO CAPITAL — Investment Real Estate Analysis System" (founder, 2026-08-12), §29
 Dominio: INVESTMENT / LEGAL (caso HERRERA-001)
 Incorporado: 2026-08-12
 
 # INFORMACIÓN CRÍTICA FALTANTE — HERRERA-001
 
-Ninguno de los cálculos que pide el prompt maestro (costo total, rentabilidad, TIR/VAN, precio máximo de compra, sensibilidad) se puede hacer sin datos reales — hacerlo ahora significaría inventar precios de mercado, costos de construcción y superficies, exactamente lo que la regla §26 del propio prompt maestro prohíbe explícitamente. Esta lista es el punto de partida real del caso.
+## Resuelto con la primera carga de documentación (2026-08-12)
 
-## Bloque 1 — Sin esto no se puede avanzar nada (P0)
+~~1. Precio solicitado por el vendedor y condiciones de pago~~ → USD 850.000, condiciones negociables (dato directo del founder).
+~~2. Superficie del terreno~~ → 469 m² (plano + propuesta de honorarios BOLD, coinciden).
+~~3. Planos del proyecto (plantas, unidades, superficies)~~ → tabla maestra completa de 21 unidades en `00-data-room-index.md`, del brochure oficial "Herrera Town".
 
-1. **Precio solicitado por el vendedor** y condiciones de pago — sin esto no hay "costo de adquisición" que calcular.
-2. **Superficie del terreno** (m²) y su documentación (plano de mensura o similar).
-3. **Planos del proyecto** — plantas, cortes, fachadas, cantidad de unidades, superficies por unidad. Sin esto no se puede construir la tabla maestra de superficies (§8) ni saber cuánto hay para vender.
-4. **Informe de avance de obra** — qué está ejecutado realmente (estructura, mampostería, instalaciones) más allá de "hasta el 4º piso", que el propio prompt maestro advierte que no equivale a un % de avance sin desglosar por componente.
-5. **Presupuesto de terminación** aportado por el ingeniero — sin esto no hay costo de obra pendiente, que es el insumo más grande del costo total del proyecto.
+## Sigue pendiente — el founder ya lo marcó explícitamente como tal
 
-## Bloque 2 — Necesario para el modelo financiero completo (P1)
+4. **Informe de avance de obra real por componente** (estructura / mampostería / instalaciones — no solo "hasta qué piso"). *"Vamos a calcularlo, anotamos como pendiente"* (founder, 2026-08-12).
+5. **Presupuesto de terminación del ingeniero.** Mismo estado — pendiente de calcular.
 
-6. Memoria descriptiva del proyecto (amenities, calidad de terminaciones previstas).
-7. Situación jurídica del terreno y de la obra — título, gravámenes, hipotecas, embargos (§22, Due Diligence).
-8. Comparables de mercado reales de Herrera y zonas cercanas — precio/m² de departamentos similares en venta o vendidos recientemente. Sin esto, cualquier "precio de venta esperado" sería inventado.
-9. Costos ya ejecutados por el vendedor (para contexto, aunque el prompt maestro ya advierte — §10 — que el costo histórico del vendedor no determina el valor actual para Meridiano).
-10. Impuestos, tasas y honorarios aplicables a esta operación específica (escribanía, registro, transferencia).
+Sin estos dos, no se puede completar el costo total del proyecto (§13 del prompt maestro) ni, por lo tanto, ningún cálculo de rentabilidad, TIR, VAN o precio máximo de compra real. Todo lo que se calculó hasta ahora en `00-data-room-index.md` (ingresos potenciales, precio de adquisición por m²) es **preliminar, solo para dimensionar magnitud** — no sustituye este paso.
 
-## Bloque 3 — Para due diligence antes de cualquier oferta (P1, en paralelo)
+## Archivos que existen en la carpeta de origen del founder pero todavía no fueron compartidos con este análisis
 
-11. Documentación de aprobación municipal del proyecto.
-12. Situación laboral/contractual de los contratistas actuales de la obra (si Meridiano continuaría con ellos o no).
-13. Deudas asociadas al inmueble o al proyecto que deban cancelarse.
+Al buscar los 3 archivos que sí se adjuntaron, se encontró que la carpeta `Documentacion Analisis de Compra Edificio Herrera` contiene más material, directamente relevante a lo que falta en el Data Room. No se abrió ninguno de estos — se enumeran acá para que el founder decida si los comparte:
 
-## Qué se puede hacer mientras tanto
+| Archivo | Por qué podría ser relevante |
+|---|---|
+| `Municipal-...zip` | Categoría H (Legal) del Data Room — aprobación municipal, carpeta municipal |
+| `Documentos Tecnicos-...zip` | Podría cubrir parte del bloque de avance de obra o especificaciones técnicas |
+| `Topografía -...zip` | Categoría A (Terreno) — complementa los datos de superficie ya confirmados |
+| `Terminaciones-...zip` | Podría ser exactamente el detalle de terminaciones/presupuesto que falta (bloque 5 arriba) |
+| `Modelo 3D-...zip` | Apoyo visual, probablemente ya reflejado en el brochure |
+| `Proyecto Alternativa Fachada.png` | El founder mencionó explícitamente que se evalúan cambios de fachada — este archivo podría ser justamente esa propuesta |
+| `Edificio HERRERA Desarrolla…Planillas para presentacion del Proyecto a Inversores.xlsx` | El nombre sugiere que podría contener ya un modelo económico armado — potencialmente cubre varios puntos del bloque 5 |
+| `Proyecto Ejecucion Edificio Herrera Tower.xlsx` | El nombre sugiere cómputo/presupuesto de ejecución — mismo caso que el anterior |
 
-Nada del análisis financiero (secciones 6 en adelante del prompt maestro) — pero si el founder puede aportar aunque sea el **Bloque 1 parcial** (por ejemplo, solo el precio del vendedor + los planos), ya se puede empezar el Data Room real (§5) y el análisis técnico del edificio existente (§7) sobre esa base, dejando el resto marcado explícitamente como `D — Pendiente de verificar`, tal como exige la regla de clasificación de datos del propio prompt maestro (§4).
+**Estos dos últimos archivos Excel suenan como que podrían contener exactamente el presupuesto de terminación y/o el modelo para inversores que hoy está marcado como pendiente** — vale la pena que el founder confirme si quiere compartirlos antes de que alguien arme ese presupuesto desde cero.
 
-## Siguiente paso
+## Nuevo, no estaba en la lista original — surgió al revisar la documentación
 
-Que el founder adjunte la documentación real que tenga disponible del edificio de Herrera — no hace falta que esté completa; cada documento que llegue se registra en `00-data-room-index.md` con su clasificación de confiabilidad, y el análisis avanza incrementalmente sobre lo que sí exista, nunca sobre supuestos.
+6. **Confirmar identidad del vendedor actual.** Los planos de 2023 identifican al propietario como "Cristino Silva" — falta confirmar si es la misma persona/entidad con la que Meridiano está negociando hoy, o si el predio cambió de titularidad desde 2023.
+7. **Comparables reales de mercado** en Herrera y zonas cercanas (anuncios u operaciones concretas, no solo el rango de referencia que dio el founder) — necesarios para pasar de "punto de partida" a un análisis de mercado del nivel que pide el prompt maestro (§14).
+8. **Cómputo de las 3 alternativas de rediseño** que el founder pidió evaluar (fachada alternativa, tipologías de 30/45 m², piso adicional) — hoy son instrucciones de alcance, no hay planos ni superficies para ninguna todavía.
+
+## Qué ya se puede hacer con lo que hay
+
+Con el precio de adquisición, la superficie confirmada y la tabla maestra de unidades, ya se puede: (a) tener una primera magnitud de ingresos potenciales según el rango de venta indicado por el founder, y (b) calcular el precio de adquisición por m² — ambos ya están en `00-data-room-index.md`, marcados explícitamente como preliminares. **No se puede calcular el costo total del proyecto, la rentabilidad ni el precio máximo de compra hasta tener el Bloque de avance de obra + presupuesto de terminación** (puntos 4 y 5 arriba).
