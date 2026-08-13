@@ -33,7 +33,7 @@ Al buscar los 3 archivos que sí se adjuntaron, se encontró que la carpeta `Doc
 | `Edificio HERRERA Desarrolla…Planillas para presentacion del Proyecto a Inversores.xlsx` | El nombre sugiere que podría contener ya un modelo económico armado — potencialmente cubre varios puntos del bloque 5 |
 | `Proyecto Ejecucion Edificio Herrera Tower.xlsx` | El nombre sugiere cómputo/presupuesto de ejecución — mismo caso que el anterior |
 
-**Estos dos últimos archivos Excel suenan como que podrían contener exactamente el presupuesto de terminación y/o el modelo para inversores que hoy está marcado como pendiente** — vale la pena que el founder confirme si quiere compartirlos antes de que alguien arme ese presupuesto desde cero.
+~~Estos dos últimos archivos Excel suenan como que podrían contener exactamente el presupuesto de terminación...~~ → **Revisados (2026-08-12): NO lo contienen.** Ver `02-plantillas-de-referencia.md` — son plantillas de metodología (una heredada de otro proyecto real, "Mburucuyá"; la otra un modelo genérico de fideicomiso de 80 unidades), sin ninguna cantidad de Herrera cargada. Aportan fees/porcentajes de referencia (comisión venta 5,5%, fee desarrollador 8%, etc.) pero no resuelven los puntos 4 y 5 de abajo. El founder confirmó explícitamente que se va a armar una planilla propia.
 
 ## Nuevo, no estaba en la lista original — surgió al revisar la documentación
 

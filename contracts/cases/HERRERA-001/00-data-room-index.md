@@ -106,11 +106,15 @@ Depende directamente de C. No se puede definir qué falta sin el informe de avan
 
 ## J. Alcance del análisis a modelar (definido por el founder, no es un dato del activo sino una instrucción de trabajo)
 
-El founder pidió calcular **más de un escenario de producto**, no solo terminar el diseño actual:
+El founder confirmó (2026-08-12, segundo mensaje) que el análisis se hace **desde dos ángulos**, no un único escenario:
 
-1. **Terminar el proyecto tal cual fue diseñado** (el de la tabla maestra de arriba — 21 unidades, 1.813,6 m² vendibles).
-2. **Alternativa con cambios de fachada** — el folder de origen incluye un archivo `Proyecto Alternativa Fachada.png` que el founder no adjuntó todavía.
-3. **Tipologías más pequeñas** — monoambientes de 30 m² y unidades de 1 dormitorio de 45 m², para lograr **un mix más homogéneo entre 1/2/3 dormitorios** (hoy el mix está desbalanceado: 15 de 2 dorm., solo 3 de 1 dorm., 3 de 3 dorm.).
-4. **Agregar un piso más**, para prorratear los costos fijos entre más unidades.
+**Ángulo 1 — Terminar el proyecto tal cual fue diseñado**: el de la tabla maestra de arriba — 21 unidades, 1.813,6 m² vendibles, sin cambios de producto.
+
+**Ángulo 2 — Modificaciones de fachada y tipologías**, con tres componentes confirmados:
+- **Cambio de fachada**: el founder confirmó que la imagen de render que compartió (edificio de líneas curvas, balcones con jardineras, ~8-9 niveles) **es el estilo objetivo** — *"la imagen de la fachada es el estilo que necesitamos darle al edificio por la zona y el nicho de mercado que apuntamos"*. **D — pendiente de verificar**: si esa imagen es la portada del brochure "Herrera Town" (que ya coincide con el diseño de 21 unidades confirmado) o si es una propuesta de fachada distinta/más elaborada todavía sin construir — el archivo `Proyecto Alternativa Fachada.png` de la carpeta de origen no fue compartido todavía y podría aclarar esto.
+- **Tipologías más pequeñas** — monoambientes de 30 m² y unidades de 1 dormitorio de 45 m², para lograr un **mix más homogéneo entre 1/2/3 dormitorios** (hoy el mix está desbalanceado: 15 de 2 dorm., solo 3 de 1 dorm., 3 de 3 dorm.).
+- **Un piso adicional** sobre lo proyectado, para prorratear los costos fijos entre más unidades.
+
+Ninguno de los dos ángulos tiene planos ni cómputo propio todavía — son líneas de trabajo confirmadas, no datos calculables hasta que exista un rediseño con superficies definidas. El founder aclaró que las dos planillas Excel que compartió (ver `02-plantillas-de-referencia.md`) son solo referencia de metodología — *"vamos a generar nuestras propias planillas de cálculo"*.
 
 Estos tres últimos son **rediseños hipotéticos, todavía sin planos ni cómputo propio** — no se puede costear ninguno sin definir primero cuántas unidades y de qué superficie resultarían. Quedan como líneas de trabajo futuras, no como datos del Data Room.

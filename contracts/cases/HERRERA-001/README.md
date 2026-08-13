@@ -12,10 +12,15 @@ El founder aportó la primera documentación real el 2026-08-12: el brochure com
 
 | Archivo | Contenido |
 |---|---|
-| `00-data-room-index.md` | Data Room poblado (categorías A–J): terreno, proyecto (tabla maestra de 21 unidades), costos parciales, mercado — cada dato clasificado A/B/C/D |
-| `01-informacion-critica-faltante.md` | Qué se resolvió, qué sigue pendiente (avance de obra + presupuesto de terminación), y qué archivos existen en la carpeta de origen del founder pero no fueron compartidos todavía (2 planillas Excel que podrían contener justo lo que falta) |
-| `source-documents/` | Brochure "Town Herrera Brochure VERSION 2.0.pdf", y los dos .zip de planos técnicos aportados por el founder, sin modificar |
+| `00-data-room-index.md` | Data Room poblado (categorías A–J): terreno, proyecto (tabla maestra de 21 unidades), costos parciales, mercado, alcance de los 2 ángulos de análisis confirmados — cada dato clasificado A/B/C/D |
+| `01-informacion-critica-faltante.md` | Qué se resolvió, qué sigue pendiente (avance de obra + presupuesto de terminación — bloqueante confirmado), y qué archivos de la carpeta de origen no fueron compartidos todavía |
+| `02-plantillas-de-referencia.md` | Revisión de las 2 planillas Excel que el founder aportó como referencia (no contienen datos de Herrera — son plantillas de metodología de otros proyectos) |
+| `source-documents/` | Brochure oficial, planos técnicos, y las 2 planillas Excel de referencia, sin modificar |
+
+## Alcance confirmado: dos ángulos de análisis
+
+**Ángulo 1** — terminar el proyecto tal cual fue diseñado (21 unidades, 1.813,6 m²). **Ángulo 2** — modificaciones de fachada (estilo confirmado por el founder vía imagen de referencia) + tipologías más pequeñas (30/45 m², mix más homogéneo 1/2/3 dormitorios) + un piso adicional. Ninguno de los dos ángulos tiene todavía el presupuesto de terminación que permita costearlos.
 
 ## Próximo paso
 
-Que el founder confirme si comparte los archivos adicionales identificados en `01-informacion-critica-faltante.md` (en particular las 2 planillas Excel, que por su nombre podrían ya tener el presupuesto de terminación armado) — o que aporte el informe de avance/presupuesto cuando esté calculado.
+Sigue pendiente el bloqueante principal: informe de avance de obra real + presupuesto de terminación del ingeniero (el founder ya confirmó que se está calculando). El founder va a armar su propia planilla de cálculo — las 2 planillas Excel aportadas hasta ahora son solo referencia de metodología, no datos de Herrera.
