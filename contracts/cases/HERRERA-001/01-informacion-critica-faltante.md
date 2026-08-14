@@ -28,6 +28,9 @@ Incorporado: 2026-08-12, actualizado 2026-08-13
 ~~10. Restar comisión de venta al margen preliminar~~ → ✅ **Resuelto** (5,5%, con precio por piso y cocheras ya sumados) — ver `06-margen-neto-comision-y-precios-por-piso.md`. Sigue pendiente: impuestos, costos financieros y fee de fideicomiso.
 11. **Opinión estructural** sobre si la obra ya construida (73,5% de avance) soporta el piso adicional del Ángulo 2 sin refuerzo mayor — el permiso municipal ya está confirmado, esto es lo que falta para el Ángulo 2.
 12. **Estructura de financiamiento del trato** (capital propio, deuda, fideicomiso) — necesaria para saber qué costos financieros/fee de fideicomiso aplican realmente al margen neto final.
+13. **Renta mensual real esperada por tipo de unidad en Barrio Herrera** — para la estrategia híbrida de venta/retención (`07-costos-desagregados-y-estrategia-venta-renta.md`), hoy solo hay un ejemplo ilustrativo (USD 70/noche) prestado de otro contexto de Urbannit, no un dato de mercado de esta zona.
+14. **Confirmar el % de venta/retención por ángulo** — hay una propuesta preliminar razonada en `07-costos-desagregados-y-estrategia-venta-renta.md`, sin decidir todavía.
+15. **Aclarar la discrepancia de comisión de venta entre las dos planillas de referencia** (5,5% vs. ≈4,2% ponderado) — ver `07-costos-desagregados-y-estrategia-venta-renta.md`.
 
 ## Archivos que siguen sin compartirse
 
