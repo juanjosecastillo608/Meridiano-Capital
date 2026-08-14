@@ -106,11 +106,11 @@ Depende directamente de C. No se puede definir qué falta sin el informe de avan
 
 ## J. Alcance del análisis a modelar (definido por el founder, no es un dato del activo sino una instrucción de trabajo)
 
-**Actualizado 2026-08-13 — nomenclatura definitiva** (reemplaza "Ángulo 1/Ángulo 2" usado el 2026-08-12): el founder confirmó **tres escenarios**, y aclaró que el objetivo del análisis es determinar cuál conviene, no justificar uno ya elegido — *"aún no sabemos qué conviene, ese es el objetivo también de este análisis"*.
+**Nomenclatura definitiva (2026-08-13)**: el founder confirmó **tres ángulos de análisis**, y aclaró que el objetivo es determinar cuál conviene, no justificar uno ya elegido — *"aún no sabemos qué conviene, ese es el objetivo también de este análisis"*.
 
-- **Escenario Base** — terminar el proyecto tal cual está presentado en la Municipalidad: la tabla maestra de arriba, 21 unidades, 1.800–1.813,6 m² vendibles, sin cambios de producto. **Ya tiene costo y margen preliminar calculados**, ver `04-comprar-vs-construir.md`.
-- **Opción 1** — mismos 6 pisos (misma envolvente aprobada), con **tipologías más chicas** (para aumentar el ingreso total por m² vendible) y **cambio de fachada estética**. El founder confirmó que la imagen de render que compartió (edificio de líneas curvas, balcones con jardineras) **es el estilo objetivo**. Sin piso adicional. **Sin cómputo propio todavía.**
-- **Opción 2** — Opción 1 + **solicitar los permisos para un piso más** (7 pisos). Ver el hallazgo de zonificación en `03-presupuesto-y-comparables.md` (posible incentivo municipal de altura ya contemplado). **Sin cómputo propio todavía**, salvo el dato de +300 m² comercializables aproximados si se agrega el piso.
+- **Ángulo 1** — terminar el proyecto tal cual está presentado en la Municipalidad: la tabla maestra de arriba, 21 unidades, 1.800–1.813,6 m² vendibles, sin cambios de producto. **Ya tiene costo y margen preliminar calculados**, ver `04-comprar-vs-construir.md`.
+- **Ángulo 2** — fachada nueva (el founder confirmó que la imagen de render que compartió es el estilo objetivo) + **tipologías más pequeñas** + **solicitar los permisos para un piso más** (7 pisos, +300 m² comercializables aproximados). **Ya tiene un primer costeo ilustrativo**, ver `05-angulo-2-y-3-tipologias-chicas.md`.
+- **Ángulo 3** — la misma fachada nueva + tipologías más pequeñas del Ángulo 2, **sin el piso adicional** (6 pisos, misma envolvente aprobada) — escenario de resguardo por si no se obtiene el permiso municipal para el piso extra. **Ya tiene un primer costeo ilustrativo**, ver `05-angulo-2-y-3-tipologias-chicas.md`.
 
 El founder también pidió evaluar y comparar contra la alternativa de **comprar un terreno equivalente y construir desde cero** — ver el análisis completo en `04-comprar-vs-construir.md`. Las dos planillas Excel que el founder compartió el 2026-08-12 (ver `02-plantillas-de-referencia.md`) son solo referencia de metodología, no datos de Herrera — *"vamos a generar nuestras propias planillas de cálculo"*.
 
