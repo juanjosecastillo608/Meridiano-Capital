@@ -2,26 +2,27 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Primer margen preliminar calculado — Ángulo 1 (diseño actual)
+## Estado actual: 🟢 Escenario Base costeado + primera comparación comprar-vs-construir
 
-El 2026-08-13 el founder aportó el primer presupuesto de terminación real (planilla de costos "Edificio Barrio Herrera") y un comparable de mercado real ("Filum Herrera", proyecto competidor del mismo barrio). Con esto se calculó, por primera vez, un margen bruto preliminar real para el Ángulo 1 (terminar el diseño actual de 6 pisos, 21 unidades).
+El founder fue explícito sobre el objetivo real del análisis: *"aún no sabemos qué conviene, ese es el objetivo también de este análisis"* — determinar si comprar este predio (con la estructura ya al 73,5% de avance) es mejor que comprar un terreno equivalente y construir desde cero, no dar por sentado que sí.
 
-**Hallazgo importante, sin suavizar**: con la calidad de terminación que pidió el founder (USD 750/m²), en el extremo bajo del rango de venta de la zona el margen bruto da **negativo**, antes de restar siquiera la comisión de venta. Ver el detalle completo en `03-presupuesto-y-comparables.md`, sección 7. Esto no es una conclusión de "no comprar" — es exactamente el tipo de resultado que el Ángulo 2 (piso adicional + tipologías más chicas, que tienden a vender a USD/m² más alto) está pensado para mejorar.
+**Hallazgo del 2026-08-13**: con los supuestos actuales, comprar y terminar (USD 3.472.727,78 de inversión total) **no sale más barato** que construir desde cero (USD 3.338.552–3.457.202, según el valor de terreno crudo que se use) — la diferencia es chica (menos del 4%). La ventaja real del trato probablemente esté en el **tiempo ganado y el riesgo de obra ya evitado** (≈USD 170.000 de valor implícito), no en el costo nominal total. Ver el análisis completo en `04-comprar-vs-construir.md`.
 
 ## Archivos de este caso
 
 | Archivo | Contenido |
 |---|---|
-| `00-data-room-index.md` | Data Room (categorías A–J): terreno, proyecto, mercado, alcance de los 2 ángulos de análisis |
-| `01-informacion-critica-faltante.md` | Qué se resolvió y qué sigue pendiente — actualizado al 2026-08-13 |
+| `00-data-room-index.md` | Data Room (categorías A–J): terreno, proyecto, mercado, los 3 escenarios de producto confirmados |
+| `01-informacion-critica-faltante.md` | Qué se resolvió y qué sigue pendiente |
 | `02-plantillas-de-referencia.md` | Las 2 planillas Excel de metodología aportadas el 2026-08-12 (no son datos de Herrera) |
-| `03-presupuesto-y-comparables.md` | **Nuevo (2026-08-13)**: presupuesto de terminación real, avance de obra en superficie de estructura (73,5%), comparable de mercado real (Filum Herrera), y el primer cálculo de margen preliminar |
+| `03-presupuesto-y-comparables.md` | Presupuesto de terminación real, avance de obra (73,5% de estructura), comparable de mercado real (Filum Herrera) |
+| `04-comprar-vs-construir.md` | **Nuevo (2026-08-13)**: comparación comprar-y-terminar vs. terreno crudo + construcción desde cero; valor del riesgo/tiempo evitado; costo total y margen preliminar actualizados del Escenario Base |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 2 planillas Excel de referencia, sin modificar |
 
-## Alcance confirmado: dos ángulos de análisis
+## Los tres escenarios de producto
 
-**Ángulo 1** — terminar tal cual fue diseñado (21 unidades, 1.800-1.813,6 m² comercializables). **Ya tiene un primer margen preliminar calculado** (ver arriba). **Ángulo 2** — fachada nueva (estilo confirmado) + tipologías más pequeñas (30/45 m²) + un piso adicional (+300 m² comercializables si el municipio lo permite). Todavía sin cómputo propio de superficies ni presupuesto.
+**Escenario Base** — terminar tal cual está aprobado en la Municipalidad (6 pisos, 21 unidades). **Ya costeado.** **Opción 1** — mismos 6 pisos, tipologías más chicas + fachada nueva. **Opción 2** — Opción 1 + un piso adicional (7 pisos). Opción 1 y 2 todavía sin cómputo propio de superficies ni presupuesto.
 
 ## Próximo paso
 
-Restar al margen preliminar del Ángulo 1 la comisión de venta, impuestos, costos financieros y fee de fideicomiso (porcentajes ya documentados en `02-plantillas-de-referencia.md`) para tener el margen neto real. En paralelo, avanzar el cómputo del Ángulo 2 para poder comparar ambos escenarios cabeza a cabeza.
+Costear Opción 1 y Opción 2 con la misma metodología para poder comparar los tres escenarios cabeza a cabeza. Recién con eso se puede construir la recomendación final (comprar / negociar / no comprar) y responder si USD 850.000 es un precio de compra válido.

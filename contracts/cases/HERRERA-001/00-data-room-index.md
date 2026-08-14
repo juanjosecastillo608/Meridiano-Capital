@@ -106,15 +106,12 @@ Depende directamente de C. No se puede definir qué falta sin el informe de avan
 
 ## J. Alcance del análisis a modelar (definido por el founder, no es un dato del activo sino una instrucción de trabajo)
 
-El founder confirmó (2026-08-12, segundo mensaje) que el análisis se hace **desde dos ángulos**, no un único escenario:
+**Actualizado 2026-08-13 — nomenclatura definitiva** (reemplaza "Ángulo 1/Ángulo 2" usado el 2026-08-12): el founder confirmó **tres escenarios**, y aclaró que el objetivo del análisis es determinar cuál conviene, no justificar uno ya elegido — *"aún no sabemos qué conviene, ese es el objetivo también de este análisis"*.
 
-**Ángulo 1 — Terminar el proyecto tal cual fue diseñado**: el de la tabla maestra de arriba — 21 unidades, 1.813,6 m² vendibles, sin cambios de producto.
+- **Escenario Base** — terminar el proyecto tal cual está presentado en la Municipalidad: la tabla maestra de arriba, 21 unidades, 1.800–1.813,6 m² vendibles, sin cambios de producto. **Ya tiene costo y margen preliminar calculados**, ver `04-comprar-vs-construir.md`.
+- **Opción 1** — mismos 6 pisos (misma envolvente aprobada), con **tipologías más chicas** (para aumentar el ingreso total por m² vendible) y **cambio de fachada estética**. El founder confirmó que la imagen de render que compartió (edificio de líneas curvas, balcones con jardineras) **es el estilo objetivo**. Sin piso adicional. **Sin cómputo propio todavía.**
+- **Opción 2** — Opción 1 + **solicitar los permisos para un piso más** (7 pisos). Ver el hallazgo de zonificación en `03-presupuesto-y-comparables.md` (posible incentivo municipal de altura ya contemplado). **Sin cómputo propio todavía**, salvo el dato de +300 m² comercializables aproximados si se agrega el piso.
 
-**Ángulo 2 — Modificaciones de fachada y tipologías**, con tres componentes confirmados:
-- **Cambio de fachada**: el founder confirmó que la imagen de render que compartió (edificio de líneas curvas, balcones con jardineras, ~8-9 niveles) **es el estilo objetivo** — *"la imagen de la fachada es el estilo que necesitamos darle al edificio por la zona y el nicho de mercado que apuntamos"*. **D — pendiente de verificar**: si esa imagen es la portada del brochure "Herrera Town" (que ya coincide con el diseño de 21 unidades confirmado) o si es una propuesta de fachada distinta/más elaborada todavía sin construir — el archivo `Proyecto Alternativa Fachada.png` de la carpeta de origen no fue compartido todavía y podría aclarar esto.
-- **Tipologías más pequeñas** — monoambientes de 30 m² y unidades de 1 dormitorio de 45 m², para lograr un **mix más homogéneo entre 1/2/3 dormitorios** (hoy el mix está desbalanceado: 15 de 2 dorm., solo 3 de 1 dorm., 3 de 3 dorm.).
-- **Un piso adicional** sobre lo proyectado, para prorratear los costos fijos entre más unidades.
-
-Ninguno de los dos ángulos tiene planos ni cómputo propio todavía — son líneas de trabajo confirmadas, no datos calculables hasta que exista un rediseño con superficies definidas. El founder aclaró que las dos planillas Excel que compartió (ver `02-plantillas-de-referencia.md`) son solo referencia de metodología — *"vamos a generar nuestras propias planillas de cálculo"*.
+El founder también pidió evaluar y comparar contra la alternativa de **comprar un terreno equivalente y construir desde cero** — ver el análisis completo en `04-comprar-vs-construir.md`. Las dos planillas Excel que el founder compartió el 2026-08-12 (ver `02-plantillas-de-referencia.md`) son solo referencia de metodología, no datos de Herrera — *"vamos a generar nuestras propias planillas de cálculo"*.
 
 Estos tres últimos son **rediseños hipotéticos, todavía sin planos ni cómputo propio** — no se puede costear ninguno sin definir primero cuántas unidades y de qué superficie resultarían. Quedan como líneas de trabajo futuras, no como datos del Data Room.
