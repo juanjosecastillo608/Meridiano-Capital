@@ -29,15 +29,16 @@ Comparado con el mix actual (Ángulo 1: 21 unidades, 15 de 2 dormitorios, 3 de 1
 
 ## 2. Ángulo 2 (7 pisos) — Ángulo 3 + el piso adicional
 
-Mismo mix del Ángulo 3, más el piso adicional (+300 m² comercializables, `03-presupuesto-y-comparables.md`). Propuesta ilustrativa para ese piso, sesgada a unidades chicas (mayor densidad, coherente con la lógica de "prorratear costos fijos entre más unidades" que motivó este ángulo):
+Mismo mix del Ángulo 3, más el piso adicional (+300 m² comercializables, `03-presupuesto-y-comparables.md`).
+
+**Actualizado 2026-08-13 (turno siguiente)**: el founder confirmó que las cocheras (solo 21 disponibles en todo el edificio) van únicamente con unidades de 1/2/3 dormitorios, y que las unidades de 30/33 m² se venden sin cochera. El Ángulo 3 ya usa las 21 cocheras disponibles (8+8+5 unidades de 1/2/3 dormitorios). Por eso el piso adicional del Ángulo 2 se rediseña para **no agregar ninguna unidad de 1/2/3 dormitorios más** — así no compite por cocheras que ya no existen:
 
 | Tipología (piso adicional) | m² | Unidades | m² totales |
 |---|---|---|---|
-| Monoambiente | 30 | 6 | 180 |
-| 1 dormitorio | 45 | ~2,7 (redondeado a 3, ver nota) | 120 |
-| **Total piso adicional** | | **~9 unidades** | **300 m²** |
+| Monoambiente (sin cochera) | 30 | 10 | 300 |
+| **Total piso adicional** | | **10 unidades** | **300 m²** |
 
-*Nota: 6×30 + 3×45 = 180+135 = 315 m², 15 m² por encima de los 300 exactos — diferencia menor, esperable en un modelo ilustrativo; un arquitecto ajustaría esto con la planta real.*
+Ver `06-margen-neto-comision-y-precios-por-piso.md` para el recálculo de ingresos y margen con este mix, más la regla de precio por piso y el ingreso de cocheras (ambos confirmados por el founder).
 
 **Ángulo 2 total: 29 + 9 = 38 unidades, 2.100 m² comercializables.**
 
@@ -57,25 +58,25 @@ El mix de estos dos ángulos está deliberadamente sesgado a unidades chicas, qu
 - **Refuerzo estructural para el piso adicional** (Ángulo 2): el edificio fue diseñado y ejecutado para 6 pisos — agregar un 7º piso encima de una estructura que ya tiene el 73,5% de avance puede requerir refuerzo de columnas/fundaciones que el presupuesto de terminación (calculado para el diseño original) no contempla. Esto es un **riesgo técnico real**, no solo administrativo — el costo de USD 216.000 de arriba es probablemente un piso, no el techo, de lo que costaría en la práctica.
 - **Más unidades = más baños/cocinas/puertas por m²** que el diseño actual (29-38 unidades vs. 21) — el costo de terminación por unidad probablemente sea más alto que en un edificio de unidades grandes, aunque el costo total por m² se mantenga parecido. No cuantificado.
 
-## 6. Comparación de los tres ángulos
+## 6. Comparación de los tres ángulos (⚠️ números de esta sección superados — ver `06-margen-neto-comision-y-precios-por-piso.md`)
+
+Esta tabla no incluía cocheras ni la regla de precio por piso (confirmadas por el founder en el mensaje siguiente) — se conserva por trazabilidad, pero **los números vigentes son los de `06-margen-neto-comision-y-precios-por-piso.md`**.
 
 | | Ángulo 1 (tal cual) | Ángulo 3 (fachada+chicas, 6P) | Ángulo 2 (fachada+chicas+7P) |
 |---|---|---|---|
-| Unidades | 21 | 29 (ilustrativo) | 38 (ilustrativo) |
+| Unidades | 21 | 29 (ilustrativo) | 39 (ilustrativo, corregido — ver §2) |
 | Área comercializable | 1.800 m² | 1.800 m² | 2.100 m² |
 | Inversión total (adquisición + terminación) | USD 3.472.727,78 | USD 3.472.727,78 | USD 3.688.727,78 |
-| Ingresos brutos (bajo–alto) | USD 3.150.000 – 3.780.000 | USD 3.420.000 – 3.690.000 | USD 3.990.000 – 4.305.000 |
-| **Margen bruto preliminar (bajo–alto)** | **−322.728 a +307.272** | **−52.728 a +217.272** | **+301.272 a +616.272** |
+| Ingresos brutos (bajo–alto), sin cocheras ni precio por piso | USD 3.150.000 – 3.780.000 | USD 3.420.000 – 3.690.000 | USD 3.990.000 – 4.305.000 |
+| Margen bruto preliminar (bajo–alto), sin cocheras ni precio por piso | −322.728 a +307.272 | −52.728 a +217.272 | +301.272 a +616.272 |
 
-**Todavía sin restar comisión de venta (5,5%), impuestos, costos financieros ni fee de fideicomiso en ninguno de los tres** (`02-plantillas-de-referencia.md`) — y sin los costos de rediseño/refuerzo estructural del §5, que pegarían más fuerte en el Ángulo 2.
+## 7. Lectura honesta de este resultado (ver también §5 de `06-...md` para la lectura actualizada)
 
-## 7. Lectura honesta de este resultado
-
-El Ángulo 2 (piso adicional + tipologías chicas) es, con este modelo, claramente el más atractivo — pero es también el que tiene **más incertidumbre real sin cuantificar**: depende de un permiso municipal que no está confirmado, y de un refuerzo estructural cuyo costo no está en ningún presupuesto todavía. El Ángulo 3 mejora al Ángulo 1 pero sigue siendo marginal en el extremo bajo del rango de venta. **No se puede recomendar el Ángulo 2 solo porque da el mejor número en este modelo ilustrativo** — antes hace falta el permiso municipal confirmado y una opinión estructural real sobre si el edificio soporta un piso más.
+El Ángulo 2 (piso adicional + tipologías chicas) sigue siendo, con el modelo actualizado, el más atractivo — y el permiso municipal para el piso adicional **ya se confirmó** (ver `06-margen-neto-comision-y-precios-por-piso.md`, §0). El riesgo que le queda es estructural, no administrativo: si la obra ya construida soporta el piso adicional sin refuerzo mayor. El Ángulo 3 y el Ángulo 2 dan margen positivo incluso después de comisión de venta; el Ángulo 1 vuelve a negativo en el extremo bajo del rango una vez restada la comisión.
 
 ## Próximo paso
 
-1. Confirmar con la Municipalidad si el incentivo de altura (PB+7, `03-presupuesto-y-comparables.md`) aplica.
+1. ~~Confirmar con la Municipalidad si el incentivo de altura (PB+7) aplica~~ ✅ Confirmado.
 2. Pedir una opinión estructural sobre si la estructura ya construida (73,5% de avance) soporta un piso adicional sin refuerzo mayor.
-3. Restar comisión de venta, impuestos y costos financieros a los tres ángulos para tener el margen neto real.
+3. ~~Restar comisión de venta~~ ✅ Hecho, ver `06-margen-neto-comision-y-precios-por-piso.md`. Sigue pendiente: impuestos, costos financieros y fee de fideicomiso (dependen de la estructura de financiamiento del trato, todavía sin confirmar).
 4. Con eso, recién ahí construir la Matriz de Sensibilidad (§19 del prompt maestro) y la recomendación final.

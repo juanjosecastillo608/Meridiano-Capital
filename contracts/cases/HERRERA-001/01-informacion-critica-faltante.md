@@ -22,10 +22,12 @@ Incorporado: 2026-08-12, actualizado 2026-08-13
 ## Sigue pendiente
 
 6. **Desglose de avance de obra por componente** (mampostería, instalaciones eléctricas/sanitarias, terminaciones) — hoy solo se tiene el % de estructura.
-7. **Confirmación municipal real** de si el incentivo de altura (PB+7 pisos con mayor retiro) aplica tal cual se infiere de la planilla de costos — necesario para costear con seguridad el escenario de piso adicional.
+~~7. Confirmación municipal real de si el incentivo de altura (PB+7 pisos) aplica~~ → ✅ **Resuelto (2026-08-13): el founder confirmó el permiso municipal para el piso adicional.** Sigue pendiente, por separado, la opinión estructural (punto 11 abajo).
 8. **Identidad del vendedor actual** — los planos de 2023 identifican al propietario como "Cristino Silva"; falta confirmar si sigue siendo el mismo.
-9. **Cómputo de superficies y presupuesto de las 3 líneas del Ángulo 2** (fachada nueva, tipologías de 30/45 m², piso adicional) — siguen sin planos ni cómputo propio. El piso adicional ya tiene un primer número (+300 m² comercializables según la planilla de costos), pero las tipologías chicas y la fachada nueva todavía no.
-10. Restar comisión de venta (5,5%), impuestos, costos financieros y fee de fideicomiso al margen preliminar — usando los % ya documentados en `02-plantillas-de-referencia.md`.
+~~9. Cómputo de superficies y presupuesto del Ángulo 2/3~~ → ✅ **Resuelto con un modelo ilustrativo** (mix de tipologías propuesto, sin plano real todavía) — ver `05-angulo-2-y-3-tipologias-chicas.md` y `06-margen-neto-comision-y-precios-por-piso.md`.
+~~10. Restar comisión de venta al margen preliminar~~ → ✅ **Resuelto** (5,5%, con precio por piso y cocheras ya sumados) — ver `06-margen-neto-comision-y-precios-por-piso.md`. Sigue pendiente: impuestos, costos financieros y fee de fideicomiso.
+11. **Opinión estructural** sobre si la obra ya construida (73,5% de avance) soporta el piso adicional del Ángulo 2 sin refuerzo mayor — el permiso municipal ya está confirmado, esto es lo que falta para el Ángulo 2.
+12. **Estructura de financiamiento del trato** (capital propio, deuda, fideicomiso) — necesaria para saber qué costos financieros/fee de fideicomiso aplican realmente al margen neto final.
 
 ## Archivos que siguen sin compartirse
 
