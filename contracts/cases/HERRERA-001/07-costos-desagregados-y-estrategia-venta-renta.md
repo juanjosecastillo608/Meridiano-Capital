@@ -44,7 +44,7 @@ Incorporado: 2026-08-13
 | Showroom, renders, maqueta | — | USD 35.000 |
 | Eventos de lanzamiento | — | USD 15.000 |
 
-**⚠️ Discrepancia entre las dos planillas del founder, señalada, no resuelta**: la comisión de venta es 5,5% en una planilla y ≈4,2% ponderado (3% interno / 5% externo) en la otra — son casi 1,3 puntos porcentuales de diferencia sobre ingresos que, a esta escala, representan entre USD 45.000 y 55.000. Se sigue usando el 5,5% (ya aplicado en `06-margen-neto-comision-y-precios-por-piso.md`) por ser el criterio ya usado hasta ahora — el founder puede indicar cuál de las dos estructuras de comisión aplica realmente.
+**✅ Resuelto (2026-08-14)**: el 5,5% es la tasa real y única — el ≈4,2% ponderado era el modelo de reparto de otro proyecto genérico, no aplica a Herrera. Lo que sí varía es **quién se queda con cuánto de ese 5,5%** según el canal de venta (Meridiano a dos puntas, equipo interno, franquicia RE/MAX o Century 21, agente independiente) — ver el detalle completo en `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 1.
 
 ### Financieros, legales y fiduciarios (planilla "Fideicomiso")
 | Ítem | Base |
@@ -59,7 +59,7 @@ Incorporado: 2026-08-13
 | Impuesto a las ganancias / ITI | 10% sobre la utilidad del fideicomiso |
 | Gastos administrativos | USD 8.000/mes |
 
-**Ninguno de estos ítems de "Financieros, legales y fiduciarios" se restó todavía del margen** — dependen de si el trato se estructura con fideicomiso y/o deuda bancaria, que sigue sin confirmarse (categoría I del Data Room).
+**Ninguno de estos ítems de "Financieros, legales y fiduciarios" se restó todavía del margen.** **Actualizado 2026-08-14**: el financiamiento ya se confirmó como fondos propios (categoría I del Data Room) — esto descarta la Comisión Financiera (2,5%, condicionada a deuda bancaria). Los ítems ligados a fideicomiso (Honorarios del fiduciario, Fideicomiso 2%) siguen pendientes de si se usa o no ese vehículo legal para administrar el capital propio. Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 2.
 
 ---
 
@@ -97,6 +97,8 @@ Unidad ilustrativa: 45 m² (tipo "1 dormitorio" del mix del Ángulo 3), clase `t
 
 ## 3. Propuesta preliminar de % venta/retención por ángulo
 
+**⚠️ Actualizado por `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 4**: la matriz de decisión construida ahí muestra que el techo de retención razonable es más alto que lo que se propone abajo — el límite real no es cuánto conviene retener por rentabilidad (conviene retener casi todo, dado el margen de venta delgado de Herrera), sino cuánto hace falta vender para financiar la obra. Se conserva esta sección por trazabilidad del razonamiento original.
+
 **Esto es una propuesta razonada, no una decisión ya tomada** — el founder pidió sugerir un porcentaje, y esto es un punto de partida para discutir, no la palabra final.
 
 | Ángulo | Sugerencia | Razonamiento |
@@ -107,10 +109,10 @@ Unidad ilustrativa: 45 m² (tipo "1 dormitorio" del mix del Ángulo 3), clase `t
 
 ## 4. Próximo paso — el flujo de fondos completo
 
-El founder pidió elaborar un **flujo de fondos** que incorpore todas estas consideraciones — venta de una parte, renta de la otra, costos desagregados, comisiones, impuestos. Esto es un modelo multi-año (no un cálculo estático como los anteriores), y necesita, antes de construirse bien:
+El founder pidió elaborar un **flujo de fondos** que incorpore todas estas consideraciones — venta de una parte, renta de la otra, costos desagregados, comisiones, impuestos. Esto es un modelo multi-año (no un cálculo estático como los anteriores). **Actualizado 2026-08-14** — de los tres puntos que faltaban acá, dos ya se resolvieron:
 
-1. **Renta mensual real esperada** por tipo de unidad en Barrio Herrera (hoy solo hay el ejemplo ilustrativo de USD 70/noche, prestado de otro contexto de Urbannit) — sin esto, el flujo de renta de las unidades retenidas es una suposición, no un dato.
-2. **Definir la estructura de financiamiento** (categoría I del Data Room, todavía sin confirmar) — determina qué costos financieros y de fideicomiso aplican.
-3. **Confirmar el % de venta/retención real** por ángulo (sección 3 de este documento, todavía una propuesta).
+1. ~~Renta mensual real esperada por tipo de unidad~~ → **Parcialmente resuelto**: se formalizó un piso de alquiler mínimo por tipología (`08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 3). Sigue faltando el dato real de mercado de Barrio Herrera.
+2. ~~Definir la estructura de financiamiento~~ → ✅ **Resuelto: fondos propios** (`08-...md`, sección 2).
+3. ~~Confirmar el % de venta/retención real por ángulo~~ → **Parcialmente resuelto**: hay una matriz de decisión (`08-...md`, sección 4) que muestra que conviene retener casi todo por rentabilidad — el % final todavía depende del cronograma de obra y el capital propio disponible por adelantado, que es el nuevo dato pendiente (`01-informacion-critica-faltante.md`, ítem 16).
 
-La estructura de categorías del flujo mensual ya está definida en la planilla de referencia (`02-plantillas-de-referencia.md`): Ingresos (por etapa de cobro) → Egresos de inversión inicial → Egresos de construcción → Egresos de marketing → Egresos financieros/administrativos → Retorno a inversores → Resultado neto. Se puede adaptar directamente a Herrera una vez resueltos los tres puntos de arriba.
+La estructura de categorías del flujo mensual ya está definida en la planilla de referencia (`02-plantillas-de-referencia.md`): Ingresos (por etapa de cobro) → Egresos de inversión inicial → Egresos de construcción → Egresos de marketing → Egresos financieros/administrativos → Retorno a inversores → Resultado neto. Se puede adaptar directamente a Herrera una vez resuelto el cronograma de obra/capital disponible (ítem 16).

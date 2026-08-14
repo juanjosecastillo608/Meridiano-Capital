@@ -102,7 +102,8 @@ Depende directamente de C. No se puede definir qué falta sin el informe de avan
 
 ## I. Financiamiento
 
-- **D — Pendiente en su totalidad.**
+- **A — Confirmado (2026-08-14): fondos propios.** El founder confirmó que este trato se financia con capital propio, sin deuda bancaria. Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 2, para las consecuencias sobre los costos financieros/fiduciarios de la planilla de referencia (la Comisión Financiera de 2,5%, condicionada a financiamiento bancario, ya no aplica).
+- **D — Pendiente, sub-punto nuevo**: si se usa o no un vehículo de fideicomiso para administrar el capital propio (pregunta de estructura legal, distinta de la fuente de financiamiento, ya resuelta) — determina si aplican Honorarios del fiduciario (0,5%/año) y Fideicomiso (2%, constitución/estudio).
 
 ## J. Alcance del análisis a modelar (definido por el founder, no es un dato del activo sino una instrucción de trabajo)
 

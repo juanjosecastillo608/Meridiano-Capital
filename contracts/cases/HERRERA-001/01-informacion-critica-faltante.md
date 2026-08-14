@@ -1,7 +1,7 @@
-Estado: CURRENT — actualizado tras el presupuesto de terminación (2026-08-13)
+Estado: CURRENT — actualizado tras comisión de venta, financiamiento y piso de renta (2026-08-14)
 Fuente original: prompt maestro "MERIDIANO CAPITAL — Investment Real Estate Analysis System" (founder, 2026-08-12), §29
 Dominio: INVESTMENT / LEGAL (caso HERRERA-001)
-Incorporado: 2026-08-12, actualizado 2026-08-13
+Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14
 
 # INFORMACIÓN CRÍTICA FALTANTE — HERRERA-001
 
@@ -27,10 +27,13 @@ Incorporado: 2026-08-12, actualizado 2026-08-13
 ~~9. Cómputo de superficies y presupuesto del Ángulo 2/3~~ → ✅ **Resuelto con un modelo ilustrativo** (mix de tipologías propuesto, sin plano real todavía) — ver `05-angulo-2-y-3-tipologias-chicas.md` y `06-margen-neto-comision-y-precios-por-piso.md`.
 ~~10. Restar comisión de venta al margen preliminar~~ → ✅ **Resuelto** (5,5%, con precio por piso y cocheras ya sumados) — ver `06-margen-neto-comision-y-precios-por-piso.md`. Sigue pendiente: impuestos, costos financieros y fee de fideicomiso.
 11. **Opinión estructural** sobre si la obra ya construida (73,5% de avance) soporta el piso adicional del Ángulo 2 sin refuerzo mayor — el permiso municipal ya está confirmado, esto es lo que falta para el Ángulo 2.
-12. **Estructura de financiamiento del trato** (capital propio, deuda, fideicomiso) — necesaria para saber qué costos financieros/fee de fideicomiso aplican realmente al margen neto final.
-13. **Renta mensual real esperada por tipo de unidad en Barrio Herrera** — para la estrategia híbrida de venta/retención (`07-costos-desagregados-y-estrategia-venta-renta.md`), hoy solo hay un ejemplo ilustrativo (USD 70/noche) prestado de otro contexto de Urbannit, no un dato de mercado de esta zona.
-14. **Confirmar el % de venta/retención por ángulo** — hay una propuesta preliminar razonada en `07-costos-desagregados-y-estrategia-venta-renta.md`, sin decidir todavía.
-15. **Aclarar la discrepancia de comisión de venta entre las dos planillas de referencia** (5,5% vs. ≈4,2% ponderado) — ver `07-costos-desagregados-y-estrategia-venta-renta.md`.
+~~12. Estructura de financiamiento del trato (capital propio, deuda, fideicomiso)~~ → ✅ **Resuelto (2026-08-14): fondos propios.** Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 2. Sigue abierto, como sub-punto nuevo, si se usa o no un vehículo de fideicomiso para administrar ese capital propio (pregunta de estructura legal, distinta de la fuente de financiamiento, ya resuelta).
+13. **Renta mensual real esperada por tipo de unidad en Barrio Herrera** — ya se formalizó un **piso** de alquiler mínimo por tipología basado en el costo de entrada de Meridiano (`08-...md`, sección 3), pero sigue faltando el dato de mercado real para saber cuánto por encima de ese piso se puede fijar el alquiler.
+~~14. Confirmar el % de venta/retención por ángulo~~ → **Parcialmente resuelto (2026-08-14)**: se construyó una matriz de decisión que muestra que retener supera a vender en casi todos los escenarios de precio (`08-...md`, sección 4) — pero el % final por ángulo todavía depende del cronograma de obra y el capital propio disponible por adelantado (nuevo punto 16 abajo), que no está definido.
+~~15. Aclarar la discrepancia de comisión de venta entre las dos planillas de referencia (5,5% vs. ≈4,2% ponderado)~~ → ✅ **Resuelto (2026-08-14): 5,5% es la tasa real y única; lo que varía es el reparto según el canal de venta (dos puntas, equipo interno, franquicia, agente independiente).** Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 1.
+16. **Cronograma de obra y capital propio disponible por adelantado** — nuevo, surge del análisis de `08-...md` sección 4.4: determina cuántas unidades hay que vender (y en qué etapas) para financiar la construcción, lo que a su vez fija el % real de retención por ángulo (no solo la rentabilidad, que ya favorece retener casi todo).
+17. **% de reparto de comisión con el agente inmobiliario independiente** — el founder confirmó que se comparte con Meridiano, sin especificar el %. Ver `08-...md`, sección 1.
+18. **Definir si se usa un vehículo de fideicomiso** para administrar el capital propio, aunque no haya deuda bancaria — determina si aplican Honorarios del fiduciario (0,5%/año) y Fideicomiso (2%). Ver `08-...md`, sección 2.
 
 ## Archivos que siguen sin compartirse
 
