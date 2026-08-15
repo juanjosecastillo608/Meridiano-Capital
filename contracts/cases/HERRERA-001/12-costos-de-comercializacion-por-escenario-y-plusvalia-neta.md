@@ -21,6 +21,8 @@ Incorporado: 2026-08-15
 
 **Dónde sí importa, y no se había explicitado hasta ahora**: en el presupuesto agregado del proyecto completo (`07-costos-desagregados-y-estrategia-venta-renta.md`, categoría "Marketing y comercialización"), el costo total de comisión/marketing **debe prorratearse solo sobre las unidades que efectivamente se venden**, no sobre el total de unidades del edificio. Si, por ejemplo, el Ángulo 3 retiene 15 de sus 29 unidades, la comisión de venta (5,5%) y el presupuesto de marketing se calculan sobre los ingresos y la cantidad de las 14 unidades que sí se venden — las 15 retenidas no aportan ni consumen ese costo.
 
+**⚠️ Corregido por `13-correccion-doble-conteo-proyecto-plusvalia-real-y-renta-de-mercado.md`, sección 3**: el founder aclaró que el marketing no se puede prorratear por unidad (es un costo de campaña completa, no divisible) — "casi cero" solo aplica cuando la retención es **≥70%** de las unidades, no para cualquier nivel de venta reducida. Ver la sección 2 de abajo con esta salvedad en mente.
+
 ## 2. Escenario de retención total: marketing casi nulo — categoría A (confirmado)
 
 *"También los costos de marketing son casi cero o nulos, porque en este caso el objetivo no es vender durante obra sino construir para rentar."*

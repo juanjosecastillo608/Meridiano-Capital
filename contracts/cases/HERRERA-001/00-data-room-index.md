@@ -91,6 +91,8 @@ Depende directamente de C. No se puede definir qué falta sin el informe de avan
 - **B — Calculado, preliminar, solo para dimensionar magnitud — NO es una conclusión de inversión**: sobre los 1.813,6 m² de área propia vendible, el rango de venta implica ingresos brutos potenciales de **USD 3.174.000 a USD 3.808.000** (sin descontar comisión de venta, impuestos, gastos de comercialización ni costo de terminación — ver §13 y §17 del prompt maestro, esto es solo un punto de partida, no el modelo financiero).
 - **B — Calculado**: el precio de adquisición (USD 850.000) equivale a USD 468,7/m² sobre el área propia vendible (1.813,6 m²), o USD 323,9/m² sobre la superficie total construida (2.624 m²) — **antes de sumar el costo de terminación**, que es la pieza que falta para saber el costo total real por m².
 - Comparables reales de mercado (anuncios/operaciones concretas de Herrera y zonas cercanas): **D — Pendiente**, no aportados todavía.
+- **Plusvalía anual: superior al 20%** para Asunción y zonas comparables a Herrera (Villa Morra, Eje Corporativo, Las Lomas, Paseo la Galería) — **A, dato directo del founder**, mismo criterio de clasificación que el precio de venta de zona. Ver `13-correccion-doble-conteo-proyecto-plusvalia-real-y-renta-de-mercado.md`, sección 2.
+- **Renta mensual real, primer corte vía búsqueda web (2026-08-15)** — **C, estimado de listados públicos, no un relevamiento exhaustivo**: Barrio Herrera 1 dormitorio USD 560–700, Villa Morra monoambiente USD 500–800. Ver `13-...md`, sección 5. Falta todavía la tarifa de renta temporal/Airbnb (ADR por noche).
 
 ## G. Comercialización
 
