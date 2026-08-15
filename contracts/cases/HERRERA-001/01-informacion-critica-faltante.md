@@ -1,7 +1,7 @@
-Estado: CURRENT — actualizado tras tabla de costos general, metodología 21%/650/750 y capital de socios (2026-08-15)
+Estado: CURRENT — actualizado tras ritmo de venta por etapa y piso de plusvalía anual (2026-08-15)
 Fuente original: prompt maestro "MERIDIANO CAPITAL — Investment Real Estate Analysis System" (founder, 2026-08-12), §29
 Dominio: INVESTMENT / LEGAL (caso HERRERA-001)
-Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x2)
+Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x3)
 
 # INFORMACIÓN CRÍTICA FALTANTE — HERRERA-001
 
@@ -36,10 +36,12 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x2)
 ~~18. Definir si se usa un vehículo de fideicomiso~~ → ✅ **Resuelto (2026-08-15): no hay fideicomiso — el vehículo es una Sociedad Anónima constituida entre 2-3 socios, que aportan el 100% del capital.** Ver `09-...md`, sección 3.
 ~~19. Confirmación del founder: Interpretación A vs. B del costo por m² de entrada~~ → ✅ **Resuelto (2026-08-15) con una metodología más precisa que las dos interpretaciones originales.** El founder aportó la tabla general de costos por calidad (`knowledge-base/investment/06-costos-de-construccion.md`, D-064) y el % exacto de incidencia estructural (21%, dato del ingeniero) — la Inversión Total del Ángulo 1/3 baja de USD 3.472.727,78 a **USD 3.205.927,21** (costo/m² comercializable: de USD 1.929,29 a **USD 1.781,07**). Ver `10-tabla-costos-m2-general-metodologia-650-21-750-y-capital-de-socios.md`, sección 2. **Esto deja con números superados los márgenes de `06-...md` y el piso de renta de `08-...md`/`09-...md`** — ítem nuevo 22 abajo.
 20. **Régimen tributario correcto para una SA** — el Impuesto a las ganancias/ITI de la planilla de referencia estaba pensado para un fideicomiso; con el vehículo ya confirmado como SA (ítem 18), falta confirmar si aplica igual o corresponde otro impuesto societario.
-~~21. Ritmo de avance/cobro dentro de los 12 meses de obra y capital disponible por adelantado de los 2-3 socios~~ → **Parcialmente resuelto**: capital confirmado 70%/30% (ver ítem 16). Sigue faltando el ritmo/cronograma exacto de esa venta del 30% dentro de los 12 meses.
+~~21. Ritmo de avance/cobro dentro de los 12 meses de obra y capital disponible por adelantado de los 2-3 socios~~ → ✅ **Resuelto (2026-08-15): ritmo de venta 30% lanzamiento / 40% durante obra / 30% finalización, sobre las unidades destinadas a la venta** (D-065). Ver `11-ritmo-de-venta-y-piso-de-plusvalia.md`, sección 1. Sigue faltando mapear estas tres etapas a meses concretos y cruzarlas contra la curva de egresos de construcción (no necesariamente uniforme mes a mes).
 22. **Recalcular con la metodología nueva (21%/650/750, ítem 19)** los márgenes de `06-margen-neto-comision-y-precios-por-piso.md`, el piso de alquiler y la matriz de decisión de `08-...md`/`09-...md` — usaban el costo de entrada anterior (USD 1.929,29/m²), ahora USD 1.781,07/m². No cambia la conclusión cualitativa (retener sigue superando a vender), pero los números exactos de margen y piso quedan desactualizados hasta este recálculo.
 23. **Confirmar la base exacta del criterio ±10% sobre los USD 490.000** (terreno de referencia a usar + si "construcción de los m² de estructura existente" es el valor del esqueleto o el costo completo de reproducirla) — no cambia la conclusión (el trato pasa el criterio en las cuatro combinaciones probadas), pero si el founder quiere un número de holgura específico, falta precisarlo. Ver `10-...md`, sección 3.
-24. **Supuesto de plusvalía post-entrega** (% esperado a 1-2 años) para cuantificar el nuevo escenario de retención total hasta terminar la obra (`10-...md`, sección 5) — no se asume ningún número sin confirmación o dato de mercado.
+~~24. Supuesto de plusvalía post-entrega~~ → **Parcialmente resuelto (2026-08-15): se confirmó el CRITERIO (piso de plusvalía anual 15% sobre el precio de venta terminado, D-065)**, pero no un dato real de mercado de cuánto aprecia Barrio Herrera — sin ese dato no se puede concluir si el escenario de retención total (`10-...md` sección 5) conviene en la práctica. Ver `11-...md`, sección 2.
+25. **Dato real de plusvalía esperada en Barrio Herrera** (a diferencia del criterio/piso ya confirmado en el ítem 24) — para poder aplicar el piso de plusvalía y concluir sobre el escenario de retención total.
+26. **Cronograma de caja mes a mes** — cruzar el ritmo de venta por etapa (ítem 21) contra la curva real de egresos de construcción dentro de los 12 meses.
 
 ## Archivos que siguen sin compartirse
 

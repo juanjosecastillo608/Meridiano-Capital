@@ -31,6 +31,10 @@ El config guarda también, bajo `_pisos_reales_2026_08_10_bruto_y_neto`, la tabl
 
 > ~~UNRESOLVED: contradicción bruto/neto...~~ ✅ **RESUELTO** — D-033 fijó el mecanismo (bruto vs. bruto) y D-044 (2026-08-10) reemplazó los valores por datos reales ya en bruto. Ver `governance/decisions/DECISION_REGISTER.md#D-044`.
 
+## Piso de plusvalía anual — nuevo, D-065 (2026-08-15)
+
+**15% anual sobre el precio de venta de la unidad terminada** — umbral mínimo de apreciación de precio para que valga la pena esperar y vender más tarde en vez de vender ahora (criterio de decisión "retener y esperar plusvalía" vs. "vender ahora"). **No confundir con los pisos de renta de arriba** (`pisos_renta_neta`): estos miden ingreso de alquiler sobre el **costo de entrada** de Meridiano; el piso de plusvalía mide apreciación de precio sobre el **precio de venta** al comprador final — bases de cálculo distintas, aunque el número (15%) coincida para las clases de mayor piso. Primer caso real que lo aplica: `contracts/cases/HERRERA-001/11-ritmo-de-venta-y-piso-de-plusvalia.md`. Todavía no está incorporado como parámetro de `calculadora.py` — es un criterio de decisión de inversión, no (todavía) un cálculo que el motor ejecute.
+
 ## Objetivo de cartera — `promedio_objetivo_cartera_neto`
 
 **10.0** — objetivo neto promedio de toda la cartera de Meridiano Capital.
