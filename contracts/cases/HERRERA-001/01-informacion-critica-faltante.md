@@ -1,7 +1,7 @@
-Estado: CURRENT — actualizado tras corrección de doble conteo, plusvalía real de mercado y primer dato de renta real (2026-08-15)
+Estado: CURRENT — costo de entrada definitivo por Ángulo cerrado (2026-08-15)
 Fuente original: prompt maestro "MERIDIANO CAPITAL — Investment Real Estate Analysis System" (founder, 2026-08-12), §29
 Dominio: INVESTMENT / LEGAL (caso HERRERA-001)
-Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x5)
+Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x6)
 
 # INFORMACIÓN CRÍTICA FALTANTE — HERRERA-001
 
@@ -45,11 +45,12 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x5)
 ~~27. Prorrateo de costos de comercialización/marketing solo sobre unidades vendidas~~ → **Corregido (2026-08-15)**: la comisión de venta sí se prorratea por unidad (confirmado), pero el marketing **no** — es un costo de campaña completa, "casi cero" solo si la retención es ≥70%. Ver `13-...md`, sección 3.
 ~~28. Régimen tributario exacto sobre la venta de unidades por parte del desarrollador/SA~~ → ✅ **Resuelto (2026-08-15): 10% IVA + 10% impuesto a la renta sobre utilidad neta** (no sobre ingreso bruto). Completa el piso de plusvalía neto: ~7,81% (neto de comisión + renta), la base exacta del IVA sigue como `[EXTENSION]` a confirmar con contadora. Ver `13-...md`, sección 4.
 29. **Presupuesto de marketing aproximado para el escenario de retención total** — el founder lo describió como "casi cero o nulo"; falta un número si se quiere cuantificar con precisión en vez de asumirlo en cero.
-30. **Corrección de doble conteo — Proyecto y Aprobaciones ya incluidos en el precio de compra (Ángulo 1)**: baja el costo de entrada de USD 1.781,07/m² a **USD 1.569,21/m²**, pero sigue sin alcanzar el techo de USD 1.400/m² que sostiene el founder — falta confirmar si ese techo se refiere al costo real (USD 1.569,21) o a un costo de reposición desde cero (USD 1.280–1.346, que sí cae bajo el techo). Ver `13-...md`, sección 1.
-31. **% de reducción del costo de Proyecto para el Ángulo 2/3** — el founder confirmó que no es 0% ni 100%, sin precisar el número.
+~~30. Corrección de doble conteo — Proyecto y Aprobaciones ya incluidos en el precio de compra (Ángulo 1)~~ → ✅ **Resuelto (2026-08-15): el techo de USD 1.400/m² es sobre costo de REPOSICIÓN** (construir 100% desde cero + terreno), no sobre el costo real que paga Meridiano — son dos magnitudes distintas, ninguna reemplaza a la otra. El costo de reposición (USD 1.279,71–1.345,62/m²) cae bajo el techo; el costo real de entrada del Ángulo 1 queda en USD 1.569,21/m². Ver `14-costo-de-entrada-definitivo-por-angulo.md`, sección 1.
+~~31. % de reducción del costo de Proyecto para el Ángulo 2/3~~ → ✅ **Resuelto (2026-08-15): 30% sin piso adicional (Ángulo 3), 40% con piso adicional (Ángulo 2)**. Ver `14-...md`, sección 2.
 32. **Si se conserva una porción de contingencia/imprevistos** dentro de la línea de Aprobaciones eliminada del Ángulo 1, o si se elimina por completo.
-33. **Tarifas de renta temporal/Airbnb reales de Barrio Herrera** (ADR por noche) — la primera búsqueda de mercado (ítem 25 antiguo) solo cubrió renta tradicional; sigue faltando el dato para el producto `temporal_departamento`.
-34. **Recalcular con el costo de entrada corregido (USD 1.569,21/m², ítem 30)** todos los márgenes y pisos de renta de `06-...md`/`08-...md`/`09-...md` — el mismo ítem técnico pendiente de siempre, con un número más bajo todavía.
+33. **Tarifas de renta temporal/Airbnb reales de Barrio Herrera** (ADR por noche) — la primera búsqueda de mercado (ítem 13) solo cubrió renta tradicional; sigue faltando el dato para el producto `temporal_departamento`.
+~~34. Recalcular con el costo de entrada corregido~~ → **el costo de entrada ya es definitivo por Ángulo** (Ángulo 1: USD 1.569,21/m², Ángulo 3: USD 1.672,11/m², Ángulo 2: USD 1.558,87/m², `14-...md` sección 3) — sigue pendiente el recálculo técnico de márgenes/piso de renta con estos números finales, no ya el costo en sí.
+35. **Si el Ángulo 2/3 necesita una línea de Aprobaciones adicional** por el trámite municipal del rediseño (fachada/subdivisión/piso adicional) — no fue parte de la corrección del ítem 30/31, esa línea sigue sin reducir para el Ángulo 2/3. Ver `14-...md`, sección 2, nota.
 
 ## Archivos que siguen sin compartirse
 
