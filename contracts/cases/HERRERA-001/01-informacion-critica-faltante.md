@@ -49,7 +49,7 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x6)
 ~~31. % de reducción del costo de Proyecto para el Ángulo 2/3~~ → ✅ **Resuelto (2026-08-15): 30% sin piso adicional (Ángulo 3), 40% con piso adicional (Ángulo 2)**. Ver `14-...md`, sección 2.
 32. **Si se conserva una porción de contingencia/imprevistos** dentro de la línea de Aprobaciones eliminada del Ángulo 1, o si se elimina por completo.
 33. **Tarifas de renta temporal/Airbnb reales de Barrio Herrera** (ADR por noche) — la primera búsqueda de mercado (ítem 13) solo cubrió renta tradicional; sigue faltando el dato para el producto `temporal_departamento`.
-~~34. Recalcular con el costo de entrada corregido~~ → **el costo de entrada ya es definitivo por Ángulo** (Ángulo 1: USD 1.569,21/m², Ángulo 3: USD 1.672,11/m², Ángulo 2: USD 1.558,87/m², `14-...md` sección 3) — sigue pendiente el recálculo técnico de márgenes/piso de renta con estos números finales, no ya el costo en sí.
+~~34. Recalcular con el costo de entrada corregido~~ → ✅ **Resuelto (2026-08-15): márgenes y piso de renta recalculados con el costo de entrada definitivo por Ángulo** — el Ángulo 1 ya no tiene ningún escenario negativo, el Ángulo 2 sigue siendo el más atractivo. Ver `15-recalculo-margenes-y-piso-de-renta-con-costo-definitivo.md`.
 35. **Si el Ángulo 2/3 necesita una línea de Aprobaciones adicional** por el trámite municipal del rediseño (fachada/subdivisión/piso adicional) — no fue parte de la corrección del ítem 30/31, esa línea sigue sin reducir para el Ángulo 2/3. Ver `14-...md`, sección 2, nota.
 
 ## Archivos que siguen sin compartirse

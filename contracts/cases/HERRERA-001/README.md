@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Costo de entrada definitivo por los 3 Ángulos — listo para el recálculo técnico
+## Estado actual: 🟢 Márgenes y piso de renta recalculados con el costo de entrada definitivo — el Ángulo 1 ya no tiene ningún escenario negativo
 
-El founder cerró casi todos los bloqueantes estructurales que quedaban. Se corrigió un **doble conteo real**: para el Ángulo 1, "Proyecto" y "Aprobaciones" ya estaban incluidos en el precio de compra de USD 850.000. Se confirmó que el techo de **USD 1.400/m²** que sostenía el founder es sobre **costo de reposición** (construir desde cero), no sobre el costo real que paga Meridiano — dos magnitudes distintas que no se reemplazan entre sí. Y se fijó el % de costo de Proyecto que sí aplica al Ángulo 2/3 (30% sin piso adicional, 40% con piso adicional). Con todo esto, el **costo de entrada queda definitivo**: Ángulo 1 USD 1.569,21/m², Ángulo 3 USD 1.672,11/m², **Ángulo 2 USD 1.558,87/m² — el más bajo de los tres**, reforzando que sigue siendo el escenario más atractivo. Además: plusvalía real de la zona confirmada (**>20% anual**, supera el piso de 15%), régimen tributario del desarrollador confirmado (10% IVA + 10% renta sobre utilidad), corrección del criterio de marketing (umbral 70%, no prorrateable), y primer dato real de renta de mercado. Ver `08-...md` a `14-costo-de-entrada-definitivo-por-angulo.md`.
+El founder cerró casi todos los bloqueantes estructurales que quedaban. Se corrigió un **doble conteo real**: para el Ángulo 1, "Proyecto" y "Aprobaciones" ya estaban incluidos en el precio de compra de USD 850.000. Se confirmó que el techo de **USD 1.400/m²** que sostenía el founder es sobre **costo de reposición**, no sobre el costo real que paga Meridiano. Y se fijó el % de costo de Proyecto para el Ángulo 2/3 (30%/40%). Con el **costo de entrada definitivo** (Ángulo 1: USD 1.569,21/m², Ángulo 3: USD 1.672,11/m², Ángulo 2: USD 1.558,87/m²), se recalcularon los márgenes por Ángulo: **el Ángulo 1 pasa a ser positivo en todo el rango de venta** (antes daba negativo en el extremo bajo), y el **Ángulo 2 sigue siendo el más atractivo** en términos absolutos y de consistencia. También se recalculó el piso de renta con amoblamiento (baja frente al cálculo anterior). Además: plusvalía real de la zona confirmada (**>20% anual**), régimen tributario del desarrollador confirmado (10% IVA + 10% renta sobre utilidad), y primer dato real de renta de mercado. Ver `08-...md` a `15-recalculo-margenes-y-piso-de-renta-con-costo-definitivo.md`.
 
 ## Archivos de este caso
 
@@ -24,12 +24,13 @@ El founder cerró casi todos los bloqueantes estructurales que quedaban. Se corr
 | `11-ritmo-de-venta-y-piso-de-plusvalia.md` | Ritmo de venta por etapa (30/40/30, D-065) aplicado al monto mínimo de venta ya confirmado, y piso de plusvalía anual (15% bruto sobre precio de venta terminado) |
 | `12-costos-de-comercializacion-por-escenario-y-plusvalia-neta.md` | Las unidades retenidas no cargan comisión de venta, y el piso de plusvalía recalculado neto de comisión (≈8,68% el primer año) — **corregido parcialmente por `13-...md`, ver nota al inicio del archivo** |
 | `13-correccion-doble-conteo-proyecto-plusvalia-real-y-renta-de-mercado.md` | Corrección de doble conteo (Proyecto/Aprobaciones ya en el precio de compra, Ángulo 1), plusvalía real de mercado (>20% anual), corrección del criterio de marketing (umbral 70%, no prorrateable), régimen tributario del desarrollador (10%/10%), y primer dato real de renta de mercado |
-| `14-costo-de-entrada-definitivo-por-angulo.md` | **Nuevo (2026-08-15)**: confirma que el techo de USD 1.400/m² es sobre costo de reposición (no sobre el costo real), fija el % de Proyecto para Ángulo 2/3 (30%/40%), y deja el costo de entrada definitivo por los 3 Ángulos |
+| `14-costo-de-entrada-definitivo-por-angulo.md` | Confirma que el techo de USD 1.400/m² es sobre costo de reposición (no sobre el costo real), fija el % de Proyecto para Ángulo 2/3 (30%/40%), y deja el costo de entrada definitivo por los 3 Ángulos |
+| `15-recalculo-margenes-y-piso-de-renta-con-costo-definitivo.md` | **Nuevo (2026-08-15)**: recálculo de márgenes por Ángulo con el costo definitivo (el Ángulo 1 ya no tiene ningún escenario negativo) y piso de renta actualizado con amoblamiento incluido |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 4 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. **Recalcular con el costo de entrada definitivo** (Ángulo 1: USD 1.569,21/m², Ángulo 3: USD 1.672,11/m², Ángulo 2: USD 1.558,87/m², `14-...md` §3) todos los márgenes y pisos de renta de `06-...md`/`08-...md`/`09-...md`.
-2. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera (ADR por noche) — la renta tradicional ya tiene un primer dato real (`13-...md` §5).
-3. Mapear el ritmo de venta por etapa a meses concretos y cruzarlo contra la curva de egresos de construcción — el cronograma de caja mes a mes que falta para el flujo de fondos completo.
+1. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera (ADR por noche) — la renta tradicional ya tiene un primer dato real (`13-...md` §5).
+2. Mapear el ritmo de venta por etapa a meses concretos y cruzarlo contra la curva de egresos de construcción — el cronograma de caja mes a mes que falta para el flujo de fondos completo.
+3. Confirmar el % de venta/retención final por Ángulo (depende del cronograma de caja del punto 2, ya no de la rentabilidad, que favorece retener).
 4. Con eso, construir los tres escenarios del flujo de fondos multi-año (venta mínima necesaria, venta agresiva, retención total con plusvalía) y recién ahí la recomendación final.
