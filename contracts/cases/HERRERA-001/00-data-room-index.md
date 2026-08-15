@@ -72,6 +72,8 @@ El founder indicó expresamente: *"El Informe de avance de obra real... vamos a 
 
 Depende directamente de C. No se puede definir qué falta sin el informe de avance real.
 
+- **A — Confirmado (2026-08-15): plazo de obra = 12 meses**, igual para el diseño de 6 pisos (Ángulo 1/3) o 7 pisos (Ángulo 2, con el piso adicional) — agregar el piso extra no extiende el cronograma. Ver `09-comision-con-iva-plazo-obra-vehiculo-legal-amoblamiento-y-verificacion-de-costos.md`, sección 2. Sigue faltando el ritmo de avance/cobro dentro de esos 12 meses.
+
 ## E. Costos — parcial
 
 - **Precio solicitado por el vendedor: USD 850.000** — **A**, dato directo del founder (2026-08-12).
@@ -103,7 +105,8 @@ Depende directamente de C. No se puede definir qué falta sin el informe de avan
 ## I. Financiamiento
 
 - **A — Confirmado (2026-08-14): fondos propios.** El founder confirmó que este trato se financia con capital propio, sin deuda bancaria. Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 2, para las consecuencias sobre los costos financieros/fiduciarios de la planilla de referencia (la Comisión Financiera de 2,5%, condicionada a financiamiento bancario, ya no aplica).
-- **D — Pendiente, sub-punto nuevo**: si se usa o no un vehículo de fideicomiso para administrar el capital propio (pregunta de estructura legal, distinta de la fuente de financiamiento, ya resuelta) — determina si aplican Honorarios del fiduciario (0,5%/año) y Fideicomiso (2%, constitución/estudio).
+- **A — Confirmado (2026-08-15): vehículo legal = Sociedad Anónima, 2-3 socios, 100% del capital.** No hay fideicomiso — descarta también Honorarios del fiduciario (0,5%/año) y Fideicomiso (constitución/estudio, 2%). Ver `09-comision-con-iva-plazo-obra-vehiculo-legal-amoblamiento-y-verificacion-de-costos.md`, sección 3.
+- **D — Pendiente, sub-punto nuevo**: régimen tributario correcto para una SA (el Impuesto a las ganancias/ITI de la planilla de referencia estaba pensado para un fideicomiso).
 
 ## J. Alcance del análisis a modelar (definido por el founder, no es un dato del activo sino una instrucción de trabajo)
 

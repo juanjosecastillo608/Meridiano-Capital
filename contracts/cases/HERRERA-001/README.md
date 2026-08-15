@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Comisión de venta, financiamiento y piso de renta cerrados — matriz de decisión venta/retención construida
+## Estado actual: 🟢 Comisión, financiamiento, vehículo legal, plazo de obra y amoblamiento cerrados — costo de entrada verificado
 
-El founder cerró tres bloqueantes: la comisión de venta es **5,5% siempre**, con un reparto que varía según el canal (dos puntas propio, equipo interno, franquicia RE/MAX o Century 21, agente independiente); el financiamiento del trato es **con fondos propios**, sin deuda; y el alquiler de las unidades retenidas tiene que respetar un **piso** formalizado como % de rentabilidad anual sobre el costo de entrada. Con esos tres criterios, se construyó una matriz de decisión que compara el margen de vender una unidad contra el ingreso de un año de alquiler al piso — el hallazgo es que, dado que el margen de desarrollador de Herrera es estructuralmente delgado, **retener casi siempre supera a vender en pura rentabilidad**, y el límite real al % de retención no es la rentabilidad sino cuánta caja hace falta vender para financiar la obra (dato que todavía falta). Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md`.
+El founder cerró casi todos los bloqueantes estructurales que quedaban: la comisión de venta es **5,5% con IVA incluido** (5% neto), con reparto por canal ya completo (dos puntas propio 100%, equipo interno 2,5%/3%, franquicia 0%/100%, agente independiente 2,75%/2,75%) — registrada además como **política cross-cutting** (D-063) porque aplica a todos los desarrollos/coinversiones, no solo a Herrera. El vehículo legal es una **SA entre 2-3 socios que aportan el 100% del capital** (no hay fideicomiso). El **plazo de obra es 12 meses**, igual para 6 o 7 pisos. Se formalizó una regla de **costo de amoblamiento por tipología/calidad** para las unidades retenidas amobladas (planilla real del founder), que sube el piso de alquiler ya calculado. Y se verificó, a pedido del founder, el salto de USD 720-750/m² (construcción) a USD 1.929/m² (costo total por m² comercializable) — no hay duplicación en sentido estricto (se explica por el coeficiente de eficiencia del edificio + terreno + honorarios), pero queda una pregunta real abierta sobre si debe netearse el componente estructural ya pagado en la porción de obra ya construida. Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md` y `09-comision-con-iva-plazo-obra-vehiculo-legal-amoblamiento-y-verificacion-de-costos.md`.
 
 ## Archivos de este caso
 
@@ -18,11 +18,13 @@ El founder cerró tres bloqueantes: la comisión de venta es **5,5% siempre**, c
 | `05-angulo-2-y-3-tipologias-chicas.md` | Costeo ilustrativo del Ángulo 2 y Ángulo 3 (mix de unidades propuesto) |
 | `06-margen-neto-comision-y-precios-por-piso.md` | Permiso municipal confirmado, precio por piso, cocheras, margen neto de comisión de venta |
 | `07-costos-desagregados-y-estrategia-venta-renta.md` | Costos desagregados por ítem, estrategia híbrida venta/retención con demostración del mecanismo vía `calculadora.py`, propuesta preliminar de % por ángulo (superada parcialmente por `08-...md`) |
-| `08-comision-financiamiento-piso-renta-y-matriz-decision.md` | **Nuevo (2026-08-14)**: política definitiva de comisión de venta (5,5%, reparto por canal), financiamiento confirmado (fondos propios), piso de alquiler formalizado por tipología, matriz de decisión venta vs. retención |
+| `08-comision-financiamiento-piso-renta-y-matriz-decision.md` | Política definitiva de comisión de venta (5,5%, reparto por canal), financiamiento confirmado (fondos propios), piso de alquiler formalizado por tipología, matriz de decisión venta vs. retención |
+| `09-comision-con-iva-plazo-obra-vehiculo-legal-amoblamiento-y-verificacion-de-costos.md` | **Nuevo (2026-08-15)**: comisión con IVA + reparto con agente independiente (cierra D-063), plazo de obra (12 meses), vehículo legal (SA, 2-3 socios), costos de amoblamiento por tipología/calidad, y verificación del costo/m² de entrada a pedido del founder |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 2 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. Relevar renta mensual real esperada por tipo de unidad en Barrio Herrera (ya hay un piso formalizado, `08-...md` §3, pero falta el dato de mercado real).
-2. Definir el cronograma de obra y el capital propio disponible por adelantado — determina cuánto hay que vender para financiar la construcción, que es hoy el verdadero límite al % de retención por ángulo (`08-...md` §4.4).
-3. Con eso, construir el flujo de fondos multi-año completo (venta + renta + todos los costos desagregados) y recién ahí la recomendación final.
+1. **Confirmar Interpretación A vs. B del costo/m² de entrada** (`09-...md` §5.4) — USD 1.929/m² vigente vs. USD 1.751/m² si se neta el componente estructural ya pagado en la porción de obra ya construida.
+2. Relevar renta mensual real esperada por tipo de unidad en Barrio Herrera (ya hay un piso formalizado con amoblamiento incluido, `09-...md` §4.3, pero falta el dato de mercado real).
+3. Definir el ritmo de avance/cobro dentro de los 12 meses de obra y el capital propio disponible por adelantado de los 2-3 socios — determina cuánto hay que vender para financiar la construcción, el verdadero límite al % de retención por ángulo.
+4. Con eso, construir los escenarios del flujo de fondos multi-año (100% aporte propio, distintos niveles de venta/retención) y recién ahí la recomendación final.

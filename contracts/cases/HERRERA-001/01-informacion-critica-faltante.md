@@ -1,7 +1,7 @@
-Estado: CURRENT — actualizado tras comisión de venta, financiamiento y piso de renta (2026-08-14)
+Estado: CURRENT — actualizado tras comisión con IVA, plazo de obra, vehículo legal y amoblamiento (2026-08-15)
 Fuente original: prompt maestro "MERIDIANO CAPITAL — Investment Real Estate Analysis System" (founder, 2026-08-12), §29
 Dominio: INVESTMENT / LEGAL (caso HERRERA-001)
-Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14
+Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15
 
 # INFORMACIÓN CRÍTICA FALTANTE — HERRERA-001
 
@@ -31,9 +31,12 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14
 13. **Renta mensual real esperada por tipo de unidad en Barrio Herrera** — ya se formalizó un **piso** de alquiler mínimo por tipología basado en el costo de entrada de Meridiano (`08-...md`, sección 3), pero sigue faltando el dato de mercado real para saber cuánto por encima de ese piso se puede fijar el alquiler.
 ~~14. Confirmar el % de venta/retención por ángulo~~ → **Parcialmente resuelto (2026-08-14)**: se construyó una matriz de decisión que muestra que retener supera a vender en casi todos los escenarios de precio (`08-...md`, sección 4) — pero el % final por ángulo todavía depende del cronograma de obra y el capital propio disponible por adelantado (nuevo punto 16 abajo), que no está definido.
 ~~15. Aclarar la discrepancia de comisión de venta entre las dos planillas de referencia (5,5% vs. ≈4,2% ponderado)~~ → ✅ **Resuelto (2026-08-14): 5,5% es la tasa real y única; lo que varía es el reparto según el canal de venta (dos puntas, equipo interno, franquicia, agente independiente).** Ver `08-comision-financiamiento-piso-renta-y-matriz-decision.md`, sección 1.
-16. **Cronograma de obra y capital propio disponible por adelantado** — nuevo, surge del análisis de `08-...md` sección 4.4: determina cuántas unidades hay que vender (y en qué etapas) para financiar la construcción, lo que a su vez fija el % real de retención por ángulo (no solo la rentabilidad, que ya favorece retener casi todo).
-17. **% de reparto de comisión con el agente inmobiliario independiente** — el founder confirmó que se comparte con Meridiano, sin especificar el %. Ver `08-...md`, sección 1.
-18. **Definir si se usa un vehículo de fideicomiso** para administrar el capital propio, aunque no haya deuda bancaria — determina si aplican Honorarios del fiduciario (0,5%/año) y Fideicomiso (2%). Ver `08-...md`, sección 2.
+~~16. Cronograma de obra y capital propio disponible por adelantado~~ → **Parcialmente resuelto (2026-08-15): plazo de obra confirmado en 12 meses, igual para 6 o 7 pisos** (`09-comision-con-iva-plazo-obra-vehiculo-legal-amoblamiento-y-verificacion-de-costos.md`, sección 2). Sigue faltando el ritmo de avance/cobro por etapa dentro de esos 12 meses y cuánto capital propio de los 2-3 socios está disponible por adelantado — sin esto no se puede fijar el % real de venta/retención por ángulo.
+~~17. % de reparto de comisión con el agente inmobiliario independiente~~ → ✅ **Resuelto (2026-08-15): 2,75% Meridiano / 2,75% el agente (reparto igual)**. Ver `09-...md`, sección 1.2, y `governance/decisions/DECISION_REGISTER.md`, D-063.
+~~18. Definir si se usa un vehículo de fideicomiso~~ → ✅ **Resuelto (2026-08-15): no hay fideicomiso — el vehículo es una Sociedad Anónima constituida entre 2-3 socios, que aportan el 100% del capital.** Ver `09-...md`, sección 3.
+19. **Confirmación del founder: Interpretación A vs. B del costo por m² de entrada** — el founder pidió verificar si el salto de USD 720-750/m² (construcción) a USD 1.929/m² (costo total por m² comercializable) tenía un error. La verificación (`09-...md`, sección 5) descartó una duplicación en sentido estricto (el salto se explica por conversión de área construida→comercializable + terreno + honorarios), pero reveló un punto real que sí depende de una decisión del founder: si la tasa de USD 720/m² debe aplicarse completa también sobre el 73,5% de estructura ya construida (vigente, USD 1.929/m²) o neta del componente estructural ya pagado en la adquisición (alternativa, USD 1.751/m²).
+20. **Régimen tributario correcto para una SA** — el Impuesto a las ganancias/ITI de la planilla de referencia estaba pensado para un fideicomiso; con el vehículo ya confirmado como SA (ítem 18), falta confirmar si aplica igual o corresponde otro impuesto societario.
+21. **Ritmo de avance/cobro dentro de los 12 meses de obra** y capital disponible por adelantado de los 2-3 socios — el insumo final que falta para correr los escenarios de venta/retención del flujo de fondos (`09-...md`, sección 6) con números reales.
 
 ## Archivos que siguen sin compartirse
 
