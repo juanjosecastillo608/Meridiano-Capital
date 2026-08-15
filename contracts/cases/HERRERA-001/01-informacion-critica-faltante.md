@@ -1,7 +1,7 @@
-Estado: CURRENT — actualizado tras ritmo de venta por etapa y piso de plusvalía anual (2026-08-15)
+Estado: CURRENT — actualizado tras costos de comercialización por escenario y plusvalía neta (2026-08-15)
 Fuente original: prompt maestro "MERIDIANO CAPITAL — Investment Real Estate Analysis System" (founder, 2026-08-12), §29
 Dominio: INVESTMENT / LEGAL (caso HERRERA-001)
-Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x3)
+Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x4)
 
 # INFORMACIÓN CRÍTICA FALTANTE — HERRERA-001
 
@@ -40,8 +40,11 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x3)
 22. **Recalcular con la metodología nueva (21%/650/750, ítem 19)** los márgenes de `06-margen-neto-comision-y-precios-por-piso.md`, el piso de alquiler y la matriz de decisión de `08-...md`/`09-...md` — usaban el costo de entrada anterior (USD 1.929,29/m²), ahora USD 1.781,07/m². No cambia la conclusión cualitativa (retener sigue superando a vender), pero los números exactos de margen y piso quedan desactualizados hasta este recálculo.
 23. **Confirmar la base exacta del criterio ±10% sobre los USD 490.000** (terreno de referencia a usar + si "construcción de los m² de estructura existente" es el valor del esqueleto o el costo completo de reproducirla) — no cambia la conclusión (el trato pasa el criterio en las cuatro combinaciones probadas), pero si el founder quiere un número de holgura específico, falta precisarlo. Ver `10-...md`, sección 3.
 ~~24. Supuesto de plusvalía post-entrega~~ → **Parcialmente resuelto (2026-08-15): se confirmó el CRITERIO (piso de plusvalía anual 15% sobre el precio de venta terminado, D-065)**, pero no un dato real de mercado de cuánto aprecia Barrio Herrera — sin ese dato no se puede concluir si el escenario de retención total (`10-...md` sección 5) conviene en la práctica. Ver `11-...md`, sección 2.
-25. **Dato real de plusvalía esperada en Barrio Herrera** (a diferencia del criterio/piso ya confirmado en el ítem 24) — para poder aplicar el piso de plusvalía y concluir sobre el escenario de retención total.
+25. **Dato real de plusvalía esperada en Barrio Herrera** (a diferencia del criterio/piso ya confirmado en el ítem 24) — para poder aplicar el piso de plusvalía y concluir sobre el escenario de retención total. **Actualizado 2026-08-15**: el piso de comparación relevante ya no es 15% bruto sino ~8,68% neto de comisión (1 año) — ver `12-costos-de-comercializacion-por-escenario-y-plusvalia-neta.md`, sección 3.
 26. **Cronograma de caja mes a mes** — cruzar el ritmo de venta por etapa (ítem 21) contra la curva real de egresos de construcción dentro de los 12 meses.
+~~27. Prorrateo de costos de comercialización/marketing solo sobre unidades vendidas~~ → ✅ **Resuelto (2026-08-15): las unidades retenidas no cargan ningún costo de comercialización** — el presupuesto de marketing/comisión se prorratea solo sobre las unidades que efectivamente se venden. Ver `12-...md`, secciones 1-2.
+28. **Régimen tributario exacto sobre la venta de unidades por parte del desarrollador/SA** — sigue pendiente (ya señalado en `06-...md`/`09-...md`/`10-...md`); ahora también bloquea completar el piso de plusvalía neto (ítem 25).
+29. **Presupuesto de marketing aproximado para el escenario de retención total** — el founder lo describió como "casi cero o nulo"; falta un número si se quiere cuantificar con precisión en vez de asumirlo en cero.
 
 ## Archivos que siguen sin compartirse
 
