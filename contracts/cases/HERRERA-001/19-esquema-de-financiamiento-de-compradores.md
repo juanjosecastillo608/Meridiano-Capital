@@ -55,9 +55,18 @@ El founder aclaró que la afirmación inicial ("12 cuotas comprando en el mes 1"
 
 Esto reemplaza el supuesto simplificado usado hasta ahora en `11-ritmo-de-venta-y-piso-de-plusvalia.md` §1.1 y `18-cronograma-de-caja-v2-capital-vs-ventas.md` (que trataban cada venta como si entrara de una sola vez, al momento de la venta) — con este esquema, **cada unidad vendida genera un flujo de cobro propio** (20% al momento de la venta + N cuotas mensuales, donde N depende de en qué mes de la obra se vendió), no un pago único. El cronograma de caja completo (ingresos reales mes a mes, no solo "ventas nominales") todavía no se modeló con este nivel de detalle — es el paso que sigue.
 
-## 5. Qué queda pendiente
+## 5. Variante 40/50/10 — solo para proyectos de plazo de obra corto (2026-08-16)
+
+Frente al déficit de timing detectado en el flujo de caja mensual de Herrera (`24-...md`/`25-...md`), se evaluó una variante con anticipo más alto: **40% entrega + 50% cuotas + 10% entrega física** (misma fórmula de cuotas de la sección 3, solo que reparte 50% en vez de 70%) — construida y comparada en `26-escenarios-para-cerrar-el-deficit-de-timing.md`, adoptada como el "Escenario Mix" en `27-flujo-de-caja-definitivo-escenario-1-y-mix.md`.
+
+*"El esquema 40/50/10 del Mix no reemplaza el 20/70/10 para todos los proyectos de Meridiano. Es una variante puntual solo para estos casos donde se analizan proyectos de corto plazo de obra."*
+
+**El 20/70/10 sigue siendo la norma general (D-067)** — el 40/50/10 queda registrado como variante reconocida, aplicable específicamente a proyectos de plazo de obra corto (como Herrera, 12 meses), donde un anticipo más alto ayuda a evitar que el gasto de obra se adelante demasiado al cobro de cuotas.
+
+## 6. Qué queda pendiente
 
 ~~1. Confirmar cuál de las dos fórmulas de cuotas es la correcta~~ → ✅ **Resuelto (2026-08-16): cuotas = plazo de obra − mes de compra**, primera cuota el mes siguiente a la compra — ver sección 3.
 ~~2. Confirmar si falta un 10% de saldo contra escritura~~ → ✅ **Resuelto: el 10% final se cobra contra la entrega, no contra la escritura** — ver sección 2.
-3. **Modelar el cobro real mes a mes** (no solo la venta nominal) combinando el ritmo de venta (`11-...md`), el cronograma de caja v2 (`18-...md`) y este esquema de cuotas — con la fórmula ya cerrada, este es el único paso técnico que falta antes del flujo de fondos completo.
+~~3. Modelar el cobro real mes a mes~~ → ✅ **Resuelto: flujo de caja mensual definitivo construido para el Escenario 1 (20/70/10) y el Escenario Mix (40/50/10)** — ver `27-flujo-de-caja-definitivo-escenario-1-y-mix.md`.
 4. **Incorporar el plazo de escritura (~6-8 meses post-obra)** al horizonte del caso — no afecta el cobro (ya resuelto en la sección 2), pero sí puede afectar cuándo se puede considerar "cerrada" la operación de cada unidad vendida, o cuándo aplican ciertos costos legales/notariales (`07-...md`, "gastos legales y notariales USD 1.500 por unidad escriturada").
+5. **Definir el criterio exacto de "plazo de obra corto"** que activa la variante 40/50/10 en futuros proyectos (¿cuántos meses o menos?) — el founder la acotó a "proyectos de corto plazo de obra" sin fijar un umbral numérico.
