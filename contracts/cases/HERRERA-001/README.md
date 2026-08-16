@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Cronograma de caja v2 sin tensión, esquema de financiamiento de compradores (D-067), y corrección sobre el mix de 3 dormitorios
+## Estado actual: 🟢 Esquema de compradores completo (20/70/10), demanda de 3 dormitorios confirmada, categoría de zona agregada a la tabla
 
-El founder ajustó el cronograma de caja (mes 1 baja de 30% a solo 5%) y aclaró que las ventas no están disponibles antes del mes 4 (hay que "generar confianza" primero, dado que la obra ya se había parado una vez) — con esto, la tensión de caja que se había detectado en la versión anterior **desaparece**: el capital propio (70%) alcanza a cubrir todo el gasto hasta el mes 7-8, bien después del mes 4. Se agregó también un **esquema de financiamiento de compradores estandarizado** (20% entrega + cuotas decrecientes según el mes de compra, hasta el último mes de obra) — cross-cutting, **D-067**, con una inconsistencia real en los datos del founder señalada, no resuelta unilateralmente. Y se **corrigió una conclusión apresurada**: había afirmado que "3 dormitorios conviene venderlo" a partir de una sola comparación — el founder pidió revisar el mix completo de producto (tradicional/amoblado/Airbnb, distintas calidades), y con eso el panorama cambia: con posicionamiento premium y comparado contra zonas cercanas (Recoleta, Mburucuyá), sí podría convenir retener una porción. Se completaron además 3 barrios más de la tabla de tarifas (8 de 66 con dato real). Ver `18-...md` a `20-reconsideracion-3-dormitorios-mix-de-producto.md`.
+El esquema de financiamiento de compradores quedó completo: **20% entrega + 70% cuotas decrecientes + 10% contra la entrega** (no contra escritura, que llega ~6-8 meses después) — cross-cutting, **D-067**. El founder confirmó con conocimiento directo que **sí hay demanda real en Barrio Herrera para 3 dormitorios amoblados** (zona residencial, cerca de los centros comerciales sin estar en medio del tránsito), resolviendo la pregunta que había quedado abierta sobre el mix de esa tipología. Se agregó una nueva hoja a la tabla de tarifas — **categoría de zona** (Residencial/Comercial/Shopping/Eje Corporativo) — y se sumó un barrio más (Carmelitas, pendiente de reconciliar con su barrio oficial). Se registró también, como idea a futuro (**P-006**, no construida todavía), un Agente de IA que ingeriría datos reales de grupos de WhatsApp de agentes inmobiliarios para tener información de mercado dinámica en tiempo real. Ver `19-...md` a `21-categoria-de-zona-y-agente-de-ia-de-mercado.md`.
 
 ## Archivos de este caso
 
@@ -30,14 +30,15 @@ El founder ajustó el cronograma de caja (mes 1 baja de 30% a solo 5%) y aclaró
 | `17-tabla-tarifas-por-barrio.md` | Primera carga de la tabla de tarifas por barrio (cross-cutting, D-066) — la lectura sobre 3 dormitorios corregida en `20-...md` |
 | `18-cronograma-de-caja-v2-capital-vs-ventas.md` | **Nuevo (2026-08-16)**: cronograma de caja ajustado (mes 1 = 5%) y hasta qué mes cubre el capital propio antes de necesitar ventas — sin tensión de caja real bajo este esquema |
 | `19-esquema-de-financiamiento-de-compradores.md` | **Nuevo (2026-08-16)**: esquema de cuotas decrecientes según mes de compra, cross-cutting (D-067), con una inconsistencia en los datos del founder señalada sin resolver |
-| `20-reconsideracion-3-dormitorios-mix-de-producto.md` | **Nuevo (2026-08-16)**: corrección de la conclusión sobre 3 dormitorios — análisis completo por combinación de producto y propuesta de mix |
+| `20-reconsideracion-3-dormitorios-mix-de-producto.md` | Corrección de la conclusión sobre 3 dormitorios — análisis completo por combinación de producto, propuesta de mix, y demanda real confirmada por el founder |
+| `21-categoria-de-zona-y-agente-de-ia-de-mercado.md` | **Nuevo (2026-08-16)**: categoría de zona agregada a la tabla de tarifas, agenda de demanda mensual, e idea de Agente de IA de mercado (P-006, no construida) |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 4 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. **Confirmar la fórmula de cuotas del esquema de financiamiento de compradores** (`19-...md` §3) y si falta un 10% de saldo contra escritura (`19-...md` §2).
-2. **Confirmar si existe demanda real en Barrio Herrera para 3 dormitorios premium** (`20-...md` §5) y aplicar el mismo análisis de mix a las demás tipologías.
+1. **Confirmar la fórmula de cuotas del esquema de financiamiento de compradores** (`19-...md` §3) — sigue sin resolver.
+2. **Aplicar el mismo análisis de mix a las demás tipologías** (monoambiente/1/2 dormitorios), no solo a 3 dormitorios.
 3. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera específicamente (solo se relevó Villa Morra por ahora).
 4. **Modelar el cobro real mes a mes** combinando ritmo de venta + cronograma de caja v2 + esquema de cuotas — el nivel de detalle que falta para el flujo de fondos final.
-5. Seguir completando barrios de la tabla de tarifas (8 de 66 con dato real hasta ahora).
+5. Seguir completando barrios de la tabla de tarifas (8 de 66 con dato real como filas — más el dato de Carmelitas, anotado pero sin incorporar hasta reconciliar su barrio oficial) y confirmar la categoría de zona de los ya cargados.
 6. Con eso, construir los tres escenarios del flujo de fondos multi-año (venta mínima necesaria, venta agresiva, retención total con plusvalía) y recién ahí la recomendación final.

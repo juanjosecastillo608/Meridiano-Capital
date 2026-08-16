@@ -1,0 +1,9 @@
+﻿Barrio,Categoria de zona,Rentabilidad relativa,Categoria de dato,Fuente,Fecha de actualizacion,Notas
+Luis A. de Herrera,Residencial,"Alta (plusvalía >20%/año, dato del founder)",A,"Founder, 2026-08-16",2026-08-16,"Confirmado por el founder: barrio residencial con demanda real de 3 dormitorios amoblados; cercano y con vías de acceso a los principales centros comerciales, sin estar en medio del tránsito/ruido."
+Villa Morra,Eje Corporativo / Mixta (residencial-comercial),"Alta (plusvalía >20%/año, dato del founder)",C,Inferencia propia + founder (13-...md §2),2026-08-16,"Zona corporativa consolidada, alta densidad de oficinas y locales junto a torres residenciales."
+Mburucuyá,Eje Corporativo,"Alta (plusvalía >20%/año, dato del founder)",C,Inferencia propia + founder (13-...md §2),2026-08-16,Corredor corporativo nombrado explícitamente por el founder como 'Eje Corporativo'.
+Recoleta,Comercial / Zona Shopping,"Alta (plusvalía >20%/año, dato del founder)",C,Inferencia propia + founder (13-...md §2),2026-08-16,"A metros de Shopping del Sol, alta densidad comercial."
+Las Lomas,Residencial (exclusivo),"Alta (plusvalía >20%/año, dato del founder)",C,Inferencia propia + founder (13-...md §2),2026-08-16,Nombrado explícitamente por el founder como zona de referencia de plusvalía; uno de los barrios más exclusivos de Asunción.
+Ycua Satí,Residencial / Mixta,Media-Alta (sin confirmar),C,Inferencia propia,2026-08-16,"Zona residencial consolidada, cercana a Villa Morra."
+Vista Alegre,Residencial (más económica),Pendiente,C,Inferencia propia,2026-08-16,"Referencia de zona más económica dentro del relevamiento — usada para contraste, no como zona premium."
+Salvador del Mundo,Residencial / Mixta,Pendiente,C,Inferencia propia,2026-08-16,Zona residencial consolidada.

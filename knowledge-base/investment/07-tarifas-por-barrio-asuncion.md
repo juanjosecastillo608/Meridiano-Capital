@@ -13,8 +13,9 @@ Base de datos de referencia de valores de alquiler real de Asunción, desagregad
 
 | Archivo | Contenido |
 |---|---|
-| `data/tarifas-alquiler-por-barrio-asuncion.csv` | **La fuente de verdad**, versionada en git — formato largo (una fila por combinación Barrio × Tipología × Tipo de alquiler), fácil de diffear y actualizar con cualquier editor de texto o Excel |
-| `data/tarifas-alquiler-por-barrio-asuncion.xlsx` | La misma información en una planilla Excel de 3 hojas (Metodología / Datos / Resumen con dato real) — **este es el archivo para compartir con el equipo**, se regenera desde el CSV cuando el CSV cambia |
+| `data/tarifas-alquiler-por-barrio-asuncion.csv` | **La fuente de verdad** de tarifas, versionada en git — formato largo (una fila por combinación Barrio × Tipología × Tipo de alquiler), fácil de diffear y actualizar con cualquier editor de texto o Excel |
+| `data/categoria-de-zona-por-barrio-asuncion.csv` | **Nueva (2026-08-16)** — fuente de verdad de la categoría de zona de cada barrio (Residencial / Comercial / Zona Shopping / Eje Corporativo / Mixta) y una marca de rentabilidad relativa donde ya hay evidencia |
+| `data/tarifas-alquiler-por-barrio-asuncion.xlsx` | Las dos fuentes de arriba, en una planilla Excel de 4 hojas (Metodología / Datos / Categoría de Zona / Resumen con dato real) — **este es el archivo para compartir con el equipo**, se regenera desde los CSV cuando cambian |
 
 **El CSV es la fuente editable real** — el `.xlsx` es un derivado para lectura/uso en Excel. Si se actualiza un dato, actualizar primero el CSV (o directamente el Excel y después volcar el cambio al CSV para que quede versionado en git).
 

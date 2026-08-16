@@ -54,11 +54,14 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x6)
 ~~36. Cronograma de caja mensual, primera versión~~ → **Reemplazado por `18-cronograma-de-caja-v2-capital-vs-ventas.md` (2026-08-16)**: el founder ajustó el mes 1 a solo 5% (no 20%+10%) y aclaró que las ventas no están disponibles antes del mes 4. Con esto, la tensión de caja que se había detectado **ya no aparece** — el capital propio (70%) alcanza a cubrir todo el gasto hasta el mes 7 (Ángulo 1/3) u 8 (Ángulo 2), con margen amplio sobre el mes 4 en que las ventas empiezan a estar disponibles.
 ~~37. Recalcular el 70%/30% de capital de socios con la Inversión Total definitiva~~ → ✅ **Resuelto (2026-08-16)** — ya hecho en `18-...md` §2.1, con la Inversión Total de `14-...md`.
 ~~38. Completar los 61 barrios restantes de la tabla de tarifas~~ → **Ampliado (2026-08-16): de 5 a 8 barrios con dato real** (se agregaron Ycuá Satí, Vista Alegre, Salvador del Mundo) — siguen quedando 58 barrios en categoría D, trabajo de investigación continuo.
-39. **Confirmar la fórmula exacta de cuotas del esquema de financiamiento de compradores** (`19-esquema-de-financiamiento-de-compradores.md` §3) — hay una inconsistencia real entre los dos datos que dio el founder (mes 1 = 12 cuotas vs. el ejemplo mes 6 = 6 cuotas), no resuelta unilateralmente.
-40. **Confirmar si falta un 10% de saldo contra escritura** en el esquema de financiamiento de compradores (20% entrega + 70% cuotas = 90%, no 100%) — `19-...md` §2.
-41. **Confirmar si existe demanda real en o cerca de Barrio Herrera para 3 dormitorios premium** (amoblado de alta calidad o Airbnb) al nivel de precio de Recoleta/Mburucuyá — `20-reconsideracion-3-dormitorios-mix-de-producto.md` §5, necesario para definir el % de retención de esa tipología.
+39. **Confirmar la fórmula exacta de cuotas del esquema de financiamiento de compradores** (`19-esquema-de-financiamiento-de-compradores.md` §3) — hay una inconsistencia real entre los dos datos que dio el founder (mes 1 = 12 cuotas vs. el ejemplo mes 6 = 6 cuotas), no resuelta unilateralmente. **Sigue pendiente** — el mensaje de 2026-08-16 que completó el 20/70/10 no tocó este punto específico.
+~~40. Confirmar si falta un 10% de saldo contra escritura~~ → ✅ **Resuelto (2026-08-16): esquema completo 20% entrega + 70% cuotas + 10% contra la entrega física** (no contra escritura) — ver `19-...md` §2.
+~~41. Confirmar si existe demanda real en o cerca de Barrio Herrera para 3 dormitorios premium~~ → ✅ **Resuelto (2026-08-16): el founder confirma demanda real**, por el posicionamiento residencial de la zona — ver `20-...md` §3.1.
 42. **Aplicar el mismo análisis de mix por combinación de producto** a monoambiente/1/2 dormitorios, no solo a 3 dormitorios (`20-...md` §5, punto 2).
 43. **Modelar el cobro real mes a mes** combinando ritmo de venta + cronograma de caja v2 + esquema de cuotas de compradores — el nivel de detalle que falta para el flujo de fondos final.
+44. **Confirmar la categoría de zona de los barrios ya cargados en la tabla** (`21-categoria-de-zona-y-agente-de-ia-de-mercado.md` §1) — solo Barrio Herrera está confirmado por el founder, el resto es inferencia propia sin confirmar.
+45. **Reconciliar "Carmelitas" con su barrio oficial** dentro de la lista de 66 barrios (`21-...md` §5) antes de incorporar su dato real ya encontrado.
+46. **Especificar el alcance del Agente de IA de mercado** (P-006, `21-...md` §4) si el founder quiere avanzar con el diseño — sigue como idea enunciada, no construida.
 
 ## Archivos que siguen sin compartirse
 

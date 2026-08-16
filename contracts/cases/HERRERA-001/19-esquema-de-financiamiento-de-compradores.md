@@ -11,15 +11,20 @@ Incorporado: 2026-08-16
 
 Confirmado explícitamente como **cross-cutting** ("este esquema de pagos lo vamos a dejar estandarizado para tomar en otros proyectos") — se registra como **D-067** en `governance/decisions/DECISION_REGISTER.md`, no solo en este caso.
 
-## 2. Estructura de cobro por unidad
+## 2. Estructura de cobro por unidad — completa, 20/70/10 (categoría A, confirmado 2026-08-16)
 
-| Componente | % |
-|---|---|
-| Entrega inicial | 20% |
-| Cuotas durante obra | 70% |
-| **Suma** | **90%** |
+*"El esquema es 20/70/10. Esto es 20% a la firma del boleto, 70% se financia durante obra (criterio de cuota decreciente según el mes de obra) y 10% se paga contra la entrega del departamento, no contra escritura. La escritura, al ser departamentos en construcción, tarda aproximadamente unos 6-8 meses más luego de terminada la obra."*
 
-**⚠️ Falta el 10% restante — señalado, no completado por mi cuenta**: 20% + 70% = 90%, no 100%. La planilla de referencia del caso (`02-plantillas-de-referencia.md`) usa un esquema similar con un "saldo a la entrega/escritura" (ahí, 10%) que no forma parte de las cuotas durante obra — es razonable pensar que acá pasa lo mismo (10% contra escritura, al final), pero **el founder no lo dijo explícitamente en este mensaje** — no se asume, queda como pregunta abierta.
+| Componente | % | Momento |
+|---|---|---|
+| Entrega inicial | 20% | Firma del boleto |
+| Cuotas durante obra | 70% | Mensuales, cantidad decreciente según el mes de compra (sección 3) |
+| Saldo final | **10%** | **Contra la entrega física del departamento — no contra la escritura** |
+| **Suma** | **100%** | |
+
+**Cierra el punto que había quedado abierto** (20%+70%=90%, sin el 10% restante) — el 10% final se cobra en la **entrega**, un hito distinto y anterior a la escritura. La **escritura** llega aparte, ~6-8 meses después de terminada la obra (departamentos en construcción/pozo) — no condiciona el cobro del 10% final, que ya se hace efectivo en la entrega.
+
+**Confirmado como norma estándar**: *"Todos estos datos aplican para la mayoría de los departamentos en construcción, lo vamos a dejar como norma, y se aclara en el momento de la venta."* — consistente con el registro ya hecho como D-067 (cross-cutting).
 
 ## 3. Cuotas decrecientes según mes de compra — dos lecturas, con una inconsistencia real entre ellas
 
@@ -60,6 +65,7 @@ Esto reemplaza el supuesto simplificado usado hasta ahora en `11-ritmo-de-venta-
 
 ## 6. Qué queda pendiente
 
-1. **Confirmar cuál de las dos fórmulas de cuotas es la correcta** (sección 3) — o si ninguna, cuál es la regla real.
-2. **Confirmar si falta un 10% de saldo contra escritura** (sección 2) o si el 20%+70% es el esquema completo tal cual.
+1. **Confirmar cuál de las dos fórmulas de cuotas es la correcta** (sección 3) — o si ninguna, cuál es la regla real. **Sigue sin resolver** — el mensaje que completó el 20/70/10 (sección 2) no tocó este punto específico.
+2. ~~Confirmar si falta un 10% de saldo contra escritura~~ → ✅ **Resuelto (2026-08-16): el 10% final se cobra contra la entrega, no contra la escritura** — ver sección 2.
 3. **Modelar el cobro real mes a mes** (no solo la venta nominal) combinando el ritmo de venta (`11-...md`), el cronograma de caja v2 (`18-...md`) y este esquema de cuotas — el flujo de fondos completo todavía no llega a este nivel de detalle.
+4. **Incorporar el plazo de escritura (~6-8 meses post-obra)** al horizonte del caso — no afecta el cobro (ya resuelto en la sección 2), pero sí puede afectar cuándo se puede considerar "cerrada" la operación de cada unidad vendida, o cuándo aplican ciertos costos legales/notariales (`07-...md`, "gastos legales y notariales USD 1.500 por unidad escriturada").

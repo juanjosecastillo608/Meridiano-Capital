@@ -39,6 +39,12 @@ Incorporado: 2026-08-16
 
 **Esto confirma exactamente lo que planteó el founder**: no hay una única respuesta para "3 dormitorios" — depende de qué producto se ofrezca y a qué segmento de mercado apunte. Un 3 dormitorios amoblado a nivel Básico/Estándar, alquilado como unidad más del mercado de Barrio Herrera, efectivamente no alcanza el piso — pero un 3 dormitorios posicionado como producto premium (amoblamiento de mayor calidad, apuntando al segmento que hoy paga USD 2.700–4.500 en zonas comparables cercanas como Recoleta/Mburucuyá) sí lo supera con margen.
 
+## 3.1 Confirmación del founder — sí hay demanda real en Barrio Herrera (categoría A)
+
+*"Barrio Herrera es un barrio residencial que tiene demanda para departamentos de 3 dormitorios amoblados. Está muy cercano y con vías de acceso a los principales centros comerciales de la ciudad, sin estar en el medio del caos/ruido del tránsito."*
+
+Esto **resuelve la pregunta abierta de la sección 5 (punto 1)**: el founder confirma, con conocimiento directo de la zona, que sí existe demanda real para 3 dormitorios amoblados en Barrio Herrera — su posicionamiento específico (residencial, cerca pero no en medio del tráfico/ruido de los centros comerciales) es precisamente el que sostiene esa demanda. Esto es un dato cualitativo de mercado (categoría A, conocimiento directo del founder) — no reemplaza el dato cuantitativo de renta real ya relevado (`13-...md`/`17-...md`), pero sí confirma que la demanda existe, lo que respalda la propuesta de mix de la sección 4: no hace falta "inventar" un segmento premium — el founder confirma que ya existe.
+
 ## 4. Propuesta de mix — no vender el 100% de las 13 unidades de 3 dormitorios del Ángulo 3
 
 **Esto es una propuesta razonada, no una decisión tomada** — mismo criterio de todas las propuestas de mix anteriores del caso (`07-...md` §3):
@@ -52,6 +58,7 @@ Incorporado: 2026-08-16
 
 ## 5. Qué queda pendiente
 
-1. **Confirmar si existe demanda real en o cerca de Barrio Herrera para un 3 dormitorios premium** (amoblado de alta calidad o Airbnb) al nivel de precio de Recoleta/Mburucuyá, o si esas zonas son estructuralmente distintas (ubicación, prestigio) y Herrera no puede replicar ese precio sin importar el producto.
+~~1. Confirmar si existe demanda real en o cerca de Barrio Herrera para un 3 dormitorios premium~~ → ✅ **Resuelto (2026-08-16, sección 3.1): sí, el founder confirma demanda real**, por el posicionamiento residencial de la zona (cerca de los centros comerciales sin estar en medio del tránsito/ruido).
 2. **Aplicar el mismo análisis de mix por combinación de producto a las demás tipologías** (monoambiente, 1 y 2 dormitorios) — este documento solo cubrió 3 dormitorios porque fue el caso puntual que el founder señaló, pero el mismo error de "conclusión con una sola combinación" podría estar presente en el resto si no se revisa con la misma disciplina.
-3. **Definir el % o cantidad de unidades de 3 dormitorios a retener bajo el segmento premium**, una vez resuelto el punto 1.
+3. **Definir el % o cantidad de unidades de 3 dormitorios a retener bajo el segmento premium** — con la demanda ya confirmada (punto 1), falta fijar el número, que sigue dependiendo del cronograma de caja/necesidad de venta mínima (`18-...md`), no solo de la rentabilidad.
+4. **Relevar renta real de mercado específica de 3 dormitorios premium en Barrio Herrera** (no solo el rango genérico USD 1.100–1.400 ya encontrado) — para confirmar cuantitativamente que la demanda cualitativa confirmada por el founder se traduce en un precio que efectivamente supera el piso.
