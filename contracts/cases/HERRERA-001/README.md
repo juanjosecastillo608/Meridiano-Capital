@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Esquema de compradores completo (20/70/10), demanda de 3 dormitorios confirmada, categoría de zona agregada a la tabla
+## Estado actual: 🟢 Fórmula de cuotas cerrada, plusvalía y rentabilidad ya no se mezclan, ranking de zonas con fuentes reales
 
-El esquema de financiamiento de compradores quedó completo: **20% entrega + 70% cuotas decrecientes + 10% contra la entrega** (no contra escritura, que llega ~6-8 meses después) — cross-cutting, **D-067**. El founder confirmó con conocimiento directo que **sí hay demanda real en Barrio Herrera para 3 dormitorios amoblados** (zona residencial, cerca de los centros comerciales sin estar en medio del tránsito), resolviendo la pregunta que había quedado abierta sobre el mix de esa tipología. Se agregó una nueva hoja a la tabla de tarifas — **categoría de zona** (Residencial/Comercial/Shopping/Eje Corporativo) — y se sumó un barrio más (Carmelitas, pendiente de reconciliar con su barrio oficial). Se registró también, como idea a futuro (**P-006**, no construida todavía), un Agente de IA que ingeriría datos reales de grupos de WhatsApp de agentes inmobiliarios para tener información de mercado dinámica en tiempo real. Ver `19-...md` a `21-categoria-de-zona-y-agente-de-ia-de-mercado.md`.
+La fórmula de cuotas del esquema de compradores (D-067) quedó cerrada: **cuotas = plazo de obra − mes de compra**, primera cuota al mes siguiente de la compra — el founder aclaró que su afirmación inicial fue un error de explicación. El esquema completo es 20% entrega + 70% cuotas + 10% contra la entrega física (no escritura). Se corrigió además una mezcla de conceptos real: **plusvalía (ganancia de capital, en la venta) y rentabilidad de alquiler (retorno de renta, mientras se tiene la propiedad) son cosas distintas**, con bases de cálculo distintas — ya no se combinan en una sola columna. Con esa separación clara, se construyó un **ranking de zonas de Asunción con fuentes reales** del mercado inmobiliario paraguayo (Yulia Traidova, Inmovia, Revista FOCO) — Manorá, Villa Morra, Las Lomas, Mcal. López y Recoleta como las 5 zonas de mayor precio/m², Barrio Herrera con la única plusvalía confirmada directamente por el founder (>20%/año). Se reconcilió también "Carmelitas" — es el sector de Las Lomas cerca del convento Carmelitas Descalzas, no un barrio aparte. Ver `19-...md` a `22-estudio-de-zonas-plusvalia-vs-rentabilidad-y-carmelitas.md`.
 
 ## Archivos de este caso
 
@@ -31,14 +31,15 @@ El esquema de financiamiento de compradores quedó completo: **20% entrega + 70%
 | `18-cronograma-de-caja-v2-capital-vs-ventas.md` | **Nuevo (2026-08-16)**: cronograma de caja ajustado (mes 1 = 5%) y hasta qué mes cubre el capital propio antes de necesitar ventas — sin tensión de caja real bajo este esquema |
 | `19-esquema-de-financiamiento-de-compradores.md` | **Nuevo (2026-08-16)**: esquema de cuotas decrecientes según mes de compra, cross-cutting (D-067), con una inconsistencia en los datos del founder señalada sin resolver |
 | `20-reconsideracion-3-dormitorios-mix-de-producto.md` | Corrección de la conclusión sobre 3 dormitorios — análisis completo por combinación de producto, propuesta de mix, y demanda real confirmada por el founder |
-| `21-categoria-de-zona-y-agente-de-ia-de-mercado.md` | **Nuevo (2026-08-16)**: categoría de zona agregada a la tabla de tarifas, agenda de demanda mensual, e idea de Agente de IA de mercado (P-006, no construida) |
+| `21-categoria-de-zona-y-agente-de-ia-de-mercado.md` | Primera versión de la categoría de zona — **la columna "rentabilidad relativa" quedó corregida en `22-...md`**, se conserva por trazabilidad |
+| `22-estudio-de-zonas-plusvalia-vs-rentabilidad-y-carmelitas.md` | **Nuevo (2026-08-16)**: corrección plusvalía vs. rentabilidad, ranking de zonas con fuentes reales del mercado, y reconciliación de Carmelitas con Las Lomas |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 4 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. **Confirmar la fórmula de cuotas del esquema de financiamiento de compradores** (`19-...md` §3) — sigue sin resolver.
+1. **Confirmar las "zonas definitivas"** del ranking construido con fuentes reales (`22-...md` §2) — es un primer estudio, todavía no cerrado.
 2. **Aplicar el mismo análisis de mix a las demás tipologías** (monoambiente/1/2 dormitorios), no solo a 3 dormitorios.
-3. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera específicamente (solo se relevó Villa Morra por ahora).
-4. **Modelar el cobro real mes a mes** combinando ritmo de venta + cronograma de caja v2 + esquema de cuotas — el nivel de detalle que falta para el flujo de fondos final.
-5. Seguir completando barrios de la tabla de tarifas (8 de 66 con dato real como filas — más el dato de Carmelitas, anotado pero sin incorporar hasta reconciliar su barrio oficial) y confirmar la categoría de zona de los ya cargados.
+3. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera específicamente y rentabilidad de alquiler típica por zona (la mayoría del ranking solo tiene plusvalía, no rentabilidad, todavía).
+4. **Modelar el cobro real mes a mes** combinando ritmo de venta + cronograma de caja v2 + esquema de cuotas (ya con la fórmula cerrada) — el único paso técnico que falta para el flujo de fondos final.
+5. Seguir completando barrios de la tabla de tarifas (9 de 66 con dato real, incluyendo Las Lomas/Carmelitas ya unificados).
 6. Con eso, construir los tres escenarios del flujo de fondos multi-año (venta mínima necesaria, venta agresiva, retención total con plusvalía) y recién ahí la recomendación final.

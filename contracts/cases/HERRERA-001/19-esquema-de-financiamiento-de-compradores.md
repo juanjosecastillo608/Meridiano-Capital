@@ -26,46 +26,38 @@ Confirmado explícitamente como **cross-cutting** ("este esquema de pagos lo vam
 
 **Confirmado como norma estándar**: *"Todos estos datos aplican para la mayoría de los departamentos en construcción, lo vamos a dejar como norma, y se aclara en el momento de la venta."* — consistente con el registro ya hecho como D-067 (cross-cutting).
 
-## 3. Cuotas decrecientes según mes de compra — dos lecturas, con una inconsistencia real entre ellas
+## 3. Cuotas decrecientes según mes de compra — resuelto (2026-08-16)
 
-El mensaje del founder da dos datos que, tomados juntos, **no son matemáticamente consistentes entre sí** — se presentan ambos sin forzar cuál es la correcta:
+*"Tenemos un problema de explicación. Si la obra dura 12 meses y la venta se realiza en el mes 1, tiene 11 cuotas — porque la entrega del 20% se realiza el mes 1. La primera cuota la paga en el mes 2, y así sucesivamente hasta el mes 12, que paga la última cuota. Si el edificio está en tiempo de obra y se entrega en plazo, al mes siguiente se entrega el departamento y paga el 10% restante, donde cancela el 100% del departamento."*
 
-- **Dato 1** (afirmación general): *"el 70% restante en 12 cuotas los que compran en el mes 1"* → comprar en el mes 1 da 12 cuotas.
-- **Dato 2** (ejemplo puntual): *"el que compra en el mes 6 tiene solo 6 cuotas"* → comprar en el mes 6 da 6 cuotas.
+El founder aclaró que la afirmación inicial ("12 cuotas comprando en el mes 1") fue un error de explicación — **la fórmula correcta es la que ya coincidía con el ejemplo puntual del mes 6**:
 
-| Fórmula | Cuotas si compra en el mes 1 | Cuotas si compra en el mes 6 | ¿Coincide con el Dato 1? | ¿Coincide con el Dato 2? |
-|---|---|---|---|---|
-| **A**: cuotas = plazo de obra − mes de compra **+ 1** | 12 | 7 | ✅ Sí | ❌ No (da 7, no 6) |
-| **B**: cuotas = plazo de obra − mes de compra | 11 | 6 | ❌ No (da 11, no 12) | ✅ Sí |
+> **Cuotas = plazo de obra − mes de compra.** La primera cuota se paga el mes siguiente al de la compra (el mes de compra en sí solo paga el 20% de entrega), y la última cuota cae siempre en el último mes de obra — nunca se extiende el financiamiento más allá de ese mes.
 
-**Ninguna de las dos fórmulas satisface los dos datos al mismo tiempo.** La diferencia es de una cuota — probablemente una cuestión de si el mes de compra en sí mismo cuenta como la primera cuota (Fórmula A) o si la primera cuota es el mes siguiente al de la compra (Fórmula B), y el founder puede haber mezclado ambas convenciones sin darse cuenta al dar el ejemplo. **No se elige una por mi cuenta** — se necesita la confirmación del founder sobre cuál de las dos aplica (o una tercera regla, si ninguna de las dos es la intención real).
+| Mes de compra | Cuotas (plazo 12 meses) | Primera cuota | Última cuota |
+|---|---|---|---|
+| 1 | 11 | Mes 2 | Mes 12 |
+| 2 | 10 | Mes 3 | Mes 12 |
+| 3 | 9 | Mes 4 | Mes 12 |
+| 4 | 8 | Mes 5 | Mes 12 |
+| 5 | 7 | Mes 6 | Mes 12 |
+| 6 | 6 | Mes 7 | Mes 12 |
+| 7 | 5 | Mes 8 | Mes 12 |
+| 8 | 4 | Mes 9 | Mes 12 |
+| 9 | 3 | Mes 10 | Mes 12 |
+| 10 | 2 | Mes 11 | Mes 12 |
+| 11 | 1 | Mes 12 | Mes 12 |
+| 12 | 0 — sin cuotas financiadas, pasa directo al 10% de entrega | — | — |
 
-## 4. Tabla completa de cuotas por mes de compra (categoría B — calculado desde A, con la ambigüedad de la sección 3 sin resolver)
+**El hito de entrega y el saldo del 10%**: si la obra termina en el plazo previsto (mes 12), la entrega del departamento ocurre **al mes siguiente** (mes 13) — ahí se paga el 10% restante y se cancela el 100% del valor de la unidad. La escritura llega después (~6-8 meses más, sección 2) y no forma parte de este cronograma de cobro.
 
-| Mes de compra | Cuotas — Fórmula A (compra=cuota 1) | Cuotas — Fórmula B (cuota 1 = mes siguiente) |
-|---|---|---|
-| 1 | 12 | 11 |
-| 2 | 11 | 10 |
-| 3 | 10 | 9 |
-| 4 | 9 | 8 |
-| 5 | 8 | 7 |
-| 6 | 7 | **6** ← coincide con el ejemplo del founder |
-| 7 | 6 | 5 |
-| 8 | 5 | 4 |
-| 9 | 4 | 3 |
-| 10 | 3 | 2 |
-| 11 | 2 | 1 |
-| 12 | 1 | 0 — no alcanzaría a financiar ninguna cuota antes de la entrega |
-
-**Regla ya confirmada, sin ambigüedad**: el máximo de cuotas es el plazo de obra (12), el mes de compra marca el inicio del conteo, y el plazo de cuotas nunca se extiende más allá del último mes de obra — quien compra más tarde en la obra tiene menos cuotas disponibles, nunca más, y nunca se extiende el financiamiento después de la entrega.
-
-## 5. Por qué importa para el flujo de fondos de Herrera
+## 4. Por qué importa para el flujo de fondos de Herrera
 
 Esto reemplaza el supuesto simplificado usado hasta ahora en `11-ritmo-de-venta-y-piso-de-plusvalia.md` §1.1 y `18-cronograma-de-caja-v2-capital-vs-ventas.md` (que trataban cada venta como si entrara de una sola vez, al momento de la venta) — con este esquema, **cada unidad vendida genera un flujo de cobro propio** (20% al momento de la venta + N cuotas mensuales, donde N depende de en qué mes de la obra se vendió), no un pago único. El cronograma de caja completo (ingresos reales mes a mes, no solo "ventas nominales") todavía no se modeló con este nivel de detalle — es el paso que sigue.
 
-## 6. Qué queda pendiente
+## 5. Qué queda pendiente
 
-1. **Confirmar cuál de las dos fórmulas de cuotas es la correcta** (sección 3) — o si ninguna, cuál es la regla real. **Sigue sin resolver** — el mensaje que completó el 20/70/10 (sección 2) no tocó este punto específico.
-2. ~~Confirmar si falta un 10% de saldo contra escritura~~ → ✅ **Resuelto (2026-08-16): el 10% final se cobra contra la entrega, no contra la escritura** — ver sección 2.
-3. **Modelar el cobro real mes a mes** (no solo la venta nominal) combinando el ritmo de venta (`11-...md`), el cronograma de caja v2 (`18-...md`) y este esquema de cuotas — el flujo de fondos completo todavía no llega a este nivel de detalle.
+~~1. Confirmar cuál de las dos fórmulas de cuotas es la correcta~~ → ✅ **Resuelto (2026-08-16): cuotas = plazo de obra − mes de compra**, primera cuota el mes siguiente a la compra — ver sección 3.
+~~2. Confirmar si falta un 10% de saldo contra escritura~~ → ✅ **Resuelto: el 10% final se cobra contra la entrega, no contra la escritura** — ver sección 2.
+3. **Modelar el cobro real mes a mes** (no solo la venta nominal) combinando el ritmo de venta (`11-...md`), el cronograma de caja v2 (`18-...md`) y este esquema de cuotas — con la fórmula ya cerrada, este es el único paso técnico que falta antes del flujo de fondos completo.
 4. **Incorporar el plazo de escritura (~6-8 meses post-obra)** al horizonte del caso — no afecta el cobro (ya resuelto en la sección 2), pero sí puede afectar cuándo se puede considerar "cerrada" la operación de cada unidad vendida, o cuándo aplican ciertos costos legales/notariales (`07-...md`, "gastos legales y notariales USD 1.500 por unidad escriturada").

@@ -5,6 +5,8 @@ Incorporado: 2026-08-16
 
 # Categoría de zona por barrio, agenda de demanda, y Agente de IA de mercado
 
+**⚠️ Corregido por `22-estudio-de-zonas-plusvalia-vs-rentabilidad-y-carmelitas.md`**: la columna "Rentabilidad relativa" de la sección 1 de abajo mezclaba, por error, el concepto de plusvalía (ganancia de capital en la venta) con el de rentabilidad de alquiler (retorno de renta) — el founder corrigió esto explícitamente. Ver `22-...md` §1 para la separación correcta y §2 para el estudio de zonas ampliado con fuentes reales (no solo inferencia propia). La tabla ya está actualizada con la corrección — lo que sigue en esta sección se conserva por trazabilidad de cómo se llegó ahí.
+
 ## 1. Categoría de zona — nueva hoja en la tabla de tarifas
 
 *"En nuestra tabla vamos a marcar los barrios por zonas más rentables, zonas residenciales, zonas comerciales, zonas shopping, zona eje corporativo."*

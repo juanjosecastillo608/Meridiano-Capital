@@ -14,7 +14,7 @@ Base de datos de referencia de valores de alquiler real de Asunción, desagregad
 | Archivo | Contenido |
 |---|---|
 | `data/tarifas-alquiler-por-barrio-asuncion.csv` | **La fuente de verdad** de tarifas, versionada en git — formato largo (una fila por combinación Barrio × Tipología × Tipo de alquiler), fácil de diffear y actualizar con cualquier editor de texto o Excel |
-| `data/categoria-de-zona-por-barrio-asuncion.csv` | **Nueva (2026-08-16)** — fuente de verdad de la categoría de zona de cada barrio (Residencial / Comercial / Zona Shopping / Eje Corporativo / Mixta) y una marca de rentabilidad relativa donde ya hay evidencia |
+| `data/categoria-de-zona-por-barrio-asuncion.csv` | Fuente de verdad de la categoría de zona de cada barrio (Residencial / Comercial / Zona Shopping / Eje Corporativo / Mixta / Emergente), un ranking basado en fuentes reales del mercado, y **dos columnas separadas** — plusvalía de zona y rentabilidad de alquiler típica de zona (nunca combinadas, ver nota abajo) |
 | `data/tarifas-alquiler-por-barrio-asuncion.xlsx` | Las dos fuentes de arriba, en una planilla Excel de 4 hojas (Metodología / Datos / Categoría de Zona / Resumen con dato real) — **este es el archivo para compartir con el equipo**, se regenera desde los CSV cuando cambian |
 
 **El CSV es la fuente editable real** — el `.xlsx` es un derivado para lectura/uso en Excel. Si se actualiza un dato, actualizar primero el CSV (o directamente el Excel y después volcar el cambio al CSV para que quede versionado en git).
@@ -54,6 +54,15 @@ Base de datos de referencia de valores de alquiler real de Asunción, desagregad
 1. Búsquedas web adicionales, barrio por barrio (mismo método que la primera carga — ver `contracts/cases/HERRERA-001/13-...md` §5 y `17-tabla-tarifas-por-barrio.md` para el detalle de fuentes usadas).
 2. Cotizaciones directas de inmobiliarias locales (RE/MAX, Century 21, InfoCasas) — subiría la categoría de C a A.
 3. Datos que Meridiano/Urbannit ya tenga de su propia cartera operativa (Cartera A, `knowledge-base/investment/00-overview.md`) — esos son categoría A directa, con más peso que cualquier búsqueda web.
+
+## Plusvalía vs. rentabilidad de alquiler — nunca mezclar (corrección del founder, 2026-08-16)
+
+La hoja "Categoría de Zona" separa explícitamente dos conceptos que no deben combinarse en una sola etiqueta:
+
+- **Plusvalía de zona**: ganancia de **capital**, se realiza recién en la **venta** — (precio de venta − precio de compra) ÷ tiempo de tenencia, expresada anual.
+- **Rentabilidad de alquiler típica de zona**: retorno de **renta**, se genera mientras se **tiene** la propiedad — renta ÷ valor de compra (ya está en la hoja "Datos", los 3 escenarios de esta tabla: Airbnb/tradicional/amoblado).
+
+Son fenómenos de mercado distintos, con dinámicas propias — una zona puede tener alta plusvalía y baja rentabilidad de alquiler, o viceversa. Ver `contracts/cases/HERRERA-001/22-estudio-de-zonas-plusvalia-vs-rentabilidad-y-carmelitas.md` para el detalle completo de esta corrección y el primer ranking de zonas con fuentes reales del mercado inmobiliario paraguayo.
 
 ## Uso previsto
 
