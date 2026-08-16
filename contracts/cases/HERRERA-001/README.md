@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Zona AR2-B confirmada, metodología de valuación de terreno registrada — retomando el mix de producto por tipología
+## Estado actual: 🟢 Mix de producto completo para las 4 tipologías + primer dato real de Airbnb en Herrera — yendo por los escenarios finales
 
-El founder confirmó la zona de regulación del terreno de Herrera contra el catastro municipal: **es AR2-B**, cierra exactamente con el permiso de altura ya obtenido (PB+5→7 pisos). Queda una pregunta técnica abierta (no una contradicción): el área edificable del coeficiente base de AR2-B (1.524 m²) es menos de la mitad de la superficie real planeada (3.113-3.413 m²) — tres hipótesis planteadas, ninguna confirmada (`30-...md`). Se registró además una regla cross-cutting de valuación de terreno para zonas sin lotes vacantes disponibles (comprar casa + demoler, o tomar el valor total como terreno si la casa es muy antigua), y se agendó (no construida) una habilidad de AMC permanente (P-007). **El founder confirmó el orden de los pendientes**: 1) mix de producto para las demás tipologías, 2) renta/Airbnb real de Barrio Herrera, 3) los tres escenarios de venta/retención para la recomendación final. Ver `19-...md` a `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md`.
+Con la zona AR2-B ya confirmada y la metodología de valuación de terreno registrada (`29-...md`/`30-...md`), se avanzó con los dos primeros pendientes que confirmó el founder: **(1) mix de producto** completado para las 4 tipologías (monoambiente/1/2/3 dormitorios, `31-...md`) — monoambiente es la más sólida en todas las combinaciones, y cuanto más grande la tipología, más depende de compararse contra zonas premium cercanas; **(2) renta/Airbnb real de Barrio Herrera** — primer dato encontrado (USD 19-32/noche, `32-...md`), más bajo que el proxy de Villa Morra usado antes, lo que matiza la conclusión: para monoambiente, el amoblado tradicional es más sólido que el Airbnb con el ADR real de la zona. Sigue el tercer pendiente: armar los tres escenarios de venta/retención del flujo de fondos completo. Ver `19-...md` a `32-airbnb-real-de-barrio-herrera.md`.
 
 ## Archivos de este caso
 
@@ -40,11 +40,13 @@ El founder confirmó la zona de regulación del terreno de Herrera contra el cat
 | `27-flujo-de-caja-definitivo-escenario-1-y-mix.md` | Flujo de caja mensual definitivo para el Escenario 1 y el Mix, los 3 Ángulos — el saldo de capital propio llega a cero exactamente en el mes 11 en ambos |
 | `28-ranking-20-barrios-y-distritos-de-asuncion.md` | 6 distritos de Asunción confirmados, ranking de zona ampliado a 21 barrios con fuentes reales (Place Analyzer) — la corrección a 68 barrios y el resto de discrepancias se resolvieron en `29-...md` |
 | `29-plan-regulador-y-correccion-68-barrios.md` | Confirmación de 68 barrios, Place Analyzer como regla estándar de valor de terreno, terreno de Herrera vs. listados de mercado, y Plan Regulador (Ordenanza 43/1994) — la zona AR2-B quedó confirmada en `30-...md` |
-| `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md` | **Nuevo (2026-08-17)**: metodología de valuación de terreno sin lotes vacantes (cross-cutting), habilidad de AMC agendada (P-007), y confirmación de la zona AR2-B para Herrera |
+| `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md` | Metodología de valuación de terreno sin lotes vacantes (cross-cutting), habilidad de AMC agendada (P-007), y confirmación de la zona AR2-B para Herrera |
+| `31-mix-de-producto-monoambiente-1-y-2-dormitorios.md` | **Nuevo (2026-08-17)**: mix de producto por combinación para las 3 tipologías restantes, completa el análisis de `20-...md` — cuadro consolidado de las 4 tipologías |
+| `32-airbnb-real-de-barrio-herrera.md` | **Nuevo (2026-08-17)**: primer dato real de Airbnb dentro de Barrio Herrera (USD 19-32/noche), matiza la lectura de monoambiente de `31-...md` |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 5 planillas Excel de referencia (incluye Plan Regulador), sin modificar |
 
-## Próximo paso — orden confirmado por el founder
+## Próximo paso
 
-1. **Mix de producto para las demás tipologías** (monoambiente/1/2 dormitorios) — mismo análisis que ya se hizo para 3 dormitorios en `20-...md`.
-2. **Renta/Airbnb real de Barrio Herrera** — sigue pendiente, solo se relevó Villa Morra hasta ahora.
-3. **Armar los tres escenarios de venta/retención** del flujo de fondos completo (`10-...md` §5), para cada uno de los dos escenarios de capital/cobro (Escenario 1 y Mix), y recién ahí la recomendación final con las dos alternativas.
+1. **Armar los tres escenarios de venta/retención** del flujo de fondos completo (`10-...md` §5: venta mínima necesaria, venta agresiva, retención total), para cada uno de los dos escenarios de capital/cobro (Escenario 1 y Mix) — el pendiente que queda antes de la recomendación final.
+2. Definir el % o cantidad de unidades a retener por tipología con el cuadro consolidado ya armado (`31-...md` §4).
+3. Confirmar las "zonas definitivas" del ranking (`28-...md` §4) si el founder quiere cerrarlo antes.
