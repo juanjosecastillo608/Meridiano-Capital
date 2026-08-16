@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 68 barrios confirmados, Place Analyzer como regla de terreno, Plan Regulador incorporado
+## Estado actual: 🟢 Zona AR2-B confirmada, metodología de valuación de terreno registrada — retomando el mix de producto por tipología
 
-El founder confirmó que Asunción tiene **68 barrios, no 66** — se corrigió la base de la tabla (816 filas: 68 × 4 tipologías × 3 tipos de alquiler), agregando "Jukyty" y "San Cayetano" como hipótesis razonable (no confirmada) de los 2 barrios que faltaban. **Place Analyzer queda establecido como fuente estándar** para el valor de mercado de terrenos en cualquier análisis de Meridiano — el precio de terreno de Barrio Herrera específicamente no se encontró en esa fuente, pero sí en listados de mercado (USD 1.200-1.500/m²), muy por encima de lo que paga el trato (USD 767,59/m²) — refuerza que el trato es favorable. Se incorporó además el **Plan Regulador de Asunción** (Ordenanza 43/1994): tabla de indicadores urbanísticos por zona (densidad, coeficiente de edificabilidad, altura máxima) y su metodología de cálculo de área edificable. Apareció una **coincidencia interesante, sin confirmar**: el permiso ya obtenido para Herrera (PB+5→7 pisos) calza con el perfil de la zona AR2-B de esa tabla — falta verificar la zona de regulación real del terreno contra el catastro municipal. Ver `19-...md` a `29-plan-regulador-y-correccion-68-barrios.md`.
+El founder confirmó la zona de regulación del terreno de Herrera contra el catastro municipal: **es AR2-B**, cierra exactamente con el permiso de altura ya obtenido (PB+5→7 pisos). Queda una pregunta técnica abierta (no una contradicción): el área edificable del coeficiente base de AR2-B (1.524 m²) es menos de la mitad de la superficie real planeada (3.113-3.413 m²) — tres hipótesis planteadas, ninguna confirmada (`30-...md`). Se registró además una regla cross-cutting de valuación de terreno para zonas sin lotes vacantes disponibles (comprar casa + demoler, o tomar el valor total como terreno si la casa es muy antigua), y se agendó (no construida) una habilidad de AMC permanente (P-007). **El founder confirmó el orden de los pendientes**: 1) mix de producto para las demás tipologías, 2) renta/Airbnb real de Barrio Herrera, 3) los tres escenarios de venta/retención para la recomendación final. Ver `19-...md` a `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md`.
 
 ## Archivos de este caso
 
@@ -39,13 +39,12 @@ El founder confirmó que Asunción tiene **68 barrios, no 66** — se corrigió 
 | `26-escenarios-para-cerrar-el-deficit-de-timing.md` | 3 escenarios comparados — el founder confirmó avanzar con el 1 y el Mix, descartando el 2 |
 | `27-flujo-de-caja-definitivo-escenario-1-y-mix.md` | Flujo de caja mensual definitivo para el Escenario 1 y el Mix, los 3 Ángulos — el saldo de capital propio llega a cero exactamente en el mes 11 en ambos |
 | `28-ranking-20-barrios-y-distritos-de-asuncion.md` | 6 distritos de Asunción confirmados, ranking de zona ampliado a 21 barrios con fuentes reales (Place Analyzer) — la corrección a 68 barrios y el resto de discrepancias se resolvieron en `29-...md` |
-| `29-plan-regulador-y-correccion-68-barrios.md` | **Nuevo (2026-08-17)**: confirmación de 68 barrios, Place Analyzer como regla estándar de valor de terreno, terreno de Herrera vs. listados de mercado, y Plan Regulador (Ordenanza 43/1994) con la hipótesis de zona AR2-B para Herrera |
+| `29-plan-regulador-y-correccion-68-barrios.md` | Confirmación de 68 barrios, Place Analyzer como regla estándar de valor de terreno, terreno de Herrera vs. listados de mercado, y Plan Regulador (Ordenanza 43/1994) — la zona AR2-B quedó confirmada en `30-...md` |
+| `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md` | **Nuevo (2026-08-17)**: metodología de valuación de terreno sin lotes vacantes (cross-cutting), habilidad de AMC agendada (P-007), y confirmación de la zona AR2-B para Herrera |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 5 planillas Excel de referencia (incluye Plan Regulador), sin modificar |
 
-## Próximo paso
+## Próximo paso — orden confirmado por el founder
 
-1. **Verificar la zona de regulación real del terreno de Herrera** contra el catastro municipal (`29-...md` §3.2) — confirmaría o descartaría la hipótesis AR2-B.
-2. **Confirmar las "zonas definitivas"** con el ranking ampliado de 21 barrios (`28-...md` §4).
-3. **Aplicar el mismo análisis de mix a las demás tipologías** (monoambiente/1/2 dormitorios), no solo a 3 dormitorios.
-4. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera y rentabilidad de alquiler típica por zona.
-5. Con el flujo de caja ya definitivo para ambos escenarios, construir los tres escenarios de venta/retención del flujo de fondos completo (`10-...md` §5, para cada uno de los dos escenarios de capital/cobro — 1 y Mix) y recién ahí la recomendación final, presentada con las dos alternativas.
+1. **Mix de producto para las demás tipologías** (monoambiente/1/2 dormitorios) — mismo análisis que ya se hizo para 3 dormitorios en `20-...md`.
+2. **Renta/Airbnb real de Barrio Herrera** — sigue pendiente, solo se relevó Villa Morra hasta ahora.
+3. **Armar los tres escenarios de venta/retención** del flujo de fondos completo (`10-...md` §5), para cada uno de los dos escenarios de capital/cobro (Escenario 1 y Mix), y recién ahí la recomendación final con las dos alternativas.

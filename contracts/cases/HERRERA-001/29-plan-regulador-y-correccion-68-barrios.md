@@ -38,11 +38,11 @@ Se registró la tabla completa como referencia cross-cutting en `knowledge-base/
 > Área edificable = Superficie del terreno × Coeficiente de edificabilidad
 > Número de pisos ≈ Área edificable ÷ (Tasa de ocupación máxima × Superficie del terreno)
 
-### 3.2 Hipótesis — ¿la zona de Herrera es AR2-B?
+### 3.2 Zona AR2-B — CONFIRMADA (2026-08-17)
 
-**No se confirmó la zona de regulación exacta del terreno de Herrera** — pero hay una coincidencia que vale la pena señalar, sin tratarla como confirmada: el permiso municipal ya confirmado para Herrera (`06-margen-neto-comision-y-precios-por-piso.md` §0, `03-presupuesto-y-comparables.md`) es **"altura máxima base PB+5 pisos, con incentivo a PB+7 pisos (retiro 6 m en un lado vs. 3 m base)"** — esto **coincide de forma llamativa** con el perfil de la zona **AR2-B** de la tabla (altura base "5 plantas o 15 m", retiro de 3 m/calle o 6 m/avenida) — si el incentivo de +2 plantas que ya tiene Herrera corresponde a una ordenanza de bonificación aplicada sobre una base AR2-B, cerraría exactamente con los datos ya confirmados del caso.
+**✅ Actualizado — resuelto en `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md` §3**: el founder verificó la zona de regulación del terreno de Herrera (cuenta catastral 14-502-04) contra el catastro municipal — **es AR2-B, confirmado, categoría A**. Coincide exactamente con el permiso municipal ya confirmado (base PB+5 pisos, con incentivo a PB+7 vía mayor retiro) y con el perfil de AR2-B en la tabla (altura base "5 plantas o 15 m").
 
-**Esto es una hipótesis razonada, no un dato confirmado** — para confirmarla haría falta consultar la zona de regulación exacta del terreno de Herrera (cuenta catastral 14-502-04) contra el mapa catastral municipal, el mismo paso que se hizo en el ejemplo de Ycuá Satí de la propia planilla del founder. **No se asume que sea AR2-B sin esa verificación.**
+Queda una pregunta técnica abierta, sin resolver (no contradice la confirmación de zona): el área edificable que da el coeficiente base de AR2-B (469 m² × 3,25 = 1.524,25 m²) es menos de la mitad de la superficie real que tiene planeado construir Herrera (3.113-3.413 m²) — ver `30-...md` §3.1 para las hipótesis planteadas, ninguna confirmada.
 
 ## 4. Qué queda pendiente
 
