@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟡 3 escenarios construidos para cerrar el déficit de timing — falta la confirmación final del founder
+## Estado actual: 🟢 Déficit de timing cerrado — dos escenarios definitivos en paralelo (Escenario 1 y Mix)
 
-El déficit de timing detectado (capital propio se agota en el mes 9, `24-...md`, ampliado a USD 171.000–187.000 con precio diferenciado por etapa, `25-...md`) ya tiene **3 escenarios construidos y comparados** (`26-...md`): **Escenario 1** (más capital propio, sube a ~76% de la Inversión Total, sin tocar el esquema de compradores); **Escenario 2** (cambia el esquema de compradores a 40% anticipo / 50% cuotas / 10% entrega, reduce el déficit ~28% pero no lo cierra del todo); **Escenario Mix** (ambos combinados — cierra el déficit con menos capital extra que el Escenario 1 puro, ~74% de la Inversión Total, y además logra cuotas más bajas para el comprador). El Mix es la combinación más eficiente de las tres. **Sigue pendiente que el founder confirme cuál usar.** Ver `19-...md` a `26-escenarios-para-cerrar-el-deficit-de-timing.md`.
+El déficit de timing detectado (`24-...md`/`25-...md`) ya está resuelto: el founder confirmó avanzar con **dos escenarios en paralelo** — **Escenario 1** (esquema de compradores 20/70/10 sin cambios, capital propio sube a ~76% de la Inversión Total) y **Escenario Mix** (esquema de compradores 40/50/10 — anticipo más alto, cuotas más bajas — + capital propio a ~74%, que ahorra entre USD 47.000 y 55.000 frente al Escenario 1 según el Ángulo). El Escenario 2 (solo anticipo 40%, sin capital extra) quedó descartado por no cerrar el déficit del todo. Se construyó el **flujo de caja mensual definitivo** para ambos escenarios, en los 3 Ángulos — en los tres, el saldo de capital propio llega a cero exactamente en el mes 11, y de ahí en adelante el proyecto se sostiene solo con el cobro de cuotas. Ver `19-...md` a `27-flujo-de-caja-definitivo-escenario-1-y-mix.md`.
 
 ## Archivos de este caso
 
@@ -36,14 +36,15 @@ El déficit de timing detectado (capital propio se agota en el mes 9, `24-...md`
 | `23-amueblamiento-en-plusvalia-y-rentabilidad-zona-y-calidad.md` | El costo de amueblamiento se suma también en el cálculo de plusvalía (no solo rentabilidad), y la categoría de zona informa la calidad de amueblamiento a usar |
 | `24-flujo-de-caja-mensual-completo.md` | Flujo de caja mensual completo (egresos + cobro real de ventas con cuotas) — déficit de timing detectado, capital propio se agota en el mes 9. **Números de déficit actualizados en `25-...md`** |
 | `25-precio-diferenciado-por-etapa-y-deficit-actualizado.md` | Precio diferenciado por etapa de venta (pozo durante obra vs. terminado), déficit de timing recalculado (USD 171.000–187.000) |
-| `26-escenarios-para-cerrar-el-deficit-de-timing.md` | **Nuevo (2026-08-16)**: 3 escenarios comparados (más capital propio / anticipo 40% / mix de ambos) — el Mix es el más eficiente, a la espera de confirmación del founder |
+| `26-escenarios-para-cerrar-el-deficit-de-timing.md` | 3 escenarios comparados — el founder confirmó avanzar con el 1 y el Mix, descartando el 2 |
+| `27-flujo-de-caja-definitivo-escenario-1-y-mix.md` | **Nuevo (2026-08-16)**: flujo de caja mensual definitivo para el Escenario 1 y el Mix, los 3 Ángulos — el saldo de capital propio llega a cero exactamente en el mes 11 en ambos |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 4 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. **🟡 Confirmación del founder sobre qué escenario usar** (`26-...md` §4) — Escenario 1 (más capital), Escenario 2 (anticipo 40%), o el Mix (recomendado por ser el más eficiente).
-2. Si se elige el esquema 40/50/10, decidir si reemplaza la norma D-067 para todos los proyectos o es una variante puntual de Herrera.
+1. Confirmar si ambos escenarios (1 y Mix) siguen en paralelo para el resto del análisis, o si el founder ya prefiere uno (el Mix pide menos capital propio).
+2. Si se usa el esquema 40/50/10, decidir si reemplaza la norma D-067 para todos los proyectos o es una variante puntual de Herrera.
 3. **Confirmar las "zonas definitivas"** del ranking construido con fuentes reales (`22-...md` §2).
 4. **Aplicar el mismo análisis de mix a las demás tipologías** (monoambiente/1/2 dormitorios), no solo a 3 dormitorios.
 5. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera y rentabilidad de alquiler típica por zona.
-6. Con el escenario elegido, construir el flujo de caja mensual detallado final y los tres escenarios de venta/retención del flujo de fondos completo (`10-...md` §5) — recién ahí la recomendación final.
+6. Con el flujo de caja ya definitivo, construir los tres escenarios de venta/retención del flujo de fondos completo (`10-...md` §5, para cada uno de los dos escenarios de capital/cobro) y recién ahí la recomendación final.
