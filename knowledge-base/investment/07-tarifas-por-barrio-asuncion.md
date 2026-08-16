@@ -44,9 +44,9 @@ Base de datos de referencia de valores de alquiler real de Asunción, desagregad
 
 ## Cobertura actual (2026-08-16)
 
-**5 de 66 barrios con dato real (categoría C)**: Villa Morra, Luis A. de Herrera (Barrio Herrera), Las Lomas, Recoleta, Mburucuyá (Eje Corporativo/Shopping del Sol). Los **61 barrios restantes están en categoría D**, con la estructura completa lista (todas las combinaciones de tipología × tipo de alquiler ya existen como filas) para completarse a medida que se releven.
+**8 de 66 barrios con dato real (categoría C)**: Villa Morra, Luis A. de Herrera (Barrio Herrera), Las Lomas, Recoleta, Mburucuyá (Eje Corporativo/Shopping del Sol), Ycuá Satí, Vista Alegre, Salvador del Mundo. Los **58 barrios restantes están en categoría D**, con la estructura completa lista (todas las combinaciones de tipología × tipo de alquiler ya existen como filas) para completarse a medida que se releven.
 
-**Por qué solo 5 y no los 66**: relevar los 66 barrios × 4 tipologías × 3 tipos de alquiler (792 combinaciones) con datos reales es un trabajo de campo/investigación sustancial, no algo que se complete de una sola búsqueda. Se priorizaron los barrios que el founder nombró explícitamente como referencia de plusvalía (`contracts/cases/HERRERA-001/13-...md` §2: Villa Morra, Eje Corporativo, Las Lomas, zonas Shopping del Sol) más el propio Barrio Herrera. **No se completaron los 61 restantes con valores inventados** — quedan como D, honestos sobre lo que falta, en vez de simular cobertura completa.
+**Por qué solo 8 y no los 66**: relevar los 66 barrios × 4 tipologías × 3 tipos de alquiler (792 combinaciones) con datos reales es un trabajo de campo/investigación sustancial, no algo que se complete de una sola búsqueda. Se priorizaron los barrios que el founder nombró explícitamente como referencia de plusvalía (`contracts/cases/HERRERA-001/13-...md` §2: Villa Morra, Eje Corporativo, Las Lomas, zonas Shopping del Sol) más el propio Barrio Herrera, y una segunda ronda con zonas vecinas de distinto nivel (Ycuá Satí, Vista Alegre como referencia más económica, Salvador del Mundo). **No se completaron los 58 restantes con valores inventados** — quedan como D, honestos sobre lo que falta, en vez de simular cobertura completa.
 
 ## Cómo se sigue completando
 
