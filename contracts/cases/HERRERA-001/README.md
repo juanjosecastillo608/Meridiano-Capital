@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🔴 Flujo de caja mensual completo — déficit de timing real detectado (USD 164.000–179.000)
+## Estado actual: 🔴 Déficit de timing confirmado y actualizado (USD 171.000–187.000) — esperando decisión del founder sobre cómo cerrarlo
 
-Se cerró la fórmula de cuotas (D-067: cuotas = plazo − mes de compra), se corrigió la mezcla de conceptos plusvalía/rentabilidad de alquiler, se construyó un ranking de zonas con fuentes reales del mercado (Manorá, Villa Morra, Las Lomas, Mcal. López y Recoleta como las 5 de mayor precio/m²), se reconcilió Carmelitas con Las Lomas, y se amplió la regla de amueblamiento (se suma también en el cálculo de plusvalía, no solo rentabilidad). Con todo esto cerrado, se construyó el **flujo de caja mensual completo** (egresos de obra + cobro real de ventas con cuotas de compradores) — y aparece un **hallazgo importante que corrige la lectura anterior**: el capital propio (70%) se agota en el **mes 9** en los tres Ángulos, con un déficit de timing de **USD 164.000–179.000** hacia el final del proyecto. No es falta de fondos totales (capital + ventas suman exactamente el 100% de la Inversión Total) — es que el cobro de las cuotas es más lento de lo que la obra necesita gastar. Es un bloqueante real para la recomendación final, a la espera de que el founder decida cómo cerrar la brecha. Ver `19-...md` a `24-flujo-de-caja-mensual-completo.md`.
+El flujo de caja mensual completo (`24-...md`) mostró un déficit de timing real: el capital propio (70%) se agota en el **mes 9** en los tres Ángulos, aunque capital + ventas suman exactamente el 100% de la Inversión Total (es un problema de cuándo entra el dinero, no de cuánto). El founder aclaró cómo se reparte el precio de venta entre las etapas del ritmo 30/40/30: lanzamiento y durante obra (70% de las unidades) venden a precio "pozo durante obra" (USD 1.900/m²), y solo finalización (30%) a precio "terminado" (USD 2.050/m²) — no hay etapa de pre-pozo real, dado que las ventas no arrancan antes del mes 4. Esto sube el déficit a **USD 171.000–187.000** según el Ángulo (`25-...md`). **Sigue pendiente que el founder elija entre las 4 opciones para cerrar la brecha** (más capital propio, acelerar el cobro, vender más/antes, o un puente de financiamiento acotado) — las repitió en su último mensaje sin decidir todavía. Ver `19-...md` a `25-precio-diferenciado-por-etapa-y-deficit-actualizado.md`.
 
 ## Archivos de este caso
 
@@ -34,14 +34,14 @@ Se cerró la fórmula de cuotas (D-067: cuotas = plazo − mes de compra), se co
 | `21-categoria-de-zona-y-agente-de-ia-de-mercado.md` | Primera versión de la categoría de zona — **la columna "rentabilidad relativa" quedó corregida en `22-...md`**, se conserva por trazabilidad |
 | `22-estudio-de-zonas-plusvalia-vs-rentabilidad-y-carmelitas.md` | Corrección plusvalía vs. rentabilidad, ranking de zonas con fuentes reales del mercado, y reconciliación de Carmelitas con Las Lomas |
 | `23-amueblamiento-en-plusvalia-y-rentabilidad-zona-y-calidad.md` | El costo de amueblamiento se suma también en el cálculo de plusvalía (no solo rentabilidad), y la categoría de zona informa la calidad de amueblamiento a usar |
-| `24-flujo-de-caja-mensual-completo.md` | **Nuevo (2026-08-16)**: flujo de caja mensual completo (egresos + cobro real de ventas con cuotas) — déficit de timing de USD 164.000–179.000 detectado, capital propio se agota en el mes 9 |
+| `24-flujo-de-caja-mensual-completo.md` | Flujo de caja mensual completo (egresos + cobro real de ventas con cuotas) — déficit de timing detectado, capital propio se agota en el mes 9. **Números de déficit actualizados en `25-...md`** |
+| `25-precio-diferenciado-por-etapa-y-deficit-actualizado.md` | **Nuevo (2026-08-16)**: precio diferenciado por etapa de venta (pozo durante obra vs. terminado), déficit de timing recalculado (USD 171.000–187.000), y las 4 opciones para cerrarlo todavía sin decisión del founder |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 4 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. **🔴 Decisión del founder sobre cómo cerrar el déficit de timing** (`24-...md` §4) — bloqueante real: más capital propio, acelerar el cobro, vender más/antes, o un puente de financiamiento acotado.
-2. Confirmar los supuestos propios usados para distribuir el ritmo de venta dentro de los 12 meses (`24-...md` §1) — no son una especificación exacta del founder.
-3. **Confirmar las "zonas definitivas"** del ranking construido con fuentes reales (`22-...md` §2).
-4. **Aplicar el mismo análisis de mix a las demás tipologías** (monoambiente/1/2 dormitorios), no solo a 3 dormitorios.
-5. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera y rentabilidad de alquiler típica por zona.
-6. Con la decisión del punto 1 tomada, construir los tres escenarios del flujo de fondos multi-año (venta mínima necesaria, venta agresiva, retención total con plusvalía) y recién ahí la recomendación final.
+1. **🔴 Decisión del founder sobre cómo cerrar el déficit de timing** (`25-...md` §3) — repitió las 4 opciones sin elegir ninguna, sigue siendo el bloqueante real: más capital propio, acelerar el cobro, vender más/antes, o un puente de financiamiento acotado.
+2. **Confirmar las "zonas definitivas"** del ranking construido con fuentes reales (`22-...md` §2).
+3. **Aplicar el mismo análisis de mix a las demás tipologías** (monoambiente/1/2 dormitorios), no solo a 3 dormitorios.
+4. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera y rentabilidad de alquiler típica por zona.
+5. Con la decisión del punto 1 tomada, construir los tres escenarios del flujo de fondos multi-año (venta mínima necesaria, venta agresiva, retención total con plusvalía) y recién ahí la recomendación final.

@@ -5,6 +5,8 @@ Incorporado: 2026-08-16
 
 # Flujo de caja mensual completo — egresos de obra + cobro real de ventas
 
+**⚠️ Actualizado por `25-precio-diferenciado-por-etapa-y-deficit-actualizado.md`**: este documento asumía precio de venta uniforme entre las tres etapas del ritmo de venta — el founder aclaró que lanzamiento y durante obra venden al precio "pozo durante obra" (bajo) y solo finalización al precio "terminado" (alto), lo que sube el déficit calculado acá en ~USD 7.000–8.700 según el Ángulo. La conclusión cualitativa (déficit real de timing, capital se agota en el mes 9) no cambia — el tamaño exacto sí. Ver `25-...md` §2 para los números actualizados.
+
 ## 0. Qué hace este documento, y un hallazgo que corrige la lectura anterior
 
 Combina, por primera vez, los tres componentes que hasta ahora estaban en archivos separados: **egresos de construcción** (`18-cronograma-de-caja-v2-capital-vs-ventas.md`), **ritmo de venta por etapa** (`11-ritmo-de-venta-y-piso-de-plusvalia.md`) y **esquema de cuotas de compradores** (`19-esquema-de-financiamiento-de-compradores.md`). Al integrarlos, aparece un hallazgo real que **corrige la lectura de `18-...md` §2.2** (que decía "no hay tensión de caja real"):
