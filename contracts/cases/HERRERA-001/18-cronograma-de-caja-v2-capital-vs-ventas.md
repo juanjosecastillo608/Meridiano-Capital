@@ -38,7 +38,9 @@ Dos reglas de fondeo, distintas del cronograma de gasto de la sección 1: **capi
 
 ### 2.2 Lectura
 
-**No hay una tensión de caja real bajo este cronograma ajustado** — a diferencia de `16-...md` (que sí mostraba una posible tensión en el mes 1 con el esquema anterior de 20%+10%), el ajuste a 5% en el mes 1 resuelve ese problema: el gasto de arranque es mucho más liviano, y el capital propio solo se termina de agotar recién en el mes 7-8, bien después de que las ventas empiecen a estar disponibles (mes 4). **Desde el mes 7 (Ángulo 1/3) o mes 8 (Ángulo 2) en adelante, el proyecto sí depende de que las ventas hayan entrado** — si para ese mes las ventas todavía no alcanzaron el monto necesario, ahí sí habría un problema real de caja.
+**⚠️ Corregido por `24-flujo-de-caja-mensual-completo.md`**: la lectura de abajo trataba cada venta como si entrara en caja de una sola vez, al momento de la venta — al modelar el cobro real (20% inmediato + 70% en cuotas + 10% en la entrega, `19-...md`), sí aparece una tensión de caja real, más adelante en el proyecto (a partir del mes 9, no en el mes 1). Ver `24-...md` para el modelo completo y el tamaño exacto del déficit por Ángulo. Se conserva el texto original abajo por trazabilidad.
+
+**No hay una tensión de caja real bajo este cronograma ajustado** *(lectura simplificada, superada — ver la corrección de arriba)* — a diferencia de `16-...md` (que sí mostraba una posible tensión en el mes 1 con el esquema anterior de 20%+10%), el ajuste a 5% en el mes 1 resuelve ese problema: el gasto de arranque es mucho más liviano, y el capital propio solo se termina de agotar recién en el mes 7-8, bien después de que las ventas empiecen a estar disponibles (mes 4). **Desde el mes 7 (Ángulo 1/3) o mes 8 (Ángulo 2) en adelante, el proyecto sí depende de que las ventas hayan entrado** — si para ese mes las ventas todavía no alcanzaron el monto necesario, ahí sí habría un problema real de caja.
 
 ## 3. Qué queda pendiente
 

@@ -63,6 +63,10 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x6)
 ~~45. Reconciliar "Carmelitas" con su barrio oficial~~ → ✅ **Resuelto (2026-08-16): Carmelitas es el sector de Las Lomas cercano a la capilla/convento Las Carmelitas Descalzas** — no es barrio aparte, su dato se cargó dentro de Las Lomas. Ver `22-...md` §3.
 46. **Especificar el alcance del Agente de IA de mercado** (P-006) — se enmarcó dentro de la iniciativa general de "Agentes de IA de Meridiano", agendada para cuando esa iniciativa se construya — sigue sin fecha ni especificación técnica.
 47. **Relevar rentabilidad de alquiler típica por zona** (no solo plusvalía) para completar el ranking de `22-...md` §2 — la mayoría de los barrios rankeados todavía no tiene este dato específico.
+48. **Aplicar la corrección del piso de plusvalía con amueblamiento** (`23-amueblamiento-en-plusvalia-y-rentabilidad-zona-y-calidad.md` §1.1) a 2 y 3 dormitorios — solo se recalculó monoambiente y 1 dormitorio como ejemplo.
+49. **Construir la tabla zona → calidad de amueblamiento** (`23-...md` §2) — depende de confirmar las "zonas definitivas" (ítem 44).
+~~50. Modelar el cobro real mes a mes~~ → ✅ **Resuelto (2026-08-16): flujo de caja mensual completo construido**, combinando egresos de obra + ritmo de venta + cuotas de compradores. **Hallazgo importante**: el capital propio (70%) se agota en el mes 9 en los tres Ángulos, con un déficit de timing de USD 164.000–179.000 hacia el final del proyecto — no es falta de fondos totales (capital+ventas suman exactamente el 100% de la Inversión Total), es que el cobro de las cuotas es más lento de lo que la obra necesita gastar. Corrige la lectura optimista de `18-...md` §2.2. Ver `24-flujo-de-caja-mensual-completo.md`.
+51. **Decisión del founder sobre cómo cerrar el déficit de timing** (`24-...md` §4: más capital propio, acelerar cobro, vender más/antes, o un puente de financiamiento acotado) — bloqueante real para poder recomendar sin condicionar la estructura de fondeo.
 
 ## Archivos que siguen sin compartirse
 
