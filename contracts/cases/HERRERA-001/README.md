@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Mix de producto completo para las 4 tipologías + primer dato real de Airbnb en Herrera — yendo por los escenarios finales
+## Estado actual: 🟢 Los tres pendientes del founder completos — el caso está listo para la síntesis final
 
-Con la zona AR2-B ya confirmada y la metodología de valuación de terreno registrada (`29-...md`/`30-...md`), se avanzó con los dos primeros pendientes que confirmó el founder: **(1) mix de producto** completado para las 4 tipologías (monoambiente/1/2/3 dormitorios, `31-...md`) — monoambiente es la más sólida en todas las combinaciones, y cuanto más grande la tipología, más depende de compararse contra zonas premium cercanas; **(2) renta/Airbnb real de Barrio Herrera** — primer dato encontrado (USD 19-32/noche, `32-...md`), más bajo que el proxy de Villa Morra usado antes, lo que matiza la conclusión: para monoambiente, el amoblado tradicional es más sólido que el Airbnb con el ADR real de la zona. Sigue el tercer pendiente: armar los tres escenarios de venta/retención del flujo de fondos completo. Ver `19-...md` a `32-airbnb-real-de-barrio-herrera.md`.
+Se completaron, en el orden que confirmó el founder: **(1) mix de producto** para las 4 tipologías (`31-...md`) — monoambiente es la más sólida en todas las combinaciones; **(2) renta/Airbnb real de Barrio Herrera** (`32-...md`) — primer dato encontrado (USD 19-32/noche), matiza la conclusión de monoambiente; **(3) los tres escenarios de venta/retención** (`33-...md`, Ángulo 3 como caso representativo) — Escenario A (venta mínima + retención perpetua) +15,0%/año, Escenario B (venta agresiva 100%) +24,3%/año, **Escenario C (venta mínima + retención 2 años + reventa con plusvalía real del 20%/año) +33,4%/año, el más alto de los tres**, aunque con más riesgo/incertidumbre que los otros dos. Con esto, **el caso tiene sus tres pilares principales completos**: costo de entrada definitivo, flujo de caja de financiamiento (2 escenarios), y comparación de escenarios de venta/retención — queda a definir si se avanza con la síntesis final (recomendación + Memorándum de Inversión). Ver `19-...md` a `33-tres-escenarios-de-venta-retencion.md`.
 
 ## Archivos de este caso
 
@@ -42,11 +42,13 @@ Con la zona AR2-B ya confirmada y la metodología de valuación de terreno regis
 | `29-plan-regulador-y-correccion-68-barrios.md` | Confirmación de 68 barrios, Place Analyzer como regla estándar de valor de terreno, terreno de Herrera vs. listados de mercado, y Plan Regulador (Ordenanza 43/1994) — la zona AR2-B quedó confirmada en `30-...md` |
 | `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md` | Metodología de valuación de terreno sin lotes vacantes (cross-cutting), habilidad de AMC agendada (P-007), y confirmación de la zona AR2-B para Herrera |
 | `31-mix-de-producto-monoambiente-1-y-2-dormitorios.md` | **Nuevo (2026-08-17)**: mix de producto por combinación para las 3 tipologías restantes, completa el análisis de `20-...md` — cuadro consolidado de las 4 tipologías |
-| `32-airbnb-real-de-barrio-herrera.md` | **Nuevo (2026-08-17)**: primer dato real de Airbnb dentro de Barrio Herrera (USD 19-32/noche), matiza la lectura de monoambiente de `31-...md` |
+| `32-airbnb-real-de-barrio-herrera.md` | Primer dato real de Airbnb dentro de Barrio Herrera (USD 19-32/noche), matiza la lectura de monoambiente de `31-...md` |
+| `33-tres-escenarios-de-venta-retencion.md` | **Nuevo (2026-08-17)**: comparación cuantificada de los tres escenarios de venta/retención (Ángulo 3) — retener y esperar plusvalía da el retorno más alto, con caveats de riesgo señalados |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 5 planillas Excel de referencia (incluye Plan Regulador), sin modificar |
 
 ## Próximo paso
 
-1. **Armar los tres escenarios de venta/retención** del flujo de fondos completo (`10-...md` §5: venta mínima necesaria, venta agresiva, retención total), para cada uno de los dos escenarios de capital/cobro (Escenario 1 y Mix) — el pendiente que queda antes de la recomendación final.
-2. Definir el % o cantidad de unidades a retener por tipología con el cuadro consolidado ya armado (`31-...md` §4).
-3. Confirmar las "zonas definitivas" del ranking (`28-...md` §4) si el founder quiere cerrarlo antes.
+1. **Replicar la comparación de escenarios para Ángulo 1 y Ángulo 2** (`33-...md` §4) — solo se cubrió Ángulo 3.
+2. Definir el mix real por unidad/tipología (`31-...md` §4) para reemplazar el piso ponderado ilustrativo del Escenario C.
+3. Modelar el cronograma real de venta del 70% retenido a los 2 años (no una venta instantánea).
+4. **Decidir si se avanza con la síntesis final** — recomendación (comprar/negociar/no comprar) + Memorándum de Inversión (§23-24 del prompt maestro) — el caso ya tiene sus tres pilares principales completos.

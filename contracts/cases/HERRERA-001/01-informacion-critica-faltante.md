@@ -82,6 +82,11 @@ Incorporado: 2026-08-12, actualizado 2026-08-13, 2026-08-14, 2026-08-15 (x6)
 ~~33. Tarifas de renta temporal/Airbnb reales de Barrio Herrera~~ → ✅ **Resuelto (2026-08-17): primer dato real encontrado, USD 19-32/noche** (2 listados de Airbnb.com dentro del barrio) — más bajo que el proxy de Villa Morra que se venía usando, no alcanza el piso Airbnb de monoambiente (15%), aunque sí el amoblado tradicional (10%) en su extremo alto. Ver `32-airbnb-real-de-barrio-herrera.md`.
 63. **Precio del listado "Penthouse" premium en Herrera** encontrado sin precio confirmado — daría el techo real del segmento alto de Airbnb en la zona.
 64. **Ampliar la muestra de Airbnb en Herrera** — solo 2 listados con precio hasta ahora, y confirmar la ocupación real (se sigue usando el 60% genérico del sistema, D-046).
+~~Armar los tres escenarios de venta/retención~~ → ✅ **Resuelto (2026-08-17), Ángulo 3 como caso representativo**: Escenario A (venta mínima+retención perpetua) +15,0%/año; Escenario B (venta agresiva 100%) +24,3%/año; **Escenario C (venta mínima+retención 2 años+reventa con plusvalía) +33,4%/año, el más alto de los tres** — con caveats reales de riesgo/incertidumbre señalados. Ver `33-tres-escenarios-de-venta-retencion.md`.
+65. **Replicar la comparación de escenarios para Ángulo 1 y Ángulo 2** — `33-...md` solo cubrió Ángulo 3.
+66. **Definir el mix real por unidad/tipología** para reemplazar el piso ponderado ilustrativo (11%) usado en `33-...md`.
+67. **Modelar el cronograma real de venta del 70% retenido** a los 2 años en el Escenario C (no una venta instantánea).
+68. Con los tres pilares principales del caso completos (costo definitivo, flujo de caja de financiamiento, comparación de escenarios), **decidir si se avanza con la síntesis final** (recomendación comprar/negociar/no comprar + Memorándum de Inversión, §23-24 del prompt maestro).
 52. **Precio diferenciado por etapa de venta** → ✅ **Resuelto (2026-08-16): lanzamiento+durante obra a precio "pozo durante obra" (USD 1.900/m²), finalización a precio "terminado" (USD 2.050/m²)** — no hay etapa de pre-pozo real, dado que las ventas no arrancan antes del mes 4. Esto sube el déficit de timing recalculado en ~USD 7.000–8.700 según el Ángulo. Ver `25-precio-diferenciado-por-etapa-y-deficit-actualizado.md`.
 
 ## Archivos que siguen sin compartirse
