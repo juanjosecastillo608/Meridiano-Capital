@@ -14,8 +14,9 @@ Base de datos de referencia de valores de alquiler real de Asunción, desagregad
 | Archivo | Contenido |
 |---|---|
 | `data/tarifas-alquiler-por-barrio-asuncion.csv` | **La fuente de verdad** de tarifas, versionada en git — formato largo (una fila por combinación Barrio × Tipología × Tipo de alquiler), fácil de diffear y actualizar con cualquier editor de texto o Excel |
-| `data/categoria-de-zona-por-barrio-asuncion.csv` | Fuente de verdad de la categoría de zona de cada barrio (Residencial / Comercial / Zona Shopping / Eje Corporativo / Mixta / Emergente), un ranking basado en fuentes reales del mercado, y **dos columnas separadas** — plusvalía de zona y rentabilidad de alquiler típica de zona (nunca combinadas, ver nota abajo) |
-| `data/tarifas-alquiler-por-barrio-asuncion.xlsx` | Las dos fuentes de arriba, en una planilla Excel de 4 hojas (Metodología / Datos / Categoría de Zona / Resumen con dato real) — **este es el archivo para compartir con el equipo**, se regenera desde los CSV cuando cambian |
+| `data/categoria-de-zona-por-barrio-asuncion.csv` | Fuente de verdad de la categoría de zona de cada barrio (Residencial / Comercial / Zona Shopping / Eje Corporativo / Mixta / Emergente) — ranking de **21 barrios** con fuentes reales (Place Analyzer, Yulia Traidova, Capadei, Inmovia, Revista FOCO). **Cuatro columnas separadas, nunca combinadas**: precio de terreno/m², precio de departamento/m², plusvalía de zona, rentabilidad de alquiler típica |
+| `data/distritos-de-asuncion.csv` | Los 6 distritos oficiales de Asunción (La Recoleta, Santísima Trinidad, San Roque, La Encarnación, La Catedral, Santa María) que agrupan los barrios de la ciudad |
+| `data/tarifas-alquiler-por-barrio-asuncion.xlsx` | Las tres fuentes de arriba, en una planilla Excel de 5 hojas (Metodología / Datos / Categoría de Zona / Distritos / Resumen con dato real) — **este es el archivo para compartir con el equipo**, se regenera desde los CSV cuando cambian |
 
 **El CSV es la fuente editable real** — el `.xlsx` es un derivado para lectura/uso en Excel. Si se actualiza un dato, actualizar primero el CSV (o directamente el Excel y después volcar el cambio al CSV para que quede versionado en git).
 
@@ -43,9 +44,11 @@ Base de datos de referencia de valores de alquiler real de Asunción, desagregad
 
 **Ningún valor de esta tabla debe tratarse como A hasta que se confirme con una fuente directa** — todo lo cargado en esta primera carga (2026-08-16) es categoría C, por venir de una búsqueda web de primer corte.
 
-## Cobertura actual (2026-08-16)
+## Cobertura actual (actualizado 2026-08-17)
 
-**8 de 66 barrios con dato real (categoría C)**: Villa Morra, Luis A. de Herrera (Barrio Herrera), Las Lomas, Recoleta, Mburucuyá (Eje Corporativo/Shopping del Sol), Ycuá Satí, Vista Alegre, Salvador del Mundo. Los **58 barrios restantes están en categoría D**, con la estructura completa lista (todas las combinaciones de tipología × tipo de alquiler ya existen como filas) para completarse a medida que se releven.
+**Tarifas de alquiler (hoja "Datos")**: 8 de 66 barrios con dato real (categoría C): Villa Morra, Luis A. de Herrera (Barrio Herrera), Las Lomas, Recoleta, Mburucuyá (Eje Corporativo/Shopping del Sol), Ycuá Satí, Vista Alegre, Salvador del Mundo. Los **58 barrios restantes están en categoría D**, con la estructura completa lista (todas las combinaciones de tipología × tipo de alquiler ya existen como filas) para completarse a medida que se releven.
+
+**Categoría de zona (hoja "Categoría de Zona")**: **21 de 66 barrios con dato real**, ampliado con una fuente más completa (Place Analyzer, ranking de precio de terreno con >300 variables) — ver `contracts/cases/HERRERA-001/28-ranking-20-barrios-y-distritos-de-asuncion.md`.
 
 **Por qué solo 8 y no los 66**: relevar los 66 barrios × 4 tipologías × 3 tipos de alquiler (792 combinaciones) con datos reales es un trabajo de campo/investigación sustancial, no algo que se complete de una sola búsqueda. Se priorizaron los barrios que el founder nombró explícitamente como referencia de plusvalía (`contracts/cases/HERRERA-001/13-...md` §2: Villa Morra, Eje Corporativo, Las Lomas, zonas Shopping del Sol) más el propio Barrio Herrera, y una segunda ronda con zonas vecinas de distinto nivel (Ycuá Satí, Vista Alegre como referencia más económica, Salvador del Mundo). **No se completaron los 58 restantes con valores inventados** — quedan como D, honestos sobre lo que falta, en vez de simular cobertura completa.
 
@@ -55,14 +58,16 @@ Base de datos de referencia de valores de alquiler real de Asunción, desagregad
 2. Cotizaciones directas de inmobiliarias locales (RE/MAX, Century 21, InfoCasas) — subiría la categoría de C a A.
 3. Datos que Meridiano/Urbannit ya tenga de su propia cartera operativa (Cartera A, `knowledge-base/investment/00-overview.md`) — esos son categoría A directa, con más peso que cualquier búsqueda web.
 
-## Plusvalía vs. rentabilidad de alquiler — nunca mezclar (corrección del founder, 2026-08-16)
+## Cuatro columnas que nunca se mezclan (correcciones del founder, 2026-08-16/17)
 
-La hoja "Categoría de Zona" separa explícitamente dos conceptos que no deben combinarse en una sola etiqueta:
+La hoja "Categoría de Zona" separa explícitamente cuatro conceptos que no deben combinarse en una sola etiqueta:
 
+- **Precio de terreno/m²** (Place Analyzer): valor del suelo, no de una unidad construida.
+- **Precio de departamento/m²** (Yulia Traidova y otras fuentes): valor de una unidad construida — magnitud relacionada pero distinta del precio de terreno.
 - **Plusvalía de zona**: ganancia de **capital**, se realiza recién en la **venta** — (precio de venta − precio de compra) ÷ tiempo de tenencia, expresada anual.
 - **Rentabilidad de alquiler típica de zona**: retorno de **renta**, se genera mientras se **tiene** la propiedad — renta ÷ valor de compra (ya está en la hoja "Datos", los 3 escenarios de esta tabla: Airbnb/tradicional/amoblado).
 
-Son fenómenos de mercado distintos, con dinámicas propias — una zona puede tener alta plusvalía y baja rentabilidad de alquiler, o viceversa. Ver `contracts/cases/HERRERA-001/22-estudio-de-zonas-plusvalia-vs-rentabilidad-y-carmelitas.md` para el detalle completo de esta corrección y el primer ranking de zonas con fuentes reales del mercado inmobiliario paraguayo.
+Son cuatro magnitudes de mercado distintas, con dinámicas propias — una zona puede tener terreno caro y departamento barato (o viceversa), alta plusvalía y baja rentabilidad de alquiler, o cualquier otra combinación. Ver `contracts/cases/HERRERA-001/22-estudio-de-zonas-plusvalia-vs-rentabilidad-y-carmelitas.md` y `28-ranking-20-barrios-y-distritos-de-asuncion.md` para el detalle completo de estas correcciones y el ranking de 21 zonas con fuentes reales del mercado inmobiliario paraguayo.
 
 ## Uso previsto
 

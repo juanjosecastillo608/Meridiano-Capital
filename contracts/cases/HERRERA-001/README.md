@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Dos escenarios confirmados en paralelo — 40/50/10 registrado como variante, no como norma general
+## Estado actual: 🟢 Ranking de zonas ampliado a 21 barrios + estructura de 6 distritos de Asunción
 
-El déficit de timing quedó cerrado con dos escenarios definitivos (`27-...md`): **Escenario 1** (20/70/10, capital propio ~76% de IT) y **Escenario Mix** (40/50/10, capital propio ~74% de IT, ahorra entre USD 47.000 y 55.000 frente al Escenario 1). El founder confirmó que **ambos siguen en paralelo para el resto del análisis** — la recomendación final se presenta con dos alternativas, no una sola. También confirmó que el esquema 40/50/10 **no reemplaza la norma general D-067 (20/70/10)** — queda registrado como variante reconocida, aplicable específicamente a proyectos de plazo de obra corto (como Herrera), no como estándar universal. Ver `19-...md` a `27-flujo-de-caja-definitivo-escenario-1-y-mix.md`.
+El déficit de timing quedó cerrado con dos escenarios definitivos en paralelo (Escenario 1 y Mix, `27-...md`), y el esquema 40/50/10 quedó registrado como variante puntual (no norma general). Esta vuelta se amplió el estudio de zonas: se confirmaron los **6 distritos oficiales de Asunción** (La Recoleta, Santísima Trinidad, San Roque, La Encarnación, La Catedral, Santa María) que agrupan los barrios de la ciudad, y el ranking de zonas creció de 8 a **21 barrios con fuentes reales**, incorporando una fuente más autorizada (Place Analyzer, >300 variables, ranking de precio de **terreno**, tratado como columna separada del precio de **departamento**). Quedaron señaladas dos discrepancias reales sin forzar una resolución: 66 vs. 68 barrios según la fuente, y dos barrios del ranking externo ("Jukyty", "San Cayetano") que no aparecen en el plano de 66 del founder. Ver `19-...md` a `28-ranking-20-barrios-y-distritos-de-asuncion.md`.
 
 ## Archivos de este caso
 
@@ -37,12 +37,13 @@ El déficit de timing quedó cerrado con dos escenarios definitivos (`27-...md`)
 | `24-flujo-de-caja-mensual-completo.md` | Flujo de caja mensual completo (egresos + cobro real de ventas con cuotas) — déficit de timing detectado, capital propio se agota en el mes 9. **Números de déficit actualizados en `25-...md`** |
 | `25-precio-diferenciado-por-etapa-y-deficit-actualizado.md` | Precio diferenciado por etapa de venta (pozo durante obra vs. terminado), déficit de timing recalculado (USD 171.000–187.000) |
 | `26-escenarios-para-cerrar-el-deficit-de-timing.md` | 3 escenarios comparados — el founder confirmó avanzar con el 1 y el Mix, descartando el 2 |
-| `27-flujo-de-caja-definitivo-escenario-1-y-mix.md` | **Nuevo (2026-08-16)**: flujo de caja mensual definitivo para el Escenario 1 y el Mix, los 3 Ángulos — el saldo de capital propio llega a cero exactamente en el mes 11 en ambos |
+| `27-flujo-de-caja-definitivo-escenario-1-y-mix.md` | Flujo de caja mensual definitivo para el Escenario 1 y el Mix, los 3 Ángulos — el saldo de capital propio llega a cero exactamente en el mes 11 en ambos |
+| `28-ranking-20-barrios-y-distritos-de-asuncion.md` | **Nuevo (2026-08-17)**: 6 distritos de Asunción confirmados, ranking de zona ampliado a 21 barrios con fuentes reales (Place Analyzer), discrepancias 66/68 barrios y mapeo barrio→distrito señaladas sin resolver |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 4 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. **Confirmar las "zonas definitivas"** del ranking construido con fuentes reales (`22-...md` §2).
+1. **Confirmar las "zonas definitivas"** con el ranking ampliado de 21 barrios (`28-...md` §4).
 2. **Aplicar el mismo análisis de mix a las demás tipologías** (monoambiente/1/2 dormitorios), no solo a 3 dormitorios.
 3. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera y rentabilidad de alquiler típica por zona.
 4. Con el flujo de caja ya definitivo para ambos escenarios, construir los tres escenarios de venta/retención del flujo de fondos completo (`10-...md` §5, para cada uno de los dos escenarios de capital/cobro — 1 y Mix) y recién ahí la recomendación final, presentada con las dos alternativas.
