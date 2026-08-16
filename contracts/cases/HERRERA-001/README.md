@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟡 Memorándum de Inversión y recomendación final completos — NEGOCIAR/CONDICIONAR, no comprar ni rechazar sin más
+## Estado actual: 🟡 2 de 3 bloqueantes resueltos, costos recalculados a USD 720/m² + IVA del desarrollador, y tensión detectada en la política de precios
 
-Con los tres pilares del caso completos (costo de entrada definitivo, flujo de caja de financiamiento, comparación de escenarios de venta/retención), se construyó el **Memorándum de Inversión final** (`34-...md`) con la recomendación explícita: **avanzar a negociación, condicionando el cierre** a resolver tres bloqueantes reales de due diligence que nunca se cerraron — identidad del vendedor, título/gravámenes (`Municipal.zip` nunca llegó), y opinión estructural sobre el piso adicional del Ángulo 2. El caso financiero es sólido (los 3 Ángulos dan margen positivo en todo el rango de precio, el Ángulo 2 es el más atractivo, el déficit de caja tiene solución viable, la demanda de zona está confirmada) — pero esos tres ítems son del tipo que puede cambiar la decisión por sí solos, y no se recomienda cerrar sin resolverlos. Ver `34-memorandum-de-inversion-y-recomendacion-final.md` para el memorándum completo.
+Del Memorándum de Inversión (`34-...md`), **dos de los tres bloqueantes 🔴 ya se resolvieron** (`35-...md`): identidad del vendedor confirmada (Cristino Silva, mismo titular) y título/gravámenes verificados y en orden. **Queda uno solo: la opinión estructural sobre el piso adicional del Ángulo 2.** Se recalcularon los márgenes con el costo definitivo (`36-...md`: baja de USD 750/m² a USD 720/m², y se descontó por primera vez el IVA del desarrollador — 10% sobre el costo de construcción, confirmado por el founder) — los tres Ángulos siguen dando margen positivo. Y se detectó una **tensión nueva, no bloqueante pero real**: 7 comparables reales de venta en pozo (Century 21, `37-...md`) — incluido un proyecto en el propio Barrio Herrera — sugieren que la política de precios de venta usada en el caso (USD 1.900–2.050/m²) podría estar por encima de lo que el mercado real de la zona paga hoy (USD 1.576–1.809/m²). El Memorándum (`34-...md`) ya está actualizado con todo esto. Ver `35-due-diligence-legal-y-tecnica-resuelta.md` a `37-comparables-reales-de-venta-en-pozo-century21.md`.
 
 ## Archivos de este caso
 
@@ -44,12 +44,16 @@ Con los tres pilares del caso completos (costo de entrada definitivo, flujo de c
 | `31-mix-de-producto-monoambiente-1-y-2-dormitorios.md` | **Nuevo (2026-08-17)**: mix de producto por combinación para las 3 tipologías restantes, completa el análisis de `20-...md` — cuadro consolidado de las 4 tipologías |
 | `32-airbnb-real-de-barrio-herrera.md` | Primer dato real de Airbnb dentro de Barrio Herrera (USD 19-32/noche), matiza la lectura de monoambiente de `31-...md` |
 | `33-tres-escenarios-de-venta-retencion.md` | Comparación cuantificada de los tres escenarios de venta/retención (Ángulo 3) — retener y esperar plusvalía da el retorno más alto, con caveats de riesgo señalados |
-| `34-memorandum-de-inversion-y-recomendacion-final.md` | **Nuevo (2026-08-17)**: Memorándum de Inversión completo — recomendación NEGOCIAR/CONDICIONAR, matriz de riesgos, checklist de due diligence, y las condiciones de cierre |
+| `34-memorandum-de-inversion-y-recomendacion-final.md` | Memorándum de Inversión completo (v2, actualizado 2026-08-17) — recomendación NEGOCIAR/CONDICIONAR, matriz de riesgos, checklist de due diligence, márgenes finales definitivos |
+| `35-due-diligence-legal-y-tecnica-resuelta.md` | **Nuevo (2026-08-17)**: identidad del vendedor y título/gravámenes confirmados, avance de obra aclarado (100% estructura), proceso estándar de cierre registrado (cross-cutting, D-072) |
+| `36-recosteo-720-e-iva-desarrollador-margen-final-definitivo.md` | **Nuevo (2026-08-17)**: costo objetivo bajado de USD 750 a 720/m², IVA del desarrollador confirmado (10% s/costo de construcción) y descontado — margen final definitivo por Ángulo |
+| `37-comparables-reales-de-venta-en-pozo-century21.md` | **Nuevo (2026-08-17)**: 7 comparables reales de venta en pozo (Century 21, incluye un proyecto en Barrio Herrera) — tensión detectada con la política de precios de venta del caso |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 5 planillas Excel de referencia (incluye Plan Regulador), sin modificar |
 
 ## Próximo paso
 
-1. **Resolver los tres bloqueantes de due diligence** (`34-...md` §8, marcados 🔴): identidad del vendedor, título/gravámenes, opinión estructural del piso adicional — condición de cierre.
-2. Definir cuál escenario de financiamiento usar (Escenario 1 o Mix) antes del cierre.
+1. **Resolver el único bloqueante de due diligence que queda**: opinión estructural profesional sobre el piso adicional del Ángulo 2 (`34-...md` §8).
+2. **Confirmar la política de precios de venta** frente a los comparables reales de Century 21 (`37-...md` §2) — puede cambiar el rango de ingresos de todo el caso.
+3. Definir cuál escenario de financiamiento usar (Escenario 1 o Mix) antes del cierre.
 3. Replicar la comparación de escenarios de venta/retención para Ángulo 1 y Ángulo 2 (`33-...md` solo cubrió Ángulo 3).
 4. Si el founder lo pide: presentación simplificada para inversores (§25 del prompt maestro), o convertir el memorándum en un documento formal (.docx/.pdf) para compartir con el equipo.
