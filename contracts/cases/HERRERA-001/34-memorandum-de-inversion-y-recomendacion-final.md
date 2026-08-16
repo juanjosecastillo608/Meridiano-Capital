@@ -1,0 +1,165 @@
+Estado: CURRENT — Memorándum de Inversión y recomendación final (§23-24 del prompt maestro)
+Fuente original: síntesis de todo el trabajo del caso HERRERA-001 (2026-08-12 a 2026-08-17)
+Dominio: INVESTMENT (caso HERRERA-001)
+Incorporado: 2026-08-17
+
+# MEMORÁNDUM DE INVERSIÓN — HERRERA-001
+## Edificio Barrio Herrera / "Edificio 4 de Julio" — Asunción, Paraguay
+
+---
+
+## RECOMENDACIÓN: NEGOCIAR / CONDICIONAR — no es un "comprar" sin condiciones, ni un "no comprar"
+
+**El caso financiero es sólido en los tres Ángulos analizados.** El precio de compra ya se validó como favorable frente a múltiples referencias independientes de mercado. El déficit de caja detectado tiene solución viable con dos estructuras de financiamiento concretas. La zona tiene demanda y plusvalía reales, confirmadas por el founder y contrastadas contra fuentes de mercado.
+
+**Pero hay ítems de due diligence legal y técnica que siguen sin resolver, y que son del tipo que puede matar un trato por sí solos** (identidad del vendedor sin confirmar, título/gravámenes nunca verificados, opinión estructural sobre el piso adicional pendiente). Ninguno de estos ítems tiene, hoy, una señal de alarma — pero tampoco están confirmados. La recomendación es **avanzar a la etapa de negociación y cierre condicionado**, no a la firma inmediata: negociar el precio/términos finales mientras se resuelven, como condición suspensiva, los puntos listados en la sección 8.
+
+---
+
+## 1. Resumen ejecutivo
+
+| | |
+|---|---|
+| **Activo** | Edificio residencial inconcluso, Barrio Herrera (Luis A. de Herrera), Asunción — 73,5% de avance estructural |
+| **Terreno** | 469 m², Cuenta Catastral 14-502-04, zona de regulación **AR2-B** (confirmada) |
+| **Precio de compra** | USD 850.000 (terreno USD 360.000 + estructura/documentación/riesgo evitado USD 490.000) |
+| **Financiamiento** | Fondos propios — Sociedad Anónima, 2-3 socios, sin deuda bancaria, sin fideicomiso |
+| **Plazo de obra** | 12 meses |
+| **Mejor Ángulo (número absoluto y consistencia)** | **Ángulo 2** (fachada + tipologías chicas + piso adicional, 7 pisos) |
+| **Margen neto de comisión, Ángulo 2** | USD 907.718 – 1.214.323 (ROI 27,7% – 37,1%) |
+| **Déficit de caja detectado** | Resuelto — dos escenarios de financiamiento viables (sección 6) |
+| **Escenario de venta/retención más atractivo (Ángulo 3, ilustrativo)** | Retener y esperar plusvalía: **33,4%/año**, con riesgo de mercado real |
+| **Bloqueantes de due diligence sin resolver** | Identidad del vendedor, título/gravámenes, opinión estructural del piso 7, base de cálculo del IVA del desarrollador |
+
+---
+
+## 2. El activo
+
+- **Ubicación**: esquina Concejal Vargas y 4 de Julio, Barrio Herrera (Luis A. de Herrera), Asunción — zona residencial de alta demanda, confirmada por el founder, cercana pero no en medio del tránsito de los principales centros comerciales de la ciudad.
+- **Identidad verificada**: "Edificio 4 de Julio" (nombre técnico/legal, planos 2023) y "Herrera Town" (nombre comercial) son el **mismo predio** — verificado por cuenta catastral, superficie y ubicación coincidentes.
+- **Estado de avance**: 73,5% de la estructura de hormigón ya construida (2.286,93 de 3.113,03 m² totales a construir) — **sin desglose por componente** (mampostería/instalaciones/terminaciones), solo el % de estructura.
+- **Zonificación**: AR2-B (Plan Regulador, Ordenanza 43/1994) — altura base 5 plantas/15 m, con incentivo confirmado a 7 plantas mediante mayor retiro. Permiso municipal para el piso adicional ya confirmado por el founder.
+- **Mercado comparable directo**: Filum Herrera (Century 21 Liberty), mismo barrio, entrega dic. 2026 — 1dorm 38m²=USD 70.300 (USD 1.850/m²), 1dorm Plus 48m²=USD 97.200 (USD 2.025/m²), 2dorm 77m²=USD 142.500 (USD 1.851/m²).
+
+---
+
+## 3. La oportunidad — tres Ángulos comparados
+
+| | Ángulo 1 (tal cual) | Ángulo 3 (fachada + chicas, 6P) | **Ángulo 2 (fachada + chicas + 7P)** |
+|---|---|---|---|
+| Unidades | 21 | 29 (ilustrativo) | 39 (ilustrativo) |
+| Área comercializable | 1.800 m² | 1.800 m² | 2.100 m² |
+| Inversión Total (definitiva) | USD 2.824.581 | USD 3.009.806 | **USD 3.273.624** |
+| Costo/m² comercializable | USD 1.569,21 | USD 1.672,11 | **USD 1.558,87 (el más bajo de los tres)** |
+| Ingresos totales (bajo–alto) | 3.567.637 – 4.218.165 | 3.820.500 – 4.097.250 | **4.424.700 – 4.749.150** |
+| Margen neto de comisión (bajo–alto) | 546.836 – 1.161.585 | 600.566 – 862.095 | **907.718 – 1.214.323** |
+| ROI simple sobre Inversión | 19,4% – 41,1% | 20,0% – 28,6% | **27,7% – 37,1%** |
+
+**El Ángulo 2 es la recomendación dentro de las tres opciones de diseño** — mayor margen en dólares, mejor ROI en el extremo bajo del rango de precio (el escenario más conservador), y el costo/m² más bajo de los tres pese a tener el mayor % de Proyecto asignado (40%, `14-...md`). El riesgo que le queda, distinto de los tres Ángulos, es **técnico, no financiero**: la opinión estructural sobre si la estructura ya construida (73,5%) soporta el piso adicional sin refuerzo mayor — sigue sin resolver (sección 8).
+
+**El Ángulo 1 (tal cual, sin modificaciones) ya no tiene ningún escenario negativo** tras la corrección de costos (`13-...md`/`14-...md`) — es la opción de menor riesgo de ejecución (no depende de un rediseño ni de un plano nuevo), aunque con menor margen absoluto que el Ángulo 2.
+
+---
+
+## 4. Estructura de la inversión — confirmada
+
+- **Vehículo legal**: Sociedad Anónima entre 2-3 socios, que aportan el 100% del capital necesario (terreno + construcción) — sin deuda bancaria, sin fideicomiso.
+- **Comisión de venta**: 5,5% del total de la venta (con IVA 10% incluido), con reparto según el canal — dos puntas propio (100% Meridiano), equipo interno (2,5%/3%), franquicia RE/MAX o Century 21 (0%/100% cedido, a cambio de visibilidad de marca), agente independiente (2,75%/2,75%). Política registrada como estándar de la empresa (D-063), no solo de este caso.
+- **Esquema de financiamiento de compradores**: 20% entrega + 70% cuotas decrecientes + 10% contra la entrega física — norma estándar de la empresa (D-067). Para este caso específico, se evaluó y se mantiene como alternativa viable una variante de plazo corto (**40% entrega + 50% cuotas + 10% entrega**), que ayuda a cerrar el déficit de timing con menos capital propio adicional.
+- **Régimen tributario del desarrollador**: 10% IVA + 10% impuesto a la renta sobre utilidad neta (confirmado por el founder) — la base exacta de cálculo del IVA (sobre precio total vs. sobre utilidad) sigue sin confirmar con una contadora.
+
+---
+
+## 5. Matriz de sensibilidad — precio bajo vs. alto, por Ángulo
+
+Ya incorporada en la tabla de la sección 3 (columnas "bajo–alto") — el rango de precio de venta usado (USD 1.900–2.050/m², calibrado contra el comparable Filum Herrera) es la variable de sensibilidad principal del caso. **Los tres Ángulos dan margen positivo en todo el rango**, incluido el extremo bajo — a diferencia del cálculo original del caso (antes de la corrección de costos), donde el Ángulo 1 daba negativo en el extremo bajo.
+
+**Variables de sensibilidad no cuantificadas todavía, señaladas como pendientes**:
+- Plusvalía real de la zona a 2 años (se usó el 20%/año confirmado por el founder para el Escenario C de venta/retención, `33-...md`) — es un dato de mercado del founder, no una tasación de tercero.
+- Costo de refuerzo estructural del Ángulo 2, si la opinión estructural pendiente determina que hace falta.
+- Base de cálculo del IVA del desarrollador (afecta el margen neto final de todos los Ángulos, no cuantificado todavía).
+
+---
+
+## 6. Estructura de financiamiento — el déficit de timing y sus dos soluciones
+
+Se detectó un déficit real de timing de caja (no de fondos totales): el capital propio, aunque suma exactamente el 70% de la Inversión Total, se agota en el **mes 9** de los 12 de obra, porque el cobro de las cuotas de los compradores es más lento que el gasto de construcción. **Dos escenarios cierran este déficit por completo**, ambos con el saldo de capital propio llegando a cero exactamente en el mes 11:
+
+| | Escenario 1 (esquema 20/70/10 sin cambios) | Escenario Mix (esquema 40/50/10) |
+|---|---|---|
+| Capital propio necesario (Ángulo 2, referencia) | USD 2.478.568 (75,71% de IT) | **USD 2.423.544 (74,03% de IT)** |
+| Ahorro del Mix frente al Escenario 1 | — | **USD 55.024** |
+
+**Ambos escenarios siguen en paralelo** — el founder confirmó que la recomendación final se presenta con las dos alternativas, no una sola. El esquema 40/50/10 queda registrado como variante para proyectos de plazo de obra corto (no reemplaza la norma general de la empresa).
+
+---
+
+## 7. Estrategia de venta y retención
+
+**Mix de producto por tipología** (`31-...md`, con datos reales de mercado):
+
+| Tipología | Solidez para retención |
+|---|---|
+| Monoambiente | **La más sólida** — supera el piso de renta en todas las combinaciones de producto probadas |
+| 1 dormitorio | Sólida en tradicional/amoblado básico — calidades altas necesitan más dato de zona premium |
+| 2 dormitorios | No alcanza el piso sin amoblar en Herrera — sí amoblada, comparada contra zonas cercanas (Mburucuyá, Ycuá Satí) |
+| 3 dormitorios | Mismo patrón que 2 dormitorios, con demanda real de la zona ya confirmada por el founder para el segmento amoblado premium |
+
+**Los tres escenarios de venta/retención** (Ángulo 3, ilustrativo — `33-...md`):
+
+| Escenario | Retorno anualizado |
+|---|---|
+| A — Venta mínima (30%) + retención perpetua | 15,0%/año |
+| B — Venta agresiva (100%, liquidación total) | 24,3%/año |
+| **C — Venta mínima (30%) + retención 2 años + reventa con plusvalía (20%/año)** | **33,4%/año — el más alto, con más riesgo de mercado** |
+
+**Recomendación de estrategia**: partir del **mínimo de venta necesario para cerrar el déficit de timing** (sección 6), con ese mínimo concentrado en las tipologías de 2/3 dormitorios (las que menos se sostienen en retención sin apoyo de zona premium) — y **retener agresivamente monoambiente y 1 dormitorio**, que son las que mejor rentabilidad de alquiler sostienen con datos reales propios de la zona. Esto acerca la estrategia real al Escenario C sin depender por completo de un supuesto de plusvalía a 2 años para el 100% de la cartera retenida.
+
+---
+
+## 8. Matriz de riesgos y checklist de due diligence
+
+| Riesgo | Categoría | Estado |
+|---|---|---|
+| **Identidad del vendedor actual** | Legal | 🔴 Sin confirmar — los planos de 2023 identifican a "Cristino Silva"; no se confirmó si sigue siendo el mismo titular |
+| **Título, gravámenes, embargos** | Legal | 🔴 Sin confirmar — `Municipal.zip` (con esta información) nunca fue compartido |
+| **Opinión estructural del piso adicional (Ángulo 2)** | Técnico | 🔴 Sin confirmar — el permiso municipal está confirmado, la factibilidad estructural no |
+| **Desglose de avance de obra por componente** | Técnico | 🟡 Parcial — solo se conoce el % de estructura (73,5%), no mampostería/instalaciones/terminaciones |
+| **Base de cálculo del IVA del desarrollador** | Fiscal | 🟡 Parcial — la tasa (10%) está confirmada, la base de cálculo no |
+| **Plusvalía de zona a 2 años** | Mercado | 🟡 Dato del founder, no tasación de tercero — usado en el Escenario C con esa salvedad explícita |
+| **Costo/plano real del Ángulo 2/3** | Ejecución | 🟡 El mix de tipologías chicas es ilustrativo — falta un arquitecto que confirme que entra en la envolvente aprobada |
+| **Precio de compra vs. mercado** | Financiero | 🟢 Validado — favorable frente a costo de reposición, listados de terreno actuales, y comparables de zona |
+| **Márgenes financieros** | Financiero | 🟢 Positivos en los 3 Ángulos, en todo el rango de precio |
+| **Estructura de financiamiento** | Financiero | 🟢 Déficit de timing detectado y resuelto con dos escenarios viables |
+| **Demanda de mercado** | Mercado | 🟢 Confirmada por el founder y datos reales (renta, venta, plusvalía) |
+
+**🔴 = bloqueante real, no se recomienda cerrar sin resolver. 🟡 = pendiente, no bloqueante pero afecta la precisión del número final. 🟢 = resuelto/favorable.**
+
+---
+
+## 9. Recomendación final, en detalle
+
+### 9.1 Por qué no es un "comprar" incondicional
+
+Los tres ítems marcados 🔴 en la sección 8 (identidad del vendedor, título/gravámenes, opinión estructural) son, cada uno, capaces de cambiar la decisión por sí solos — no son detalles menores. Firmar sin resolverlos sería asumir un riesgo legal y técnico real que el análisis financiero, por sólido que sea, no compensa.
+
+### 9.2 Por qué no es un "no comprar"
+
+Todo lo que sí se pudo verificar apunta a favor: el precio de compra es defendible frente a múltiples referencias de mercado independientes (costo de reposición, listados de terreno actuales, comparable directo Filum Herrera); los tres Ángulos de diseño dan margen positivo en todo el rango de sensibilidad de precio; el déficit de caja detectado tiene solución concreta y ya modelada; la demanda de la zona está confirmada con datos reales, no solo con el criterio del founder.
+
+### 9.3 La recomendación — negociar y condicionar el cierre
+
+1. **Avanzar a la etapa de negociación de términos finales** del boleto de compraventa, sobre la base del Ángulo 2 (fachada + tipologías chicas + piso adicional) como diseño objetivo, con el Ángulo 1 (tal cual) como alternativa de menor riesgo de ejecución si el rediseño no avanza a tiempo.
+2. **Condicionar el cierre (cláusula suspensiva) a la resolución de los tres ítems 🔴**: confirmación de identidad del vendedor y cadena de titularidad, verificación de título/gravámenes/embargos (`Municipal.zip` o equivalente), y opinión estructural profesional sobre el piso adicional.
+3. **Definir, antes del cierre, cuál de los dos escenarios de financiamiento (Escenario 1 o Mix) se usa** — ambos son viables, la diferencia es cuánto capital propio adicional se compromete.
+4. **No comprometer el 100% de la estrategia de venta/retención a la plusvalía de 2 años (Escenario C)** — usarla como objetivo para las unidades chicas (monoambiente/1 dormitorio, que ya se sostienen con datos propios de la zona), y mantener venta activa de 2/3 dormitorios salvo que se confirme demanda real de zona premium para esas tipologías en Herrera específicamente.
+
+---
+
+## 10. Qué queda pendiente, incluso después de este memorándum
+
+1. Los tres ítems 🔴 de la sección 8 — bloqueantes reales para el cierre.
+2. Replicar la comparación de escenarios de venta/retención para Ángulo 1 y Ángulo 2 (`33-...md` solo cubrió Ángulo 3).
+3. Definir el mix real de unidades a retener por tipología, con precisión (no el piso ponderado ilustrativo usado en los cálculos de escenario).
+4. Confirmar las "zonas definitivas" del ranking de barrios (`28-...md`), y seguir completando la tabla de tarifas (D-066) más allá de los barrios ya relevados.
+5. Si el founder lo pide, convertir este memorándum en una presentación simplificada para inversores (§25 del prompt maestro) — no se construyó en este documento.

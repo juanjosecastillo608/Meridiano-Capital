@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Los tres pendientes del founder completos — el caso está listo para la síntesis final
+## Estado actual: 🟡 Memorándum de Inversión y recomendación final completos — NEGOCIAR/CONDICIONAR, no comprar ni rechazar sin más
 
-Se completaron, en el orden que confirmó el founder: **(1) mix de producto** para las 4 tipologías (`31-...md`) — monoambiente es la más sólida en todas las combinaciones; **(2) renta/Airbnb real de Barrio Herrera** (`32-...md`) — primer dato encontrado (USD 19-32/noche), matiza la conclusión de monoambiente; **(3) los tres escenarios de venta/retención** (`33-...md`, Ángulo 3 como caso representativo) — Escenario A (venta mínima + retención perpetua) +15,0%/año, Escenario B (venta agresiva 100%) +24,3%/año, **Escenario C (venta mínima + retención 2 años + reventa con plusvalía real del 20%/año) +33,4%/año, el más alto de los tres**, aunque con más riesgo/incertidumbre que los otros dos. Con esto, **el caso tiene sus tres pilares principales completos**: costo de entrada definitivo, flujo de caja de financiamiento (2 escenarios), y comparación de escenarios de venta/retención — queda a definir si se avanza con la síntesis final (recomendación + Memorándum de Inversión). Ver `19-...md` a `33-tres-escenarios-de-venta-retencion.md`.
+Con los tres pilares del caso completos (costo de entrada definitivo, flujo de caja de financiamiento, comparación de escenarios de venta/retención), se construyó el **Memorándum de Inversión final** (`34-...md`) con la recomendación explícita: **avanzar a negociación, condicionando el cierre** a resolver tres bloqueantes reales de due diligence que nunca se cerraron — identidad del vendedor, título/gravámenes (`Municipal.zip` nunca llegó), y opinión estructural sobre el piso adicional del Ángulo 2. El caso financiero es sólido (los 3 Ángulos dan margen positivo en todo el rango de precio, el Ángulo 2 es el más atractivo, el déficit de caja tiene solución viable, la demanda de zona está confirmada) — pero esos tres ítems son del tipo que puede cambiar la decisión por sí solos, y no se recomienda cerrar sin resolverlos. Ver `34-memorandum-de-inversion-y-recomendacion-final.md` para el memorándum completo.
 
 ## Archivos de este caso
 
@@ -43,12 +43,13 @@ Se completaron, en el orden que confirmó el founder: **(1) mix de producto** pa
 | `30-valuacion-de-terreno-sin-lotes-vacantes-y-confirmacion-AR2-B.md` | Metodología de valuación de terreno sin lotes vacantes (cross-cutting), habilidad de AMC agendada (P-007), y confirmación de la zona AR2-B para Herrera |
 | `31-mix-de-producto-monoambiente-1-y-2-dormitorios.md` | **Nuevo (2026-08-17)**: mix de producto por combinación para las 3 tipologías restantes, completa el análisis de `20-...md` — cuadro consolidado de las 4 tipologías |
 | `32-airbnb-real-de-barrio-herrera.md` | Primer dato real de Airbnb dentro de Barrio Herrera (USD 19-32/noche), matiza la lectura de monoambiente de `31-...md` |
-| `33-tres-escenarios-de-venta-retencion.md` | **Nuevo (2026-08-17)**: comparación cuantificada de los tres escenarios de venta/retención (Ángulo 3) — retener y esperar plusvalía da el retorno más alto, con caveats de riesgo señalados |
+| `33-tres-escenarios-de-venta-retencion.md` | Comparación cuantificada de los tres escenarios de venta/retención (Ángulo 3) — retener y esperar plusvalía da el retorno más alto, con caveats de riesgo señalados |
+| `34-memorandum-de-inversion-y-recomendacion-final.md` | **Nuevo (2026-08-17)**: Memorándum de Inversión completo — recomendación NEGOCIAR/CONDICIONAR, matriz de riesgos, checklist de due diligence, y las condiciones de cierre |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 5 planillas Excel de referencia (incluye Plan Regulador), sin modificar |
 
 ## Próximo paso
 
-1. **Replicar la comparación de escenarios para Ángulo 1 y Ángulo 2** (`33-...md` §4) — solo se cubrió Ángulo 3.
-2. Definir el mix real por unidad/tipología (`31-...md` §4) para reemplazar el piso ponderado ilustrativo del Escenario C.
-3. Modelar el cronograma real de venta del 70% retenido a los 2 años (no una venta instantánea).
-4. **Decidir si se avanza con la síntesis final** — recomendación (comprar/negociar/no comprar) + Memorándum de Inversión (§23-24 del prompt maestro) — el caso ya tiene sus tres pilares principales completos.
+1. **Resolver los tres bloqueantes de due diligence** (`34-...md` §8, marcados 🔴): identidad del vendedor, título/gravámenes, opinión estructural del piso adicional — condición de cierre.
+2. Definir cuál escenario de financiamiento usar (Escenario 1 o Mix) antes del cierre.
+3. Replicar la comparación de escenarios de venta/retención para Ángulo 1 y Ángulo 2 (`33-...md` solo cubrió Ángulo 3).
+4. Si el founder lo pide: presentación simplificada para inversores (§25 del prompt maestro), o convertir el memorándum en un documento formal (.docx/.pdf) para compartir con el equipo.
