@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟢 Márgenes y piso de renta recalculados con el costo de entrada definitivo — el Ángulo 1 ya no tiene ningún escenario negativo
+## Estado actual: 🟢 Cronograma de caja mensual + tabla de tarifas por barrio (cross-cutting, D-066)
 
-El founder cerró casi todos los bloqueantes estructurales que quedaban. Se corrigió un **doble conteo real**: para el Ángulo 1, "Proyecto" y "Aprobaciones" ya estaban incluidos en el precio de compra de USD 850.000. Se confirmó que el techo de **USD 1.400/m²** que sostenía el founder es sobre **costo de reposición**, no sobre el costo real que paga Meridiano. Y se fijó el % de costo de Proyecto para el Ángulo 2/3 (30%/40%). Con el **costo de entrada definitivo** (Ángulo 1: USD 1.569,21/m², Ángulo 3: USD 1.672,11/m², Ángulo 2: USD 1.558,87/m²), se recalcularon los márgenes por Ángulo: **el Ángulo 1 pasa a ser positivo en todo el rango de venta** (antes daba negativo en el extremo bajo), y el **Ángulo 2 sigue siendo el más atractivo** en términos absolutos y de consistencia. También se recalculó el piso de renta con amoblamiento (baja frente al cálculo anterior). Además: plusvalía real de la zona confirmada (**>20% anual**), régimen tributario del desarrollador confirmado (10% IVA + 10% renta sobre utilidad), y primer dato real de renta de mercado. Ver `08-...md` a `15-recalculo-margenes-y-piso-de-renta-con-costo-definitivo.md`.
+El costo de entrada quedó definitivo por Ángulo, y los márgenes/piso de renta ya están recalculados con ese costo (el Ángulo 1 ya no tiene ningún escenario negativo). Esta vuelta se sumaron dos piezas nuevas: un **cronograma de caja mensual** para los 12 meses de obra (mes 1 = adquisición + 30% del presupuesto de construcción; meses 2-3, 10% cada uno; meses 4-12, el 50% restante repartido en partes iguales) — que ya reveló una posible tensión de caja real en el mes 1, sin resolver todavía. Y una **tabla de tarifas de alquiler por barrio de Asunción** (66 barrios, por tipología y tipo de alquiler — Airbnb/tradicional/amoblado), pedida explícitamente como herramienta **cross-cutting** para todos los proyectos de Meridiano, no solo Herrera — registrada como **D-066**, con una primera carga real de 5 barrios (Villa Morra, Herrera, Las Lomas, Recoleta, Mburucuyá) y un hallazgo nuevo: la renta real de 3 dormitorios en Barrio Herrera no alcanza el piso de rentabilidad calculado, reforzando que esa tipología es más candidata a venta que a retención. Ver `16-cronograma-de-caja-mensual.md`, `17-tabla-tarifas-por-barrio.md` y `knowledge-base/investment/07-tarifas-por-barrio-asuncion.md`.
 
 ## Archivos de este caso
 
@@ -25,12 +25,15 @@ El founder cerró casi todos los bloqueantes estructurales que quedaban. Se corr
 | `12-costos-de-comercializacion-por-escenario-y-plusvalia-neta.md` | Las unidades retenidas no cargan comisión de venta, y el piso de plusvalía recalculado neto de comisión (≈8,68% el primer año) — **corregido parcialmente por `13-...md`, ver nota al inicio del archivo** |
 | `13-correccion-doble-conteo-proyecto-plusvalia-real-y-renta-de-mercado.md` | Corrección de doble conteo (Proyecto/Aprobaciones ya en el precio de compra, Ángulo 1), plusvalía real de mercado (>20% anual), corrección del criterio de marketing (umbral 70%, no prorrateable), régimen tributario del desarrollador (10%/10%), y primer dato real de renta de mercado |
 | `14-costo-de-entrada-definitivo-por-angulo.md` | Confirma que el techo de USD 1.400/m² es sobre costo de reposición (no sobre el costo real), fija el % de Proyecto para Ángulo 2/3 (30%/40%), y deja el costo de entrada definitivo por los 3 Ángulos |
-| `15-recalculo-margenes-y-piso-de-renta-con-costo-definitivo.md` | **Nuevo (2026-08-15)**: recálculo de márgenes por Ángulo con el costo definitivo (el Ángulo 1 ya no tiene ningún escenario negativo) y piso de renta actualizado con amoblamiento incluido |
+| `15-recalculo-margenes-y-piso-de-renta-con-costo-definitivo.md` | Recálculo de márgenes por Ángulo con el costo definitivo (el Ángulo 1 ya no tiene ningún escenario negativo) y piso de renta actualizado con amoblamiento incluido |
+| `16-cronograma-de-caja-mensual.md` | **Nuevo (2026-08-16)**: cronograma de caja mes a mes para los 12 meses de obra, por Ángulo — con un hallazgo de posible tensión de caja en el mes 1, sin resolver todavía |
+| `17-tabla-tarifas-por-barrio.md` | **Nuevo (2026-08-16)**: primera carga de la tabla de tarifas por barrio (cross-cutting, D-066) y su aplicación a Herrera — renta real de 3 dormitorios no alcanza el piso calculado |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 4 planillas Excel de referencia, sin modificar |
 
 ## Próximo paso
 
-1. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera (ADR por noche) — la renta tradicional ya tiene un primer dato real (`13-...md` §5).
-2. Mapear el ritmo de venta por etapa a meses concretos y cruzarlo contra la curva de egresos de construcción — el cronograma de caja mes a mes que falta para el flujo de fondos completo.
-3. Confirmar el % de venta/retención final por Ángulo (depende del cronograma de caja del punto 2, ya no de la rentabilidad, que favorece retener).
-4. Con eso, construir los tres escenarios del flujo de fondos multi-año (venta mínima necesaria, venta agresiva, retención total con plusvalía) y recién ahí la recomendación final.
+1. **Resolver la tensión de caja del mes 1** (`16-...md` §4) — modelar el cobro real del 30% de "lanzamiento" con cuotas, no como pago único, y recalcular el 70%/30% de capital de socios con la Inversión Total definitiva.
+2. Confirmar la lectura de la regla de cronograma de caja (`16-...md` §2, ambigüedad del 20%/10% del mes 1) si la interpretación usada no es la correcta.
+3. Relevar tarifas de renta temporal/Airbnb reales de Barrio Herrera específicamente (solo se relevó Villa Morra por ahora).
+4. Confirmar el % de venta/retención final por Ángulo, con el cronograma de caja ya resuelto.
+5. Con eso, construir los tres escenarios del flujo de fondos multi-año (venta mínima necesaria, venta agresiva, retención total con plusvalía) y recién ahí la recomendación final.
