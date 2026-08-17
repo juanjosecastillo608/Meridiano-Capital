@@ -2,9 +2,9 @@
 
 Adquisición de edificio residencial inconcluso — Barrio Herrera, Asunción, Paraguay. Análisis de inversión (¿comprar, terminar y vender?), no negociación de un boleto ya firmado. Sigue el **prompt maestro "Investment Real Estate Analysis System"** (founder, 2026-08-12).
 
-## Estado actual: 🟡 2 de 3 bloqueantes resueltos, costos recalculados a USD 720/m² + IVA del desarrollador, y tensión detectada en la política de precios
+## Estado actual: 🟡 Un solo bloqueante real pendiente — política de precios confirmada con respaldo cuantitativo
 
-Del Memorándum de Inversión (`34-...md`), **dos de los tres bloqueantes 🔴 ya se resolvieron** (`35-...md`): identidad del vendedor confirmada (Cristino Silva, mismo titular) y título/gravámenes verificados y en orden. **Queda uno solo: la opinión estructural sobre el piso adicional del Ángulo 2.** Se recalcularon los márgenes con el costo definitivo (`36-...md`: baja de USD 750/m² a USD 720/m², y se descontó por primera vez el IVA del desarrollador — 10% sobre el costo de construcción, confirmado por el founder) — los tres Ángulos siguen dando margen positivo. Y se detectó una **tensión nueva, no bloqueante pero real**: 7 comparables reales de venta en pozo (Century 21, `37-...md`) — incluido un proyecto en el propio Barrio Herrera — sugieren que la política de precios de venta usada en el caso (USD 1.900–2.050/m²) podría estar por encima de lo que el mercado real de la zona paga hoy (USD 1.576–1.809/m²). El Memorándum (`34-...md`) ya está actualizado con todo esto. Ver `35-due-diligence-legal-y-tecnica-resuelta.md` a `37-comparables-reales-de-venta-en-pozo-century21.md`.
+Del Memorándum de Inversión (`34-...md`), **dos de los tres bloqueantes 🔴 ya se resolvieron** (`35-...md`): identidad del vendedor confirmada (Cristino Silva, mismo titular) y título/gravámenes verificados y en orden. **Queda uno solo: la opinión estructural sobre el piso adicional del Ángulo 2.** Se recalcularon los márgenes con el costo definitivo (`36-...md`: baja de USD 750/m² a USD 720/m², y se descontó por primera vez el IVA del desarrollador — 10% sobre el costo de construcción) — los tres Ángulos siguen dando margen positivo. La tensión detectada entre la política de precios del caso (USD 1.900–2.050/m²) y comparables reales de venta en pozo más baratos (USD 1.576–1.809/m², Century 21, `37-...md`) **ya se resolvió**: se comparó la política premium (calidad USD 720) contra la alternativa de calidad/precio bajo (USD 650 + USD 1.576–1.809), y **la política premium gana en los 4 escenarios probados** (`38-...md`), con 6 a 12 puntos de ROI de diferencia. Se construyó además una nueva tabla cross-cutting de **valor de m² de venta por barrio/calidad/etapa constructiva** (D-073, `39-...md`), complementaria a la tabla de alquileres (D-066). El Memorándum (`34-...md`) ya está actualizado con todo esto. Ver `35-...md` a `39-tabla-valor-m2-venta-por-barrio-calidad-y-etapa.md`.
 
 ## Archivos de este caso
 
@@ -47,13 +47,14 @@ Del Memorándum de Inversión (`34-...md`), **dos de los tres bloqueantes 🔴 y
 | `34-memorandum-de-inversion-y-recomendacion-final.md` | Memorándum de Inversión completo (v2, actualizado 2026-08-17) — recomendación NEGOCIAR/CONDICIONAR, matriz de riesgos, checklist de due diligence, márgenes finales definitivos |
 | `35-due-diligence-legal-y-tecnica-resuelta.md` | **Nuevo (2026-08-17)**: identidad del vendedor y título/gravámenes confirmados, avance de obra aclarado (100% estructura), proceso estándar de cierre registrado (cross-cutting, D-072) |
 | `36-recosteo-720-e-iva-desarrollador-margen-final-definitivo.md` | **Nuevo (2026-08-17)**: costo objetivo bajado de USD 750 a 720/m², IVA del desarrollador confirmado (10% s/costo de construcción) y descontado — margen final definitivo por Ángulo |
-| `37-comparables-reales-de-venta-en-pozo-century21.md` | **Nuevo (2026-08-17)**: 7 comparables reales de venta en pozo (Century 21, incluye un proyecto en Barrio Herrera) — tensión detectada con la política de precios de venta del caso |
+| `37-comparables-reales-de-venta-en-pozo-century21.md` | 7 comparables reales de venta en pozo (Century 21, incluye un proyecto en Barrio Herrera) |
+| `38-comparacion-politicas-de-precio-650-vs-720.md` | **Nuevo (2026-08-17)**: comparación cuantificada de calidad/precio (USD 650+precio bajo vs. USD 720+precio premium) — la política premium gana en los 4 escenarios probados, confirma la política de precios del caso |
+| `39-tabla-valor-m2-venta-por-barrio-calidad-y-etapa.md` | **Nuevo (2026-08-17)**: nueva tabla cross-cutting de valor de m² de venta (D-073), complementaria a la tabla de alquileres — primera carga con 16 registros reales |
 | `source-documents/` | Brochure oficial, planos técnicos, y las 5 planillas Excel de referencia (incluye Plan Regulador), sin modificar |
 
 ## Próximo paso
 
 1. **Resolver el único bloqueante de due diligence que queda**: opinión estructural profesional sobre el piso adicional del Ángulo 2 (`34-...md` §8).
-2. **Confirmar la política de precios de venta** frente a los comparables reales de Century 21 (`37-...md` §2) — puede cambiar el rango de ingresos de todo el caso.
-3. Definir cuál escenario de financiamiento usar (Escenario 1 o Mix) antes del cierre.
+2. Definir cuál escenario de financiamiento usar (Escenario 1 o Mix) antes del cierre.
 3. Replicar la comparación de escenarios de venta/retención para Ángulo 1 y Ángulo 2 (`33-...md` solo cubrió Ángulo 3).
 4. Si el founder lo pide: presentación simplificada para inversores (§25 del prompt maestro), o convertir el memorándum en un documento formal (.docx/.pdf) para compartir con el equipo.

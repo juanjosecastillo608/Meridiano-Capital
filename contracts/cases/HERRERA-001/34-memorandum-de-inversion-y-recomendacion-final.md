@@ -60,7 +60,7 @@ La recomendación sigue siendo **avanzar a la etapa de negociación y cierre con
 | **Margen final (bajo–alto, neto de comisión + IVA)** | 436.259 – 1.051.008 | 489.990 – 751.518 | **784.541 – 1.091.147** |
 | **ROI simple sobre Inversión Total** | 15,9% – 38,3% | 16,7% – 25,6% | **24,6% – 34,3%** |
 
-**⚠️ Además, comparables reales de venta en pozo (`37-...md`) sugieren que el rango de precio de venta usado para estos ingresos (USD 1.900–2.050/m²) podría estar por encima del mercado real de la zona (USD 1.576–1.809/m² en 7 comparables directos) — pendiente de confirmar antes de tratar estos ingresos como definitivos.**
+**✅ Política de precios confirmada, con respaldo cuantitativo (`38-...md`)**: el founder mantiene el rango USD 1.900–2.050/m² por diferenciación de producto (calidad USD 720/m²) — se comparó directamente contra la alternativa de bajar a calidad USD 650/m² + precio de mercado bajo (USD 1.576–1.809/m², los comparables reales de `37-...md`), y **la política premium gana en los cuatro escenarios probados** (2 Ángulos × 2 extremos de rango), con una diferencia de ROI de 6 a 12 puntos porcentuales a favor de mantener calidad y precio altos.
 
 **El Ángulo 2 es la recomendación dentro de las tres opciones de diseño** — mayor margen en dólares, mejor ROI en el extremo bajo del rango de precio (el escenario más conservador), y el costo/m² más bajo de los tres pese a tener el mayor % de Proyecto asignado (40%, `14-...md`). El riesgo que le queda, distinto de los tres Ángulos, es **técnico, no financiero**: la opinión estructural sobre si la estructura ya construida (73,5%) soporta el piso adicional sin refuerzo mayor — sigue sin resolver (sección 8).
 
@@ -133,7 +133,7 @@ Se detectó un déficit real de timing de caja (no de fondos totales): el capita
 | **Opinión estructural del piso adicional (Ángulo 2)** | Técnico | 🔴 Sin confirmar — el único bloqueante legal/técnico real que queda |
 | ~~Desglose de avance de obra por componente~~ | Técnico | ✅ 🟢 **Resuelto — el 73,5% de avance es exclusivamente estructura, 0% de mampostería/instalaciones/terminaciones** (`35-...md` §4) |
 | ~~Base de cálculo del IVA del desarrollador~~ | Fiscal | ✅ 🟢 **Resuelto — 10% sobre el costo total de construcción** (`36-...md` §2), ya descontado del margen final |
-| **Política de precios de venta vs. comparables reales** | Mercado | 🟡 **Nuevo** — 7 comparables reales de venta en pozo (Century 21) están por debajo del rango usado en el caso (`37-...md` §2) |
+| ~~Política de precios de venta vs. comparables reales~~ | Mercado | ✅ 🟢 **Resuelto — se confirma el rango premium (USD 1.900–2.050/m²), con respaldo cuantitativo** (`38-...md`): supera a la alternativa de calidad/precio bajo en los 4 escenarios probados |
 | **Plusvalía de zona a 2 años** | Mercado | 🟡 Dato del founder, no tasación de tercero — usado en el Escenario C con esa salvedad explícita |
 | **Costo/plano real del Ángulo 2/3** | Ejecución | 🟡 El mix de tipologías chicas es ilustrativo — falta un arquitecto que confirme que entra en la envolvente aprobada |
 | **Precio de compra vs. mercado** | Financiero | 🟢 Validado — favorable frente a costo de reposición, listados de terreno actuales, y comparables de zona |
@@ -149,7 +149,7 @@ Se detectó un déficit real de timing de caja (no de fondos totales): el capita
 
 ### 9.1 Por qué no es un "comprar" incondicional
 
-**Actualizado**: de los tres ítems 🔴 originales, dos ya se resolvieron (identidad del vendedor, título/gravámenes — `35-...md`). Queda uno solo, pero sigue siendo suficiente para no recomendar un "comprar" sin condiciones: la **opinión estructural sobre el piso adicional del Ángulo 2** — es capaz de cambiar la decisión por sí sola si determina que hace falta un refuerzo estructural mayor no presupuestado. Además, la tensión nueva de la política de precios de venta (`37-...md`) introduce una pregunta sobre si los ingresos proyectados son realistas frente al mercado real de la zona — no es un bloqueante del mismo tipo, pero sí algo a resolver antes de comprometerse con el número final.
+**Actualizado**: de los tres ítems 🔴 originales, dos ya se resolvieron (identidad del vendedor, título/gravámenes — `35-...md`). Queda uno solo, pero sigue siendo suficiente para no recomendar un "comprar" sin condiciones: la **opinión estructural sobre el piso adicional del Ángulo 2** — es capaz de cambiar la decisión por sí sola si determina que hace falta un refuerzo estructural mayor no presupuestado. La tensión de la política de precios de venta (`37-...md`) ya se resolvió con respaldo cuantitativo (`38-...md`) — se mantiene el rango premium.
 
 ### 9.2 Por qué no es un "no comprar"
 
@@ -160,16 +160,14 @@ Todo lo que sí se pudo verificar apunta a favor: el precio de compra es defendi
 1. **Avanzar a la etapa de negociación de términos finales** del boleto de compraventa, sobre la base del Ángulo 2 (fachada + tipologías chicas + piso adicional) como diseño objetivo, con el Ángulo 1 (tal cual) como alternativa de menor riesgo de ejecución si el rediseño no avanza a tiempo. **El proceso de cierre ya sigue la secuencia estándar confirmada** (certificados de dominio/inhibición → 20% de seña → boleto → escritura contra verificación final, `35-...md` §3).
 2. **Condicionar el cierre (cláusula suspensiva) a la opinión estructural profesional sobre el piso adicional** — el único ítem legal/técnico que sigue sin resolver.
 3. **Definir, antes del cierre, cuál de los dos escenarios de financiamiento (Escenario 1 o Mix) se usa** — ambos son viables, la diferencia es cuánto capital propio adicional se compromete.
-4. **Confirmar la política de precios de venta antes de comprometer el rango de ingresos proyectado** — verificar si el rango vigente (USD 1.900–2.050/m²) se sostiene frente a los comparables reales de venta en pozo relevados (USD 1.576–1.809/m², `37-...md`), o si corresponde ajustarlo.
-5. **No comprometer el 100% de la estrategia de venta/retención a la plusvalía de 2 años (Escenario C)** — usarla como objetivo para las unidades chicas (monoambiente/1 dormitorio, que ya se sostienen con datos propios de la zona), y mantener venta activa de 2/3 dormitorios salvo que se confirme demanda real de zona premium para esas tipologías en Herrera específicamente.
+4. **No comprometer el 100% de la estrategia de venta/retención a la plusvalía de 2 años (Escenario C)** — usarla como objetivo para las unidades chicas (monoambiente/1 dormitorio, que ya se sostienen con datos propios de la zona), y mantener venta activa de 2/3 dormitorios salvo que se confirme demanda real de zona premium para esas tipologías en Herrera específicamente.
 
 ---
 
 ## 10. Qué queda pendiente, incluso después de este memorándum
 
 1. **La opinión estructural sobre el piso adicional** — el único bloqueante 🔴 que sigue sin resolver.
-2. **Confirmar la política de precios de venta** frente a los comparables reales de Century 21 (`37-...md`) — puede cambiar el rango de ingresos proyectado de todo el caso.
-3. Replicar la comparación de escenarios de venta/retención para Ángulo 1 y Ángulo 2 (`33-...md` solo cubrió Ángulo 3).
-4. Definir el mix real de unidades a retener por tipología, con precisión (no el piso ponderado ilustrativo usado en los cálculos de escenario).
-5. Confirmar las "zonas definitivas" del ranking de barrios (`28-...md`), y seguir completando la tabla de tarifas (D-066) más allá de los barrios ya relevados.
-6. Si el founder lo pide, convertir este memorándum en una presentación simplificada para inversores (§25 del prompt maestro) — no se construyó en este documento.
+2. Replicar la comparación de escenarios de venta/retención para Ángulo 1 y Ángulo 2 (`33-...md` solo cubrió Ángulo 3).
+3. Definir el mix real de unidades a retener por tipología, con precisión (no el piso ponderado ilustrativo usado en los cálculos de escenario).
+4. Confirmar las "zonas definitivas" del ranking de barrios (`28-...md`), y seguir completando la tabla de tarifas de alquiler (D-066) y la nueva tabla de valor de venta (D-073) más allá de los barrios ya relevados.
+5. Si el founder lo pide, convertir este memorándum en una presentación simplificada para inversores (§25 del prompt maestro) — no se construyó en este documento.
