@@ -17,7 +17,7 @@ El comparable Filum Herrera (Century 21 Liberty, mismo barrio) logra su nivel de
 
 | | Con $750/m² (superado) | **Con $720/m² (definitivo)** |
 |---|---|---|
-| Terminación sobre estructura existente (2.286,93 m² × tasa × 0,79) | USD 1.355.006,02 | **USD 1.303.869,10** |
+| Terminación sobre estructura existente (2.286,93 m² × tasa × 0,79) | USD 1.355.006,02 | **USD 1.300.805,78** |
 | Obra 100% nueva, 6 pisos (826,10 m²) | USD 619.575,00 | **USD 594.792,00** |
 | Obra 100% nueva, 7 pisos (1.126,10 m²) | USD 844.575,00 | **USD 810.792,00** |
 | **Costo de construcción, envolvente 6 pisos** | USD 1.974.581,03 | **USD 1.895.597,78** |
@@ -32,6 +32,8 @@ El comparable Filum Herrera (Century 21 Liberty, mismo barrio) logra su nivel de
 | (Referencia, con $750/m², superado) | USD 2.824.581,03 (1.569,21) | USD 3.009.806,32 (1.672,11) | USD 3.273.623,59 (1.558,87) |
 
 **El costo de entrada baja entre USD 42–88 mil según el Ángulo** — el Ángulo 2 sigue siendo el de menor costo/m² comercializable de los tres.
+
+> **Corrección (2026-08-17, test de reconstrucción del Real Estate Intelligence OS, Fase 13)**: la fila "Terminación sobre estructura existente" tenía un error de tipeo (USD 1.303.869,10) que no coincidía con 2.286,93 m² × USD 720 × 0,79 = **USD 1.300.805,78** (diferencia de USD 3.063,32) — corregido arriba. **No afectó ningún número final**: los totales "Costo de construcción, envolvente 6/7 pisos" (USD 1.895.597,78 / USD 2.111.597,78) y todo lo calculado a partir de ellos en las secciones 1.2 y 3 de este archivo ya usaban el valor correcto — era un error de visualización en esa fila puntual, no de cálculo. Verificado corriendo `skills/construction-cost-engine/estimar.py` de forma independiente contra la tabla real (D-064): reproduce exactamente los mismos totales.
 
 ---
 
