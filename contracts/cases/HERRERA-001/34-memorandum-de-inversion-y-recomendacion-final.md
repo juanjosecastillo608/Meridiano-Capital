@@ -12,7 +12,7 @@ Incorporado: 2026-08-17
 
 **El caso financiero es sólido en los tres Ángulos analizados**, incluso después de recalcular con el costo definitivo (USD 720/m², bajado de 750) y descontar el IVA del desarrollador (10% sobre el costo de construcción, `36-...md`) — algo que las versiones anteriores de este memorándum no incluían. El precio de compra ya se validó como favorable frente a múltiples referencias independientes de mercado. El déficit de caja detectado tiene solución viable con dos estructuras de financiamiento concretas. La zona tiene demanda y plusvalía reales, confirmadas por el founder y contrastadas contra fuentes de mercado.
 
-**De los tres bloqueantes de due diligence identificados en la v1 de este memorándum, dos ya se resolvieron** (`35-...md`): identidad del vendedor confirmada, título/gravámenes verificados y en orden. **Queda uno solo sin resolver: la opinión estructural sobre si la estructura ya construida soporta el piso adicional del Ángulo 2.** Además, esta actualización agrega una **tensión nueva, no bloqueante pero real**: comparables reales de venta en pozo (Century 21, `37-...md`) sugieren que la política de precios de venta usada en todo el caso (USD 1.900–2.050/m²) podría estar por encima de lo que el mercado de la zona paga hoy en proyectos comparables (USD 1.576–1.809/m²) — sin confirmar todavía si la diferenciación de producto de Herrera justifica ese premium.
+**De los tres bloqueantes de due diligence identificados en la v1 de este memorándum, dos ya se resolvieron** (`35-...md`): identidad del vendedor confirmada, título/gravámenes verificados y en orden. **Queda uno solo sin resolver: la opinión estructural sobre si la estructura ya construida soporta el piso adicional del Ángulo 2.** La tensión detectada en la política de precios de venta (comparables reales de Century 21, `37-...md`, por debajo del rango usado en el caso) también quedó resuelta — la política premium se comparó cuantitativamente contra la alternativa de precio bajo y la superó en los cuatro escenarios probados (`38-...md`).
 
 La recomendación sigue siendo **avanzar a la etapa de negociación y cierre condicionado**, ahora con un solo condicionante legal/técnico real pendiente (la opinión estructural) y una pregunta abierta sobre la política de precios que conviene resolver antes de comprometerse con el rango de ingresos proyectado.
 
@@ -31,7 +31,7 @@ La recomendación sigue siendo **avanzar a la etapa de negociación y cierre con
 | **Margen neto de comisión, Ángulo 2** | USD 907.718 – 1.214.323 (ROI 27,7% – 37,1%) |
 | **Déficit de caja detectado** | Resuelto — dos escenarios de financiamiento viables (sección 6) |
 | **Escenario de venta/retención más atractivo (Ángulo 3, ilustrativo)** | Retener y esperar plusvalía: **33,4%/año**, con riesgo de mercado real |
-| **Bloqueantes de due diligence sin resolver** | Identidad del vendedor, título/gravámenes, opinión estructural del piso 7, base de cálculo del IVA del desarrollador |
+| **Bloqueantes de due diligence sin resolver** | Solo uno: opinión estructural sobre el piso adicional (Ángulo 2) — identidad del vendedor, título/gravámenes, base del IVA y política de precios ya resueltos |
 
 ---
 
@@ -73,7 +73,7 @@ La recomendación sigue siendo **avanzar a la etapa de negociación y cierre con
 - **Vehículo legal**: Sociedad Anónima entre 2-3 socios, que aportan el 100% del capital necesario (terreno + construcción) — sin deuda bancaria, sin fideicomiso.
 - **Comisión de venta**: 5,5% del total de la venta (con IVA 10% incluido), con reparto según el canal — dos puntas propio (100% Meridiano), equipo interno (2,5%/3%), franquicia RE/MAX o Century 21 (0%/100% cedido, a cambio de visibilidad de marca), agente independiente (2,75%/2,75%). Política registrada como estándar de la empresa (D-063), no solo de este caso.
 - **Esquema de financiamiento de compradores**: 20% entrega + 70% cuotas decrecientes + 10% contra la entrega física — norma estándar de la empresa (D-067). Para este caso específico, se evaluó y se mantiene como alternativa viable una variante de plazo corto (**40% entrega + 50% cuotas + 10% entrega**), que ayuda a cerrar el déficit de timing con menos capital propio adicional.
-- **Régimen tributario del desarrollador**: 10% IVA + 10% impuesto a la renta sobre utilidad neta (confirmado por el founder) — la base exacta de cálculo del IVA (sobre precio total vs. sobre utilidad) sigue sin confirmar con una contadora.
+- **Régimen tributario del desarrollador**: 10% IVA sobre el costo total de construcción + 10% impuesto a la renta sobre utilidad neta — ambas bases confirmadas por el founder (`36-...md` §2), ya descontadas del margen final de la sección 3.
 
 ---
 
@@ -83,8 +83,7 @@ Ya incorporada en la tabla de la sección 3 (columnas "bajo–alto") — el rang
 
 **Variables de sensibilidad no cuantificadas todavía, señaladas como pendientes**:
 - Plusvalía real de la zona a 2 años (se usó el 20%/año confirmado por el founder para el Escenario C de venta/retención, `33-...md`) — es un dato de mercado del founder, no una tasación de tercero.
-- Costo de refuerzo estructural del Ángulo 2, si la opinión estructural pendiente determina que hace falta.
-- Base de cálculo del IVA del desarrollador (afecta el margen neto final de todos los Ángulos, no cuantificado todavía).
+- Costo de refuerzo estructural del Ángulo 2, si la opinión estructural pendiente determina que hace falta — la única variable de sensibilidad real que sigue sin resolver.
 
 ---
 
