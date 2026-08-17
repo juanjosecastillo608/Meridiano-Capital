@@ -9,7 +9,7 @@ Incorporado: 2026-08-17
 
 *"Vamos a hacer un planteamiento de costos de construcción para comparar también con Filum, dado que la calidad que da Filum se obtiene con costos de construcción de USD 650. Vamos a pedir un ajuste a nuestro precio de USD 750 por m² de construcción, y para este caso vamos a tomar USD 720 por m² de construcción."*
 
-El comparable Filum Herrera (Century 21 Liberty, mismo barrio) logra su nivel de calidad competitivo con un costo de construcción de USD 650/m² (la tasa "Básica" de `knowledge-base/investment/06-costos-de-construccion.md`) — el founder ajusta el objetivo de Herrera de **USD 750/m² (Estándar+DVH) a USD 720/m² (Estándar)**, un escalón por debajo, para este caso específico.
+El comparable Filum Herrera (Century 21 Liberty, mismo barrio) logra su nivel de calidad competitivo con un costo de construcción de USD 650/m² (la tasa "Básica" de `knowledge-base/investment/market-intelligence/construction-costs/06-costos-de-construccion.md`) — el founder ajusta el objetivo de Herrera de **USD 750/m² (Estándar+DVH) a USD 720/m² (Estándar)**, un escalón por debajo, para este caso específico.
 
 **Esto reemplaza, de forma definitiva, el USD 750/m² usado en `10-...md`/`14-...md`** como tasa objetivo de terminación — la metodología (21% de incidencia estructural, `10-...md` §2) no cambia, solo la tasa a la que se aplica.
 

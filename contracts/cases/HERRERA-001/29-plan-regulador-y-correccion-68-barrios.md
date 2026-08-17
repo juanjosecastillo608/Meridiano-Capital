@@ -1,6 +1,6 @@
 Estado: CURRENT — 68 barrios (corrección), Place Analyzer como regla de terreno, y Plan Regulador (Ordenanza 43/1994) aplicado como hipótesis a Herrera
 Fuente original: instrucciones del founder, 2026-08-17 + planilla "Indicadores Plan Regulador PR.xlsx"
-Dominio: INVESTMENT (caso HERRERA-001) — las tres piezas son cross-cutting, ver `knowledge-base/investment/07-...md` y `09-plan-regulador-indicadores-urbanisticos.md`
+Dominio: INVESTMENT (caso HERRERA-001) — las tres piezas son cross-cutting, ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md` y `knowledge-base/investment/market-intelligence/neighborhoods/09-plan-regulador-indicadores-urbanisticos.md`
 Incorporado: 2026-08-17
 
 # Plan Regulador, corrección a 68 barrios, y Place Analyzer como regla
@@ -31,7 +31,7 @@ No se encontró un valor específico de Place Analyzer para Barrio Herrera (no a
 
 *"Aquí vamos a hacer una aclaración: hay zonas donde los terrenos toman valor según su clasificación de uso (Industrial, Comercial y Residencial), y dentro de esa clasificación está la normativa municipal que determina, por zona, qué tipo de construcciones se pueden realizar y los pisos y/o metros de altura que se permiten. Adjunto una planilla donde están los indicadores según la zona que permiten construir. Con esta planilla vamos a tenerla para el estudio de todos los terrenos, porque nos permite saber qué se puede construir y qué no."*
 
-Se registró la tabla completa como referencia cross-cutting en `knowledge-base/investment/09-plan-regulador-indicadores-urbanisticos.md` — 6 zonas de "Áreas Residenciales" (AR1-A a AR3-B), cada una con densidad, coeficiente de edificabilidad, tasa de ocupación máxima y altura máxima permitida.
+Se registró la tabla completa como referencia cross-cutting en `knowledge-base/investment/market-intelligence/neighborhoods/09-plan-regulador-indicadores-urbanisticos.md` — 6 zonas de "Áreas Residenciales" (AR1-A a AR3-B), cada una con densidad, coeficiente de edificabilidad, tasa de ocupación máxima y altura máxima permitida.
 
 ### 3.1 Metodología, validada con un ejemplo real (Ycuá Satí) que trae la propia planilla
 

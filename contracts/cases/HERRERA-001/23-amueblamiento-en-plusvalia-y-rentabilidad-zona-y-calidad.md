@@ -36,7 +36,7 @@ Igual que la tabla de costos de amueblamiento ya está en `knowledge-base/invest
 
 *"Es sumamente importante tener nuestra planilla de barrios de Asunción bien categorizada, porque nos va a permitir tomar, entre otras cosas, decisiones para la calidad del amueblamiento según la zona."*
 
-Conecta explícitamente dos herramientas ya construidas: la tabla de tarifas/categoría de zona (`knowledge-base/investment/07-tarifas-por-barrio-asuncion.md`, D-066) y la tabla de costos de amueblamiento (D-064). **Regla, cross-cutting**:
+Conecta explícitamente dos herramientas ya construidas: la tabla de tarifas/categoría de zona (`knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md`, D-066) y la tabla de costos de amueblamiento (D-064). **Regla, cross-cutting**:
 
 > La calidad de amueblamiento (Básico/Estándar/Premium/Lujo) a usar para una unidad retenida se decide **en función de la categoría y el posicionamiento de la zona** donde está el proyecto — no es una elección aislada por unidad.
 

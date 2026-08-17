@@ -8,14 +8,14 @@ Dominio: INVESTMENT
 
 *"Todos estos datos debemos recopilar la información y construir nuestras tablas de valor del m² según barrio y el tipo de construcción, como así también diferenciar los valores del m² de construcción según la etapa constructiva y/o si el edificio ya se encuentra terminado y generando renta, para evaluar el valor del m² en esa etapa."*
 
-Tabla cross-cutting nueva, **de venta** (no de alquiler) — complementa `07-tarifas-por-barrio-asuncion.md` (D-066, que es de renta), no la reemplaza. Desagregada por:
+Tabla cross-cutting nueva, **de venta** (no de alquiler) — complementa `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md` (D-066, que es de renta), no la reemplaza. Desagregada por:
 
 | Dimensión | Valores |
 |---|---|
-| Barrio | Los 68 barrios oficiales de Asunción (ver `07-...md`) |
+| Barrio | Los 68 barrios oficiales de Asunción (ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md`) |
 | Tipología | Monoambiente / 1 dormitorio / 2 dormitorios / 3 dormitorios |
 | **Etapa constructiva** | Pre-lanzamiento / Pozo / En obra / **Terminado (generando renta)** |
-| **Calidad constructiva** | Básica (USD 650/m²) / Estándar (USD 720/m²) / Estándar+DVH (USD 750/m²) — mismas categorías de `06-costos-de-construccion.md` |
+| **Calidad constructiva** | Básica (USD 650/m²) / Estándar (USD 720/m²) / Estándar+DVH (USD 750/m²) — mismas categorías de `knowledge-base/investment/market-intelligence/construction-costs/06-costos-de-construccion.md` |
 
 **La etapa "Terminado, generando renta" es una categoría nueva, sin equivalente en las etapas ya usadas del caso (pozo/durante obra/terminado)** — representa el valor de reventa de una unidad que ya tiene historial de renta (activo generando ingresos), que puede diferir del valor de una unidad recién entregada sin historial. **Todavía no hay datos cargados en esta etapa específica** — los 16 registros de la primera carga son de pozo/en obra/terminado sin historial de renta.
 

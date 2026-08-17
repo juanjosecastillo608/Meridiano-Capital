@@ -55,7 +55,7 @@ Se relevaron 7 de los 13 links aportados (los otros 6 eran el mismo proyecto rep
 
 ## 4. Incorporación a la tabla de tarifas por barrio (D-066)
 
-Se agregan estos datos como nuevas filas de categoría A (venta en pozo) para **Luis A. de Herrera** e **Ycuá Satí** en `knowledge-base/investment/data/tarifas-alquiler-por-barrio-asuncion.csv` — nota: esta tabla fue diseñada originalmente para tarifas de **alquiler**; los datos de **venta** se agregan como una extensión de alcance de la misma tabla (mismo formato largo, mismo protocolo de categorías), documentado en `knowledge-base/investment/07-tarifas-por-barrio-asuncion.md`.
+Se agregan estos datos como nuevas filas de categoría A (venta en pozo) para **Luis A. de Herrera** e **Ycuá Satí** en `knowledge-base/investment/market-intelligence/rentals/market-intelligence/rentals/data/tarifas-alquiler-por-barrio-asuncion.csv` — nota: esta tabla fue diseñada originalmente para tarifas de **alquiler**; los datos de **venta** se agregan como una extensión de alcance de la misma tabla (mismo formato largo, mismo protocolo de categorías), documentado en `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md`.
 
 ## 5. Qué queda pendiente
 

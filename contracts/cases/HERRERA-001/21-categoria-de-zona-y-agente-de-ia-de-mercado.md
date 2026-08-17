@@ -1,6 +1,6 @@
 Estado: CURRENT — categoría de zona agregada a la tabla de tarifas, agenda de demanda mensual, e idea de Agente de IA de mercado (P-006, no construida todavía)
 Fuente original: instrucciones del founder, 2026-08-16
-Dominio: INVESTMENT (caso HERRERA-001) — la categoría de zona vive en la tabla cross-cutting, ver `knowledge-base/investment/07-tarifas-por-barrio-asuncion.md`
+Dominio: INVESTMENT (caso HERRERA-001) — la categoría de zona vive en la tabla cross-cutting, ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md`
 Incorporado: 2026-08-16
 
 # Categoría de zona por barrio, agenda de demanda, y Agente de IA de mercado
@@ -11,7 +11,7 @@ Incorporado: 2026-08-16
 
 *"En nuestra tabla vamos a marcar los barrios por zonas más rentables, zonas residenciales, zonas comerciales, zonas shopping, zona eje corporativo."*
 
-Se agregó una cuarta hoja a la planilla (`knowledge-base/investment/data/tarifas-alquiler-por-barrio-asuncion.xlsx`), **"Categoría de Zona"**, con un CSV fuente separado (`categoria-de-zona-por-barrio-asuncion.csv`) — es una dimensión del **barrio**, no de cada combinación tipología/tipo de alquiler, por eso vive en una hoja propia en vez de repetirse en cada fila de "Datos".
+Se agregó una cuarta hoja a la planilla (`knowledge-base/investment/market-intelligence/rentals/market-intelligence/rentals/data/tarifas-alquiler-por-barrio-asuncion.xlsx`), **"Categoría de Zona"**, con un CSV fuente separado (`categoria-de-zona-por-barrio-asuncion.csv`) — es una dimensión del **barrio**, no de cada combinación tipología/tipo de alquiler, por eso vive en una hoja propia en vez de repetirse en cada fila de "Datos".
 
 | Barrio | Categoría de zona | Rentabilidad relativa | Categoría de dato |
 |---|---|---|---|
@@ -48,7 +48,7 @@ Anotado como pendiente de trabajo futuro, sin acción todavía — no hay un mec
 2. **Necesita más especificación** antes de poder diseñarse en serio: ¿qué grupos específicos, con qué consentimiento/legalidad para usar esos datos comercialmente, con qué frecuencia se procesan, quién modera la calidad del dato antes de que entre a un informe para inversores?
 3. **Es un sistema cross-cutting de mercado**, no específico de Herrera — encaja mejor como un proyecto de `production/app/` o una nueva skill/workflow (`skills/`, `workflows/`) del repo, no como un archivo de este caso.
 
-**Qué sí se puede decir ya**: la tabla de tarifas por barrio (`knowledge-base/investment/07-tarifas-por-barrio-asuncion.md`, D-066) es la base de datos que este agente alimentaría — el diseño de esa tabla (formato largo, categorías A/B/C/D, actualizable) ya está pensado para poder recibir datos de una fuente automatizada en el futuro, no solo de búsquedas manuales.
+**Qué sí se puede decir ya**: la tabla de tarifas por barrio (`knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md`, D-066) es la base de datos que este agente alimentaría — el diseño de esa tabla (formato largo, categorías A/B/C/D, actualizable) ya está pensado para poder recibir datos de una fuente automatizada en el futuro, no solo de búsquedas manuales.
 
 ## 5. Barrios agregados esta vuelta
 

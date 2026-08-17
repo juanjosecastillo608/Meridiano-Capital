@@ -1,0 +1,13 @@
+Proyecto,Zona/Barrio,Tipologia,m2,Precio USD,USD por m2,Cochera USD,Financiamiento durante obra,Entrega/Etapa,Categoria de dato,Fuente,Fecha de relevamiento,Notas,Confianza,Vigencia
+Inarco Herrera,Luis A. de Herrera (Guido Spano),1 dormitorio,44.00,69800,1586,,,"10 niveles / 130 departamentos / en pozo, entrega 2028",A,Century 21,2026-08-17,Comparable mas directo - unico proyecto relevado dentro del propio Barrio Herrera,HIGH,CURRENT
+Sunset Santa Teresa,Ycua Sati (Concejal Vargas y Austria - misma esquina que Herrera),1 dormitorio,45.18,73689,1631,,Hasta 24 meses sin intereses; escalones de entrega 30/50/90%,En pozo,A,Century 21,2026-08-17,,HIGH,CURRENT
+Ayre Santa Teresa,Ycua Sati,Monoambiente,35.60,64404,1809,12000,"Planes 20-80, 20-50-30, 30-50-20",En pozo,A,Century 21,2026-08-17,,HIGH,CURRENT
+Marina 11,Ycua Sati (Eje Corporativo),2 dormitorios,72.80,115000,1580,14000 (bauleras USD 2500),,En pozo,A,Century 21,2026-08-17,,HIGH,CURRENT
+Livit Santa Teresa,Ycua Sati,1 dormitorio,43.82,79200,1807,,20% entrega + cuotas de USD 500,En pozo,A,Century 21,2026-08-17,,HIGH,CURRENT
+Ventura Ycua Sati (unidad chica),Ycua Sati (Eje Corporativo),1 dormitorio,49.54,83062,1677,,Hasta 36 meses,En pozo,A,Century 21,2026-08-17,,HIGH,CURRENT
+Ventura Ycua Sati (unidad grande),Ycua Sati (Eje Corporativo),Sin tipologia especifica (284.64 m2),284.64,448528,1576,,Hasta 36 meses,En pozo,A,Century 21,2026-08-17,,HIGH,CURRENT
+Ventura Ycua Sati (3 dormitorio piso alto),Ycua Sati (Eje Corporativo),3 dormitorios,113,,2212,,Hasta 36 meses,En pozo,A,Century 21,2026-08-17,Outlier de piso alto/tipologia premium - excluido del rango de referencia USD 1576-1809 usado en HERRERA-001/38,HIGH,CURRENT
+Matrisa Lillo,Ycua Sati,Monoambiente,,57000,,12700,27 meses sin intereses + financiacion post obra hasta 5 anos,En pozo,A,Century 21,2026-08-17,"Precio ""desde"" - sin m2 exacto por unidad",HIGH,CURRENT
+Matrisa Lillo,Ycua Sati,1 dormitorio,,69000,,12700,27 meses sin intereses + financiacion post obra hasta 5 anos,En pozo,A,Century 21,2026-08-17,"Precio ""desde"" - sin m2 exacto por unidad",HIGH,CURRENT
+Matrisa Lillo,Ycua Sati,2 dormitorios,,80640,,12700,27 meses sin intereses + financiacion post obra hasta 5 anos,En pozo,A,Century 21,2026-08-17,"Precio ""desde"" - sin m2 exacto por unidad",HIGH,CURRENT
+Matrisa Lillo,Ycua Sati,3 dormitorios,,119280,,12700,27 meses sin intereses + financiacion post obra hasta 5 anos,En pozo,A,Century 21,2026-08-17,"Precio ""desde"" - sin m2 exacto por unidad",HIGH,CURRENT

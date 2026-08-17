@@ -1,6 +1,6 @@
 Estado: CURRENT — nueva tabla cross-cutting de valor de m² de venta (D-073), primera carga con 16 registros
 Fuente original: instrucciones del founder, 2026-08-17
-Dominio: INVESTMENT (caso HERRERA-001) — la tabla es cross-cutting, ver `knowledge-base/investment/10-valor-m2-venta-por-barrio-calidad-y-etapa.md` y D-073
+Dominio: INVESTMENT (caso HERRERA-001) — la tabla es cross-cutting, ver `knowledge-base/investment/market-intelligence/sales/10-valor-m2-venta-por-barrio-calidad-y-etapa.md` y D-073
 
 # Tabla de valor de m² de venta por barrio, calidad y etapa
 

@@ -1,6 +1,6 @@
 Estado: CURRENT — corrección conceptual (plusvalía ≠ rentabilidad), estudio de zonas de Asunción con fuentes reales, y Carmelitas reconciliado con Las Lomas
 Fuente original: corrección e instrucciones del founder, 2026-08-16
-Dominio: INVESTMENT (caso HERRERA-001) — el estudio de zonas vive en la tabla cross-cutting, ver `knowledge-base/investment/07-tarifas-por-barrio-asuncion.md`
+Dominio: INVESTMENT (caso HERRERA-001) — el estudio de zonas vive en la tabla cross-cutting, ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md`
 Incorporado: 2026-08-16
 
 # Estudio de zonas — plusvalía vs. rentabilidad, y reconciliación de Carmelitas

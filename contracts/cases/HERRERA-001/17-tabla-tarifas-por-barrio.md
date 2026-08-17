@@ -1,6 +1,6 @@
 Estado: CURRENT — primera carga de la tabla de tarifas por barrio (cross-cutting), con hallazgos aplicados a Herrera
 Fuente original: founder, 2026-08-16 (plano de barrios de Asunción, adjunto) + primera búsqueda web
-Dominio: INVESTMENT (caso HERRERA-001) — la tabla en sí es cross-cutting, ver `knowledge-base/investment/07-tarifas-por-barrio-asuncion.md` y D-066
+Dominio: INVESTMENT (caso HERRERA-001) — la tabla en sí es cross-cutting, ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md` y D-066
 
 # Tabla de tarifas por barrio — primera carga
 
@@ -8,7 +8,7 @@ Dominio: INVESTMENT (caso HERRERA-001) — la tabla en sí es cross-cutting, ver
 
 *"Vamos a generar una planilla para cada barrio de Asunción detallada por tipología Monoambientes, 1, 2 y 3 Dormitorios, tarifas de AIRBNB por zona. Y también tarifas de alquileres tradicionales y amoblados. Esta tabla tiene que ser dinámica y actualizable. También tiene que estar siempre disponible para otros proyectos con datos actualizados por zona, tipología y valores de los alquileres."*
 
-Se construyó como recurso **cross-cutting** (no específico de Herrera) — ver `knowledge-base/investment/07-tarifas-por-barrio-asuncion.md` para la documentación completa y `governance/decisions/DECISION_REGISTER.md`, **D-066**. Este archivo del caso solo recoge los hallazgos específicamente relevantes para Herrera de la primera carga.
+Se construyó como recurso **cross-cutting** (no específico de Herrera) — ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md` para la documentación completa y `governance/decisions/DECISION_REGISTER.md`, **D-066**. Este archivo del caso solo recoge los hallazgos específicamente relevantes para Herrera de la primera carga.
 
 ## 1. Los 66 barrios de Asunción
 
@@ -43,6 +43,6 @@ Primera carga: **Villa Morra, Luis A. de Herrera (Barrio Herrera), Las Lomas, Re
 
 ## 4. Qué queda pendiente
 
-1. Completar los 61 barrios restantes — trabajo de investigación continuo, no de una sola carga (ver `knowledge-base/investment/07-...md` para el plan de cómo seguir completando).
+1. Completar los 61 barrios restantes — trabajo de investigación continuo, no de una sola carga (ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md` para el plan de cómo seguir completando).
 2. Confirmar con cotizaciones directas de inmobiliarias (no solo listados web) para subir la categoría de C a A, al menos para Barrio Herrera específicamente, dado que es el caso activo.
 3. Airbnb/temporal para Barrio Herrera específicamente — solo se relevó Villa Morra por ahora (USD 31–54/noche), no hay dato directo de Herrera todavía.

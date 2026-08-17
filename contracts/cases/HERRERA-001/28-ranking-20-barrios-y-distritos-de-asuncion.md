@@ -1,6 +1,6 @@
 Estado: CURRENT — ranking ampliado a 21 barrios con fuentes reales, y estructura de los 6 distritos de Asunción
 Fuente original: instrucciones del founder, 2026-08-17 + investigación de mercado
-Dominio: INVESTMENT (caso HERRERA-001) — el ranking y los distritos son cross-cutting, ver `knowledge-base/investment/07-tarifas-por-barrio-asuncion.md`
+Dominio: INVESTMENT (caso HERRERA-001) — el ranking y los distritos son cross-cutting, ver `knowledge-base/investment/market-intelligence/rentals/07-tarifas-por-barrio-asuncion.md`
 Incorporado: 2026-08-17
 
 # Ranking de 20+ barrios y estructura de distritos de Asunción
