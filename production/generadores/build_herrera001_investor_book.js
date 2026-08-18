@@ -170,10 +170,10 @@ footer(s);
 
 // ============ 12 — COMPARABLES REALES ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Comparables de mercado"); title(s,"7 comparables reales + el comparable directo del barrio");
-const comp=[["Inarco Herrera","Barrio Herrera","1 dorm, 44 m²","USD 69.800","USD 1.586"],["Filum Herrera","Barrio Herrera","1 dorm, 38 m²","USD 70.300","USD 1.850"],["Sunset Santa Teresa","Ycuá Satí","1 dorm, 45,2 m²","USD 73.689","USD 1.631"],["Ayre Santa Teresa","Ycuá Satí","Mono, 35,6 m²","USD 64.404","USD 1.809"],["Marina 11","Ycuá Satí","2 dorm, 72,8 m²","USD 115.000","USD 1.580"],["Livit Santa Teresa","Ycuá Satí","1 dorm, 43,8 m²","USD 79.200","USD 1.807"],["Ventura Ycuá Satí","Ycuá Satí","1 dorm, 49,5 m²","USD 83.062","USD 1.677"]];
-table(s,["Proyecto","Zona","Tipología","Precio","USD/m²"],comp,0.6,1.95,12.1,[3.0,2.6,2.7,2.0,1.8],{rowH:0.38,fs:9});
-s.addText("Fuente: listados públicos de Century 21, relevados 2026-08-17 (categoría A — dato real con fuente citable). Filum Herrera: flyer comercial real de Century 21 Liberty, mismo barrio.",{x:0.6,y:5.65,w:12.1,h:0.6,fontFace:POP,italic:true,fontSize:9.5,color:GREY,lineSpacing:13});
+eyebrow(s,"Comparables de mercado"); title(s,"11 comparables reales — 9 dentro del propio Barrio Herrera",null,22);
+const comp=[["Inarco Herrera","Barrio Herrera","1 dorm, 44 m²","USD 69.800","USD 1.586"],["Filum Herrera","Barrio Herrera","1 dorm, 38 m²","USD 70.300","USD 1.850"],["Invicta Herrera","Barrio Herrera (Concejal Vargas)","1 dorm, 44 m²","USD 80.000","USD 1.818"],["Invicta Herrera","Barrio Herrera","2 dorm, 72,5 m² (c/cochera)","USD 113.700","USD 1.569"],["Pampidos","Barrio Herrera","2 dorm, 86 m² (terminado, c/cochera)","USD 128.000","USD 1.488"],["Forvm Herrera","Barrio Herrera (Concejal Vargas)","3 dorm, 172,8 m² propia","USD 229.800","USD 1.330"],["Sunset Santa Teresa","Ycuá Satí","1 dorm, 45,2 m²","USD 73.689","USD 1.631"],["Ayre Santa Teresa","Ycuá Satí","Mono, 35,6 m²","USD 64.404","USD 1.809"],["Marina 11","Ycuá Satí","2 dorm, 72,8 m²","USD 115.000","USD 1.580"],["Livit Santa Teresa","Ycuá Satí","1 dorm, 43,8 m²","USD 79.200","USD 1.807"],["Ventura Ycuá Satí","Ycuá Satí","1 dorm, 49,5 m²","USD 83.062","USD 1.677"]];
+table(s,["Proyecto","Zona","Tipología","Precio","USD/m²"],comp,0.6,1.85,12.1,[2.6,2.7,3.0,2.0,1.8],{rowH:0.335,fs:8.3});
+s.addText("Fuente: listados públicos de Century 21 y RE/MAX, relevados 2026-08-17/18 (categoría A — dato real con fuente citable). Filum Herrera: flyer comercial de Century 21 Liberty. AMC completo y ajuste por tipología: Data Room.",{x:0.6,y:6.0,w:12.1,h:0.55,fontFace:POP,italic:true,fontSize:9,color:GREY,lineSpacing:12});
 footer(s);
 
 // ============ 13 — MARKET SNAPSHOT ============

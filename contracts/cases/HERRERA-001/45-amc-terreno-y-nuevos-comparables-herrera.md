@@ -1,4 +1,4 @@
-Estado: CURRENT — AMC parametrizado (P-007 activada, D-077), 4 comparables reales nuevos de departamento (2 en el mismo barrio, 2 en la misma calle que el predio) + primer AMC real de terreno de un tercero (ARKA Desarrollos Inmobiliarios)
+Estado: CURRENT — AMC parametrizado (P-007 activada, D-077), 4 comparables reales nuevos de departamento (2 en el mismo barrio, 2 en la misma calle que el predio), primer AMC real de terreno de un tercero (ARKA Desarrollos Inmobiliarios), y precio de terreno sugerido (§4.1, D-078, 2026-08-18)
 Fuente: 4 listados reales (RE/MAX ×3, Century 21 ×1) aportados por el founder 2026-08-18 + `AMC_Dossier_Herrera.pdf` (ARKA Desarrollos Inmobiliarios, abril 2026, aportado por el founder 2026-08-18) + metodología `knowledge-base/investment/methodologies/amc-analisis-comparativo-de-mercado.md`
 Dominio: INVESTMENT (caso HERRERA-001)
 
@@ -81,6 +81,39 @@ El Memorándum (`34-...md` §1) fija el precio de compra de HERRERA-001 en **USD
 **Lo que no se puede descartar sin más información**: que el componente terreno esté sobrevaluado dentro de esa asignación de USD 850.000 — si así fuera, no cambiaría el precio total pagado, pero sí cambiaría cuánto del margen del proyecto depende de la estructura ya construida (mayor si el terreno está sobrevaluado, porque implicaría que se pagó relativamente menos por el avance de obra) vs. cuánto depende del terreno en sí.
 
 **Se documenta la brecha, no se resuelve** — recomendación: pedir al founder o al vendedor el desglose original de cómo se llegó a la cifra de USD 360.000 para el terreno, y contrastarlo directamente contra este AMC real antes del cierre.
+
+## 4.1 Precio de terreno sugerido — actualizado 2026-08-18, a pedido del founder
+
+*"Con los precios del Terreno Analizado por AMC debemos sugerir un precio de terreno acorde al precio de mercado y ajustar."*
+
+### Las cuatro estimaciones de terreno que tiene el caso, ninguna es una tasación formal
+
+| Fuente | USD/m² | Sobre 469 m² | Naturaleza |
+|---|---|---|---|
+| `Proyecto Ejecución Edificio Herrera Tower.xlsx` (founder, planilla propia) | 850 | USD 398.650 | Estimación propia del founder, categoría B — nunca resuelta contra la otra planilla (`03-...md` §6, pendiente desde 2026-08-13) |
+| "Valor estimado del lote" (founder, otra planilla propia) | ≈597 | USD 280.000 | Estimación propia del founder, categoría B — la misma discrepancia sin resolver |
+| **Split declarado del trato** (`34-...md`, `10-...md`) | 767,6 | **USD 360.000** | Asignación interna del precio de compra ($850.000 = terreno + estructura/documentación/riesgo evitado) — no es una tasación independiente del terreno, es una narrativa de cómo se reparte el total pagado |
+| **AMC de ARKA — 5 comparables reales verificables** (§3.3) | **380,6 (prom.)** | **USD 178.541** | **Primera estimación de terreno de todo el caso respaldada por comparables públicos verificables, no por una planilla interna** |
+
+**Ninguna de las cuatro es una tasación profesional formal.** Pero la del AMC es la única con comparables citables y verificables de forma independiente — las otras tres son estimaciones propias del founder o una asignación narrativa del propio trato.
+
+### Precio de terreno sugerido
+
+**USD 178.500 – 203.500** (usando el promedio de los 5 comparables reales, USD 380,6/m², como piso, y la herramienta de tasación online que cita ARKA, USD 434/m², como techo informativo — sin adoptar esta última como dato propio, solo como referencia de rango superior). **Punto medio sugerido: ~USD 191.000.**
+
+Esto es **USD 155.000–181.000 menos** que los USD 360.000 que el trato le asigna hoy al terreno.
+
+### Qué significa esto para el precio total pagado (USD 850.000) — dos lecturas posibles, no se elige una por el founder
+
+**Lectura 1 — se re-corre el propio criterio de razonabilidad del founder (`10-...md` §3), solo actualizando la referencia de terreno**: la fórmula original comparaba los USD 490.000 (estructura+documentación+riesgo evitado) contra el costo de reproducir el esqueleto (USD 312.166) + terreno de referencia, con banda ±10%. Usando el terreno AMC (~USD 191.000 punto medio) en vez del terreno del trato (USD 360.000): total de referencia = USD 503.166, banda = USD 452.849–553.483. **Los USD 490.000 del trato ahora caen DENTRO de la banda** (antes, con el terreno de USD 360.000, caían por debajo — "más barato de lo esperado"). **Bajo esta lectura, el trato se ve todavía razonable, incluso más consistente internamente que antes.**
+
+**Lectura 2 — se pregunta si el precio total (USD 850.000) se sostiene, dado que el terreno vale ~USD 191.000 real**: si el terreno realmente vale ~USD 191.000 y el total pagado es fijo en USD 850.000, el residuo implícito para "estructura ya construida + documentación + riesgo evitado" sube a **USD 659.000** — muy por encima de la banda de razonabilidad de arriba (USD 452.849–553.483), por unos USD 105.500 (≈19% sobre el techo de la banda). **Bajo esta lectura, el trato podría estar pagando de más, solo que la sobrevaloración está etiquetada como "terreno" en vez de como "estructura".**
+
+**Estas dos lecturas no son contradictorias — responden preguntas distintas** (¿es razonable el componente de USD 490.000 tal como está declarado? vs. ¿es razonable el total de USD 850.000 si el terreno se re-valora a mercado?). **No se elige una por el founder** — el precio total pagado (USD 850.000) sigue siendo el dato real de la operación (categoría A, no se altera acá). Se deja como recomendación:
+
+1. **Usar USD 178.500–203.500 como referencia de terreno** en cualquier desglose interno o negociación futura, en vez de los USD 360.000 sin respaldo de mercado — esto es lo que se pidió parametrizar.
+2. **Si se busca precisión real** (para negociar una reducción del precio total, para fines contables, o para una futura tasación), el paso siguiente es una **tasación profesional formal del terreno específico** — ninguna de las cuatro estimaciones de esta tabla lo es.
+3. **No se recalculan Inversión Total, márgenes ni ROI del Memorándum con este ajuste** — el precio de compra real (USD 850.000) es el dato que efectivamente entra en `Inversión Total` en todos los Ángulos; reasignar su desglose interno terreno/estructura no cambia ese número. El IVA del desarrollador tampoco se ve afectado — su base es el costo de construcción (`36-...md` §2), no el precio de adquisición ni su desglose.
 
 ## 5. Qué se actualiza en el sistema con este documento
 

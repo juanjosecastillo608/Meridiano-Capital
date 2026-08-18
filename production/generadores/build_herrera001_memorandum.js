@@ -60,7 +60,7 @@ const portada=[
     ]})]})
   ]}),
   new Paragraph({children:[new PageBreak()]}),
-  new Paragraph({alignment:AlignmentType.RIGHT,spacing:{after:600},children:[new TextRun({text:"Actualizado 2026-08-17 (v2) · Confidencial — uso interno de Meridiano Capital y sus socios",font:POP,size:16,color:GREY,italics:true})]}),
+  new Paragraph({alignment:AlignmentType.RIGHT,spacing:{after:600},children:[new TextRun({text:"Actualizado 2026-08-18 (v3) · Confidencial — uso interno de Meridiano Capital y sus socios",font:POP,size:16,color:GREY,italics:true})]}),
 ];
 
 // ---------- RECOMENDACIÓN (portada de contenido) ----------
@@ -121,7 +121,7 @@ const s3=[
   ],[2600,2130,2130,2140]),
   sp(),
   callout("Política de precios confirmada, con respaldo cuantitativo",
-    "Se mantiene el rango USD 1.900–2.050/m² por diferenciación de producto (calidad USD 720/m²) — comparado directamente contra la alternativa de bajar a calidad USD 650/m² + precio de mercado bajo (USD 1.576–1.809/m², comparables reales de Century 21), la política premium gana en los cuatro escenarios probados (2 Ángulos × 2 extremos de rango), con una diferencia de ROI de 6 a 12 puntos porcentuales.",
+    "Se mantiene el rango USD 1.900–2.050/m² por diferenciación de producto (calidad USD 720/m²) — comparado directamente contra la alternativa de bajar a calidad USD 650/m² + precio de mercado bajo (USD 1.576–1.809/m², comparables reales de Century 21), la política premium gana en los cuatro escenarios probados (2 Ángulos × 2 extremos de rango), con una diferencia de ROI de 6 a 12 puntos porcentuales. Reconfirmado 2026-08-18 con el AMC parametrizado: 9 comparables reales dentro del propio Barrio Herrera (antes 2), ajuste AMC de 2 dormitorios ~USD 1.509/m² — mismo hallazgo, muestra 4,5x mayor.",
     {fill:VERDE_F,border:VERDE,titleColor:VERDE}),
   sp(),
   P("El Ángulo 2 es la recomendación dentro de las tres opciones de diseño — mayor margen en dólares, mejor ROI en el extremo bajo del rango de precio (el escenario más conservador), y el costo/m² más bajo de los tres pese a tener el mayor % de Proyecto asignado (40%). El riesgo que le queda es técnico, no financiero: la opinión estructural sobre si la estructura ya construida soporta el piso adicional sin refuerzo mayor."),
@@ -191,7 +191,8 @@ const s8=[
     ["Política de precios de venta vs. comparables","Mercado",{text:"Resuelto — rango premium confirmado con respaldo cuantitativo",color:VERDE,fill:VERDE_F}],
     ["Plusvalía de zona a 2 años","Mercado",{text:"Dato del founder, no tasación de tercero",color:AMBAR,fill:AMBAR_F}],
     ["Costo/plano real del Ángulo 2/3","Ejecución",{text:"El mix de tipologías chicas es ilustrativo, sin plano de arquitecto todavía",color:AMBAR,fill:AMBAR_F}],
-    ["Precio de compra vs. mercado","Financiero",{text:"Validado — favorable frente a múltiples referencias",color:VERDE,fill:VERDE_F}],
+    ["Precio de compra vs. mercado","Financiero",{text:"Validado — favorable frente a costo de reposición y comparables de zona",color:VERDE,fill:VERDE_F}],
+    ["Valor de terreno dentro del precio de compra","Financiero",{text:"AMC de tercero sugiere USD 178.500-203.500 vs. USD 360.000 asignados — brecha documentada, no cambia el precio total ni el margen. Ver Data Room",color:AMBAR,fill:AMBAR_F}],
     ["Márgenes financieros","Financiero",{text:"Positivos en los 3 Ángulos, en todo el rango de precio",color:VERDE,fill:VERDE_F}],
     ["Estructura de financiamiento","Financiero",{text:"Déficit de timing detectado y resuelto con dos escenarios viables",color:VERDE,fill:VERDE_F}],
     ["Demanda de mercado","Mercado",{text:"Confirmada por el founder y datos reales",color:VERDE,fill:VERDE_F}],
@@ -204,7 +205,7 @@ const s9=[
   H2("9.1  Por qué no es un \"comprar\" incondicional"),
   P("De los tres ítems bloqueantes originales, dos ya se resolvieron (identidad del vendedor, título/gravámenes). Queda uno solo, pero sigue siendo suficiente para no recomendar un \"comprar\" sin condiciones: la opinión estructural sobre el piso adicional del Ángulo 2 — es capaz de cambiar la decisión por sí sola si determina que hace falta un refuerzo estructural mayor no presupuestado."),
   H2("9.2  Por qué no es un \"no comprar\""),
-  P("Todo lo que sí se pudo verificar apunta a favor: el precio de compra es defendible frente a múltiples referencias de mercado independientes; los tres Ángulos de diseño dan margen positivo en todo el rango de sensibilidad de precio; el déficit de caja detectado tiene solución concreta y ya modelada; la demanda de la zona está confirmada con datos reales, no solo con el criterio del founder."),
+  P("Todo lo que sí se pudo verificar apunta a favor: el precio de compra total es defendible frente a costo de reposición y comparables directos de zona; los tres Ángulos de diseño dan margen positivo en todo el rango de sensibilidad de precio; el déficit de caja detectado tiene solución concreta y ya modelada; la demanda de la zona está confirmada con datos reales, no solo con el criterio del founder. Salvedad agregada 2026-08-18: el AMC real de terreno sugiere que el desglose interno del precio (terreno USD 360.000) no está respaldado por comparables de mercado — no cambia el precio total ni el margen, pero se recomienda una tasación formal del terreno antes de tratar ese desglose como definitivo."),
   H2("9.3  La recomendación — negociar y condicionar el cierre"),
   new Paragraph({numbering:{reference:"pasos",level:0},spacing:{after:100},children:[new TextRun({text:"Avanzar a la etapa de negociación de términos finales del boleto de compraventa, sobre la base del Ángulo 2 como diseño objetivo, con el Ángulo 1 como alternativa de menor riesgo de ejecución si el rediseño no avanza a tiempo. El proceso de cierre sigue la secuencia estándar confirmada (certificados de dominio/inhibición → 20% de seña → boleto → escritura contra verificación final).",font:POP,size:20,color:"2A2620"})]}),
   new Paragraph({numbering:{reference:"pasos",level:0},spacing:{after:100},children:[new TextRun({text:"Condicionar el cierre (cláusula suspensiva) a la opinión estructural profesional sobre el piso adicional — el único ítem legal/técnico que sigue sin resolver.",font:POP,size:20,color:"2A2620"})]}),
