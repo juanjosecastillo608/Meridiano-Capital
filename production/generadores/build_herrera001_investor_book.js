@@ -39,7 +39,7 @@ s.addShape(p.ShapeType.rect,{x:0,y:0,w:7.1,h:7.5,fill:{color:PETROLEO,transparen
 tag(s,"VISUALIZACIÓN ARQUITECTÓNICA — DESARROLLADOR ORIGINAL, SUJETA A CAMBIOS",6.95,7.05,6.33,"render");
 s.addImage({path:ISO_INV,x:0.6,y:0.55,w:0.55,h:0.55});
 s.addText("MERIDIANO CAPITAL",{x:1.3,y:0.6,w:5,h:0.45,fontFace:LORA,fontSize:16,color:CREMA,charSpacing:2,valign:"middle"});
-s.addText("INVESTMENT OPPORTUNITY",{x:0.62,y:2.5,w:6,h:0.35,fontFace:POP,bold:true,fontSize:12,color:LAPACHO,charSpacing:3});
+s.addText("OPORTUNIDAD DE INVERSIÓN",{x:0.62,y:2.5,w:6,h:0.35,fontFace:POP,bold:true,fontSize:12,color:LAPACHO,charSpacing:3});
 s.addText("Edificio Residencial\nHerrera, Asunción",{x:0.6,y:2.95,w:6.1,h:1.9,fontFace:LORA,fontSize:38,color:CREMA,lineSpacing:42});
 s.addText("Investor Book — de la estructura actual al producto terminado: activo, ubicación, tipologías, precios, forma de pago, mercado y rentabilidad.",{x:0.62,y:5.0,w:5.9,h:1.1,fontFace:POP,fontSize:12.5,color:"C7CFD2",lineSpacing:19});
 s.addShape(p.ShapeType.rect,{x:0.62,y:6.25,w:3.1,h:0.5,fill:{color:NAVY2},line:{color:LAPACHO,width:1}});
@@ -71,7 +71,7 @@ footer(s);
 
 // ============ 4 — ESTADO ACTUAL ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Estado actual"); title(s,"CURRENT PROJECT STATUS — julio 2026");
+eyebrow(s,"Estado actual"); title(s,"ESTADO ACTUAL DEL PROYECTO — julio 2026");
 const fotos=[FO+"04-fachada-calle-02.jpeg",FO+"01-formwork-nivel-superior.jpeg",FO+"05-interior-planta-columnas.jpeg"];
 fotos.forEach((f,i)=>{const x=0.6+i*4.05;
   s.addImage({path:f,x,y:1.95,w:3.85,h:3.3,sizing:{type:"cover",w:3.85,h:3.3}});
@@ -85,7 +85,7 @@ footer(s);
 
 // ============ 5 — QUÉ SE VA A TERMINAR ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"De hoy al producto terminado"); title(s,"FROM CURRENT STATE TO FINAL PRODUCT — Ángulo 1");
+eyebrow(s,"De hoy al producto terminado"); title(s,"DEL ESTADO ACTUAL AL PRODUCTO FINAL — Ángulo 1");
 s.addImage({path:FO+"03-fachada-calle-01.jpeg",x:0.6,y:1.85,w:5.85,h:3.95,sizing:{type:"cover",w:5.85,h:3.95}});
 tag(s,"FOTOGRAFÍA REAL — HOY, JULIO 2026",0.68,1.85+3.95-0.4,5.7,"real");
 s.addImage({path:BR+"00-portada-fachada.png",x:6.85,y:1.85,w:5.85,h:3.95,sizing:{type:"cover",w:5.85,h:3.95}});
@@ -139,20 +139,20 @@ props.forEach((a,i)=>{const x=0.6+i*6.15; const rec=i===1;
   s.addText(a[3],{x:x+0.35,y:4.55,w:5.3,h:1.8,fontFace:POP,fontSize:11,color:rec?"C7CFD2":GREY,lineSpacing:15});});
 footer(s);
 
-// ============ 9B — REFERENCIAS DE DISEÑO (TAMBO NEA / QUBO) ============
+// ============ 9B — REFERENCIAS DE DISEÑO (TAMBONE ARQUITECTURA / QUBO) ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Referencias de diseño — Ángulo 2/3"); title(s,"Tambo Nea Arquitectura — estudio propuesto para el rediseño");
+eyebrow(s,"Referencias de diseño — Ángulo 2/3"); title(s,"Tambone Arquitectura — estudio propuesto para el rediseño");
 s.addText("Estudio propuesto por Meridiano para la fachada y las tipologías chicas de Ángulo 2/3 — diseñó Edificio Qubo (Senador Long, Asunción), ya revisado como referencia directa de tipología y amoblamiento. Ningún plano de estas imágenes es de Herrera todavía.",{x:0.6,y:1.85,w:12.1,h:0.6,fontFace:POP,fontSize:11.5,color:PETROLEO,lineSpacing:16});
-const qimgs=[[QB+"00-fachada-sugerida-tambonea.png","SUGERENCIA DE FACHADA — TAMBO NEA ARQUITECTURA","render"],[QB+"18-tipologia-1-amoblada-qubo.png","REFERENCIA DE TIPOLOGÍA — EDIFICIO QUBO, NO ES HERRERA","render"],[QB+"26-tipologia-3-amoblada-qubo.png","REFERENCIA DE AMOBLAMIENTO — EDIFICIO QUBO, NO ES HERRERA","render"]];
+const qimgs=[[QB+"00-fachada-sugerida-tambonea.png","SUGERENCIA DE FACHADA — TAMBONE ARQUITECTURA","render"],[QB+"18-tipologia-1-amoblada-qubo.png","REFERENCIA DE TIPOLOGÍA — EDIFICIO QUBO, NO ES HERRERA","render"],[QB+"26-tipologia-3-amoblada-qubo.png","REFERENCIA DE AMOBLAMIENTO — EDIFICIO QUBO, NO ES HERRERA","render"]];
 qimgs.forEach((qi,i)=>{const x=0.6+i*4.05;
   s.addImage({path:qi[0],x,y:2.55,w:3.85,h:3.55,sizing:{type:"cover",w:3.85,h:3.55}});
   tag(s,qi[1],x+0.08,2.55+3.55-0.45,3.69,qi[2]);});
-s.addText("Edificio Qubo — Villa Morra, desde USD 1.222/m² (Century 21 Platinum, 2026-08-18). Formato \"Aparta Office\" con coworking; no es un comparable de precio directo para Herrera, ver `42-market-comparables.md` §1.1.",{x:0.6,y:6.3,w:12.1,h:0.4,fontFace:POP,italic:true,fontSize:9.5,color:GREY});
+s.addText("Edificio Qubo — Villa Morra, 1 dormitorio 42 m² desde USD 68.080 (~USD 1.621/m², Coldwell Banker Paraguay, 2026-08-18). Formato \"Aparta Office\" con coworking; no es un comparable de precio directo para Herrera, ver `42-market-comparables.md` §1.1.",{x:0.6,y:6.3,w:12.1,h:0.4,fontFace:POP,italic:true,fontSize:9.5,color:GREY});
 footer(s);
 
 // ============ 10 — MATRIZ DE UNIDADES (Ángulo 1) ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Matriz de unidades — Ángulo 1"); title(s,"UNIT PRICE MATRIX — precio por tipología, +1%/piso");
+eyebrow(s,"Matriz de unidades — Ángulo 1"); title(s,"MATRIZ DE PRECIO POR UNIDAD — precio por tipología, +1%/piso");
 const upm=[["A","6","77,1 m²","Pisos 1-6","USD 146.490 – 165.958"],["B","6","95,8 m²","Pisos 1-6","USD 182.020 – 206.210"],["C","3","54,5 m²","Pisos 1-3","USD 103.550 – 113.960"],["D","3","77,2 m²","Pisos 1-3","USD 146.680 – 161.425"],["E1","1","132,3 m²","Piso 4","USD 258.911 – 279.351"],["E2","2","124,4 m²","Pisos 5-6","USD 245.814 – 267.771"]];
 table(s,["Tipología","Unidades","Área propia","Distribución","Precio de venta (rango)"],upm,0.6,1.95,12.1,[1.6,1.5,2.0,2.3,4.7],{rowH:0.42});
 s.addText("El rango de cada tipología ya incorpora el escalado de +1% por piso sobre la base USD 1.900–2.050/m² — el precio exacto depende del piso, ver `41-...md` para el detalle unidad por unidad. + cochera: USD 15.000 por unidad, sin escalar.",{x:0.6,y:5.35,w:12.1,h:0.4,fontFace:POP,fontSize:9.5,color:GREY,lineSpacing:12});
@@ -163,14 +163,14 @@ footer(s);
 // ============ 11 — PRECIO VS MERCADO ============
 s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Justificación del precio"); title(s,"Precio del proyecto vs. mercado comparable");
-const pvm=[["Monoambiente/1 dorm chico","1.900 – 2.050","1.576 – 1.809","ABOVE MARKET"],["2 dormitorios","1.900 – 2.050","1.580 – 1.851","ABOVE MARKET"],["3 dormitorios","1.900 – 2.050","1.850 – 2.212 (Filum)","MARKET"]];
+const pvm=[["Monoambiente/1 dorm chico","1.900 – 2.050","1.576 – 1.809","SOBRE MERCADO"],["2 dormitorios","1.900 – 2.050","1.580 – 1.851","SOBRE MERCADO"],["3 dormitorios","1.900 – 2.050","1.850 – 2.212 (Filum)","EN MERCADO"]];
 table(s,["Tipología","Precio proyecto USD/m²","Mercado (comparables reales)","Posición"],pvm,0.6,1.95,12.1,[3.6,3.0,3.5,2.0],{rowH:0.48});
-s.addText("El precio objetivo está por encima del rango de los 7 comparables de Century 21 (calidad estándar) y en línea con Filum Herrera (comparable directo del mismo barrio, mejores terminaciones). La diferenciación de producto (calidad USD 720/m² vs. 650/m² del rango bajo) fue evaluada cuantitativamente y sostiene el precio premium — ver sección 19.",{x:0.6,y:3.15,w:12.1,h:1.2,fontFace:POP,fontSize:12,color:PETROLEO,lineSpacing:18});
+s.addText("El precio objetivo está por encima del rango de los 7 comparables de Century 21 (calidad estándar) y en línea con Filum Herrera (comparable directo del mismo barrio, mejores terminaciones). La diferenciación de producto (calidad USD 720/m² vs. 650/m² del rango bajo) fue evaluada cuantitativamente y sostiene el precio premium — ver sección 19.",{x:0.6,y:4.05,w:12.1,h:1.2,fontFace:POP,fontSize:12,color:PETROLEO,lineSpacing:18});
 footer(s);
 
 // ============ 12 — COMPARABLES REALES ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Market comparables"); title(s,"7 comparables reales + el comparable directo del barrio");
+eyebrow(s,"Comparables de mercado"); title(s,"7 comparables reales + el comparable directo del barrio");
 const comp=[["Inarco Herrera","Barrio Herrera","1 dorm, 44 m²","USD 69.800","USD 1.586"],["Filum Herrera","Barrio Herrera","1 dorm, 38 m²","USD 70.300","USD 1.850"],["Sunset Santa Teresa","Ycuá Satí","1 dorm, 45,2 m²","USD 73.689","USD 1.631"],["Ayre Santa Teresa","Ycuá Satí","Mono, 35,6 m²","USD 64.404","USD 1.809"],["Marina 11","Ycuá Satí","2 dorm, 72,8 m²","USD 115.000","USD 1.580"],["Livit Santa Teresa","Ycuá Satí","1 dorm, 43,8 m²","USD 79.200","USD 1.807"],["Ventura Ycuá Satí","Ycuá Satí","1 dorm, 49,5 m²","USD 83.062","USD 1.677"]];
 table(s,["Proyecto","Zona","Tipología","Precio","USD/m²"],comp,0.6,1.95,12.1,[3.0,2.6,2.7,2.0,1.8],{rowH:0.38,fs:9});
 s.addText("Fuente: listados públicos de Century 21, relevados 2026-08-17 (categoría A — dato real con fuente citable). Filum Herrera: flyer comercial real de Century 21 Liberty, mismo barrio.",{x:0.6,y:5.65,w:12.1,h:0.6,fontFace:POP,italic:true,fontSize:9.5,color:GREY,lineSpacing:13});
@@ -178,7 +178,7 @@ footer(s);
 
 // ============ 13 — MARKET SNAPSHOT ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Market snapshot — Herrera"); title(s,"Venta y alquiler, lado a lado");
+eyebrow(s,"Panorama de mercado — Herrera"); title(s,"Venta y alquiler, lado a lado");
 s.addShape(p.ShapeType.rect,{x:0.6,y:1.95,w:5.9,h:4.2,fill:{color:"FFFFFF"},line:{color:LINEA,width:1}});
 s.addText("VENTA",{x:0.9,y:2.15,w:5.3,h:0.4,fontFace:POP,bold:true,fontSize:12,color:TIERRA,charSpacing:2});
 s.addText([
@@ -198,7 +198,7 @@ footer(s);
 
 // ============ 14 — UBICACIÓN ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Ubicación"); title(s,"LOCATION & MARKET MAP");
+eyebrow(s,"Ubicación"); title(s,"UBICACIÓN Y MAPA DE MERCADO");
 s.addImage({path:BR+"04-ubicacion-mapa.png",x:0.6,y:1.9,w:8.0,h:4.9,sizing:{type:"contain",w:8.0,h:4.9}});
 tag(s,"MAPA REAL DEL DESARROLLADOR",0.65,6.35,4.0,"plan");
 const ubic=["Esquina Concejal Vargas y 4 de Julio, Barrio Herrera","A 500 m de Av. Mariscal López","Cercano a Superseis, Biggie, Shopping Mariscal, Paseo La Galería","A pocas cuadras de la Municipalidad de Asunción","Lindante con Barrio Villa Morra y San Cristóbal"];
@@ -208,7 +208,7 @@ footer(s);
 
 // ============ 15 — FORMA DE PAGO ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Payment structure"); title(s,"Cómo se puede comprar");
+eyebrow(s,"Forma de pago"); title(s,"Cómo se puede comprar");
 const fp=[["Norma estándar Meridiano","20% anticipo (firma boleto)","70% cuotas mensuales decrecientes durante obra","10% contra la entrega física"],["Variante de plazo corto (este proyecto)","40% anticipo","50% cuotas durante obra","10% contra la entrega física"]];
 fp.forEach((f,i)=>{const x=0.6+i*6.15;
   s.addShape(p.ShapeType.rect,{x,y:2.0,w:5.9,h:3.5,fill:{color:"FFFFFF"},line:{color:LINEA,width:1}});
@@ -269,7 +269,7 @@ footer(s);
 
 // ============ 20 — RIESGOS ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Key risks"); title(s,"Lo que todo inversor debe saber");
+eyebrow(s,"Riesgos clave"); title(s,"Lo que todo inversor debe saber");
 const riesgos=[
   ["Estructural","🔴","Opinión profesional pendiente sobre si la estructura soporta el piso adicional del Ángulo 2, sin refuerzo mayor."],
   ["Mercado","🟡","La plusvalía de zona a 2 años (20%/año) es un dato del founder, no una tasación de tercero."],
@@ -282,7 +282,7 @@ footer(s);
 
 // ============ 21 — DUE DILIGENCE + TESIS ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Due diligence & investment thesis"); title(s,"Qué está confirmado, y por qué conviene");
+eyebrow(s,"Due diligence y tesis de inversión"); title(s,"Qué está confirmado, y por qué conviene");
 const dd=[["Identidad del vendedor","VERIFICADO"],["Título, gravámenes y embargos","VERIFICADO"],["Base del IVA del desarrollador","VERIFICADO"],["Política de precios vs. comparables","VERIFICADO"],["Opinión estructural (piso adicional)","CRÍTICO ANTES DE INVERTIR"]];
 table(s,["Ítem","Estado"],dd,0.6,1.95,5.6,[3.6,2.0],{rowH:0.42,fs:10});
 const tesis=["Estructura ya construida al 73,5% — menos riesgo y tiempo que empezar de cero","Precio de entrada validado contra múltiples referencias independientes de mercado","Margen positivo en los 3 diseños, en todo el rango de precio analizado","Demanda y plusvalía reales de la zona, confirmadas con datos de mercado","Déficit de caja detectado con solución concreta ya modelada"].map((t,j)=>({text:t,options:{bullet:{indent:14},breakLine:j<4,paraSpaceAfter:9}}));

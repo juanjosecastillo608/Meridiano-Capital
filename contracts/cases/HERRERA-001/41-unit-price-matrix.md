@@ -75,4 +75,4 @@ Esta matriz cubre **exclusivamente el Ángulo 1** (diseño original de 21 unidad
 
 ## 5. Qué falta para Ángulo 2/3
 
-Sin plano ni planilla real, no es posible construir esta misma matriz para Ángulo 2 (39 unidades ilustrativas) ni Ángulo 3 (29 unidades ilustrativas) — los números de esos dos diseños siguen siendo agregados (Inversión Total, margen, ROI), no desagregados por unidad. Ver `34-...md` §3 para esos totales. Ver `44-...md` para las referencias de diseño reales (Edificio Qubo, Tambo Nea Arquitectura) que sí existen para estas tipologías, aunque todavía sin plano propio de Herrera.
+Sin plano ni planilla real, no es posible construir esta misma matriz para Ángulo 2 (39 unidades ilustrativas) ni Ángulo 3 (29 unidades ilustrativas) — los números de esos dos diseños siguen siendo agregados (Inversión Total, margen, ROI), no desagregados por unidad. Ver `34-...md` §3 para esos totales. Ver `44-...md` para las referencias de diseño reales (Edificio Qubo, Tambone Arquitectura) que sí existen para estas tipologías, aunque todavía sin plano propio de Herrera.
