@@ -32,6 +32,19 @@ Dominio: INVESTMENT (caso HERRERA-001)
 
 **No es un comparable de precio directo** — Villa Morra es una zona de mayor plusvalía histórica que Herrera pero con un formato de producto distinto ("Aparta Office", unidades chicas con coworking incluido, no residencial puro). Se incorpora acá por ser diseñado por **Tambone Arquitectura**, el estudio propuesto por Meridiano para el rediseño de fachada y las tipologías chicas de Ángulo 2/3 de `HERRERA-001` — ver `44-...md` §3.1-3.2 para el detalle completo (fachada, tipologías amobladas, mobiliario de referencia). 8 niveles (fuente: brochure real del proyecto, no del listado); entrega diciembre 2026 (Coldwell Banker); amenities aire acondicionado individual, seguridad 24 h, piscina, solarium, SUM, parrilla, pet-friendly; gastos comunes ~USD 63/mes.
 
+## 1.2 Cuatro comparables nuevos, 2026-08-18 — el AMC parametrizado
+
+**Invicta Herrera** (Concejal Vargas, misma calle del predio), **Pampidos** (terminado, primer dato de esa etapa) y **Forvm Herrera** (Concejal Vargas) — detalle completo, ajuste AMC y fuentes en `45-amc-terreno-y-nuevos-comparables-herrera.md` §1-2. Resumen:
+
+| Proyecto | Tipología | m² | USD/m² | Etapa |
+|---|---|---|---|---|
+| Invicta Herrera | 1 dormitorio | 44,0 | 1.818 | En pozo |
+| Invicta Herrera | 2 dormitorios | 72,5 (incl. cochera) | 1.569 | En pozo |
+| Pampidos | 2 dormitorios | 86,0 (incl. cochera) | 1.488 | **Terminado** |
+| Forvm Herrera | 3 dormitorios | 172,8 propia / 140 unidad | 1.330 / 1.641 | En pozo |
+
+Con estos 4, el caso pasa de 2 a **9 comparables reales dentro del propio Barrio Herrera**. El AMC ajustado (Paso 3 de `amc-analisis-comparativo-de-mercado.md`) sobre el subconjunto de 2 dormitorios da **~USD 1.509/m² ajustado, sin cochera** — confirma, con muestra mayor, el hallazgo ya registrado en `38-...md`: la política de Herrera Town (1.900–2.050/m²) sigue premium frente al mercado del barrio, decisión ya tomada y sostenida con datos.
+
 ## 2. Filum Herrera — el comparable directo, con material real recibido
 
 El founder aportó el flyer comercial real de Century 21 Liberty para Filum Herrera (2026-08-17) — mismo barrio que HERRERA-001. Datos adicionales del flyer, no disponibles antes:
@@ -48,7 +61,7 @@ El founder aportó el flyer comercial real de Century 21 Liberty para Filum Herr
 |---|---|---|
 | Nivel 1 | Datos oficiales / documentación primaria | — (no aplica a comparables de mercado) |
 | Nivel 2 | Fuentes profesionales especializadas | — |
-| **Nivel 3** | **Portales inmobiliarios / flyers comerciales de inmobiliarias** | **Los 11 comparables de este documento** |
+| **Nivel 3** | **Portales inmobiliarios / flyers comerciales de inmobiliarias** | **Los 15 comparables de departamento de este documento** |
 | Nivel 4 | Publicaciones/comparables secundarios | — |
 | Nivel 5 | Estimaciones | — |
 
@@ -57,3 +70,7 @@ Ningún comparable de este documento es Nivel 1 o 2 — son datos de mercado obs
 ## 4. Comparable Score — criterio de comparabilidad aplicado
 
 Todos los comparables listados cumplen: mismo barrio o barrio inmediatamente adyacente (Ycuá Satí, lindante con Herrera), venta en pozo/preventa (misma etapa que HERRERA-001), tipologías de 1-2 dormitorios (rango dominante del mix del proyecto). **Ventura Ycuá Satí (unidad de 113 m², USD 2.212/m², no incluida en la tabla) se excluyó explícitamente** por ser un 3 dormitorios de piso alto — outlier de tipología premium dentro de su propio proyecto, no representativo del piso de la zona.
+
+## 5. Valor de terreno — nuevo, 2026-08-18
+
+El caso no tenía hasta ahora ningún comparable de **terreno** (solo de unidades construidas/en pozo). `45-amc-terreno-y-nuevos-comparables-herrera.md` §3-4 incorpora el primer AMC real de terreno de Barrio Herrera (ARKA Desarrollos Inmobiliarios, 5 comparables reales, promedio USD 380/m²) y detecta una **discrepancia material sin resolver**: el valor de terreno implícito en el precio de compra de HERRERA-001 (~USD 767,6/m², sobre los USD 360.000/469 m² del Memorándum) es aproximadamente el doble del rango de mercado real observado. Ver ese documento para el detalle completo — no se repite acá para no duplicar cifras que puedan desactualizarse de forma independiente.

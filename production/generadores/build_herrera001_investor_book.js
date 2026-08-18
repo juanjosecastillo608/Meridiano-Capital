@@ -165,7 +165,7 @@ s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Justificación del precio"); title(s,"Precio del proyecto vs. mercado comparable");
 const pvm=[["Monoambiente/1 dorm chico","1.900 – 2.050","1.576 – 1.809","SOBRE MERCADO"],["2 dormitorios","1.900 – 2.050","1.580 – 1.851","SOBRE MERCADO"],["3 dormitorios","1.900 – 2.050","1.850 – 2.212 (Filum)","EN MERCADO"]];
 table(s,["Tipología","Precio proyecto USD/m²","Mercado (comparables reales)","Posición"],pvm,0.6,1.95,12.1,[3.6,3.0,3.5,2.0],{rowH:0.48});
-s.addText("El precio objetivo está por encima del rango de los 7 comparables de Century 21 (calidad estándar) y en línea con Filum Herrera (comparable directo del mismo barrio, mejores terminaciones). La diferenciación de producto (calidad USD 720/m² vs. 650/m² del rango bajo) fue evaluada cuantitativamente y sostiene el precio premium — ver sección 19.",{x:0.6,y:4.05,w:12.1,h:1.2,fontFace:POP,fontSize:12,color:PETROLEO,lineSpacing:18});
+s.addText("El precio objetivo está por encima del rango de mercado y en línea con Filum Herrera (comparable directo del mismo barrio, mejores terminaciones). AMC parametrizado (2026-08-18, 9 comparables reales del propio barrio): promedio ajustado ~USD 1.509/m² para 2 dormitorios — confirma el hallazgo con muestra 4,5x mayor. La diferenciación de producto (calidad USD 720/m² vs. 650/m² del rango bajo) fue evaluada cuantitativamente y sostiene el precio premium — ver sección 19.",{x:0.6,y:4.05,w:12.1,h:1.3,fontFace:POP,fontSize:11.5,color:PETROLEO,lineSpacing:17});
 footer(s);
 
 // ============ 12 — COMPARABLES REALES ============
@@ -272,12 +272,13 @@ s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Riesgos clave"); title(s,"Lo que todo inversor debe saber");
 const riesgos=[
   ["Estructural","🔴","Opinión profesional pendiente sobre si la estructura soporta el piso adicional del Ángulo 2, sin refuerzo mayor."],
+  ["Terreno","🟡","El valor de terreno implícito en el precio de compra (~USD 768/m²) es ~2x el valor de mercado real de un AMC de terreno del propio barrio (~USD 380/m²) — brecha sin resolver, ver Data Room."],
   ["Mercado","🟡","La plusvalía de zona a 2 años (20%/año) es un dato del founder, no una tasación de tercero."],
   ["Ejecución","🟡","El mix de unidades chicas de Ángulo 2/3 es ilustrativo — falta un arquitecto que confirme que entra en la envolvente aprobada."],
   ["Construcción","🟢","Obra parcialmente construida (73,5%) reduce el riesgo frente a un terreno vacío."],
   ["Financiero","🟢","Márgenes positivos en los 3 diseños, en todo el rango de precio, con IVA del desarrollador ya descontado."],
 ];
-table(s,["Categoría","Estado","Detalle"],riesgos,0.6,1.95,12.1,[2.2,1.1,8.8],{rowH:0.65,fs:10.5});
+table(s,["Categoría","Estado","Detalle"],riesgos,0.6,1.95,12.1,[2.0,1.0,9.1],{rowH:0.56,fs:10});
 footer(s);
 
 // ============ 21 — DUE DILIGENCE + TESIS ============

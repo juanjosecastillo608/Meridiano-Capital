@@ -1,4 +1,4 @@
-Estado: CURRENT — primera versión, 16 registros
+Estado: CURRENT — 20 registros (ampliado 2026-08-18 con 4 comparables reales de RE/MAX y Century 21, incluido el primer dato de la etapa "Terminado")
 Fuente original: founder, 2026-08-17 — comparables Century 21 + Filum Herrera ya relevados en el caso HERRERA-001
 Dominio: INVESTMENT
 
@@ -25,9 +25,11 @@ Tabla cross-cutting nueva, **de venta** (no de alquiler) — complementa `knowle
 |---|---|
 | `data/valor-m2-venta-por-barrio-calidad-etapa.csv` | Fuente de verdad, versionada en git |
 
-## Cobertura actual (2026-08-17)
+## Cobertura actual (2026-08-18)
 
-**16 registros, categoría A** (todos con fuente real citada: 7 comparables de Century 21 + 4 unidades de Filum Herrera + 5 precios "desde" de proyectos de C21) — cubren solo **2 barrios** (Luis A. de Herrera, Ycuá Satí) y **ninguno tiene la calidad constructiva identificada** (los listados comerciales no publican el costo de construcción del desarrollador, solo el precio final) — la columna "Calidad constructiva" queda en "Sin dato específico" en toda la carga inicial. **No se inventó ningún valor de calidad para completar esa columna.**
+**20 registros, categoría A** (todos con fuente real citada: 7 comparables de Century 21 + 4 unidades de Filum Herrera + 5 precios "desde" de proyectos de C21 + 4 nuevos de RE/MAX/Century 21 — Invicta Herrera ×2, Pampidos, Forvm Herrera) — cubren **2 barrios** (Luis A. de Herrera, Ycuá Satí) y **ninguno tiene la calidad constructiva identificada** (los listados comerciales no publican el costo de construcción del desarrollador, solo el precio final) — la columna "Calidad constructiva" queda en "Sin dato específico" en toda la carga. **No se inventó ningún valor de calidad para completar esa columna.**
+
+**Novedad 2026-08-18**: Pampidos aporta el primer dato real de la etapa "Terminado" (a estrenar) del caso — hasta ahora todos los registros eran pozo/en obra. Ver `contracts/cases/HERRERA-001/45-amc-terreno-y-nuevos-comparables-herrera.md` §1 para el análisis completo, incluido el ajuste AMC aplicado.
 
 ## Cómo se sigue completando
 
