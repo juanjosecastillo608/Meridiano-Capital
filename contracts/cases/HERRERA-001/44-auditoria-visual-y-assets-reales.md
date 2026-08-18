@@ -1,5 +1,5 @@
-Estado: CURRENT — auditoría visual completa (§3-4 del prompt maestro "Investor Book + Investment Memorandum Visual"), assets reales confirmados por el founder
-Fuente original: `Town Herrera Brochure VERSION 2.0.pdf` (desarrollador original, compartido 2026-08-12) + 8 imágenes reales aportadas por el founder en el chat, 2026-08-17
+Estado: CURRENT — auditoría visual completa (§3-4 del prompt maestro "Investor Book + Investment Memorandum Visual"), assets reales confirmados por el founder. **Corregido 2026-08-18**: §3 tenía una interpretación equivocada sobre `Proyecto Alternativa Fachada.png`, ver §3 y §6
+Fuente original: `Town Herrera Brochure VERSION 2.0.pdf` (desarrollador original, compartido 2026-08-12) + 8 imágenes reales aportadas por el founder en el chat, 2026-08-17 + `QUBO Brochure ARQUITECTURA.pdf` y listado real de Century 21 Platinum, 2026-08-18
 Dominio: INVESTMENT (caso HERRERA-001) — assets técnicos, no financieros
 
 # Auditoría visual y assets reales — HERRERA-001
@@ -45,9 +45,32 @@ El propio desarrollador etiqueta **cada página de render/plano** con *"Imágene
 
 **Consistencia verificada**: el avance visible en las fotos (estructura de hormigón hasta varios niveles, sin mampostería/terminaciones) es consistente con el dato ya confirmado en el caso — 73,5% de avance en superficie de estructura (`01-informacion-critica-faltante.md`, `03-...md`).
 
-## 3. Imagen descartada del Investor Book — `Proyecto Alternativa Fachada.png`
+## 3. `Proyecto Alternativa Fachada.png` — CORRECCIÓN (2026-08-18)
 
-Render de fachada curva, sin marca ni etiqueta visible, aportado junto con las fotos de obra. **El founder confirmó explícitamente (2026-08-17) que es una referencia de inspiración sin relación directa con el proyecto** — pese a que el nombre del archivo ("Proyecto Alternativa Fachada") coincide con uno de los archivos listados como pendientes en `01-informacion-critica-faltante.md` §"Archivos que siguen sin compartirse". Se deja esta nota por transparencia, pero **se respeta la palabra del founder y no se usa esta imagen en ninguna parte del Investor Book** como representación de Herrera — ni como render del edificio, ni como propuesta de fachada alternativa. Queda guardada en `fotos-obra-2026-08-17/` únicamente como archivo recibido, sin uso.
+**La versión anterior de este documento (2026-08-17) estaba equivocada** — decía que el founder había confirmado que esta imagen era "una referencia de inspiración sin relación directa con el proyecto" y que por eso no se usaba. El founder corrigió esto el 2026-08-18: la imagen **sí tiene relación directa** — es la **sugerencia real de estilo de fachada del estudio Tambo Nea Arquitectura**, el estudio que Meridiano Capital propuso contratar para el rediseño de fachada y el diseño de las nuevas tipologías chicas de `HERRERA-001` (Ángulo 2/3). El nombre del archivo ("Proyecto Alternativa Fachada") sí era una pista correcta, tal como se había anotado en la versión anterior de este documento — la interpretación equivocada fue mía, no del archivo.
+
+**Corrección de categoría y uso**: pasa de "descartada, sin uso" a **categoría G — Visualización nueva/propuesta de diseño**, con la etiqueta explícita "Sugerencia de fachada — estudio Tambo Nea Arquitectura, propuesta para Ángulo 2/3, no es el diseño confirmado de Herrera". Se usa en la sección 9 del Investor Book (Ángulo 2/3) como referencia de estilo, nunca presentada como el render final del edificio.
+
+## 3.1 Tambo Nea Arquitectura — estudio propuesto para el rediseño (nuevo, 2026-08-18)
+
+El founder confirmó que **Tambo Nea Arquitectura** (`tambonearquitectura.wixsite.com/misitio/quienes-somos`) es el estudio propuesto por Meridiano Capital para: (1) el rediseño de fachada de `HERRERA-001`, y (2) el diseño de las nuevas tipologías chicas de Ángulo 2/3 (monoambiente, 1 dormitorio). Este mismo estudio diseñó **Edificio Qubo** ("el primer Aparta Office de Paraguay"), sobre calle Senador Long, Asunción — **ya revisado y con tipologías sugeridas como referencia directa para Herrera**. Ver §3.2.
+
+**Esto no es todavía un plano de Herrera** — es la referencia de diseño del mismo estudio en un proyecto real y comparable (unidades chicas, formato apart-hotel/aparta-office), aportada explícitamente por el founder para ilustrar el estilo y las tipologías, no un plano arquitectónico específico de Herrera. Sigue sin existir un plano propio de Herrera para Ángulo 2/3 — la distinción entre "referencia de diseño de Qubo" y "plano confirmado de Herrera" se mantiene explícita en el Investor Book.
+
+## 3.2 Edificio Qubo — brochure real, tipologías de referencia
+
+Fuente: `QUBO Brochure ARQUITECTURA.pdf` (28 páginas, aportado por el founder 2026-08-18) + listado real de Century 21 Platinum (`century21platinum.com.py/propiedad/departamentos-en-qubo/`, consultado 2026-08-18).
+
+| Página extraída | Contenido real | Categoría §4 | Etiqueta usada en el Investor Book |
+|---|---|---|---|
+| `00-fachada-sugerida-tambonea.png` | Render de fachada curva — sugerencia de Tambo Nea Arquitectura | **G — Visualización nueva/propuesta** | "Sugerencia de fachada — Tambo Nea Arquitectura, propuesta para Ángulo 2/3" |
+| `03-fachada-real-qubo.png` | Fachada real de Edificio Qubo construido, Senador Long, Asunción | **E — Render existente, proyecto de referencia (no es Herrera)** | "Referencia de diseño — Edificio Qubo, mismo estudio de arquitectura, no es Herrera" |
+| `05-lobby-qubo.png` | Render de lobby/amenities de Qubo | **E — Referencia** | Idéntica |
+| `18-tipologia-1-amoblada-qubo.png` | Planta isométrica amoblada, Tipología 1 de Qubo (monoambiente + home office) | **E — Referencia de tipología y mobiliario** | "Referencia de tipología y amoblamiento — Edificio Qubo" |
+| `22-tipologia-2-amoblada-qubo.png` | Planta isométrica amoblada, Tipología 2 de Qubo | **E** | Idéntica |
+| `26-tipologia-3-amoblada-qubo.png` / `28-interior-tipologia3-vista-qubo.png` | Planta isométrica y vista interior renderizada, Tipología 3 de Qubo (con vista a skyline de Asunción) | **E** | Idéntica |
+
+**Dato real de mercado de Qubo, vía Century 21 Platinum (2026-08-18)**: ubicación Senador Long 626 casi Lillo, **Villa Morra** (no Barrio Herrera — zona distinta, ya usada como referencia de plusvalía en el caso); monoambiente/1 dormitorio de 30 m²; precio desde USD 36.664 (~**USD 1.222/m²**); 8 niveles; entrega agosto 2026; financiación 50%+10 cuotas (preventa) o 30%+14 cuotas (lista); amenities lobby, coworking, terraza deck, piscina — formato "Aparta Office", no residencial puro. **Precio significativamente por debajo del rango objetivo de Herrera (USD 1.900–2.050/m²)** — se incorpora como referencia de diseño y de un formato de producto (unidades chicas + coworking), no como comparable de precio directo, dado que Villa Morra y el concepto Aparta Office difieren de la propuesta residencial de Herrera. Se agrega a `42-market-comparables.md` con esta salvedad explícita.
 
 ## 4. Comparable real — flyer de Century 21, `Filum Herrera`
 
@@ -57,5 +80,9 @@ Render de fachada curva, sin marca ni etiqueta visible, aportado junto con las f
 
 - Fotos aéreas/dron del edificio completo.
 - Planos arquitectónicos técnicos completos en formato visualizable (los `.dwg` de `Xr-Plantas.zip` existen pero no hay herramienta disponible para abrirlos — solo se pudo usar el plano simplificado del brochure).
-- Cualquier render o foto de las unidades chicas (monoambiente/1 dormitorio) que Ángulo 2/3 proponen — no se inventó ninguna.
+- **Un plano o render propio de Herrera para las unidades chicas de Ángulo 2/3** — lo que sí existe ahora (2026-08-18) es la referencia de diseño de Edificio Qubo del mismo estudio propuesto (Tambo Nea Arquitectura, §3.1-3.2), pero no es un plano específico de Herrera. Se mantiene la distinción explícita en el Investor Book.
 - Fotos de interior de unidades terminadas (no existen, el edificio no está terminado).
+
+## 6. Corrección registrada — nota de proceso
+
+La versión 2026-08-17 de este documento contenía un error de interpretación (§3) sobre la imagen de fachada, corregido acá mismo el 2026-08-18 a pedido directo del founder. Se deja visible la corrección en vez de reescribir la sección como si el error no hubiera ocurrido — mismo criterio de trazabilidad que ya se aplica en el resto del caso (`16-...md`, `21-...md`, ambos "reemplazados, se conservan por trazabilidad").

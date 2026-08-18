@@ -13,6 +13,7 @@ const W=13.333, H=7.5, ISO="isotipo.png", ISO_INV="isotipo_inverso.png";
 const AH = __dirname + "/assets-herrera001";
 const BR = AH + "/brochure/";
 const FO = AH + "/fotos-obra/";
+const QB = AH + "/qubo-referencia/";
 
 let n = 0;
 function footer(s,dark){n++;const col=dark?"9DA8AC":GREY;
@@ -138,14 +139,25 @@ props.forEach((a,i)=>{const x=0.6+i*6.15; const rec=i===1;
   s.addText(a[3],{x:x+0.35,y:4.55,w:5.3,h:1.8,fontFace:POP,fontSize:11,color:rec?"C7CFD2":GREY,lineSpacing:15});});
 footer(s);
 
+// ============ 9B — REFERENCIAS DE DISEÑO (TAMBO NEA / QUBO) ============
+s=p.addSlide(); s.background={color:CREMA};
+eyebrow(s,"Referencias de diseño — Ángulo 2/3"); title(s,"Tambo Nea Arquitectura — estudio propuesto para el rediseño");
+s.addText("Estudio propuesto por Meridiano para la fachada y las tipologías chicas de Ángulo 2/3 — diseñó Edificio Qubo (Senador Long, Asunción), ya revisado como referencia directa de tipología y amoblamiento. Ningún plano de estas imágenes es de Herrera todavía.",{x:0.6,y:1.85,w:12.1,h:0.6,fontFace:POP,fontSize:11.5,color:PETROLEO,lineSpacing:16});
+const qimgs=[[QB+"00-fachada-sugerida-tambonea.png","SUGERENCIA DE FACHADA — TAMBO NEA ARQUITECTURA","render"],[QB+"18-tipologia-1-amoblada-qubo.png","REFERENCIA DE TIPOLOGÍA — EDIFICIO QUBO, NO ES HERRERA","render"],[QB+"26-tipologia-3-amoblada-qubo.png","REFERENCIA DE AMOBLAMIENTO — EDIFICIO QUBO, NO ES HERRERA","render"]];
+qimgs.forEach((qi,i)=>{const x=0.6+i*4.05;
+  s.addImage({path:qi[0],x,y:2.55,w:3.85,h:3.55,sizing:{type:"cover",w:3.85,h:3.55}});
+  tag(s,qi[1],x+0.08,2.55+3.55-0.45,3.69,qi[2]);});
+s.addText("Edificio Qubo — Villa Morra, desde USD 1.222/m² (Century 21 Platinum, 2026-08-18). Formato \"Aparta Office\" con coworking; no es un comparable de precio directo para Herrera, ver `42-market-comparables.md` §1.1.",{x:0.6,y:6.3,w:12.1,h:0.4,fontFace:POP,italic:true,fontSize:9.5,color:GREY});
+footer(s);
+
 // ============ 10 — MATRIZ DE UNIDADES (Ángulo 1) ============
 s=p.addSlide(); s.background={color:CREMA};
-eyebrow(s,"Matriz de unidades — Ángulo 1"); title(s,"UNIT PRICE MATRIX — precio por tipología");
-const upm=[["A","6","77,1 m²","USD 146.490 – 158.055","USD 1.900 – 2.050"],["B","6","95,8 m²","USD 182.020 – 196.390","USD 1.900 – 2.050"],["C","3","54,5 m²","USD 103.550 – 111.725","USD 1.900 – 2.050"],["D","3","77,2 m²","USD 146.680 – 158.260","USD 1.900 – 2.050"],["E1","1","132,3 m²","USD 251.370 – 271.215","USD 1.900 – 2.050"],["E2","2","124,4 m²","USD 236.360 – 255.020","USD 1.900 – 2.050"]];
-table(s,["Tipología","Unidades","Área propia","Precio de venta (rango)","Precio/m²"],upm,0.6,1.95,12.1,[1.6,1.5,2.0,4.0,3.0],{rowH:0.42});
-s.addText("+ cochera: USD 15.000 por unidad (21 cocheras) — validado contra comparables reales (rango de mercado USD 12.000–15.000).",{x:0.6,y:5.35,w:12.1,h:0.3,fontFace:POP,fontSize:10,color:GREY});
-s.addShape(p.ShapeType.rect,{x:0.6,y:5.75,w:12.1,h:0.95,fill:{color:AMBAR_F},line:{color:AMBAR,width:1}});
-s.addText([{text:"Nota de consistencia (§41): ",options:{bold:true}},{text:"esta matriz, calculada unidad por unidad a partir de la planilla real del desarrollador, da un ingreso total de USD 3.760.840 – 4.032.880 (sin contar cocheras aparte). El modelo financiero del caso usa USD 3.567.637 – 4.218.165 para el mismo Ángulo 1 (cálculo top-down sobre el área total). La diferencia (±5%) no se resolvió — puede deberse a una diferenciación de precio por piso no modelada acá. Ver `contracts/cases/HERRERA-001/41-unit-price-matrix.md`."}],{x:0.85,y:5.8,w:11.6,h:0.85,fontFace:POP,fontSize:9,color:AMBAR,lineSpacing:12,valign:"middle"});
+eyebrow(s,"Matriz de unidades — Ángulo 1"); title(s,"UNIT PRICE MATRIX — precio por tipología, +1%/piso");
+const upm=[["A","6","77,1 m²","Pisos 1-6","USD 146.490 – 165.958"],["B","6","95,8 m²","Pisos 1-6","USD 182.020 – 206.210"],["C","3","54,5 m²","Pisos 1-3","USD 103.550 – 113.960"],["D","3","77,2 m²","Pisos 1-3","USD 146.680 – 161.425"],["E1","1","132,3 m²","Piso 4","USD 258.911 – 279.351"],["E2","2","124,4 m²","Pisos 5-6","USD 245.814 – 267.771"]];
+table(s,["Tipología","Unidades","Área propia","Distribución","Precio de venta (rango)"],upm,0.6,1.95,12.1,[1.6,1.5,2.0,2.3,4.7],{rowH:0.42});
+s.addText("El rango de cada tipología ya incorpora el escalado de +1% por piso sobre la base USD 1.900–2.050/m² — el precio exacto depende del piso, ver `41-...md` para el detalle unidad por unidad. + cochera: USD 15.000 por unidad, sin escalar.",{x:0.6,y:5.35,w:12.1,h:0.4,fontFace:POP,fontSize:9.5,color:GREY,lineSpacing:12});
+s.addShape(p.ShapeType.rect,{x:0.6,y:5.8,w:12.1,h:0.9,fill:{color:AMBAR_F},line:{color:AMBAR,width:1}});
+s.addText([{text:"Nota de consistencia (§41), actualizada: ",options:{bold:true}},{text:"con el escalado de +1%/piso confirmado por el founder, el extremo bajo de esta matriz (sin cochera) casi coincide con el memorándum (±1,0%, antes ±3,4%); el extremo alto (con cochera) también mejora (±2,2%, antes ±4,4%) — pero ninguna combinación cierra ambos extremos a la vez. Detalle completo y brecha sin resolver en `41-unit-price-matrix.md` §3."}],{x:0.85,y:5.85,w:11.6,h:0.8,fontFace:POP,fontSize:9,color:AMBAR,lineSpacing:12,valign:"middle"});
 footer(s);
 
 // ============ 11 — PRECIO VS MERCADO ============

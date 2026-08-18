@@ -22,6 +22,14 @@ Dominio: INVESTMENT (caso HERRERA-001)
 
 **Rango real de mercado (excluyendo outliers de piso alto/tipología premium): USD 1.576 – 2.025/m²** — el proyecto HERRERA-001 apunta a USD 1.900–2.050/m², en el extremo superior de este rango, justificado por diferenciación de calidad (USD 720/m² de costo vs. el estándar del mercado).
 
+## 1.1 Edificio Qubo — referencia de diseño, no de precio directo (nuevo, 2026-08-18)
+
+| Proyecto | Zona | Tipología | m² | Precio desde | USD/m² | Nivel de fuente |
+|---|---|---|---|---|---|---|
+| Qubo | **Villa Morra** (Senador Long 626 casi Lillo) | Monoambiente/1 dormitorio | 30,0 | USD 36.664 | **1.222** | Nivel 3 — listado real, Century 21 Platinum |
+
+**No es un comparable de precio directo** — Villa Morra es una zona de mayor plusvalía histórica que Herrera pero con un formato de producto distinto ("Aparta Office", unidades chicas con coworking incluido, no residencial puro), lo que explica el precio/m² más bajo pese a la zona premium. Se incorpora acá por ser diseñado por **Tambo Nea Arquitectura**, el estudio propuesto por Meridiano para el rediseño de fachada y las tipologías chicas de Ángulo 2/3 de `HERRERA-001` — ver `44-...md` §3.1-3.2 para el detalle completo (fachada, tipologías amobladas, mobiliario de referencia). 8 niveles, entrega agosto 2026, financiación 50%+10 cuotas (preventa) o 30%+14 cuotas (lista).
+
 ## 2. Filum Herrera — el comparable directo, con material real recibido
 
 El founder aportó el flyer comercial real de Century 21 Liberty para Filum Herrera (2026-08-17) — mismo barrio que HERRERA-001. Datos adicionales del flyer, no disponibles antes:
