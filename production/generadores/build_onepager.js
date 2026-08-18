@@ -50,7 +50,7 @@ modelos.forEach((m,i)=>{
 s.addShape(p.ShapeType.rect,{x:0.6,y:9.95,w:7.07,h:1.05,fill:{color:TIERRA}});
 s.addText("Agendá una llamada de 15 minutos",{x:0.8,y:10.12,w:3.6,h:0.7,fontFace:LORA,bold:false,fontSize:17,color:CREMA,valign:"middle",lineSpacing:20});
 s.addText([
-  {text:"+595 982 853 111\n",options:{bold:true}},
+  {text:"+595 982 853 111\n",options:{}},
   {text:"juancastillo@meridianocapital.net",options:{}},
 ],{x:4.6,y:10.1,w:3.0,h:0.75,fontFace:POP,fontSize:11,color:CREMA,align:"right",valign:"middle",lineSpacing:16});
 

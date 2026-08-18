@@ -110,7 +110,7 @@ footer(s,8);
 // 9 — RIESGOS
 s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Consideraciones de riesgo"); title(s,"Lo que todo inversor debe saber");
-const ri=["El proyecto ya está en negociación condicionada a un único punto pendiente: la opinión estructural profesional sobre si el edificio soporta el piso adicional sin refuerzo mayor.","La identidad del vendedor y el título de la propiedad ya fueron verificados y están en orden.","Un análisis de mercado de terreno (AMC de un tercero) sugiere un valor de terreno menor al asignado dentro del precio de compra — no cambia el precio total ni el margen del proyecto; se recomienda una tasación formal antes del cierre.","Toda inversión en desarrollo está sujeta a riesgos de demora de obra y variación de costos de construcción.","Las condiciones de mercado al momento de vender o alquilar pueden diferir de las proyectadas en este documento.","Las cifras de retorno presentadas son ilustrativas y no constituyen garantía de rentabilidad — se recomienda evaluar la oportunidad con asesoría propia."].map((t,j)=>({text:t,options:{bullet:{indent:18},breakLine:j<5,paraSpaceAfter:12}}));
+const ri=["El proyecto ya está en negociación condicionada a un único punto pendiente: la opinión estructural profesional sobre si el edificio soporta el piso adicional sin refuerzo mayor.","La identidad del vendedor y el título de la propiedad ya fueron verificados y están en orden.","Un análisis de mercado de terreno (AMC de un tercero) sugería un valor de terreno vacío menor al asignado dentro del precio de compra — la diferencia se explica por el valor de una construcción preexistente en el lote más su demolición (no hay lotes vacíos en la zona); no cambia el precio total ni el margen del proyecto.","Toda inversión en desarrollo está sujeta a riesgos de demora de obra y variación de costos de construcción.","Las condiciones de mercado al momento de vender o alquilar pueden diferir de las proyectadas en este documento.","Las cifras de retorno presentadas son ilustrativas y no constituyen garantía de rentabilidad — se recomienda evaluar la oportunidad con asesoría propia."].map((t,j)=>({text:t,options:{bullet:{indent:18},breakLine:j<5,paraSpaceAfter:12}}));
 s.addText(ri,{x:0.7,y:2.2,w:11.9,h:4,fontFace:POP,fontSize:14,color:PETROLEO,lineSpacing:20});
 footer(s,9);
 
@@ -121,7 +121,7 @@ s.addText("MERIDIANO CAPITAL",{x:1.28,y:0.62,w:8,h:0.5,fontFace:LORA,bold:false,
 s.addText("Sumate al desarrollo del\nEdificio Barrio Herrera",{x:0.6,y:2.3,w:11,h:1.9,fontFace:LORA,bold:false,fontSize:38,color:CREMA,lineSpacing:44});
 s.addText("Juan José Castillo",{x:0.6,y:4.7,w:11,h:0.5,fontFace:LORA,bold:false,fontSize:20,color:CREMA});
 s.addText("Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay",{x:0.6,y:5.2,w:11,h:0.4,fontFace:POP,fontSize:13,color:"F0DDD5"});
-s.addText([{text:"+595 982 853 111",options:{bold:true}},{text:"     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net"}],{x:0.6,y:5.75,w:12,h:0.4,fontFace:POP,fontSize:13,color:CREMA});
+s.addText("+595 982 853 111     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net",{x:0.6,y:5.75,w:12,h:0.4,fontFace:POP,fontSize:13,color:CREMA});
 s.addText("Documento preliminar y no vinculante. Sujeto a confirmación de la opinión estructural pendiente y a los términos finales del boleto de compraventa.",{x:0.6,y:6.7,w:12,h:0.5,fontFace:POP,fontSize:9.5,color:"F0DDD5",italic:true});
 
 const outDir = __dirname + "/../../contracts/cases/HERRERA-001/entregables";

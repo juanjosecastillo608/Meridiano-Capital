@@ -1,4 +1,4 @@
-Estado: CURRENT — AMC parametrizado (P-007 activada, D-077), 4 comparables reales nuevos de departamento (2 en el mismo barrio, 2 en la misma calle que el predio), primer AMC real de terreno de un tercero (ARKA Desarrollos Inmobiliarios), y precio de terreno sugerido (§4.1, D-078, 2026-08-18)
+Estado: CURRENT — AMC parametrizado (P-007 activada, D-077), 4 comparables reales nuevos de departamento (2 en el mismo barrio, 2 en la misma calle que el predio), primer AMC real de terreno de un tercero (ARKA Desarrollos Inmobiliarios), precio de terreno sugerido (§4.1, D-078) y explicación del founder que cierra la brecha aplicando D-071 (§4.2, riesgo 🟢, 2026-08-18)
 Fuente: 4 listados reales (RE/MAX ×3, Century 21 ×1) aportados por el founder 2026-08-18 + `AMC_Dossier_Herrera.pdf` (ARKA Desarrollos Inmobiliarios, abril 2026, aportado por el founder 2026-08-18) + metodología `knowledge-base/investment/methodologies/amc-analisis-comparativo-de-mercado.md`
 Dominio: INVESTMENT (caso HERRERA-001)
 
@@ -114,6 +114,18 @@ Esto es **USD 155.000–181.000 menos** que los USD 360.000 que el trato le asig
 1. **Usar USD 178.500–203.500 como referencia de terreno** en cualquier desglose interno o negociación futura, en vez de los USD 360.000 sin respaldo de mercado — esto es lo que se pidió parametrizar.
 2. **Si se busca precisión real** (para negociar una reducción del precio total, para fines contables, o para una futura tasación), el paso siguiente es una **tasación profesional formal del terreno específico** — ninguna de las cuatro estimaciones de esta tabla lo es.
 3. **No se recalculan Inversión Total, márgenes ni ROI del Memorándum con este ajuste** — el precio de compra real (USD 850.000) es el dato que efectivamente entra en `Inversión Total` en todos los Ángulos; reasignar su desglose interno terreno/estructura no cambia ese número. El IVA del desarrollador tampoco se ve afectado — su base es el costo de construcción (`36-...md` §2), no el precio de adquisición ni su desglose.
+
+## 4.2 Explicación del founder — la brecha queda explicada, aplicando una regla ya vigente del caso (D-071)
+
+*"Con el precio del Terreno estimado por AMC de USD 191.000, si le asignamos al terreno un valor de USD 360.000 ese sería el precio considerando que ya en la zona no existen terrenos libres, por lo cual tenemos que considerar un valor de una casa en esa zona que además hay que demoler. Esa diferencia de USD 170.000 se la damos como equivalente de terreno+casa+costos de demolición."*
+
+**Esto cierra la Lectura 2 de §4.1** (la que cuestionaba si el total de USD 850.000 se sostenía) aplicando exactamente la regla que el propio caso ya había establecido como cross-cutting en `30-...md` (D-071): *"cuando no hay terrenos sin edificación disponibles (...) el costo total del terreno es el costo de la compra de la casa + la demolición y limpieza."* El AMC de ARKA mide terreno **vacío equivalente** (USD 191.000); el trato paga **terreno + lo que había construido antes + demolición** (USD 360.000) — la diferencia de ~USD 169.000-170.000 es, según el founder, el valor de esa casa preexistente más su demolición, no una sobrevaloración del suelo en sí.
+
+**Precisión sobre qué queda como definitivo y qué como explicación no verificada de forma independiente**:
+- ✅ **Categoría A** — el criterio de valuación en sí (terreno sin lotes vacantes = casa a demoler + demolición) ya es una regla vigente del sistema desde D-071, confirmada por el founder ese mismo día.
+- 🟡 **Explicación del founder, no una transacción verificada** — no hay un registro de compra independiente de "cuánto pagó el desarrollador original por la casa que había en este lote, más su demolición" que confirme que ese componente vale exactamente ~USD 169.000-170.000 y no otra cifra. Es la interpretación razonada y autorizada del founder sobre el desglose del trato, tratada con la misma confianza que el resto de las decisiones de negocio del caso — pero **sigue siendo distinto de una tasación o un comprobante de esa compra histórica específica**.
+
+**Con esto, el riesgo de terreno pasa de 🟡 (brecha sin resolver) a 🟢 (explicado, aplicando regla ya vigente del sistema)** — se actualiza así en el Memorándum, Investor Book y Presentación para Inversores. La recomendación de una tasación formal (§4.1, punto 2) se mantiene como buena práctica antes del cierre, pero deja de ser una alerta activa.
 
 ## 5. Qué se actualiza en el sistema con este documento
 

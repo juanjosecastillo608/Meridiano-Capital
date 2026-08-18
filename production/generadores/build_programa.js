@@ -158,6 +158,6 @@ s.addText("Comencemos su ingreso\nal mercado paraguayo",{x:0.6,y:2.3,w:11,h:1.9,
 s.addText("Le acompañamos en cada paso: constitución societaria, apertura de cuenta, ingreso de capital y radicación migratoria.",{x:0.6,y:4.3,w:9,h:0.8,fontFace:POP,fontSize:14,color:"F0DDD5",lineSpacing:21});
 s.addText("Juan José Castillo",{x:0.6,y:5.35,w:11,h:0.5,fontFace:LORA,bold:false,fontSize:20,color:CREMA});
 s.addText("Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay",{x:0.6,y:5.83,w:11,h:0.4,fontFace:POP,fontSize:13,color:"F0DDD5"});
-s.addText([{text:"+595 982 853 111",options:{bold:true}},{text:"     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net"}],{x:0.6,y:6.4,w:12,h:0.4,fontFace:POP,fontSize:13,color:CREMA});
+s.addText("+595 982 853 111     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net",{x:0.6,y:6.4,w:12,h:0.4,fontFace:POP,fontSize:13,color:CREMA});
 
 p.writeFile({fileName:"Meridiano_Programa_Ingreso.pptx"}).then(f=>console.log("OK:",f));

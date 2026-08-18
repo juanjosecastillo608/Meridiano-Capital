@@ -49,8 +49,8 @@ s.addText("NEGOCIAR / CONDICIONAR",{x:0.62,y:6.25,w:3.1,h:0.5,fontFace:POP,bold:
 s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Resumen ejecutivo"); title(s,"La oportunidad en una página");
 const es=[["Precio de adquisición","USD 850.000"],["Inversión Total (Ángulo 2, recomendado)","USD 3.185.640"],["Superficie comercializable","1.800 – 2.100 m² según diseño"],["Unidades","21 (tal cual) a 39 (con piso adicional, ilustrativo)"],["Precio de venta objetivo","USD 1.900 – 2.050 / m²"],["Ingresos potenciales (Ángulo 2)","USD 4.424.700 – 4.749.150"],["Margen final, neto de comisión e IVA","USD 784.541 – 1.091.147"],["ROI sobre Inversión Total","24,6% – 34,3%"],["Plazo estimado","12 meses de obra + 1 mes de entrega"],["Recomendación","Negociar / condicionar — 1 punto técnico pendiente"]];
-table(s,["Concepto","Valor"],es,0.6,1.9,12.1,[5.5,6.6],{rowH:0.42});
-s.addText("Cifras del Ángulo 2 (recomendado). Ver la sección 17 para los tres Ángulos comparados. Ninguna cifra mostrada carece de respaldo en el modelo financiero del caso.",{x:0.6,y:6.75,w:12,h:0.4,fontFace:POP,italic:true,fontSize:9.5,color:GREY});
+table(s,["Concepto","Valor"],es,0.6,1.85,12.1,[5.5,6.6],{rowH:0.385});
+s.addText("Cifras del Ángulo 2 (recomendado). Ver la sección 17 para los tres Ángulos comparados. Ninguna cifra mostrada carece de respaldo en el modelo financiero del caso.",{x:0.6,y:6.28,w:12,h:0.32,fontFace:POP,italic:true,fontSize:8.5,color:GREY,lineSpacing:11});
 footer(s);
 
 // ============ 3 — LA OPORTUNIDAD ============
@@ -272,7 +272,7 @@ s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Riesgos clave"); title(s,"Lo que todo inversor debe saber");
 const riesgos=[
   ["Estructural","🔴","Opinión profesional pendiente sobre si la estructura soporta el piso adicional del Ángulo 2, sin refuerzo mayor."],
-  ["Terreno","🟡","El valor de terreno implícito en el precio de compra (~USD 768/m²) es ~2x el valor de mercado real de un AMC de terreno del propio barrio (~USD 380/m²) — brecha sin resolver, ver Data Room."],
+  ["Terreno","🟢","Resuelto — el AMC sugería un terreno vacío de ~USD 380/m² (~2x menos que el implícito, ~768/m²); el founder explicó la diferencia como valor de casa preexistente + demolición (regla D-071 ya vigente)."],
   ["Mercado","🟡","La plusvalía de zona a 2 años (20%/año) es un dato del founder, no una tasación de tercero."],
   ["Ejecución","🟡","El mix de unidades chicas de Ángulo 2/3 es ilustrativo — falta un arquitecto que confirme que entra en la envolvente aprobada."],
   ["Construcción","🟢","Obra parcialmente construida (73,5%) reduce el riesgo frente a un terreno vacío."],
@@ -297,7 +297,7 @@ s.addText("MERIDIANO CAPITAL",{x:1.28,y:0.62,w:8,h:0.5,fontFace:LORA,fontSize:16
 s.addText("Sumate al desarrollo del\nEdificio Barrio Herrera",{x:0.6,y:2.3,w:11,h:1.9,fontFace:LORA,fontSize:36,color:CREMA,lineSpacing:42});
 s.addText("Juan José Castillo",{x:0.6,y:4.6,w:11,h:0.5,fontFace:LORA,fontSize:19,color:CREMA});
 s.addText("Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay",{x:0.6,y:5.1,w:11,h:0.4,fontFace:POP,fontSize:12.5,color:"F0DDD5"});
-s.addText([{text:"+595 982 853 111",options:{bold:true}},{text:"     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net"}],{x:0.6,y:5.6,w:12,h:0.4,fontFace:POP,fontSize:12.5,color:CREMA});
+s.addText("+595 982 853 111     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net",{x:0.6,y:5.6,w:12,h:0.4,fontFace:POP,fontSize:12.5,color:CREMA});
 s.addText("Documento preliminar y no vinculante. Contiene visualizaciones y planos preliminares del desarrollador original, sujetos a cambios, e información ilustrativa para los diseños Ángulo 2/3. Sujeto a la opinión estructural pendiente y a los términos finales del boleto de compraventa. Ver el apéndice Data Room (contracts/cases/HERRERA-001/) para el detalle completo y las fuentes.",{x:0.6,y:6.35,w:12.1,h:0.85,fontFace:POP,fontSize:9,color:"F0DDD5",italic:true,lineSpacing:12});
 
 const outDir = __dirname + "/../../contracts/cases/HERRERA-001/entregables";

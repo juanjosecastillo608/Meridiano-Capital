@@ -160,7 +160,7 @@ s.addText("MERIDIANO CAPITAL",{x:1.28,y:0.62,w:8,h:0.5,fontFace:LORA,bold:false,
 s.addText("Coinvertí en el desarrollo\ninmobiliario de Asunción",{x:0.6,y:2.3,w:11,h:1.9,fontFace:LORA,bold:false,fontSize:40,color:CREMA,lineSpacing:44});
 s.addText("Juan José Castillo",{x:0.6,y:4.7,w:11,h:0.5,fontFace:LORA,bold:false,fontSize:20,color:CREMA});
 s.addText("Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay",{x:0.6,y:5.2,w:11,h:0.4,fontFace:POP,fontSize:13,color:"F0DDD5"});
-s.addText([{text:"+595 982 853 111",options:{bold:true}},{text:"     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net"}],{x:0.6,y:5.75,w:12,h:0.4,fontFace:POP,fontSize:13,color:CREMA});
+s.addText("+595 982 853 111     ·     juancastillo@meridianocapital.net     ·     www.meridianocapital.net",{x:0.6,y:5.75,w:12,h:0.4,fontFace:POP,fontSize:13,color:CREMA});
 s.addText("Documento preliminar y no vinculante. Los términos finales quedarán establecidos en el estatuto societario o contrato de fideicomiso definitivo.",{x:0.6,y:6.7,w:12,h:0.5,fontFace:POP,fontSize:9.5,color:"F0DDD5",italic:true});
 
 p.writeFile({fileName:"Meridiano_Deck_Coinversion.pptx"}).then(f=>console.log("OK:",f));
