@@ -52,14 +52,22 @@ Del Memorándum de Inversión (`34-...md`), **dos de los tres bloqueantes 🔴 y
 | `37-comparables-reales-de-venta-en-pozo-century21.md` | 7 comparables reales de venta en pozo (Century 21, incluye un proyecto en Barrio Herrera) |
 | `38-comparacion-politicas-de-precio-650-vs-720.md` | **Nuevo (2026-08-17)**: comparación cuantificada de calidad/precio (USD 650+precio bajo vs. USD 720+precio premium) — la política premium gana en los 4 escenarios probados, confirma la política de precios del caso |
 | `39-tabla-valor-m2-venta-por-barrio-calidad-y-etapa.md` | **Nuevo (2026-08-17)**: nueva tabla cross-cutting de valor de m² de venta (D-073), complementaria a la tabla de alquileres — primera carga con 16 registros reales |
-| `40-test-de-reconstruccion-real-estate-intelligence-os.md` | **Nuevo (2026-08-17)**: Fase 13 del Real Estate Intelligence OS — reconstruye costo de construcción y validación de precio usando solo las Skills/bases nuevas, encuentra y corrige un error de tipeo en `36-...md` (sin impacto en los números finales) |
-| `entregables/HERRERA-001_Memorandum_de_Inversion.docx` / `.pdf` | Versión formal y con formato del Memorándum de Inversión (`34-...md`), lista para compartir con el equipo/socios — generada con `production/generadores/build_herrera001_memorandum.js` |
-| `entregables/HERRERA-001_Presentacion_Inversores.pptx` / `.pdf` | **Nuevo (2026-08-17)**: presentación simplificada para inversores (§25 del prompt maestro) — 10 slides, generada con `production/generadores/build_herrera001_presentacion_inversores.js` |
-| `source-documents/` | Brochure oficial, planos técnicos, y las 5 planillas Excel de referencia (incluye Plan Regulador), sin modificar |
+| `40-test-de-reconstruccion-real-estate-intelligence-os.md` | Fase 13 del Real Estate Intelligence OS — reconstruye costo de construcción y validación de precio usando solo las Skills/bases nuevas, encuentra y corrige un error de tipeo en `36-...md` (sin impacto en los números finales) |
+| `41-unit-price-matrix.md` | **Nuevo (2026-08-18)**: Documento 03 del set "Investor Book" — matriz de las 21 unidades reales del Ángulo 1, precio por unidad según la política vigente, y una discrepancia de ±5% sin resolver contra el cálculo top-down del memorándum, señalada explícitamente en vez de elegida arbitrariamente |
+| `42-market-comparables.md` | **Nuevo (2026-08-18)**: Documento 04 — los 11 comparables reales (Century 21 ×7, Filum Herrera ×4, incluye el flyer real recién recibido), jerarquía de fuentes y criterio de comparabilidad |
+| `43-payment-and-financing-sheet.md` | **Nuevo (2026-08-18)**: Documento 05 — forma de pago del comprador (20/70/10 y variante 40/50/10) separada explícitamente de la estructura de inversión de Meridiano y de la financiación bancaria (no contemplada) |
+| `44-auditoria-visual-y-assets-reales.md` | **Nuevo (2026-08-18)**: auditoría visual completa (brochure real del desarrollador + 6 fotos reales de obra, julio 2026) — clasificación por categoría, trazabilidad de cada imagen usada en el Investor Book, y la imagen descartada por instrucción del founder |
+| `data/unit-price-matrix-angulo-1.csv` | Fuente de verdad de la matriz de unidades del Ángulo 1 (`41-...md`) |
+| `entregables/HERRERA-001_Memorandum_de_Inversion.docx` / `.pdf` | Documento 01 — versión formal del Memorándum de Inversión (`34-...md`) — generada con `production/generadores/build_herrera001_memorandum.js` |
+| `entregables/HERRERA-001_Presentacion_Inversores.pptx` / `.pdf` | Presentación simplificada para inversores (§25 del prompt maestro original) — 10 slides, generada con `production/generadores/build_herrera001_presentacion_inversores.js` |
+| `entregables/HERRERA-001_Investor_Book.pptx` / `.pdf` | **Nuevo (2026-08-18)**: Documento 02 — Investor Book visual completo, 22 páginas, con fotos reales de obra (julio 2026), brochure real del desarrollador, comparables reales y los 3 Ángulos en paralelo cada uno con su nivel real de respaldo visual — generado con `production/generadores/build_herrera001_investor_book.js` |
+| `entregables/HERRERA-001_Investment_Summary.pptx` / `.pdf` / `.png` | **Nuevo (2026-08-18)**: Documento 06 — resumen ejecutivo de una página para WhatsApp/email — generado con `production/generadores/build_herrera001_investment_summary.js` |
+| `source-documents/` | Brochure oficial, planos técnicos, planillas Excel de referencia (incluye Plan Regulador), y `fotos-obra-2026-08-17/` (6 fotos reales aportadas por el founder) — sin modificar |
 
 ## Próximo paso
 
 1. **Resolver el único bloqueante de due diligence que queda**: opinión estructural profesional sobre el piso adicional del Ángulo 2 (`34-...md` §8).
 2. Definir cuál escenario de financiamiento usar (Escenario 1 o Mix) antes del cierre.
 3. Replicar la comparación de escenarios de venta/retención para Ángulo 1 y Ángulo 2 (`33-...md` solo cubrió Ángulo 3).
-4. Si el founder lo pide: presentación simplificada para inversores (§25 del prompt maestro), o convertir el memorándum en un documento formal (.docx/.pdf) para compartir con el equipo.
+4. Resolver la discrepancia de ±5% entre la matriz de unidades bottom-up (`41-...md`) y el cálculo top-down del memorándum para Ángulo 1 — confirmar con el founder si corresponde diferenciar precio por piso.
+5. Conseguir planos/renders reales para Ángulo 2/3 (mix de tipologías chicas) si se decide avanzar con ese diseño — hoy no existen, el Investor Book lo señala explícitamente en vez de ilustrarlo con material inventado.
