@@ -267,6 +267,58 @@ s.addShape(p.ShapeType.rect,{x:0.6,y:4.7,w:12.1,h:1.5,fill:{color:AMBAR_F},line:
 s.addText([{text:"Variables de sensibilidad pendientes de cuantificar (PROJECTION, no ESTIMATED): ",options:{bold:true}},{text:"costo de refuerzo estructural del Ángulo 2 si la opinión estructural lo exige — la única variable de sensibilidad real que sigue abierta."}],{x:0.85,y:4.85,w:11.6,h:1.2,fontFace:POP,fontSize:11.5,color:AMBAR,lineSpacing:17,valign:"middle"});
 footer(s);
 
+// ============ 19B — COMPOSICIÓN DEL COSTO POR ÍTEM ============
+s=p.addSlide(); s.background={color:CREMA};
+eyebrow(s,"De USD 650/720 por m² a USD 1.525-1.628/m²"); title(s,"Composición del costo por m² comercializable",null,22);
+const costoColors=[TIERRA,PETROLEO,GOLD_D,LAPACHO,GREY,LINEA];
+const costoAngulos=[
+  {t:"Ángulo 1 — USD 1.525,33/m²",labels:["Terreno","Estructura ya construida+doc.+riesgo","Terminación s/estructura existente","Obra 100% nueva"],vals:[360000,490000,1300805.78,594792.00],x:0.5},
+  {t:"Ángulo 3 — USD 1.628,24/m²",labels:["Terreno","Estructura ya construida+doc.+riesgo","Terminación s/estructura existente","Obra 100% nueva","Proyecto (honorarios)","Aprobaciones e imprevistos"],vals:[360000,490000,1300805.78,594792.00,84051.81,101173.48],x:4.75},
+  {t:"Ángulo 2 — USD 1.516,97/m²",labels:["Terreno","Estructura ya construida+doc.+riesgo","Terminación s/estructura existente","Obra 100% nueva","Proyecto (honorarios)","Aprobaciones e imprevistos"],vals:[360000,490000,1300805.78,810792.00,122869.08,101173.48],x:9.0},
+];
+costoAngulos.forEach(a=>{
+  s.addText(a.t,{x:a.x,y:1.75,w:3.85,h:0.35,fontFace:POP,bold:true,fontSize:11.5,color:PETROLEO,align:"center"});
+  s.addChart(p.ChartType.pie,[{name:"Costo",labels:a.labels,values:a.vals}],{
+    x:a.x,y:2.1,w:3.85,h:3.6,chartColors:costoColors.slice(0,a.vals.length),
+    showLegend:false,showPercent:true,showLabel:false,dataLabelColor:"FFFFFF",dataLabelFontSize:10,dataLabelFontBold:true,
+    dataLabelPosition:"bestFit",
+  });
+});
+// leyenda compartida
+const costoLeg=["Terreno","Estructura ya construida + doc. + riesgo evitado","Terminación sobre estructura existente","Obra 100% nueva","Proyecto (honorarios diseño) — solo Ángulo 2/3","Aprobaciones e imprevistos — solo Ángulo 2/3"];
+costoLeg.forEach((t,i)=>{
+  const col=i%2===0?0.6:6.9, row=Math.floor(i/2), yy=5.85+row*0.26;
+  s.addShape(p.ShapeType.rect,{x:col,y:yy+0.03,w:0.13,h:0.13,fill:{color:costoColors[i]}});
+  s.addText(t,{x:col+0.21,y:yy,w:6.0,h:0.24,fontFace:POP,fontSize:8.2,color:PETROLEO,valign:"middle"});
+});
+footer(s);
+
+// ============ 19C — COMPOSICIÓN DEL PRECIO DE VENTA ============
+s=p.addSlide(); s.background={color:CREMA};
+eyebrow(s,"De Ingresos a Margen"); title(s,"Composición del precio de venta — valor medio del rango",null,20);
+const precioColors=[PETROLEO,GOLD_D,TIERRA,VERDE];
+const precioAngulos=[
+  {t:"Ángulo 1",sub:"Ingresos USD 3.567.637–4.218.165",labels:["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"],vals:[2745598,214109.5,189560,743633.5],x:0.5},
+  {t:"Ángulo 3",sub:"Ingresos USD 3.820.500–4.097.250",labels:["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"],vals:[2930823,217738.5,189560,620754],x:4.75},
+  {t:"Ángulo 2",sub:"Ingresos USD 4.424.700–4.749.150",labels:["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"],vals:[3185640,252280.5,211160,937844],x:9.0},
+];
+precioAngulos.forEach(a=>{
+  s.addText(a.t,{x:a.x,y:1.7,w:3.85,h:0.35,fontFace:POP,bold:true,fontSize:12.5,color:PETROLEO,align:"center"});
+  s.addText(a.sub,{x:a.x,y:2.02,w:3.85,h:0.3,fontFace:POP,fontSize:8.5,italic:true,color:GREY,align:"center"});
+  s.addChart(p.ChartType.pie,[{name:"Precio",labels:a.labels,values:a.vals}],{
+    x:a.x,y:2.35,w:3.85,h:3.6,chartColors:precioColors,
+    showLegend:false,showPercent:true,showLabel:false,dataLabelColor:"FFFFFF",dataLabelFontSize:10,dataLabelFontBold:true,
+    dataLabelPosition:"bestFit",
+  });
+});
+const precioLeg=["Inversión Total (costo)","Comisión de venta (5,5%)","IVA del desarrollador (10% s/construcción)","Margen neto"];
+precioLeg.forEach((t,i)=>{
+  const xx=0.6+i*3.1;
+  s.addShape(p.ShapeType.rect,{x:xx,y:6.15,w:0.14,h:0.14,fill:{color:precioColors[i]}});
+  s.addText(t,{x:xx+0.22,y:6.12,w:2.8,h:0.42,fontFace:POP,fontSize:8.3,color:PETROLEO,valign:"top"});
+});
+footer(s);
+
 // ============ 20 — RIESGOS ============
 s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Riesgos clave"); title(s,"Lo que todo inversor debe saber");
