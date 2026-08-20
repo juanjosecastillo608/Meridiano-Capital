@@ -1,0 +1,256 @@
+{
+  "proyecto": {
+    "nombre": "HERRERA-001 Angulo 2 -- demo cash flow realista",
+    "barrio": "Luis A. de Herrera",
+    "ciudad": "Asunción",
+    "segmento": ""
+  },
+  "resumen_ejecutivo": {
+    "inversion_total_usd": 3185640.34,
+    "costo_total_proyecto_usd": 3650354.44,
+    "ingresos_totales_usd": 4586925.0,
+    "margen_usd": 936570.56,
+    "roi_pct": 25.66,
+    "tir_anual_pct": 136.97,
+    "van_usd": 760946.2,
+    "payback_mes": 12,
+    "equity_multiple": 1.73
+  },
+  "indicadores_por_m2": {
+    "costo_directo_por_m2_construido": 678.31,
+    "costo_indirecto_por_m2_construido": 71.97,
+    "costo_financiero_por_m2_construido": 0.41,
+    "costo_total_por_m2_construido": 1172.6,
+    "costo_total_por_m2_vendible": 1738.26
+  },
+  "moneda": {
+    "tipo_cambio_pyg_por_usd": 7300.0,
+    "fecha": "2026-08-19",
+    "fuente": "parametros_dev_engine.json"
+  },
+  "_fuente": "dev_engine — Development Cost & Financial Engine de Meridiano Capital",
+  "_advertencia": "Cifras generadas por el motor parametrizable. Distinguir siempre ACTUAL/CONFIRMED de ESTIMATE/PROJECTION/ASSUMPTION segun la fuente de cada parametro de entrada (S65) antes de presentar a un inversor.",
+  "cost_bridge": [
+    {
+      "componente": "Terreno",
+      "usd": 850000.0,
+      "pct": 23.285410030032487
+    },
+    {
+      "componente": "Costos directos",
+      "usd": 2111597.7800000003,
+      "pct": 57.8463766185957
+    },
+    {
+      "componente": "Costos indirectos",
+      "usd": 224042.56,
+      "pct": 6.137556322091948
+    },
+    {
+      "componente": "Costos de desarrollo",
+      "usd": 0,
+      "pct": 0.0
+    },
+    {
+      "componente": "Costos financieros",
+      "usd": 1273.451708973019,
+      "pct": 0.03488570023162629
+    },
+    {
+      "componente": "Costos comerciales",
+      "usd": 252280.875,
+      "pct": 6.911133667188674
+    },
+    {
+      "componente": "Impuestos y gastos",
+      "usd": 211159.77800000005,
+      "pct": 5.78463766185957
+    },
+    {
+      "componente": "Contingencia",
+      "usd": 0.0,
+      "pct": 0.0
+    },
+    {
+      "componente": "COSTO TOTAL",
+      "usd": 3650354.444708973,
+      "pct": 100.0
+    }
+  ],
+  "financiamiento": {
+    "capital_propio_usado_usd": 1274256.14,
+    "deuda_girada_usd": 41083.89,
+    "pico_deuda_usd": 41083.89,
+    "costo_financiero_total_usd": 1273.45
+  },
+  "flujo_mensual": [
+    {
+      "mes": 0,
+      "egreso_terreno": 850000.0,
+      "egreso_obra": 29327.746944444447,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 30273.704999999998,
+      "egreso_impuestos": 25339.173360000004,
+      "egresos_totales": 953610.8386377778,
+      "ingreso_ventas": 550431.0,
+      "flujo_neto": -403209.1842765765,
+      "flujo_acumulado": -403209.1842765765
+    },
+    {
+      "mes": 1,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 87983.24083333334,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 3153.5109375,
+      "egreso_impuestos": 2639.497225000001,
+      "egresos_totales": 112446.46232916668,
+      "ingreso_ventas": 57336.5625,
+      "flujo_neto": -55139.245467965346,
+      "flujo_acumulado": -458348.4297445419
+    },
+    {
+      "mes": 2,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 146638.73472222226,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 3153.5109375,
+      "egreso_impuestos": 2639.497225000001,
+      "egresos_totales": 171101.95621805557,
+      "ingreso_ventas": 57336.5625,
+      "flujo_neto": -113794.73935685423,
+      "flujo_acumulado": -572143.1691013961
+    },
+    {
+      "mes": 3,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 205294.22861111115,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 3153.5109375,
+      "egreso_impuestos": 2639.497225000001,
+      "egresos_totales": 229757.45010694448,
+      "ingreso_ventas": 57336.5625,
+      "flujo_neto": -172450.23324574315,
+      "flujo_acumulado": -744593.4023471393
+    },
+    {
+      "mes": 4,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 263949.72250000003,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 3153.5109375,
+      "egreso_impuestos": 2639.497225000001,
+      "egresos_totales": 288412.94399583334,
+      "ingreso_ventas": 57336.5625,
+      "flujo_neto": -231105.727134632,
+      "flujo_acumulado": -975699.1294817713
+    },
+    {
+      "mes": 5,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 322605.21638888895,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 43518.4509375,
+      "egreso_impuestos": 36425.06170500001,
+      "egresos_totales": 421218.94236472226,
+      "ingreso_ventas": 791244.5625,
+      "flujo_neto": 369996.2744964791,
+      "flujo_acumulado": -605702.8549852922
+    },
+    {
+      "mes": 6,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 322605.21638888895,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 10361.5359375,
+      "egreso_impuestos": 8672.633739285717,
+      "egresos_totales": 360309.599399008,
+      "ingreso_ventas": 188391.5625,
+      "flujo_neto": -171947.38253780664,
+      "flujo_acumulado": -777650.2375230988
+    },
+    {
+      "mes": 7,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 263949.72250000003,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 10361.5359375,
+      "egreso_impuestos": 8672.633739285717,
+      "egresos_totales": 301654.10551011906,
+      "ingreso_ventas": 188391.5625,
+      "flujo_neto": -113291.88864891772,
+      "flujo_acumulado": -890942.1261720166
+    },
+    {
+      "mes": 8,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 205294.22861111115,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 10361.5359375,
+      "egreso_impuestos": 8672.633739285717,
+      "egresos_totales": 242998.61162123023,
+      "ingreso_ventas": 188391.5625,
+      "flujo_neto": -54636.394760028896,
+      "flujo_acumulado": -945578.5209320455
+    },
+    {
+      "mes": 9,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 146638.73472222226,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 10361.5359375,
+      "egreso_impuestos": 8672.633739285717,
+      "egresos_totales": 184343.1177323413,
+      "ingreso_ventas": 188391.5625,
+      "flujo_neto": 3568.0451356046383,
+      "flujo_acumulado": -942010.4757964408
+    },
+    {
+      "mes": 10,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 87983.24083333334,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 10361.5359375,
+      "egreso_impuestos": 8672.633739285717,
+      "egresos_totales": 125687.6238434524,
+      "ingreso_ventas": 188391.5625,
+      "flujo_neto": 62263.03424521265,
+      "flujo_acumulado": -879747.4415512282
+    },
+    {
+      "mes": 11,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 29327.746944444447,
+      "egreso_indirectos": 18670.213333333333,
+      "egreso_comerciales": 40635.2409375,
+      "egreso_impuestos": 34011.80709928572,
+      "egresos_totales": 122645.00831456349,
+      "ingreso_ventas": 738822.5625,
+      "flujo_neto": 616148.2085466379,
+      "flujo_acumulado": -263599.23300459026
+    },
+    {
+      "mes": 12,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 0.0,
+      "egreso_indirectos": 0.0,
+      "egreso_comerciales": 73431.75468750001,
+      "egreso_impuestos": 61462.578239285736,
+      "egresos_totales": 134894.33292678575,
+      "ingreso_ventas": 1335122.8125,
+      "flujo_neto": 1200199.1339344154,
+      "flujo_acumulado": 936599.9009298251
+    },
+    {
+      "mes": 13,
+      "egreso_terreno": 0.0,
+      "egreso_obra": 0.0,
+      "egreso_indirectos": 0.0,
+      "egreso_comerciales": 0.0,
+      "egreso_impuestos": 0.0,
+      "egresos_totales": 0.0,
+      "ingreso_ventas": 0.0,
+      "flujo_neto": -29.34563879866808,
+      "flujo_acumulado": 936570.5552910265
+    }
+  ]
+}

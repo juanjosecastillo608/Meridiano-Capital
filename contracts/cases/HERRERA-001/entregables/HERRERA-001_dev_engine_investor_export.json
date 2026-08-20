@@ -1,0 +1,33 @@
+{
+  "proyecto": {
+    "nombre": "HERRERA-001 Angulo 2 -- demo cash flow realista",
+    "barrio": "Luis A. de Herrera",
+    "ciudad": "Asunción",
+    "segmento": ""
+  },
+  "resumen_ejecutivo": {
+    "inversion_total_usd": 3185640.34,
+    "costo_total_proyecto_usd": 3650354.44,
+    "ingresos_totales_usd": 4586925.0,
+    "margen_usd": 936570.56,
+    "roi_pct": 25.66,
+    "tir_anual_pct": 136.97,
+    "van_usd": 760946.2,
+    "payback_mes": 12,
+    "equity_multiple": 1.73
+  },
+  "indicadores_por_m2": {
+    "costo_directo_por_m2_construido": 678.31,
+    "costo_indirecto_por_m2_construido": 71.97,
+    "costo_financiero_por_m2_construido": 0.41,
+    "costo_total_por_m2_construido": 1172.6,
+    "costo_total_por_m2_vendible": 1738.26
+  },
+  "moneda": {
+    "tipo_cambio_pyg_por_usd": 7300.0,
+    "fecha": "2026-08-19",
+    "fuente": "parametros_dev_engine.json"
+  },
+  "_fuente": "dev_engine — Development Cost & Financial Engine de Meridiano Capital",
+  "_advertencia": "Cifras generadas por el motor parametrizable. Distinguir siempre ACTUAL/CONFIRMED de ESTIMATE/PROJECTION/ASSUMPTION segun la fuente de cada parametro de entrada (S65) antes de presentar a un inversor."
+}
