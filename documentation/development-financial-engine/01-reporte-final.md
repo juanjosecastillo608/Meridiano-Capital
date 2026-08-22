@@ -181,9 +181,13 @@ interpretable (136,97% anual, proyecto corto y rentable).
    devuelve toda la información necesaria (`ResultadoProyecto`), pero no hay
    todavía un generador de reporte/PDF dedicado a la salida del motor en sí
    (distinto del Investor Book de un caso puntual).
-8. **Conectar los otros 4 documentos del set de 6** (`build_herrera001_presentacion_inversores.js`,
-   Investment Summary) al mismo JSON — solo se conectaron el Memorándum y el
-   Investor Book, que fueron los dos pedidos explícitamente.
+8. ~~Conectar los otros 2 documentos~~ — ✅ **Cerrado 2026-08-22 (D-081)**:
+   `build_herrera001_presentacion_inversores.js` y `build_herrera001_investment_summary.js`
+   también leen `HERRERA-001_dev_engine_3angulos.json` — los 4 documentos
+   principales del set de 6 (Memorándum, Investor Book, Presentación de 10
+   slides, Investment Summary) ya comparten una única fuente de verdad. Además,
+   D-081 hizo la QA visual completa (25/25 páginas del Investor Book) que
+   faltaba — encontró y corrigió 1 bug real de layout.
 
 ## 16 — SYSTEM VERSION
 

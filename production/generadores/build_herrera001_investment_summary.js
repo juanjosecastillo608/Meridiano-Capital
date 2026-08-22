@@ -8,6 +8,11 @@ const PETROLEO="14313A", TIERRA="8B3323", LAPACHO="C9982E", CREMA="F3EDE3", GREY
 const LORA="Fraunces", POP="Poppins";
 const AH = __dirname + "/assets-herrera001/brochure/";
 
+// ---------- Fuente unica de verdad: dev_engine (D-079/D-080) ----------
+const ANGULOS=JSON.parse(fs.readFileSync(__dirname+"/../../contracts/cases/HERRERA-001/entregables/HERRERA-001_dev_engine_3angulos.json","utf-8")).angulos;
+function fmt0(n){ return Math.round(n).toLocaleString("es-PY"); }
+function fmtP1(n){ return n.toLocaleString("es-PY",{minimumFractionDigits:1,maximumFractionDigits:1})+"%"; }
+
 let s = p.addSlide();
 s.background = { color: PETROLEO };
 s.addImage({ path: AH+"00-portada-fachada.png", x:0, y:0, w:7.5, h:4.7, sizing:{type:"cover",w:7.5,h:4.7} });
@@ -19,11 +24,12 @@ s.addText("MERIDIANO CAPITAL", { x: 1.05, y: 4.92, w: 5.5, h: 0.36, fontFace: LO
 s.addText("Edificio Barrio Herrera", { x: 0.55, y: 5.4, w: 6.6, h: 0.55, fontFace: LORA, fontSize: 23, color: CREMA });
 s.addText("Asunción, Paraguay · Oportunidad de inversión inmobiliaria", { x: 0.55, y: 5.95, w: 6.6, h: 0.3, fontFace: POP, fontSize: 11, color: "C7CFD2" });
 
+const a2s=ANGULOS.angulo_2;
 const nums = [
-  ["Inversión Total", "USD 3.185.640"],
-  ["Ingresos proyectados", "USD 4.424.700 – 4.749.150"],
-  ["Margen final, neto de comisión e IVA", "USD 784.541 – 1.091.147"],
-  ["ROI sobre Inversión Total", "24,6% – 34,3%"],
+  ["Inversión Total", "USD "+fmt0(a2s.inversion_total_usd)],
+  ["Ingresos proyectados", "USD "+fmt0(a2s.ingresos_bajo_usd)+" – "+fmt0(a2s.ingresos_alto_usd)],
+  ["Margen final, neto de comisión e IVA", "USD "+fmt0(a2s.margen_bajo_usd)+" – "+fmt0(a2s.margen_alto_usd)],
+  ["ROI sobre Inversión Total", fmtP1(a2s.roi_bajo_pct)+" – "+fmtP1(a2s.roi_alto_pct)],
   ["Plazo estimado", "12 meses de obra + entrega"],
 ];
 let y = 6.35;

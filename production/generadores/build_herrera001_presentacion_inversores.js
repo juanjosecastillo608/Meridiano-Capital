@@ -7,6 +7,12 @@ const PETROLEO="14313A", TIERRA="8B3323", LAPACHO="C9982E", CREMA="F3EDE3", GREY
 const LORA="Fraunces", POP="Poppins";
 const W=13.333, H=7.5, ISO="isotipo.png", ISO_INV="isotipo_inverso.png";
 
+// ---------- Fuente unica de verdad: dev_engine (D-079/D-080) ----------
+const fs0=require("fs");
+const ANGULOS=JSON.parse(fs0.readFileSync(__dirname+"/../../contracts/cases/HERRERA-001/entregables/HERRERA-001_dev_engine_3angulos.json","utf-8")).angulos;
+function fmt0(n){ return Math.round(n).toLocaleString("es-PY"); }
+function fmtP1(n){ return n.toLocaleString("es-PY",{minimumFractionDigits:1,maximumFractionDigits:1})+"%"; }
+
 function footer(s,n,dark){const col=dark?"9DA8AC":GREY;
   s.addImage({path:dark?ISO_INV:ISO,x:0.55,y:H-0.72,w:0.32,h:0.32});
   s.addText("Meridiano Capital · Herrera-001 · Confidencial",{x:0.95,y:H-0.72,w:8,h:0.32,fontFace:POP,fontSize:8,color:col,valign:"middle"});
@@ -68,7 +74,8 @@ footer(s,4);
 // 5 — LOS NÚMEROS (Ángulo 2)
 s=p.addSlide(); s.background={color:PETROLEO};
 eyebrow(s,"Los números",true); title(s,"Ángulo 2 — el escenario recomendado",true);
-const nums=[["USD 3.185.640","Inversión Total"],["USD 4.424.700 – 4.749.150","Ingresos totales proyectados"],["USD 784.541 – 1.091.147","Margen final, neto de comisión e IVA"],["24,6% – 34,3%","ROI sobre la Inversión Total"]];
+const a2n=ANGULOS.angulo_2;
+const nums=[["USD "+fmt0(a2n.inversion_total_usd),"Inversión Total"],["USD "+fmt0(a2n.ingresos_bajo_usd)+" – "+fmt0(a2n.ingresos_alto_usd),"Ingresos totales proyectados"],["USD "+fmt0(a2n.margen_bajo_usd)+" – "+fmt0(a2n.margen_alto_usd),"Margen final, neto de comisión e IVA"],[fmtP1(a2n.roi_bajo_pct)+" – "+fmtP1(a2n.roi_alto_pct),"ROI sobre la Inversión Total"]];
 nums.forEach((n,i)=>{const x=0.6+i*3.05;
   s.addShape(p.ShapeType.rect,{x,y:2.2,w:2.8,h:3.4,fill:{color:NAVY2},line:{color:"2A4A52",width:1}});
   s.addText(n[0],{x:x+0.2,y:2.5,w:2.45,h:1.7,fontFace:LORA,bold:false,fontSize:n[0].length>14?16:24,color:LAPACHO,valign:"middle",lineSpacing:n[0].length>14?18:26});
