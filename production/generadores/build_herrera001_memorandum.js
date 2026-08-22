@@ -2,6 +2,20 @@ const docx = require("docx");
 const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType, ImageRun, PageBreak, Header, Footer, PageNumber } = docx;
 const fs = require("fs");
 
+// ---------- Fuente unica de verdad: dev_engine (D-079) ----------
+// Los numeros de la tabla de 3 Angulos (seccion 3) salen de este JSON, generado por
+// production/app/backend/dev_engine/exportar_herrera_completo.py -- validado 6/6
+// dentro de 0,05% de tolerancia contra el caso real (S64/S68 del prompt maestro
+// "Development Cost & Financial Engine"). Nunca tipear estos numeros a mano de
+// nuevo: si cambia un supuesto, correr el exportador y regenerar este documento.
+const ANGULOS_PATH = __dirname + "/../../contracts/cases/HERRERA-001/entregables/HERRERA-001_dev_engine_3angulos.json";
+const ANGULOS = JSON.parse(fs.readFileSync(ANGULOS_PATH, "utf-8")).angulos;
+function fmtUSD0(n){ return Math.round(n).toLocaleString("es-PY"); }
+function fmtUSD2(n){ return n.toLocaleString("es-PY",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtPct1(n){ return n.toLocaleString("es-PY",{minimumFractionDigits:1,maximumFractionDigits:1})+"%"; }
+function fmtRangoUSD(lo,hi){ return fmtUSD0(lo)+" – "+fmtUSD0(hi); }
+function fmtRangoPct(lo,hi){ return fmtPct1(lo)+" – "+fmtPct1(hi); }
+
 // Paleta e identidad Meridiano Capital (misma que build_p04.js)
 const PET="14313A", TIE="8B3323", GOLD="C9982E", GREY="5A544C", LINEA="DAD2C0", FILA="F3EDE3", GOLD_D="A87D22";
 const VERDE="2E5C3E", VERDE_F="E7EFE9", ROJO="9C3B2E", ROJO_F="F5E6E2", AMBAR="A87D22", AMBAR_F="F6EEDD";
@@ -109,16 +123,19 @@ const s2=[
 const s3=[
   H1("3.","La oportunidad — tres Ángulos comparados"),
   P("Con el costo definitivo (USD 720/m²) e IVA del desarrollador ya descontado.",{i:true,color:GREY}),
-  table(["","Ángulo 1 (tal cual)","Ángulo 3 (fachada+chicas, 6P)","Ángulo 2 (fachada+chicas+7P)"],[
-    ["Unidades","21","29 (ilustrativo)","39 (ilustrativo)"],
-    ["Área comercializable","1.800 m²","1.800 m²","2.100 m²"],
-    ["Inversión Total","USD 2.745.598","USD 2.930.823",{text:"USD 3.185.640",bold:true}],
-    ["Costo/m² comercializable","USD 1.525,33","USD 1.628,24",{text:"USD 1.516,97 (el más bajo)",bold:true}],
-    ["Ingresos totales (bajo–alto)","3.567.637 – 4.218.165","3.820.500 – 4.097.250",{text:"4.424.700 – 4.749.150",bold:true}],
-    ["IVA del desarrollador","189.560","189.560","211.160"],
-    ["Margen final (bajo–alto)","436.259 – 1.051.008","489.990 – 751.518",{text:"784.541 – 1.091.147",bold:true,color:VERDE}],
-    ["ROI sobre Inversión Total","15,9% – 38,3%","16,7% – 25,6%",{text:"24,6% – 34,3%",bold:true,color:VERDE}],
-  ],[2600,2130,2130,2140]),
+  (()=>{
+    const a1=ANGULOS.angulo_1, a3=ANGULOS.angulo_3, a2=ANGULOS.angulo_2;
+    return table(["","Ángulo 1 (tal cual)","Ángulo 3 (fachada+chicas, 6P)","Ángulo 2 (fachada+chicas+7P)"],[
+      ["Unidades",String(a1.unidades),a3.unidades+" (ilustrativo)",a2.unidades+" (ilustrativo)"],
+      ["Área comercializable",a1.area_comercializable_m2.toLocaleString("es-PY")+" m²",a3.area_comercializable_m2.toLocaleString("es-PY")+" m²",a2.area_comercializable_m2.toLocaleString("es-PY")+" m²"],
+      ["Inversión Total","USD "+fmtUSD0(a1.inversion_total_usd),"USD "+fmtUSD0(a3.inversion_total_usd),{text:"USD "+fmtUSD0(a2.inversion_total_usd),bold:true}],
+      ["Costo/m² comercializable","USD "+fmtUSD2(a1.costo_m2_comercializable_usd),"USD "+fmtUSD2(a3.costo_m2_comercializable_usd),{text:"USD "+fmtUSD2(a2.costo_m2_comercializable_usd)+" (el más bajo)",bold:true}],
+      ["Ingresos totales (bajo–alto)",fmtRangoUSD(a1.ingresos_bajo_usd,a1.ingresos_alto_usd),fmtRangoUSD(a3.ingresos_bajo_usd,a3.ingresos_alto_usd),{text:fmtRangoUSD(a2.ingresos_bajo_usd,a2.ingresos_alto_usd),bold:true}],
+      ["IVA del desarrollador",fmtUSD0(a1.iva_desarrollador_usd),fmtUSD0(a3.iva_desarrollador_usd),fmtUSD0(a2.iva_desarrollador_usd)],
+      ["Margen final (bajo–alto)",fmtRangoUSD(a1.margen_bajo_usd,a1.margen_alto_usd),fmtRangoUSD(a3.margen_bajo_usd,a3.margen_alto_usd),{text:fmtRangoUSD(a2.margen_bajo_usd,a2.margen_alto_usd),bold:true,color:VERDE}],
+      ["ROI sobre Inversión Total",fmtRangoPct(a1.roi_bajo_pct,a1.roi_alto_pct),fmtRangoPct(a3.roi_bajo_pct,a3.roi_alto_pct),{text:fmtRangoPct(a2.roi_bajo_pct,a2.roi_alto_pct),bold:true,color:VERDE}],
+    ],[2600,2130,2130,2140]);
+  })(),
   sp(),
   callout("Política de precios confirmada, con respaldo cuantitativo",
     "Se mantiene el rango USD 1.900–2.050/m² por diferenciación de producto (calidad USD 720/m²) — comparado directamente contra la alternativa de bajar a calidad USD 650/m² + precio de mercado bajo (USD 1.576–1.809/m², comparables reales de Century 21), la política premium gana en los cuatro escenarios probados (2 Ángulos × 2 extremos de rango), con una diferencia de ROI de 6 a 12 puntos porcentuales. Reconfirmado 2026-08-18 con el AMC parametrizado: 9 comparables reales dentro del propio Barrio Herrera (antes 2), ajuste AMC de 2 dormitorios ~USD 1.509/m² — mismo hallazgo, muestra 4,5x mayor.",

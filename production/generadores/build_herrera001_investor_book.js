@@ -15,6 +15,17 @@ const BR = AH + "/brochure/";
 const FO = AH + "/fotos-obra/";
 const QB = AH + "/qubo-referencia/";
 
+// ---------- Fuente unica de verdad: dev_engine (D-079) ----------
+// Generado por production/app/backend/dev_engine/exportar_herrera_completo.py --
+// validado 6/6 dentro de 0,05% de tolerancia contra el caso real. Nunca tipear
+// estos numeros a mano de nuevo (S64 del prompt maestro "Development Cost &
+// Financial Engine"): si cambia un supuesto, correr el exportador y regenerar.
+const ANGULOS = JSON.parse(fs.readFileSync(__dirname + "/../../contracts/cases/HERRERA-001/entregables/HERRERA-001_dev_engine_3angulos.json", "utf-8")).angulos;
+function fmt0(n){ return Math.round(n).toLocaleString("es-PY"); }
+function fmt2(n){ return n.toLocaleString("es-PY",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtP1(n){ return n.toLocaleString("es-PY",{minimumFractionDigits:1,maximumFractionDigits:1})+"%"; }
+function medio(lo,hi){ return (lo+hi)/2; }
+
 let n = 0;
 function footer(s,dark){n++;const col=dark?"9DA8AC":GREY;
   s.addImage({path:dark?ISO_INV:ISO,x:0.55,y:H-0.72,w:0.32,h:0.32});
@@ -48,7 +59,8 @@ s.addText("NEGOCIAR / CONDICIONAR",{x:0.62,y:6.25,w:3.1,h:0.5,fontFace:POP,bold:
 // ============ 2 — EXECUTIVE SUMMARY ============
 s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Resumen ejecutivo"); title(s,"La oportunidad en una página");
-const es=[["Precio de adquisición","USD 850.000"],["Inversión Total (Ángulo 2, recomendado)","USD 3.185.640"],["Superficie comercializable","1.800 – 2.100 m² según diseño"],["Unidades","21 (tal cual) a 39 (con piso adicional, ilustrativo)"],["Precio de venta objetivo","USD 1.900 – 2.050 / m²"],["Ingresos potenciales (Ángulo 2)","USD 4.424.700 – 4.749.150"],["Margen final, neto de comisión e IVA","USD 784.541 – 1.091.147"],["ROI sobre Inversión Total","24,6% – 34,3%"],["Plazo estimado","12 meses de obra + 1 mes de entrega"],["Recomendación","Negociar / condicionar — 1 punto técnico pendiente"]];
+const a2es=ANGULOS.angulo_2;
+const es=[["Precio de adquisición","USD 850.000"],["Inversión Total (Ángulo 2, recomendado)","USD "+fmt0(a2es.inversion_total_usd)],["Superficie comercializable","1.800 – 2.100 m² según diseño"],["Unidades","21 (tal cual) a 39 (con piso adicional, ilustrativo)"],["Precio de venta objetivo","USD 1.900 – 2.050 / m²"],["Ingresos potenciales (Ángulo 2)","USD "+fmt0(a2es.ingresos_bajo_usd)+" – "+fmt0(a2es.ingresos_alto_usd)],["Margen final, neto de comisión e IVA","USD "+fmt0(a2es.margen_bajo_usd)+" – "+fmt0(a2es.margen_alto_usd)],["ROI sobre Inversión Total",fmtP1(a2es.roi_bajo_pct)+" – "+fmtP1(a2es.roi_alto_pct)],["Plazo estimado","12 meses de obra + 1 mes de entrega"],["Recomendación","Negociar / condicionar — 1 punto técnico pendiente"]];
 table(s,["Concepto","Valor"],es,0.6,1.85,12.1,[5.5,6.6],{rowH:0.385});
 s.addText("Cifras del Ángulo 2 (recomendado). Ver la sección 17 para los tres Ángulos comparados. Ninguna cifra mostrada carece de respaldo en el modelo financiero del caso.",{x:0.6,y:6.28,w:12,h:0.32,fontFace:POP,italic:true,fontSize:8.5,color:GREY,lineSpacing:11});
 footer(s);
@@ -232,7 +244,12 @@ footer(s);
 // ============ 17 — ESTRATEGIA + RETORNO POR ÁNGULO ============
 s=p.addSlide(); s.background={color:PETROLEO};
 eyebrow(s,"Estrategia y retorno",true); title(s,"Capital → Obra → Producto terminado → Venta → Ganancia",true,21);
-const ang3=[["Ángulo 1","21 uds","USD 2.745.598","436.259 – 1.051.008","15,9% – 38,3%"],["Ángulo 3","29 uds (ilustr.)","USD 2.930.823","489.990 – 751.518","16,7% – 25,6%"],["Ángulo 2 ★","39 uds (ilustr.)","USD 3.185.640","784.541 – 1.091.147","24,6% – 34,3%"]];
+const {angulo_1:a1t,angulo_3:a3t,angulo_2:a2t}=ANGULOS;
+const ang3=[
+  ["Ángulo 1",a1t.unidades+" uds","USD "+fmt0(a1t.inversion_total_usd),fmt0(a1t.margen_bajo_usd)+" – "+fmt0(a1t.margen_alto_usd),fmtP1(a1t.roi_bajo_pct)+" – "+fmtP1(a1t.roi_alto_pct)],
+  ["Ángulo 3",a3t.unidades+" uds (ilustr.)","USD "+fmt0(a3t.inversion_total_usd),fmt0(a3t.margen_bajo_usd)+" – "+fmt0(a3t.margen_alto_usd),fmtP1(a3t.roi_bajo_pct)+" – "+fmtP1(a3t.roi_alto_pct)],
+  ["Ángulo 2 ★",a2t.unidades+" uds (ilustr.)","USD "+fmt0(a2t.inversion_total_usd),fmt0(a2t.margen_bajo_usd)+" – "+fmt0(a2t.margen_alto_usd),fmtP1(a2t.roi_bajo_pct)+" – "+fmtP1(a2t.roi_alto_pct)],
+];
 ang3.forEach((a,i)=>{const x=0.6+i*4.05; const rec=i===2;
   s.addShape(p.ShapeType.rect,{x,y:2.3,w:3.8,h:4.1,fill:{color:rec?NAVY2:"1B3D45"},line:{color:rec?LAPACHO:"2A4A52",width:rec?2:1}});
   s.addText(a[0],{x:x+0.3,y:2.5,w:3.2,h:0.4,fontFace:POP,bold:true,fontSize:12,color:rec?LAPACHO:CREMA});
@@ -271,10 +288,15 @@ footer(s);
 s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"De USD 650/720 por m² a USD 1.525-1.628/m²"); title(s,"Composición del costo por m² comercializable",null,22);
 const costoColors=[TIERRA,PETROLEO,GOLD_D,LAPACHO,GREY,LINEA];
+function costoVals(ci){
+  const base=[ci.terreno_usd,ci.estructura_ya_construida_usd,ci.terminacion_usd,ci.obra_nueva_usd];
+  return (ci.proyecto_usd>0||ci.aprobaciones_usd>0) ? base.concat([ci.proyecto_usd,ci.aprobaciones_usd]) : base;
+}
+const costoLabelsFull=["Terreno","Estructura ya construida+doc.+riesgo","Terminación s/estructura existente","Obra 100% nueva","Proyecto (honorarios)","Aprobaciones e imprevistos"];
 const costoAngulos=[
-  {t:"Ángulo 1 — USD 1.525,33/m²",labels:["Terreno","Estructura ya construida+doc.+riesgo","Terminación s/estructura existente","Obra 100% nueva"],vals:[360000,490000,1300805.78,594792.00],x:0.5},
-  {t:"Ángulo 3 — USD 1.628,24/m²",labels:["Terreno","Estructura ya construida+doc.+riesgo","Terminación s/estructura existente","Obra 100% nueva","Proyecto (honorarios)","Aprobaciones e imprevistos"],vals:[360000,490000,1300805.78,594792.00,84051.81,101173.48],x:4.75},
-  {t:"Ángulo 2 — USD 1.516,97/m²",labels:["Terreno","Estructura ya construida+doc.+riesgo","Terminación s/estructura existente","Obra 100% nueva","Proyecto (honorarios)","Aprobaciones e imprevistos"],vals:[360000,490000,1300805.78,810792.00,122869.08,101173.48],x:9.0},
+  {t:"Ángulo 1 — USD "+fmt2(a1t.costo_m2_comercializable_usd)+"/m²",labels:costoLabelsFull.slice(0,4),vals:costoVals(a1t.cost_items),x:0.5},
+  {t:"Ángulo 3 — USD "+fmt2(a3t.costo_m2_comercializable_usd)+"/m²",labels:costoLabelsFull,vals:costoVals(a3t.cost_items),x:4.75},
+  {t:"Ángulo 2 — USD "+fmt2(a2t.costo_m2_comercializable_usd)+"/m²",labels:costoLabelsFull,vals:costoVals(a2t.cost_items),x:9.0},
 ];
 costoAngulos.forEach(a=>{
   s.addText(a.t,{x:a.x,y:1.75,w:3.85,h:0.35,fontFace:POP,bold:true,fontSize:11.5,color:PETROLEO,align:"center"});
@@ -297,10 +319,12 @@ footer(s);
 s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"De Ingresos a Margen"); title(s,"Composición del precio de venta — valor medio del rango",null,20);
 const precioColors=[PETROLEO,GOLD_D,TIERRA,VERDE];
+const precioLabelsFull=["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"];
+function precioVals(a){ return [a.inversion_total_usd, medio(a.comision_bajo_usd,a.comision_alto_usd), a.iva_desarrollador_usd, medio(a.margen_bajo_usd,a.margen_alto_usd)]; }
 const precioAngulos=[
-  {t:"Ángulo 1",sub:"Ingresos USD 3.567.637–4.218.165",labels:["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"],vals:[2745598,214109.5,189560,743633.5],x:0.5},
-  {t:"Ángulo 3",sub:"Ingresos USD 3.820.500–4.097.250",labels:["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"],vals:[2930823,217738.5,189560,620754],x:4.75},
-  {t:"Ángulo 2",sub:"Ingresos USD 4.424.700–4.749.150",labels:["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"],vals:[3185640,252280.5,211160,937844],x:9.0},
+  {t:"Ángulo 1",sub:"Ingresos USD "+fmt0(a1t.ingresos_bajo_usd)+"–"+fmt0(a1t.ingresos_alto_usd),labels:precioLabelsFull,vals:precioVals(a1t),x:0.5},
+  {t:"Ángulo 3",sub:"Ingresos USD "+fmt0(a3t.ingresos_bajo_usd)+"–"+fmt0(a3t.ingresos_alto_usd),labels:precioLabelsFull,vals:precioVals(a3t),x:4.75},
+  {t:"Ángulo 2",sub:"Ingresos USD "+fmt0(a2t.ingresos_bajo_usd)+"–"+fmt0(a2t.ingresos_alto_usd),labels:precioLabelsFull,vals:precioVals(a2t),x:9.0},
 ];
 precioAngulos.forEach(a=>{
   s.addText(a.t,{x:a.x,y:1.7,w:3.85,h:0.35,fontFace:POP,bold:true,fontSize:12.5,color:PETROLEO,align:"center"});

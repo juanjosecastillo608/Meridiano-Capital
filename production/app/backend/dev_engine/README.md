@@ -43,6 +43,8 @@ cambio) recalcula automáticamente todo lo que depende de él.
 | `escenarios.py` | `correr_escenarios()` — Conservador/Base/Optimista o escenarios custom |
 | `investor_layer.py` | `capa_inversor()` / `exportar_json()` — filtra qué datos son seguros para un inversor y exporta JSON |
 | `proyecto.py` | `Proyecto` — orquestador único; `FichaProyecto`, `ResultadoProyecto` |
+| `cotizacion.py` | Fuente de cotización USD/PYG real — `conversor_vigente()`, cache versionado, ver sección propia abajo |
+| `exportar_herrera_completo.py` | Exporta los 3 Ángulos (bajo/alto) de HERRERA-001 a un JSON único — es lo que leen `build_herrera001_memorandum.js` y `build_herrera001_investor_book.js` |
 
 ## Cómo se arma un proyecto (patrón general)
 
@@ -80,15 +82,40 @@ python3 -m dev_engine.test_parametrizacion         # Test de parametrizacion S69
 python3 -m dev_engine.demo_flujo_realista_angulo2  # Demo de cash flow mensual realista, financiamiento mixto
 ```
 
+## Cotización USD/PYG (`cotizacion.py`)
+
+`conversor_vigente()` es la forma recomendada de obtener un `ConversorMoneda` en
+cualquier script: lee `config/tipo_cambio_pyg_usd.json` (cache real, con
+fecha+fuente), y si no existe o tiene más de 7 días, cae al valor de
+`config/parametros_dev_engine.json` **avisando explícitamente** que está usando
+un fallback — nunca reusa un valor viejo en silencio.
+
+```bash
+python3 -m dev_engine.refrescar_tipo_cambio                        # fetch en vivo (open.er-api.com)
+python3 -m dev_engine.refrescar_tipo_cambio --bcp 7250 2026-08-22   # carga manual, cotización oficial BCP
+```
+
+**Fuente primaria: `open.er-api.com`** (respaldado por exchangerate-api.com) —
+gratuito, sin API key, actualizado a diario. Es Nivel 3 de
+`market-intelligence/sources/SOURCE_REGISTRY.md` (agregador de mercado), no el
+Banco Central del Paraguay directamente — no se encontró un endpoint del BCP
+navegable por script en el tiempo disponible de esta sesión (su sitio usa un
+menú dinámico sin URLs estables); queda como pendiente real, ver abajo.
+`fuente_bcp_manual()` permite cargar a mano la cotización oficial del BCP
+cuando se tenga a la vista, sin esperar a que se automatice.
+
+**Nota de entorno**: en esta sesión, el fetch en vivo por `urllib` falló con un
+error de verificación SSL específico del sandbox de este agente (no de la
+fuente) — se sembró el cache con el mismo dato real, obtenido vía el Browser
+tool en la misma sesión. En un entorno normal (la máquina de Meridiano, un
+servidor propio) `refrescar_tipo_cambio.py` debería funcionar sin este rodeo;
+si no, revisar el CA bundle de `certifi` o la política de red del entorno.
+
 ## Qué NO incluye todavía (pendiente, ver el reporte final §15)
 
-- **Conexión automática a los generadores `.js`** del Investor Book/Memorandum —
-  `investor_layer.py` ya exporta el JSON correcto, pero los generadores
-  (`production/generadores/build_herrera001_*.js`) todavía reciben números
-  tipeados a mano. Conectarlos (que lean el JSON) es el siguiente paso real para
-  cerrar la regla S64 por completo.
-- **Cotización de tipo de cambio en tiempo real** — `parametros_dev_engine.json`
-  tiene un valor `ESTIMATE`, no una fuente conectada.
+- **Cotización oficial del BCP automatizada** — hoy la fuente automatizable es
+  un agregador de mercado (Nivel 3), no el Banco Central directamente (Nivel 1).
+  `fuente_bcp_manual()` cubre el caso de uso real mientras tanto.
 - **Price Escalation Engine (S25)** y **matriz de precio por etapa (S24)** como
   módulo propio — hoy se puede modelar manualmente variando `precio_usd` por
   `VentaUnidad`, pero no hay un motor dedicado que aplique el % de escalamiento
@@ -96,3 +123,6 @@ python3 -m dev_engine.demo_flujo_realista_angulo2  # Demo de cash flow mensual r
 - **Auditoría matemática automática (S57-S58)** como validador independiente —
   hoy la única verificación automática es el propio test de reconstrucción de
   Herrera.
+- **Conexión de los otros generadores** (`build_herrera001_presentacion_inversores.js`,
+  el Investment Summary de una página) al mismo JSON — solo se conectaron el
+  Memorándum y el Investor Book, que fueron los pedidos explícitamente.

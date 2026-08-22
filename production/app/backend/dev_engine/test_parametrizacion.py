@@ -20,7 +20,11 @@ from dev_engine.proyecto import FichaProyecto, Proyecto
 from dev_engine.sensibilidad import correr_sensibilidad, buscar_punto_de_equilibrio
 from dev_engine.escenarios import correr_escenarios, Escenario
 
-CONVERSOR = ConversorMoneda(TipoDeCambio(valor=7300.0, fecha="2026-08-19", fuente="test"))
+# Tipo de cambio fijo a proposito (no conversor_vigente()) -- este es un test
+# unitario, no un analisis real: debe ser reproducible sin depender de una
+# cotizacion en vivo que cambia dia a dia. Para un proyecto real usar
+# dev_engine.cotizacion.conversor_vigente() (ver validar_herrera.py).
+CONVERSOR = ConversorMoneda(TipoDeCambio(valor=7300.0, fecha="2026-08-19", fuente="valor fijo de test, no es una cotizacion real"))
 
 
 def constructor(params: dict) -> Proyecto:

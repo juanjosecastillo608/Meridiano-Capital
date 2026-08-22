@@ -14,7 +14,8 @@ de caja (16/18/24/27-...md) sin conectarlas al margen ni al ROI. Este script mue
 el flujo, el capital pico y el TIR/VAN de UNA sola corrida coherente.
 """
 
-from dev_engine.moneda import Monto, TipoDeCambio, ConversorMoneda
+from dev_engine.moneda import Monto
+from dev_engine.cotizacion import conversor_vigente
 from dev_engine.costos import (
     Partida, ItemParametrizable, CostoTerreno, GrupoPartidas, GrupoParametrizable,
     Superficies, ContingenciaConfig, EstructuraCostos,
@@ -23,7 +24,7 @@ from dev_engine.cashflow import VentaUnidad, construir_cronograma
 from dev_engine.financiamiento import TerminosFinanciamiento
 from dev_engine.proyecto import FichaProyecto, Proyecto
 
-CONVERSOR = ConversorMoneda(TipoDeCambio(valor=7300.0, fecha="2026-08-19", fuente="parametros_dev_engine.json"))
+CONVERSOR = conversor_vigente()
 
 INGRESOS_MEDIO = 4_586_925.0  # Angulo 2, valor medio del rango bajo/alto (46-...md)
 MESES_OBRA = 12

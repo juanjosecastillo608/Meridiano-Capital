@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "fuente": "dev_engine — Development Cost & Financial Engine de Meridiano Capital",
+    "caso": "HERRERA-001",
+    "generado_por": "production/app/backend/dev_engine/exportar_herrera_completo.py",
+    "validado_contra": "contracts/cases/HERRERA-001/36-recosteo-720-e-iva-desarrollador-margen-final-definitivo.md (reconstruccion 6/6 dentro de 0,05% de tolerancia, ver validar_herrera.py)"
+  },
+  "moneda": {
+    "tipo_cambio_pyg_por_usd": 6494.951994,
+    "fecha": "2026-08-22",
+    "fuente": "open.er-api.com (respaldado por exchangerate-api.com) -- obtenido via Browser tool en esta sesion; el fetch directo (urllib) fue bloqueado por una restriccion SSL del entorno sandbox de este agente, no por la fuente en si -- ver dev_engine/README.md"
+  },
+  "angulos": {
+    "angulo_1": {
+      "nombre": "Ángulo 1 (tal cual)",
+      "unidades": 21,
+      "area_comercializable_m2": 1800,
+      "inversion_total_usd": 2745597.78,
+      "costo_m2_comercializable_usd": 1525.33,
+      "ingresos_bajo_usd": 3567637,
+      "ingresos_alto_usd": 4218165,
+      "comision_bajo_usd": 196220.04,
+      "comision_alto_usd": 231999.08,
+      "iva_desarrollador_usd": 189559.78,
+      "margen_bajo_usd": 436259.41,
+      "margen_alto_usd": 1051008.37,
+      "roi_bajo_pct": 15.89,
+      "roi_alto_pct": 38.28,
+      "cost_items": {
+        "terreno_usd": 360000.0,
+        "estructura_ya_construida_usd": 490000.0,
+        "terminacion_usd": 1300805.78,
+        "obra_nueva_usd": 594792.0,
+        "proyecto_usd": 0.0,
+        "aprobaciones_usd": 0.0
+      }
+    },
+    "angulo_3": {
+      "nombre": "Ángulo 3 (fachada+chicas, 6P)",
+      "unidades": 29,
+      "area_comercializable_m2": 1800,
+      "inversion_total_usd": 2930823.07,
+      "costo_m2_comercializable_usd": 1628.24,
+      "ingresos_bajo_usd": 3820500,
+      "ingresos_alto_usd": 4097250,
+      "comision_bajo_usd": 210127.5,
+      "comision_alto_usd": 225348.75,
+      "iva_desarrollador_usd": 189559.78,
+      "margen_bajo_usd": 489989.65,
+      "margen_alto_usd": 751518.4,
+      "roi_bajo_pct": 16.72,
+      "roi_alto_pct": 25.64,
+      "cost_items": {
+        "terreno_usd": 360000.0,
+        "estructura_ya_construida_usd": 490000.0,
+        "terminacion_usd": 1300805.78,
+        "obra_nueva_usd": 594792.0,
+        "proyecto_usd": 84051.81,
+        "aprobaciones_usd": 101173.48
+      }
+    },
+    "angulo_2": {
+      "nombre": "Ángulo 2 (fachada+chicas+7P)",
+      "unidades": 39,
+      "area_comercializable_m2": 2100,
+      "inversion_total_usd": 3185640.34,
+      "costo_m2_comercializable_usd": 1516.97,
+      "ingresos_bajo_usd": 4424700,
+      "ingresos_alto_usd": 4749150,
+      "comision_bajo_usd": 243358.5,
+      "comision_alto_usd": 261203.25,
+      "iva_desarrollador_usd": 211159.78,
+      "margen_bajo_usd": 784541.38,
+      "margen_alto_usd": 1091146.63,
+      "roi_bajo_pct": 24.63,
+      "roi_alto_pct": 34.25,
+      "cost_items": {
+        "terreno_usd": 360000.0,
+        "estructura_ya_construida_usd": 490000.0,
+        "terminacion_usd": 1300805.78,
+        "obra_nueva_usd": 810792.0,
+        "proyecto_usd": 122869.08,
+        "aprobaciones_usd": 101173.48
+      }
+    }
+  }
+}

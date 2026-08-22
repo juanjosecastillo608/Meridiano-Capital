@@ -23,7 +23,8 @@ diferencia sea explicable, S58):
 
 import sys
 
-from dev_engine.moneda import Monto, TipoDeCambio, ConversorMoneda
+from dev_engine.moneda import Monto
+from dev_engine.cotizacion import conversor_vigente
 from dev_engine.costos import (
     Partida, ItemParametrizable, CostoTerreno, GrupoPartidas, GrupoParametrizable,
     Superficies, ContingenciaConfig, EstructuraCostos,
@@ -33,7 +34,11 @@ from dev_engine.financiamiento import TerminosFinanciamiento
 from dev_engine.proyecto import FichaProyecto, Proyecto
 
 
-CONVERSOR = ConversorMoneda(TipoDeCambio(valor=7300.0, fecha="2026-08-19", fuente="parametros_dev_engine.json"))
+# Herrera no tiene ningun costo en PYG (todo el caso original es USD) -- el
+# tipo de cambio no afecta ningun numero de esta reconstruccion, pero se usa el
+# vigente real (no un valor hardcodeado) para que este script sea el patron a
+# copiar en casos futuros que si mezclen monedas.
+CONVERSOR = conversor_vigente()
 
 
 def construir_angulo(nombre, m2_comercializable, obra_nueva_usd, proyecto_usd, aprobaciones_usd, ingresos_totales_usd):

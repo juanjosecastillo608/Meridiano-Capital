@@ -1,4 +1,4 @@
-Estado: CURRENT — motor construido, validado contra HERRERA-001 (6/6 dentro de tolerancia 0,05%), Fases 1-3 completas
+Estado: CURRENT — motor construido, validado contra HERRERA-001 (6/6 dentro de tolerancia 0,05%), Fases 1-3 completas; generadores conectados y fuente de cotización real conectada (D-080, 2026-08-22)
 Fuente original: prompt maestro "MERIDIANO CAPITAL — DEVELOPMENT COST & FINANCIAL ENGINE", founder, 2026-08-19
 Dominio: TECHNOLOGY/INVESTMENT/GOVERNANCE
 
@@ -102,10 +102,15 @@ reales todavía (pendiente, §15).
 `flujo_mensual` por defecto (confidencial); `exportar_json()`/`exportar_json_interno()`
 escriben a disco. Demostrado end-to-end: `HERRERA-001_dev_engine_investor_export.json`
 (1,2 KB, sin datos confidenciales) y `_export_interno.json` (8,1 KB, completo) en
-`contracts/cases/HERRERA-001/entregables/`. **Lo que falta para cerrar S64 del
-todo**: que `build_herrera001_investor_book.js`/`build_herrera001_memorandum.js`
-lean este JSON en vez de tener los números tipeados a mano — no se hizo en esta
-pasada (alcance real para una siguiente sesión, ver §15).
+`contracts/cases/HERRERA-001/entregables/`.
+
+**Cerrado (D-080, 2026-08-22)**: `exportar_herrera_completo.py` exporta los 3
+Ángulos (bajo/alto + desagregación por ítem) a `HERRERA-001_dev_engine_3angulos.json`,
+y `build_herrera001_memorandum.js`/`build_herrera001_investor_book.js` ahora leen
+ese JSON — verificado visualmente (docx/pptx regenerados, sin ninguna diferencia
+visible respecto de los números que ya estaban publicados). S64 cerrado para
+estos dos entregables; los otros 4 documentos del set de 6 (`build_herrera001_presentacion_inversores.js`,
+Investment Summary) siguen sin conectar — no fueron pedidos en esta pasada.
 
 ## 13 — HERRERA VALIDATION (S68)
 
@@ -155,24 +160,30 @@ interpretable (136,97% anual, proyecto corto y rentable).
 
 ## 15 — PENDING ITEMS
 
-1. **Conectar los generadores `.js` del Investor Book/Memorandum al JSON de
-   `investor_layer.py`** — hoy siguen recibiendo números a mano. Es la pieza que
-   más impacto tiene a futuro (cierra S64 del todo) y la que más toca código ya
-   construido — se dejó para una siguiente sesión con el núcleo ya validado.
-2. **Price Escalation Engine (S25) y matriz de precio por etapa (S24)** como
+1. ~~Conectar los generadores `.js` del Investor Book/Memorandum al JSON~~ —
+   ✅ **Cerrado 2026-08-22 (D-080)**, ver §12.
+2. ~~Cotización de tipo de cambio real~~ — ✅ **Cerrado 2026-08-22 (D-080)**:
+   `cotizacion.py` conecta `open.er-api.com` (Nivel 3), con
+   `fuente_bcp_manual()` para cargar la cotización oficial del BCP (Nivel 1) a
+   mano mientras no se automatice un endpoint estable de su sitio.
+3. **Price Escalation Engine (S25) y matriz de precio por etapa (S24)** como
    módulos dedicados — hoy se simulan variando `precio_usd` a mano por venta.
-3. **Auditoría matemática automática (S57-S58)** como validador reutilizable —
+4. **Auditoría matemática automática (S57-S58)** como validador reutilizable —
    hoy solo existe el test puntual de Herrera.
-4. **Cotización de tipo de cambio real** — `parametros_dev_engine.json` tiene un
-   valor `ESTIMATE` (7300 PYG/USD), no una fuente conectada.
-5. **Costo Sugerido vs. Costo Ingresado (S20)** — comparar un presupuesto cargado
+5. **Automatizar la cotización oficial del BCP** — el sitio (bcp.gov.py) no
+   tiene un endpoint estable navegable por script encontrado en el tiempo
+   disponible; `open.er-api.com` (Nivel 3) cubre el uso normal mientras tanto.
+6. **Costo Sugerido vs. Costo Ingresado (S20)** — comparar un presupuesto cargado
    contra la base de `market-intelligence/` para detectar sobrecostos — no
    construido, aunque `construction-cost-engine` (SK-12) ya da el costo sugerido
    por separado.
-6. **Dashboard ejecutivo (S60)** y **Output 01-13 formales (S59)** — el motor
+7. **Dashboard ejecutivo (S60)** y **Output 01-13 formales (S59)** — el motor
    devuelve toda la información necesaria (`ResultadoProyecto`), pero no hay
    todavía un generador de reporte/PDF dedicado a la salida del motor en sí
    (distinto del Investor Book de un caso puntual).
+8. **Conectar los otros 4 documentos del set de 6** (`build_herrera001_presentacion_inversores.js`,
+   Investment Summary) al mismo JSON — solo se conectaron el Memorándum y el
+   Investor Book, que fueron los dos pedidos explícitamente.
 
 ## 16 — SYSTEM VERSION
 

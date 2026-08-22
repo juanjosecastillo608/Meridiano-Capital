@@ -6,10 +6,10 @@
     "fuente": "prompt maestro 'MERIDIANO CAPITAL -- DEVELOPMENT COST & FINANCIAL ENGINE', founder, 2026-08-19"
   },
   "tipo_de_cambio": {
-    "_nota": "PYG por 1 USD. ESTIMATE -- no hay una fuente de cotizacion en tiempo real conectada todavia. Actualizar con la cotizacion real (BCP u otra fuente confiable) antes de usar en un caso real con costos en PYG.",
-    "valor": 7300.0,
-    "fecha": "2026-08-19",
-    "fuente": "ESTIMATE -- pendiente de conectar a una fuente real de cotizacion (ver documentation/development-financial-engine/, pendientes)"
+    "_nota": "PYG por 1 USD. Este valor es solo el FALLBACK si config/tipo_cambio_pyg_usd.json (el cache de dev_engine.cotizacion) no existe o esta vencido -- en uso normal, dev_engine.cotizacion.cargar_tipo_cambio() lee el cache real, no este valor. Refrescar el cache con 'python3 -m dev_engine.refrescar_tipo_cambio'. Ver dev_engine/README.md seccion 'Cotizacion USD/PYG'.",
+    "valor": 6494.95,
+    "fecha": "2026-08-22",
+    "fuente": "open.er-api.com (Nivel 3, agregador de mercado) -- ultimo valor real conocido al momento de escribir este archivo, ver config/tipo_cambio_pyg_usd.json para el cache vigente"
   },
   "contingencia_pct_default": {
     "_nota": "S15 -- editable por proyecto, este es solo el default sugerido si el caso no especifica uno propio.",
