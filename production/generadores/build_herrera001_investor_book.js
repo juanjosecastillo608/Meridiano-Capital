@@ -75,10 +75,10 @@ s.addText([
   {text:"comprar la estructura existente a un costo por debajo del de construir desde cero, terminar el edificio en 12 meses, y vender/retener con el respaldo de comparables reales de la misma zona.\n\n",options:{breakLine:true}},
   {text:"La tesis de inversión: ",options:{bold:true,color:TIERRA}},
   {text:"el precio de entrada ya validado, más el ahorro de tiempo y riesgo de una obra parcialmente avanzada, produce un margen positivo en los tres diseños analizados — incluso en el escenario de precio más conservador."},
-],{x:0.6,y:1.95,w:12.1,h:2.4,fontFace:POP,fontSize:14,color:PETROLEO,lineSpacing:23});
-s.addShape(p.ShapeType.rect,{x:0.6,y:4.6,w:12.1,h:1.9,fill:{color:"FFFFFF"},line:{color:LINEA,width:1}});
-s.addText("Verificación de identidad del predio",{x:0.9,y:4.8,w:11.5,h:0.4,fontFace:LORA,fontSize:15,color:PETROLEO});
-s.addText("El nombre técnico del proyecto (\"Edificio 4 de Julio\", planos de 2023) y el nombre comercial (\"Herrera Town\") corresponden al mismo predio — verificado por cuenta catastral (14-502-04), superficie (469 m²) y ubicación (esquina Concejal Vargas y 4 de Julio) coincidentes en ambas fuentes.",{x:0.9,y:5.25,w:11.5,h:1.1,fontFace:POP,fontSize:11.5,color:GREY,lineSpacing:16});
+],{x:0.6,y:1.9,w:12.1,h:2.85,fontFace:POP,fontSize:13,color:PETROLEO,lineSpacing:20});
+s.addShape(p.ShapeType.rect,{x:0.6,y:4.85,w:12.1,h:1.6,fill:{color:"FFFFFF"},line:{color:LINEA,width:1}});
+s.addText("Verificación de identidad del predio",{x:0.9,y:5.0,w:11.5,h:0.35,fontFace:LORA,fontSize:14,color:PETROLEO});
+s.addText("El nombre técnico del proyecto (\"Edificio 4 de Julio\", planos de 2023) y el nombre comercial (\"Herrera Town\") corresponden al mismo predio — verificado por cuenta catastral (14-502-04), superficie (469 m²) y ubicación (esquina Concejal Vargas y 4 de Julio) coincidentes en ambas fuentes.",{x:0.9,y:5.4,w:11.5,h:0.95,fontFace:POP,fontSize:11,color:GREY,lineSpacing:15});
 footer(s);
 
 // ============ 4 — ESTADO ACTUAL ============
