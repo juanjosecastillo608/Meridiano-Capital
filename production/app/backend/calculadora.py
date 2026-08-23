@@ -267,11 +267,14 @@ class Calculadora:
         tir_mensual = tir(flujos)
         tir_desembolsado = anualizar(tir_mensual)
 
-        # IVA de venta (CORREGIDO 2026-08-23, D-082 -- resuelve D-001 para venta):
+        # IVA de venta (CORREGIDO 2026-08-23, D-082/D-083 -- resuelve D-001 para venta):
         # base imponible presunta = 30% del precio de venta (Art. 82 Ley 125/91),
         # tasa reducida de inmuebles = 5% (Art. 91), efectivo = 1,5% del precio total.
         # NO es 5% directo sobre el 100% (ese era el error de D-027, sobreestimaba
-        # el IVA real en ~3,33x) -- ver knowledge-base/investment/methodologies/
+        # el IVA real en ~3,33x). Este monto es un costo de la S.A. que vende (la del
+        # inversor en el Modelo A que modela esta funcion -- D-083), no de Meridiano;
+        # la comision de Meridiano se calcula aparte y lleva su propio IVA de servicio
+        # (10%, no este). Ver knowledge-base/investment/methodologies/
         # iva-venta-de-inmuebles-paraguay.md. Figuras BRUTAS arriba se preservan sin
         # tocar (compatibilidad con los casos ya auditados); estas son adicionales,
         # netas de IVA.
