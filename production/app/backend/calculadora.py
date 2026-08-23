@@ -267,10 +267,17 @@ class Calculadora:
         tir_mensual = tir(flujos)
         tir_desembolsado = anualizar(tir_mensual)
 
-        # IVA de venta (resuelve D-001 para venta, confirmado por el founder 2026-08-02):
-        # 5% sobre el valor de salida. Figuras BRUTAS arriba se preservan sin tocar
-        # (compatibilidad con los casos ya auditados); estas son adicionales, netas de IVA.
-        iva_venta_pct = self.p["fiscal"]["iva_venta_pct"]
+        # IVA de venta (CORREGIDO 2026-08-23, D-082 -- resuelve D-001 para venta):
+        # base imponible presunta = 30% del precio de venta (Art. 82 Ley 125/91),
+        # tasa reducida de inmuebles = 5% (Art. 91), efectivo = 1,5% del precio total.
+        # NO es 5% directo sobre el 100% (ese era el error de D-027, sobreestimaba
+        # el IVA real en ~3,33x) -- ver knowledge-base/investment/methodologies/
+        # iva-venta-de-inmuebles-paraguay.md. Figuras BRUTAS arriba se preservan sin
+        # tocar (compatibilidad con los casos ya auditados); estas son adicionales,
+        # netas de IVA.
+        iva_venta_base_pct = self.p["fiscal"]["iva_venta_base_imponible_pct"]
+        iva_venta_tasa_pct = self.p["fiscal"]["iva_venta_tasa_pct"]
+        iva_venta_pct = iva_venta_base_pct * iva_venta_tasa_pct / 100.0  # % efectivo, ej. 30*5/100=1.5
         iva_venta_monto = valor_salida * iva_venta_pct / 100.0
         valor_salida_neto_iva = valor_salida - iva_venta_monto
         tir_precio_total_neto_iva = cagr(precio_entrada, valor_salida_neto_iva, meses_total)
@@ -328,9 +335,13 @@ class Calculadora:
         tir_mensual = tir(flujos)
         tir_anual = anualizar(tir_mensual)
 
-        # IVA de venta (D-001, confirmado por el founder 2026-08-02): 5% sobre lo que
-        # cobra el cedente. Figuras BRUTAS arriba se preservan; estas son adicionales.
-        iva_venta_pct = self.p["fiscal"]["iva_venta_pct"]
+        # IVA de venta (CORREGIDO 2026-08-23, D-082): 1,5% efectivo (30% base
+        # imponible x 5% tasa reducida de inmuebles) sobre lo que cobra el cedente --
+        # no 5% directo (ver evaluar_reventa arriba para el detalle del error corregido).
+        # Figuras BRUTAS arriba se preservan; estas son adicionales.
+        iva_venta_base_pct = self.p["fiscal"]["iva_venta_base_imponible_pct"]
+        iva_venta_tasa_pct = self.p["fiscal"]["iva_venta_tasa_pct"]
+        iva_venta_pct = iva_venta_base_pct * iva_venta_tasa_pct / 100.0
         iva_venta_monto = cobra_cedente * iva_venta_pct / 100.0
         cobra_cedente_neto_iva = cobra_cedente - iva_venta_monto
         ganancia_neta_iva = cobra_cedente_neto_iva - desembolsado

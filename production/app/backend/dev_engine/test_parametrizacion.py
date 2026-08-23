@@ -41,7 +41,10 @@ def constructor(params: dict) -> Proyecto:
         ItemParametrizable("Comision", modo="porcentaje", valor=5.5, base="ingresos"),
     ])
     impuestos = GrupoParametrizable("Impuestos", items=[
-        ItemParametrizable("IVA desarrollador", modo="porcentaje", valor=10.0, base="directos"),
+        # IVA de venta correcto (D-082, 2026-08-23): 1,5% efectivo (30% base imponible
+        # x 5% tasa reducida de inmuebles, Ley 125/91) sobre el PRECIO DE VENTA
+        # (base="ingresos"), no sobre el costo de construccion.
+        ItemParametrizable("IVA de venta", modo="porcentaje", valor=1.5, base="ingresos"),
     ])
     estructura = EstructuraCostos(
         terreno=terreno, directos=directos,

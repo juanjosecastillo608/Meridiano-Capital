@@ -320,7 +320,7 @@ s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"De Ingresos a Margen"); title(s,"Composición del precio de venta — valor medio del rango",null,20);
 const precioColors=[PETROLEO,GOLD_D,TIERRA,VERDE];
 const precioLabelsFull=["Inversión Total","Comisión (5,5%)","IVA desarrollador","Margen neto"];
-function precioVals(a){ return [a.inversion_total_usd, medio(a.comision_bajo_usd,a.comision_alto_usd), a.iva_desarrollador_usd, medio(a.margen_bajo_usd,a.margen_alto_usd)]; }
+function precioVals(a){ return [a.inversion_total_usd, medio(a.comision_bajo_usd,a.comision_alto_usd), medio(a.iva_desarrollador_bajo_usd,a.iva_desarrollador_alto_usd), medio(a.margen_bajo_usd,a.margen_alto_usd)]; }
 const precioAngulos=[
   {t:"Ángulo 1",sub:"Ingresos USD "+fmt0(a1t.ingresos_bajo_usd)+"–"+fmt0(a1t.ingresos_alto_usd),labels:precioLabelsFull,vals:precioVals(a1t),x:0.5},
   {t:"Ángulo 3",sub:"Ingresos USD "+fmt0(a3t.ingresos_bajo_usd)+"–"+fmt0(a3t.ingresos_alto_usd),labels:precioLabelsFull,vals:precioVals(a3t),x:4.75},
@@ -335,7 +335,7 @@ precioAngulos.forEach(a=>{
     dataLabelPosition:"bestFit",
   });
 });
-const precioLeg=["Inversión Total (costo)","Comisión de venta (5,5%)","IVA del desarrollador (10% s/construcción)","Margen neto"];
+const precioLeg=["Inversión Total (costo)","Comisión de venta (5,5%)","IVA del desarrollador (1,5% efectivo s/venta)","Margen neto"];
 precioLeg.forEach((t,i)=>{
   const xx=0.6+i*3.1;
   s.addShape(p.ShapeType.rect,{x:xx,y:6.15,w:0.14,h:0.14,fill:{color:precioColors[i]}});

@@ -126,16 +126,20 @@ Gastos operativos por defecto, expresados como % de la renta **bruta anual**. Va
 
 ## Fiscal — `fiscal`
 
-**IVA diferenciado ya resuelto (D-001/D-027, 2026-08-02)** — ver nota arriba. El bloque real es:
+**IVA diferenciado ya resuelto (D-001/D-027, 2026-08-02)** — ver nota arriba. **La fila de venta/reventa fue corregida el 2026-08-23** (D-082) — ver `methodologies/iva-venta-de-inmuebles-paraguay.md` para el mecanismo completo y las fuentes. El bloque real es:
 
 | Clave | Valor | Significado |
 |---|---|---|
 | `iva_alquiler_comercial_pct` | 10.0 | IVA sobre renta bruta, alquiler **comercial** |
 | `iva_alquiler_residencial_pct` | 5.0 | IVA sobre renta bruta, alquiler **residencial** (casa, depto con/sin muebles) |
 | `iva_alquiler_temporal_pct` | 10.0 | IVA sobre renta bruta, **renta temporal/Airbnb** (Urbannit) — confirmado por el founder (D-045, 2026-08-10); ya no usa el 5% residencial que se aplicaba antes por inferencia `[EXTENSION]` |
-| `iva_venta_pct` | 5.0 | IVA sobre venta/reventa, todas las clases — base de cálculo (precio total vs. solo margen) es interpretación `[EXTENSION]`, a confirmar con contadora |
+| `iva_venta_base_imponible_pct` | 30.0 | **Corregido (D-082, 2026-08-23)**: base imponible presunta por ley — 30% del precio de venta (Art. 82, Ley 125/91, mod. Ley 2421/04), el 70% restante queda exento |
+| `iva_venta_tasa_pct` | 5.0 | **Corregido (D-082)**: tasa reducida de inmuebles (Art. 91, Ley 125/91) — **no la tasa general del 10%**, que era el error anterior |
+| `iva_venta_efectiva_pct` | 1.5 | = 30% × 5% — el % efectivo real sobre el 100% del precio de venta. Reemplaza el `iva_venta_pct=5.0` anterior (D-027), que aplicaba 5% directo sobre el precio total — sobreestimaba el IVA real en ~3,33× |
 | `impuesto_renta_pct` | 10.0 | IRP aplicado sobre la renta NETA (no bruta) |
 | `grava_ganancia_capital` | false | Confirmado por el usuario: la reventa NO se grava como actividad habitual — plusvalía neta = plusvalía bruta |
+
+> **`[EXTENSION]` sin resolver, señalada en la corrección (D-082)**: no está confirmado si la reventa de una unidad de portafolio ya terminada tiempo atrás (no "primera venta de obra nueva") por Meridiano califica igual para este régimen de IVA de inmuebles, o si podría estar exenta de IVA y sujeta a IRP en su lugar (régimen distinto, aplicable a vendedores sin habitualidad clara) — se aplica el 1,5% efectivo como el mejor valor disponible hoy, pendiente de confirmar con la contadora.
 
 ## Descuento por etapa de mercado — `descuento_por_etapa_mercado`
 

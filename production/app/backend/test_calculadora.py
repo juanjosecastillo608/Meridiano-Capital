@@ -78,11 +78,12 @@ r_residencial = calc.evaluar_renta("residencial_casa", 100000, 1000, nivel_neto=
 if not aprox(r_residencial["desglose_gastos"]["iva"], 600.0, 1.0):
     fallos.append(f"IVA residencial deberia ser 5% de 12000 bruto = 600: {r_residencial['desglose_gastos']['iva']}")
 
-# --- IVA de venta (nuevo, adicional a las cifras brutas ya auditadas) ---
+# --- IVA de venta (CORREGIDO 2026-08-23, D-082: 1,5% efectivo = 30% base x 5% tasa,
+# no 5% directo -- ver knowledge-base/investment/methodologies/iva-venta-de-inmuebles-paraguay.md) ---
 r_venta = calc.evaluar_reventa("tradicional", "pre_pozo", "vende_al_terminar", 80000, entrega_inicial_pct=20)
-if r_venta["iva_venta_pct"] != 5.0: fallos.append("IVA de venta deberia ser 5%")
-if not aprox(r_venta["valor_salida_neto_iva"], r_venta["valor_salida"] * 0.95, 1.0):
-    fallos.append("valor_salida_neto_iva deberia ser valor_salida menos 5%")
+if not aprox(r_venta["iva_venta_pct"], 1.5, 0.01): fallos.append("IVA de venta deberia ser 1,5% efectivo (30% base x 5% tasa)")
+if not aprox(r_venta["valor_salida_neto_iva"], r_venta["valor_salida"] * 0.985, 1.0):
+    fallos.append("valor_salida_neto_iva deberia ser valor_salida menos 1,5%")
 if r_venta["tir_precio_total_neto_iva_pct"] >= r_venta["tir_precio_total_pct"]:
     fallos.append("TIR neta de IVA de venta deberia ser menor a la TIR bruta")
 

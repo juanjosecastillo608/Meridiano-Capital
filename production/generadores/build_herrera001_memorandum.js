@@ -82,7 +82,7 @@ const sReco=[
   H1("","RECOMENDACIÓN: NEGOCIAR / CONDICIONAR"),
   P("No es un \"comprar\" sin condiciones, ni un \"no comprar\"."),
   callout("El caso financiero es sólido",
-    "En los tres Ángulos analizados, incluso después de recalcular con el costo definitivo (USD 720/m², bajado de USD 750) y descontar el IVA del desarrollador (10% sobre el costo de construcción). El precio de compra ya se validó como favorable frente a múltiples referencias independientes de mercado. El déficit de caja detectado tiene solución viable con dos estructuras de financiamiento concretas. La zona tiene demanda y plusvalía reales, confirmadas por el founder y contrastadas contra fuentes de mercado.",
+    "En los tres Ángulos analizados, incluso después de recalcular con el costo definitivo (USD 720/m², bajado de USD 750) y descontar el IVA del desarrollador (1,5% efectivo sobre el precio de venta — 30% de base imponible presunta × 5% de tasa reducida de inmuebles, corregido 2026-08-23). El precio de compra ya se validó como favorable frente a múltiples referencias independientes de mercado. El déficit de caja detectado tiene solución viable con dos estructuras de financiamiento concretas. La zona tiene demanda y plusvalía reales, confirmadas por el founder y contrastadas contra fuentes de mercado.",
     {fill:VERDE_F,border:VERDE,titleColor:VERDE}),
   sp(80),
   callout("Un solo bloqueante real sigue sin resolver",
@@ -122,7 +122,7 @@ const s2=[
 // ---------- 3. LA OPORTUNIDAD ----------
 const s3=[
   H1("3.","La oportunidad — tres Ángulos comparados"),
-  P("Con el costo definitivo (USD 720/m²) e IVA del desarrollador ya descontado.",{i:true,color:GREY}),
+  P("Con el costo definitivo (USD 720/m²) e IVA del desarrollador ya descontado (1,5% efectivo sobre el precio de venta, corregido 2026-08-23 — ver sección 4).",{i:true,color:GREY}),
   (()=>{
     const a1=ANGULOS.angulo_1, a3=ANGULOS.angulo_3, a2=ANGULOS.angulo_2;
     return table(["","Ángulo 1 (tal cual)","Ángulo 3 (fachada+chicas, 6P)","Ángulo 2 (fachada+chicas+7P)"],[
@@ -131,7 +131,7 @@ const s3=[
       ["Inversión Total","USD "+fmtUSD0(a1.inversion_total_usd),"USD "+fmtUSD0(a3.inversion_total_usd),{text:"USD "+fmtUSD0(a2.inversion_total_usd),bold:true}],
       ["Costo/m² comercializable","USD "+fmtUSD2(a1.costo_m2_comercializable_usd),"USD "+fmtUSD2(a3.costo_m2_comercializable_usd),{text:"USD "+fmtUSD2(a2.costo_m2_comercializable_usd)+" (el más bajo)",bold:true}],
       ["Ingresos totales (bajo–alto)",fmtRangoUSD(a1.ingresos_bajo_usd,a1.ingresos_alto_usd),fmtRangoUSD(a3.ingresos_bajo_usd,a3.ingresos_alto_usd),{text:fmtRangoUSD(a2.ingresos_bajo_usd,a2.ingresos_alto_usd),bold:true}],
-      ["IVA del desarrollador",fmtUSD0(a1.iva_desarrollador_usd),fmtUSD0(a3.iva_desarrollador_usd),fmtUSD0(a2.iva_desarrollador_usd)],
+      ["IVA del desarrollador (bajo–alto)",fmtRangoUSD(a1.iva_desarrollador_bajo_usd,a1.iva_desarrollador_alto_usd),fmtRangoUSD(a3.iva_desarrollador_bajo_usd,a3.iva_desarrollador_alto_usd),fmtRangoUSD(a2.iva_desarrollador_bajo_usd,a2.iva_desarrollador_alto_usd)],
       ["Margen final (bajo–alto)",fmtRangoUSD(a1.margen_bajo_usd,a1.margen_alto_usd),fmtRangoUSD(a3.margen_bajo_usd,a3.margen_alto_usd),{text:fmtRangoUSD(a2.margen_bajo_usd,a2.margen_alto_usd),bold:true,color:VERDE}],
       ["ROI sobre Inversión Total",fmtRangoPct(a1.roi_bajo_pct,a1.roi_alto_pct),fmtRangoPct(a3.roi_bajo_pct,a3.roi_alto_pct),{text:fmtRangoPct(a2.roi_bajo_pct,a2.roi_alto_pct),bold:true,color:VERDE}],
     ],[2600,2130,2130,2140]);
@@ -151,7 +151,7 @@ const s4=[
   bullet("Vehículo legal: Sociedad Anónima entre 2-3 socios, que aportan el 100% del capital necesario (terreno + construcción) — sin deuda bancaria, sin fideicomiso."),
   bullet("Comisión de venta: 5,5% del total de la venta (con IVA 10% incluido), con reparto según el canal — dos puntas propio (100% Meridiano), equipo interno (2,5%/3%), franquicia RE/MAX o Century 21 (0%/100% cedido), agente independiente (2,75%/2,75%). Política estándar de la empresa."),
   bullet("Esquema de financiamiento de compradores: 20% entrega + 70% cuotas decrecientes + 10% contra la entrega física — norma estándar de la empresa. Para este caso, se evaluó y se mantiene como alternativa viable una variante de plazo corto (40% entrega + 50% cuotas + 10% entrega)."),
-  bullet("Régimen tributario del desarrollador: 10% IVA sobre el costo total de construcción + 10% impuesto a la renta sobre utilidad neta — ambas bases confirmadas, ya descontadas del margen final."),
+  bullet("Régimen tributario del desarrollador: IVA de venta 1,5% efectivo sobre el precio de venta (30% base imponible presunta × 5% tasa reducida de inmuebles, Art. 82/91 Ley 125/91 — corregido 2026-08-23, reemplaza el 10% sobre costo de construcción que se venía usando) + 10% impuesto a la renta sobre utilidad neta. El IVA de venta ya está descontado del margen final; el impuesto a la renta corporativa (IRACIS) queda fuera del margen mostrado en este documento — no se resta de las cifras de la sección 3."),
 ];
 
 // ---------- 5. MATRIZ DE SENSIBILIDAD ----------
@@ -204,7 +204,7 @@ const s8=[
     ["Título, gravámenes, embargos","Legal",{text:"Resuelto — analizados, todo en orden. Se re-verifica antes del cierre",color:VERDE,fill:VERDE_F}],
     [{text:"Opinión estructural del piso adicional (Ángulo 2)",bold:true},"Técnico",{text:"SIN RESOLVER — el único bloqueante real que queda",color:ROJO,bold:true,fill:ROJO_F}],
     ["Desglose de avance de obra por componente","Técnico",{text:"Resuelto — 73,5% es exclusivamente estructura, 0% de mampostería/instalaciones",color:VERDE,fill:VERDE_F}],
-    ["Base de cálculo del IVA del desarrollador","Fiscal",{text:"Resuelto — 10% sobre el costo total de construcción",color:VERDE,fill:VERDE_F}],
+    ["Base de cálculo del IVA del desarrollador","Fiscal",{text:"Corregido 2026-08-23 — 1,5% efectivo sobre el precio de venta (30% base imponible presunta × 5% tasa reducida de inmuebles, Art. 82/91 Ley 125/91), no 10% sobre costo de construcción como se venía calculando",color:VERDE,fill:VERDE_F}],
     ["Política de precios de venta vs. comparables","Mercado",{text:"Resuelto — rango premium confirmado con respaldo cuantitativo",color:VERDE,fill:VERDE_F}],
     ["Plusvalía de zona a 2 años","Mercado",{text:"Dato del founder, no tasación de tercero",color:AMBAR,fill:AMBAR_F}],
     ["Costo/plano real del Ángulo 2/3","Ejecución",{text:"El mix de tipologías chicas es ilustrativo, sin plano de arquitecto todavía",color:AMBAR,fill:AMBAR_F}],

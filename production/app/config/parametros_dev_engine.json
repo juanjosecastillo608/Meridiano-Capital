@@ -17,7 +17,12 @@
     "base_default": "directos+indirectos+desarrollo"
   },
   "comision_venta_pct_default": 5.5,
-  "iva_desarrollador_pct_default": 10.0,
+  "iva_venta_default": {
+    "_nota": "CORREGIDO 2026-08-23 (D-082). Ley 125/91 Art. 82 (mod. Ley 2421/04) + Art. 91: base imponible presunta = 30% del precio de VENTA (no del costo de construccion -- ese era el error anterior), tasa reducida de inmuebles = 5% (no la tasa general 10%). Efectivo = 1,5% sobre el precio de venta total. Ver knowledge-base/investment/methodologies/iva-venta-de-inmuebles-paraguay.md. El item de costos.py debe usar modo='porcentaje', base='ingresos' (precio de venta), NUNCA base='directos' (costo de construccion).",
+    "base_imponible_pct": 30.0,
+    "tasa_pct": 5.0,
+    "efectiva_pct": 1.5
+  },
   "tasa_descuento_anual_pct_default": 12.0,
   "financiamiento_default": {
     "_nota": "Solo se usa si el caso no especifica su propia estructura de financiamiento.",

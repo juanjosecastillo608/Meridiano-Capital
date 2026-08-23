@@ -100,7 +100,7 @@ s=p.addSlide(); s.background={color:CREMA};
 eyebrow(s,"Estructura de la inversión"); title(s,"Cómo se financia y se administra el proyecto");
 twoCards(s,[
   ["Vehículo y capital",null,["Sociedad Anónima entre 2-3 socios","100% fondos propios — sin deuda bancaria, sin fideicomiso","Capital propio disponible durante toda la obra, sin depender solo de las ventas"],],
-  ["Comercialización",null,["Comisión de venta: 5,5% del total de la venta","Financiamiento del comprador: 20% entrega + cuotas durante obra + saldo contra la entrega","Régimen tributario del desarrollador confirmado: 10% IVA + 10% impuesto a la renta"],],
+  ["Comercialización",null,["Comisión de venta: 5,5% del total de la venta","Financiamiento del comprador: 20% entrega + cuotas durante obra + saldo contra la entrega","Régimen tributario del desarrollador confirmado: 1,5% IVA efectivo sobre el precio de venta (corregido 2026-08-23) + 10% impuesto a la renta"],],
 ],2.2,3.6);
 footer(s,7);
 

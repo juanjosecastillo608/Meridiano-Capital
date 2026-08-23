@@ -50,7 +50,11 @@ def correr_bajo_alto(caso):
         "ingresos_alto_usd": round(r_alto.ingresos_totales_usd, 2),
         "comision_bajo_usd": round(r_bajo.costo_comerciales_usd, 2),
         "comision_alto_usd": round(r_alto.costo_comerciales_usd, 2),
-        "iva_desarrollador_usd": round(r_bajo.costo_impuestos_usd, 2),
+        # IVA CORREGIDO (D-082, 2026-08-23): 1,5% efectivo sobre el precio de venta,
+        # ya NO es un monto fijo -- varia con el escenario bajo/alto porque la base
+        # es ahora el precio de venta (ingresos), no el costo de construccion (fijo).
+        "iva_desarrollador_bajo_usd": round(r_bajo.costo_impuestos_usd, 2),
+        "iva_desarrollador_alto_usd": round(r_alto.costo_impuestos_usd, 2),
         "margen_bajo_usd": round(r_bajo.margen_usd, 2),
         "margen_alto_usd": round(r_alto.margen_usd, 2),
         "roi_bajo_pct": round(r_bajo.margen_usd / r_bajo.inversion_total_usd * 100, 2),
@@ -73,8 +77,10 @@ def main():
             "fuente": "dev_engine — Development Cost & Financial Engine de Meridiano Capital",
             "caso": "HERRERA-001",
             "generado_por": "production/app/backend/dev_engine/exportar_herrera_completo.py",
-            "validado_contra": "contracts/cases/HERRERA-001/36-recosteo-720-e-iva-desarrollador-margen-final-definitivo.md "
-                                "(reconstruccion 6/6 dentro de 0,05% de tolerancia, ver validar_herrera.py)",
+            "validado_contra": "Inversion Total / Costo m2 / Comision: contracts/cases/HERRERA-001/"
+                                "36-recosteo-720-e-iva-desarrollador-margen-final-definitivo.md (6/6 dentro de 0,05%). "
+                                "IVA y Margen: CORREGIDOS 2026-08-23 (D-082) -- ver validar_herrera.py y "
+                                "knowledge-base/investment/methodologies/iva-venta-de-inmuebles-paraguay.md",
         },
         "moneda": CONVERSOR.resumen(),
         "angulos": {caso["clave"]: correr_bajo_alto(caso) for caso in CASOS},

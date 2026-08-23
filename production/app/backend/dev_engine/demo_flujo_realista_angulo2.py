@@ -50,7 +50,9 @@ def main():
         ItemParametrizable("Comision de venta", modo="porcentaje", valor=5.5, base="ingresos"),
     ])
     impuestos = GrupoParametrizable("Impuestos y gastos", items=[
-        ItemParametrizable("IVA del desarrollador", modo="porcentaje", valor=10.0, base="directos"),
+        # IVA de venta correcto (D-082, 2026-08-23): 1,5% efectivo (30% base imponible
+        # x 5% tasa reducida de inmuebles, Ley 125/91) sobre el precio de venta.
+        ItemParametrizable("IVA del desarrollador", modo="porcentaje", valor=1.5, base="ingresos"),
     ])
     estructura = EstructuraCostos(
         terreno=terreno, directos=directos, indirectos=indirectos,

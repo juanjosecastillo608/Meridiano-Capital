@@ -7,26 +7,26 @@
   },
   "resumen_ejecutivo": {
     "inversion_total_usd": 3185640.34,
-    "costo_total_proyecto_usd": 3650354.44,
+    "costo_total_proyecto_usd": 3506725.09,
     "ingresos_totales_usd": 4586925.0,
-    "margen_usd": 936570.56,
-    "roi_pct": 25.66,
-    "tir_anual_pct": 136.97,
-    "van_usd": 760946.2,
+    "margen_usd": 1080199.91,
+    "roi_pct": 30.8,
+    "tir_anual_pct": 169.24,
+    "van_usd": 894352.32,
     "payback_mes": 12,
-    "equity_multiple": 1.73
+    "equity_multiple": 1.85
   },
   "indicadores_por_m2": {
     "costo_directo_por_m2_construido": 678.31,
     "costo_indirecto_por_m2_construido": 71.97,
-    "costo_financiero_por_m2_construido": 0.41,
-    "costo_total_por_m2_construido": 1172.6,
-    "costo_total_por_m2_vendible": 1738.26
+    "costo_financiero_por_m2_construido": 0.0,
+    "costo_total_por_m2_construido": 1126.47,
+    "costo_total_por_m2_vendible": 1669.87
   },
   "moneda": {
-    "tipo_cambio_pyg_por_usd": 7300.0,
-    "fecha": "2026-08-19",
-    "fuente": "parametros_dev_engine.json"
+    "tipo_cambio_pyg_por_usd": 6494.951994,
+    "fecha": "2026-08-22",
+    "fuente": "open.er-api.com (respaldado por exchangerate-api.com) -- obtenido via Browser tool en esta sesion; el fetch directo (urllib) fue bloqueado por una restriccion SSL del entorno sandbox de este agente, no por la fuente en si -- ver dev_engine/README.md"
   },
   "_fuente": "dev_engine — Development Cost & Financial Engine de Meridiano Capital",
   "_advertencia": "Cifras generadas por el motor parametrizable. Distinguir siempre ACTUAL/CONFIRMED de ESTIMATE/PROJECTION/ASSUMPTION segun la fuente de cada parametro de entrada (S65) antes de presentar a un inversor.",
@@ -34,17 +34,17 @@
     {
       "componente": "Terreno",
       "usd": 850000.0,
-      "pct": 23.285410030032487
+      "pct": 24.239139886497345
     },
     {
       "componente": "Costos directos",
       "usd": 2111597.7800000003,
-      "pct": 57.8463766185957
+      "pct": 60.215663498161476
     },
     {
       "componente": "Costos indirectos",
       "usd": 224042.56,
-      "pct": 6.137556322091948
+      "pct": 6.388939943963499
     },
     {
       "componente": "Costos de desarrollo",
@@ -53,18 +53,18 @@
     },
     {
       "componente": "Costos financieros",
-      "usd": 1273.451708973019,
-      "pct": 0.03488570023162629
+      "usd": 0.0,
+      "pct": 0.0
     },
     {
       "componente": "Costos comerciales",
       "usd": 252280.875,
-      "pct": 6.911133667188674
+      "pct": 7.1942016703681775
     },
     {
       "componente": "Impuestos y gastos",
-      "usd": 211159.77800000005,
-      "pct": 5.78463766185957
+      "usd": 68803.875,
+      "pct": 1.962055001009503
     },
     {
       "componente": "Contingencia",
@@ -73,15 +73,15 @@
     },
     {
       "componente": "COSTO TOTAL",
-      "usd": 3650354.444708973,
+      "usd": 3506725.0900000003,
       "pct": 100.0
     }
   ],
   "financiamiento": {
-    "capital_propio_usado_usd": 1274256.14,
-    "deuda_girada_usd": 41083.89,
-    "pico_deuda_usd": 41083.89,
-    "costo_financiero_total_usd": 1273.45
+    "capital_propio_usado_usd": 1273599.25,
+    "deuda_girada_usd": 0.0,
+    "pico_deuda_usd": 0.0,
+    "costo_financiero_total_usd": 0.0
   },
   "flujo_mensual": [
     {
@@ -90,11 +90,11 @@
       "egreso_obra": 29327.746944444447,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 30273.704999999998,
-      "egreso_impuestos": 25339.173360000004,
-      "egresos_totales": 953610.8386377778,
+      "egreso_impuestos": 8256.465,
+      "egresos_totales": 936528.1302777778,
       "ingreso_ventas": 550431.0,
-      "flujo_neto": -403209.1842765765,
-      "flujo_acumulado": -403209.1842765765
+      "flujo_neto": -386097.1302777778,
+      "flujo_acumulado": -386097.1302777778
     },
     {
       "mes": 1,
@@ -102,11 +102,11 @@
       "egreso_obra": 87983.24083333334,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 3153.5109375,
-      "egreso_impuestos": 2639.497225000001,
-      "egresos_totales": 112446.46232916668,
+      "egreso_impuestos": 860.0484375000001,
+      "egresos_totales": 110667.01354166667,
       "ingreso_ventas": 57336.5625,
-      "flujo_neto": -55139.245467965346,
-      "flujo_acumulado": -458348.4297445419
+      "flujo_neto": -53330.451041666674,
+      "flujo_acumulado": -439427.58131944446
     },
     {
       "mes": 2,
@@ -114,11 +114,11 @@
       "egreso_obra": 146638.73472222226,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 3153.5109375,
-      "egreso_impuestos": 2639.497225000001,
-      "egresos_totales": 171101.95621805557,
+      "egreso_impuestos": 860.0484375000001,
+      "egresos_totales": 169322.50743055556,
       "ingreso_ventas": 57336.5625,
-      "flujo_neto": -113794.73935685423,
-      "flujo_acumulado": -572143.1691013961
+      "flujo_neto": -111985.94493055556,
+      "flujo_acumulado": -551413.52625
     },
     {
       "mes": 3,
@@ -126,11 +126,11 @@
       "egreso_obra": 205294.22861111115,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 3153.5109375,
-      "egreso_impuestos": 2639.497225000001,
-      "egresos_totales": 229757.45010694448,
+      "egreso_impuestos": 860.0484375000001,
+      "egresos_totales": 227978.00131944448,
       "ingreso_ventas": 57336.5625,
-      "flujo_neto": -172450.23324574315,
-      "flujo_acumulado": -744593.4023471393
+      "flujo_neto": -170641.43881944448,
+      "flujo_acumulado": -722054.9650694445
     },
     {
       "mes": 4,
@@ -138,11 +138,11 @@
       "egreso_obra": 263949.72250000003,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 3153.5109375,
-      "egreso_impuestos": 2639.497225000001,
-      "egresos_totales": 288412.94399583334,
+      "egreso_impuestos": 860.0484375000001,
+      "egresos_totales": 286633.49520833336,
       "ingreso_ventas": 57336.5625,
-      "flujo_neto": -231105.727134632,
-      "flujo_acumulado": -975699.1294817713
+      "flujo_neto": -229296.93270833336,
+      "flujo_acumulado": -951351.8977777779
     },
     {
       "mes": 5,
@@ -150,11 +150,11 @@
       "egreso_obra": 322605.21638888895,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 43518.4509375,
-      "egreso_impuestos": 36425.06170500001,
-      "egresos_totales": 421218.94236472226,
+      "egreso_impuestos": 11868.668437499999,
+      "egresos_totales": 396662.5490972223,
       "ingreso_ventas": 791244.5625,
-      "flujo_neto": 369996.2744964791,
-      "flujo_acumulado": -605702.8549852922
+      "flujo_neto": 394582.0134027777,
+      "flujo_acumulado": -556769.8843750001
     },
     {
       "mes": 6,
@@ -162,11 +162,11 @@
       "egreso_obra": 322605.21638888895,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 10361.5359375,
-      "egreso_impuestos": 8672.633739285717,
-      "egresos_totales": 360309.599399008,
+      "egreso_impuestos": 2825.8734375,
+      "egresos_totales": 354462.83909722226,
       "ingreso_ventas": 188391.5625,
-      "flujo_neto": -171947.38253780664,
-      "flujo_acumulado": -777650.2375230988
+      "flujo_neto": -166071.27659722226,
+      "flujo_acumulado": -722841.1609722225
     },
     {
       "mes": 7,
@@ -174,11 +174,11 @@
       "egreso_obra": 263949.72250000003,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 10361.5359375,
-      "egreso_impuestos": 8672.633739285717,
-      "egresos_totales": 301654.10551011906,
+      "egreso_impuestos": 2825.8734375,
+      "egresos_totales": 295807.34520833334,
       "ingreso_ventas": 188391.5625,
-      "flujo_neto": -113291.88864891772,
-      "flujo_acumulado": -890942.1261720166
+      "flujo_neto": -107415.78270833334,
+      "flujo_acumulado": -830256.9436805558
     },
     {
       "mes": 8,
@@ -186,11 +186,11 @@
       "egreso_obra": 205294.22861111115,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 10361.5359375,
-      "egreso_impuestos": 8672.633739285717,
-      "egresos_totales": 242998.61162123023,
+      "egreso_impuestos": 2825.8734375,
+      "egresos_totales": 237151.8513194445,
       "ingreso_ventas": 188391.5625,
-      "flujo_neto": -54636.394760028896,
-      "flujo_acumulado": -945578.5209320455
+      "flujo_neto": -48760.28881944451,
+      "flujo_acumulado": -879017.2325000003
     },
     {
       "mes": 9,
@@ -198,11 +198,11 @@
       "egreso_obra": 146638.73472222226,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 10361.5359375,
-      "egreso_impuestos": 8672.633739285717,
-      "egresos_totales": 184343.1177323413,
+      "egreso_impuestos": 2825.8734375,
+      "egresos_totales": 178496.3574305556,
       "ingreso_ventas": 188391.5625,
-      "flujo_neto": 3568.0451356046383,
-      "flujo_acumulado": -942010.4757964408
+      "flujo_neto": 9895.205069444404,
+      "flujo_acumulado": -869122.0274305559
     },
     {
       "mes": 10,
@@ -210,11 +210,11 @@
       "egreso_obra": 87983.24083333334,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 10361.5359375,
-      "egreso_impuestos": 8672.633739285717,
-      "egresos_totales": 125687.6238434524,
+      "egreso_impuestos": 2825.8734375,
+      "egresos_totales": 119840.86354166668,
       "ingreso_ventas": 188391.5625,
-      "flujo_neto": 62263.03424521265,
-      "flujo_acumulado": -879747.4415512282
+      "flujo_neto": 68550.69895833332,
+      "flujo_acumulado": -800571.3284722226
     },
     {
       "mes": 11,
@@ -222,11 +222,11 @@
       "egreso_obra": 29327.746944444447,
       "egreso_indirectos": 18670.213333333333,
       "egreso_comerciales": 40635.2409375,
-      "egreso_impuestos": 34011.80709928572,
-      "egresos_totales": 122645.00831456349,
+      "egreso_impuestos": 11082.338437499999,
+      "egresos_totales": 99715.53965277778,
       "ingreso_ventas": 738822.5625,
-      "flujo_neto": 616148.2085466379,
-      "flujo_acumulado": -263599.23300459026
+      "flujo_neto": 639107.0228472222,
+      "flujo_acumulado": -161464.3056250004
     },
     {
       "mes": 12,
@@ -234,11 +234,11 @@
       "egreso_obra": 0.0,
       "egreso_indirectos": 0.0,
       "egreso_comerciales": 73431.75468750001,
-      "egreso_impuestos": 61462.578239285736,
-      "egresos_totales": 134894.33292678575,
+      "egreso_impuestos": 20026.842187500002,
+      "egresos_totales": 93458.59687500002,
       "ingreso_ventas": 1335122.8125,
-      "flujo_neto": 1200199.1339344154,
-      "flujo_acumulado": 936599.9009298251
+      "flujo_neto": 1241664.215625,
+      "flujo_acumulado": 1080199.9099999997
     },
     {
       "mes": 13,
@@ -249,8 +249,8 @@
       "egreso_impuestos": 0.0,
       "egresos_totales": 0.0,
       "ingreso_ventas": 0.0,
-      "flujo_neto": -29.34563879866808,
-      "flujo_acumulado": 936570.5552910265
+      "flujo_neto": 0.0,
+      "flujo_acumulado": 1080199.9099999997
     }
   ]
 }

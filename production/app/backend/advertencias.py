@@ -56,10 +56,14 @@ NOTA_OCUPACION_TEMPORAL = (
 
 ADVERTENCIAS_VENTA = [
     (
-        "IVA de venta aplicado: 5% sobre el valor de salida/cesion, confirmado por el "
-        "founder el 2026-08-02 (resuelve D-001 para venta). La BASE de calculo (precio "
-        "total vs. solo el margen) es una interpretacion [EXTENSION] -- confirmar con "
-        "contadora. Las cifras '_neto_iva' son adicionales; las originales (brutas, sin "
+        "IVA de venta aplicado: 1,5% efectivo sobre el valor de salida/cesion (30% "
+        "base imponible presunta x 5% tasa reducida de inmuebles, Art. 82/91 Ley "
+        "125/91) -- CORREGIDO 2026-08-23, D-082. Reemplaza el 5% directo (D-027, "
+        "2026-08-02) que sobreestimaba el IVA real en ~3,33x -- ver knowledge-base/"
+        "investment/methodologies/iva-venta-de-inmuebles-paraguay.md. [EXTENSION] "
+        "pendiente: no confirmado si la reventa de portafolio (no 'primera venta de "
+        "obra nueva') califica igual para este regimen -- confirmar con contadora. "
+        "Las cifras '_neto_iva' son adicionales; las originales (brutas, sin "
         "IVA) se preservan sin cambios para no alterar los casos ya auditados "
         "(Habitalis 9A, Edificio Austria)."
     ),
