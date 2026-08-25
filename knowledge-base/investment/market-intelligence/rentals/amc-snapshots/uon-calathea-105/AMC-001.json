@@ -1,0 +1,864 @@
+{
+  "amc_id": "AMC-001",
+  "fecha": "2026-08-24",
+  "amc_status": "OK",
+  "sujeto": {
+    "proyecto": "UON Calathea",
+    "unidad": "105",
+    "barrio": "Santísima Trinidad",
+    "tipologia": "1D",
+    "dormitorios": 1,
+    "superficie_m2": 49,
+    "piso": 1,
+    "cochera": true,
+    "amoblado": false,
+    "amenities": [
+      "pileta",
+      "gimnasio",
+      "coworking",
+      "solárium",
+      "bar exterior",
+      "deck"
+    ]
+  },
+  "fuentes_status": {
+    "C21": "PARTIAL",
+    "RE/MAX": "BLOCKED",
+    "InfoCasas": "AVAILABLE"
+  },
+  "pool_candidatos": 8,
+  "evaluados": [
+    {
+      "comp_id": "IC-950-AST",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Avda. Santísima Trinidad",
+      "barrio": "Santísima Trinidad",
+      "distancia_aprox_m": 400,
+      "edificio": null,
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 57,
+      "piso": null,
+      "cochera": true,
+      "amoblado": false,
+      "amenities": [],
+      "estado": "bueno",
+      "precio_publicado_usd": 950,
+      "observaciones": "Cortinas blackout, AC, cochera incluida. Amoblamiento no confirmado con certeza -- tratado como sin muebles.",
+      "comparability_score": 87.6,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 1.0,
+          "peso": 30,
+          "aporte": 30.0,
+          "motivo": "mismo barrio"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.84,
+          "peso": 15,
+          "aporte": 12.6,
+          "motivo": "16% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 0.75,
+          "peso": 10,
+          "aporte": 7.5,
+          "motivo": "bueno"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 1.0,
+          "peso": 5,
+          "aporte": 5.0,
+          "motivo": "misma condicion de cochera"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 16.67
+    },
+    {
+      "comp_id": "IC-850-CP",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Edificio Central Park, Barrio Santísima Trinidad",
+      "barrio": "Santísima Trinidad",
+      "distancia_aprox_m": null,
+      "edificio": "Central Park",
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 86,
+      "piso": null,
+      "cochera": null,
+      "amoblado": false,
+      "amenities": [
+        "piscina",
+        "gimnasio"
+      ],
+      "estado": "muy bueno",
+      "precio_publicado_usd": 850.0,
+      "observaciones": "Descripción no itemiza muebles (a diferencia de los listados explícitamente 'Amoblado') -- tratado como sin muebles, con incertidumbre razonable. + IVA aparte.",
+      "comparability_score": 73.35,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 1.0,
+          "peso": 30,
+          "aporte": 30.0,
+          "motivo": "mismo barrio"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.0,
+          "peso": 15,
+          "aporte": 0.0,
+          "motivo": "76% de diferencia -- demasiado distinto"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 0.75,
+          "peso": 10,
+          "aporte": 7.5,
+          "motivo": "muy bueno"
+        },
+        "amenities": {
+          "sub_score": 0.17,
+          "peso": 5,
+          "aporte": 0.85,
+          "motivo": "1/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "cochera no informada en el comparable"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 9.88
+    },
+    {
+      "comp_id": "IC-3100000-2C",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "A 2 cuadras de Av. Primer Presidente",
+      "barrio": "Trinidad",
+      "distancia_aprox_m": null,
+      "edificio": null,
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 48,
+      "piso": null,
+      "cochera": false,
+      "amoblado": false,
+      "amenities": [],
+      "estado": "a estrenar",
+      "precio_publicado_usd": 477.29,
+      "observaciones": "Precio publicado en Gs. 3.100.000 -- convertido a USD con TC 6.494,95 Gs/USD (D-080, 2026-08-22, la cotizacion real mas reciente verificada en el repo). Cocina amoblada y equipada, pero sin muebles en el resto -- tratado como sin muebles. Sin cochera.",
+      "comparability_score": 71.0,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 0.4,
+          "peso": 30,
+          "aporte": 12.0,
+          "motivo": "barrio distinto, distancia no informada"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 1.0,
+          "peso": 15,
+          "aporte": 15.0,
+          "motivo": "2% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "a estrenar"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 0.3,
+          "peso": 5,
+          "aporte": 1.5,
+          "motivo": "condicion de cochera distinta"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 9.94
+    },
+    {
+      "comp_id": "IC-2400000-VA",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Barrio Virgen de la Asunción, A466",
+      "barrio": "Virgen de la Asunción",
+      "distancia_aprox_m": null,
+      "edificio": null,
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 33.5,
+      "piso": 2,
+      "cochera": true,
+      "amoblado": false,
+      "amenities": [
+        "piscina"
+      ],
+      "estado": "bueno",
+      "precio_publicado_usd": 369.52,
+      "observaciones": "Precio publicado en Gs. 2.400.000 (TC 6.494,95 Gs/USD, D-080). Barrio distinto de Santísima Trinidad -- resultado del filtro amplio de InfoCasas por municipio, no del barrio exacto del sujeto.",
+      "comparability_score": 65.65,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 0.4,
+          "peso": 30,
+          "aporte": 12.0,
+          "motivo": "barrio distinto, distancia no informada"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.46,
+          "peso": 15,
+          "aporte": 6.9,
+          "motivo": "32% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 0.75,
+          "peso": 10,
+          "aporte": 7.5,
+          "motivo": "bueno"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 1.0,
+          "peso": 5,
+          "aporte": 5.0,
+          "motivo": "misma condicion de cochera"
+        },
+        "piso_vista": {
+          "sub_score": 0.85,
+          "peso": 5,
+          "aporte": 4.25,
+          "motivo": "1 piso(s) de diferencia"
+        }
+      },
+      "usd_m2": 11.03
+    },
+    {
+      "comp_id": "IC-4500000-GC49",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Edificio Grand Chelsea, Avda. Primer Presidente y Auditores del Chaco, Barrio Mburucuyá",
+      "barrio": "Mburucuyá",
+      "distancia_aprox_m": 900,
+      "edificio": "Grand Chelsea",
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 49,
+      "piso": null,
+      "cochera": null,
+      "amoblado": null,
+      "amenities": [],
+      "estado": "desconocido",
+      "precio_publicado_usd": 692.85,
+      "observaciones": "Misma superficie exacta que el sujeto (49 m2). Precio en Gs. 4.500.000 (TC 6.494,95 Gs/USD, D-080). Descripción se cortó en la página fuente antes de confirmar amoblamiento/cochera/piso -- quedan como null, no se inventan.",
+      "comparability_score": 63.5,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 0.45,
+          "peso": 30,
+          "aporte": 13.5,
+          "motivo": "a 900m, zona cercana"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 1.0,
+          "peso": 15,
+          "aporte": 15.0,
+          "motivo": "0% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 0.5,
+          "peso": 10,
+          "aporte": 5.0,
+          "motivo": "amoblamiento no informado en uno de los dos"
+        },
+        "estado": {
+          "sub_score": 0.5,
+          "peso": 10,
+          "aporte": 5.0,
+          "motivo": "desconocido"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "cochera no informada en el comparable"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 14.14
+    },
+    {
+      "comp_id": "C21-2700000-PI",
+      "fuente": "C21",
+      "url": "https://century21.com.py/propiedad/38604_parques-del-inga-alquiler-a-estrenar-con-cochera-en-zona-umax",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Calle Inga entre Amba'y y Alamo, Trinidad",
+      "barrio": "Trinidad",
+      "distancia_aprox_m": null,
+      "edificio": "Parques del Inga",
+      "tipologia": "Mono",
+      "dormitorios": 0,
+      "banos": 1,
+      "superficie_m2": 32,
+      "piso": null,
+      "cochera": true,
+      "amoblado": false,
+      "amenities": [],
+      "estado": "a estrenar",
+      "precio_publicado_usd": 415.71,
+      "observaciones": "Precio en Gs. 2.700.000 (TC 6.494,95 Gs/USD, D-080). Monoambiente, no 1 dormitorio -- tipología distinta. La página de detalle del propio listado muestra 'Aviso terminado' -- puede estar expirado/no disponible; se conserva como dato con esta advertencia explícita, no se descarta en silencio.",
+      "comparability_score": 58.2,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 0.4,
+          "peso": 30,
+          "aporte": 12.0,
+          "motivo": "barrio distinto, distancia no informada"
+        },
+        "tipologia": {
+          "sub_score": 0.65,
+          "peso": 20,
+          "aporte": 13.0,
+          "motivo": "1 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.38,
+          "peso": 15,
+          "aporte": 5.7,
+          "motivo": "35% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "a estrenar"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 1.0,
+          "peso": 5,
+          "aporte": 5.0,
+          "motivo": "misma condicion de cochera"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 12.99
+    },
+    {
+      "comp_id": "IC-5600000-ML",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Molas López",
+      "barrio": "Molas López",
+      "distancia_aprox_m": null,
+      "edificio": null,
+      "tipologia": "2D",
+      "dormitorios": 2,
+      "banos": 2,
+      "superficie_m2": 73,
+      "piso": null,
+      "cochera": true,
+      "amoblado": false,
+      "amenities": [
+        "piscina",
+        "gimnasio",
+        "solárium"
+      ],
+      "estado": "a estrenar",
+      "precio_publicado_usd": 862.21,
+      "observaciones": "Precio en Gs. 5.600.000 (TC 6.494,95 Gs/USD, D-080). 2 dormitorios, no 1 -- tipología distinta del sujeto, se deja que el score lo refleje en vez de descartarlo a mano.",
+      "comparability_score": 54.6,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 0.4,
+          "peso": 30,
+          "aporte": 12.0,
+          "motivo": "barrio distinto, distancia no informada"
+        },
+        "tipologia": {
+          "sub_score": 0.65,
+          "peso": 20,
+          "aporte": 13.0,
+          "motivo": "1 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.03,
+          "peso": 15,
+          "aporte": 0.45,
+          "motivo": "49% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "a estrenar"
+        },
+        "amenities": {
+          "sub_score": 0.33,
+          "peso": 5,
+          "aporte": 1.65,
+          "motivo": "2/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 1.0,
+          "peso": 5,
+          "aporte": 5.0,
+          "motivo": "misma condicion de cochera"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 11.81
+    },
+    {
+      "comp_id": "IC-1500-LP",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Edificio Residencial Las Palmas",
+      "barrio": "Trinidad",
+      "distancia_aprox_m": null,
+      "edificio": "Las Palmas",
+      "tipologia": "2D",
+      "dormitorios": 2,
+      "banos": 2,
+      "superficie_m2": 95,
+      "piso": 3,
+      "cochera": true,
+      "amoblado": false,
+      "amenities": [],
+      "estado": "excelente",
+      "precio_publicado_usd": 1500.0,
+      "observaciones": "2 dormitorios en suite, sin muebles itemizados. Categoría de edificio más alta que el sujeto.",
+      "comparability_score": 53.5,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 0.4,
+          "peso": 30,
+          "aporte": 12.0,
+          "motivo": "barrio distinto, distancia no informada"
+        },
+        "tipologia": {
+          "sub_score": 0.65,
+          "peso": 20,
+          "aporte": 13.0,
+          "motivo": "1 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.0,
+          "peso": 15,
+          "aporte": 0.0,
+          "motivo": "94% de diferencia -- demasiado distinto"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "excelente"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 1.0,
+          "peso": 5,
+          "aporte": 5.0,
+          "motivo": "misma condicion de cochera"
+        },
+        "piso_vista": {
+          "sub_score": 0.7,
+          "peso": 5,
+          "aporte": 3.5,
+          "motivo": "2 piso(s) de diferencia"
+        }
+      },
+      "usd_m2": 15.79
+    }
+  ],
+  "top_3": [
+    {
+      "comp_id": "IC-950-AST",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Avda. Santísima Trinidad",
+      "barrio": "Santísima Trinidad",
+      "distancia_aprox_m": 400,
+      "edificio": null,
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 57,
+      "piso": null,
+      "cochera": true,
+      "amoblado": false,
+      "amenities": [],
+      "estado": "bueno",
+      "precio_publicado_usd": 950,
+      "observaciones": "Cortinas blackout, AC, cochera incluida. Amoblamiento no confirmado con certeza -- tratado como sin muebles.",
+      "comparability_score": 87.6,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 1.0,
+          "peso": 30,
+          "aporte": 30.0,
+          "motivo": "mismo barrio"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.84,
+          "peso": 15,
+          "aporte": 12.6,
+          "motivo": "16% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 0.75,
+          "peso": 10,
+          "aporte": 7.5,
+          "motivo": "bueno"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 1.0,
+          "peso": 5,
+          "aporte": 5.0,
+          "motivo": "misma condicion de cochera"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 16.67
+    },
+    {
+      "comp_id": "IC-850-CP",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Edificio Central Park, Barrio Santísima Trinidad",
+      "barrio": "Santísima Trinidad",
+      "distancia_aprox_m": null,
+      "edificio": "Central Park",
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 86,
+      "piso": null,
+      "cochera": null,
+      "amoblado": false,
+      "amenities": [
+        "piscina",
+        "gimnasio"
+      ],
+      "estado": "muy bueno",
+      "precio_publicado_usd": 850.0,
+      "observaciones": "Descripción no itemiza muebles (a diferencia de los listados explícitamente 'Amoblado') -- tratado como sin muebles, con incertidumbre razonable. + IVA aparte.",
+      "comparability_score": 73.35,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 1.0,
+          "peso": 30,
+          "aporte": 30.0,
+          "motivo": "mismo barrio"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 0.0,
+          "peso": 15,
+          "aporte": 0.0,
+          "motivo": "76% de diferencia -- demasiado distinto"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 0.75,
+          "peso": 10,
+          "aporte": 7.5,
+          "motivo": "muy bueno"
+        },
+        "amenities": {
+          "sub_score": 0.17,
+          "peso": 5,
+          "aporte": 0.85,
+          "motivo": "1/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "cochera no informada en el comparable"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 9.88
+    },
+    {
+      "comp_id": "IC-3100000-2C",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "A 2 cuadras de Av. Primer Presidente",
+      "barrio": "Trinidad",
+      "distancia_aprox_m": null,
+      "edificio": null,
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 48,
+      "piso": null,
+      "cochera": false,
+      "amoblado": false,
+      "amenities": [],
+      "estado": "a estrenar",
+      "precio_publicado_usd": 477.29,
+      "observaciones": "Precio publicado en Gs. 3.100.000 -- convertido a USD con TC 6.494,95 Gs/USD (D-080, 2026-08-22, la cotizacion real mas reciente verificada en el repo). Cocina amoblada y equipada, pero sin muebles en el resto -- tratado como sin muebles. Sin cochera.",
+      "comparability_score": 71.0,
+      "score_detalle": {
+        "ubicacion": {
+          "sub_score": 0.4,
+          "peso": 30,
+          "aporte": 12.0,
+          "motivo": "barrio distinto, distancia no informada"
+        },
+        "tipologia": {
+          "sub_score": 1.0,
+          "peso": 20,
+          "aporte": 20.0,
+          "motivo": "0 dormitorio(s) de diferencia"
+        },
+        "superficie": {
+          "sub_score": 1.0,
+          "peso": 15,
+          "aporte": 15.0,
+          "motivo": "2% de diferencia"
+        },
+        "caracteristicas": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "amoblamiento igual"
+        },
+        "estado": {
+          "sub_score": 1.0,
+          "peso": 10,
+          "aporte": 10.0,
+          "motivo": "a estrenar"
+        },
+        "amenities": {
+          "sub_score": 0.0,
+          "peso": 5,
+          "aporte": 0.0,
+          "motivo": "0/6 amenities del sujeto presentes"
+        },
+        "cochera": {
+          "sub_score": 0.3,
+          "peso": 5,
+          "aporte": 1.5,
+          "motivo": "condicion de cochera distinta"
+        },
+        "piso_vista": {
+          "sub_score": 0.5,
+          "peso": 5,
+          "aporte": 2.5,
+          "motivo": "piso no informado en uno de los dos"
+        }
+      },
+      "usd_m2": 9.94
+    }
+  ],
+  "descartados": [],
+  "renta_mercado": {
+    "low_usd_mes": 484.12,
+    "base_usd_mes": 617.89,
+    "high_usd_mes": 816.83,
+    "low_usd_m2": 9.88,
+    "base_usd_m2": 12.61,
+    "high_usd_m2": 16.67,
+    "dispersion_relativa": 0.189,
+    "metodologia": "BASE = promedio de (media ponderada por comparability_score) y (mediana) de USD/m2 entre los comparables aptos, escalado a la superficie del sujeto. LOW/HIGH = minimo/maximo observado entre los comparables aptos, escalado igual. No es un promedio simple (SS27)."
+  },
+  "confianza": "MEDIUM",
+  "advertencias": [
+    "Solo 1/3 fuentes obligatorias con status AVAILABLE."
+  ]
+}

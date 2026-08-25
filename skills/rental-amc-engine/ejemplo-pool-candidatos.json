@@ -1,0 +1,44 @@
+{
+  "_nota": "Ejemplo de esquema de entrada para amc.py evaluar --pool. No es un AMC real -- ver knowledge-base/investment/market-intelligence/rentals/amc-snapshots/ para snapshots reales guardados.",
+  "sujeto": {
+    "proyecto": "UON Calathea",
+    "unidad": "105",
+    "barrio": "Santísima Trinidad",
+    "tipologia": "1D",
+    "dormitorios": 1,
+    "superficie_m2": 49,
+    "piso": 1,
+    "cochera": true,
+    "amoblado": false,
+    "amenities": ["pileta", "gimnasio", "coworking", "solárium", "bar exterior"]
+  },
+  "fuentes_status": {
+    "C21": "NO_RESULTS",
+    "RE/MAX": "NO_RESULTS",
+    "InfoCasas": "AVAILABLE"
+  },
+  "candidatos": [
+    {
+      "comp_id": "IC-001",
+      "fuente": "InfoCasas",
+      "url": "https://www.infocasas.com.py/alquiler/departamentos/asuncion/trinidad",
+      "fecha_consulta": "2026-08-24",
+      "direccion": "Avda. Santísima Trinidad",
+      "barrio": "Santísima Trinidad",
+      "distancia_aprox_m": 400,
+      "edificio": null,
+      "tipologia": "1D",
+      "dormitorios": 1,
+      "banos": 1,
+      "superficie_m2": 57,
+      "piso": null,
+      "cochera": true,
+      "amoblado": false,
+      "amenities": [],
+      "estado": "bueno",
+      "precio_publicado_usd": 950,
+      "observaciones": "Cortinas blackout, AC, cochera incluida. Amoblamiento no confirmado con certeza -- tratado como sin muebles."
+    }
+  ],
+  "pesos": null
+}
