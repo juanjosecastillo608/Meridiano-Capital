@@ -83,6 +83,6 @@ Primera aplicación real: `knowledge-base/investment/projects/uon-calathea/` —
 ## Qué queda pendiente, explícitamente
 
 1. **`SS7` ("cargar TODA la lista de precios, no solo lo consultado")** — hoy `units.csv` de UON Calathea solo tiene las 2 unidades que aparecieron en conversaciones reales (201, 105), no la lista completa del proyecto. No se inventaron filas para las unidades restantes.
-2. **Geocoding (`SS6`)** — `location_status` queda `UNVERIFIED` en todo proyecto cargado hasta que alguien geocodifique la dirección real.
+2. ~~Geocoding (`SS6`)~~ — ✅ **Parcialmente resuelto, 2026-08-28.** Nueva skill `geocoding-engine` (SK-16) geocodifica y escribe `latitud`/`longitud`/`google_maps_url`/`location_status` en `project.json` — probado con UON Calathea (`location_status: VERIFIED_STREET_LEVEL`, ver `skills/geocoding-engine/SKILL.md`). **Sigue pendiente**: los demás proyectos que se carguen a futuro siguen naciendo `UNVERIFIED` hasta que alguien corra `geocoder.py registrar` explícitamente — no es automático al crear el proyecto.
 3. **Sin comando de escritura/alta** — cargar un proyecto nuevo es crear la carpeta y los 3 archivos a mano siguiendo este esquema; no hay `project-unit-database add-unit` todavía.
 4. **`PRICE_M2_ANALYSIS`** casi nunca calculable hoy — la mayoría de los registros reales no tienen `superficie_total_m2` (solo área propia), por eso `price_m2_analysis` da `null` en la práctica.

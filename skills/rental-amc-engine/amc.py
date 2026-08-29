@@ -21,13 +21,18 @@ Esquema esperado de --pool (ver ejemplo-pool-candidatos.json en esta carpeta):
   "sujeto": {
     "proyecto": str, "unidad": str, "barrio": str, "tipologia": str,
     "dormitorios": int, "superficie_m2": float, "piso": int|null,
-    "cochera": bool, "amoblado": bool, "amenities": [str, ...]
+    "cochera": bool, "amoblado": bool, "amenities": [str, ...],
+    "lat": float|null, "lon": float|null  # opcional -- SK-16/geocoding-engine,
+        # ver project.json del proyecto (skills/project-unit-database). Si estan
+        # presentes en sujeto Y en el candidato, la distancia real (Haversine)
+        # reemplaza al texto de barrio/distancia_aprox_m en score_ubicacion.
   },
   "fuentes_status": {"C21": "AVAILABLE|PARTIAL|BLOCKED|NO_RESULTS|UNVERIFIED",
                       "RE/MAX": "...", "InfoCasas": "..."},
   "candidatos": [
     {"comp_id": str, "fuente": str, "url": str, "fecha_consulta": "YYYY-MM-DD",
      "direccion": str, "barrio": str, "distancia_aprox_m": float|null,
+     "lat": float|null, "lon": float|null,  # opcional, ver nota de "sujeto" arriba
      "edificio": str|null, "tipologia": str, "dormitorios": int, "banos": int|null,
      "superficie_m2": float, "piso": int|null, "cochera": bool|null,
      "amoblado": bool|null, "amenities": [str, ...], "estado": str,
@@ -44,10 +49,18 @@ que llamo con un pool vacio debe decirle eso al usuario, no rellenar a mano.
 
 import argparse
 import json
+import math
 import statistics
+import sys
 import unicodedata
 from datetime import date
 from pathlib import Path
+
+# Reutiliza -- no duplica -- la distancia real de geocoding-engine (SK-16, SS17)
+# cuando el pool trae lat/lon. Mismo patron de import entre skills/paquetes que
+# production/app/backend/dev_engine/cashflow.py usa con calculadora.py.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "geocoding-engine"))
+from geocoder import haversine_m  # noqa: E402
 
 SNAPSHOTS_DIR = (Path(__file__).resolve().parent.parent.parent / "knowledge-base" / "investment" /
                   "market-intelligence" / "rentals" / "amc-snapshots")
@@ -80,18 +93,42 @@ def normalizar(s):
     return s.lower().strip()
 
 
+def distancia_real_m(sujeto, c):
+    """SS17/SK-16: distancia real (Haversine) si ambos traen lat/lon geocodificadas.
+    None si falta alguna -- nunca se estima ni se inventa acá (SS6: no inventar coordenadas)."""
+    for punto in (sujeto, c):
+        if punto.get("lat") is None or punto.get("lon") is None:
+            return None
+    return haversine_m(sujeto["lat"], sujeto["lon"], c["lat"], c["lon"])
+
+
 def score_ubicacion(sujeto, c):
     if not c.get("barrio") or not sujeto.get("barrio"):
         return 0.0, "sin barrio informado"
-    if normalizar(c["barrio"]) == normalizar(sujeto["barrio"]):
+    mismo_barrio = normalizar(c["barrio"]) == normalizar(sujeto["barrio"])
+
+    d_real = distancia_real_m(sujeto, c)
+    if d_real is not None:
+        # Con coordenadas reales (SK-16) la distancia manda sobre el texto del
+        # barrio -- dos direcciones a 50m pueden estar en barrios con nombres
+        # distintos (ver D-0NN, discrepancia OSM/registral de UON Calathea).
+        if mismo_barrio or d_real <= 300:
+            return 1.0, f"a {d_real:.0f}m (coordenadas reales) -- {'mismo barrio' if mismo_barrio else 'muy cerca pese a barrio distinto'}"
+        if d_real <= 800:
+            return 0.75, f"a {d_real:.0f}m (coordenadas reales), barrio distinto"
+        if d_real <= 2000:
+            return 0.45, f"a {d_real:.0f}m (coordenadas reales), zona cercana"
+        return 0.2, f"a {d_real:.0f}m (coordenadas reales), zona lejana"
+
+    if mismo_barrio:
         return 1.0, "mismo barrio"
     if c.get("distancia_aprox_m") is not None:
         d = c["distancia_aprox_m"]
         if d <= 800:
-            return 0.75, f"barrio distinto pero a {d:.0f}m"
+            return 0.75, f"barrio distinto pero a {d:.0f}m (estimado por el agente, sin geocoding)"
         if d <= 2000:
-            return 0.45, f"a {d:.0f}m, zona cercana"
-        return 0.2, f"a {d:.0f}m, zona lejana"
+            return 0.45, f"a {d:.0f}m, zona cercana (estimado por el agente, sin geocoding)"
+        return 0.2, f"a {d:.0f}m, zona lejana (estimado por el agente, sin geocoding)"
     return 0.4, "barrio distinto, distancia no informada"
 
 

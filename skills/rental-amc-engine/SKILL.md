@@ -66,6 +66,7 @@ La especificación lista 11 criterios de comparabilidad en SS22 pero solo pesa 8
 
 ## Dependencias
 
+- `skills/geocoding-engine/geocoder.py` (SK-16) — provee `haversine_m()` para la distancia real de `score_ubicacion` (import directo, mismo patrón que `dev_engine` reutiliza `calculadora.py`).
 - `documentation/investment-sales-rental-market-engine/00-especificacion-v1.md` (D-084) — especificación completa que esta skill implementa (solo SS18-33).
 - `knowledge-base/investment/methodologies/amc-analisis-comparativo-de-mercado.md` (D-077) — metodología AMC de **venta**, hermana de esta. Comparte principios (no inventar ajustes, categorizar fuentes por confiabilidad) pero es un dominio distinto — no mezclar comparables de venta con comparables de alquiler.
 - `knowledge-base/investment/market-intelligence/rentals/data/tarifas-alquiler-por-barrio-asuncion.csv` — base de conocimiento de mercado cross-cutting (hoy vacía, categoría D en casi todos los barrios). Cuando un AMC de esta skill produzca un dato de confianza `HIGH`/`MEDIUM`, conviene promoverlo a esta tabla (SS56 — distinción `CASE DATA` vs. `MARKET KNOWLEDGE`), a mano, todavía no automatizado.
@@ -79,7 +80,7 @@ La especificación lista 11 criterios de comparabilidad en SS22 pero solo pesa 8
 
 ## Qué queda pendiente, explícitamente
 
-1. **Geocoding y "misma zona/radio" real (SS17)** — el score de `ubicacion` hoy compara nombres de barrio como texto (con normalización de tildes/mayúsculas) y una distancia aproximada opcional que tiene que aportar el agente a mano; no hay coordenadas ni cálculo de radio real.
+1. ~~Geocoding y "misma zona/radio" real (SS17)~~ — ✅ **Parcialmente resuelto, 2026-08-28 (`geocoding-engine`, SK-16).** `score_ubicacion` ahora calcula distancia real (Haversine) cuando `sujeto` y el candidato traen `lat`/`lon` geocodificadas; si faltan, cae automáticamente al criterio de texto anterior — compatibilidad total, `AMC-001` de UON Calathea 105 no se tocó y sigue dando el mismo resultado. **Sigue pendiente**: el tier de área de mercado completo de SS17 (mismo edificio/proyecto/calle/zona comparable) vive en `geocoding-engine` como comando aparte (`area-tier`), todavía no está conectado automáticamente al score de este script — hoy solo aporta la distancia real, no el tier completo.
 2. **Ajustes cuantitativos explícitos (SS28)** — el score de comparabilidad pondera la similitud pero no aplica un ajuste de precio explícito tipo "+5% por piso alto" como sí lo hace la metodología de venta (D-077, Paso 3). Si se necesita ese nivel de ajuste, hacerlo a mano sobre el resultado y documentarlo, no asumirlo.
 3. **`MARKET_DATA_STALE` (SS57)** — sin umbral de días parametrizado todavía.
 4. **Automatización del paso 1** — hoy la búsqueda en C21/RE-MAX/InfoCasas la hace el agente vía WebSearch/WebFetch cada vez; no hay scraping programado ni actualización periódica.

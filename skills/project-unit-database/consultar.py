@@ -121,32 +121,32 @@ def cmd_cocheras(args):
     print(json.dumps(cocheras, ensure_ascii=False, indent=2))
 
 
-def cmd_activo(args):
-    """SS13 -- INVESTMENT_ASSET: unidad sola vs. unidad+cochera, comparables."""
-    unidades = cargar_unidades(args.slug)
-    unidad = next((u for u in unidades if u.get("unidad") == args.unidad), None)
+def investment_asset(slug, unidad_id, cochera_num=None):
+    """SS13 -- INVESTMENT_ASSET: unidad sola vs. unidad+cochera. Funcion pura,
+    reutilizable por otras skills (ver skills/investor-report-30, SK-18) sin
+    pasar por el CLI ni reimplementar esta logica."""
+    unidades = cargar_unidades(slug)
+    unidad = next((u for u in unidades if u.get("unidad") == unidad_id), None)
     if unidad is None:
-        print(json.dumps({"resultado": "NO_DATA", "nota": f"Unidad '{args.unidad}' no encontrada en '{args.slug}'"}, ensure_ascii=False, indent=2))
-        return
+        return {"resultado": "NO_DATA", "nota": f"Unidad '{unidad_id}' no encontrada en '{slug}'"}
 
     cochera = None
-    if args.cochera:
-        cocheras = cargar_cocheras(args.slug)
-        cochera = next((c for c in cocheras if c.get("numero") == args.cochera and c.get("vinculada_a_unidad") == args.unidad), None)
+    if cochera_num:
+        cocheras = cargar_cocheras(slug)
+        cochera = next((c for c in cocheras if c.get("numero") == cochera_num and c.get("vinculada_a_unidad") == unidad_id), None)
         if cochera is None:
-            print(json.dumps({
+            return {
                 "resultado": "INSUFFICIENT_DATA",
-                "nota": (f"Cochera '{args.cochera}' no esta registrada como vinculada a la unidad "
-                         f"'{args.unidad}' en parking.csv -- no se arma el activo combinado sin ese "
+                "nota": (f"Cochera '{cochera_num}' no esta registrada como vinculada a la unidad "
+                         f"'{unidad_id}' en parking.csv -- no se arma el activo combinado sin ese "
                          f"vinculo explicito (SS12: nunca sumar una cochera si el proyecto no establece "
                          f"que corresponda)."),
-            }, ensure_ascii=False, indent=2))
-            return
+            }
 
     precio_unidad_sola = unidad.get("precio_vigente_usd") or unidad.get("precio_lista_usd")
     precio_combinado = unidad.get("precio_combinado_con_cochera_usd")
 
-    resultado = {
+    return {
         "unidad": unidad,
         "cochera": cochera,
         "vinculacion_declarada": unidad.get("cochera_vinculacion") or "DESCONOCIDA",
@@ -165,6 +165,10 @@ def cmd_activo(args):
         },
         "_price_m2": price_m2(unidad),
     }
+
+
+def cmd_activo(args):
+    resultado = investment_asset(args.slug, args.unidad, args.cochera)
     print(json.dumps(resultado, ensure_ascii=False, indent=2))
 
 

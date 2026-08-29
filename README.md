@@ -12,8 +12,8 @@ Reestructurado el 2026-08-02 según la arquitectura de 10 capas del Migration Ma
 | [`inventory/`](inventory/MIGRATION_INVENTORY.md) | ARCHIVE | Inventario completo del material fuente (35 recursos, 3 skills) + copia cruda sin tocar en `_raw-copies/` |
 | [`knowledge-base/`](knowledge-base/) | KNOWLEDGE | Conocimiento reconstruido por dominio: `business/`, `brand/`, `operations/`, `investment/`, `marketing/`, `technology/`, `ai/` |
 | [`governance/decisions/`](governance/decisions/DECISION_REGISTER.md) | GOVERNANCE | `DECISION_REGISTER.md` (CURRENT/HISTORICAL/DEPRECATED/UNRESOLVED/PROPOSED) y `REQUIREMENTS.md` |
-| [`skills/`](skills/) | SKILLS | Capacidades reutilizables (`rentabilidad-calculator`) |
-| [`workflows/`](workflows/) | WORKFLOWS | Procesos ejecutables (`rentabilidad-evaluation`) |
+| [`skills/`](skills/) | SKILLS | Capacidades reutilizables — `rentabilidad-calculator` (SK-03) + las 6 skills del Real Estate Intelligence OS (SK-11 a SK-18: mercado, costos, geocoding, AMC de alquiler, Project/Unit/Parking DB, target yield, informe de inversor de 30 puntos) |
+| [`workflows/`](workflows/) | WORKFLOWS | Procesos ejecutables (`rentabilidad-evaluation`, `nuevo-proyecto-inmobiliario`) |
 | `core/`, `memory/`, `connectors/`, `projects/` | CORE / MEMORY / CONNECTORS / PROJECTS | Resto de la arquitectura — se van poblando según el Implementation Roadmap |
 | [`assets/`](assets/) | — | Logos fuente, brandbook, manual de marca oficial, sitio de referencia (archivado) |
 | [`production/app/`](production/app/README.md) | PRODUCTION | Software funcional: sitio + calculadora de rentabilidad conectada de verdad |
@@ -22,14 +22,17 @@ Reestructurado el 2026-08-02 según la arquitectura de 10 capas del Migration Ma
 
 ## Empezar
 
+- **Para saber en qué seguir trabajando ahora**: [`governance/PRIORITY_PLAN.md`](governance/PRIORITY_PLAN.md) — todo lo abierto (Decision Register + especificación del Real Estate Intelligence OS), ordenado por prioridad de ejecución y actualizado a medida que se cierra cada ítem. Es el punto de entrada de cualquier sesión nueva.
 - Para entender el negocio: [`knowledge-base/business/00-overview.md`](knowledge-base/business/00-overview.md)
 - Para entender la marca: [`knowledge-base/brand/00-overview.md`](knowledge-base/brand/00-overview.md)
-- Para ver qué está pendiente o en riesgo: [`governance/decisions/DECISION_REGISTER.md`](governance/decisions/DECISION_REGISTER.md) (sección "UNRESOLVED de máxima prioridad" primero)
+- Para ver el historial completo de decisiones (qué se resolvió, cuándo y por qué): [`governance/decisions/DECISION_REGISTER.md`](governance/decisions/DECISION_REGISTER.md)
 - Para correr la app: `cd production/app/backend && python server.py`, abrir `http://localhost:8000`
 
-## ⚠️ Pendiente con el responsable de negocio antes de producción
+## Pendientes activos
 
-1. ~~IVA en el cálculo de renta neta~~ — **resuelto el 2026-08-02** (D-027): comercial 10%, residencial 5%, venta 5%.
-2. Los "pisos de rentabilidad" están etiquetados como neto en un lugar y como bruto en otro del mismo archivo de configuración — **sigue sin resolver**.
-
-Detalle completo en `governance/decisions/DECISION_REGISTER.md#D-002`.
+Ninguna UNRESOLVED de impacto financiero directo queda abierta a la fecha
+(la última, D-004, se cerró el 2026-08-28 — ver `D-089`). Todo lo demás que
+sigue abierto —decisiones rápidas que le faltan al founder, trabajo
+bloqueado por una acción externa (fotos, abogado, deploy), investigación de
+datos pendiente, e ítems pausados a propósito— está consolidado y priorizado
+en [`governance/PRIORITY_PLAN.md`](governance/PRIORITY_PLAN.md), no acá.

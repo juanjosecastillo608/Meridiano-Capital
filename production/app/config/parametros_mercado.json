@@ -1,8 +1,8 @@
 {
   "_meta": {
     "descripcion": "Parametros de mercado de Meridiano Capital. Editar SOLO este archivo para adaptarse a cambios de mercado. La logica de calculo (calculadora.py) NO se toca. Todos los porcentajes se expresan en numeros enteros o decimales (8 = 8%, 7.5 = 7.5%).",
-    "version": "1.5",
-    "fecha": "2026-08-23",
+    "version": "1.6",
+    "fecha": "2026-08-28",
     "politica_origen": "P07 + refinamientos validados (Habitalis 9A, Edificio Austria)"
   },
   "pisos_renta_neta": {
@@ -105,7 +105,9 @@
     "_nota": "Estructura de pago tipica del mercado de Asuncion: entrega inicial + saldo en cuotas sin intereses durante la obra. Editable por proyecto.",
     "entrega_inicial_pct": 20.0,
     "cuotas_sin_interes": true,
-    "saldo_a_entrega_pct": 0.0
+    "saldo_a_entrega_pct": 0.0,
+    "meses_hasta_pre_pozo_default": 7,
+    "_nota_meses_hasta_pre_pozo": "D-004 (resuelto 2026-08-28): antes era un default de funcion Python (evaluar_reventa, sin clave de config), violando el principio 'la logica nunca cambia, solo el config'. Movido a config sin cambiar el valor (7) -- misma salida en test_calculadora.py. Cuenta los meses entre la compra en etapa pre_pozo y el inicio real de obra."
   },
   "conceptos_neto": {
     "_nota": "Que se descuenta en cada nivel de neto. Acumulativo: cada nivel incluye los anteriores.",
@@ -192,6 +194,8 @@
   "uplift_remodelacion_objetivo_pct": 40.0,
   "renta_temporal_default": {
     "_nota": "Supuestos para renta temporal/Airbnb. Ocupación REALISTA 55-65% (nunca 90%+). Modelar capex de amoblado y costos reales. Validado corrigiendo el Edificio Austria (usaba 93%).",
+    "limpieza_pct": 12.0,
+    "_nota_limpieza": "D-004 (resuelto 2026-08-28): antes hardcodeado como literal 12.0 dentro de evaluar_renta() en calculadora.py, sin clave de config -- violaba el principio 'la logica nunca cambia, solo el config'. Movido acá sin cambiar el valor (12% de la renta bruta anual, stack de renta temporal).",
     "ocupacion_realista_pct": [
       55.0,
       65.0

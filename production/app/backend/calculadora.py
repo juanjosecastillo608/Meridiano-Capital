@@ -167,7 +167,10 @@ class Calculadora:
 
         if es_temporal:
             # Nivel 4: stack temporal propio
-            desglose["limpieza"] = bruto_anual * 12.0 / 100.0
+            # D-004 (resuelto 2026-08-28): limpieza_pct vive en config
+            # (renta_temporal_default), ya no hardcodeado como literal 12.0.
+            limpieza_pct = self.p["renta_temporal_default"]["limpieza_pct"]
+            desglose["limpieza"] = bruto_anual * limpieza_pct / 100.0
             desglose["seguros_obligatorios"] = bruto_anual * s["seguro_pct"] / 100.0
             desglose["mantenimiento"] = bruto_anual * s["mantenimiento_pct"] / 100.0
             desglose["canon_agencia"] = bruto_anual * s["honorarios_administracion_pct"] / 100.0
@@ -229,7 +232,7 @@ class Calculadora:
     # ---- REVENTA (venta con unidad terminada) ----
     def evaluar_reventa(self, tipo_edificio, etapa_ingreso, salida,
                         precio_entrada, meses_obra=None,
-                        entrega_inicial_pct=None, meses_hasta_pre_pozo=7):
+                        entrega_inicial_pct=None, meses_hasta_pre_pozo=None):
         """
         tipo_edificio: tradicional | torre
         etapa_ingreso: pre_pozo | lanzamiento | pozo_durante_obra
@@ -239,6 +242,10 @@ class Calculadora:
         matriz = self.p["matriz_plusvalia_reventa"][tipo_edificio]
         if meses_obra is None:
             meses_obra = matriz["_plazo_obra_meses_referencia"]
+        # D-004 (resuelto 2026-08-28): antes era un default de funcion (=7),
+        # ahora vive en config (cronograma_cuotas_default), mismo valor.
+        if meses_hasta_pre_pozo is None:
+            meses_hasta_pre_pozo = self.p["cronograma_cuotas_default"]["meses_hasta_pre_pozo_default"]
         plusvalia_pct = matriz[etapa_ingreso][salida]
         valor_salida = precio_entrada * (1.0 + plusvalia_pct / 100.0)
 
