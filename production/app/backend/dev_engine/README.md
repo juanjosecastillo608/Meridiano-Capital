@@ -45,6 +45,13 @@ cambio) recalcula automáticamente todo lo que depende de él.
 | `proyecto.py` | `Proyecto` — orquestador único; `FichaProyecto`, `ResultadoProyecto` |
 | `cotizacion.py` | Fuente de cotización USD/PYG real — `conversor_vigente()`, cache versionado, ver sección propia abajo |
 | `exportar_herrera_completo.py` | Exporta los 3 Ángulos (bajo/alto) de HERRERA-001 a un JSON único — es lo que leen `build_herrera001_memorandum.js` y `build_herrera001_investor_book.js` |
+| `escalamiento.py` | Price Escalation Engine (S24-S25) — `etapas_default()` lee `escalamiento_precio_por_etapa_pct_default`, `matriz_precios_por_etapa()`, `aplicar_escalamiento_a_ventas()` |
+| `target_return.py` | Target Return Engine (S44) — `evaluar_objetivo()` compara `MetricasFinancieras` contra `UmbralesObjetivo`: CUMPLE / NO CUMPLE / REQUIERE NEGOCIACION / SIN UMBRALES DEFINIDOS |
+| `inflacion.py` | Inflation Engine (S26-S27) — tasas diferenciadas (general/construcción/materiales/mano de obra), `proyectar_costo_directo()`, `proyectar_precio_venta()` |
+| `calidad_datos.py` | Data Quality Engine (S19-S20) — `validar_superficies()`, `validar_ventas()`, `validar_estructura_costos()`, `validar_flujo()`, cada uno devuelve `"MODEL ERROR: ..."` |
+| `auditoria_matematica.py` | Mathematical Audit (S57-S58) — recalcula costos/ventas/flujo/TIR/VAN por un camino de código independiente y compara contra lo reportado, con tolerancia |
+| `validacion_precio_mercado.py` | Puente a `skills/market-price-validation` (SK-13) — valida el precio de venta asumido contra comparables reales de `knowledge-base/` |
+| `dashboard.py` | Executive Dashboard + Outputs 01-13 (S59-S60) — `armar_dashboard()` empaqueta todo lo anterior sin recalcular nada (ver nota de transparencia en el propio archivo sobre el nombrado de los 13 outputs) |
 
 ## Cómo se arma un proyecto (patrón general)
 
@@ -116,13 +123,26 @@ si no, revisar el CA bundle de `certifi` o la política de red del entorno.
 - **Cotización oficial del BCP automatizada** — hoy la fuente automatizable es
   un agregador de mercado (Nivel 3), no el Banco Central directamente (Nivel 1).
   `fuente_bcp_manual()` cubre el caso de uso real mientras tanto.
-- **Price Escalation Engine (S25)** y **matriz de precio por etapa (S24)** como
-  módulo propio — hoy se puede modelar manualmente variando `precio_usd` por
-  `VentaUnidad`, pero no hay un motor dedicado que aplique el % de escalamiento
-  automáticamente etapa por etapa.
-- **Auditoría matemática automática (S57-S58)** como validador independiente —
-  hoy la única verificación automática es el propio test de reconstrucción de
-  Herrera.
 - **Conexión de los otros generadores** (`build_herrera001_presentacion_inversores.js`,
   el Investment Summary de una página) al mismo JSON — solo se conectaron el
   Memorándum y el Investor Book, que fueron los pedidos explícitamente.
+- **Versioning de escenarios (§7.33)** — `escenarios.Escenario` no registra
+  fecha/usuario/valor anterior/motivo de cada ajuste; no estaba dentro del
+  alcance aprobado al construir las 6 piezas nuevas (ver
+  `documentation/development-financial-engine/PHASE_7_SYSTEM_AUDIT.md`).
+- **Nombrado definitivo de los "Outputs 01-13" (S59)** — `dashboard.py` ya
+  arma las 13 salidas, pero su enumeración/nombres es una propuesta razonada
+  (ver la nota de transparencia al inicio de ese archivo) porque el texto
+  original del prompt maestro que los nombra uno por uno no quedó persistido
+  en ningún archivo del repo. Confirmar contra ese texto antes de darlo por
+  definitivo — es una capa de presentación pura, reordenarla no afecta ningún
+  cálculo de los demás módulos.
+
+Ya resueltos en esta iteración (antes pendientes en esta misma lista):
+**Price Escalation Engine (S24-S25)** → `escalamiento.py`,
+**Auditoría matemática automática (S57-S58)** → `auditoria_matematica.py`,
+**Target Return Engine (S44)** → `target_return.py`,
+**Inflation Engine (S26-S27)** → `inflacion.py`,
+**Data Quality Engine (S19-S20)** → `calidad_datos.py`,
+**Dashboard ejecutivo + Outputs (S59-S60)** → `dashboard.py`,
+**Integración market-price-validation (SK-13)** → `validacion_precio_mercado.py`.

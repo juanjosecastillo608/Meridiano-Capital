@@ -64,16 +64,16 @@ def clasificar(precio, mercado_bajo, mercado_alto):
     return "SIGNIFICANTLY ABOVE MARKET"
 
 
-def main():
-    parser = argparse.ArgumentParser(description="market-price-validation (SK-13)")
-    parser.add_argument("--barrio", required=True)
-    parser.add_argument("--tipologia", default=None)
-    parser.add_argument("--precio-m2", type=float, required=True, help="Precio propuesto, USD/m2")
-    args = parser.parse_args()
-
+def validar_precio(barrio, precio_m2, tipologia=None):
+    """
+    Funcion pura, reutilizable desde otros modulos (ej. dev_engine, S20/S26)
+    sin pasar por el CLI. Extraida de main() sin cambiar ni un valor -- mismo
+    patron ya usado en skills/project-unit-database/consultar.py
+    (cmd_activo() -> investment_asset()).
+    """
     rows = leer_comparables()
-    barrio_n = normalizar(args.barrio)
-    tip_n = normalizar(args.tipologia) if args.tipologia else None
+    barrio_n = normalizar(barrio)
+    tip_n = normalizar(tipologia) if tipologia else None
 
     filtrados = []
     for r in rows:
@@ -87,14 +87,13 @@ def main():
         filtrados.append({**r, "_usd_m2": float(usd_m2)})
 
     if not filtrados:
-        print(json.dumps({
+        return {
             "resultado": "SIN COMPARABLES",
             "nota": (f"No hay comparables reales en knowledge-base/investment/market-intelligence/comparables/ "
-                     f"para barrio='{args.barrio}' tipologia='{args.tipologia}'. No se puede validar el precio "
+                     f"para barrio='{barrio}' tipologia='{tipologia}'. No se puede validar el precio "
                      f"contra mercado real -- no inventar un rango. Considerar ampliar el radio de busqueda a "
                      f"zonas vecinas de perfil similar, documentando el ajuste."),
-        }, ensure_ascii=False, indent=2))
-        return
+        }
 
     valores = [f["_usd_m2"] for f in filtrados]
     dentro, fuera = filtrar_por_iqr(valores)
@@ -103,17 +102,17 @@ def main():
 
     mercado_bajo, mercado_alto = min(dentro), max(dentro)
     mercado_medio = round(sum(dentro) / len(dentro), 2)
-    clasificacion = clasificar(args.precio_m2, mercado_bajo, mercado_alto)
+    clasificacion = clasificar(precio_m2, mercado_bajo, mercado_alto)
 
-    resultado = {
-        "precio_propuesto_usd_m2": args.precio_m2,
+    return {
+        "precio_propuesto_usd_m2": precio_m2,
         "comparables_encontrados": len(filtrados),
         "comparables_usados_tras_excluir_outliers": len(dentro),
         "comparables_excluidos_como_outlier": fuera,
         "mercado_bajo_usd_m2": mercado_bajo,
         "mercado_medio_usd_m2": mercado_medio,
         "mercado_alto_usd_m2": mercado_alto,
-        "diferencia_vs_techo_pct": round((args.precio_m2 - mercado_alto) / mercado_alto * 100, 1),
+        "diferencia_vs_techo_pct": round((precio_m2 - mercado_alto) / mercado_alto * 100, 1),
         "clasificacion": clasificacion,
         "nivel_de_confianza": "HIGH" if len(dentro) >= 5 else ("MEDIUM" if len(dentro) >= 3 else "LOW"),
         "metodologia": ("knowledge-base/investment/methodologies/comparable-selection-engine.md + "
@@ -123,6 +122,16 @@ def main():
                          "criterio estadistico (IQR) -- confirmar con criterio humano antes de descartar un "
                          "comparable real, ver comparable-selection-engine.md #3."),
     }
+
+
+def main():
+    parser = argparse.ArgumentParser(description="market-price-validation (SK-13)")
+    parser.add_argument("--barrio", required=True)
+    parser.add_argument("--tipologia", default=None)
+    parser.add_argument("--precio-m2", type=float, required=True, help="Precio propuesto, USD/m2")
+    args = parser.parse_args()
+
+    resultado = validar_precio(args.barrio, args.precio_m2, args.tipologia)
     print(json.dumps(resultado, ensure_ascii=False, indent=2))
 
 

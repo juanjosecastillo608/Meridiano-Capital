@@ -27,4 +27,11 @@ Modulos:
   escenarios      - Scenario Engine (Conservador/Base/Optimista, combinables)
   investor_layer  - capa de datos segura para inversores + export JSON
   proyecto        - ficha maestra del proyecto + orquestador
+  escalamiento               - Price Escalation Engine, matriz de precio por etapa comercial
+  target_return               - Target Return Engine, CUMPLE/NO CUMPLE/REQUIERE NEGOCIACION contra umbrales
+  inflacion                   - Inflation Engine, tasas diferenciadas (general/construccion/materiales/mano de obra)
+  calidad_datos                - Data Quality Engine, "MODEL ERROR: ..." sobre superficies/ventas/costos/flujo
+  auditoria_matematica          - Mathematical Audit, recalculo independiente de costos/ventas/flujo/TIR/VAN
+  validacion_precio_mercado     - puente a market-price-validation (SK-13): precio asumido vs. comparables reales
+  dashboard                     - Executive Dashboard + Outputs 01-13 (ensambla todo lo anterior, no recalcula nada)
 """
