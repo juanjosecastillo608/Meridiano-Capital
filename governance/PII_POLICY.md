@@ -88,11 +88,28 @@ explícitamente PII real de referencias legítimas no personales (nombres de
 calles, de empresas, de proyectos) antes de decidir qué hacer con cada
 coincidencia.
 
+**Limitación conocida de un barrido basado solo en texto (agregada tras
+`D-095`)**: un `grep` sobre archivos de texto/markdown NO detecta (a) PDF
+escaneados sin capa de texto extraíble (`pdftotext` da ~0 caracteres) — estos
+requieren inspección visual u OCR antes de dar por limpio un documento
+binario; (b) el mismo archivo con PII duplicado bajo un nombre de archivo
+distinto en otra carpeta — esto se detecta por **hash de blob** (`git ls-tree`),
+nunca solo por nombre. Un barrido de PII "completo" debe cubrir ambos casos,
+no solo grep de texto.
+
 ## Historial de aplicación
 
 - **2026-08-29 (`D-093`)**: primera aplicación — caso `UON-001`, 2 personas
-  físicas, 8 archivos con PII redundante anonimizados, 2 archivos (boletos)
-  eliminados del historial completo mediante `git-filter-repo`, 3 archivos de
-  trazabilidad legal (`FACT_REGISTER.md`, `CASE_FACTS.md`,
-  `UON-001_DISCOVERY_REPORT.md`) conservados intactos por ser la fuente de
+  físicas (Boyajian, Sakumoto), 8 archivos con PII redundante anonimizados, 2
+  archivos (boletos, transcripción de texto) eliminados del historial
+  completo mediante `git-filter-repo`, 3 archivos de trazabilidad legal
+  (`FACT_REGISTER.md`, `CASE_FACTS.md`, `UON-001_DISCOVERY_REPORT.md`)
+  conservados intactos por ser la fuente de
   verdad de hechos del caso.
+- **2026-08-29 (`D-095`)**: segunda aplicación, mismo caso — un barrido
+  binario (no solo de texto) encontró un **tercer afectado** (Ariel Luis
+  Debenedetti, `FACT-013B`) en un PDF escaneado, y confirmó que los PDF/DOCX
+  **originales** del boleto (con la misma PII que `D-093` creía haber
+  purgado) seguían publicados sin tocar, incluyendo 2 copias duplicadas bajo
+  nombres de archivo distintos. 8 rutas (6 blobs únicos) eliminadas del
+  historial completo. Ver `DECISION_REGISTER.md` para el detalle completo.

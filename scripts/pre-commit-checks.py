@@ -44,6 +44,12 @@ SECRET_PATTERNS = [
 KNOWN_PII_PATTERNS = [
     r"9228455", r"9\.228\.455",
     r"9381885", r"9\.381\.885",
+    # Ariel Luis Debenedetti (FACT-013B) -- descubierto en el barrido binario de
+    # 2026-08-29 dentro de "Escritura Edificio UON .pdf" (eliminada del historial,
+    # ver DECISION_REGISTER.md D-095); el patron original de D-093 solo cubria
+    # Boyajian/Sakumoto porque el barrido de texto de esa fase no incluia PDFs
+    # escaneados sin capa de texto.
+    r"8927883", r"8\.927\.883",
 ]
 AUTHORIZED_PII_FILES = {
     "contracts/cases/UON-001/facts/FACT_REGISTER.md",
