@@ -51,6 +51,26 @@ del inmueble en otros 6, y solo la lectura del contexto lo distinguía).
   realmente necesita versionarse o si conviene Git LFS (ver `git fsck`/
   auditoría de blobs grandes en `governance/decisions/DECISION_REGISTER.md`
   para el diagnóstico ya hecho sobre los binarios existentes de `contracts/`).
+- **Tests**: si el cambio toca `production/app/backend/calculadora.py`,
+  `production/app/backend/dev_engine/`, o cualquiera de las skills del Real
+  Estate Intelligence OS (`skills/*-engine/`, `skills/target-yield-tools/`,
+  `skills/investor-report-30/`), correr antes de commitear:
+  `python production/app/backend/test_calculadora.py` y
+  `python -m dev_engine.test_parametrizacion` (desde
+  `production/app/backend/`) — ambos deben terminar en verde. Si algún
+  resultado cambia sin que ese fuera el objetivo del cambio, es una
+  regresión: detenerse y reportarla, nunca commitear "corrigiéndola" sin
+  entender la causa.
+
+## Nota sobre otras copias de este repo en esta máquina
+
+Puede existir, fuera de esta carpeta, una copia histórica archivada (con PII
+sin limpiar, sin remote configurado) y un backup espejo (`.git` bare, sin
+remote) — ambos son snapshots de contingencia de la limpieza de PII de
+`D-093` (2026-08-29), **nunca workspaces de trabajo**. Si alguna vez aparecen
+en el filesystem de esta máquina, no commitear, no hacer push ni conectar
+remotes ahí — el único workspace oficial es esta carpeta, con `origin`
+apuntando a `https://github.com/juanjosecastillo608/Meridiano-Capital.git`.
 
 ## Estructura del repo
 

@@ -28,3 +28,17 @@ contracts/cases/*/extracted-data/page-renders/
 # "boleto_<UNA LETRA>.txt" (boleto_A, boleto_B, ...) para no capturar de mas --
 # no afecta a boleto_diff.txt (comparacion de versiones, sin PII, ya trackeado).
 contracts/cases/*/extracted-data/boleto_[A-Z].txt
+
+# Higiene preventiva de secretos (Fase 7, R-B2) -- ninguno de estos existe
+# hoy en el repo (verificado), se agrega para que nunca pueda colarse uno
+# sin darse cuenta.
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+credentials.json
+secrets.json
+secrets.yml
+secrets.yaml
