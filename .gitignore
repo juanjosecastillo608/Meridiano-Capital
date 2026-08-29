@@ -19,3 +19,12 @@ production/generadores/Meridiano_WhatsApp_Frio.png
 # contracts/ (OCR visual) -- derivados, regenerables desde source-documents/,
 # no un entregable. Mismo criterio que la regla de generadores/ de arriba.
 contracts/cases/*/extracted-data/page-renders/
+
+# Transcripciones literales de boletos de compraventa (u otro instrumento legal
+# con PII completa de las partes -- domicilio, email, telefono, RUC personal).
+# Ver governance/PII_POLICY.md y D-093 (limpieza historica de UON-001,
+# 2026-08-29): la fuente legal completa no se versiona, solo los hechos ya
+# extraidos y verificados en facts/FACT_REGISTER.md. Patron acotado a
+# "boleto_<UNA LETRA>.txt" (boleto_A, boleto_B, ...) para no capturar de mas --
+# no afecta a boleto_diff.txt (comparacion de versiones, sin PII, ya trackeado).
+contracts/cases/*/extracted-data/boleto_[A-Z].txt

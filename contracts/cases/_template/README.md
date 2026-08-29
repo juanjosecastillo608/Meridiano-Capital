@@ -25,3 +25,24 @@ actions/                ACTION_REGISTER.md
 ```
 
 **Regla dura:** ningún dato de `cases/UON-001/` (ni de ningún otro caso) se copia acá. Esta carpeta se queda vacía para siempre — es plantilla, no un caso más.
+
+## ⚠️ `extracted-data/` — zona potencialmente sensible
+
+Ver `governance/PII_POLICY.md` para la política completa (origen: `D-093`,
+limpieza histórica de PII de `UON-001`, 2026-08-29). Regla concreta para
+cualquier caso nuevo que se arme desde esta plantilla:
+
+- Las **transcripciones literales** de un instrumento legal (boleto, escritura,
+  poder) que contengan PII completa de las partes (domicilio, email,
+  teléfono, RUC personal — no solo nombre+CI) **no deben versionarse** acá.
+  Conservarlas fuera de git (local o cifrado) y referenciarlas por nombre de
+  archivo desde `facts/FACT_REGISTER.md`, sin necesidad de que el archivo
+  mismo esté en el repo.
+- Cada hecho relevante extraído de esa fuente debe quedar como un `FACT`
+  verificable en `facts/FACT_REGISTER.md`, citando la fuente por nombre —
+  eso es lo que se versiona, no la transcripción completa.
+- Antes del primer commit que toque esta carpeta, correr el barrido de PII
+  descripto en `CLAUDE.md` (sección "Protocolo de PII") — no depender de una
+  sola expresión regular, y diferenciar PII real de referencias legítimas no
+  personales (nombre de la calle del inmueble, nombre de la empresa
+  vendedora, etc.) antes de decidir qué anonimizar.
