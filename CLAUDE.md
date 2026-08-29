@@ -20,7 +20,7 @@ Antes de confiar en o mostrar cualquier cifra de rentabilidad (propia o generada
 - **D-003/D-046 — RESUELTA (2026-08-10)**: `evaluar_renta()` ya descuenta la ocupación real (55-65%, 60% por defecto) en la rama de alquiler temporal, vía el nuevo parámetro `ocupacion_pct`. Baja materialmente el yield neto reportado de `temporal_departamento`/`temporal_casa` frente al cálculo anterior — no es un bug, es el comportamiento correcto.
 - **D-004/D-089 — RESUELTA (2026-08-28)**: los dos valores que mezclaban lógica y config en `calculadora.py` (`limpieza_pct` de renta temporal, `meses_hasta_pre_pozo` de reventa) ya viven en `parametros_mercado.json`. No quedan UNRESOLVED de impacto financiero directo a esta fecha — ver `governance/PRIORITY_PLAN.md` para todo lo demás que sigue abierto (no financiero).
 
-## Protocolo de PII — obligatorio antes de commitear en `contracts/cases/`
+## Protocolo de PII y seguridad — obligatorio antes de cualquier commit
 
 Ver `governance/PII_POLICY.md` para la política completa (qué puede/no puede
 contener cada capa, esquema de alias, regla de mínimo privilegio). Antes de
@@ -39,6 +39,18 @@ el nombre de una calle, con el nombre de una empresa, o con un dato jurídico
 legítimo que no es personal (ver `D-093` — el caso real donde "Cirilo
 Caceres Zorrilla" era PII en 2 archivos y una referencia legítima a la calle
 del inmueble en otros 6, y solo la lectura del contexto lo distinguía).
+
+**Además del barrido de PII, antes de cualquier commit nuevo** (no solo en
+`contracts/`) verificar también:
+
+- **Secretos**: sin `.env`, claves privadas (`-----BEGIN...PRIVATE KEY-----`),
+  API keys, tokens (AWS, GitHub, Slack u otro), passwords en texto plano, ni
+  archivos de credenciales.
+- **Archivos pesados**: cualquier archivo nuevo o modificado que supere ~50MB
+  requiere confirmación explícita antes de commitear — considerar si
+  realmente necesita versionarse o si conviene Git LFS (ver `git fsck`/
+  auditoría de blobs grandes en `governance/decisions/DECISION_REGISTER.md`
+  para el diagnóstico ya hecho sobre los binarios existentes de `contracts/`).
 
 ## Estructura del repo
 

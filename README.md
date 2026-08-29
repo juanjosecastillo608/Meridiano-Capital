@@ -1,5 +1,7 @@
 # Meridiano Capital
 
+**Este es el único workspace oficial** — `origin` apunta a `https://github.com/juanjosecastillo608/Meridiano-Capital.git`, rama `master`. Historial limpiado de PII el 2026-08-29 (`D-093`, ver `governance/PII_POLICY.md`); cualquier otra copia de esta carpeta en el sistema (histórica o de respaldo) no debe usarse para desarrollo.
+
 Sistema operativo de conocimiento y desarrollo de Meridiano Capital (real estate & desarrollo en Paraguay para inversores extranjeros), migrado a Claude Code el 2026-08-02 desde 3 Claude Skills que ya destilaban el trabajo de conversaciones previas de Claude.ai.
 
 Reestructurado el 2026-08-02 según la arquitectura de 10 capas del Migration Master Report (ver `documentation/MIGRATION_MASTER_REPORT.md`, Fase 7).
