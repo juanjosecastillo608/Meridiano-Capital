@@ -1,0 +1,20 @@
+# CODEOWNERS — Meridiano Capital
+#
+# Fase 7 (R-D2). Con un único colaborador real hoy (el founder), esto no
+# cambia el flujo de trabajo todavía -- GitHub solo exige review de code
+# owners si "Require review from Code Owners" está activo en branch
+# protection (ver governance/decisions/DECISION_REGISTER.md, auditoría de
+# GitHub de Fase 7 -- NO VERIFICABLE si ya está activo sin `gh`). Sirve como
+# documentación explícita de qué áreas son sensibles, útil desde ya aunque
+# la aplicación automática llegue después.
+#
+# Sintaxis: ruta  @usuario-github
+
+governance/            @juanjosecastillo608
+CLAUDE.md              @juanjosecastillo608
+.gitignore             @juanjosecastillo608
+production/app/backend/calculadora.py   @juanjosecastillo608
+production/app/backend/dev_engine/      @juanjosecastillo608
+contracts/cases/_template/              @juanjosecastillo608
+scripts/git-hooks/     @juanjosecastillo608
+.github/               @juanjosecastillo608

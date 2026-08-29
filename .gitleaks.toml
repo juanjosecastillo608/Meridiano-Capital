@@ -1,0 +1,32 @@
+# Configuración de gitleaks — Fase 7, R-D4.
+#
+# gitleaks es un scanner de secretos por entropía + reglas conocidas de
+# proveedores (AWS, GitHub, Stripe, etc.) — cobertura bastante más completa
+# que las regex a mano de scripts/pre-commit-checks.py. Este archivo es la
+# configuración versionada; el binario en sí no viene incluido con git y
+# requiere instalación aparte (ver README de esta misma carpeta raíz o
+# https://github.com/gitleaks/gitleaks#installing).
+#
+# Uso local, una vez instalado:
+#   gitleaks detect --source . --config .gitleaks.toml
+#   gitleaks protect --staged --config .gitleaks.toml   (equivalente a un pre-commit)
+#
+# Uso en CI: agregar un job a .github/workflows/ci.yml que instale gitleaks
+# y corra `gitleaks detect` contra el repo — no incluido todavía en ci.yml
+# hasta confirmar que el binario está disponible en este entorno (Fase 7.21).
+
+title = "Meridiano Capital — gitleaks config"
+
+[extend]
+useDefault = true  # hereda el set de reglas oficial de gitleaks (AWS, GCP, Stripe, JWT, etc.)
+
+[allowlist]
+description = "Falsos positivos ya identificados en este repo"
+paths = [
+    # Contiene el patrón de ejemplo "-----BEGIN...PRIVATE KEY-----" como
+    # texto documental, no una clave real (ver Fase 6/7 de governance/decisions/DECISION_REGISTER.md).
+    '''CLAUDE\.md''',
+    # Contiene los mismos patrones de PII/secretos como texto de referencia
+    # para el propio detector, no como secretos reales.
+    '''scripts/pre-commit-checks\.py''',
+]

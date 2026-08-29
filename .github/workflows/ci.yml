@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  tests:
+    name: Tests financieros (calculadora + dev_engine)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: test_calculadora.py
+        working-directory: production/app/backend
+        run: python test_calculadora.py
+
+      - name: dev_engine.test_parametrizacion
+        working-directory: production/app/backend
+        run: python -m dev_engine.test_parametrizacion
+
+  seguridad:
+    name: PII, secretos y archivos pesados (pre-commit-checks.py)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # necesario para diffear contra el commit anterior en push
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # pre-commit-checks.py lee "git diff --cached" -- en CI no hay index
+      # staged, así que se simula stageando el diff real del push/PR antes
+      # de correrlo (mismo chequeo, disparado por CI en vez de por el hook
+      # local -- ver scripts/git-hooks/README.md para el hook local).
+      - name: Simular staged diff y correr el barrido
+        run: |
+          BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
+          if [ -z "$BASE" ] || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            BASE=$(git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)
+          fi
+          git diff --name-only "$BASE" HEAD | xargs -r git add --
+          python scripts/pre-commit-checks.py

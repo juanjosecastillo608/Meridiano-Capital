@@ -1,0 +1,6 @@
+#!/bin/sh
+# Hook versionado -- Fase 7, R-D3. Se activa con:
+#   git config core.hooksPath scripts/git-hooks
+# (ya configurado en este workspace; una copia nueva del repo necesita
+# correr ese comando una vez -- ver scripts/git-hooks/README.md).
+python "$(git rev-parse --show-toplevel)/scripts/pre-commit-checks.py"
