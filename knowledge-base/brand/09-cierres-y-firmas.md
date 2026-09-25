@@ -66,6 +66,18 @@ El pie institucional va al final de la ultima diapositiva/pagina, separado por u
 
 **Nunca usar en ninguna de las dos**: "Campo Agreste S.A." — esa sociedad esta protegida por la regla de invisibilidad (`D-029`, `business/06-estructura-societaria-y-portfolio.md`) y solo puede aparecer en documentacion institucional/legal en sentido estricto (contratos, facturas; el P04 de compliance ya la incluye correctamente en su pie porque es justamente ese tipo de documento, no una pieza de venta).
 
+**Alcance de la Variante C (confirmado por el founder, D-098, 2026-09-25):** aplica solo a la captacion de propiedades en **alquiler**. Cuando Meridiano intermedia una **venta o preventa**, la firma sigue siendo la Variante A ("Operador Tecnico y Legal de Inversiones Inmobiliarias").
+
+## Avisos legales de cierre aprobados (D-098, 2026-09-25)
+
+Se usan en el cierre de toda pieza comercial de propiedad, segun el tipo de operacion (Poppins italica, cuerpo chico):
+
+- **Venta:** "Documento comercial de referencia. Precio y condiciones sujetos a confirmacion y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa."
+- **Alquiler:** "Documento comercial de referencia. Valores y condiciones sujetos a confirmacion y disponibilidad; las condiciones definitivas se formalizan en el contrato de locacion."
+- **Preventa / inversion:** "Documento informativo: no constituye una oferta vinculante ni una garantia de rentabilidad. Cifras sujetas a confirmacion; se recomienda evaluar la operacion con asesoria propia."
+
+Una pieza puede agregar condiciones propias de la fuente (p. ej. "Oferta valida por 5 dias"), nunca quitar estas.
+
 ## El cierre (ultima pagina o diapositiva)
 
 - Fondo: **tierra colorada #8B3323** — color de cierre de marca (ver `05-sistema-cromatico.md`).

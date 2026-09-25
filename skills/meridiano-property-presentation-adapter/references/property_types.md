@@ -51,7 +51,7 @@ El rol sale de los documentos (quién firma la cotización, quién es el desarro
 | Rol | Cómo figura | `signaturePreset` |
 |---|---|---|
 | Captador / colocador de propiedad en alquiler | "Comercialización a cargo de Meridiano Capital" | `C_captacion_alquiler` (D-096) |
-| Intermediario / captador en venta o preventa | "Comercialización a cargo de Meridiano Capital" | `A_venta_deck` (D-039; D-096 cubre solo alquiler) |
+| Intermediario / captador en venta o preventa | "Comercialización a cargo de Meridiano Capital" | `A_venta_deck` (D-039, confirmado en D-098; D-096 cubre solo alquiler) |
 | Asesor / operador del inversor | "Presentado por Meridiano Capital" | `A_venta_deck` |
 | Desarrollador / coinversor | Meridiano como titular del proyecto (solo si está documentado) | `A_venta_deck`; `B_investment_memorandum` si la pieza es un IM |
 | Administrador | "Administrado por Meridiano Capital" | `A_venta_deck` |

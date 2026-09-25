@@ -142,7 +142,7 @@ Luego mirar **cada** PNG y la vista general con los criterios de `visual_qa.md`.
 
 `contradictions[].open = true` bloquea el informe (NO APROBADO) hasta que el usuario responda; `questions` no bloquea (APROBADO CON OBSERVACIONES). Las preguntas de `needs_confirmation` de la validación de datos entran solas al informe: en `questions` poner solo las demás.
 
-Aviso legal del cierre: usar el del repo si hay uno aprobado para el tipo de pieza; si no, `brand_tokens.json` → `disclaimers` (venta, alquiler, preventa/inversión), que es `[EXTENSION]`: registrarlo en `decisions_applied`.
+Aviso legal del cierre: usar el del repo si hay uno aprobado para el tipo de pieza; si no, `brand_tokens.json` → `disclaimers` (venta, alquiler, preventa/inversión), aprobados por el founder (D-098): registrarlo en `decisions_applied`.
 
 Entregables: `Meridiano_Capital_[Propiedad]_[Operacion]_Final.pptx` y `.pdf`, `revision_[propiedad]/` (PNG + vista general), `VALIDACION_[PROPIEDAD].md`. Si se trabaja dentro del repo, guardarlos en `projects/<slug>/entregables/` y el script de construcción en `production/generadores/`.
 
