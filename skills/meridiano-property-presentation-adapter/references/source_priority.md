@@ -19,7 +19,7 @@ Si el usuario indica otra jerarquía para un caso, esa instrucción manda.
 ## Reglas
 
 - Una inferencia (rank 7) nunca reemplaza en silencio un dato documental. Si solo existe la inferencia, el dato es `inferido` y no se presenta como hecho.
-- Dos fuentes con **distinto rank** en contradicción: gana la de menor rank; `validate_property_data.py` la lista en `resolved_by_hierarchy` y el informe la muestra. Nunca silencioso.
+- Dos fuentes con **distinto rank** en contradicción: gana la de menor rank; `validate_property_data.py` la lista en `resolved_by_hierarchy` (con `confirmed_by` y `discarded`) y el informe la muestra. Nunca silencioso. Si el campo es material, se usa el valor ganador y además se deja una pregunta **no bloqueante** para confirmarlo.
 - Dos fuentes con **igual rank** en contradicción:
   - Si el campo es material (`precio`, `superficie`, `rentabilidad`, `condiciones`, `partes`, `legal`, `tecnica`, `contacto`, `moneda`, `operacion`) → preguntar al usuario antes de cerrar la pieza (exit 3).
   - Si no es material → elegir el más reciente o el más específico, registrarlo como advertencia y seguir.

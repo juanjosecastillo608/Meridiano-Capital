@@ -71,4 +71,4 @@ Solo cuando falte o se contradiga algo que cambia materialmente la pieza: identi
 - `revision_[propiedad]/` con un PNG por diapositiva y `00_vista_general.png`.
 - `VALIDACION_[PROPIEDAD].md`: archivos recibidos, skills y fuentes de marca consultadas, tipografías, logos, cantidad de diapositivas, datos verificados, contradicciones, advertencias, validación de imágenes y de editabilidad, resultado final.
 
-No dar el trabajo por terminado con el informe en NO APROBADO ni sin haber mirado todas las diapositivas renderizadas. Al entregar, resumir en pocas líneas qué se adaptó, qué quedó fuera por falta de datos y qué requiere confirmación.
+No dar el trabajo por terminado con el informe en NO APROBADO ni sin haber mirado todas las diapositivas renderizadas. Si hay un bloqueante que solo el usuario puede resolver, entregar un `_Borrador` sin el dato en disputa y la pregunta concreta (`references/workflow.md` §8). Al entregar, resumir en pocas líneas qué se adaptó, qué quedó fuera por falta de datos y qué requiere confirmación.

@@ -142,15 +142,18 @@ def inspect_image(path):
             im.verify()
         with Image.open(path) as im:
             w, h = im.size
+            stored = [w, h]
             exif_orient = im.getexif().get(0x0112, 1) if hasattr(im, "getexif") else 1
             if exif_orient in (5, 6, 7, 8):
-                w, h = h, w  # dimensiones tal como se ven
+                w, h = h, w  # dimensiones tal como se ven al aplicar el EXIF
             dpi = im.info.get("dpi")
             return {
-                "status": "ok", "format": im.format, "mode": im.mode, "px": [w, h],
+                "status": "ok", "format": im.format, "mode": im.mode, "px": [w, h], "stored_px": stored,
                 "orientation": "vertical" if h > w else "horizontal" if w > h else "cuadrada",
                 "aspect_ratio": round(w / h, 4), "exif_orientation": exif_orient,
                 "dpi": [round(float(d)) for d in dpi] if dpi else None,
+                "exif_check": ("rotación EXIF aplicada en la copia preparada: MIRAR la imagen; si el contenido quedó de costado, "
+                               "la etiqueta es incorrecta -> usar la copia de fuentes/ sin rotar y registrarlo") if exif_orient not in (1, None) else None,
                 "megapixels": round(w * h / 1e6, 2),
                 "low_resolution": w * h < 800 * 600,
             }

@@ -119,9 +119,13 @@ function createDeck(opt = {}) {
     }
     d.lockup(s, { x: M, y: 0.6, w: 2.55 });
     if (o.eyebrow) d.eyebrow(s, o.eyebrow, { y: 2.3, w: 6 });
-    d.title(s, o.title || "", { y: 2.72, w: 6, h: 1.75, fontSize: o.titleSize || 44, lineSpacingMultiple: 1.0 }); // máx. 2 líneas; si no entra, bajar titleSize
-    if (o.subtitle) d.text(s, o.subtitle, { x: M, y: 4.55, w: 6, h: 0.35, fontSize: 13 });
-    (o.figures || []).slice(0, 2).forEach((f, i) => d.figure(s, f[0], f[1], { x: M + i * 2.9, y: 5.2, w: 2.7 }));
+    // Título: máx. 2 líneas a 44 pt en 6" (~20 caracteres por línea). Con 1 línea, el bloque inferior sube.
+    const size = o.titleSize || 44, title = o.title || "";
+    const lines = title.includes("\n") ? title.split("\n").length : Math.ceil(title.length / (20 * 44 / size));
+    const dy = lines <= 1 ? -0.8 : 0;
+    d.title(s, title, { y: 2.72, w: 6, h: lines <= 1 ? 0.95 : 1.75, fontSize: size, lineSpacingMultiple: 1.0 });
+    if (o.subtitle) d.text(s, o.subtitle, { x: M, y: 4.55 + dy, w: 6, h: 0.35, fontSize: 13 });
+    (o.figures || []).slice(0, 2).forEach((f, i) => d.figure(s, f[0], f[1], { x: M + i * 2.9, y: 5.2 + dy, w: 2.7 }));
     if (o.footnote) d.text(s, o.footnote, { x: M, y: 6.9, w: 6.1, h: 0.3, fontSize: 9, transparency: 35, valign: "middle" });
     if (o.notes) s.addNotes(o.notes);
     return s;
@@ -213,9 +217,11 @@ function createDeck(opt = {}) {
 }
 
 // Nombre de archivo de entrega: Meridiano_Capital_[Propiedad]_[Operacion]_Final
-function deliverableName(property, operation) {
+// Mientras haya un bloqueante abierto (contradicción material, dato esencial faltante) usar { draft: true }:
+// el archivo se llama _Borrador y nunca _Final.
+function deliverableName(property, operation, opts = {}) {
   const clean = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "");
-  return `Meridiano_Capital_${clean(property)}_${clean(operation)}_Final`;
+  return `Meridiano_Capital_${clean(property)}_${clean(operation)}_${opts.draft ? "Borrador" : "Final"}`;
 }
 
 module.exports = { createDeck, deliverableName, imageSize, TOKENS, C, ASSETS };

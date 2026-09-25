@@ -18,6 +18,8 @@ Collages de la fuente (varias fotos en un solo archivo): separarlos por los sepa
 
 Recorte `cover`: anclar al sujeto (rostro arriba en retratos `ay: 0`; edificio centrado). El recorte no debe cortar información (rótulos, medidas). Si una foto trae texto o datos sobreimpresos que el recorte cortaría, usarla completa (`mode: "contain"` o `d.cover({photoMode: "panel"})`) o elegir otra foto para ese marco; nunca dejar un rótulo cortado a la mitad.
 
+Orientación: `inspect_inputs.py --prepare-images` aplica la etiqueta EXIF (lo estándar en fotos de teléfono y cámara). Si el inventario marca `exif_check`, mirar la copia preparada: si el contenido quedó de costado, la etiqueta estaba mal; usar la copia de `fuentes/` sin rotar y registrarlo en `visual_qa`.
+
 ## Planos y documentación técnica
 
 `contain` dentro de un panel blanco con filete `linea`. Conservar proporción, orientación, medidas, escala, referencias, accesos, norte y rotulación. Se permite limpiar el fondo y reforzar el contraste de las líneas (niveles), nunca redibujar ni editar medidas. Datos del plano y llamadas editoriales van **fuera** del plano, en la columna lateral.

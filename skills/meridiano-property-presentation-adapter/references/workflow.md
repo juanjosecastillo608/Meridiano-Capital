@@ -140,10 +140,15 @@ Luego mirar **cada** PNG y la vista general con los criterios de `visual_qa.md`.
 }
 ```
 
-`contradictions[].open = true` bloquea el informe (NO APROBADO) hasta que el usuario responda; `questions` no bloquea (APROBADO CON OBSERVACIONES).
+`contradictions[].open = true` bloquea el informe (NO APROBADO) hasta que el usuario responda; `questions` no bloquea (APROBADO CON OBSERVACIONES). Las preguntas de `needs_confirmation` de la validación de datos entran solas al informe: en `questions` poner solo las demás.
+
+Aviso legal del cierre: usar el del repo si hay uno aprobado para el tipo de pieza; si no, `brand_tokens.json` → `disclaimers` (venta, alquiler, preventa/inversión), que es `[EXTENSION]`: registrarlo en `decisions_applied`.
 
 Entregables: `Meridiano_Capital_[Propiedad]_[Operacion]_Final.pptx` y `.pdf`, `revision_[propiedad]/` (PNG + vista general), `VALIDACION_[PROPIEDAD].md`. Si se trabaja dentro del repo, guardarlos en `projects/<slug>/entregables/` y el script de construcción en `production/generadores/`.
 
 ## 8. Cuándo detenerse y preguntar
+
+**Borrador mientras hay un bloqueante.** Si queda una pregunta bloqueante (contradicción material de igual jerarquía, dato esencial faltante), igual construir la pieza con todo lo confirmado, dejando fuera el dato en disputa: nombre `deliverableName(..., { draft: true })` → `_Borrador`, `"draft": true` en `meta.json` (el informe dice BORRADOR) y la pregunta en `contradictions[].open`. La versión `_Final` se genera recién cuando el usuario responde. Así el usuario ve el diseño sin esperar y nada disputado circula.
+
 
 Solo si falta o se contradice algo que cambia materialmente la pieza: identidad del activo, tipo de operación, precio, superficie, moneda, rol de Meridiano, datos de contacto o condiciones legales/comerciales esenciales. Todo lo demás: dejar el campo fuera, registrarlo en el informe y seguir.

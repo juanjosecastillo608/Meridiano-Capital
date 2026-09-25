@@ -28,7 +28,7 @@
 - `key`: identificador válido (letras, números, guion bajo), porque las fórmulas lo usan.
 - Una misma `key` puede aparecer varias veces (una por fuente); así se detectan las contradicciones.
 - `category`: `precio`, `superficie`, `rentabilidad`, `condiciones`, `partes`, `legal`, `tecnica`, `contacto`, `moneda`, `operacion` (materiales), `entrega` (fecha de entrega: exigida en preventa) u otra libre.
-- `tax`: siempre explícito para importes ("+ IVA", "IVA incluido", "exento", "sin IVA informado"). Nunca asumirlo.
+- `tax`: siempre explícito en la **matriz** ("+ IVA", "IVA incluido", "exento", "sin IVA informado"). Nunca asumirlo. En la **presentación**, el tratamiento de IVA se muestra solo si la fuente lo declara; si es "sin IVA informado", el importe va sin mención de IVA y la falta se pregunta en el informe (no escribir "IVA no informado" en la pieza).
 - `numeric: false` para datos de texto (dirección, zonificación).
 - `formula`: `+ - * / **`, paréntesis y `round/min/max/sum` sobre `key`s. Nada más.
 - Las cifras se leen en formato es-PY ("11.000" = once mil; "5,50" = cinco con cincuenta). El script avisa cuando una lectura es ambigua.

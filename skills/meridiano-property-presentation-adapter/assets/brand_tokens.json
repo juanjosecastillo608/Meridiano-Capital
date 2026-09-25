@@ -114,5 +114,11 @@
     "Venta, preventa, inversión o intermediación que no sea de alquiler → A_venta_deck (D-039). No preguntar: es la regla vigente; registrarla en el informe como 'regla aplicada'.",
     "Investment Memorandum → B_investment_memorandum (D-039).",
     "El rol dicho por el usuario en su pedido ('Meridiano actúa como intermediario', 'tenemos en venta') es evidencia de rank 1: alcanza para decidir la firma."
-  ]
+  ],
+  "disclaimers": {
+    "_status": "[EXTENSION] — fraseo propuesto por la skill, pendiente de aprobación del founder; si el repo trae un aviso aprobado para el tipo de pieza, usar ese.",
+    "venta": "Documento comercial de referencia. Precio y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa.",
+    "alquiler": "Documento comercial de referencia. Valores y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el contrato de locación.",
+    "preventa_inversion": "Documento informativo: no constituye una oferta vinculante ni una garantía de rentabilidad. Cifras sujetas a confirmación; se recomienda evaluar la operación con asesoría propia."
+  }
 }

@@ -160,9 +160,16 @@ def main():
                     {"field": key, "issue": "contradicción entre fuentes de igual jerarquía", "values": detail})
                 winners[key] = None
             else:
-                resolved.append({"field": key, "used": ranked[0].get("value"), "source": ranked[0].get("source"),
-                                 "discarded": [{"value": f.get("value"), "source": f.get("source"), "rank": f.get("source_rank")} for f in ranked[1:]],
-                                 "rule": "jerarquía de fuentes (references/source_priority.md)"})
+                norm = lambda f: f["_num"] if f["_num"] is not None else str(f.get("value")).strip().lower()  # noqa: E731
+                win = norm(ranked[0])
+                item = {"field": key, "used": ranked[0].get("value"), "source": ranked[0].get("source"),
+                        "confirmed_by": [{"value": f.get("value"), "source": f.get("source"), "rank": f.get("source_rank")} for f in ranked[1:] if norm(f) == win],
+                        "discarded": [{"value": f.get("value"), "source": f.get("source"), "rank": f.get("source_rank")} for f in ranked[1:] if norm(f) != win],
+                        "rule": "jerarquía de fuentes (references/source_priority.md)"}
+                if cat in MATERIAL:
+                    item["confirm_suggested"] = True
+                    warnings.append({"field": key, "issue": f"dato material resuelto por jerarquía ({ranked[0].get('value')} sobre {[d['value'] for d in item['discarded']]}): se usa, pero conviene confirmarlo con el usuario (pregunta no bloqueante)"})
+                resolved.append(item)
                 winners[key] = ranked[0]
         else:
             winners[key] = sorted(fs, key=lambda f: f.get("source_rank", 99))[0]

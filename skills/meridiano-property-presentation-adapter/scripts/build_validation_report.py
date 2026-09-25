@@ -200,6 +200,8 @@ def main():
             blockers.append(f"Contradicción abierta: {c.get('field')}")
 
     result = "NO APROBADO" if blockers else "APROBADO CON OBSERVACIONES" if observations or meta.get("warnings") or meta.get("questions") else "APROBADO"
+    if blockers and meta.get("draft"):
+        result = "BORRADOR (NO APROBADO hasta resolver los bloqueantes)"
     L = []
     w = L.append
     w(f"# Validación: {meta.get('property', Path(a.pptx).stem)}\n")
@@ -277,10 +279,12 @@ def main():
         w("")
     if meta.get("text_changes"):
         w("## 7. Cambios de redacción (sin cambio de significado)\n" + "\n".join(f"- {t}" for t in meta["text_changes"]) + "\n")
-    if px and pii:
+    if px:
         w("## 8. Barrido de datos personales (revisión humana obligatoria)\n")
         for n, lab, s in pii:
             w(f"- diap. {n}: {lab} → `{s}`")
+        if not pii:
+            w("- Sin coincidencias en diapositivas ni notas (el barrido es una ayuda: la revisión humana sigue siendo necesaria).")
         w("")
     if render:
         w("## 9. Render\n")
@@ -288,8 +292,11 @@ def main():
         w(f"- PNG de revisión: {len(render.get('pngs', []))} + vista general `{Path(render.get('overview', '')).name}`\n")
     if meta.get("visual_qa"):
         w("## 10. Revisión visual (diapositiva por diapositiva)\n" + "\n".join(f"- {t}" for t in meta["visual_qa"]) + "\n")
-    if meta.get("questions"):
-        w("## 11. Preguntas para el usuario\n" + "\n".join(f"{i}. {t}" for i, t in enumerate(meta["questions"], 1)) + "\n")
+    qs = [f"{e['field']}: {e['issue']}" + (f" {[v.get('value') for v in e.get('values', [])]}" if e.get("values") else "")
+          for e in (data or {}).get("needs_confirmation", [])]
+    qs += [q for q in meta.get("questions", []) if q not in qs]
+    if qs:
+        w("## 11. Preguntas para el usuario\n" + "\n".join(f"{i}. {t}" for i, t in enumerate(qs, 1)) + "\n")
     if meta.get("limitations"):
         w("## 12. Limitaciones\n" + "\n".join(f"- {t}" for t in meta["limitations"]) + "\n")
     Path(a.out).write_text("\n".join(L), encoding="utf-8")
