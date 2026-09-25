@@ -14,10 +14,13 @@ Entradas (todas opcionales salvo --pptx y --out):
   --data          salida de validate_property_data.py
   --aspect        salida de validate_image_aspect_ratios.py --out
   --render        salida JSON de render_presentation.py
-  --meta          JSON con: property, operation, audience, meridiano_role, mode,
-                  skills_consulted[], brand_sources[], signature_preset,
-                  decisions_applied[], contradictions[], warnings[],
-                  text_changes[], limitations[], forbid[], allowed_emails[]
+  --meta          JSON con lo que los scripts no pueden saber (formato completo y
+                  ejemplo en references/workflow.md §7): property, operation,
+                  asset_type, audience, meridiano_role, mode, signature_preset,
+                  skills_consulted[], brand_sources[], decisions_applied[],
+                  contradictions[] ({field, detail, open} o texto), questions[],
+                  visual_qa[], warnings[], text_changes[], limitations[],
+                  forbid[], allowed_emails[]
 
 Resultado: APROBADO / APROBADO CON OBSERVACIONES / NO APROBADO (código 1).
 
@@ -191,11 +194,12 @@ def main():
             blockers.append(f"Errores en datos comerciales: {len(data['errors'])}")
         if data.get("needs_confirmation"):
             blockers.append(f"Datos materiales que requieren confirmación del usuario: {len(data['needs_confirmation'])}")
-    for c in meta.get("contradictions", []):
+    meta["contradictions"] = [c if isinstance(c, dict) else {"field": str(c), "detail": "", "open": False} for c in meta.get("contradictions", [])]
+    for c in meta["contradictions"]:
         if c.get("open"):
             blockers.append(f"Contradicción abierta: {c.get('field')}")
 
-    result = "NO APROBADO" if blockers else "APROBADO CON OBSERVACIONES" if observations or meta.get("warnings") else "APROBADO"
+    result = "NO APROBADO" if blockers else "APROBADO CON OBSERVACIONES" if observations or meta.get("warnings") or meta.get("questions") else "APROBADO"
     L = []
     w = L.append
     w(f"# Validación: {meta.get('property', Path(a.pptx).stem)}\n")
@@ -282,8 +286,12 @@ def main():
         w("## 9. Render\n")
         w(f"- PDF: {render.get('pdf_pages')} páginas / {render.get('expected_pages', '—')} diapositivas · {render.get('result')}")
         w(f"- PNG de revisión: {len(render.get('pngs', []))} + vista general `{Path(render.get('overview', '')).name}`\n")
+    if meta.get("visual_qa"):
+        w("## 10. Revisión visual (diapositiva por diapositiva)\n" + "\n".join(f"- {t}" for t in meta["visual_qa"]) + "\n")
+    if meta.get("questions"):
+        w("## 11. Preguntas para el usuario\n" + "\n".join(f"{i}. {t}" for i, t in enumerate(meta["questions"], 1)) + "\n")
     if meta.get("limitations"):
-        w("## 10. Limitaciones\n" + "\n".join(f"- {t}" for t in meta["limitations"]) + "\n")
+        w("## 12. Limitaciones\n" + "\n".join(f"- {t}" for t in meta["limitations"]) + "\n")
     Path(a.out).write_text("\n".join(L), encoding="utf-8")
     print(f"{result}: {a.out}")
     for b in blockers:

@@ -26,6 +26,9 @@ No hay cantidad fija de diapositivas. Se incluye una sección solo si los archiv
 | 18 | Proceso de contratación | pasos documentados | petróleo |
 | 19 | Condiciones legales | condiciones de la fuente (sin datos personales) | blanco |
 | 20 | Cierre y contacto | siempre | tierra colorada (cierre canónico) |
+| R | Consideraciones y riesgos | obligatoria en inversión, preventa y búsqueda de capital | blanco |
+
+**Diapositiva de riesgos.** Es obligatoria aunque las fuentes no traigan riesgos, porque protege al inversor y a Meridiano. Contenido permitido: (1) riesgos generales del tipo de operación, en tono directo y sin cifras (plazos de obra, variación de costos, condiciones de mercado al vender o alquilar, cifras ilustrativas y no garantizadas, verificación con asesoría propia); (2) vacíos y supuestos concretos detectados en la validación ("la fuente no informa el tratamiento de IVA"). Nunca inventar riesgos específicos del activo. Si el repo está disponible, reutilizar el fraseo ya validado (deck de inversores de coinversión, `Term_Sheet_Coinversion.docx` §10).
 
 Ritmo: portada oscura → contenido mayormente claro → 1-3 diapositivas oscuras de énfasis (fotos, números, proceso) → cierre tierra colorada. Nunca dos oscuras seguidas sin motivo.
 
@@ -44,7 +47,7 @@ Ritmo: portada oscura → contenido mayormente claro → 1-3 diapositivas oscura
 - **Grilla de fotos**: 2 × 2 o 1 principal + 2-3 secundarias; si no entran sin deformar, dividir en más diapositivas.
 - **Plano en panel** (≈60 % del ancho, `contain`) + columna de datos con filetes finos.
 - **Cifras destacadas**: 1 cifra grande (Fraunces 50-54 pt) + 2 × 2 de cifras secundarias (23 pt).
-- **Tabla nativa** de marca + panel petróleo de condiciones.
+- **Tabla nativa** de marca + panel petróleo de condiciones. Con ~5,5" de ancho, máximo 3 columnas; siempre con `colW`.
 - **Diagrama de proceso/flujo** con nodos y línea (formas nativas editables).
 - **Lista numerada editorial**: número Fraunces en tierra + filete superior, 3 × 2.
 

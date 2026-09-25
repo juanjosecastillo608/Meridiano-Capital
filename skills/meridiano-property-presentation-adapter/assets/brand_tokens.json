@@ -40,8 +40,23 @@
     "headline": "Fraunces",
     "body": "Poppins",
     "headline_bold_allowed": false,
-    "fallbacks": {"Fraunces": ["Georgia", "Cambria"], "Poppins": ["Calibri", "Arial"]},
-    "font_files": ["fonts/Fraunces-Regular.ttf", "fonts/Poppins-Regular.ttf", "fonts/Poppins-Medium.ttf", "fonts/Poppins-Bold.ttf", "fonts/Poppins-Italic.ttf"]
+    "fallbacks": {
+      "Fraunces": [
+        "Georgia",
+        "Cambria"
+      ],
+      "Poppins": [
+        "Calibri",
+        "Arial"
+      ]
+    },
+    "font_files": [
+      "fonts/Fraunces-Regular.ttf",
+      "fonts/Poppins-Regular.ttf",
+      "fonts/Poppins-Medium.ttf",
+      "fonts/Poppins-Bold.ttf",
+      "fonts/Poppins-Italic.ttf"
+    ]
   },
   "logos": {
     "isotipo_light_bg": "logos/meridiano-isotipo.svg",
@@ -62,7 +77,13 @@
     "phone": "+595 982 853 111",
     "email": "juancastillo@meridianocapital.net",
     "web": "www.meridianocapital.net",
-    "forbidden": ["juanjosecastillo@", "Asesor Inmobiliario", "century21", "c21.com.py", "Campo Agreste"]
+    "forbidden": [
+      "juanjosecastillo@",
+      "Asesor Inmobiliario",
+      "century21",
+      "c21.com.py",
+      "Campo Agreste"
+    ]
   },
   "signature_presets": {
     "A_venta_deck": {
@@ -83,5 +104,15 @@
       "institutional_footer": "Meridiano Capital  ·  Operadores técnicos y legales de inversiones inmobiliarias"
     }
   },
-  "client_origins": "Europa, Argentina, Brasil y Chile"
+  "client_origins": "Europa, Argentina, Brasil y Chile",
+  "portrait": {
+    "repo_path": "production/generadores/assets-puerto-fenix/jjc_retrato.jpg",
+    "rule": "Retrato profesional de Juan José Castillo aprobado para piezas comerciales (primera aplicación: Puerto Fénix, 2026-09-25). Usarlo en el cierre solo si el archivo está disponible (repo o adjunto del usuario); si no, cerrar sin foto (d.closing funciona sin 'photo'). Nunca recortar el rostro ni retocarlo."
+  },
+  "signature_rules": [
+    "Alquiler en el que Meridiano capta o comercializa la propiedad de un tercero → C_captacion_alquiler (D-096).",
+    "Venta, preventa, inversión o intermediación que no sea de alquiler → A_venta_deck (D-039). No preguntar: es la regla vigente; registrarla en el informe como 'regla aplicada'.",
+    "Investment Memorandum → B_investment_memorandum (D-039).",
+    "El rol dicho por el usuario en su pedido ('Meridiano actúa como intermediario', 'tenemos en venta') es evidencia de rank 1: alcanza para decidir la firma."
+  ]
 }

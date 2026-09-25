@@ -53,7 +53,7 @@ Leer `references/workflow.md` (flujo completo y comandos) al empezar. Resumen:
 Resolver las fuentes en este orden (detalle en `references/workflow.md` §1):
 1. Repo Meridiano-Capital, si está disponible: `knowledge-base/brand/` (03 logo, 04 tipografía, 05 color, 09 cierres y firmas) y `governance/decisions/DECISION_REGISTER.md`. Si una decisión `CURRENT` contradice el snapshot, gana el repo.
 2. Snapshot de esta skill: `assets/brand_tokens.json`, `assets/logos/` (isotipo D-034 y lockup vectorial), `assets/fonts/` (Fraunces y Poppins, OFL). Si las tipografías no están instaladas, instalar estas (`~/.fonts` + `fc-cache`) antes de renderizar.
-3. Skill `meridiano-capital-identity` para tono, ADN y reglas de presentaciones. Sus logos y su tipografía de titulares son anteriores a D-034/D-036: no usarlos.
+3. Skill `meridiano-capital-identity` para tono, ADN y reglas de presentaciones. Sus logos y su tipografía de titulares son anteriores a D-034/D-036: no usarlos. Cualquier mención de Lora (en esa skill o en archivos del repo) está superada: Fraunces Regular, nunca en negrita.
 
 Si falta un activo fundamental (logos vigentes, tokens, tipografías o sus sustitutos oficiales), detener la producción final e indicar exactamente qué falta. Lo que la marca no define se marca `[EXTENSION]` en el informe.
 
@@ -63,7 +63,7 @@ Seguir `references/privacy_rules.md` (y `governance/PII_POLICY.md` si está el r
 
 ## Cuándo preguntar
 
-Solo cuando falte o se contradiga algo que cambia materialmente la pieza: identidad del activo, tipo de operación, precio, superficie, moneda, rol de Meridiano, datos de contacto o condiciones legales o comerciales esenciales. Para todo lo demás, avanzar: dejar el campo fuera y registrarlo en el informe.
+Solo cuando falte o se contradiga algo que cambia materialmente la pieza: identidad del activo, tipo de operación, precio, superficie, moneda, rol de Meridiano, datos de contacto o condiciones legales o comerciales esenciales. Para todo lo demás, avanzar: dejar el campo fuera y registrarlo en el informe. Lo que el usuario dice en su pedido cuenta como dato (rank 1), y la firma sale de una regla (`signature_rules`): ninguna de las dos cosas se pregunta. Los datos faltantes nunca aparecen dentro de la presentación; van al informe (`questions`) y al resumen final.
 
 ## Entregables
 

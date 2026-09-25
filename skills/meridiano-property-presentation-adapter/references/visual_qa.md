@@ -16,7 +16,7 @@ Si varias imágenes no entran: cambiar la grilla, dividir en más diapositivas, 
 
 Collages de la fuente (varias fotos en un solo archivo): separarlos por los separadores con recortes exactos (PIL `crop`) y componer una grilla propia; nunca estirar el collage.
 
-Recorte `cover`: anclar al sujeto (rostro arriba en retratos `ay: 0`; edificio centrado). El recorte no debe cortar información (rótulos, medidas).
+Recorte `cover`: anclar al sujeto (rostro arriba en retratos `ay: 0`; edificio centrado). El recorte no debe cortar información (rótulos, medidas). Si una foto trae texto o datos sobreimpresos que el recorte cortaría, usarla completa (`mode: "contain"` o `d.cover({photoMode: "panel"})`) o elegir otra foto para ese marco; nunca dejar un rótulo cortado a la mitad.
 
 ## Planos y documentación técnica
 

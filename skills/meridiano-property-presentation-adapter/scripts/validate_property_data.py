@@ -227,7 +227,9 @@ def main():
     out = json.dumps(report, ensure_ascii=False, indent=2)
     if a.out:
         Path(a.out).write_text(out, encoding="utf-8")
-    print(out)
+        print(json.dumps({"out": a.out, "result": report["result"], "errors": errors, "needs_confirmation": needs_confirmation}, ensure_ascii=False, indent=2))
+    else:
+        print(out)
     sys.exit(1 if errors else 3 if needs_confirmation else 0)
 
 

@@ -16,7 +16,7 @@ Todo documento de Meridiano cierra de la misma manera. La homogeneidad del cierr
 
 Se compone SIEMPRE de estas lineas, en este orden, sin variacion:
 
-- **Juan Jose Castillo** — en Lora, negrita
+- **Juan Jose Castillo** — en Fraunces (Regular; D-036 reemplazo Lora por Fraunces y D-040 prohibe la negrita de Fraunces en documentos generados)
 - Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay — en Poppins
 - +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net — en Poppins, contacto en una sola linea separado por " · "
 - Disclaimer legal segun el tipo de documento — en Poppins italica, cuerpo chico
@@ -69,8 +69,8 @@ El pie institucional va al final de la ultima diapositiva/pagina, separado por u
 ## El cierre (ultima pagina o diapositiva)
 
 - Fondo: **tierra colorada #8B3323** — color de cierre de marca (ver `05-sistema-cromatico.md`).
-- Arriba: isotipo inverso + "MERIDIANO CAPITAL" en Lora.
-- Centro: un titular en Lora Bold (crema) con el mensaje de llamada a la accion PROPIO de cada pieza. **Este titular SI varia** — es lo unico que cambia de un cierre a otro. Ejemplos ya producidos: "Comencemos su ingreso al mercado paraguayo" (Programa de Ingreso); "Coinverti en el desarrollo inmobiliario de Asuncion" (Coinversion).
+- Arriba: isotipo inverso + "MERIDIANO CAPITAL" en Fraunces (en la practica, el lockup primario horizontal inverso, que es exactamente esa combinacion).
+- Centro: un titular en Fraunces Regular de gran tamaño (crema; D-036/D-040 — el peso visual se logra con tamaño, no con negrita) con el mensaje de llamada a la accion PROPIO de cada pieza. **Este titular SI varia** — es lo unico que cambia de un cierre a otro. Ejemplos ya producidos: "Comencemos su ingreso al mercado paraguayo" (Programa de Ingreso); "Coinverti en el desarrollo inmobiliario de Asuncion" (Coinversion).
 - Abajo: el bloque de firma canonico (ver arriba).
 
 Regla clave: **el titular del cierre puede variar; el bloque de firma es siempre identico.** Esto da homogeneidad sin volver los cierres monotonos.
@@ -94,7 +94,7 @@ Distinto es el **dato macro de radicaciones en Paraguay** (estadistica de mercad
 
 - [ ] Cierre en fondo tierra colorada #8B3323
 - [ ] Isotipo inverso + "MERIDIANO CAPITAL" arriba del cierre
-- [ ] Titular de cierre propio de la pieza, en Lora Bold
+- [ ] Titular de cierre propio de la pieza, en Fraunces Regular (D-036/D-040)
 - [ ] Firma: "Juan Jose Castillo" + "Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay" (o, en captacion de propiedades en alquiler, "Broker Inmobiliario · Meridiano Capital" + pie institucional — Variante C, D-096)
 - [ ] Respaldo institucional correcto segun la pieza: Variante A (deck/WhatsApp) o Variante B (Investment Memorandum) — nunca Campo Agreste S.A. en ninguna de las dos
 - [ ] Contacto en una linea: +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net

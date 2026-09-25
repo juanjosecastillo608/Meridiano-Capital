@@ -99,6 +99,9 @@ def main():
         for old in outdir.glob("diapositiva-*.png"):
             old.unlink()
         subprocess.run(["pdftoppm", "-png", "-r", str(a.dpi), str(pdf), str(outdir / "diapositiva")], check=True)
+        for p in outdir.glob("diapositiva-*.png"):  # numeración de dos dígitos siempre (orden correcto)
+            n = int(p.stem.split("-")[-1])
+            p.rename(outdir / f"diapositiva-{n:02d}.png")
         pngs = sorted(outdir.glob("diapositiva-*.png"))
         report["pngs"] = [str(p) for p in pngs]
         contact_sheet(pngs, outdir / "00_vista_general.png")

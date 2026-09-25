@@ -107,6 +107,26 @@ function createDeck(opt = {}) {
     return { x, y, w, h, cropPct: { x: (1 - w / vw) * 100, y: (1 - h / vh) * 100 } };
   };
 
+  // Portada: fondo petróleo, lockup, antetítulo, nombre del activo, subtítulo, hasta 2 cifras y nota al pie.
+  // photoMode "bleed" (default): foto a sangre a la derecha con recorte proporcional (ancla ax/ay).
+  // photoMode "panel": foto completa sin recorte. Usarlo si la foto tiene rótulos o datos sobreimpresos
+  // cerca del borde, o si su proporción es muy distinta del marco (el recorte perdería información).
+  d.cover = (o = {}) => {
+    const s = d.slide("dark");
+    if (o.photo) {
+      if ((o.photoMode || "bleed") === "bleed") d.photo(s, o.photo, { x: 6.9, y: 0, w: W - 6.9, h: H }, { alt: o.photoAlt, ax: o.ax ?? 0.4, ay: o.ay ?? 0.5 });
+      else d.photo(s, o.photo, { x: 7.1, y: M, w: W - 7.1 - M, h: H - 2 * M }, { mode: "contain", alt: o.photoAlt, ax: 1, ay: 0.5 });
+    }
+    d.lockup(s, { x: M, y: 0.6, w: 2.55 });
+    if (o.eyebrow) d.eyebrow(s, o.eyebrow, { y: 2.3, w: 6 });
+    d.title(s, o.title || "", { y: 2.72, w: 6, h: 1.75, fontSize: o.titleSize || 44, lineSpacingMultiple: 1.0 }); // máx. 2 líneas; si no entra, bajar titleSize
+    if (o.subtitle) d.text(s, o.subtitle, { x: M, y: 4.55, w: 6, h: 0.35, fontSize: 13 });
+    (o.figures || []).slice(0, 2).forEach((f, i) => d.figure(s, f[0], f[1], { x: M + i * 2.9, y: 5.2, w: 2.7 }));
+    if (o.footnote) d.text(s, o.footnote, { x: M, y: 6.9, w: 6.1, h: 0.3, fontSize: 9, transparency: 35, valign: "middle" });
+    if (o.notes) s.addNotes(o.notes);
+    return s;
+  };
+
   d.lockup = (s, o = {}) => {
     const w = o.w || 2.5, dark = o.dark ?? s._mcDark;
     s.addImage({ path: logo(dark ? "lockup_dark_bg" : "lockup_light_bg"), x: o.x ?? M, y: o.y ?? 0.6, w, h: w / TOKENS.logos.lockup_aspect, altText: "Meridiano Capital" });
@@ -123,6 +143,8 @@ function createDeck(opt = {}) {
   };
 
   // Tabla de marca: encabezado petróleo/crema, filas alternas FILA, bordes LINEA. rows[0] = encabezado.
+  // Pasar siempre colW (suma = w). Con ~5,5" de ancho, máximo 3 columnas; cifras en la última columna.
+  // Para listas dentro de celdas o textos, usar bullet: true (no códigos de viñeta: arrastran OpenSymbol al PDF).
   d.table = (s, rows, o = {}) => {
     const body = rows.map((r, i) => r.map((cell) => {
       const c = typeof cell === "object" && cell !== null && "text" in cell ? cell : { text: String(cell ?? "") };

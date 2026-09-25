@@ -285,7 +285,9 @@ def main():
     out = json.dumps(inv, ensure_ascii=False, indent=2)
     if a.out:
         Path(a.out).write_text(out, encoding="utf-8")
-    print(out)
+        print(json.dumps({"out": a.out, **inv["summary"]}, ensure_ascii=False, indent=2))
+    else:
+        print(out)
     if not ok:
         print("\n" + NO_FILES_MESSAGE, file=sys.stderr)
         sys.exit(2)

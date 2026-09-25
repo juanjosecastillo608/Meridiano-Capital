@@ -46,17 +46,21 @@ Inversión y búsqueda de capital llevan **siempre** una diapositiva de riesgos 
 
 ## Rol de Meridiano Capital → firma y cierre
 
-El rol sale de los documentos (quién firma la cotización, quién es el desarrollador, quién cobra honorarios). No atribuir a Meridiano la propiedad ni el desarrollo de un activo de terceros.
+El rol sale de los documentos (quién firma la cotización, quién es el desarrollador, quién cobra honorarios) o del pedido del usuario (rank 1). No atribuir a Meridiano la propiedad ni el desarrollo de un activo de terceros.
 
 | Rol | Cómo figura | `signaturePreset` |
 |---|---|---|
 | Captador / colocador de propiedad en alquiler | "Comercialización a cargo de Meridiano Capital" | `C_captacion_alquiler` (D-096) |
-| Intermediario / captador en venta | "Comercialización a cargo de Meridiano Capital" | `A_venta_deck`, y marcar en el informe para confirmar si corresponde C |
+| Intermediario / captador en venta o preventa | "Comercialización a cargo de Meridiano Capital" | `A_venta_deck` (D-039; D-096 cubre solo alquiler) |
 | Asesor / operador del inversor | "Presentado por Meridiano Capital" | `A_venta_deck` |
 | Desarrollador / coinversor | Meridiano como titular del proyecto (solo si está documentado) | `A_venta_deck`; `B_investment_memorandum` si la pieza es un IM |
 | Administrador | "Administrado por Meridiano Capital" | `A_venta_deck` |
 
-Si el repo está disponible, confirmar el preset contra `knowledge-base/brand/09-cierres-y-firmas.md` antes de cerrar.
+La tabla aplica `brand_tokens.json` → `signature_rules`: es una regla, no se pregunta. Si el repo está disponible y `knowledge-base/brand/09-cierres-y-firmas.md` tiene una variante nueva posterior al snapshot, gana el repo.
+
+## "Presentación institucional"
+
+Por defecto significa **estilo institucional de Meridiano** aplicado a la propiedad, no una presentación sobre la empresa. Una diapositiva "Meridiano Capital / nuestro rol" solo se agrega si la audiencia lo pide (inversor extranjero, comité) y su texto sale de las fuentes de marca (identidad verbal, `09-cierres-y-firmas.md`): nunca inventar trayectoria, cifras ni clientes. Marcarla en el informe como contenido de marca, no de la fuente.
 
 ## Marcas de terceros (activo, edificio, desarrolladora)
 

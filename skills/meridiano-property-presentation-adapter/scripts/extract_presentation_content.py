@@ -301,11 +301,20 @@ def extract_xlsx(path, max_rows=500):
                 line = [None] * width
                 for r, cv in cells.items():
                     line[col_idx(r)] = cv["value"]
-                rows.append({"row": int(row.get("r")), "values": line,
-                             "formulas": {r: cv["formula"] for r, cv in cells.items() if cv["formula"]}})
+                entry = {"row": int(row.get("r")), "values": line,
+                         "formulas": {r: cv["formula"] for r, cv in cells.items() if cv["formula"]}}
+                uncached = [r for r, cv in cells.items() if cv["formula"] and cv["value"] is None]
+                if uncached:
+                    entry["uncached_formulas"] = uncached
+                rows.append(entry)
         sheets.append({"name": sh.get("name"), "rows": rows})
-    return {"file": str(path), "format": "xlsx", "sheets": sheets,
-            "note": "Valores tal como están guardados; las fórmulas se listan para verificar cálculos."}
+    res = {"file": str(path), "format": "xlsx", "sheets": sheets,
+           "note": "Valores tal como están guardados; las fórmulas se listan para verificar cálculos."}
+    if any(r.get("uncached_formulas") for sh in sheets for r in sh["rows"]):
+        res["warning"] = ("Hay fórmulas sin valor guardado (planilla generada por software o nunca abierta en Excel). "
+                          "Declararlas en matriz.json como 'calculations' con la misma fórmula (estado 'calculado'), "
+                          "o recalcular una copia con: soffice --headless --convert-to xlsx --outdir <dir> <copia>.")
+    return res
 
 
 def extract_csv(path):

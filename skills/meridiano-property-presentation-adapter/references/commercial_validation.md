@@ -27,7 +27,7 @@
 
 - `key`: identificador válido (letras, números, guion bajo), porque las fórmulas lo usan.
 - Una misma `key` puede aparecer varias veces (una por fuente); así se detectan las contradicciones.
-- `category`: `precio`, `superficie`, `rentabilidad`, `condiciones`, `partes`, `legal`, `tecnica`, `contacto`, `moneda`, `operacion` (materiales) u otra libre.
+- `category`: `precio`, `superficie`, `rentabilidad`, `condiciones`, `partes`, `legal`, `tecnica`, `contacto`, `moneda`, `operacion` (materiales), `entrega` (fecha de entrega: exigida en preventa) u otra libre.
 - `tax`: siempre explícito para importes ("+ IVA", "IVA incluido", "exento", "sin IVA informado"). Nunca asumirlo.
 - `numeric: false` para datos de texto (dirección, zonificación).
 - `formula`: `+ - * / **`, paréntesis y `round/min/max/sum` sobre `key`s. Nada más.
