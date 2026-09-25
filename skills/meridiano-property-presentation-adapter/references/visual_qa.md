@@ -44,6 +44,7 @@ Conservar la fuente del mapa (atribución visible si la trae), la proporción y 
 8. Numeración consecutiva; pie coherente.
 9. Datos: iguales a la matriz validada; unidades y formatos consistentes.
 10. Contacto y firma según el preset; sin correos ni cargos antiguos.
+11. **Versión colegas**: ningún logo, nombre, contacto, firma ni retrato de Meridiano; el cierre queda limpio, con espacio para el contacto del colega; ninguna foto de la fuente muestra la marca de Meridiano.
 
 Luego la **vista general** (`00_vista_general.png`): ritmo de fondos, variedad de layouts, consistencia de márgenes entre diapositivas.
 

@@ -78,6 +78,15 @@ Se usan en el cierre de toda pieza comercial de propiedad, segun el tipo de oper
 
 Una pieza puede agregar condiciones propias de la fuente (p. ej. "Oferta valida por 5 dias"), nunca quitar estas.
 
+## Version para colegas del sector — marca blanca (D-099, 2026-09-25)
+
+Toda presentacion comercial de propiedad se entrega en dos versiones:
+
+- **Para clientes de Meridiano:** con marca, firma, retrato y contacto, segun este documento.
+- **Para colegas del sector inmobiliario:** los mismos datos de la propiedad, fotos, diseño y aviso legal aprobado (D-098), pero **sin ningun dato de Meridiano**: sin logo, nombre, contacto, firma, retrato, pie institucional, notas del orador ni metadatos del archivo. El nombre del archivo tampoco menciona a Meridiano. El cierre queda con el titular, la bajada y el aviso legal, y un espacio libre para que el colega agregue su propio contacto antes de reenviarla a sus clientes.
+
+Las condiciones comerciales del activo que figuran en la fuente se conservan en las dos versiones. Si alguna es un honorario propio de Meridiano (y no una condicion del activo), se confirma con el founder si va en la version para colegas.
+
 ## El cierre (ultima pagina o diapositiva)
 
 - Fondo: **tierra colorada #8B3323** — color de cierre de marca (ver `05-sistema-cromatico.md`).

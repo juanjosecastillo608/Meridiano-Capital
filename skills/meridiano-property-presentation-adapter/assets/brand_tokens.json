@@ -107,7 +107,8 @@
   "client_origins": "Europa, Argentina, Brasil y Chile",
   "portrait": {
     "repo_path": "production/generadores/assets-puerto-fenix/jjc_retrato.jpg",
-    "rule": "Retrato profesional de Juan José Castillo aprobado para piezas comerciales (primera aplicación: Puerto Fénix, 2026-09-25). Usarlo en el cierre solo si el archivo está disponible (repo o adjunto del usuario); si no, cerrar sin foto (d.closing funciona sin 'photo'). Nunca recortar el rostro ni retocarlo."
+    "rule": "Retrato profesional de Juan José Castillo aprobado para piezas comerciales (primera aplicación: Puerto Fénix, 2026-09-25). Usarlo en el cierre solo si el archivo está disponible (repo o adjunto del usuario); si no, cerrar sin foto (d.closing funciona sin 'photo'). Nunca recortar el rostro ni retocarlo.",
+    "sha1": "6d13e5583b50af58ef2ab10abec1f67a41975a99"
   },
   "signature_rules": [
     "Alquiler en el que Meridiano capta o comercializa la propiedad de un tercero → C_captacion_alquiler (D-096).",
@@ -120,5 +121,11 @@
     "venta": "Documento comercial de referencia. Precio y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa.",
     "alquiler": "Documento comercial de referencia. Valores y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el contrato de locación.",
     "preventa_inversion": "Documento informativo: no constituye una oferta vinculante ni una garantía de rentabilidad. Cifras sujetas a confirmación; se recomienda evaluar la operación con asesoría propia."
+  },
+  "white_label": {
+    "decision": "D-099",
+    "rule": "Toda entrega genera dos versiones: 'clientes' (marca, firma y contacto de Meridiano) y 'colegas' (marca blanca para colegas del sector inmobiliario, que la reenvían a sus propios clientes). La versión colegas no lleva logo, nombre, contacto, firma, retrato, pie institucional, notas del orador ni metadatos de Meridiano; conserva los datos de la propiedad, el diseño y el aviso legal.",
+    "identifiers_regex": "meridiano|meridianocapital|juan\\s+jos[eé]\\s+castillo|982\\s*853\\s*111|broker\\s+inmobiliario|operador(es)?\\s+t[eé]cnico|campo\\s+agreste|urbannit",
+    "logo_svg_signature": "M52 6 L14 100"
   }
 }

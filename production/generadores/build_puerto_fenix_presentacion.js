@@ -8,12 +8,17 @@ const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 
+// Dos versiones (D-099): por defecto, para clientes de Meridiano; con --colegas, marca blanca para colegas del sector
+// (sin logo, nombre, contacto, firma, retrato, pie institucional, notas ni metadatos de Meridiano).
+const COLEGAS = process.argv.includes("--colegas");
 const p = new pptxgen();
 p.defineLayout({ name: "W", width: 13.333, height: 7.5 });
 p.layout = "W";
 p.title = "Centro Logístico Puerto Fénix — Propuesta corporativa de alquiler";
-p.author = "Meridiano Capital";
-p.company = "Meridiano Capital";
+p.author = COLEGAS ? "" : "Meridiano Capital";
+p.company = COLEGAS ? "" : "Meridiano Capital";
+// Diapositiva nueva; en la versión colegas las notas del orador (trazabilidad interna) se descartan.
+function newSlide() { const sl = p.addSlide(); if (COLEGAS) sl.addNotes = () => sl; return sl; }
 p.subject = "Naves industriales en Puerto Fénix, Mariano Roque Alonso, Paraguay";
 
 // Paleta oficial (knowledge-base/brand/05-sistema-cromatico.md) — sin HEX nuevos.
@@ -54,9 +59,9 @@ function title(s, text, dark, o = {}) {
   t(s, text, Object.assign({ x: M, y: 0.98, w: 11.5, h: 0.75, fontFace: SERIF, fontSize: 30, color: dark ? CRE : PET, valign: "top", lineSpacingMultiple: 1.05 }, o));
 }
 function footer(s, n, dark) {
-  s.addImage({ path: dark ? ISO_INV : ISO, x: M, y: 6.93, w: 0.3, h: 0.3, altText: "Isotipo Meridiano Capital" });
-  t(s, "Meridiano Capital  ·  Centro Logístico Puerto Fénix  ·  Propuesta corporativa de alquiler",
-    { x: M + 0.45, y: 6.93, w: 9, h: 0.3, fontSize: 9, color: dark ? CRE : GRY, transparency: dark ? 30 : 0, valign: "middle" });
+  if (!COLEGAS) s.addImage({ path: dark ? ISO_INV : ISO, x: M, y: 6.93, w: 0.3, h: 0.3, altText: "Isotipo Meridiano Capital" });
+  t(s, (COLEGAS ? "" : "Meridiano Capital  ·  ") + "Centro Logístico Puerto Fénix  ·  Propuesta corporativa de alquiler",
+    { x: COLEGAS ? M : M + 0.45, y: 6.93, w: 9, h: 0.3, fontSize: 9, color: dark ? CRE : GRY, transparency: dark ? 30 : 0, valign: "middle" });
   t(s, String(n).padStart(2, "0"), { x: R - 0.8, y: 6.93, w: 0.8, h: 0.3, fontSize: 9, color: dark ? CRE : GRY, transparency: dark ? 30 : 0, align: "right", valign: "middle" });
 }
 function hair(s, x, y, w, color = LINEA) { s.addShape(p.ShapeType.line, { x, y, w, h: 0, line: { color, width: 0.75 } }); }
@@ -64,9 +69,9 @@ function hair(s, x, y, w, color = LINEA) { s.addShape(p.ShapeType.line, { x, y, 
 // =====================================================================
 // 01 — PORTADA
 // =====================================================================
-let s = p.addSlide(); s.background = { color: PET };
+let s = newSlide(); s.background = { color: PET };
 photo(s, "pf_nave_exterior.jpg", 1600, 1200, 6.9, 0, W - 6.9, H, "Nave industrial del Centro Logístico Puerto Fénix, vista exterior", 0.32, 0.5);
-s.addImage({ path: LOCKUP_INV, x: M, y: 0.6, w: 2.55, h: 2.55 / LOCKUP_RATIO, altText: "Meridiano Capital" });
+if (!COLEGAS) s.addImage({ path: LOCKUP_INV, x: M, y: 0.6, w: 2.55, h: 2.55 / LOCKUP_RATIO, altText: "Meridiano Capital" });
 eyebrow(s, "Propuesta corporativa de alquiler", true, M, 2.3, 6);
 t(s, "Naves industriales\nen Puerto Fénix", { x: M, y: 2.72, w: 6, h: 1.75, fontFace: SERIF, fontSize: 44, color: CRE, lineSpacingMultiple: 1.0 });
 t(s, "Centro Logístico Puerto Fénix · Mariano Roque Alonso, Paraguay", { x: M, y: 4.55, w: 6, h: 0.35, fontSize: 13, color: CRE });
@@ -75,13 +80,13 @@ t(s, "Centro Logístico Puerto Fénix · Mariano Roque Alonso, Paraguay", { x: M
   t(s, d[0], { x, y: 5.2, w: 2.7, h: 0.55, fontFace: SERIF, fontSize: 26, color: LAP });
   t(s, d[1], { x, y: 5.78, w: 2.7, h: 0.3, fontSize: 10.5, color: CRE, transparency: 20 });
 });
-t(s, "Comercialización a cargo de Meridiano Capital  ·  Documento comercial  ·  24.09.2026", { x: M, y: 6.9, w: 6.1, h: 0.3, fontSize: 9, color: CRE, transparency: 35, valign: "middle" });
+t(s, (COLEGAS ? "" : "Comercialización a cargo de Meridiano Capital  ·  ") + "Documento comercial  ·  24.09.2026", { x: M, y: 6.9, w: 6.1, h: 0.3, fontSize: 9, color: CRE, transparency: 35, valign: "middle" });
 s.addNotes("Fuente: Cotización Tinglado 1000 m2 Puerto Fénix MRA.pdf, páginas 2 a 5. Versión final adaptada a la identidad de Meridiano Capital a partir de la presentación aprobada v7 (sin cambios de contenido comercial). Puerto Fénix es el activo ofrecido; Meridiano Capital actúa como comercializador.");
 
 // =====================================================================
 // 02 — UBICACIÓN
 // =====================================================================
-s = p.addSlide(); s.background = { color: CRE };
+s = newSlide(); s.background = { color: CRE };
 eyebrow(s, "Acceso estratégico"); title(s, "Ubicación en el corredor metropolitano");
 { const mw = 6.03, mh = mw * 722 / 916;
   s.addShape(p.ShapeType.rect, { x: M, y: 2.0, w: mw, h: mh, fill: { color: WHITE }, line: { color: LINEA, width: 0.75 } });
@@ -105,7 +110,7 @@ s.addNotes("Fuente: página 2 y mapa incorporado en el documento adjunto. No se 
 // =====================================================================
 // 03 — ESCALA E INFRAESTRUCTURA (4 fotografías, grilla 2 × 2 proporcional)
 // =====================================================================
-s = p.addSlide(); s.background = { color: CRE };
+s = newSlide(); s.background = { color: CRE };
 eyebrow(s, "Puerto Fénix"); title(s, "Escala para operaciones industriales y logísticas");
 { const cw = 3.06, ch = 2.3, g = 0.12, x0 = M, y0 = 1.97;
   const q = [["pf_complejo_patio_contenedores.png", 477, 359, "Patio pavimentado de hormigón para almacenaje de contenedores"],
@@ -129,7 +134,7 @@ s.addNotes("Las cuatro fotografías del documento fuente (collage original) se p
 // =====================================================================
 // 04 — PLANO Y SUBDIVISIÓN
 // =====================================================================
-s = p.addSlide(); s.background = { color: CRE };
+s = newSlide(); s.background = { color: CRE };
 { const pw = 8.1, ph = pw * 1240 / 1755, pad = 0.12;
   s.addShape(p.ShapeType.rect, { x: M, y: 0.6, w: pw + 2 * pad, h: ph + 2 * pad, fill: { color: WHITE }, line: { color: LINEA, width: 0.75 } });
   s.addImage({ path: a("pf_plano_planta_arquitectonica.png"), x: M + pad, y: 0.6 + pad, w: pw, h: ph,
@@ -156,7 +161,7 @@ s.addNotes("Fuente visual: D15 PLANO - Planta Arquitectónica Puerto Fénix plan
 // =====================================================================
 // 05 — SERVICIOS INCLUIDOS
 // =====================================================================
-s = p.addSlide(); s.background = { color: WHITE };
+s = newSlide(); s.background = { color: WHITE };
 eyebrow(s, "Capacidad operativa"); title(s, "Infraestructura incluida en el complejo");
 { const it = [["Energía y servicios", "Agua, energía eléctrica en media tensión y medidor independiente."],
               ["Seguridad", "Seguridad integral, CCTV y control de entrada y salida."],
@@ -177,7 +182,7 @@ s.addNotes("Fuente: página 5. Los servicios adicionales están sujetos a cotiza
 // =====================================================================
 // 06 — CARACTERÍSTICAS DE LAS NAVES
 // =====================================================================
-s = p.addSlide(); s.background = { color: PET };
+s = newSlide(); s.background = { color: PET };
 eyebrow(s, "Depósitos industriales", true); title(s, "Espacios listos para configurar", true);
 { const pw = 5.9, ph = pw * 9 / 16, y = 2.0, x2 = R - pw;
   photo(s, "pf_deposito_accesos.jpg", 960, 540, M, y, pw, ph, "Fachada del depósito con portones de acceso");
@@ -192,7 +197,7 @@ s.addNotes("Fuente visual: página 6. La identificación definitiva del número 
 // =====================================================================
 // 07 — INTEGRACIÓN PORTUARIA Y ADUANERA
 // =====================================================================
-s = p.addSlide(); s.background = { color: CRE };
+s = newSlide(); s.background = { color: CRE };
 { const tw = 4.85;
   eyebrow(s, "Ventaja operativa", false, M, 0.6, tw);
   t(s, "Integración portuaria\ny aduanera", { x: M, y: 0.98, w: tw, h: 1.3, fontFace: SERIF, fontSize: 32, lineSpacingMultiple: 1.02 });
@@ -214,7 +219,7 @@ s.addNotes("Fuente: páginas 5 y 8. El documento indica que en el predio funcion
 // =====================================================================
 // 08 — CONDICIONES ECONÓMICAS
 // =====================================================================
-s = p.addSlide(); s.background = { color: CRE };
+s = newSlide(); s.background = { color: CRE };
 eyebrow(s, "Propuesta comercial"); title(s, "Condiciones económicas de alquiler");
 { const lw = 7.3;
   t(s, "TARIFA DE REFERENCIA", { x: M, y: 2.0, w: 4, h: 0.3, fontSize: 10, bold: true, color: GOLD_D, charSpacing: 3 });
@@ -247,7 +252,7 @@ s.addNotes("Fuente de alquiler: páginas 5 y 9. Expensas de USD 0,20 + IVA por m
 // =====================================================================
 // 09 — SERVICIOS LOGÍSTICOS OPCIONALES
 // =====================================================================
-s = p.addSlide(); s.background = { color: WHITE };
+s = newSlide(); s.background = { color: WHITE };
 eyebrow(s, "Cotización adicional"); title(s, "Servicios logísticos opcionales");
 { const ly = 2.45, nodes = [[M + 0.1, "Depósito del cliente"], [6.67, "Muelle"], [R - 0.1, "Barcaza"]], r = 0.1;
   for (let i = 0; i < 2; i++) s.addShape(p.ShapeType.line, { x: nodes[i][0], y: ly, w: nodes[i + 1][0] - nodes[i][0], h: 0, line: { color: PET, width: 1.25 } });
@@ -272,7 +277,7 @@ s.addNotes("Fuente: página 7. Se conserva la unidad publicada en el documento f
 // =====================================================================
 // 10 — PROCESO DE CONTRATACIÓN
 // =====================================================================
-s = p.addSlide(); s.background = { color: PET };
+s = newSlide(); s.background = { color: PET };
 eyebrow(s, "Ingreso corporativo", true); title(s, "Proceso de contratación", true);
 { const steps = [["Definición del módulo", "Superficie, disponibilidad, uso previsto y requerimientos logísticos."],
                  ["Documentación", "Estatuto social, copias de la cédula de identidad de los firmantes y los tres últimos formularios de IVA."],
@@ -293,7 +298,7 @@ s.addNotes("Fuente: página 9. El paso de definición del módulo y la validaci�
 // =====================================================================
 // 11 — OPERACIÓN DE ALMACENAMIENTO
 // =====================================================================
-s = p.addSlide(); s.background = { color: CRE };
+s = newSlide(); s.background = { color: CRE };
 eyebrow(s, "Configuración interior"); title(s, "Operación de almacenamiento");
 { const y = 2.0, h = 4.35, g = 0.15;
   const w1 = h * 864 / 1152, w2 = h * 1152 / 864;
@@ -309,7 +314,15 @@ s.addNotes("Imágenes adicionales aportadas por el usuario el 24.09.2026. Se pre
 // =====================================================================
 // 12 — CIERRE Y CONTACTO (cierre canónico en tierra colorada, knowledge-base/brand/09-cierres-y-firmas.md)
 // =====================================================================
-s = p.addSlide(); s.background = { color: TIE };
+s = newSlide(); s.background = { color: TIE };
+// Aviso legal aprobado para alquiler (D-098) + condiciones propias de esta cotización.
+const AVISO = "Documento comercial de referencia. Valores y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el contrato de locación. Valores en USD más IVA según la cotización de Puerto Fénix. Oferta válida por 5 días.";
+if (COLEGAS) {
+  // Marca blanca: titular, bajada y aviso legal; espacio libre para el contacto del colega.
+  t(s, "Coordinemos una visita\ny una propuesta a medida", { x: M, y: 1.8, w: 11.5, h: 1.6, fontFace: SERIF, fontSize: 38, color: CRE, lineSpacingMultiple: 1.02 });
+  t(s, "Acompañamiento comercial para empresas que buscan capacidad de almacenamiento, operación logística y acceso portuario.", { x: M, y: 3.5, w: 11, h: 0.8, fontSize: 14, color: CRE, transparency: 10, lineSpacingMultiple: 1.25 });
+  t(s, AVISO, { x: M, y: 6.45, w: 12.1, h: 0.6, fontSize: 9, italic: true, color: CRE, transparency: 25, lineSpacingMultiple: 1.15 });
+} else {
 photo(s, "jjc_retrato.jpg", 1024, 1536, 8.55, 0, W - 8.55, H, "Juan José Castillo, Meridiano Capital", 0.5, 0.0);
 s.addImage({ path: LOCKUP_INV, x: M, y: 0.6, w: 2.4, h: 2.4 / LOCKUP_RATIO, altText: "Meridiano Capital" });
 t(s, "Coordinemos una visita\ny una propuesta a medida", { x: M, y: 1.8, w: 7.5, h: 1.6, fontFace: SERIF, fontSize: 38, color: CRE, lineSpacingMultiple: 1.02 });
@@ -319,19 +332,21 @@ hair(s, M, 4.5, 7.35, "C9982E");
 t(s, "Juan José Castillo", { x: M, y: 4.66, w: 7.4, h: 0.5, fontFace: SERIF, fontSize: 22, color: CRE });
 t(s, "Broker Inmobiliario · Meridiano Capital", { x: M, y: 5.16, w: 7.4, h: 0.35, fontSize: 13, color: CRE });
 t(s, "+595 982 853 111  ·  juancastillo@meridianocapital.net  ·  www.meridianocapital.net", { x: M, y: 5.56, w: 7.6, h: 0.35, fontSize: 12.5, color: CRE });
-t(s, "Documento comercial de referencia. Valores en USD más IVA según la cotización de Puerto Fénix; las condiciones definitivas se formalizan en el contrato de locación. Oferta válida por 5 días.",
-  { x: M, y: 6.02, w: 7.5, h: 0.5, fontSize: 9, italic: true, color: CRE, transparency: 25, lineSpacingMultiple: 1.15 });
+t(s, AVISO,
+  { x: M, y: 6.0, w: 7.6, h: 0.62, fontSize: 9, italic: true, color: CRE, transparency: 25, lineSpacingMultiple: 1.15 });
 hair(s, M, 6.78, 7.35, "F3EDE3");
 t(s, PIE_INSTITUCIONAL.toUpperCase(), { x: M, y: 6.9, w: 7.8, h: 0.3, fontSize: 9, bold: true, color: CRE, charSpacing: 1.2, valign: "middle" });
+}
 s.addNotes("Contacto comercial actualizado por el usuario: Juan José Castillo, Broker Inmobiliario, Meridiano Capital, +595 982 853 111, juancastillo@meridianocapital.net. Fotografía profesional incorporada en la versión aprobada, sin retoques. Firma «Broker Inmobiliario» = norma vigente cuando Meridiano actúa como captador de propiedades en alquiler (D-096, resuelve U-034), con el pie institucional «Operadores técnicos y legales de inversiones inmobiliarias» al cierre.");
 
 // =====================================================================
 // Escritura + respaldo PNG real para cada SVG (pptxgenjs copia el SVG como si fuera PNG;
 // PowerPoint anterior a 2016 y otros visores usan ese respaldo).
 // =====================================================================
-const outDir = path.join(__dirname, "../../projects/puerto-fenix/entregables");
+const outDir = path.join(__dirname, "../../projects/puerto-fenix/entregables", COLEGAS ? "para_colegas" : "");
 fs.mkdirSync(outDir, { recursive: true });
-const out = path.join(outDir, "Meridiano_Capital_Puerto_Fenix_Presentacion_Corporativa_Final.pptx");
+const out = path.join(outDir, COLEGAS ? "Centro_Logistico_Puerto_Fenix_Alquiler_Presentacion.pptx"
+                                      : "Meridiano_Capital_Puerto_Fenix_Presentacion_Corporativa_Final.pptx");
 (async () => {
   const buf = await p.write({ outputType: "nodebuffer" });
   const zip = await JSZip.loadAsync(buf);
@@ -351,6 +366,14 @@ const out = path.join(outDir, "Meridiano_Capital_Puerto_Fenix_Presentacion_Corpo
     x = x.replace(/<a:hlink>[\s\S]*?<\/a:hlink>/, `<a:hlink><a:srgbClr val="${TIE}"/></a:hlink>`)
          .replace(/<a:folHlink>[\s\S]*?<\/a:folHlink>/, `<a:folHlink><a:srgbClr val="${GRY}"/></a:folHlink>`);
     zip.file(th, x);
+  }
+  if (COLEGAS) { // metadatos sin rastros de Meridiano
+    for (const part of ["docProps/core.xml", "docProps/app.xml"]) {
+      if (!zip.files[part]) continue;
+      let x = await zip.file(part).async("string");
+      x = x.replace(/<(dc:creator|cp:lastModifiedBy|Company|Manager)>[^<]*<\/\1>/g, "<$1></$1>");
+      zip.file(part, x);
+    }
   }
   const final = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
   fs.writeFileSync(out, final);

@@ -21,3 +21,4 @@ Si el repo Meridiano-Capital está disponible, la política completa es `governa
 4. `build_validation_report.py` hace un barrido (CI, RUC, cuentas, correos y teléfonos no autorizados). Es una ayuda, no una garantía: **leer el contexto de cada coincidencia** (un número puede ser una calle, un lote o una cifra comercial) y decidir.
 5. Las notas del orador también se distribuyen con el `.pptx`: aplicar las mismas reglas.
 6. Dentro del repo, nunca copiar material de `contracts/cases/` a una pieza comercial.
+7. La versión para colegas (D-099) sale sin notas del orador y sin metadatos de Meridiano: las notas suelen tener trazabilidad interna (fuentes, decisiones, preguntas) que no debe circular fuera de Meridiano.

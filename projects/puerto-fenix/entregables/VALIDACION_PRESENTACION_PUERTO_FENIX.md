@@ -3,7 +3,7 @@
 **Pieza:** `Meridiano_Capital_Puerto_Fenix_Presentacion_Corporativa_Final.pptx` (+ `.pdf`)
 **Fuente aprobada:** `../fuente/Presentacion_Corporativa_Puerto_Fenix_Meridiano_Capital_v7.pptx` (copia intacta del archivo recibido; el original no se modificó)
 **Generador reproducible:** `production/generadores/build_puerto_fenix_presentacion.js` (assets en `production/generadores/assets-puerto-fenix/`)
-**Fecha:** 2026-09-25 (rev. 2: enlace de ubicación + firma D-096) · **Diapositivas:** 12 · **Formato:** 16:9 (13,333 × 7,5 in)
+**Fecha:** 2026-09-25 (rev. 3: versión para colegas D-099 + aviso legal D-098) · **Diapositivas:** 12 · **Formato:** 16:9 (13,333 × 7,5 in)
 
 ---
 
@@ -115,3 +115,13 @@ El encargo pedía el cargo **"Broker Inmobiliario"**, distinto de la firma canó
 Logo oficial vigente y sin alteraciones ✅ · Paleta oficial, sin HEX nuevos ni dorado como texto de cuerpo sobre fondo claro ✅ · Fraunces/Poppins según D-036/D-040 ✅ · Sándwich de fondos y cierre en tierra colorada ✅ · Un mensaje por diapositiva ✅ · Tono corporativo sin superlativos propios ni promesas de rentabilidad ✅ · Fotografías reales sin deformación ✅ · Roles Puerto Fénix (activo) / Meridiano (comercializador) claros ✅ · Aviso legal presente ✅ · Firma y pie institucional según D-096 ✅
 
 **Veredicto:** ALINEADO en los 10 criterios.
+
+## 11. Rev. 3: versión para colegas (marca blanca, D-099) y aviso legal aprobado (D-098)
+
+**Versión para colegas:** `para_colegas/Centro_Logistico_Puerto_Fenix_Alquiler_Presentacion.pptx` y `.pdf`, con PNG de revisión en `revision_colegas/`. Sale del mismo generador con `node build_puerto_fenix_presentacion.js --colegas`. Las 12 diapositivas, los datos, las fotos, el plano, el mapa con su enlace y el aviso legal son los mismos que en la versión clientes. No lleva logo, isotipo, nombre, contacto, firma, retrato, pie institucional, notas del orador ni metadatos de Meridiano, y el cierre deja espacio libre para el contacto del colega.
+
+**Control automático de marca blanca:** `VALIDACION_PUERTO_FENIX_COLEGAS.md` (§0), APROBADO. Sin rastros de Meridiano en el texto, las notas, los metadatos del PPTX y del PDF, los enlaces, el nombre de archivo, los logos incrustados (0 SVG) ni el retrato. Resto de los controles: `validate.py` PASSED, 14 imágenes con desviación máxima de 0,0009%, PDF de 12 páginas con Fraunces y Poppins incrustadas.
+
+**Aviso legal (ambas versiones):** se reemplazó por el texto aprobado para alquiler (D-098), manteniendo las condiciones propias de esta cotización: *"Documento comercial de referencia. Valores y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el contrato de locación. Valores en USD más IVA según la cotización de Puerto Fénix. Oferta válida por 5 días."*
+
+**Punto a confirmar:** la condición de ingreso *"Honorarios equivalentes al 50% de un mes de alquiler"* (diapositiva 8, también mencionada en el paso 4 del proceso) viene de la cotización y se conservó en la versión para colegas, según la regla de D-099. Si son honorarios propios de Meridiano y no deben figurar en lo que reenvía un colega, se quitan de esa versión.

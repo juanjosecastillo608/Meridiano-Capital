@@ -11,6 +11,10 @@
 //   let s = d.slide("dark"); d.lockup(s, { x: d.M, y: 0.6, w: 2.5, dark: true }); ...
 //   await d.save("salida.pptx");
 // Ver references/workflow.md (Fase 5) para el patrón completo.
+//
+// Dos versiones por entrega (D-099): variant "clientes" (marca, firma y contacto de Meridiano) y
+// variant "colegas" (marca blanca para colegas del sector: sin logo, nombre, contacto, firma, retrato,
+// notas ni metadatos de Meridiano). Con buildBoth() un mismo script arma las dos.
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -51,25 +55,50 @@ function imageSize(file) {
   throw new Error(`No se pudo leer el tamaño de ${file}. Convertir a PNG/JPEG con inspect_inputs.py --prepare-images (respeta la orientación EXIF).`);
 }
 
+// Identificadores de Meridiano que nunca pueden aparecer en la versión para colegas.
+const MERIDIANO_ID = new RegExp([
+  "meridiano", "meridianocapital", "juan\\s+jos[eé]\\s+castillo", "982\\s*853\\s*111",
+  "broker\\s+inmobiliario", "operador(es)?\\s+t[eé]cnico", "campo\\s+agreste", "urbannit",
+].join("|"), "i");
+const textOf = (t) => (Array.isArray(t) ? t.map((r) => (typeof r === "string" ? r : r.text || "")).join(" ") : String(t ?? ""));
+// Quita de una etiqueta separada por "·" los segmentos que nombran a Meridiano.
+const stripMeridiano = (label) => String(label || "").split("·").map((x) => x.trim()).filter((x) => x && !MERIDIANO_ID.test(x)).join("  ·  ");
+
 function createDeck(opt = {}) {
+  const variant = opt.variant || "clientes";
+  if (!["clientes", "colegas"].includes(variant)) throw new Error(`variant inválida: ${variant} (clientes | colegas)`);
+  const colegas = variant === "colegas";
   const pptxgen = req("pptxgenjs");
   const p = new pptxgen();
   const W = 13.333, H = 7.5, M = 0.6, R = W - M;
   p.defineLayout({ name: "MC_WIDE", width: W, height: H });
   p.layout = "MC_WIDE";
-  p.title = opt.title || "Meridiano Capital";
-  p.subject = opt.subject || "";
-  p.author = "Meridiano Capital";
-  p.company = "Meridiano Capital";
+  p.title = colegas ? stripMeridiano(opt.title) || "Presentación" : opt.title || "Meridiano Capital";
+  p.subject = colegas ? stripMeridiano(opt.subject) : opt.subject || "";
+  p.author = colegas ? "" : "Meridiano Capital";
+  p.company = colegas ? "" : "Meridiano Capital";
   const SERIF = TOKENS.typography.headline, SANS = TOKENS.typography.body;
   const logo = (k) => path.join(ASSETS, TOKENS.logos[k]);
   const BG = { dark: C.petroleo, light: C.crema, white: C.white, closing: C.tierra };
 
-  const d = { pres: p, C, W, H, M, R, SERIF, SANS, TOKENS, imageSize };
+  const d = { pres: p, C, W, H, M, R, SERIF, SANS, TOKENS, imageSize, variant, isColegas: colegas };
+  // Contenido que solo va en la versión para clientes (rol de Meridiano, honorarios propios, etc.).
+  d.forClientes = (fn) => (colegas ? undefined : fn());
+  d.pick = (paraClientes, paraColegas) => (colegas ? paraColegas : paraClientes);
 
-  d.slide = (bg = "light") => { const s = p.addSlide(); s.background = { color: BG[bg] || bg }; s._mcDark = bg === "dark" || bg === "closing"; return s; };
+  d.slide = (bg = "light") => {
+    const s = p.addSlide();
+    s.background = { color: BG[bg] || bg };
+    s._mcDark = bg === "dark" || bg === "closing";
+    // Las notas del orador son trazabilidad interna de Meridiano: la versión para colegas sale sin notas.
+    if (colegas) s.addNotes = () => s;
+    return s;
+  };
 
   d.text = (s, text, o = {}) => {
+    if (colegas && MERIDIANO_ID.test(textOf(text))) {
+      throw new Error(`Versión para colegas: el texto menciona a Meridiano y no puede incluirse -> "${textOf(text).slice(0, 80)}". Usar d.forClientes() o d.pick().`);
+    }
     const opts = Object.assign({ isTextBox: true, margin: 0, fontFace: SANS, fontSize: 13, color: s._mcDark ? C.crema : C.petroleo, valign: "top" }, o);
     if (opts.fontFace === SERIF) opts.bold = false; // D-040: Fraunces nunca en negrita
     s.addText(text, opts);
@@ -126,23 +155,27 @@ function createDeck(opt = {}) {
     d.title(s, title, { y: 2.72, w: 6, h: lines <= 1 ? 0.95 : 1.75, fontSize: size, lineSpacingMultiple: 1.0 });
     if (o.subtitle) d.text(s, o.subtitle, { x: M, y: 4.55 + dy, w: 6, h: 0.35, fontSize: 13 });
     (o.figures || []).slice(0, 2).forEach((f, i) => d.figure(s, f[0], f[1], { x: M + i * 2.9, y: 5.2 + dy, w: 2.7 }));
-    if (o.footnote) d.text(s, o.footnote, { x: M, y: 6.9, w: 6.1, h: 0.3, fontSize: 9, transparency: 35, valign: "middle" });
+    const footnote = colegas ? stripMeridiano(o.footnoteColegas ?? o.footnote) : o.footnote;
+    if (footnote) d.text(s, footnote, { x: M, y: 6.9, w: 6.1, h: 0.3, fontSize: 9, transparency: 35, valign: "middle" });
     if (o.notes) s.addNotes(o.notes);
     return s;
   };
 
   d.lockup = (s, o = {}) => {
+    if (colegas) return;
     const w = o.w || 2.5, dark = o.dark ?? s._mcDark;
     s.addImage({ path: logo(dark ? "lockup_dark_bg" : "lockup_light_bg"), x: o.x ?? M, y: o.y ?? 0.6, w, h: w / TOKENS.logos.lockup_aspect, altText: "Meridiano Capital" });
   };
   d.isotipo = (s, o = {}) => {
+    if (colegas) return;
     const w = o.w || 0.3, dark = o.dark ?? s._mcDark;
     s.addImage({ path: logo(dark ? "isotipo_dark_bg" : "isotipo_light_bg"), x: o.x, y: o.y, w, h: w, altText: "Isotipo Meridiano Capital" });
   };
   d.footer = (s, n, o = {}) => {
     const dark = o.dark ?? s._mcDark, col = dark ? C.crema : C.grey, tr = dark ? 30 : 0;
     d.isotipo(s, { x: M, y: 6.93, w: 0.3, dark });
-    d.text(s, o.label || opt.footerLabel || "Meridiano Capital", { x: M + 0.45, y: 6.93, w: 9.5, h: 0.3, fontSize: 9, color: col, transparency: tr, valign: "middle" });
+    const label = colegas ? stripMeridiano(o.label || opt.footerLabel) : o.label || opt.footerLabel || "Meridiano Capital";
+    d.text(s, label, { x: colegas ? M : M + 0.45, y: 6.93, w: 9.5, h: 0.3, fontSize: 9, color: col, transparency: tr, valign: "middle" });
     if (n != null) d.text(s, String(n).padStart(2, "0"), { x: R - 0.8, y: 6.93, w: 0.8, h: 0.3, fontSize: 9, color: col, transparency: tr, align: "right", valign: "middle" });
   };
 
@@ -163,6 +196,15 @@ function createDeck(opt = {}) {
   // Cierre canónico (09-cierres-y-firmas.md): tierra colorada, lockup inverso, titular propio de la pieza,
   // firma según preset (A/B D-039, C D-096), aviso legal y pie institucional si el preset lo define.
   d.closing = (o = {}) => {
+    if (colegas) {
+      // Marca blanca: titular, bajada y aviso legal; sin logo, firma, contacto, retrato ni pie institucional.
+      // Queda espacio libre para que el colega agregue sus propios datos de contacto.
+      const s = d.slide("closing");
+      d.text(s, o.headline || "", { x: M, y: 1.8, w: 11.5, h: 1.6, fontFace: SERIF, fontSize: 38, lineSpacingMultiple: 1.02 });
+      if (o.lead) d.text(s, o.lead, { x: M, y: 3.5, w: 11.3, h: 0.8, fontSize: 14, transparency: 10, lineSpacingMultiple: 1.25 });
+      if (o.disclaimer) d.text(s, o.disclaimer, { x: M, y: 6.55, w: 11.4, h: 0.5, fontSize: 9, italic: true, transparency: 25, lineSpacingMultiple: 1.15 });
+      return s;
+    }
     const preset = TOKENS.signature_presets[o.signaturePreset];
     if (!preset) throw new Error(`signaturePreset inválido: ${o.signaturePreset}. Opciones: ${Object.keys(TOKENS.signature_presets).join(", ")}`);
     const ct = Object.assign({}, TOKENS.contact, o.contact || {});
@@ -209,6 +251,15 @@ function createDeck(opt = {}) {
            .replace(/<a:folHlink>[\s\S]*?<\/a:folHlink>/, `<a:folHlink><a:srgbClr val="${C.grey}"/></a:folHlink>`);
       zip.file(th, x);
     }
+    if (colegas) { // metadatos del archivo sin rastros de Meridiano
+      for (const part of ["docProps/core.xml", "docProps/app.xml"]) {
+        if (!zip.files[part]) continue;
+        let x = await zip.file(part).async("string");
+        x = x.replace(/<(dc:creator|cp:lastModifiedBy|Company|Manager)>[^<]*<\/\1>/g, "<$1></$1>");
+        if (MERIDIANO_ID.test(x)) throw new Error(`Versión para colegas: ${part} todavía menciona a Meridiano.`);
+        zip.file(part, x);
+      }
+    }
     fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
     fs.writeFileSync(out, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
     return out;
@@ -216,12 +267,33 @@ function createDeck(opt = {}) {
   return d;
 }
 
-// Nombre de archivo de entrega: Meridiano_Capital_[Propiedad]_[Operacion]_Final
+// Nombre de archivo de entrega:
+//   clientes: Meridiano_Capital_[Propiedad]_[Operacion]_Final
+//   colegas:  [Propiedad]_[Operacion]_Presentacion   (sin Meridiano: el colega la reenvía a sus clientes)
 // Mientras haya un bloqueante abierto (contradicción material, dato esencial faltante) usar { draft: true }:
 // el archivo se llama _Borrador y nunca _Final.
 function deliverableName(property, operation, opts = {}) {
+  if (opts.variant === "colegas") {
+    const c = (t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    return `${c(property)}_${c(operation)}_Presentacion${opts.draft ? "_Borrador" : ""}`;
+  }
   const clean = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "");
   return `Meridiano_Capital_${clean(property)}_${clean(operation)}_${opts.draft ? "Borrador" : "Final"}`;
 }
 
-module.exports = { createDeck, deliverableName, imageSize, TOKENS, C, ASSETS };
+// Arma las dos versiones con el mismo script de construcción.
+//   await buildBoth(async (d) => { ...usar d.cover/d.slide/d.closing... }, { property, operation, outDir, title, footerLabel, draft })
+// Deja: outDir/para_clientes/<nombre clientes>.pptx y outDir/para_colegas/<nombre colegas>.pptx.
+// Lo interno (informes, PNG de revisión, trabajo/) va fuera de para_colegas/, que solo contiene lo que se reenvía.
+async function buildBoth(builder, o = {}) {
+  const out = {};
+  for (const variant of o.variants || ["clientes", "colegas"]) {
+    const d = createDeck({ title: o.title, subject: o.subject, footerLabel: o.footerLabel, variant });
+    await builder(d);
+    const dir = path.join(o.outDir || ".", variant === "colegas" ? "para_colegas" : "para_clientes");
+    out[variant] = await d.save(path.join(dir, deliverableName(o.property, o.operation, { draft: o.draft, variant }) + ".pptx"));
+  }
+  return out;
+}
+
+module.exports = { createDeck, buildBoth, deliverableName, stripMeridiano, MERIDIANO_ID, imageSize, TOKENS, C, ASSETS };

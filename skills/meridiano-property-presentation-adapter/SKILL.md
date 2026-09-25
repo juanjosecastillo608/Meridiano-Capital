@@ -1,6 +1,6 @@
 ---
 name: meridiano-property-presentation-adapter
-description: Adapta archivos reales de presentaciones y documentación inmobiliaria al sistema institucional de Meridiano Capital y entrega PowerPoint editable, PDF, PNG de revisión e informe de validación. Usar únicamente cuando el usuario adjunte o indique una ruta válida hacia un archivo PPTX, PPT, PDF, DOCX, XLSX, CSV, plano o conjunto de imágenes de una propiedad (departamento, casa, oficina, local, edificio, terreno, desarrollo o pozo, nave, centro logístico, hotel, campo, activo de inversión o cartera) y pida crear, rediseñar, adaptar, normalizar o aplicar la marca o Brand OS de Meridiano a una presentación o deck comercial. No usar para solicitudes sin archivos, ideas o consejos sobre cómo presentar, redacción aislada de copies, preguntas sobre la identidad de Meridiano, edición fotográfica independiente ni presentaciones hipotéticas desde cero o con archivos que todavía no se enviaron.
+description: Adapta archivos reales de presentaciones y documentación inmobiliaria al sistema institucional de Meridiano Capital y entrega PowerPoint editable, PDF, PNG de revisión e informe de validación, en dos versiones (para clientes de Meridiano y en marca blanca para colegas del sector). Usar únicamente cuando el usuario adjunte o indique una ruta válida hacia un archivo PPTX, PPT, PDF, DOCX, XLSX, CSV, plano o conjunto de imágenes de una propiedad (departamento, casa, oficina, local, edificio, terreno, desarrollo o pozo, nave, centro logístico, hotel, campo, activo de inversión o cartera) y pida crear, rediseñar, adaptar, normalizar o aplicar la marca o Brand OS de Meridiano a una presentación o deck comercial. No usar para solicitudes sin archivos, ideas o consejos sobre cómo presentar, redacción aislada de copies, preguntas sobre la identidad de Meridiano, edición fotográfica independiente ni presentaciones hipotéticas desde cero o con archivos que todavía no se enviaron.
 compatibility: Requiere Python 3 con Pillow y lxml, Node con pptxgenjs, jszip y sharp, LibreOffice (Impress; Calc/Writer solo para convertir .xls/.doc) y Poppler (pdfinfo, pdftotext, pdfimages, pdftoppm, pdffonts).
 ---
 
@@ -65,10 +65,14 @@ Seguir `references/privacy_rules.md` (y `governance/PII_POLICY.md` si está el r
 
 Solo cuando falte o se contradiga algo que cambia materialmente la pieza: identidad del activo, tipo de operación, precio, superficie, moneda, rol de Meridiano, datos de contacto o condiciones legales o comerciales esenciales. Para todo lo demás, avanzar: dejar el campo fuera y registrarlo en el informe. Lo que el usuario dice en su pedido cuenta como dato (rank 1), y la firma sale de una regla (`signature_rules`): ninguna de las dos cosas se pregunta. Los datos faltantes nunca aparecen dentro de la presentación; van al informe (`questions`) y al resumen final.
 
-## Entregables
+## Entregables: siempre dos versiones (D-099)
 
-- `Meridiano_Capital_[Propiedad]_[Operacion]_Final.pptx` (editable) y `.pdf` (fuentes incrustadas). Usar `deliverableName()` del kit con el nombre real del activo.
-- `revision_[propiedad]/` con un PNG por diapositiva y `00_vista_general.png`.
-- `VALIDACION_[PROPIEDAD].md`: archivos recibidos, skills y fuentes de marca consultadas, tipografías, logos, cantidad de diapositivas, datos verificados, contradicciones, advertencias, validación de imágenes y de editabilidad, resultado final.
+Cada presentación se entrega en dos versiones armadas con el mismo script (`buildBoth()` del kit):
+
+- **Para clientes de Meridiano** (`<salida>/para_clientes/`): `Meridiano_Capital_[Propiedad]_[Operacion]_Final.pptx` y `.pdf`, con marca, firma, retrato y contacto de Meridiano.
+- **Para colegas del sector** (`<salida>/para_colegas/`): `[Propiedad]_[Operacion]_Presentacion.pptx` y `.pdf`, en **marca blanca**: los mismos datos de la propiedad, fotos, diseño y aviso legal, pero **sin nada que identifique a Meridiano** (logo, nombre, contacto, firma, retrato, pie institucional, notas del orador ni metadatos del archivo). El colega la reenvía a sus propios clientes y agrega su contacto en el espacio libre del cierre. La carpeta `para_colegas/` contiene solo lo que se puede reenviar.
+- Internos (fuera de esas carpetas): `revision/clientes/` y `revision/colegas/` (PNG por diapositiva + `00_vista_general.png`), `VALIDACION_[PROPIEDAD].md` y `VALIDACION_[PROPIEDAD]_COLEGAS.md` (el de colegas con `--variant colegas`, que bloquea cualquier rastro de Meridiano), y `trabajo/`.
+
+Si el usuario pide expresamente una sola versión, generar solo esa (`variants` en `buildBoth`). Contenido que es solo de Meridiano (su rol, sus honorarios propios, "comercialización a cargo de…") va con `d.forClientes()`; las condiciones comerciales del activo que figuran en la fuente se conservan en ambas versiones.
 
 No dar el trabajo por terminado con el informe en NO APROBADO ni sin haber mirado todas las diapositivas renderizadas. Si hay un bloqueante que solo el usuario puede resolver, entregar un `_Borrador` sin el dato en disputa y la pregunta concreta (`references/workflow.md` §8). Al entregar, resumir en pocas líneas qué se adaptó, qué quedó fuera por falta de datos y qué requiere confirmación.

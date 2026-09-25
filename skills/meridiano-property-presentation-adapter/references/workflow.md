@@ -78,20 +78,26 @@ Elegir secciones con `narrative_patterns.md`. Solo secciones respaldadas por dat
 
 ## 6. Fase 5 — Construcción con el kit
 
-`scripts/meridiano_deck_kit.js` (requiere `pptxgenjs`, `jszip`, `sharp`; si faltan, `npm install` en la carpeta de trabajo). Escribir un script de construcción propio de la propiedad en `<trabajo>/build_deck.js`:
+`scripts/meridiano_deck_kit.js` (requiere `pptxgenjs`, `jszip`, `sharp`; si faltan, `npm install` en la carpeta de trabajo). Escribir un script de construcción propio de la propiedad en `<trabajo>/build_deck.js`. **Siempre con `buildBoth()`**, que ejecuta el mismo armado dos veces, una por versión (D-099):
 
 ```js
 const K = require("<ruta-skill>/scripts/meridiano_deck_kit.js");
-const d = K.createDeck({ title: "…", footerLabel: "Meridiano Capital  ·  <Propiedad>  ·  <Operación>" });
+await K.buildBoth(async (d) => {   // d.variant = "clientes" | "colegas"
 let s = d.cover({ photo: "<foto>", photoAlt: "…", eyebrow: "<tipo de operación>", title: "<Nombre del activo>",
                   subtitle: "<ubicación>", figures: [["<cifra>", "<etiqueta>"]],
                   footnote: "Comercialización a cargo de Meridiano Capital  ·  <fecha de la fuente>" });
 // photoMode: "panel" si la foto tiene rótulos sobreimpresos cerca del borde o una proporción muy distinta del marco
 s = d.slide("light"); d.eyebrow(s, "…"); d.title(s, "…"); /* contenido */ d.footer(s, 2);
+d.forClientes(() => { /* diapositiva o texto que solo va a clientes de Meridiano: su rol, sus honorarios propios */ });
 d.closing({ headline: "…", lead: "…", signaturePreset: "C_captacion_alquiler", photo: "<retrato autorizado>",
             disclaimer: "…" });
-await d.save(`<salida>/${K.deliverableName("<Propiedad>", "<Operacion>")}.pptx`);
+}, { property: "<Propiedad>", operation: "<Operacion>", outDir: "<salida>",
+     title: "…", footerLabel: "Meridiano Capital  ·  <Propiedad>  ·  <Operación>" });
+// → <salida>/para_clientes/Meridiano_Capital_<Propiedad>_<Operacion>_Final.pptx
+// → <salida>/para_colegas/<Propiedad>_<Operacion>_Presentacion.pptx
 ```
+
+**Qué hace el kit en la versión `colegas`**: no pone lockup ni isotipos; saca "Meridiano Capital" de los pies y de la nota de portada; arma el cierre solo con titular, bajada y aviso legal (sin firma, contacto, retrato ni pie institucional, con espacio libre para el contacto del colega); descarta las notas del orador; deja autor y empresa vacíos en los metadatos, y nombra el archivo sin "Meridiano". **Si un texto menciona a Meridiano, el armado se detiene con error**: ese contenido va dentro de `d.forClientes(...)` o con `d.pick(textoClientes, textoColegas)`. Las condiciones comerciales del activo que están en la fuente (precio, expensas, garantía, honorarios pactados en la cotización) se mantienen en las dos versiones; si alguna es un honorario **propio** de Meridiano y no del activo, preguntarle al usuario si va en la versión colegas.
 
 Reglas del kit que no hay que romper:
 - Imágenes siempre por `d.photo` (`cover` con ancla, o `contain` para planos/mapas/documentos). Nunca `addImage` con w/h arbitrarios.
@@ -110,13 +116,18 @@ Cierre: `signaturePreset` según `brand_tokens.json` → `signature_rules` (alqu
 ## 7. Fase 6 — QA y entregables
 
 ```bash
-python <pptx-skill>/scripts/office/validate.py <salida>.pptx                      # estructura (skill pptx)
-python scripts/validate_image_aspect_ratios.py <salida>.pptx --out <trabajo>/aspecto.json
-python scripts/render_presentation.py <salida>.pptx --outdir <salida>/revision_<slug> --pdf <salida>.pdf > <trabajo>/render.json
-python scripts/build_validation_report.py --pptx <salida>.pptx --pdf <salida>.pdf --inventory <trabajo>/inventario.json \
-   --data <trabajo>/validacion_datos.json --aspect <trabajo>/aspecto.json --render <trabajo>/render.json \
-   --meta <trabajo>/meta.json --out <salida>/VALIDACION_<PROPIEDAD>.md
+Correr el bloque **una vez por versión** (`<v>` = `clientes` | `colegas`; `<pptx>` = el archivo de `para_<v>/`):
+
+```bash
+python <pptx-skill>/scripts/office/validate.py <pptx>                              # estructura (skill pptx)
+python scripts/validate_image_aspect_ratios.py <pptx> --out <trabajo>/aspecto_<v>.json
+python scripts/render_presentation.py <pptx> --outdir <salida>/revision/<v> --pdf <mismo nombre>.pdf > <trabajo>/render_<v>.json
+python scripts/build_validation_report.py --pptx <pptx> --variant <v> --inventory <trabajo>/inventario.json \
+   --data <trabajo>/validacion_datos.json --aspect <trabajo>/aspecto_<v>.json --render <trabajo>/render_<v>.json \
+   --meta <trabajo>/meta.json --out <salida>/VALIDACION_<PROPIEDAD>[_COLEGAS].md
 ```
+
+El PDF de cada versión queda junto a su `.pptx` (`para_clientes/`, `para_colegas/`). En la versión colegas, `--variant colegas` agrega el **control de marca blanca** (§0 del informe): texto, notas, metadatos del PPTX y del PDF, enlaces, nombre de archivo, logos incrustados y retrato. Cualquier rastro de Meridiano da NO APROBADO. Mirar también los PNG de `revision/colegas/`: que el cierre no quede con huecos raros y que ninguna foto de la fuente muestre la marca de Meridiano (un cartel, un logo sobreimpreso).
 
 Luego mirar **cada** PNG y la vista general con los criterios de `visual_qa.md`. Corregir → reconstruir → repetir todo el bloque hasta que el informe dé APROBADO o APROBADO CON OBSERVACIONES y la revisión visual no tenga defectos.
 
@@ -144,7 +155,17 @@ Luego mirar **cada** PNG y la vista general con los criterios de `visual_qa.md`.
 
 Aviso legal del cierre: usar el del repo si hay uno aprobado para el tipo de pieza; si no, `brand_tokens.json` → `disclaimers` (venta, alquiler, preventa/inversión), aprobados por el founder (D-098): registrarlo en `decisions_applied`.
 
-Entregables: `Meridiano_Capital_[Propiedad]_[Operacion]_Final.pptx` y `.pdf`, `revision_[propiedad]/` (PNG + vista general), `VALIDACION_[PROPIEDAD].md`. Si se trabaja dentro del repo, guardarlos en `projects/<slug>/entregables/` y el script de construcción en `production/generadores/`.
+Entregables (estructura de `<salida>`):
+
+```
+para_clientes/   Meridiano_Capital_<Propiedad>_<Operacion>_Final.pptx + .pdf
+para_colegas/    <Propiedad>_<Operacion>_Presentacion.pptx + .pdf      ← solo lo que el colega puede reenviar
+revision/clientes/  revision/colegas/                                  ← PNG + 00_vista_general.png
+VALIDACION_<PROPIEDAD>.md   VALIDACION_<PROPIEDAD>_COLEGAS.md
+trabajo/
+```
+
+Si se trabaja dentro del repo, `<salida>` = `projects/<slug>/entregables/` y el script de construcción va a `production/generadores/`.
 
 ## 8. Cuándo detenerse y preguntar
 

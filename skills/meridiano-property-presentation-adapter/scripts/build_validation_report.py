@@ -22,6 +22,11 @@ Entradas (todas opcionales salvo --pptx y --out):
                   visual_qa[], warnings[], text_changes[], limitations[],
                   forbid[], allowed_emails[]
 
+  --variant       clientes (default) | colegas. Con "colegas" (versión marca blanca, D-099) se
+                  bloquea cualquier rastro de Meridiano: texto, notas, metadatos, enlaces,
+                  nombre de archivo, logo incrustado (firma geométrica del isotipo) y retrato
+                  (huella sha1).
+
 Resultado: APROBADO / APROBADO CON OBSERVACIONES / NO APROBADO (código 1).
 
 Uso:
@@ -126,10 +131,59 @@ def inspect_pptx(path):
     return res
 
 
+WL = TOKENS.get("white_label", {})
+WL_RX = re.compile(WL.get("identifiers_regex", "meridiano"), re.I)
+
+
+def white_label_leaks(pptx):
+    """Rastros de Meridiano en cualquier parte del paquete (versión para colegas)."""
+    import hashlib
+    leaks = []
+    if WL_RX.search(Path(pptx).name):
+        leaks.append(("nombre de archivo", Path(pptx).name))
+    z = zipfile.ZipFile(pptx)
+    portrait_sha = TOKENS.get("portrait", {}).get("sha1")
+    sig = WL.get("logo_svg_signature", "M52 6 L14 100").encode()
+    for n in z.namelist():
+        data = z.read(n)
+        if n.endswith((".xml", ".rels")):
+            txt = data.decode("utf8", "ignore")
+            if n.startswith("ppt/notesSlides/"):
+                body = " ".join(re.findall(r"<a:t>([^<]*)</a:t>", txt))
+                # pptxgenjs crea una página de notas por diapositiva con el número como único texto: eso no es una nota.
+                if re.sub(r"[\d\s]", "", body):
+                    leaks.append((n, "notas del orador presentes: " + body[:60]))
+                continue
+            hay = " ".join(re.findall(r"<a:t>([^<]*)</a:t>", txt)) if n.startswith("ppt/slides/slide") else re.sub(r"<[^>]+>", " ", txt) if n.startswith("docProps/") else txt
+            if n.startswith(("ppt/slides/", "docProps/")) or n.endswith(".rels"):
+                m = WL_RX.search(hay)
+                if m:
+                    leaks.append((n, hay[max(0, m.start() - 30): m.end() + 30]))
+        elif n.startswith("ppt/media/"):
+            if n.endswith(".svg") and sig in data:
+                leaks.append((n, "logo de Meridiano incrustado"))
+            elif portrait_sha and hashlib.sha1(data).hexdigest() == portrait_sha:
+                leaks.append((n, "retrato de Juan José Castillo"))
+    return leaks
+
+
+def pdf_leaks(pdf):
+    import subprocess
+    leaks = []
+    txt = subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True, text=True).stdout
+    info = subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True).stdout
+    for lugar, hay in (("texto del PDF", txt), ("metadatos del PDF", info), ("nombre del PDF", Path(pdf).name)):
+        m = WL_RX.search(hay)
+        if m:
+            leaks.append((lugar, hay[max(0, m.start() - 30): m.end() + 30].replace("\n", " ")))
+    return leaks
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     for k in ("pptx", "pdf", "inventory", "data", "aspect", "render", "meta", "out"):
         ap.add_argument(f"--{k}")
+    ap.add_argument("--variant", choices=["clientes", "colegas"], default="clientes")
     a = ap.parse_args()
     if not a.pptx or not a.out:
         ap.error("--pptx y --out son obligatorios")
@@ -181,6 +235,13 @@ def main():
         if pii:
             observations.append("Posibles datos personales: revisar el contexto de cada coincidencia (puede ser un dato legítimo como una calle o un número de lote).")
 
+    white = []
+    if a.variant == "colegas":
+        white = white_label_leaks(a.pptx)
+        if a.pdf or (render and render.get("pdf")):
+            white += pdf_leaks(a.pdf or render["pdf"])
+        if white:
+            blockers.append(f"Versión para colegas con rastros de Meridiano: {len(white)} (ver §0)")
     if aspect and aspect.get("result") != "OK":
         blockers.append(f"Imágenes deformadas: {len(aspect.get('deformed', []))}")
     if aspect and aspect.get("svg_fallback_problems"):
@@ -217,6 +278,14 @@ def main():
     if px:
         w(f"| Diapositivas | {px['slides']} |")
     w("")
+    if a.variant == "colegas":
+        w("## 0. Control de marca blanca (versión para colegas, D-099)\n")
+        w("- Revisado: texto de diapositivas, notas del orador, metadatos (docProps), hipervínculos, nombre de archivo, logos incrustados, retrato y texto/metadatos del PDF.")
+        for lugar, detalle in white:
+            w(f"- ❌ {lugar}: `{detalle}`")
+        if not white:
+            w("- ✅ Sin rastros de Meridiano: apta para que un colega la reenvíe a sus clientes.")
+        w("")
     if blockers:
         w("## Bloqueantes\n" + "\n".join(f"- ❌ {b}" for b in blockers) + "\n")
     if observations or meta.get("warnings"):

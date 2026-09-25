@@ -5,6 +5,7 @@ Uso: python run_functional_tests.py FIXTURES_DIR WORK_DIR
 Genera WORK_DIR/functional_results.json y .md. Código 1 si alguna prueba falla.
 """
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -173,6 +174,51 @@ check("10b sin argumentos: se detiene", c == 2, f"exit {c}")
 # 11) Archivo dañado
 c, o, e = run(SK / "inspect_inputs.py", FX / "11_danado")
 check("11 dañado: detectado y no se procede", c == 2 and js(o)["inputs"][0]["status"] == "damaged", js(o)["summary"]["problem_files"])
+
+# 12) Dos versiones (D-099): clientes con Meridiano y colegas en marca blanca
+import shutil  # noqa: E402
+nm = None
+for cand in [os.environ.get("NODE_PATH", "")] + [str(p) for p in Path(__file__).resolve().parents[3].glob("production/generadores/node_modules")]:
+    if cand and Path(cand, "pptxgenjs").exists():
+        nm = cand
+        break
+if not nm or not shutil.which("node"):
+    check("12 dos versiones: requiere node + pptxgenjs", False, "definir NODE_PATH con pptxgenjs, jszip y sharp")
+else:
+    kit = SK / "meridiano_deck_kit.js"
+    img = WK / "t05" / "imagenes"
+    dual = WK / "t12"
+    (dual).mkdir(exist_ok=True)
+    js_src = f"""
+const K = require({json.dumps(str(kit))});
+K.buildBoth(async (d) => {{
+  let s = d.cover({{ photo: {json.dumps(str(img / 'fachada.jpg'))}, eyebrow: "Propuesta de alquiler", title: "Local Fixture",
+    figures: [["300 m²","Superficie"]], footnote: "Comercialización a cargo de Meridiano Capital  ·  25.09.2026" }});
+  s.addNotes("Nota interna de Meridiano Capital");
+  s = d.slide("light"); d.title(s, "Plano"); d.forClientes(() => d.text(s, "Relevamiento de Meridiano Capital", {{ x: 1, y: 3, w: 5, h: 0.4 }}));
+  d.footer(s, 2);
+  d.closing({{ headline: "Coordinemos una visita", signaturePreset: "C_captacion_alquiler", disclaimer: K.TOKENS.disclaimers.alquiler }});
+}}, {{ property: "Local Fixture", operation: "Alquiler", outDir: {json.dumps(str(dual))}, title: "Local Fixture — Meridiano Capital",
+      footerLabel: "Meridiano Capital  ·  Local Fixture  ·  Alquiler" }}).then(r => console.log(JSON.stringify(r)));
+"""
+    (dual / "build.js").write_text(js_src, encoding="utf-8")
+    env = dict(os.environ, NODE_PATH=nm)
+    r = subprocess.run(["node", str(dual / "build.js")], capture_output=True, text=True, env=env, timeout=300)
+    paths = json.loads(r.stdout.strip().splitlines()[-1]) if r.returncode == 0 else {}
+    col, cli = paths.get("colegas", ""), paths.get("clientes", "")
+    check("12 dos versiones: nombres y carpetas", cli.endswith("para_clientes/Meridiano_Capital_Local_Fixture_Alquiler_Final.pptx")
+          and col.endswith("para_colegas/Local_Fixture_Alquiler_Presentacion.pptx"), paths or r.stderr[-300:])
+    c, o, _ = run(SK / "build_validation_report.py", "--pptx", col, "--variant", "colegas", "--out", dual / "V_colegas.md")
+    check("12 colegas: marca blanca sin rastros de Meridiano (APROBADO)", c == 0, o.strip()[:200])
+    c, o, _ = run(SK / "build_validation_report.py", "--pptx", cli, "--variant", "colegas", "--out", dual / "V_cruzado.md")
+    txt = (dual / "V_cruzado.md").read_text(encoding="utf-8")
+    check("12 control cruzado: la versión clientes NO pasa como marca blanca", c == 1 and "logo de Meridiano" in txt and "notas del orador" in txt and "docProps" in txt,
+          o.strip()[:200])
+    bad = dual / "bad.js"
+    bad.write_text(f"""const K=require({json.dumps(str(kit))});const d=K.createDeck({{variant:"colegas"}});const s=d.slide();
+try{{d.text(s,"Contacto: Juan José Castillo",{{x:1,y:1,w:5,h:1}});console.log("NO_BLOQUEO")}}catch(e){{console.log("BLOQUEADO")}}""", encoding="utf-8")
+    r = subprocess.run(["node", str(bad)], capture_output=True, text=True, env=env, timeout=120)
+    check("12 freno: un texto con Meridiano en la versión colegas detiene el armado", "BLOQUEADO" in r.stdout, r.stdout.strip() or r.stderr[-200:])
 
 passed = sum(r["passed"] for r in results)
 (WK / "functional_results.json").write_text(json.dumps(results, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
