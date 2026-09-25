@@ -7,7 +7,7 @@ Naves industriales en alquiler dentro del complejo portuario Puerto Fénix (Mari
 | `fuente/` | Presentación v7 aprobada (contenido, cálculos e imágenes). Solo lectura, nunca editar |
 | `entregables/` | Presentación final `.pptx` (editable) y `.pdf` (distribución), `revision/` (PNG por diapositiva + vista general) y `VALIDACION_PRESENTACION_PUERTO_FENIX.md` |
 
-**Regenerar la presentación** (por ejemplo, si cambia un dato o se resuelve U-034):
+**Regenerar la presentación** (por ejemplo, si cambia un dato):
 
 ```bash
 cd production/generadores && npm install && node build_puerto_fenix_presentacion.js
@@ -15,4 +15,4 @@ cd production/generadores && npm install && node build_puerto_fenix_presentacion
 
 Después, exportar el PDF y volver a correr el QA descrito en el informe de validación. Para editar el PPTX a mano hacen falta las fuentes Fraunces y Poppins (Google Fonts).
 
-Pendiente abierto: **U-034** (cargo en la firma: "Broker Inmobiliario" vs. la firma canónica D-039).
+Firma y cierre según **D-096**: "Broker Inmobiliario" (captación de propiedades en alquiler) + pie institucional "Operadores técnicos y legales de inversiones inmobiliarias". Ubicación: https://maps.app.goo.gl/jHo2dQB1tqhid7nAA

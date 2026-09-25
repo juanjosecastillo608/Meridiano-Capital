@@ -27,6 +27,9 @@ const a = (f) => path.join(A, f);
 const LOCKUP = a("meridiano-primario-horizontal-trazado.svg"), LOCKUP_INV = a("meridiano-primario-horizontal-inverso-trazado.svg");
 const ISO = a("meridiano-isotipo.svg"), ISO_INV = a("meridiano-isotipo-inverso.svg");
 const LOCKUP_RATIO = 430 / 140; // viewBox del lockup
+const MAPS_URL = "https://maps.app.goo.gl/jHo2dQB1tqhid7nAA"; // ubicación exacta aportada por el founder, 2026-09-25
+// Pie institucional del cierre (D-096): diferenciador de Meridiano frente al agente tradicional.
+const PIE_INSTITUCIONAL = "Meridiano Capital  ·  Operadores técnicos y legales de inversiones inmobiliarias";
 
 // ---------- helpers ----------
 // Imagen con recorte proporcional (nunca deforma): escala "cover" + ventana de recorte con ancla (ax, ay).
@@ -37,10 +40,11 @@ function photo(s, file, pw, ph, x, y, w, h, alt, ax = 0.5, ay = 0.5) {
     sizing: { type: "crop", x: (vw - w) * ax, y: (vh - h) * ay, w, h } });
 }
 // Imagen completa dentro de una caja (contain), centrada.
-function photoContain(s, file, pw, ph, x, y, w, h, alt) {
+function photoContain(s, file, pw, ph, x, y, w, h, alt, url) {
   const k = Math.min(w / pw, h / ph);
   const vw = pw * k, vh = ph * k;
-  s.addImage({ path: a(file), x: x + (w - vw) / 2, y: y + (h - vh) / 2, w: vw, h: vh, altText: alt });
+  s.addImage(Object.assign({ path: a(file), x: x + (w - vw) / 2, y: y + (h - vh) / 2, w: vw, h: vh, altText: alt },
+    url ? { hyperlink: { url, tooltip: "Abrir la ubicación en Google Maps" } } : {}));
 }
 function t(s, text, o) { s.addText(text, Object.assign({ isTextBox: true, margin: 0, fontFace: SANS, color: PET, valign: "top" }, o)); }
 function eyebrow(s, text, dark, x = M, y = 0.6, w = 11) {
@@ -81,19 +85,22 @@ s = p.addSlide(); s.background = { color: CRE };
 eyebrow(s, "Acceso estratégico"); title(s, "Ubicación en el corredor metropolitano");
 { const mw = 6.03, mh = mw * 722 / 916;
   s.addShape(p.ShapeType.rect, { x: M, y: 2.0, w: mw, h: mh, fill: { color: WHITE }, line: { color: LINEA, width: 0.75 } });
-  photoContain(s, "pf_mapa_ubicacion.jpg", 916, 722, M, 2.0, mw, mh, "Mapa de ubicación: Mariano Roque Alonso en el área metropolitana de Asunción"); }
+  photoContain(s, "pf_mapa_ubicacion.jpg", 916, 722, M, 2.0, mw, mh, "Mapa de ubicación: Mariano Roque Alonso en el área metropolitana de Asunción", MAPS_URL); }
 { const x = 7.35, w = R - 7.35;
   t(s, "Mariano Roque Alonso", { x, y: 2.05, w, h: 0.55, fontFace: SERIF, fontSize: 26 });
   t(s, "Centro logístico y portuario con conexión al área metropolitana de Asunción.", { x, y: 2.75, w, h: 0.8, fontSize: 15, lineSpacingMultiple: 1.25 });
   ["Operación dentro del complejo Puerto Fénix", "Acceso funcional para transporte y distribución", "Infraestructura vinculada al muelle"].forEach((it, i) => {
-    const y = 3.95 + i * 0.78;
+    const y = 3.95 + i * 0.68;
     hair(s, x, y, w);
     t(s, String(i + 1).padStart(2, "0"), { x, y: y + 0.2, w: 0.55, h: 0.35, fontFace: SERIF, fontSize: 15, color: TIE });
     t(s, it, { x: x + 0.6, y: y + 0.2, w: w - 0.6, h: 0.4, fontSize: 13.5 });
   });
-  hair(s, x, 3.95 + 3 * 0.78, w); }
+  hair(s, x, 3.95 + 3 * 0.68, w);
+  t(s, [{ text: "Ver ubicación exacta en Google Maps", options: { bold: true, color: TIE, underline: { style: "sng" }, hyperlink: { url: MAPS_URL, tooltip: "Abrir la ubicación en Google Maps" } } },
+        { text: "\nmaps.app.goo.gl/jHo2dQB1tqhid7nAA", options: { fontSize: 10.5, color: GRY } }],
+    { x, y: 6.2, w, h: 0.62, fontSize: 12.5, lineSpacingMultiple: 1.2 }); }
 footer(s, 2);
-s.addNotes("Fuente: página 2 y mapa incorporado en el documento adjunto. No se agregaron tiempos de viaje ni distancias no informadas. PENDIENTE: la presentación v7 indicaba conservar el enlace de localización exacta del documento fuente, pero ese enlace no está incluido en el archivo recibido; agregarlo como hipervínculo sobre el mapa cuando se disponga de él.");
+s.addNotes("Fuente: página 2 y mapa incorporado en el documento adjunto. No se agregaron tiempos de viaje ni distancias no informadas. Enlace de ubicación exacta aportado por el founder el 2026-09-25 (https://maps.app.goo.gl/jHo2dQB1tqhid7nAA): vinculado al mapa y al texto «Ver ubicación exacta en Google Maps».");
 
 // =====================================================================
 // 03 — ESCALA E INFRAESTRUCTURA (4 fotografías, grilla 2 × 2 proporcional)
@@ -305,15 +312,18 @@ s.addNotes("Imágenes adicionales aportadas por el usuario el 24.09.2026. Se pre
 s = p.addSlide(); s.background = { color: TIE };
 photo(s, "jjc_retrato.jpg", 1024, 1536, 8.55, 0, W - 8.55, H, "Juan José Castillo, Meridiano Capital", 0.5, 0.0);
 s.addImage({ path: LOCKUP_INV, x: M, y: 0.6, w: 2.4, h: 2.4 / LOCKUP_RATIO, altText: "Meridiano Capital" });
-t(s, "Coordinemos una visita\ny una propuesta a medida", { x: M, y: 2.0, w: 7.5, h: 1.6, fontFace: SERIF, fontSize: 38, color: CRE, lineSpacingMultiple: 1.02 });
-t(s, "Acompañamiento comercial para empresas que buscan capacidad de almacenamiento, operación logística y acceso portuario.", { x: M, y: 3.75, w: 7.2, h: 0.8, fontSize: 14, color: CRE, transparency: 10, lineSpacingMultiple: 1.25 });
-hair(s, M, 4.85, 7.35, "C9982E");
-t(s, "Juan José Castillo", { x: M, y: 5.05, w: 7.4, h: 0.5, fontFace: SERIF, fontSize: 22, color: CRE });
-t(s, "Broker Inmobiliario · Meridiano Capital", { x: M, y: 5.55, w: 7.4, h: 0.35, fontSize: 13, color: CRE });
-t(s, "+595 982 853 111  ·  juancastillo@meridianocapital.net  ·  www.meridianocapital.net", { x: M, y: 5.98, w: 7.6, h: 0.35, fontSize: 12.5, color: CRE });
+t(s, "Coordinemos una visita\ny una propuesta a medida", { x: M, y: 1.8, w: 7.5, h: 1.6, fontFace: SERIF, fontSize: 38, color: CRE, lineSpacingMultiple: 1.02 });
+t(s, "Acompañamiento comercial para empresas que buscan capacidad de almacenamiento, operación logística y acceso portuario.", { x: M, y: 3.5, w: 7.2, h: 0.8, fontSize: 14, color: CRE, transparency: 10, lineSpacingMultiple: 1.25 });
+hair(s, M, 4.5, 7.35, "C9982E");
+// Firma para captación de propiedades en alquiler (D-096): "Broker Inmobiliario".
+t(s, "Juan José Castillo", { x: M, y: 4.66, w: 7.4, h: 0.5, fontFace: SERIF, fontSize: 22, color: CRE });
+t(s, "Broker Inmobiliario · Meridiano Capital", { x: M, y: 5.16, w: 7.4, h: 0.35, fontSize: 13, color: CRE });
+t(s, "+595 982 853 111  ·  juancastillo@meridianocapital.net  ·  www.meridianocapital.net", { x: M, y: 5.56, w: 7.6, h: 0.35, fontSize: 12.5, color: CRE });
 t(s, "Documento comercial de referencia. Valores en USD más IVA según la cotización de Puerto Fénix; las condiciones definitivas se formalizan en el contrato de locación. Oferta válida por 5 días.",
-  { x: M, y: 6.62, w: 7.5, h: 0.5, fontSize: 9, italic: true, color: CRE, transparency: 25, lineSpacingMultiple: 1.15 });
-s.addNotes("Contacto comercial actualizado por el usuario: Juan José Castillo, Broker Inmobiliario, Meridiano Capital, +595 982 853 111, juancastillo@meridianocapital.net. Fotografía profesional incorporada en la versión aprobada, sin retoques. Ver VALIDACION_PRESENTACION_PUERTO_FENIX.md: el cargo «Broker Inmobiliario» difiere de la firma canónica de knowledge-base/brand/09-cierres-y-firmas.md y queda registrado para confirmación.");
+  { x: M, y: 6.02, w: 7.5, h: 0.5, fontSize: 9, italic: true, color: CRE, transparency: 25, lineSpacingMultiple: 1.15 });
+hair(s, M, 6.78, 7.35, "F3EDE3");
+t(s, PIE_INSTITUCIONAL.toUpperCase(), { x: M, y: 6.9, w: 7.8, h: 0.3, fontSize: 9, bold: true, color: CRE, charSpacing: 1.2, valign: "middle" });
+s.addNotes("Contacto comercial actualizado por el usuario: Juan José Castillo, Broker Inmobiliario, Meridiano Capital, +595 982 853 111, juancastillo@meridianocapital.net. Fotografía profesional incorporada en la versión aprobada, sin retoques. Firma «Broker Inmobiliario» = norma vigente cuando Meridiano actúa como captador de propiedades en alquiler (D-096, resuelve U-034), con el pie institucional «Operadores técnicos y legales de inversiones inmobiliarias» al cierre.");
 
 // =====================================================================
 // Escritura + respaldo PNG real para cada SVG (pptxgenjs copia el SVG como si fuera PNG;
@@ -333,6 +343,14 @@ const out = path.join(outDir, "Meridiano_Capital_Puerto_Fenix_Presentacion_Corpo
     const src = await zip.file(svg).async("nodebuffer");
     const raster = await sharp(src, { density: 600 }).resize({ width: 1600, withoutEnlargement: false }).png().toBuffer();
     zip.file(png, raster);
+  }
+  // Hipervínculos con color de marca (tierra colorada / grey cálido visitado) en vez del azul por defecto del tema.
+  const themes = Object.keys(zip.files).filter((f) => /^ppt\/theme\/theme\d+\.xml$/.test(f));
+  for (const th of themes) {
+    let x = await zip.file(th).async("string");
+    x = x.replace(/<a:hlink>[\s\S]*?<\/a:hlink>/, `<a:hlink><a:srgbClr val="${TIE}"/></a:hlink>`)
+         .replace(/<a:folHlink>[\s\S]*?<\/a:folHlink>/, `<a:folHlink><a:srgbClr val="${GRY}"/></a:folHlink>`);
+    zip.file(th, x);
   }
   const final = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
   fs.writeFileSync(out, final);

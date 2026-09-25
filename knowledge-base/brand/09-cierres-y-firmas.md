@@ -23,7 +23,7 @@ Se compone SIEMPRE de estas lineas, en este orden, sin variacion:
 
 Reglas de la firma:
 
-- El titulo es SIEMPRE **"Operador Tecnico y Legal de Inversiones Inmobiliarias"**. Nunca "asesor inmobiliario", "agente", "desarrollador" u otra variante en la firma.
+- El titulo es **"Operador Tecnico y Legal de Inversiones Inmobiliarias"** en toda pieza, con UNA excepcion: la captacion de propiedades en alquiler (ver "Variante C" abajo, D-096). Nunca "asesor inmobiliario", "agente", "desarrollador" u otra variante en la firma.
 - El ADN de Marca (`01-adn-de-marca.md`) describe a JJC como "asesor y desarrollador inmobiliario" a nivel biografico/ADN. Eso es la descripcion de su trayectoria; la FIRMA formal de todo documento es la de este archivo. No confundir descripcion con firma.
 - El mail correcto es **juancastillo@meridianocapital.net** (NO juanjosecastillo).
 - El telefono correcto es **+595 982 853 111**.
@@ -50,6 +50,19 @@ Operador Tecnico y Legal de Inversiones Inmobiliarias
 En representacion de Meridiano Capital · Asuncion, Paraguay
 +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
 ```
+
+**Variante C — Captacion de propiedades en alquiler** (D-096, 2026-09-25; Meridiano comercializa un activo de terceros en alquiler, p. ej. naves del Centro Logistico Puerto Fenix): la firma usa el cargo **"Broker Inmobiliario"**, y la pieza cierra con un **pie institucional** que marca la diferencia frente al agente tradicional:
+
+```
+Juan Jose Castillo
+Broker Inmobiliario · Meridiano Capital
++595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
+[disclaimer]
+────────────────────────────────────────
+MERIDIANO CAPITAL · OPERADORES TECNICOS Y LEGALES DE INVERSIONES INMOBILIARIAS
+```
+
+El pie institucional va al final de la ultima diapositiva/pagina, separado por una linea fina, en Poppins Bold mayusculas con tracking. Referencia viva: `production/generadores/build_puerto_fenix_presentacion.js` (diapositiva 12).
 
 **Nunca usar en ninguna de las dos**: "Campo Agreste S.A." — esa sociedad esta protegida por la regla de invisibilidad (`D-029`, `business/06-estructura-societaria-y-portfolio.md`) y solo puede aparecer en documentacion institucional/legal en sentido estricto (contratos, facturas; el P04 de compliance ya la incluye correctamente en su pie porque es justamente ese tipo de documento, no una pieza de venta).
 
@@ -82,7 +95,7 @@ Distinto es el **dato macro de radicaciones en Paraguay** (estadistica de mercad
 - [ ] Cierre en fondo tierra colorada #8B3323
 - [ ] Isotipo inverso + "MERIDIANO CAPITAL" arriba del cierre
 - [ ] Titular de cierre propio de la pieza, en Lora Bold
-- [ ] Firma: "Juan Jose Castillo" + "Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay"
+- [ ] Firma: "Juan Jose Castillo" + "Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay" (o, en captacion de propiedades en alquiler, "Broker Inmobiliario · Meridiano Capital" + pie institucional — Variante C, D-096)
 - [ ] Respaldo institucional correcto segun la pieza: Variante A (deck/WhatsApp) o Variante B (Investment Memorandum) — nunca Campo Agreste S.A. en ninguna de las dos
 - [ ] Contacto en una linea: +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
 - [ ] Mail juancastillo@meridianocapital.net (no juanjosecastillo)
