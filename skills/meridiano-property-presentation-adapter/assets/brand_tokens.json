@@ -1,0 +1,87 @@
+{
+  "_provenance": {
+    "snapshot_date": "2026-09-25",
+    "authority": "Snapshot de la capa CURRENT del repo Meridiano-Capital. Si el repo está disponible, sus archivos prevalecen sobre este snapshot; si difieren, detener y avisar.",
+    "sources": {
+      "colors": "knowledge-base/brand/05-sistema-cromatico.md",
+      "typography": "knowledge-base/brand/04-tipografia.md + D-036 + D-040",
+      "logos": "production/app/frontend/assets/logos/ (isotipo D-034); lockup = meridiano-primario-horizontal.svg con wordmark convertido a trazos",
+      "signature": "knowledge-base/brand/09-cierres-y-firmas.md (D-039 variantes A/B, D-096 variante C)",
+      "presentations": "meridiano-capital-identity references/10-presentaciones.md"
+    }
+  },
+  "colors": {
+    "official": {
+      "petroleo": "14313A",
+      "tierra": "8B3323",
+      "lapacho": "C9982E",
+      "crema": "F3EDE3",
+      "grey": "6B6154"
+    },
+    "utility": {
+      "linea": "DAD2C0",
+      "fila": "F7F4EE",
+      "navy2": "0D2226",
+      "navy_tint": "1D414D",
+      "tierra2": "6E2819",
+      "gold_d": "A87D22",
+      "gold_hover": "DCAE47",
+      "white": "FFFFFF"
+    },
+    "rules": [
+      "Proporción 60% crema/blanco, 30% petróleo, 10% lapacho.",
+      "Lapacho dorado nunca como texto de cuerpo ni titulares largos sobre fondo claro (2.6:1); solo acento, cifra grande aislada o texto sobre fondo oscuro.",
+      "Eyebrow sobre fondo claro en gold_d; sobre fondo oscuro en lapacho.",
+      "Portada y cierre oscuros (petróleo); cierre canónico en tierra colorada.",
+      "Nunca navy + dorado genérico; nunca HEX nuevo sin registrarlo en 05-sistema-cromatico.md."
+    ]
+  },
+  "typography": {
+    "headline": "Fraunces",
+    "body": "Poppins",
+    "headline_bold_allowed": false,
+    "fallbacks": {"Fraunces": ["Georgia", "Cambria"], "Poppins": ["Calibri", "Arial"]},
+    "font_files": ["fonts/Fraunces-Regular.ttf", "fonts/Poppins-Regular.ttf", "fonts/Poppins-Medium.ttf", "fonts/Poppins-Bold.ttf", "fonts/Poppins-Italic.ttf"]
+  },
+  "logos": {
+    "isotipo_light_bg": "logos/meridiano-isotipo.svg",
+    "isotipo_dark_bg": "logos/meridiano-isotipo-inverso.svg",
+    "lockup_light_bg": "logos/meridiano-primario-horizontal-trazado.svg",
+    "lockup_dark_bg": "logos/meridiano-primario-horizontal-inverso-trazado.svg",
+    "lockup_aspect": 3.0714,
+    "rules": [
+      "Lockup completo solo en portada y cierre; isotipo pequeño en pies de diapositivas de contenido.",
+      "Por debajo de 32 px de alto usar solo isotipo.",
+      "Zona de protección = altura del triángulo del isotipo en los cuatro lados.",
+      "Prohibido deformar, rotar, recolorear, sombrear, contornear o poner sobre bajo contraste.",
+      "El isotipo histórico (triángulo simétrico, manual .docx v1.0) no se usa en piezas nuevas."
+    ]
+  },
+  "contact": {
+    "name": "Juan José Castillo",
+    "phone": "+595 982 853 111",
+    "email": "juancastillo@meridianocapital.net",
+    "web": "www.meridianocapital.net",
+    "forbidden": ["juanjosecastillo@", "Asesor Inmobiliario", "century21", "c21.com.py", "Campo Agreste"]
+  },
+  "signature_presets": {
+    "A_venta_deck": {
+      "decision": "D-039",
+      "title": "Operador Técnico y Legal de Inversiones Inmobiliarias · Asunción, Paraguay",
+      "brand_above": true,
+      "institutional_footer": null
+    },
+    "B_investment_memorandum": {
+      "decision": "D-039",
+      "title": "Operador Técnico y Legal de Inversiones Inmobiliarias",
+      "representation_line": "En representación de Meridiano Capital · Asunción, Paraguay",
+      "institutional_footer": null
+    },
+    "C_captacion_alquiler": {
+      "decision": "D-096",
+      "title": "Broker Inmobiliario · Meridiano Capital",
+      "institutional_footer": "Meridiano Capital  ·  Operadores técnicos y legales de inversiones inmobiliarias"
+    }
+  },
+  "client_origins": "Europa, Argentina, Brasil y Chile"
+}

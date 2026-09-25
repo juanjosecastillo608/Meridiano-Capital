@@ -1,0 +1,43 @@
+{
+  "skill_name": "meridiano-property-presentation-adapter",
+  "notes": "Los fixtures se generan con evals/make_fixtures.py (propiedades ficticias). Las pruebas deterministas de los scripts están en evals/run_functional_tests.py; las de activación en evals/trigger_eval_set.json (correr con skill-creator scripts.run_eval con --num-workers 1: en paralelo, las copias temporales de la skill compiten entre sí y falsean el resultado).",
+  "evals": [
+    {
+      "id": 1,
+      "name": "modo-A-residencial",
+      "prompt": "Adjunto la presentación de un departamento que tenemos en venta: <fixtures>/01_residencial/Depto_Las_Lomas.pptx — adaptala al sistema institucional de Meridiano Capital.",
+      "files": ["01_residencial/Depto_Las_Lomas.pptx"],
+      "expected_output": "PPTX + PDF + revision_*/ + VALIDACION_*.md; conserva USD 185.000, 92 m², 2 dormitorios, 2 baños, cochera, expensas USD 120; reemplaza el correo del vendedor por el de Meridiano; foto vertical sin deformar; rol de Meridiano registrado para confirmar.",
+      "assertions": [
+        "Se genera un .pptx con nombre Meridiano_Capital_*_Venta_Final.pptx",
+        "validate_image_aspect_ratios.py da OK sobre el .pptx final",
+        "El .pptx contiene 'USD 185.000' y '92 m²'",
+        "El .pptx no contiene 'vendedor@inmobiliaria-x.com'",
+        "El informe VALIDACION_*.md existe y no dice NO APROBADO",
+        "Las tipografías declaradas son solo Fraunces y Poppins"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "modo-B-pdf-preventa",
+      "prompt": "Convertí este PDF de un desarrollo inmobiliario en una presentación institucional para inversores extranjeros, junto con la planilla de precios y formas de pago: <fixtures>/03_pdf_desarrollo/Mburucuya.pdf y <fixtures>/04_planilla/Mburucuya_precios.xlsx. Meridiano actúa como intermediario.",
+      "files": ["03_pdf_desarrollo/Mburucuya.pdf", "04_planilla/Mburucuya_precios.xlsx"],
+      "expected_output": "Presentación con tipologías (1D 45 m² USD 72.000; 2D 68 m² USD 104.000), plan de pagos recalculado (anticipo 30%, 24 cuotas, USD 2.100 para 1D), entrega diciembre 2028, IVA incluido; sin rentabilidades inventadas; diapositiva de riesgos o advertencias.",
+      "assertions": [
+        "El .pptx contiene 'USD 72.000' y 'USD 104.000'",
+        "El .pptx contiene una tabla nativa",
+        "No aparece ningún porcentaje de rentabilidad que no esté en las fuentes",
+        "validate_image_aspect_ratios.py da OK",
+        "El informe VALIDACION_*.md existe"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "sin-archivos",
+      "prompt": "Quiero que adaptes la presentación de la casa de Lambaré a Meridiano.",
+      "files": [],
+      "expected_output": "Mensaje fijo pidiendo el archivo fuente; no se genera ningún archivo.",
+      "assertions": ["La respuesta contiene 'necesito que adjuntes el archivo fuente'", "No se crea ningún .pptx"]
+    }
+  ]
+}

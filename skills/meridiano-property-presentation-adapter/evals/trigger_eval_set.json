@@ -1,0 +1,74 @@
+[
+ {
+  "query": "Adjunto una presentación de una oficina: /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/02_corporativa/Torre_Norte.pptx. Adaptala a Meridiano Capital.",
+  "should_trigger": true
+ },
+ {
+  "query": "Con estos planos, fotos y planilla (/tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/05_plano_fotos/plano_local.png, /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/05_plano_fotos/fachada.jpg, /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/05_plano_fotos/interior.jpg y /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/05_plano_fotos/datos.csv), prepará la presentación comercial del local.",
+  "should_trigger": true
+ },
+ {
+  "query": "Convertí este PDF de un desarrollo inmobiliario en una presentación institucional: /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/03_pdf_desarrollo/Mburucuya.pdf",
+  "should_trigger": true
+ },
+ {
+  "query": "Aplicá Brand OS de Meridiano a este PowerPoint /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/01_residencial/Depto_Las_Lomas.pptx",
+  "should_trigger": true
+ },
+ {
+  "query": "Tomá estos archivos de una nave industrial y prepará el deck para empresas: /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/05_plano_fotos/ (plano y fotos) y la planilla /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/04_planilla/Mburucuya_precios.xlsx",
+  "should_trigger": true
+ },
+ {
+  "query": "che el propietario me mandó esta ficha y dos listas de precios de una casa en san ber (/tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/06_contradicciones/ficha.docx, lista_a.xlsx y lista_b.xlsx en la misma carpeta), armame la presentación de venta con nuestra marca",
+  "should_trigger": true
+ },
+ {
+  "query": "Tengo las fotos de la casa en /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/07_orientaciones/ — necesito un deck de venta con el formato de Meridiano Capital para mandarle a un inversor brasileño",
+  "should_trigger": true
+ },
+ {
+  "query": "Normalizá esta presentación /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/08_deformada/Deformada.pptx al estándar institucional de Meridiano, que el cliente dice que las fotos se ven estiradas",
+  "should_trigger": true
+ },
+ {
+  "query": "Dame ideas para una presentación inmobiliaria.",
+  "should_trigger": false
+ },
+ {
+  "query": "Redactá un copy para una casa de 3 dormitorios en Villa Morra con piscina, para publicar en Instagram.",
+  "should_trigger": false
+ },
+ {
+  "query": "¿Qué tipografía utiliza Meridiano Capital en sus presentaciones?",
+  "should_trigger": false
+ },
+ {
+  "query": "Quiero preparar una presentación de un edificio en Carmelitas, pero todavía no tengo los archivos; te los paso la semana que viene.",
+  "should_trigger": false
+ },
+ {
+  "query": "Mejorá esta fotografía para un portal inmobiliario: /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/07_orientaciones/baja_resolucion.jpg",
+  "should_trigger": false
+ },
+ {
+  "query": "Explicame cómo presentar una propiedad a un inversor europeo, qué secciones debería tener el deck.",
+  "should_trigger": false
+ },
+ {
+  "query": "Armame desde cero una presentación de un departamento de 2 dormitorios en Recoleta, inventá vos los datos que falten.",
+  "should_trigger": false
+ },
+ {
+  "query": "Calculame la rentabilidad neta de alquiler temporal para el departamento de esta planilla /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/04_planilla/Mburucuya_precios.xlsx",
+  "should_trigger": false
+ },
+ {
+  "query": "Extraé el texto de este PDF y pasámelo en limpio: /tmp/claude-0/-home-user-Meridiano-Capital/3c5d6bd7-879b-5bae-957f-10126b5f4a13/scratchpad/skilltest/fixtures/03_pdf_desarrollo/Mburucuya.pdf",
+  "should_trigger": false
+ },
+ {
+  "query": "Revisá si el logo de Meridiano está bien usado en el sitio web, ¿se respeta la zona de protección?",
+  "should_trigger": false
+ }
+]
