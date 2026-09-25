@@ -1,0 +1,7 @@
+interface:
+  display_name: "Meridiano · Adaptador de presentaciones inmobiliarias"
+  short_description: "Adapta presentaciones y documentación real de una propiedad al sistema institucional de Meridiano Capital (PPTX editable + PDF + informe de validación). Requiere archivos adjuntos."
+  default_prompt: "Adjunto los archivos de la propiedad. Adaptá la presentación al sistema institucional de Meridiano Capital."
+policy:
+  requires_attached_files: true
+  no_files_response: "Para adaptar la presentación a Meridiano Capital necesito que adjuntes el archivo fuente. Puedes enviar una presentación PowerPoint, PDF, documento, planilla, plano o conjunto de imágenes de la propiedad."

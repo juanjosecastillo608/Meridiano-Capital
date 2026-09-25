@@ -16,14 +16,14 @@ Todo documento de Meridiano cierra de la misma manera. La homogeneidad del cierr
 
 Se compone SIEMPRE de estas lineas, en este orden, sin variacion:
 
-- **Juan Jose Castillo** — en Lora, negrita
+- **Juan Jose Castillo** — en Fraunces (Regular; D-036 reemplazo Lora por Fraunces y D-040 prohibe la negrita de Fraunces en documentos generados)
 - Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay — en Poppins
 - +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net — en Poppins, contacto en una sola linea separado por " · "
 - Disclaimer legal segun el tipo de documento — en Poppins italica, cuerpo chico
 
 Reglas de la firma:
 
-- El titulo es SIEMPRE **"Operador Tecnico y Legal de Inversiones Inmobiliarias"**. Nunca "asesor inmobiliario", "agente", "desarrollador" u otra variante en la firma.
+- El titulo es **"Operador Tecnico y Legal de Inversiones Inmobiliarias"** en toda pieza, con UNA excepcion: la captacion de propiedades en alquiler (ver "Variante C" abajo, D-096). Nunca "asesor inmobiliario", "agente", "desarrollador" u otra variante en la firma.
 - El ADN de Marca (`01-adn-de-marca.md`) describe a JJC como "asesor y desarrollador inmobiliario" a nivel biografico/ADN. Eso es la descripcion de su trayectoria; la FIRMA formal de todo documento es la de este archivo. No confundir descripcion con firma.
 - El mail correcto es **juancastillo@meridianocapital.net** (NO juanjosecastillo).
 - El telefono correcto es **+595 982 853 111**.
@@ -51,13 +51,47 @@ En representacion de Meridiano Capital · Asuncion, Paraguay
 +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
 ```
 
+**Variante C — Captacion de propiedades en alquiler** (D-096, 2026-09-25; Meridiano comercializa un activo de terceros en alquiler, p. ej. naves del Centro Logistico Puerto Fenix): la firma usa el cargo **"Broker Inmobiliario"**, y la pieza cierra con un **pie institucional** que marca la diferencia frente al agente tradicional:
+
+```
+Juan Jose Castillo
+Broker Inmobiliario · Meridiano Capital
++595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
+[disclaimer]
+────────────────────────────────────────
+MERIDIANO CAPITAL · OPERADORES TECNICOS Y LEGALES DE INVERSIONES INMOBILIARIAS
+```
+
+El pie institucional va al final de la ultima diapositiva/pagina, separado por una linea fina, en Poppins Bold mayusculas con tracking. Referencia viva: `production/generadores/build_puerto_fenix_presentacion.js` (diapositiva 12).
+
 **Nunca usar en ninguna de las dos**: "Campo Agreste S.A." — esa sociedad esta protegida por la regla de invisibilidad (`D-029`, `business/06-estructura-societaria-y-portfolio.md`) y solo puede aparecer en documentacion institucional/legal en sentido estricto (contratos, facturas; el P04 de compliance ya la incluye correctamente en su pie porque es justamente ese tipo de documento, no una pieza de venta).
+
+**Alcance de la Variante C (confirmado por el founder, D-098, 2026-09-25):** aplica solo a la captacion de propiedades en **alquiler**. Cuando Meridiano intermedia una **venta o preventa**, la firma sigue siendo la Variante A ("Operador Tecnico y Legal de Inversiones Inmobiliarias").
+
+## Avisos legales de cierre aprobados (D-098, 2026-09-25)
+
+Se usan en el cierre de toda pieza comercial de propiedad, segun el tipo de operacion (Poppins italica, cuerpo chico):
+
+- **Venta:** "Documento comercial de referencia. Precio y condiciones sujetos a confirmacion y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa."
+- **Alquiler:** "Documento comercial de referencia. Valores y condiciones sujetos a confirmacion y disponibilidad; las condiciones definitivas se formalizan en el contrato de locacion."
+- **Preventa / inversion:** "Documento informativo: no constituye una oferta vinculante ni una garantia de rentabilidad. Cifras sujetas a confirmacion; se recomienda evaluar la operacion con asesoria propia."
+
+Una pieza puede agregar condiciones propias de la fuente (p. ej. "Oferta valida por 5 dias"), nunca quitar estas.
+
+## Version para colegas del sector — marca blanca (D-099, 2026-09-25)
+
+Toda presentacion comercial de propiedad se entrega en dos versiones:
+
+- **Para clientes de Meridiano:** con marca, firma, retrato y contacto, segun este documento.
+- **Para colegas del sector inmobiliario:** los mismos datos de la propiedad, fotos, diseño y aviso legal aprobado (D-098), pero **sin ningun dato de Meridiano**: sin logo, nombre, contacto, firma, retrato, pie institucional, notas del orador ni metadatos del archivo. El nombre del archivo tampoco menciona a Meridiano. El cierre queda con el titular, la bajada y el aviso legal, y un espacio libre para que el colega agregue su propio contacto antes de reenviarla a sus clientes.
+
+Las condiciones comerciales del activo que figuran en la fuente se conservan en las dos versiones. Si alguna es un honorario propio de Meridiano (y no una condicion del activo), se confirma con el founder si va en la version para colegas.
 
 ## El cierre (ultima pagina o diapositiva)
 
 - Fondo: **tierra colorada #8B3323** — color de cierre de marca (ver `05-sistema-cromatico.md`).
-- Arriba: isotipo inverso + "MERIDIANO CAPITAL" en Lora.
-- Centro: un titular en Lora Bold (crema) con el mensaje de llamada a la accion PROPIO de cada pieza. **Este titular SI varia** — es lo unico que cambia de un cierre a otro. Ejemplos ya producidos: "Comencemos su ingreso al mercado paraguayo" (Programa de Ingreso); "Coinverti en el desarrollo inmobiliario de Asuncion" (Coinversion).
+- Arriba: isotipo inverso + "MERIDIANO CAPITAL" en Fraunces (en la practica, el lockup primario horizontal inverso, que es exactamente esa combinacion).
+- Centro: un titular en Fraunces Regular de gran tamaño (crema; D-036/D-040 — el peso visual se logra con tamaño, no con negrita) con el mensaje de llamada a la accion PROPIO de cada pieza. **Este titular SI varia** — es lo unico que cambia de un cierre a otro. Ejemplos ya producidos: "Comencemos su ingreso al mercado paraguayo" (Programa de Ingreso); "Coinverti en el desarrollo inmobiliario de Asuncion" (Coinversion).
 - Abajo: el bloque de firma canonico (ver arriba).
 
 Regla clave: **el titular del cierre puede variar; el bloque de firma es siempre identico.** Esto da homogeneidad sin volver los cierres monotonos.
@@ -81,8 +115,8 @@ Distinto es el **dato macro de radicaciones en Paraguay** (estadistica de mercad
 
 - [ ] Cierre en fondo tierra colorada #8B3323
 - [ ] Isotipo inverso + "MERIDIANO CAPITAL" arriba del cierre
-- [ ] Titular de cierre propio de la pieza, en Lora Bold
-- [ ] Firma: "Juan Jose Castillo" + "Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay"
+- [ ] Titular de cierre propio de la pieza, en Fraunces Regular (D-036/D-040)
+- [ ] Firma: "Juan Jose Castillo" + "Operador Tecnico y Legal de Inversiones Inmobiliarias · Asuncion, Paraguay" (o, en captacion de propiedades en alquiler, "Broker Inmobiliario · Meridiano Capital" + pie institucional — Variante C, D-096)
 - [ ] Respaldo institucional correcto segun la pieza: Variante A (deck/WhatsApp) o Variante B (Investment Memorandum) — nunca Campo Agreste S.A. en ninguna de las dos
 - [ ] Contacto en una linea: +595 982 853 111 · juancastillo@meridianocapital.net · www.meridianocapital.net
 - [ ] Mail juancastillo@meridianocapital.net (no juanjosecastillo)

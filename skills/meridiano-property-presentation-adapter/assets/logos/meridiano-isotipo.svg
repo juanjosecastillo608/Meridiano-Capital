@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Meridiano Capital — isotipo "partido por el meridiano" (D-034, 2026-08-09). Fondo claro. -->
+  <!-- El mojon se abre exactamente donde lo cruza la linea del meridiano: la linea dorada no decora, -->
+  <!-- es la que separa las dos mitades y sigue de largo mas alla de la marca (de 0 a 120 en el viewBox). -->
+  <!-- Uso: fondo claro. Para fondo oscuro reemplazar stroke="#14313A" por "#F3EDE3" (la linea/punto dorados no cambian). -->
+  <path d="M52 6 L14 100 L56 100" fill="none" stroke="#14313A" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M68 6 L106 100 L64 100" fill="none" stroke="#14313A" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="4" y1="112" x2="49" y2="112" stroke="#14313A" stroke-width="6" stroke-linecap="round"/>
+  <line x1="71" y1="112" x2="116" y2="112" stroke="#14313A" stroke-width="6" stroke-linecap="round"/>
+  <line x1="60" y1="0" x2="60" y2="120" stroke="#C9982E" stroke-width="3"/>
+  <circle cx="60" cy="60" r="6" fill="#C9982E"/>
+</svg>
