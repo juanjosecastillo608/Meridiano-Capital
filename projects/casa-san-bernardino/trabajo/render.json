@@ -1,0 +1,27 @@
+{
+  "source": "/home/user/Meridiano-Capital/projects/casa-san-bernardino/entregables/Casa_San_Bernardino_Meridiano_Capital_FINAL.pptx",
+  "expected_pages": 10,
+  "pdf": "/home/user/Meridiano-Capital/projects/casa-san-bernardino/entregables/Casa_San_Bernardino_Meridiano_Capital_FINAL.pdf",
+  "pdf_pages": 10,
+  "pngs": [
+    "trabajo/revision_casa_san_bernardino/diapositiva-01.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-02.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-03.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-04.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-05.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-06.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-07.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-08.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-09.png",
+    "trabajo/revision_casa_san_bernardino/diapositiva-10.png"
+  ],
+  "overview": "trabajo/revision_casa_san_bernardino/00_vista_general.png",
+  "pdf_fonts": [
+    "Fraunces-Regular",
+    "Poppins-Bold",
+    "Poppins-Italic",
+    "Poppins-Regular"
+  ],
+  "pdf_fonts_not_embedded": [],
+  "result": "OK"
+}

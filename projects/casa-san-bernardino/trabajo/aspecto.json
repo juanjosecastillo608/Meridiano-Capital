@@ -1,0 +1,633 @@
+{
+  "file": "/home/user/Meridiano-Capital/projects/casa-san-bernardino/entregables/Casa_San_Bernardino_Meridiano_Capital_FINAL.pptx",
+  "tolerance_pct": 0.5,
+  "images_checked": 22,
+  "max_deviation_pct": 0.0012,
+  "deformed": [],
+  "unchecked": [],
+  "low_resolution": [],
+  "svg_fallback_problems": [],
+  "result": "OK",
+  "images": [
+    {
+      "slide": 1,
+      "shape": "Image 0",
+      "alt": "Galería techada con vista al jardín y la piscina",
+      "media": "ppt/media/image-1-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1672,
+        941
+      ],
+      "crop_pct": {
+        "l": 15.518,
+        "t": 0.0,
+        "r": 36.209,
+        "b": 0.0
+      },
+      "frame_in": [
+        6.433,
+        7.5
+      ],
+      "aspect_deviation_pct": 0.0003,
+      "axis": null,
+      "effective_ppi": 125.5,
+      "status": "ok"
+    },
+    {
+      "slide": 1,
+      "shape": "Image 1",
+      "alt": "Meridiano Capital",
+      "media": "ppt/media/image-1-3.svg",
+      "kind": "svg",
+      "source_size": [
+        430.0,
+        140.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        2.55,
+        0.83
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-1-2.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          521
+        ]
+      },
+      "aspect_deviation_pct": 0.001,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 2,
+      "shape": "Image 0",
+      "alt": "Deck junto a la piscina y jardín con palmeras",
+      "media": "ppt/media/image-2-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        864,
+        1534
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 17.516,
+        "r": 0.0,
+        "b": 11.677
+      },
+      "frame_in": [
+        3.5,
+        4.4
+      ],
+      "aspect_deviation_pct": 0.0007,
+      "axis": null,
+      "effective_ppi": 246.9,
+      "status": "ok"
+    },
+    {
+      "slide": 2,
+      "shape": "Image 1",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-2-3.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-2-2.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 3,
+      "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-3-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-3-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 4,
+      "shape": "Image 0",
+      "alt": "Cocina con muebles Achon",
+      "media": "ppt/media/image-4-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1500,
+        844
+      ],
+      "crop_pct": {
+        "l": 19.016,
+        "t": 0.0,
+        "r": 15.558,
+        "b": 0.0
+      },
+      "frame_in": [
+        5.0,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0005,
+      "axis": null,
+      "effective_ppi": 196.3,
+      "status": "ok"
+    },
+    {
+      "slide": 4,
+      "shape": "Image 1",
+      "alt": "Estar con salida al exterior",
+      "media": "ppt/media/image-4-2.jpg",
+      "kind": "raster",
+      "source_size": [
+        1634,
+        920
+      ],
+      "crop_pct": {
+        "l": 23.812,
+        "t": 0.0,
+        "r": 23.812,
+        "b": 0.0
+      },
+      "frame_in": [
+        4.0,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0012,
+      "axis": null,
+      "effective_ppi": 214.0,
+      "status": "ok"
+    },
+    {
+      "slide": 4,
+      "shape": "Image 2",
+      "alt": "Baño",
+      "media": "ppt/media/image-4-3.jpg",
+      "kind": "raster",
+      "source_size": [
+        1016,
+        1354
+      ],
+      "crop_pct": {
+        "l": 6.119,
+        "t": 0.0,
+        "r": 9.179,
+        "b": 0.0
+      },
+      "frame_in": [
+        2.733,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0006,
+      "axis": null,
+      "effective_ppi": 314.9,
+      "status": "ok"
+    },
+    {
+      "slide": 4,
+      "shape": "Image 3",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-4-5.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-4-4.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 5,
+      "shape": "Image 0",
+      "alt": "Dormitorio con dos camas",
+      "media": "ppt/media/image-5-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1081,
+        1351
+      ],
+      "crop_pct": {
+        "l": 13.788,
+        "t": 0.0,
+        "r": 9.192,
+        "b": 0.0
+      },
+      "frame_in": [
+        2.65,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0008,
+      "axis": null,
+      "effective_ppi": 314.2,
+      "status": "ok"
+    },
+    {
+      "slide": 5,
+      "shape": "Image 1",
+      "alt": "Dormitorio, vista hacia la puerta",
+      "media": "ppt/media/image-5-2.jpg",
+      "kind": "raster",
+      "source_size": [
+        1081,
+        1442
+      ],
+      "crop_pct": {
+        "l": 8.896,
+        "t": 0.0,
+        "r": 8.896,
+        "b": 0.0
+      },
+      "frame_in": [
+        2.65,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0007,
+      "axis": null,
+      "effective_ppi": 335.3,
+      "status": "ok"
+    },
+    {
+      "slide": 5,
+      "shape": "Image 2",
+      "alt": "Dormitorio con ladrillo visto",
+      "media": "ppt/media/image-5-3.jpg",
+      "kind": "raster",
+      "source_size": [
+        1316,
+        740
+      ],
+      "crop_pct": {
+        "l": 26.227,
+        "t": 0.0,
+        "r": 39.341,
+        "b": 0.0
+      },
+      "frame_in": [
+        2.633,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0009,
+      "axis": null,
+      "effective_ppi": 172.1,
+      "status": "ok"
+    },
+    {
+      "slide": 5,
+      "shape": "Image 3",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-5-5.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-5-4.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 6,
+      "shape": "Image 0",
+      "alt": "Piscina con deck",
+      "media": "ppt/media/image-6-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1448,
+        1086
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 7.222,
+        "r": 0.0,
+        "b": 5.909
+      },
+      "frame_in": [
+        6.6,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0004,
+      "axis": null,
+      "effective_ppi": 219.4,
+      "status": "ok"
+    },
+    {
+      "slide": 6,
+      "shape": "Image 1",
+      "alt": "Quincho con parrilla",
+      "media": "ppt/media/image-6-2.jpg",
+      "kind": "raster",
+      "source_size": [
+        413,
+        734
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 1.449,
+        "r": 0.0,
+        "b": 1.771
+      },
+      "frame_in": [
+        2.5,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0007,
+      "axis": null,
+      "effective_ppi": 165.2,
+      "status": "ok"
+    },
+    {
+      "slide": 6,
+      "shape": "Image 2",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-6-4.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-6-3.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 7,
+      "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-7-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-7-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 8,
+      "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-8-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-8-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 9,
+      "shape": "Image 0",
+      "alt": "Quincho con parrilla y galería",
+      "media": "ppt/media/image-9-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1847,
+        852
+      ],
+      "crop_pct": {
+        "l": 33.239,
+        "t": 0.0,
+        "r": 27.195,
+        "b": 0.0
+      },
+      "frame_in": [
+        6.433,
+        7.5
+      ],
+      "aspect_deviation_pct": 0.0007,
+      "axis": null,
+      "effective_ppi": 113.6,
+      "status": "ok"
+    },
+    {
+      "slide": 9,
+      "shape": "Image 1",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-9-3.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-9-2.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 10,
+      "shape": "Image 0",
+      "alt": "Lic. Juan José Castillo",
+      "media": "ppt/media/image-10-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1024,
+        1536
+      ],
+      "crop_pct": {
+        "l": 2.17,
+        "t": 0.0,
+        "r": 2.17,
+        "b": 0.0
+      },
+      "frame_in": [
+        4.783,
+        7.5
+      ],
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "effective_ppi": 204.8,
+      "status": "ok"
+    },
+    {
+      "slide": 10,
+      "shape": "Image 1",
+      "alt": "Meridiano Capital",
+      "media": "ppt/media/image-10-3.svg",
+      "kind": "svg",
+      "source_size": [
+        430.0,
+        140.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        2.4,
+        0.781
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-10-2.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          521
+        ]
+      },
+      "aspect_deviation_pct": 0.001,
+      "axis": null,
+      "status": "ok"
+    }
+  ]
+}
