@@ -1,0 +1,99 @@
+{
+  "property": {
+    "name": "Edificio Ciudad Nueva",
+    "asset_type": "edificio de renta (residencial + local)",
+    "operation": "venta",
+    "audience": "inversor",
+    "meridiano_role": "comercialización/asesoramiento (pedido del founder: 'edificio en venta', WEB ID propio)"
+  },
+  "errors": [],
+  "needs_confirmation": [
+    {
+      "field": "superficie",
+      "issue": "sin dato de 'superficie' para una operación de venta: no inventarlo; omitir la sección o pedirlo"
+    }
+  ],
+  "warnings": [
+    {
+      "field": "moneda",
+      "issue": "monedas mixtas ['PYG', 'USD']: no convertir ni sumar sin tipo de cambio documentado"
+    }
+  ],
+  "resolved_by_hierarchy": [],
+  "calculations": [
+    {
+      "id": "bruto_check",
+      "formula": "alquiler_mensual_gs / tc * 12",
+      "computed": 38459.016393,
+      "stated": "38.459",
+      "diff_pct": 0.0,
+      "status": "coincide"
+    },
+    {
+      "id": "neto_check",
+      "formula": "alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales",
+      "computed": 34495.016393,
+      "stated": "34.495",
+      "diff_pct": 0.0,
+      "status": "coincide"
+    },
+    {
+      "id": "rent_bruta_check",
+      "formula": "(alquiler_mensual_gs / tc * 12) / precio * 100",
+      "computed": 11.311475,
+      "stated": "11,31",
+      "diff_pct": 0.013,
+      "status": "coincide"
+    },
+    {
+      "id": "rent_neta_check",
+      "formula": "(alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales) / precio * 100",
+      "computed": 10.145593,
+      "stated": "10,15",
+      "diff_pct": 0.0434,
+      "status": "coincide"
+    }
+  ],
+  "parse_notes": [
+    {
+      "field": "precio",
+      "note": "'340.000' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "precio",
+      "note": "'340.000' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "tc",
+      "note": "'6.100' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "impuesto_anual",
+      "note": "'2.764' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "gastos_anuales",
+      "note": "'1.200' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "superficie",
+      "note": "no numérico: ''"
+    },
+    {
+      "field": "bruto_anual_usd",
+      "note": "'38.459' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "neto_anual_usd",
+      "note": "'34.495' interpretado como miles (formato es-PY)"
+    }
+  ],
+  "pending_fields": [
+    "superficie"
+  ],
+  "currencies": [
+    "PYG",
+    "USD"
+  ],
+  "result": "REQUIERE_CONFIRMACION"
+}

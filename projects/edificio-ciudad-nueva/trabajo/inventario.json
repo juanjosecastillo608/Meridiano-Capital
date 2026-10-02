@@ -1,0 +1,170 @@
+{
+  "inputs": [
+    {
+      "path": "/tmp/claude-0/-home-user-Meridiano-Capital/250d0379-dadb-51e0-af53-33d60309bc46/images/1.jpg",
+      "name": "1.jpg",
+      "ext": ".jpg",
+      "kind": "image",
+      "size_bytes": 500856,
+      "sha1": "7593a0cbcb2f",
+      "status": "ok",
+      "format": "JPEG",
+      "mode": "RGB",
+      "px": [
+        1536,
+        1024
+      ],
+      "stored_px": [
+        1536,
+        1024
+      ],
+      "orientation": "horizontal",
+      "aspect_ratio": 1.5,
+      "exif_orientation": 1,
+      "dpi": [
+        72,
+        72
+      ],
+      "exif_check": null,
+      "megapixels": 1.57,
+      "low_resolution": false,
+      "working_copy": "projects/edificio-ciudad-nueva/trabajo/fuentes/1.jpg",
+      "prepared_image": "projects/edificio-ciudad-nueva/trabajo/imagenes/1.jpg",
+      "preparation": "copia sin cambios"
+    },
+    {
+      "path": "/tmp/claude-0/-home-user-Meridiano-Capital/250d0379-dadb-51e0-af53-33d60309bc46/images/2.jpg",
+      "name": "2.jpg",
+      "ext": ".jpg",
+      "kind": "image",
+      "size_bytes": 40014,
+      "sha1": "85b31323f199",
+      "status": "ok",
+      "format": "JPEG",
+      "mode": "RGB",
+      "px": [
+        660,
+        201
+      ],
+      "stored_px": [
+        660,
+        201
+      ],
+      "orientation": "horizontal",
+      "aspect_ratio": 3.2836,
+      "exif_orientation": 1,
+      "dpi": null,
+      "exif_check": null,
+      "megapixels": 0.13,
+      "low_resolution": true,
+      "working_copy": "projects/edificio-ciudad-nueva/trabajo/fuentes/2.jpg",
+      "prepared_image": "projects/edificio-ciudad-nueva/trabajo/imagenes/2.jpg",
+      "preparation": "copia sin cambios"
+    },
+    {
+      "path": "/tmp/claude-0/-home-user-Meridiano-Capital/250d0379-dadb-51e0-af53-33d60309bc46/images/3.jpg",
+      "name": "3.jpg",
+      "ext": ".jpg",
+      "kind": "image",
+      "size_bytes": 474222,
+      "sha1": "9beb194778cd",
+      "status": "ok",
+      "format": "JPEG",
+      "mode": "RGB",
+      "px": [
+        1500,
+        1000
+      ],
+      "stored_px": [
+        1500,
+        1000
+      ],
+      "orientation": "horizontal",
+      "aspect_ratio": 1.5,
+      "exif_orientation": 1,
+      "dpi": [
+        72,
+        72
+      ],
+      "exif_check": null,
+      "megapixels": 1.5,
+      "low_resolution": false,
+      "working_copy": "projects/edificio-ciudad-nueva/trabajo/fuentes/3.jpg",
+      "prepared_image": "projects/edificio-ciudad-nueva/trabajo/imagenes/3.jpg",
+      "preparation": "copia sin cambios"
+    },
+    {
+      "path": "/tmp/claude-0/-home-user-Meridiano-Capital/250d0379-dadb-51e0-af53-33d60309bc46/images/4.jpg",
+      "name": "4.jpg",
+      "ext": ".jpg",
+      "kind": "image",
+      "size_bytes": 56775,
+      "sha1": "be1e79ef0dfc",
+      "status": "ok",
+      "format": "JPEG",
+      "mode": "RGB",
+      "px": [
+        282,
+        461
+      ],
+      "stored_px": [
+        282,
+        461
+      ],
+      "orientation": "vertical",
+      "aspect_ratio": 0.6117,
+      "exif_orientation": 1,
+      "dpi": null,
+      "exif_check": null,
+      "megapixels": 0.13,
+      "low_resolution": true,
+      "working_copy": "projects/edificio-ciudad-nueva/trabajo/fuentes/4.jpg",
+      "prepared_image": "projects/edificio-ciudad-nueva/trabajo/imagenes/4.jpg",
+      "preparation": "copia sin cambios"
+    },
+    {
+      "path": "/tmp/claude-0/-home-user-Meridiano-Capital/250d0379-dadb-51e0-af53-33d60309bc46/images/5.jpg",
+      "name": "5.jpg",
+      "ext": ".jpg",
+      "kind": "image",
+      "size_bytes": 465237,
+      "sha1": "19e091db8d3c",
+      "status": "ok",
+      "format": "JPEG",
+      "mode": "RGB",
+      "px": [
+        1125,
+        750
+      ],
+      "stored_px": [
+        1125,
+        750
+      ],
+      "orientation": "horizontal",
+      "aspect_ratio": 1.5,
+      "exif_orientation": 1,
+      "dpi": [
+        72,
+        72
+      ],
+      "exif_check": null,
+      "megapixels": 0.84,
+      "low_resolution": false,
+      "working_copy": "projects/edificio-ciudad-nueva/trabajo/fuentes/5.jpg",
+      "prepared_image": "projects/edificio-ciudad-nueva/trabajo/imagenes/5.jpg",
+      "preparation": "copia sin cambios"
+    }
+  ],
+  "missing_paths": [],
+  "ignored": [],
+  "summary": {
+    "valid_files": 5,
+    "by_kind": {
+      "image": 5
+    },
+    "problem_files": [],
+    "duplicates": [],
+    "suggested_mode": "C",
+    "can_proceed": true
+  }
+}

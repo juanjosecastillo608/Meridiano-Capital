@@ -1,0 +1,29 @@
+{
+  "source": "projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pptx",
+  "expected_pages": 12,
+  "pdf": "projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pdf",
+  "pdf_pages": 12,
+  "pngs": [
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-01.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-02.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-03.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-04.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-05.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-06.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-07.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-08.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-09.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-10.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-11.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-12.png"
+  ],
+  "overview": "projects/edificio-ciudad-nueva/trabajo/revision/00_vista_general.png",
+  "pdf_fonts": [
+    "Fraunces-Regular",
+    "Poppins-Bold",
+    "Poppins-Italic",
+    "Poppins-Regular"
+  ],
+  "pdf_fonts_not_embedded": [],
+  "result": "OK"
+}

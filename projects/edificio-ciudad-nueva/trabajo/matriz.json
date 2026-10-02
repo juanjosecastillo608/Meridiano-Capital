@@ -1,0 +1,214 @@
+{
+ "property": {
+  "name": "Edificio Ciudad Nueva",
+  "asset_type": "edificio de renta (residencial + local)",
+  "operation": "venta",
+  "audience": "inversor",
+  "meridiano_role": "comercialización/asesoramiento (pedido del founder: 'edificio en venta', WEB ID propio)"
+ },
+ "fields": [
+  {
+   "key": "precio",
+   "value": "USD 340.000",
+   "category": "precio",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "confirmado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "sin IVA informado"
+  },
+  {
+   "key": "precio",
+   "value": "340.000",
+   "category": "precio",
+   "source": "2.jpg Planilla de rentabilidad (celda Precio USD)",
+   "source_rank": 5,
+   "status": "confirmado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "sin IVA informado"
+  },
+  {
+   "key": "direccion",
+   "value": "9 de Marzo c/ Mayor Bullo, Ciudad Nueva, Asunción",
+   "category": "ubicacion",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "confirmado",
+   "numeric": false
+  },
+  {
+   "key": "entorno",
+   "value": "Próximo al Mercado 4; aprox. una cuadra de Av. Eusebio Ayala",
+   "category": "ubicacion",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "inferido",
+   "numeric": false
+  },
+  {
+   "key": "dptos_1d",
+   "value": "6",
+   "category": "tecnica",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "confirmado",
+   "unit": "unidades"
+  },
+  {
+   "key": "dptos_2d",
+   "value": "6",
+   "category": "tecnica",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "confirmado",
+   "unit": "unidades"
+  },
+  {
+   "key": "dptos_3d",
+   "value": "1",
+   "category": "tecnica",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "confirmado",
+   "unit": "unidades"
+  },
+  {
+   "key": "locales",
+   "value": "1",
+   "category": "tecnica",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "confirmado",
+   "unit": "unidades"
+  },
+  {
+   "key": "ocupacion",
+   "value": "100% informado, no verificado",
+   "category": "condiciones",
+   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
+   "source_rank": 1,
+   "status": "inferido",
+   "numeric": false
+  },
+  {
+   "key": "alquiler_mensual_gs",
+   "value": "19.550.000",
+   "category": "ingresos_egresos",
+   "source": "4.jpg Detalle de alquileres (fila TOTAL)",
+   "source_rank": 5,
+   "status": "confirmado",
+   "currency": "PYG",
+   "unit": "PYG",
+   "tax": "sin IVA informado"
+  },
+  {
+   "key": "tc",
+   "value": "6.100",
+   "category": "moneda",
+   "source": "2.jpg Planilla de rentabilidad",
+   "source_rank": 5,
+   "status": "confirmado",
+   "unit": "PYG/USD",
+   "currency": "PYG",
+   "tax": "no aplica (tipo de cambio)"
+  },
+  {
+   "key": "impuesto_anual",
+   "value": "2.764",
+   "category": "ingresos_egresos",
+   "source": "2.jpg Planilla de rentabilidad",
+   "source_rank": 5,
+   "status": "confirmado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "sin IVA informado"
+  },
+  {
+   "key": "gastos_anuales",
+   "value": "1.200",
+   "category": "ingresos_egresos",
+   "source": "2.jpg Planilla de rentabilidad",
+   "source_rank": 5,
+   "status": "confirmado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "sin IVA informado"
+  },
+  {
+   "key": "superficie",
+   "value": "",
+   "category": "superficie",
+   "source": "no informada",
+   "source_rank": 9,
+   "status": "pendiente"
+  },
+  {
+   "key": "bruto_anual_usd",
+   "value": "38.459",
+   "category": "ingresos_egresos",
+   "source": "calculado: alquiler_mensual_gs / tc * 12",
+   "source_rank": 5,
+   "status": "calculado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "sin IVA informado"
+  },
+  {
+   "key": "neto_anual_usd",
+   "value": "34.495",
+   "category": "ingresos_egresos",
+   "source": "calculado: bruto − impuesto − gastos",
+   "source_rank": 5,
+   "status": "calculado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "sin IVA informado"
+  },
+  {
+   "key": "rent_bruta",
+   "value": "11,31",
+   "category": "rentabilidad",
+   "source": "calculado: bruto_anual_usd / precio",
+   "source_rank": 5,
+   "status": "calculado",
+   "unit": "%"
+  },
+  {
+   "key": "rent_neta_gastos_informados",
+   "value": "10,15",
+   "category": "rentabilidad",
+   "source": "calculado: neto_anual_usd / precio",
+   "source_rank": 5,
+   "status": "calculado",
+   "unit": "%"
+  }
+ ],
+ "calculations": [
+  {
+   "id": "bruto_check",
+   "formula": "alquiler_mensual_gs / tc * 12",
+   "stated": "38.459",
+   "tolerance_pct": 0.1
+  },
+  {
+   "id": "neto_check",
+   "formula": "alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales",
+   "stated": "34.495",
+   "tolerance_pct": 0.1
+  },
+  {
+   "id": "rent_bruta_check",
+   "formula": "(alquiler_mensual_gs / tc * 12) / precio * 100",
+   "stated": "11,31",
+   "tolerance_pct": 0.1
+  },
+  {
+   "id": "rent_neta_check",
+   "formula": "(alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales) / precio * 100",
+   "stated": "10,15",
+   "tolerance_pct": 0.1
+  }
+ ]
+}
