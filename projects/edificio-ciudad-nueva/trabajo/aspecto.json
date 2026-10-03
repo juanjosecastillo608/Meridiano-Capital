@@ -1,7 +1,7 @@
 {
   "file": "projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pptx",
   "tolerance_pct": 0.5,
-  "images_checked": 16,
+  "images_checked": 20,
   "max_deviation_pct": 0.001,
   "deformed": [],
   "unchecked": [],
@@ -12,7 +12,7 @@
     {
       "slide": 1,
       "shape": "Image 0",
-      "alt": "Vista aérea del edificio con su contorno marcado en rojo (marca de la fuente)",
+      "alt": "Vista aérea del edificio con su contorno marcado en rojo",
       "media": "ppt/media/image-1-1.jpg",
       "kind": "raster",
       "source_size": [
@@ -101,12 +101,12 @@
     {
       "slide": 3,
       "shape": "Image 0",
-      "alt": "Código QR a Google Maps: 9 de Marzo y Mayor Bullo, Asunción",
+      "alt": "Mapa de ubicación del edificio (OpenStreetMap)",
       "media": "ppt/media/image-3-1.png",
       "kind": "raster",
       "source_size": [
-        900,
-        900
+        1600,
+        1400
       ],
       "crop_pct": {
         "l": 0.0,
@@ -115,12 +115,12 @@
         "b": 0.0
       },
       "frame_in": [
-        2.1,
-        2.1
+        5.657,
+        4.95
       ],
       "aspect_deviation_pct": 0.0,
       "axis": null,
-      "effective_ppi": 428.6,
+      "effective_ppi": 282.8,
       "status": "ok"
     },
     {
@@ -190,8 +190,40 @@
     {
       "slide": 5,
       "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-5-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-5-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 6,
+      "shape": "Image 0",
       "alt": "Escalera y circulación común",
-      "media": "ppt/media/image-5-1.jpg",
+      "media": "ppt/media/image-6-1.jpg",
       "kind": "raster",
       "source_size": [
         1500,
@@ -213,10 +245,10 @@
       "status": "ok"
     },
     {
-      "slide": 5,
+      "slide": 6,
       "shape": "Image 1",
       "alt": "Terraza superior",
-      "media": "ppt/media/image-5-2.jpg",
+      "media": "ppt/media/image-6-2.jpg",
       "kind": "raster",
       "source_size": [
         1536,
@@ -238,10 +270,10 @@
       "status": "ok"
     },
     {
-      "slide": 5,
+      "slide": 6,
       "shape": "Image 2",
       "alt": "Isotipo Meridiano Capital",
-      "media": "ppt/media/image-5-4.svg",
+      "media": "ppt/media/image-6-4.svg",
       "kind": "svg",
       "source_size": [
         120.0,
@@ -258,39 +290,7 @@
         0.3
       ],
       "svg_fallback": {
-        "media": "ppt/media/image-5-3.png",
-        "kind": "raster",
-        "size": [
-          1600,
-          1600
-        ]
-      },
-      "aspect_deviation_pct": 0.0,
-      "axis": null,
-      "status": "ok"
-    },
-    {
-      "slide": 6,
-      "shape": "Image 0",
-      "alt": "Isotipo Meridiano Capital",
-      "media": "ppt/media/image-6-2.svg",
-      "kind": "svg",
-      "source_size": [
-        120.0,
-        120.0
-      ],
-      "crop_pct": {
-        "l": 0.0,
-        "t": 0.0,
-        "r": 0.0,
-        "b": 0.0
-      },
-      "frame_in": [
-        0.3,
-        0.3
-      ],
-      "svg_fallback": {
-        "media": "ppt/media/image-6-1.png",
+        "media": "ppt/media/image-6-3.png",
         "kind": "raster",
         "size": [
           1600,
@@ -464,8 +464,129 @@
     {
       "slide": 12,
       "shape": "Image 0",
-      "alt": "Meridiano Capital",
+      "alt": "Isotipo Meridiano Capital",
       "media": "ppt/media/image-12-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-12-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 13,
+      "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-13-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-13-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 14,
+      "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-14-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-14-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 15,
+      "shape": "Image 0",
+      "alt": "Juan José Castillo",
+      "media": "ppt/media/image-15-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1024,
+        1536
+      ],
+      "crop_pct": {
+        "l": 2.17,
+        "t": 0.0,
+        "r": 2.17,
+        "b": 0.0
+      },
+      "frame_in": [
+        4.783,
+        7.5
+      ],
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "effective_ppi": 204.8,
+      "status": "ok"
+    },
+    {
+      "slide": 15,
+      "shape": "Image 1",
+      "alt": "Meridiano Capital",
+      "media": "ppt/media/image-15-3.svg",
       "kind": "svg",
       "source_size": [
         430.0,
@@ -482,7 +603,7 @@
         0.781
       ],
       "svg_fallback": {
-        "media": "ppt/media/image-12-1.png",
+        "media": "ppt/media/image-15-2.png",
         "kind": "raster",
         "size": [
           1600,

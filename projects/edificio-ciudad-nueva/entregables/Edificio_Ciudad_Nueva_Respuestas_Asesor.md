@@ -1,39 +1,51 @@
-# Edificio Ciudad Nueva: respuestas rápidas para consultas de inversores
+# Edificio Ciudad Nueva — Respuestas rápidas para consultas de inversores
 
-Uso del asesor (WhatsApp, correo o llamada). Las cifras coinciden con la presentación y con el Excel. Mientras no se concilie la composición de las unidades, todas las respuestas hablan de información **informada**, nunca verificada.
+Uso del asesor (WhatsApp, correo o llamada). Las cifras coinciden con la presentación y el Excel finales. Tipo de cambio: **Gs 5.873 por USD** (BCP, cierre interbancario del 02/10/2026). Si cambia la cotización, actualizar las cifras en dólares antes de responder (D-100).
 
 ---
 
 **1. ¿Cuánto renta el edificio?**
-Según el detalle de alquileres que nos entregó el propietario, el ingreso mensual informado es de **Gs 19.550.000**. Al tipo de cambio que usa su planilla (Gs 6.100 por dólar), equivale a unos **USD 3.205 por mes** y **USD 38.459 por año**. Es ingreso informado: para darlo por verificado hay que revisar los contratos y los cobros.
+Los alquileres vigentes suman **Gs 19.550.000 por mes**. Al tipo de cambio del 02/10/2026 son unos **USD 3.329 por mes** y **USD 39.946 por año**. Son datos informados con verificación documental.
 
 **2. ¿Qué rentabilidad tiene?**
-Sobre el precio de USD 340.000, la rentabilidad **bruta es 11,31 %**. Si se descuentan solo el impuesto (USD 2.764) y los gastos (USD 1.200) que figuran en la planilla, la rentabilidad **neta según gastos informados es 10,15 %**. No es una rentabilidad neta definitiva: no incluye vacancia, mantenimiento, administración ni gastos de compra, y no está garantizada.
+Sobre el precio de USD 340.000:
+- La rentabilidad **bruta es 11,75 %**.
+- Si se descuentan IVA, vacancia, administración, mantenimiento, gastos fijos e impuesto a la renta estimado, la **neta final es 7,98 %**, unos **USD 2.262 netos por mes**.
 
-**3. El aviso dice "USD 34.500 de ingresos" y "10,15 % bruto". ¿Cuál es el dato correcto?**
-Los USD 34.500 son el resultado **neto** según gastos informados (exactamente USD 34.495), y el 10,15 % es su rentabilidad. El ingreso **bruto** anual es USD 38.459, y la rentabilidad bruta, 11,31 %.
+Son cifras de referencia, no garantizadas.
 
-**4. ¿Está todo alquilado?**
-Según la información recibida, sí: los 13 departamentos y el local comercial. Esa es la ocupación **informada**. La ocupación **verificada documentalmente** sale de los contratos vigentes y de los comprobantes de cobro, que vamos a solicitar.
+**3. ¿Qué gastos e impuestos considera?**
+- IVA del 5 % en los departamentos y del 10 % en el local y las cocheras.
+- Vacancia del 3 %, administración del 8 % y mantenimiento del 5 % del ingreso bruto.
+- Gastos fijos del edificio por USD 1.200 al año.
+- Impuesto a la renta estimado del 10 %, si la compra se hace por sociedad. La base real la define el contador.
 
-**5. ¿Cómo se compone el edificio?**
-Según la descripción comercial: 6 departamentos de 1 dormitorio, 6 de 2 dormitorios, 1 de 3 dormitorios y 1 local comercial, más una terraza amplia en el cuarto nivel. El detalle de alquileres trae además una cochera y una fila "cochera y departamento", y no identifica por separado el local. Lo estamos aclarando con el propietario antes de dar la composición por cerrada.
+**4. ¿Por qué una vacancia tan baja?**
+El edificio está a una cuadra de la Av. Eusebio Ayala y a menos de 500 metros del Mercado 4, el principal polo comercial minorista del país. Hay mucho tránsito y demanda constante de gente que trabaja en la zona, por eso las unidades se vuelven a alquilar rápido. Igual la estimamos en 3 %, no en cero.
 
-**6. ¿Qué gastos tiene?**
-La planilla del propietario informa USD 2.764 de impuesto anual y USD 1.200 de gastos anuales. Todavía no sabemos qué conceptos cubren. No informa mantenimiento, administración, seguros, vacancia, morosidad ni reservas: esos costos existen en cualquier edificio de renta y no hay que suponerlos en cero.
+**5. ¿Qué es el Mercado 4 y por qué importa?**
+Es el mercado municipal más importante de Asunción: funciona desde 1942 y concentra miles de comercios de alimentos, ropa, tecnología y servicios. Comerciantes, empleados y proveedores prefieren vivir cerca, y eso sostiene la demanda de departamentos chicos y del local comercial.
 
-**7. ¿Dónde queda exactamente?**
-Sobre 9 de Marzo, esquina Mayor Bullo, en el barrio Ciudad Nueva de Asunción, próximo al Mercado 4 y, según la descripción, a una cuadra aproximadamente de la Av. Eusebio Ayala. Le paso el enlace de Google Maps de la intersección y coordinamos una visita para verlo en el lugar.
+**6. ¿A qué distancia está de las avenidas principales?**
+Medido por la red de calles desde la esquina de referencia:
+- Av. Eusebio Ayala: 90 m (una cuadra).
+- Av. Rodríguez de Francia: 320 m.
+- Mercado 4: 480 m.
 
-**8. ¿El tipo de cambio de Gs 6.100 está actualizado?**
-No necesariamente. Es el que usa la planilla del propietario, y no informa la fecha. Como los alquileres se cobran en guaraníes y el precio está en dólares, la rentabilidad en dólares cambia con la cotización. Si lo necesita, preparamos un escenario con una cotización actual, con su fuente y su fecha.
+Le paso el enlace de Google Maps.
 
-**9. ¿Qué documentación conviene revisar antes de ofertar?**
-Contratos de locación vigentes, extractos o recibos de cobro de los últimos 12 meses, el detalle de impuestos y gastos, el título y el informe de condiciones de dominio, los planos aprobados y las superficies, el impuesto inmobiliario al día y una inspección técnica del edificio. La revisión legal, notarial e impositiva la hacen el abogado, el escribano y el contador. Nosotros coordinamos el proceso y lo acompañamos en cada paso.
+**7. ¿Pueden subir los alquileres?**
+Hay margen. Hoy los departamentos de 1 dormitorio promedian Gs 1,16 millones y los de 2 dormitorios Gs 1,52 millones. En Ciudad Nueva los avisos publicados van de Gs 2,5 a 3,0 millones (1 dormitorio) y de Gs 2,1 a 4,2 millones (2 dormitorios). Cada renovación permite ajustar, según el estado de cada unidad. Proyectamos tres escenarios: +3 %, +5 % y +8 % anual.
 
-**10. ¿Puedo comprarlo siendo extranjero? ¿Conviene hacerlo a través de una sociedad?**
-Sí, acompañamos a inversores de Europa, Argentina, Brasil y Chile en todo el proceso: cédula de identidad paraguaya, apertura de la cuenta bancaria y, si va a tener varias propiedades, el análisis de una estructura societaria. La conveniencia de comprar a nombre propio o de una S.A. la evalúan el abogado, el escribano y el contador según su caso; nosotros coordinamos con ellos.
+**8. ¿Y la plusvalía?**
+Trabajamos escenarios de valorización del 2 %, 3,5 % y 5 % anual en dólares. En el escenario base, el valor estimado a 5 años es de USD 403.813, y sumando la renta, la TIR estimada es del **11,5 %**. El rango va de 9,9 % a 13,2 %. Son escenarios hipotéticos, no garantizados.
+
+**9. ¿Puedo comprarlo desde el exterior? ¿Conviene una sociedad?**
+Sí. Lo acompañamos con la cédula de identidad paraguaya, la cuenta bancaria y, si va a sumar más propiedades, con el análisis de una sociedad anónima. La decisión entre persona física y S.A. la toman con el abogado, el escribano y el contador; nosotros coordinamos todo el proceso.
+
+**10. ¿Cuál es el próximo paso?**
+Coordinamos una visita al edificio con inspección técnica. Después avanzamos con la oferta, la revisión notarial del título y la estructura fiscal, el boleto y la escritura. Si lo desea, también nos ocupamos de la administración posterior.
 
 ---
 
-*No prometer continuidad de la renta, cobro garantizado ni plusvalía. No dar superficie, antigüedad ni situación registral: no fueron informadas.*
+*No prometer continuidad de la renta ni plusvalía. No dar superficie, antigüedad ni situación registral: no fueron informadas.*

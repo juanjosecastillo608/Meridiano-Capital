@@ -24,33 +24,33 @@
     {
       "id": "bruto_check",
       "formula": "alquiler_mensual_gs / tc * 12",
-      "computed": 38459.016393,
-      "stated": "38.459",
-      "diff_pct": 0.0,
+      "computed": 39945.513366,
+      "stated": "39.946",
+      "diff_pct": 0.0012,
       "status": "coincide"
     },
     {
       "id": "neto_check",
-      "formula": "alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales",
-      "computed": 34495.016393,
-      "stated": "34.495",
-      "diff_pct": 0.0,
+      "formula": "(alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9",
+      "computed": 27146.562234,
+      "stated": "27.147",
+      "diff_pct": 0.0016,
       "status": "coincide"
     },
     {
       "id": "rent_bruta_check",
       "formula": "(alquiler_mensual_gs / tc * 12) / precio * 100",
-      "computed": 11.311475,
-      "stated": "11,31",
-      "diff_pct": 0.013,
+      "computed": 11.74868,
+      "stated": "11,75",
+      "diff_pct": 0.0112,
       "status": "coincide"
     },
     {
       "id": "rent_neta_check",
-      "formula": "(alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales) / precio * 100",
-      "computed": 10.145593,
-      "stated": "10,15",
-      "diff_pct": 0.0434,
+      "formula": "((alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9) / precio * 100",
+      "computed": 7.984283,
+      "stated": "7,98",
+      "diff_pct": 0.0537,
       "status": "coincide"
     }
   ],
@@ -64,28 +64,24 @@
       "note": "'340.000' interpretado como miles (formato es-PY)"
     },
     {
-      "field": "tc",
-      "note": "'6.100' interpretado como miles (formato es-PY)"
-    },
-    {
-      "field": "impuesto_anual",
-      "note": "'2.764' interpretado como miles (formato es-PY)"
-    },
-    {
       "field": "gastos_anuales",
       "note": "'1.200' interpretado como miles (formato es-PY)"
     },
     {
-      "field": "superficie",
-      "note": "no numérico: ''"
+      "field": "tc",
+      "note": "'5.873' interpretado como miles (formato es-PY)"
     },
     {
       "field": "bruto_anual_usd",
-      "note": "'38.459' interpretado como miles (formato es-PY)"
+      "note": "'39.946' interpretado como miles (formato es-PY)"
     },
     {
       "field": "neto_anual_usd",
-      "note": "'34.495' interpretado como miles (formato es-PY)"
+      "note": "'27.147' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "superficie",
+      "note": "no numérico: ''"
     }
   ],
   "pending_fields": [

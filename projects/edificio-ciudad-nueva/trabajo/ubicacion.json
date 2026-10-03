@@ -1,0 +1,57 @@
+{
+ "fuente": "Overture Maps Foundation release 2026-09-23.1 (derivado de OpenStreetMap, ODbL)",
+ "punto_referencia": {
+  "descripcion": "intersección de ejes 9 de Marzo y Mayor Sebastián Bullo",
+  "lat": -25.299977,
+  "lon": -57.61909
+ },
+ "avenidas": [
+  {
+   "via": "Avenida Doctor Eusebio Ayala",
+   "recta_m": 86,
+   "por_calle_m": 86
+  },
+  {
+   "via": "Yuty",
+   "recta_m": 135,
+   "por_calle_m": 190
+  },
+  {
+   "via": "Panuncio Espínola",
+   "recta_m": 150,
+   "por_calle_m": 207
+  },
+  {
+   "via": "Próceres de Mayo",
+   "recta_m": 216,
+   "por_calle_m": 323
+  },
+  {
+   "via": "Mayor Graciano Barboza",
+   "recta_m": 226,
+   "por_calle_m": 247
+  },
+  {
+   "via": "Avenida Doctor José Gaspar Rodriguez de Francia y Velasco",
+   "recta_m": 230,
+   "por_calle_m": 320
+  },
+  {
+   "via": "Avenida Próceres de Mayo",
+   "recta_m": 230,
+   "por_calle_m": 320
+  },
+  {
+   "via": "Silvio Pettirossi",
+   "recta_m": 287,
+   "por_calle_m": 365
+  }
+ ],
+ "mercado4": {
+  "referencia": "Mercado 4 de Asuncion",
+  "lat": -25.298958,
+  "lon": -57.62317,
+  "recta_m": 426,
+  "por_calle_m": 477
+ }
+}

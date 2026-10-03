@@ -39,15 +39,6 @@
    "numeric": false
   },
   {
-   "key": "entorno",
-   "value": "Próximo al Mercado 4; aprox. una cuadra de Av. Eusebio Ayala",
-   "category": "ubicacion",
-   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
-   "source_rank": 1,
-   "status": "inferido",
-   "numeric": false
-  },
-  {
    "key": "dptos_1d",
    "value": "6",
    "category": "tecnica",
@@ -84,15 +75,6 @@
    "unit": "unidades"
   },
   {
-   "key": "ocupacion",
-   "value": "100% informado, no verificado",
-   "category": "condiciones",
-   "source": "Pedido del founder 2026-10-02 (descripción comercial)",
-   "source_rank": 1,
-   "status": "inferido",
-   "numeric": false
-  },
-  {
    "key": "alquiler_mensual_gs",
    "value": "19.550.000",
    "category": "ingresos_egresos",
@@ -101,28 +83,6 @@
    "status": "confirmado",
    "currency": "PYG",
    "unit": "PYG",
-   "tax": "sin IVA informado"
-  },
-  {
-   "key": "tc",
-   "value": "6.100",
-   "category": "moneda",
-   "source": "2.jpg Planilla de rentabilidad",
-   "source_rank": 5,
-   "status": "confirmado",
-   "unit": "PYG/USD",
-   "currency": "PYG",
-   "tax": "no aplica (tipo de cambio)"
-  },
-  {
-   "key": "impuesto_anual",
-   "value": "2.764",
-   "category": "ingresos_egresos",
-   "source": "2.jpg Planilla de rentabilidad",
-   "source_rank": 5,
-   "status": "confirmado",
-   "currency": "USD",
-   "unit": "USD",
    "tax": "sin IVA informado"
   },
   {
@@ -137,77 +97,117 @@
    "tax": "sin IVA informado"
   },
   {
+   "key": "tc",
+   "value": "5.873",
+   "category": "moneda",
+   "source": "BCP cierre interbancario 02/10/2026 (ABC Color); regla del founder D-100",
+   "source_rank": 1,
+   "status": "confirmado",
+   "unit": "PYG/USD",
+   "currency": "PYG",
+   "tax": "no aplica (tipo de cambio)"
+  },
+  {
+   "key": "iva_mensual_gs",
+   "value": "1.072.500",
+   "category": "ingresos_egresos",
+   "source": "calculado: 5% dptos + 10% cocheras (D-101)",
+   "source_rank": 5,
+   "status": "calculado",
+   "currency": "PYG",
+   "unit": "PYG",
+   "tax": "IVA"
+  },
+  {
+   "key": "bruto_anual_usd",
+   "value": "39.946",
+   "category": "ingresos_egresos",
+   "source": "calculado",
+   "source_rank": 5,
+   "status": "calculado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "IVA incluido en el alquiler"
+  },
+  {
+   "key": "neto_anual_usd",
+   "value": "27.147",
+   "category": "ingresos_egresos",
+   "source": "calculado (Excel › Ingresos_Gastos)",
+   "source_rank": 5,
+   "status": "calculado",
+   "currency": "USD",
+   "unit": "USD",
+   "tax": "después de IVA e IRE estimado"
+  },
+  {
+   "key": "rent_bruta",
+   "value": "11,75",
+   "category": "rentabilidad",
+   "source": "calculado",
+   "source_rank": 5,
+   "status": "calculado",
+   "unit": "%"
+  },
+  {
+   "key": "rent_neta_final",
+   "value": "7,98",
+   "category": "rentabilidad",
+   "source": "calculado",
+   "source_rank": 5,
+   "status": "calculado",
+   "unit": "%"
+  },
+  {
+   "key": "ocupacion",
+   "value": "100% (informado con verificación documental)",
+   "category": "condiciones",
+   "source": "Founder 03/10/2026",
+   "source_rank": 1,
+   "status": "confirmado",
+   "numeric": false
+  },
+  {
+   "key": "entorno",
+   "value": "Av. Eusebio Ayala 86 m; Rodríguez de Francia 320 m; Mercado 4 477 m (por calle)",
+   "category": "ubicacion",
+   "source": "trabajo/ubicacion.json (Overture/OSM)",
+   "source_rank": 5,
+   "status": "calculado",
+   "numeric": false
+  },
+  {
    "key": "superficie",
    "value": "",
    "category": "superficie",
    "source": "no informada",
    "source_rank": 9,
    "status": "pendiente"
-  },
-  {
-   "key": "bruto_anual_usd",
-   "value": "38.459",
-   "category": "ingresos_egresos",
-   "source": "calculado: alquiler_mensual_gs / tc * 12",
-   "source_rank": 5,
-   "status": "calculado",
-   "currency": "USD",
-   "unit": "USD",
-   "tax": "sin IVA informado"
-  },
-  {
-   "key": "neto_anual_usd",
-   "value": "34.495",
-   "category": "ingresos_egresos",
-   "source": "calculado: bruto − impuesto − gastos",
-   "source_rank": 5,
-   "status": "calculado",
-   "currency": "USD",
-   "unit": "USD",
-   "tax": "sin IVA informado"
-  },
-  {
-   "key": "rent_bruta",
-   "value": "11,31",
-   "category": "rentabilidad",
-   "source": "calculado: bruto_anual_usd / precio",
-   "source_rank": 5,
-   "status": "calculado",
-   "unit": "%"
-  },
-  {
-   "key": "rent_neta_gastos_informados",
-   "value": "10,15",
-   "category": "rentabilidad",
-   "source": "calculado: neto_anual_usd / precio",
-   "source_rank": 5,
-   "status": "calculado",
-   "unit": "%"
   }
  ],
  "calculations": [
   {
    "id": "bruto_check",
    "formula": "alquiler_mensual_gs / tc * 12",
-   "stated": "38.459",
+   "stated": "39.946",
    "tolerance_pct": 0.1
   },
   {
    "id": "neto_check",
-   "formula": "alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales",
-   "stated": "34.495",
+   "formula": "(alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9",
+   "stated": "27.147",
    "tolerance_pct": 0.1
   },
   {
    "id": "rent_bruta_check",
    "formula": "(alquiler_mensual_gs / tc * 12) / precio * 100",
-   "stated": "11,31",
+   "stated": "11,75",
    "tolerance_pct": 0.1
   },
   {
    "id": "rent_neta_check",
-   "formula": "(alquiler_mensual_gs / tc * 12 - impuesto_anual - gastos_anuales) / precio * 100",
-   "stated": "10,15",
+   "formula": "((alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9) / precio * 100",
+   "stated": "7,98",
    "tolerance_pct": 0.1
   }
  ]

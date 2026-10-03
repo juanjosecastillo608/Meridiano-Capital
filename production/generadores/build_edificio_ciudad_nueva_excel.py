@@ -1,9 +1,10 @@
-"""Edificio Ciudad Nueva — transcripción y análisis de alquileres/rentabilidad.
+"""Edificio Ciudad Nueva — análisis de alquileres, rentabilidad, proyección y plusvalía (versión final cliente).
 
-Genera projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Alquileres_Rentabilidad.xlsx
-con fórmulas editables. Fuentes: dos imágenes enviadas por el founder el 2026-10-02
-("Detalle de Alquileres por departamento" y "Planilla de Rentabilidad Edificio Ciudad Nueva M4").
-Todo lo que no está en esas imágenes figura como PENDIENTE, nunca como cero confirmado.
+Genera projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Alquileres_Rentabilidad.xlsx con fórmulas.
+Fuentes: detalle de alquileres y planilla del propietario (verificados por el founder el 2026-10-03),
+tipo de cambio del día (BCP, cierre interbancario 02/10/2026), parámetros del founder (IVA 5%/10%, vacancia 3%,
+administración 8%) y del motor de Meridiano (mantenimiento 5%, IVA de venta 1,5%).
+Regla del founder (2026-10-03): recalcular siempre al tipo de cambio del día y dejar asentada su fecha.
 Recalcular después con la skill xlsx (scripts/recalc.py).
 """
 import sys
@@ -70,49 +71,62 @@ def put(ws, ref, value, font=CALC, fmt=None, fill=None):
     return c
 
 
+
+
 def legend(ws, row):
-    ws.cell(row=row, column=1, value="Leyenda: azul = dato recibido (fuente: imágenes enviadas 2026-10-02); negro = fórmula; "
-            "verde = vínculo a otra hoja; rojo itálica = PENDIENTE de confirmar (no es cero).").font = NOTE
+    ws.cell(row=row, column=1, value="Leyenda: azul = dato o parámetro editable; negro = fórmula; verde = vínculo a otra hoja; "
+            "rojo itálica = supuesto o criterio a tener presente.").font = NOTE
 
 
-# ---------------------------------------------------------------- Parametros
+def plist(ws, start, items):
+    """Escribe filas Parámetro | Valor | Tipo | Fuente; devuelve {clave: referencia absoluta}."""
+    refs = {}
+    for i, (k, name, val, fmt, tipo, src) in enumerate(items, start):
+        put(ws, f"A{i}", name, BOLD)
+        put(ws, f"B{i}", val, INPUT, fmt)
+        put(ws, f"C{i}", tipo, PEND if tipo.startswith("Supuesto") or tipo.startswith("Criterio") else CALC)
+        put(ws, f"D{i}", src, CALC).alignment = Alignment(wrap_text=True)
+        refs[k] = f"Parametros!$B${i}"
+    return refs
+
+
 wb.remove(wb.active)
-P = sheet("Parametros", "Parámetros — datos recibidos (sin modificar)", [44, 18, 16, 58])
+# ---------------------------------------------------------------- Parametros
+P = sheet("Parametros", "Parámetros del análisis — todos editables", [46, 16, 26, 70])
 legend(P, 2)
-header(P, 4, ["Parámetro", "Valor", "Estado", "Fuente / observación"])
-params = [
-    ("Precio de venta (USD)", 340000, USD, "Recibido", "Pedido del founder + planilla de rentabilidad (celda 'Precio USD')."),
-    ("Tipo de cambio de la planilla (Gs por USD)", 6100, '#,##0', "Recibido", "Planilla de rentabilidad y detalle de alquileres. Fecha de vigencia NO informada; no es cotización actual."),
-    ("Total mensual indicado en el detalle (Gs)", 19550000, GS, "Recibido", "Fila 'TOTAL' del detalle de alquileres."),
-    ("Impuesto anual informado (USD)", 2764, USD, "Recibido", "Planilla de rentabilidad. Qué impuesto(s) cubre: PENDIENTE."),
-    ("Gastos anuales informados (USD)", 1200, USD, "Recibido", "Planilla de rentabilidad. Qué conceptos cubre: PENDIENTE."),
-    ("Ingreso mensual USD indicado en planilla", 3205, USD, "Recibido", "Planilla de rentabilidad (redondeado en la fuente)."),
-    ("Ingreso bruto anual USD indicado en planilla", 38459, USD, "Recibido", "Planilla de rentabilidad, columna 'USD Anual'."),
-    ("Renta neta anual USD indicada en planilla", 34495, USD, "Recibido", "Planilla de rentabilidad."),
-    ("Rentabilidad bruta indicada en planilla", 0.113, "0.0%", "Recibido", "Texto 'Bruta (11,3%)' de la planilla."),
-    ("Rentabilidad neta indicada en planilla", 0.1015, PCT, "Recibido", "Celda 'Renta Anual Neta 10,15%' de la planilla."),
-    ("Ingreso anual mencionado en la descripción comercial (USD)", 34500, USD, "Recibido", "Descripción del aviso: 'ingresos anuales aprox. USD 34.500' — corresponde al resultado NETO de la planilla, no al bruto."),
-    ("Departamentos de 1 dormitorio (mix comercial)", 6, "0", "Recibido", "Descripción comercial."),
-    ("Departamentos de 2 dormitorios (mix comercial)", 6, "0", "Recibido", "Descripción comercial."),
-    ("Departamentos de 3 dormitorios (mix comercial)", 1, "0", "Recibido", "Descripción comercial."),
-    ("Locales comerciales (mix comercial)", 1, "0", "Recibido", "Descripción comercial."),
-    ("Tipo de cambio alternativo autorizado (Gs por USD)", None, '#,##0', "PENDIENTE", "Vacío a propósito: cargar solo una cotización autorizada y verificable, con fuente y fecha en la fila siguiente."),
-    ("Fuente y fecha del tipo de cambio alternativo", None, None, "PENDIENTE", "Ej.: 'BCP, cotización de referencia, dd/mm/aaaa'."),
-]
-for i, (name, val, fmt, st, src) in enumerate(params, 5):
-    put(P, f"A{i}", name, BOLD)
-    if val is None:
-        put(P, f"B{i}", None, INPUT, fmt, PEND_FILL)
-    else:
-        put(P, f"B{i}", val, INPUT, fmt)
-    put(P, f"C{i}", st, PEND if st == "PENDIENTE" else CALC)
-    put(P, f"D{i}", src, CALC).alignment = Alignment(wrap_text=True)
-PR = {k: f"Parametros!$B${i}" for k, i in zip(
-    ["precio", "tc", "total_ind", "imp", "gastos", "usd_mes_pl", "bruto_pl", "neto_pl", "yb_pl", "yn_pl",
-     "desc", "mix1", "mix2", "mix3", "mixloc", "tc_alt", "tc_alt_src"], range(5, 22))}
+header(P, 4, ["Parámetro", "Valor", "Tipo", "Fuente / criterio"])
+PR = plist(P, 5, [
+    ("precio", "Precio de venta (USD)", 340000, USD, "Dato confirmado", "Founder (WEB ID 143028006-118)."),
+    ("tc", "Tipo de cambio del día (Gs por USD)", 5873, '#,##0', "Dato de mercado",
+     "Cierre del mercado interbancario del viernes 02/10/2026 (último día hábil al 03/10/2026). Fuente: BCP, Mercado Libre Fluctuante Interbancario; informado por ABC Color 02/10/2026. Casas de cambio ese día: G. 5.780 compra / G. 5.860 venta."),
+    ("tc_fecha", "Fecha del tipo de cambio", "02/10/2026", None, "Dato de mercado", "Regla del founder (03/10/2026): recalcular siempre al tipo de cambio del día, aunque la planilla traiga otro."),
+    ("tc_planilla", "Tipo de cambio de la planilla original (referencia histórica)", 6100, '#,##0', "Dato recibido", "Planilla del propietario (sin fecha). Solo para comparar; no se usa en los resultados."),
+    ("iva_dpto", "IVA alquiler residencial (departamentos)", 0.05, "0%", "Dato confirmado", "Founder 03/10/2026 + D-001/D-045 (parametros_mercado.json › fiscal)."),
+    ("iva_com", "IVA alquiler comercial (local y cocheras)", 0.10, "0%", "Dato confirmado",
+     "Founder 03/10/2026 + D-001. Criterio conservador: 'Cochera' y 'Cochera y dpto' tributan 10% (concepto no residencial) hasta identificar el local comercial."),
+    ("vac", "Vacancia (% del ingreso bruto)", 0.03, "0%", "Supuesto del founder", "Zona de alto tránsito y demanda (Mercado 4 / Av. Eusebio Ayala). Coincide con vacancia_pct del motor (3%)."),
+    ("adm", "Administración (% del ingreso bruto)", 0.08, "0%", "Supuesto del founder", "Founder 03/10/2026 (el default del motor es 10%; para este caso rige 8%)."),
+    ("mant", "Mantenimiento (% del ingreso bruto)", 0.05, "0%", "Criterio Meridiano",
+     "mantenimiento_pct = 5% (parametros_mercado.json › supuestos_operativos_default). Cubre reparaciones menores, pintura y recambios entre inquilinos; obras mayores (impermeabilización, fachada) se presupuestan aparte tras la inspección técnica."),
+    ("fijos", "Gastos fijos anuales informados (USD)", 1200, USD, "Dato confirmado", "Planilla del propietario, verificada (founder 03/10/2026)."),
+    ("ire", "Impuesto a la renta estimado (% del resultado)", 0.10, "0%", "Criterio conservador",
+     "IRE 10% (titularidad por S.A., Modelo A). Aplicado sobre el resultado operativo sin deducir depreciación del edificio: estimación conservadora; la base real la define el contador."),
+    ("iva_venta", "IVA efectivo en la venta futura (% del precio)", 0.015, "0.0%", "Dato confirmado", "D-082/D-083: 30% base imponible × 5% = 1,5% efectivo."),
+    ("g_cons", "Crecimiento anual de alquileres — conservador", 0.03, "0.0%", "Supuesto", "Por debajo de la inflación (IPC 12 meses usado para el ajuste fiscal 2026: 4,1%)."),
+    ("g_base", "Crecimiento anual de alquileres — base", 0.05, "0.0%", "Supuesto", "Inflación + ajuste gradual en renovaciones de contrato."),
+    ("g_opt", "Crecimiento anual de alquileres — optimista", 0.08, "0.0%", "Supuesto", "Convergencia hacia los valores publicados del barrio (ver Proyeccion)."),
+    ("a_cons", "Valorización anual del inmueble (USD) — conservador", 0.02, "0.0%", "Supuesto", "Hipótesis de escenario, no garantizada."),
+    ("a_base", "Valorización anual del inmueble (USD) — base", 0.035, "0.0%", "Supuesto", "Hipótesis de escenario, no garantizada."),
+    ("a_opt", "Valorización anual del inmueble (USD) — optimista", 0.05, "0.0%", "Supuesto", "Hipótesis de escenario, no garantizada."),
+    ("mk1_lo", "Mercado 1 dormitorio — valor bajo publicado (Gs/mes)", 2500000, GS, "Dato de mercado (C)", "InfoCasas, alquiler 1 dormitorio en Ciudad Nueva, consulta 03/10/2026 (avisos, no contratos)."),
+    ("mk1_hi", "Mercado 1 dormitorio — valor alto publicado (Gs/mes)", 3000000, GS, "Dato de mercado (C)", "Ídem."),
+    ("mk2_lo", "Mercado 2 dormitorios — valor bajo publicado (Gs/mes)", 2100000, GS, "Dato de mercado (C)", "InfoCasas, alquiler 2 dormitorios en Ciudad Nueva, consulta 03/10/2026."),
+    ("mk2_hi", "Mercado 2 dormitorios — valor alto publicado (Gs/mes)", 4200000, GS, "Dato de mercado (C)", "Ídem."),
+    ("mkl_lo", "Mercado local comercial — desde (Gs/mes)", 2700000, GS, "Dato de mercado (C)", "InfoCasas, salones comerciales en Ciudad Nueva, consulta 03/10/2026."),
+])
 
 # ---------------------------------------------------------- Datos_Originales
-D = sheet("Datos_Originales", "Datos originales — transcripción literal de las imágenes recibidas", [16, 16, 18, 16, 16])
+D = sheet("Datos_Originales", "Datos originales — transcripción literal del detalle y la planilla del propietario", [16, 16, 18, 16, 16])
 D["A2"] = "Texto y orden conservados tal como aparecen en las imágenes. Sin cálculos en esta hoja."
 D["A2"].font = NOTE
 D["A4"] = "Imagen 1 — Detalle de alquileres (columnas B, C, D de la captura)"
@@ -157,11 +171,11 @@ for row in plan:
 D.cell(row=r + 1, column=1, value="Nota: en la planilla, 'Impuesto anual' y 'Gastos anuales' aparecen en la columna 'USD Mensual' pero sus valores son anuales (se repiten en 'USD Anual').").font = NOTE
 
 # -------------------------------------------------------- Alquileres_Unidad
-A = sheet("Alquileres_Unidad", "Alquileres por unidad — transcripción estructurada (estado: TRANSCRITO, no verificado)",
-          [6, 12, 13, 22, 13, 24, 8, 16, 14, 26, 50])
+A = sheet("Alquileres_Unidad", "Alquileres por unidad — datos informados con verificación documental",
+          [6, 12, 13, 22, 13, 24, 9, 16, 14, 14, 30, 46])
 legend(A, 2)
-header(A, 4, ["N°", "Ref. provisoria", "Piso", "Texto original (col. C)", "Tipología", "Concepto", "Moneda",
-              "Alquiler mensual (Gs)", "Equivalente USD (TC planilla)", "Estado de verificación", "Observación"])
+header(A, 4, ["N°", "Ref.", "Piso", "Texto original", "Tipología", "Concepto", "IVA", "Alquiler mensual (Gs)",
+              "USD (TC del día)", "IVA mensual (Gs)", "Estado", "Observación"])
 units = [
     ("P3-01", "Tercer piso", "2 dorm.", "2 dormitorios", "Departamento", 1500000, ""),
     ("P3-02", "Tercer piso", "2 dorm.", "2 dormitorios", "Departamento", 1500000, ""),
@@ -176,10 +190,9 @@ units = [
     ("P1-02", "Primer piso", "3 dorm.", "3 dormitorios", "Departamento", 1600000, ""),
     ("PB-01", "Planta baja", "1 dorm.", "1 dormitorio", "Departamento", 1200000, ""),
     ("PB-02", "Planta baja", "1 dorm.", "1 dormitorio", "Departamento", 900000, ""),
-    ("PB-03", "Planta baja", "Cochera", "No aplica", "Cochera", 700000,
-     "Concepto no incluido en el mix comercial informado (13 dptos + 1 local). Confirmar qué es y si está incluido en el precio."),
-    ("PB-04", "Planta baja", "Cochera y dpto", "A confirmar", "Mixto — a confirmar", 1200000,
-     "NO interpretado como local comercial ni como unidad adicional. Confirmar a qué unidad corresponde y si agrupa o duplica ingresos."),
+    ("PB-03", "Planta baja", "Cochera", "No aplica", "Cochera", 700000, "IVA 10% (concepto no residencial)."),
+    ("PB-04", "Planta baja", "Cochera y dpto", "Mixto", "Cochera y departamento", 1200000,
+     "IVA 10% por criterio conservador. Pendiente: identificar si esta fila corresponde al local comercial."),
 ]
 first = 5
 for i, (ref, piso, txt, tip, conc, gs, obs) in enumerate(units):
@@ -188,191 +201,183 @@ for i, (ref, piso, txt, tip, conc, gs, obs) in enumerate(units):
     put(A, f"B{rr}", ref)
     put(A, f"C{rr}", piso)
     put(A, f"D{rr}", txt, INPUT)
-    put(A, f"E{rr}", tip, PEND if tip == "A confirmar" else CALC)
-    put(A, f"F{rr}", conc, PEND if "confirmar" in conc else CALC)
-    put(A, f"G{rr}", "PYG")
+    put(A, f"E{rr}", tip)
+    put(A, f"F{rr}", conc)
+    put(A, f"G{rr}", f'=IF(F{rr}="Departamento",{PR["iva_dpto"]},{PR["iva_com"]})', LINK, "0%")
     put(A, f"H{rr}", gs, INPUT, GS)
     put(A, f"I{rr}", f"=H{rr}/{PR['tc']}", LINK, USD2)
-    put(A, f"J{rr}", "Transcrito — sin contrato ni comprobante de cobro", PEND)
-    put(A, f"K{rr}", obs or None, CALC).alignment = Alignment(wrap_text=True)
+    put(A, f"J{rr}", f"=H{rr}*G{rr}", CALC, GS)
+    put(A, f"K{rr}", "Informado con verificación documental", CALC)
+    put(A, f"L{rr}", obs or None, CALC).alignment = Alignment(wrap_text=True)
 last = first + len(units) - 1
 tot = last + 1
 put(A, f"G{tot}", "TOTAL", BOLD)
 put(A, f"H{tot}", f"=SUM(H{first}:H{last})", BOLD, GS)
 put(A, f"I{tot}", f"=SUM(I{first}:I{last})", BOLD, USD2)
-A.cell(row=tot + 2, column=1, value="La 'Ref. provisoria' es un identificador de trabajo de Meridiano según el orden de la captura; "
-       "no corresponde a la numeración real de las unidades (no informada).").font = NOTE
-A.cell(row=tot + 3, column=1, value="Ningún dato de inquilinos (nombres, contactos) se registra en este archivo: la fuente solo dice 'Inquilino'.").font = NOTE
+put(A, f"J{tot}", f"=SUM(J{first}:J{last})", BOLD, GS)
+A.cell(row=tot + 2, column=1, value="Estado confirmado por el founder el 03/10/2026: datos informados con verificación de documentación. "
+       "La 'Ref.' es un identificador de trabajo según el orden del detalle, no la numeración real de las unidades.").font = NOTE
+A.cell(row=tot + 3, column=1, value="Sin datos personales de inquilinos: la fuente solo dice 'Inquilino'.").font = NOTE
 A.freeze_panes = "A5"
 RNG = lambda col: f"Alquileres_Unidad!${col}${first}:${col}${last}"
+GS_TOT = f"Alquileres_Unidad!$H${tot}"
+IVA_TOT = f"Alquileres_Unidad!$J${tot}"
 
 # ------------------------------------------------------------- Conciliacion
-C = sheet("Conciliacion", "Conciliación — composición informada vs. detalle de alquileres", [46, 16, 16, 16, 14, 50])
+C = sheet("Conciliacion", "Conciliación — composición comercial vs. detalle de alquileres", [46, 16, 16, 16, 14, 50])
 legend(C, 2)
-header(C, 4, ["Concepto", "Mix comercial informado", "Filas en el detalle", "Diferencia", "Resultado", "Observación"])
-rows = [
-    ("Departamentos 1 dormitorio", PR["mix1"], f'=COUNTIFS({RNG("E")},"1 dormitorio")', ""),
-    ("Departamentos 2 dormitorios", PR["mix2"], f'=COUNTIFS({RNG("E")},"2 dormitorios")', ""),
-    ("Departamentos 3 dormitorios", PR["mix3"], f'=COUNTIFS({RNG("E")},"3 dormitorios")', ""),
-    ("Local comercial", PR["mixloc"], f'=COUNTIFS({RNG("F")},"Local comercial")', "El local comercial no aparece identificado expresamente en el detalle."),
-    ("Cochera (sola)", 0, f'=COUNTIFS({RNG("F")},"Cochera")', "Concepto no mencionado en la composición comercial."),
-    ("'Cochera y dpto' (concepto mixto)", 0, f'=COUNTIFS({RNG("F")},"Mixto — a confirmar")', "Si incluye un departamento, el total de dptos sería 14, no 13."),
-]
-for i, (lab, mix, cnt, obs) in enumerate(rows, 5):
+header(C, 4, ["Concepto", "Composición comercial", "Filas en el detalle", "Diferencia", "Resultado", "Observación"])
+mix = [("Departamentos 1 dormitorio", 6, '"1 dormitorio"', "E"), ("Departamentos 2 dormitorios", 6, '"2 dormitorios"', "E"),
+       ("Departamentos 3 dormitorios", 1, '"3 dormitorios"', "E"), ("Local comercial", 1, '"Local comercial"', "F"),
+       ("Cochera", 0, '"Cochera"', "F"), ("Cochera y departamento", 0, '"Cochera y departamento"', "F")]
+for i, (lab, m, crit, col) in enumerate(mix, 5):
     put(C, f"A{i}", lab, BOLD)
-    put(C, f"B{i}", f"={mix}" if isinstance(mix, str) else mix, LINK if isinstance(mix, str) else INPUT, "0")
-    put(C, f"C{i}", cnt, CALC, "0")
+    put(C, f"B{i}", m, INPUT, "0")
+    put(C, f"C{i}", f"=COUNTIFS({RNG(col)},{crit})", CALC, "0")
     put(C, f"D{i}", f"=C{i}-B{i}", CALC, "0;-0;0")
-    put(C, f"E{i}", f'=IF(D{i}=0,"Coincide","DIFERENCIA")', CALC)
-    put(C, f"F{i}", obs or None, CALC).alignment = Alignment(wrap_text=True)
-put(C, "A11", "Total departamentos (filas 'Departamento')", BOLD)
-put(C, "B11", "=SUM(B5:B7)", CALC, "0")
-put(C, "C11", f'=COUNTIFS({RNG("F")},"Departamento")', CALC, "0")
-put(C, "D11", "=C11-B11", CALC, "0;-0;0")
-put(C, "E11", '=IF(D11=0,"Coincide","DIFERENCIA")', CALC)
-put(C, "F11", "Las 13 filas con tipología coinciden con el mix 6 + 6 + 1.", CALC)
-
-put(C, "A13", "Control de suma del detalle", TITLE)
-header(C, 14, ["Control", "Valor", "", "", "Resultado", "Observación"])
-put(C, "A15", "Suma recalculada de las 15 filas (Gs)", BOLD)
-put(C, "B15", f"=Alquileres_Unidad!H{tot}", LINK, GS)
-put(C, "A16", "Total indicado en la fuente (Gs)", BOLD)
-put(C, "B16", f"={PR['total_ind']}", LINK, GS)
-put(C, "A17", "Diferencia (Gs)", BOLD)
-put(C, "B17", "=B15-B16", CALC, GS)
-put(C, "E17", '=IF(B17=0,"Suma correcta","DIFERENCIA")', CALC)
-put(C, "F17", "Verifica la aritmética, no la composición ni el cobro efectivo.", CALC)
-
-put(C, "A19", "Subtotal por piso (Gs)", TITLE)
-header(C, 20, ["Piso", "Filas", "Alquiler mensual (Gs)", "% del total", "", "Observación"])
-for i, piso in enumerate(["Tercer piso", "Segundo piso", "Primer piso", "Planta baja"], 21):
+    put(C, f"E{i}", f'=IF(D{i}=0,"Coincide","Revisar")', CALC)
+put(C, "F8", "El local no figura con ese nombre en el detalle; 'Cochera y dpto' se trata a IVA 10% (criterio conservador).", CALC).alignment = Alignment(wrap_text=True)
+put(C, "A12", "Suma recalculada vs. total indicado (Gs)", BOLD)
+put(C, "B12", f"={GS_TOT}", LINK, GS)
+put(C, "C12", 19550000, INPUT, GS)
+put(C, "D12", "=B12-C12", CALC, GS)
+put(C, "E12", '=IF(D12=0,"Suma correcta","DIFERENCIA")', CALC)
+put(C, "A14", "Subtotal por piso", TITLE)
+header(C, 15, ["Piso", "Filas", "Alquiler mensual (Gs)", "USD (TC del día)", "% del total", ""])
+for i, piso in enumerate(["Tercer piso", "Segundo piso", "Primer piso", "Planta baja"], 16):
     put(C, f"A{i}", piso, BOLD)
-    put(C, f"B{i}", f'=COUNTIFS({RNG("C")},A{i})', CALC, "0")
-    put(C, f"C{i}", f'=SUMIFS({RNG("H")},{RNG("C")},A{i})', CALC, GS)
-    put(C, f"D{i}", f"=C{i}/$C$25", CALC, "0.0%")
-put(C, "A25", "Total", BOLD)
-put(C, "B25", "=SUM(B21:B24)", BOLD, "0")
-put(C, "C25", "=SUM(C21:C24)", BOLD, GS)
-put(C, "D25", "=SUM(D21:D24)", BOLD, "0.0%")
-
-put(C, "A27", "Estado de la conciliación", TITLE)
-put(C, "A28", '=IF(AND(B17=0,D8=0),"CONCILIADA","PRELIMINAR — composición no conciliada (ver preguntas abajo)")', BOLD)
-qs = [
-    "1. ¿A qué unidad corresponde la fila 'Cochera y dpto' (Gs 1.200.000)? ¿Es un departamento adicional, el local comercial u otro concepto?",
-    "2. ¿Dónde está incluido el alquiler del local comercial?",
-    "3. ¿Algún concepto agrupa varias unidades o duplica ingresos?",
-    "4. ¿Cuál es la fecha de vigencia de los alquileres y del tipo de cambio de Gs 6.100?",
-    "5. Contratos vigentes, ocupación real y cobro efectivo de los últimos 12 meses (extractos o recibos).",
-    "6. ¿La 'Cochera' (Gs 700.000) se alquila a un tercero ajeno al edificio? ¿Está incluida en la venta?",
-]
-for i, q in enumerate(qs, 30):
-    put(C, f"A{i}", q, PEND)
-    C.merge_cells(f"A{i}:F{i}")
-put(C, "A29", "Preguntas abiertas", BOLD)
+    put(C, f"B{i}", f"=COUNTIFS({RNG('C')},A{i})", CALC, "0")
+    put(C, f"C{i}", f"=SUMIFS({RNG('H')},{RNG('C')},A{i})", CALC, GS)
+    put(C, f"D{i}", f"=C{i}/{PR['tc']}", CALC, USD2)
+    put(C, f"E{i}", f"=C{i}/$C$20", CALC, "0.0%")
+put(C, "A20", "Total", BOLD)
+for col, fmt in (("B", "0"), ("C", GS), ("D", USD2), ("E", "0.0%")):
+    put(C, f"{col}20", f"=SUM({col}16:{col}19)", BOLD, fmt)
 
 # ---------------------------------------------------------- Ingresos_Gastos
-G = sheet("Ingresos_Gastos", "Ingresos y egresos — informados vs. pendientes", [46, 18, 18, 20, 56])
+G = sheet("Ingresos_Gastos", "Ingresos y egresos anuales — tipo de cambio del día", [52, 18, 14, 66])
 legend(G, 2)
-header(G, 4, ["Concepto", "Mensual", "Anual (USD)", "Estado", "Fuente / observación"])
-put(G, "A5", "Ingreso mensual informado (Gs)", BOLD)
-put(G, "B5", f"=Alquileres_Unidad!H{tot}", LINK, GS)
-put(G, "D5", "Recibido (transcrito)", CALC)
-put(G, "E5", "Suma de la tabla; composición no conciliada (ver Conciliacion).", CALC)
-put(G, "A6", "Ingreso mensual USD (TC planilla)", BOLD)
-put(G, "B6", f"=B5/{PR['tc']}", CALC, USD2)
-put(G, "D6", "Calculado", CALC)
-put(G, "E6", "Gs mensual / tipo de cambio de la planilla (6.100).", CALC)
-put(G, "A7", "Ingreso bruto anual informado (USD)", BOLD)
-put(G, "C7", "=B6*12", CALC, USD2)
-put(G, "D7", "Calculado", CALC)
-put(G, "E7", "Supone 12 meses de cobro completo: sin vacancia ni morosidad (no verificado).", CALC)
-
-put(G, "A9", "Egresos informados en la planilla", TITLE)
-put(G, "A10", "Impuesto anual", BOLD)
-put(G, "C10", f"={PR['imp']}", LINK, USD)
-put(G, "D10", "Recibido — alcance a confirmar", PEND)
-put(G, "E10", "No se informa qué impuesto(s) cubre (IVA, IRP, inmobiliario u otro). Ver Rentabilidad: equivale al 7,19% del bruto.", CALC)
-put(G, "A11", "Gastos anuales", BOLD)
-put(G, "C11", f"={PR['gastos']}", LINK, USD)
-put(G, "D11", "Recibido — alcance a confirmar", PEND)
-put(G, "E11", "No se informa qué conceptos cubre.", CALC)
-put(G, "A12", "Total egresos informados", BOLD)
-put(G, "C12", "=SUM(C10:C11)", BOLD, USD)
-
-put(G, "A14", "Egresos NO informados (pendientes — no son cero)", TITLE)
-pend = ["Mantenimiento y reparaciones", "Administración del edificio / gestión de alquileres", "Seguros",
-        "Vacancia (meses sin inquilino)", "Morosidad / incobrables", "Reserva para reposiciones (CAPEX)",
-        "Servicios a cargo del propietario (áreas comunes, agua, luz)", "Impuesto inmobiliario (si no está incluido arriba)"]
-for i, p in enumerate(pend, 15):
-    put(G, f"A{i}", p, BOLD)
-    put(G, f"C{i}", None, PEND, USD, PEND_FILL)
-    put(G, f"D{i}", "PENDIENTE", PEND)
-    put(G, f"E{i}", "Celda vacía a propósito: completar con dato documentado.", NOTE)
-pe = 15 + len(pend) - 1
-put(G, f"A{pe+1}", "Cantidad de egresos pendientes de dato", BOLD)
-put(G, f"C{pe+1}", f"=COUNTBLANK(C15:C{pe})", CALC, "0")
-
-put(G, f"A{pe+3}", "Resultado neto según gastos informados (USD/año)", BOLD)
-put(G, f"C{pe+3}", "=C7-C12", BOLD, USD2)
-put(G, f"E{pe+3}", "Solo descuenta los dos egresos de la planilla. NO es una renta neta definitiva.", PEND)
-put(G, f"A{pe+4}", "Resultado neto incluyendo egresos pendientes cargados (USD/año)", BOLD)
-put(G, f"C{pe+4}", f'=IF(C{pe+1}>0,"Incompleto: faltan "&C{pe+1}&" egresos",C7-C12-SUM(C15:C{pe}))', CALC, USD2)
-NETO = f"Ingresos_Gastos!$C${pe+3}"
+header(G, 4, ["Concepto", "USD por año", "% del bruto", "Base de cálculo"])
+lines = [
+    ("Ingreso mensual (Gs)", f"={GS_TOT}", GS, None, "Suma del detalle de alquileres."),
+    ("Ingreso mensual (USD)", f"=B5/{PR['tc']}", USD2, None, "Gs mensual / tipo de cambio del día."),
+    ("Ingreso bruto anual", "=B6*12", USD2, "=B7/$B$7", "Ingreso mensual USD × 12."),
+    ("IVA (5% departamentos, 10% local y cocheras)", f"=-{IVA_TOT}*12/{PR['tc']}", USD2, "=-B8/$B$7", "IVA por concepto (hoja Alquileres_Unidad), anualizado."),
+    ("Vacancia", f"=-B7*{PR['vac']}", USD2, "=-B9/$B$7", "3% del bruto: zona de alto tránsito y demanda."),
+    ("Administración", f"=-B7*{PR['adm']}", USD2, "=-B10/$B$7", "8% del bruto."),
+    ("Mantenimiento", f"=-B7*{PR['mant']}", USD2, "=-B11/$B$7", "5% del bruto (criterio Meridiano)."),
+    ("Gastos fijos informados", f"=-{PR['fijos']}", USD2, "=-B12/$B$7", "Planilla del propietario, verificada."),
+    ("Resultado operativo antes de impuesto a la renta", "=SUM(B7:B12)", USD2, "=B13/$B$7", "Bruto − IVA − vacancia − administración − mantenimiento − gastos fijos."),
+    ("Impuesto a la renta estimado (IRE 10%)", f"=-B13*{PR['ire']}", USD2, "=-B14/$B$7", "Estimación conservadora (sin depreciación)."),
+    ("Resultado neto anual", "=B13+B14", USD2, "=B15/$B$7", "Ingreso neto para el inversor."),
+]
+for i, (lab, f, fmt, pc_, base) in enumerate(lines, 5):
+    bold = i in (7, 13, 15)
+    put(G, f"A{i}", lab, BOLD if bold else CALC)
+    put(G, f"B{i}", f, BOLD if bold else (LINK if "!" in f else CALC), fmt)
+    if pc_:
+        put(G, f"C{i}", pc_, CALC, "0.0%")
+    put(G, f"D{i}", base, CALC).alignment = Alignment(wrap_text=True)
+G["A5"].font = CALC
+put(G, "A17", "Lectura mensual del resultado neto (USD)", BOLD)
+put(G, "B17", "=B15/12", CALC, USD2)
+put(G, "A18", "IVA efectivo sobre el bruto", BOLD)
+put(G, "B18", "=-B8/B7", CALC, "0.00%")
+BRUTO, PRE, NETO, IVAEF = "Ingresos_Gastos!$B$7", "Ingresos_Gastos!$B$13", "Ingresos_Gastos!$B$15", "Ingresos_Gastos!$B$18"
 
 # -------------------------------------------------------------- Rentabilidad
-Rr = sheet("Rentabilidad", "Rentabilidad — recálculo con precisión completa", [52, 18, 18, 16, 50])
-legend(Rr, 2)
-header(Rr, 4, ["Indicador", "Recalculado", "Planilla recibida", "Diferencia", "Base de cálculo"])
-lines = [
-    ("Ingreso mensual (USD)", "=Ingresos_Gastos!B6", PR["usd_mes_pl"], USD2, "Gs 19.550.000 / 6.100"),
-    ("Ingreso bruto anual (USD)", "=Ingresos_Gastos!C7", PR["bruto_pl"], USD2, "Ingreso mensual USD × 12"),
-    ("Resultado neto según gastos informados (USD)", f"={NETO}", PR["neto_pl"], USD2, "Bruto − impuesto (2.764) − gastos (1.200)"),
-    ("Rentabilidad bruta sobre precio", f"=B6/{PR['precio']}", PR["yb_pl"], "0.00%", "Bruto anual / precio de venta (USD 340.000)"),
-    ("Rentabilidad neta según gastos informados, sobre precio", f"=B7/{PR['precio']}", PR["yn_pl"], "0.00%", "Resultado neto / precio de venta. Sin gastos de adquisición en el denominador."),
+R_ = sheet("Rentabilidad", "Rentabilidad sobre el precio — tipo de cambio del día", [56, 16, 66])
+legend(R_, 2)
+header(R_, 4, ["Indicador", "Valor", "Base de cálculo"])
+rl = [
+    ("Rentabilidad bruta", f"={BRUTO}/{PR['precio']}", "0.00%", "Ingreso bruto anual / precio."),
+    ("Rentabilidad neta antes de impuesto a la renta", f"={PRE}/{PR['precio']}", "0.00%", "Resultado operativo / precio."),
+    ("Rentabilidad neta final", f"={NETO}/{PR['precio']}", "0.00%", "Resultado neto (después de IVA, vacancia, administración, mantenimiento, gastos fijos e IRE estimado) / precio."),
+    ("Múltiplo precio / ingreso bruto anual (veces)", f"={PR['precio']}/{BRUTO}", "0.00", "Años de ingreso bruto equivalentes al precio."),
+    ("Ingreso neto mensual (USD)", f"={NETO}/12", USD2, ""),
 ]
-for i, (lab, f, pl, fmt, base) in enumerate(lines, 5):
-    put(Rr, f"A{i}", lab, BOLD)
-    put(Rr, f"B{i}", f, CALC, fmt)
-    put(Rr, f"C{i}", f"={pl}", LINK, fmt)
-    put(Rr, f"D{i}", f"=B{i}-C{i}", CALC, "0.00%" if "%" in fmt else USD2)
-    put(Rr, f"E{i}", base, CALC).alignment = Alignment(wrap_text=True)
-Rr["D8"].comment = Comment("La planilla muestra 'Bruta (11,3%)' con un decimal; el recálculo da 11,31%. Diferencia solo de redondeo.", "Meridiano Capital")
+for i, (lab, f, fmt, base) in enumerate(rl, 5):
+    put(R_, f"A{i}", lab, BOLD)
+    put(R_, f"B{i}", f, CALC, fmt)
+    put(R_, f"C{i}", base, CALC).alignment = Alignment(wrap_text=True)
+put(R_, "A11", "Comparación con la planilla original del propietario (referencia)", TITLE)
+header(R_, 12, ["Indicador", "Valor", "Observación"])
+put(R_, "A13", "Ingreso bruto anual al TC de la planilla (USD)", BOLD)
+put(R_, "B13", f"={GS_TOT}*12/{PR['tc_planilla']}", CALC, USD2)
+put(R_, "C13", "Con Gs 6.100: USD 38.459. Al TC del día el mismo ingreso en guaraníes equivale a más dólares.", CALC)
+put(R_, "A14", "Rentabilidad bruta al TC de la planilla", BOLD)
+put(R_, "B14", f"=B13/{PR['precio']}", CALC, "0.00%")
+put(R_, "A15", "Rentabilidad 'neta' de la planilla (solo impuesto USD 2.764 y gastos USD 1.200)", BOLD)
+put(R_, "B15", f"=(B13-2764-1200)/{PR['precio']}", CALC, "0.00%")
+put(R_, "C15", "Reemplazada por el cálculo completo de arriba (IVA por concepto, vacancia, administración, mantenimiento, IRE).", CALC)
+R_.cell(row=17, column=1, value="Indicadores sobre el precio de venta, sin gastos de adquisición (escribanía, impuestos de transferencia, honorarios). No constituyen rentabilidad garantizada.").font = NOTE
 
-put(Rr, "A11", "Observaciones de la auditoría", TITLE)
-put(Rr, "A12", "Impuesto anual / ingreso bruto anual", BOLD)
-put(Rr, "B12", f"={PR['imp']}/B6", CALC, "0.00%")
-put(Rr, "E12", "No coincide con 5% ni 10% del bruto: la composición del impuesto debe confirmarse.", CALC)
-put(Rr, "A13", "Ingreso anual de la descripción comercial (USD)", BOLD)
-put(Rr, "B13", f"={PR['desc']}", LINK, USD)
-put(Rr, "C13", "=B7", CALC, USD2)
-put(Rr, "D13", "=B13-C13", CALC, USD2)
-put(Rr, "E13", "Los USD 34.500 de la descripción son el resultado NETO redondeado, no el ingreso bruto (USD 38.459).", PEND)
-put(Rr, "A14", "Relación 'bruta' de la descripción (10,15%)", BOLD)
-put(Rr, "B14", "=B9", CALC, "0.00%")
-put(Rr, "E14", "El 10,15% es rentabilidad NETA según gastos informados, no bruta. La bruta es 11,31%.", PEND)
-put(Rr, "A15", "Precio implícito por departamento (USD, referencia)", BOLD)
-put(Rr, "B15", f"={PR['precio']}/Conciliacion!C11", CALC, USD)
-put(Rr, "E15", "Precio total / 13 departamentos. Solo referencia aritmética: no es tasación ni valor por unidad.", CALC)
-put(Rr, "A16", "Múltiplo precio / ingreso bruto anual (veces)", BOLD)
-put(Rr, "B16", f"={PR['precio']}/B6", CALC, "0.00")
-put(Rr, "E16", "Años de ingreso bruto informado equivalentes al precio, sin egresos ni vacancia.", CALC)
+# --------------------------------------------------------------- Proyeccion
+PJ = sheet("Proyeccion", "Proyección de alquiler a 5 años — tres escenarios (USD, TC del día constante)", [20, 16, 16, 16, 16, 16, 16])
+legend(PJ, 2)
+header(PJ, 4, ["Año", "Bruto — conservador", "Neto — conservador", "Bruto — base", "Neto — base", "Bruto — optimista", "Neto — optimista"])
+GR = [PR["g_cons"], PR["g_base"], PR["g_opt"]]
+net_factor = f"(1-{IVAEF}-{PR['vac']}-{PR['adm']}-{PR['mant']})"
+for y in range(1, 6):
+    r = 4 + y
+    put(PJ, f"A{r}", y, BOLD, "0")
+    for k, g in enumerate(GR):
+        cb, cn = get_column_letter(2 + 2 * k), get_column_letter(3 + 2 * k)
+        put(PJ, f"{cb}{r}", f"={BRUTO}*(1+{g})^(A{r}-1)", CALC, USD)
+        put(PJ, f"{cn}{r}", f"=({cb}{r}*{net_factor}-{PR['fijos']})*(1-{PR['ire']})", CALC, USD)
+put(PJ, "A10", "Total 5 años", BOLD)
+for col in "BCDEFG":
+    put(PJ, f"{col}10", f"=SUM({col}5:{col}9)", BOLD, USD)
+put(PJ, "A11", "Crecimiento anual", BOLD)
+for k, g in enumerate(GR):
+    put(PJ, f"{get_column_letter(2 + 2 * k)}11", f"={g}", LINK, "0.0%")
+PJ.cell(row=12, column=1, value="Supuestos: crecimiento de alquileres en guaraníes; IVA, vacancia, administración y mantenimiento como % del bruto; gastos fijos constantes; "
+        "IRE 10% estimado; tipo de cambio del día constante. Proyección ilustrativa, no garantizada.").font = NOTE
 
-put(Rr, "A17", "Escenario de tipo de cambio", TITLE)
-header(Rr, 18, ["Escenario", "TC (Gs/USD)", "Bruto anual (USD)", "Rent. bruta", "Rent. neta según gastos informados / Fuente"])
-put(Rr, "A19", "Original — planilla recibida", BOLD)
-put(Rr, "B19", f"={PR['tc']}", LINK, "#,##0")
-put(Rr, "C19", f"=Ingresos_Gastos!B5*12/B19", CALC, USD2)
-put(Rr, "D19", f"=C19/{PR['precio']}", CALC, "0.00%")
-put(Rr, "E19", f"=(C19-Ingresos_Gastos!C12)/{PR['precio']}", CALC, "0.00%")
-put(Rr, "A20", "Actualizado — TC autorizado (pendiente)", BOLD)
-put(Rr, "B20", f'=IF(ISBLANK({PR["tc_alt"]}),"PENDIENTE",{PR["tc_alt"]})', LINK, "#,##0")
-put(Rr, "C20", f'=IF(ISNUMBER(B20),Ingresos_Gastos!B5*12/B20,"PENDIENTE")', CALC, USD2)
-put(Rr, "D20", f'=IF(ISNUMBER(C20),C20/{PR["precio"]},"PENDIENTE")', CALC, "0.00%")
-put(Rr, "E20", f'=IF(ISNUMBER(C20),"Fuente: "&{PR["tc_alt_src"]},"Cargar TC y fuente en Parametros!B20:B21")', CALC)
-Rr.cell(row=21, column=1, value="Nota: impuesto y gastos se mantienen en USD fijos en ambos escenarios (así figuran en la planilla). "
-        "Las cifras son indicadores sobre el precio de venta, no retorno sobre inversión total ni rentabilidad garantizada.").font = NOTE
+put(PJ, "A14", "Referencia de mercado: alquiler actual vs. avisos publicados en Ciudad Nueva", TITLE)
+header(PJ, 15, ["Tipología", "Promedio actual (Gs)", "Mercado bajo (Gs)", "Mercado alto (Gs)", "Brecha vs. bajo", "Unidades", ""])
+mk = [("1 dormitorio", '"1 dormitorio"', PR["mk1_lo"], PR["mk1_hi"]), ("2 dormitorios", '"2 dormitorios"', PR["mk2_lo"], PR["mk2_hi"])]
+for i, (lab, crit, lo, hi) in enumerate(mk, 16):
+    put(PJ, f"A{i}", lab, BOLD)
+    put(PJ, f"B{i}", f"=AVERAGEIFS({RNG('H')},{RNG('E')},{crit})", CALC, GS)
+    put(PJ, f"C{i}", f"={lo}", LINK, GS)
+    put(PJ, f"D{i}", f"={hi}", LINK, GS)
+    put(PJ, f"E{i}", f"=C{i}/B{i}-1", CALC, "0%")
+    put(PJ, f"F{i}", f"=COUNTIFS({RNG('E')},{crit})", CALC, "0")
+put(PJ, "A18", "Local comercial (desde)", BOLD)
+put(PJ, "C18", f"={PR['mkl_lo']}", LINK, GS)
+PJ.cell(row=19, column=1, value="Avisos publicados (InfoCasas, consulta 03/10/2026, categoría C): incluyen unidades más nuevas o con amenities, por lo que no son "
+        "comparables directos. La brecha indica margen de ajuste en renovaciones, sujeto al estado de cada unidad.").font = NOTE
 
-wb._sheets = [wb["Datos_Originales"], wb["Alquileres_Unidad"], wb["Conciliacion"], wb["Ingresos_Gastos"], wb["Rentabilidad"], wb["Parametros"]]
+# ---------------------------------------------------------------- Plusvalia
+PV = sheet("Plusvalia", "Plusvalía y retorno total a 5 años — tres escenarios", [52, 18, 18, 18])
+legend(PV, 2)
+header(PV, 4, ["Concepto", "Conservador", "Base", "Optimista"])
+AP = [PR["a_cons"], PR["a_base"], PR["a_opt"]]
+NETCOL = ["C", "E", "G"]
+for k, col in enumerate("BCD"):
+    put(PV, f"{col}5", f"={AP[k]}", LINK, "0.0%")
+    put(PV, f"{col}6", f"={PR['precio']}*(1+{col}5)^5", CALC, USD)
+    put(PV, f"{col}7", f"={col}6-{PR['precio']}", CALC, USD)
+    put(PV, f"{col}8", f"=-{col}6*{PR['iva_venta']}", CALC, USD)
+    put(PV, f"{col}9", f"=Proyeccion!{NETCOL[k]}10", LINK, USD)
+    put(PV, f"{col}10", f"={col}7+{col}8+{col}9", BOLD, USD)
+    put(PV, f"{col}11", f"={col}10/{PR['precio']}", CALC, "0.0%")
+    # flujo para TIR
+    put(PV, f"{col}14", f"=-{PR['precio']}", CALC, USD)
+    for y in range(1, 6):
+        extra = f"+{col}6+{col}8" if y == 5 else ""
+        put(PV, f"{col}{14 + y}", f"=Proyeccion!{NETCOL[k]}{4 + y}{extra}", CALC, USD)
+    put(PV, f"{col}20", f"=IRR({col}14:{col}19)", BOLD, "0.00%")
+for i, lab in [(5, "Valorización anual supuesta"), (6, "Valor estimado al año 5"), (7, "Plusvalía estimada"), (8, "IVA de venta (1,5% efectivo)"),
+               (9, "Renta neta acumulada 5 años"), (10, "Ganancia total estimada (plusvalía neta + renta)"), (11, "Ganancia total / precio"),
+               (13, "Flujo para TIR (USD)"), (14, "Año 0 — compra"), (15, "Año 1"), (16, "Año 2"), (17, "Año 3"), (18, "Año 4"), (19, "Año 5 (incluye venta)"),
+               (20, "TIR estimada a 5 años")]:
+    put(PV, f"A{i}", lab, BOLD)
+PV.cell(row=22, column=1, value="Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. Sin gastos de adquisición ni comisión de venta. "
+        "El valor de salida depende del mercado, del estado del edificio y de la ocupación al momento de vender.").font = NOTE
+
+wb._sheets = [wb["Rentabilidad"], wb["Ingresos_Gastos"], wb["Proyeccion"], wb["Plusvalia"], wb["Alquileres_Unidad"], wb["Conciliacion"], wb["Datos_Originales"], wb["Parametros"]]
 for ws in wb.worksheets:
     ws.page_setup.orientation = "landscape"
     ws.page_setup.fitToWidth = 1

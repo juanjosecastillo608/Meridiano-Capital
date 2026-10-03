@@ -1,39 +1,74 @@
 {
- "property": "Edificio Ciudad Nueva", "operation": "Venta", "asset_type": "edificio de renta (13 departamentos + 1 local comercial)",
- "audience": "inversor", "meridiano_role": "comercialización y asesoramiento al inversor (pedido del founder)", "mode": "C",
- "draft": true,
- "signature_preset": "U_brief_founder (título pedido por el founder: Broker Inmobiliario | Meridiano Capital)",
- "skills_consulted": ["meridiano-property-presentation-adapter", "pptx", "xlsx", "meridiano-capital-identity (solo tono)"],
- "brand_sources": ["knowledge-base/brand/03-identidad-visual.md", "knowledge-base/brand/04-tipografia.md", "knowledge-base/brand/05-sistema-cromatico.md", "knowledge-base/brand/09-cierres-y-firmas.md", "knowledge-base/ai/03-sistema-de-consulta.md", "assets/brand_tokens.json (snapshot 2026-09-25, D-098)", "assets/logos/ (lockup trazado + isotipo D-034)", "assets/fonts/ Fraunces Regular + Poppins (OFL)"],
- "decisions_applied": ["D-034 isotipo vigente", "D-036/D-040 Fraunces Regular sin negrita", "Cierre tierra colorada (09-cierres-y-firmas)", "Aviso legal 'venta' (D-098) + cláusula de no garantía de rentabilidad (aviso 'preventa_inversion', D-098)", "[EXTENSION] título de firma según el brief del founder en lugar del título de la Variante A (D-039)"],
+ "property": "Edificio Ciudad Nueva",
+ "operation": "Venta",
+ "asset_type": "edificio de renta (13 departamentos + 1 local comercial)",
+ "audience": "inversor",
+ "meridiano_role": "comercialización y asesoramiento al inversor (pedido del founder)",
+ "mode": "C",
+ "draft": false,
+ "signature_preset": "U_brief_founder (Broker Inmobiliario | Meridiano Capital) + retrato JJC (D-099)",
+ "skills_consulted": [
+  "meridiano-property-presentation-adapter",
+  "pptx",
+  "xlsx",
+  "meridiano-capital-identity (solo tono)"
+ ],
+ "brand_sources": [
+  "knowledge-base/brand/03-identidad-visual.md",
+  "knowledge-base/brand/04-tipografia.md",
+  "knowledge-base/brand/05-sistema-cromatico.md",
+  "knowledge-base/brand/09-cierres-y-firmas.md",
+  "knowledge-base/ai/03-sistema-de-consulta.md",
+  "assets/brand_tokens.json (snapshot 2026-09-25, D-098)",
+  "assets/logos/ (lockup trazado + isotipo D-034)",
+  "assets/fonts/ Fraunces Regular + Poppins (OFL)"
+ ],
+ "decisions_applied": [
+  "D-034 isotipo vigente",
+  "D-036/D-040 Fraunces Regular sin negrita",
+  "D-099 retrato de JJC en el cierre",
+  "D-100 tipo de cambio del día con fecha",
+  "D-101 supuestos del caso (vacancia 3%, administración 8%, mantenimiento 5%, IVA 5/10)",
+  "D-001 IVA alquiler",
+  "D-082/D-083 IVA de venta 1,5%",
+  "Aviso legal 'venta' + no garantía de rentabilidad (D-098 snapshot)",
+  "[EXTENSION] título de firma según el brief del founder"
+ ],
  "contradictions": [
-  {"field": "composicion", "detail": "Mix informado: 13 dptos + 1 local. Detalle de alquileres: 13 filas de dptos + 'Cochera' + 'Cochera y dpto'; el local no figura expresamente.", "open": false},
-  {"field": "descripcion_ingresos", "detail": "La descripción llama 'ingreso anual' a USD 34.500 y 'bruta' al 10,15%: son el resultado neto según gastos informados (USD 34.495) y su rentabilidad. Bruto recalculado: USD 38.459 / 11,31%.", "open": false}
+  {
+   "field": "local_comercial",
+   "detail": "El detalle de alquileres no nombra el local comercial; 'Cochera' y 'Cochera y dpto' se tratan a IVA 10% (criterio conservador).",
+   "open": false
+  }
  ],
  "questions": [
-  "¿A qué unidad corresponde 'Cochera y dpto' (Gs 1.200.000) y dónde está incluido el alquiler del local comercial?",
-  "¿Algún concepto agrupa unidades o duplica ingresos?",
-  "Fecha de vigencia de los alquileres y del tipo de cambio Gs 6.100.",
-  "Contratos vigentes, ocupación real y cobros efectivos (12 meses).",
-  "¿Qué cubren los USD 2.764 de impuesto y los USD 1.200 de gastos?",
-  "Superficie de terreno y construida, antigüedad, situación registral (no informadas: fuera de la presentación).",
-  "Retrato autorizado jjc_retrato.jpg no está en el repo: cierre sin foto."
+  "Confirmar cuál fila del detalle corresponde al local comercial (impacta solo en la asignación del IVA 10%).",
+  "Superficie de terreno y construida (no informada; fuera de la presentación)."
  ],
  "visual_qa": [
-  "d1: vista aérea en modo panel (sin recorte) para conservar el contorno rojo de la fuente",
-  "d3: el QR con hipervínculo hacía desaparecer imágenes al renderizar; se quitó el hipervínculo de la imagen y se mantuvo el enlace de texto",
-  "d4: rótulos del gráfico pasados a miles de Gs con separador es-PY; fila total acortada",
-  "d7: viñetas reemplazadas por lista con filetes (evita OpenSymbol en el PDF); última fila de la tabla en petróleo sin cortes",
-  "d8: etiqueta de rentabilidad neta acortada (se superponía con la línea de base)",
-  "d11: espaciado de filas reducido para separar la nota final",
-  "Revisión final de las 12 diapositivas y de la vista general sin defectos"
+  "d3: mapa propio desde OSM/Overture, rótulos corregidos en 3 iteraciones",
+  "d4/d8: espaciados corregidos tras el 1.er render",
+  "d2: barra inferior acortada a una línea",
+  "Revisión de las 15 diapositivas y vista general sin defectos"
  ],
  "warnings": [
-  "Sin mapa cartográfico incrustado: la red del entorno bloqueó OpenStreetMap/Nominatim y otros servidores de teselas; se usó enlace + QR a Google Maps de la intersección.",
-  "Tipo de cambio Gs 6.100 de la planilla, sin fecha: no es cotización actual; no hay TC alternativo autorizado.",
-  "No hay fotos de interiores ni del local comercial."
+  "TC del día obtenido de resultados de búsqueda (BCP/ABC Color); las páginas originales están bloqueadas por la red del entorno",
+  "Datos de mercado de alquiler: avisos InfoCasas (categoría C)",
+  "Plusvalía y proyección: escenarios hipotéticos rotulados"
  ],
- "text_changes": ["'Cochera y dpto' → 'Cochera y departamento' (presentación); texto literal conservado en el Excel"],
- "limitations": ["Fotos de 1125–1536 px de ancho: aptas para pantalla y PDF; impresión grande limitada"],
- "forbid": ["juanjosecastillo@", "century21", "c21.com.py", "Campo Agreste"], "allowed_emails": ["juancastillo@meridianocapital.net"]
+ "text_changes": [
+  "'Cochera y dpto' → 'Cochera y departamento' (presentación); texto literal conservado en el Excel"
+ ],
+ "limitations": [
+  "Fotos de 1125–1536 px de ancho: aptas para pantalla y PDF; impresión grande limitada"
+ ],
+ "forbid": [
+  "juanjosecastillo@",
+  "century21",
+  "c21.com.py",
+  "Campo Agreste"
+ ],
+ "allowed_emails": [
+  "juancastillo@meridianocapital.net"
+ ]
 }
