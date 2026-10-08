@@ -154,7 +154,7 @@ def _anexo_ii(d, c):
     filas += [['Llaves de buzón', puntos, puntos], ['Controles / tarjetas / tags', puntos, puntos],
               ['Otros medios de acceso', puntos, puntos], ['Observaciones', puntos, puntos],
               ['Referencia de fotos de medidor', '[Archivo ..... / enlace .........]', '[Archivo ..... / enlace .........]']]
-    _tabla(d, ['DATO', 'ENTREGA INICIAL', 'DEVOLUCIÓN FORMAL'], filas, [4.5, 6, 6], 9)
+    _tabla(d, ['DATO', 'ENTREGA INICIAL', 'DEVOLUCION FORMAL'], filas, [4.5, 6, 6], 9)
 
 
 def _anexo_iii(d, c):

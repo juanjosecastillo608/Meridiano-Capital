@@ -1,7 +1,8 @@
 {#
   MODELO DE CONTRATO DE LOCACIÓN — MERIDIANO CAPITAL — v1
-  Texto aprobado por el founder (contrato base JUMACABE / Habitalis, 2026-09),
-  con los datos de cada operación reemplazados por variables de la Ficha Maestra.
+  Texto aprobado por el founder (contrato base JUMACABE / Habitalis, 2026-09), LITERAL
+  (incluidos sus errores de tipeo: instrucción del founder 2026-10-08, "solo cambiar los
+  datos"), con los datos de cada operación reemplazados por variables de la Ficha Maestra.
   NO editar cláusulas acá sin registrar la decisión en DECISION_REGISTER.md.
 
   Marcado: "# " título · "## " subtítulo centrado · "### " encabezado de cláusula
@@ -13,7 +14,7 @@
 
 En la Ciudad de {{ c.lugar_firma }}, {{ c.fecha_firma_letras }}, comparecen:
 
-Por una parte, **{{ c.prop_razon_social }}**, con RUC N.º {{ c.prop_ruc }}, en adelante denominado EL PROPIETARIO, representada en este acto por {{ c.repr_presentacion }}, con C.I. N.º {{ c.repr_ci }}, con domicilio en {{ c.prop_domicilio }}, conforme a las facultades conferidas según {{ c.repr_facultades }}.
+Por una parte, **{{ c.prop_razon_social }}**, con RUC N.º {{ c.prop_ruc }}, en adelante denominado EL PROPIETARIO, representada en este acto por el {{ c.repr_caracter }} {{ c.repr_trat_nombre }}, con C.I. N.º {{ c.repr_ci }}, con domicilio en {{ c.prop_domicilio }}, conforme a las facultades conferidas según {{ c.repr_facultades }}.
 
 Por la otra parte, {{ c.inq_presentacion }}, en adelante denominado EL LOCATARIO.
 
@@ -31,7 +32,7 @@ Las expensas extraordinarias, aportes de capital, gastos estructurales, gastos d
 El presente contrato tendrá una duración de {{ c.duracion_letras }}, desde el **{{ c.inicio_largo }}** hasta el **{{ c.fin_largo }}**. Toda prórroga, renovación, modificación o extensión deberá constar por escrito y estar firmada por ambas partes.
 
 ### CUARTA: FORMA, FECHA Y PRUEBA DE PAGO
-El canon se abonará por adelantado **{{ c.vencimiento }}**. Si el día de vencimiento fuera inhábil bancario, el vencimiento se trasladará al siguiente día hábil bancario, sin que ello constituya mora.
+El canon se abonará por adelantado **{{ c.vencimiento }}**. Si dicho día fuera inhábil bancario, el vencimiento se trasladará al siguiente día hábil bancario, sin que ello constituya mora.
 {% if c.primer_pago %}
 El primer canon se abonará {{ c.primer_pago }}.
 {% endif %}
@@ -65,7 +66,7 @@ EL LOCATARIO no tendrá derecho de retención por mejoras.
 ### NOVENA: MASCOTAS Y REGLAMENTO INTERNO
 La tenencia de animales domésticos se permitirá únicamente de conformidad con el Reglamento Interno del Edificio, incluyendo sus límites y condiciones, y con autorización escrita de EL PROPIETARIO cuando corresponda. EL LOCATARIO responderá por daños, suciedad, molestias o sanciones documentadas que sean directamente atribuibles a sus animales, huéspedes, dependientes o personas introducidas por él.
 
-EL LOCATARIO declara recibir el Reglamento Interno vigente y se obliga a cumplirlo. Las modificaciones futuras serán exigibles si: a) fueron válidamente adoptadas por el órgano competente, b) son obligatorias para los ocupantes y c) fueron comunicadas razonablemente.
+EL LOCATARIO declara recibir el Reglamento Interno vigente y se obliga a cumplirlo. Las modificaciones futuras serán exigibles si: a) fueron válidamente adoptadas por el órgano competente, b) son obligatorias para los ocupantes y c) fueron comunicadas razonablemente."
 
 ### DÉCIMA: REGISTRO Y OBLIGACIONES ANTE LA ADMINISTRACIÓN
 EL PROPIETARIO comunicará a la Administración del Edificio los datos necesarios de EL LOCATARIO para su registro como ocupante, dentro de los tres (3) días hábiles posteriores a la firma y antes de la entrega formal del inmueble. EL PROPIETARIO proporcionará o gestionará, cuando corresponda, las autorizaciones necesarias para que EL LOCATARIO obtenga sus credenciales de acceso, registro de vehículo, uso de aplicación del edificio y acceso a áreas comunes conforme al reglamento.
@@ -77,7 +78,7 @@ Las multas, cargos o reparaciones facturados por el Consorcio serán a cargo de 
 ### DÉCIMA PRIMERA: CONSERVACIÓN, DEFECTOS Y REPARACIONES
 EL LOCATARIO responderá por daños causados por culpa, negligencia, mal uso, uso contrario a instrucciones, o por hechos imputables a sus huéspedes, dependientes o personas bajo su responsabilidad.
 
-EL PROPIETARIO responderá por: desgaste normal, antigüedad y deterioro natural; defectos constructivos; vicios ocultos; problemas estructurales; instalaciones generales; errores de instalación; fallas inherentes de electrodomésticos y equipos no atribuibles a EL LOCATARIO; reparaciones cubiertas por garantía de desarrollador, fabricante, instalador o proveedor.
+EL PROPIETARIO responderá por: desgaste normal, antigüedad y deterioro natural, defectos constructivos;Vicios ocultos;Problemas estructurales;Instalaciones generales;Errores de instalación;Fallas inherentes de electrodomésticos y equipos no atribuibles a EL LOCATARIO. Reparaciones cubiertas por garantía de desarrollador, fabricante, instalador o proveedor.
 
 EL PROPIETARIO entregará a EL LOCATARIO, cuando existan, los manuales, garantías, contactos de servicio, números de serie y documentos de los equipos inventariados; asimismo, gestionará a su costo los reclamos de garantía que correspondan. EL LOCATARIO tendrá treinta (30) días corridos desde la entrega formal y efectiva para informar por correo electrónico o WhatsApp defectos no aparentes o fallas que no fueran razonablemente detectables al momento de la entrega. Esta disposición no limita el derecho de informar vicios ocultos o fallas sobrevinientes cuando sean detectados.
 
@@ -89,7 +90,7 @@ A los efectos de urgencias, EL PROPIETARIO designa los siguientes contactos:
 - Contacto Alternativo: {{ c.contacto_alternativo }}
 - Administración del Edificio: {{ c.contacto_admin }}
 
-En caso de emergencia que afecte seguridad, habitabilidad, instalaciones esenciales, agua, electricidad, ingreso no autorizado, incendio, filtración grave u otro daño inminente, EL PROPIETARIO deberá adoptar medidas razonables de atención inmediata. Si, tras una notificación razonable y comprobable, EL PROPIETARIO no responde y resulta indispensable mitigar un daño urgente, EL LOCATARIO podrá adoptar medidas de emergencia razonables y documentadas. Los gastos necesarios y razonables serán reembolsados por EL PROPIETARIO o acreditados contra el canon, siempre que el evento no sea imputable a EL LOCATARIO, con presentación del comprobante legal con descripción del trabajo realizado, valor y datos del proveedor. Las inspecciones ordinarias de EL PROPIETARIO requerirán aviso previo mínimo de setenta y dos (72) horas, deberán realizarse en horario diurno razonable y acordado, y tendrán frecuencia razonable. Se exceptúan emergencias reales o reparaciones urgentes.
+En caso de emergencia que afecte seguridad, habitabilidad, instalaciones esenciales, agua, electricidad, ingreso no autorizado, incendio, filtración grave u otro daño inminente, EL PROPIETARIO deberá adoptar medidas razonables de atención inmediata. Si, tras una notificación razonable y comprobable, EL PROPIETARIO no responde y resulta indispensable mitigar un daño urgente, EL LOCATARIO podrá adoptar medidas de emergencia razonables y documentadas. Los gastos necesarios y razonables serán reembolsados por EL PROPIETARIO o acreditados contra el canon, siempre que el evento no sea imputable a EL LOCATARIO, con presentación de los comprobante legal con descripción del trabajo realizado, valor y datos del proveedor. Las inspecciones ordinarias de EL PROPIETARIO requerirán aviso previo mínimo de setenta y dos (72) horas, deberán realizarse en horario diurno razonable y acordado, y tendrán frecuencia razonable. Se exceptúan emergencias reales o reparaciones urgentes.
 
 ### DÉCIMA TERCERA: INTERNET Y SERVICIOS PRIVADOS
 La contratación, elección del plan, instalación, activación, pago, mantenimiento, modificación y cancelación de internet/Wi-Fi, telefonía, televisión por cable u otros servicios privados serán de responsabilidad económica de EL LOCATARIO.
@@ -141,7 +142,7 @@ EL LOCATARIO podrá contratar seguro de contenido, responsabilidad civil y otros
 ### VIGÉSIMA: GARANTÍA / DEPÓSITO
 EL PROPIETARIO recibe de EL LOCATARIO la suma de **{{ c.deposito_txt }}**, equivalente a {{ c.deposito_meses_txt }} de alquiler, en concepto de depósito de garantía, sin intereses.
 
-El depósito responderá exclusivamente por: alquileres adeudados; servicios, expensas ordinarias o tasas que correspondan a EL LOCATARIO; daños comprobados causados por EL LOCATARIO que excedan el desgaste normal; multas documentadas y atribuibles a EL LOCATARIO conforme a la Cláusula Décima.
+El depósito responderá exclusivamente por:Alquileres adeudados;Servicios, expensas ordinarias o tasas que correspondan a EL LOCATARIO;Daños comprobados causados por EL LOCATARIO que excedan el desgaste normal;Multas documentadas y atribuibles a EL LOCATARIO conforme a la Cláusula Décima.
 
 Toda deducción deberá constar en una liquidación detallada por escrito, con concepto, importe, fotos, facturas, presupuestos u otra documentación de respaldo suficiente. El depósito no podrá utilizarse para gastos jurídicos generales, costos de desalojo, penalidades no documentadas, reclamos indeterminados ni conceptos no previstos expresamente en esta cláusula.
 
@@ -166,7 +167,7 @@ La consulta o comunicación de información crediticia a entidades autorizadas s
 EL PROPIETARIO deberá adoptar medidas razonables para corregir o actualizar información inexacta, errónea o correspondiente a obligaciones ya canceladas.
 
 ### VIGÉSIMA TERCERA: ENTREGA Y DEVOLUCIÓN
-La entrega y devolución del inmueble se documentarán mediante acta firmada por ambas partes, incluyendo como mínimo: fecha y hora; estado general; inventario; fotografías; lecturas de medidor; llaves; controles; tarjetas y dispositivos de acceso;{% if c.tiene_cochera %} acceso a cochera;{% endif %} observaciones; comprobantes de servicios disponibles; deducciones aceptadas, si las hubiera.
+La entrega y devolución del inmueble se documentarán mediante acta firmada por ambas partes, incluyendo como mínimo: Fecha y hora; Estado general; Inventario; Fotografías; Lecturas de medidor; Llaves; Controles; Tarjetas y dispositivos de acceso;{% if c.tiene_cochera %} Acceso a cochera;{% endif %} Observaciones; Comprobantes de servicios disponibles; Deducciones aceptadas, si las hubiera.
 
 Las partes procurarán realizar una revisión conjunta al menos ocho (8) días antes del vencimiento. Esta revisión no sustituye el acta final de devolución y entrega de llaves en la fecha efectiva de restitución.
 
@@ -175,13 +176,17 @@ EL LOCATARIO entregará las facturas disponibles y colaborará razonablemente pa
 ### VIGÉSIMA CUARTA: DOMICILIOS, NOTIFICACIONES Y JURISDICCIÓN
 Para notificaciones ordinarias, las partes reconocen los siguientes medios complementarios:
 
-**EL PROPIETARIO**
-- Correo electrónico: {{ c.prop_email_notif }}
-- WhatsApp/teléfono: {{ c.prop_tel_notif }}
+EL PROPIETARIO
 
-**EL LOCATARIO**
-- Correo electrónico: {{ c.inq_email }}
-- WhatsApp/teléfono: {{ c.inq_tel }}
+Correo electrónico: {{ c.prop_email_notif }}
+
+WhatsApp/teléfono: {{ c.prop_tel_notif }}
+
+EL LOCATARIO
+
+Correo electrónico: {{ c.inq_email }}
+
+WhatsApp/teléfono: {{ c.inq_tel }}
 
 Las comunicaciones operativas podrán realizarse por correo electrónico o WhatsApp, conservando prueba razonable de envío y recepción. Para intimaciones de pago, rescisión, constitución en mora y demás comunicaciones para las cuales la ley exija forma fehaciente, deberán utilizarse los medios legalmente exigidos. Toda cuestión judicial será sometida a los tribunales ordinarios competentes de la Ciudad de Asunción, sin perjuicio de las normas imperativas aplicables.
 
@@ -192,7 +197,7 @@ En prueba de conformidad, se firman dos (2) ejemplares de un mismo tenor y a un 
 [[FIRMAS]]
 [[SALTO]]
 # ANEXO I
-## INVENTARIO DETALLADO DE BIENES MUEBLES E INSTALACIONES{% if c.primera_ocupacion %} (UNIDAD NUEVA – PRIMERA OCUPACIÓN){% endif %}
+## INVENTARIO DETALLADO DE BIENES MUEBLES E INSTALACIONES{% if c.primera_ocupacion %} (UNIDAD NUEVA – PRIMERA OCUPACION){% endif %}
 ## {{ c.inmueble_ref }}
 
 Este Anexo forma parte integrante del Contrato de Alquiler celebrado el {{ c.fecha_firma_larga }} entre {{ c.prop_razon_social }}, como EL PROPIETARIO, y {{ c.inq_nombre }}, como EL LOCATARIO.
@@ -207,27 +212,33 @@ Nota: Los daños o faltantes que excedan el desgaste normal deberán ser documen
 [[FIRMAS]]
 [[SALTO]]
 # ANEXO II
-## ESTADO DE SERVICIOS PÚBLICOS Y ENTREGA DE LLAVES – DEVOLUCIÓN DE LLAVES
+## ESTADO DE SERVICIOS PUBLICOS Y ENTREGA DE LLAVES – DEVOLUCION DE LLAVES
 ## {{ c.inmueble_ref }}
 
 Este Anexo forma parte integrante del Contrato de Alquiler celebrado el {{ c.fecha_firma_larga }} entre {{ c.prop_razon_social }} y {{ c.inq_nombre }}.
 [[ANEXO_II]]
 Se adjuntará una fotografía digital legible del medidor en la entrega inicial y otra en la devolución formal.
 
-EL LOCATARIO será responsable únicamente por el consumo de energía correspondiente al período comprendido entre las lecturas de entrega y devolución, incluso si la factura se emite con posterioridad.
+EL LOCATARIO será responsable únicamente por el consumo de energía correspondiente al período comprendido entre las lecturas de entrega y devolución, incluso si la factura se emite con posterior
 
-**Entrega formal** — Fecha: ____/____/________ Hora: ____:____
+Entrega formal
+
+Fecha: / /
+Hora: :
 [[FIRMAS]]
-**Devolución formal** — Fecha: ____/____/________ Hora: ____:____
+Devolución formal
+
+Fecha: / /
+Hora: :
 [[FIRMAS]]
 [[SALTO]]
 # ANEXO III
-## ACTA Y FICHA FOTOGRÁFICA DEL ESTADO INICIAL{% if c.primera_ocupacion %} (UNIDAD NUEVA – PRIMERA OCUPACIÓN){% endif %}
+## ACTA y FICHA FOTOGRAFICA DEL ESTADO INICIAL{% if c.primera_ocupacion %} (UNIDAD NUEVA – PRIMERA OCUPACION){% endif %}
 ## {{ c.inmueble_ref }}
 
 Este Anexo forma parte integrante del Contrato de Alquiler celebrado el {{ c.fecha_firma_larga }} entre {{ c.prop_razon_social }} y {{ c.inq_nombre }}.
 [[ANEXO_III]]
-Fecha del registro: ____/____/________
+Fecha del registro: ... ../ ....... / ............
 
 Medio de conservación o enlace:
 
@@ -235,7 +246,7 @@ Las partes declaran que los archivos identificados en este Anexo forman parte de
 [[FIRMAS]]
 [[SALTO]]
 # ANEXO IV
-## GESTIÓN DE DATOS DE FACTURACIÓN DE ANDE
+## GESTION DE DATOS FACTURACION DE ANDE
 ## NIS (Número Identificador de Suministro): {{ c.inm_nis }}
 ## {{ c.inmueble_ref }}
 
@@ -246,10 +257,10 @@ EL LOCATARIO podrá solicitar ante ANDE su registro o actualización de datos de
 EL PROPIETARIO proporcionará cooperación razonable, documentación y firma de formularios que ANDE requiera del propietario, titular registral del suministro o representante autorizado.
 
 EL LOCATARIO será responsable de:
-- Presentar su C.I. o RUC y demás documentos personales requeridos;
-- Gestionar el registro, actualización o desvinculación de sus datos cuando corresponda;
-- Pagar consumos correspondientes a su período efectivo de ocupación;
-- Remitir al PROPIETARIO los comprobantes razonables de pago o de solicitud de desvinculación cuando se requieran para la liquidación final.
+. Presentar su C.I. o RUC y demás documentos personales requeridos;
+. Gestionar el registro, actualización o desvinculación de sus datos cuando corresponda;
+. Pagar consumos correspondientes a su período efectivo de ocupación;
+. Remitir al PROPIETARIO los comprobantes razonables de pago o de solicitud de desvinculación cuando se requieran para la liquidación final.
 
 La falta de conclusión del trámite por causas administrativas atribuibles a ANDE no impedirá la devolución del depósito si EL LOCATARIO demuestra haber presentado la solicitud, ha entregado el inmueble formalmente y no existen deudas atribuibles a su período de ocupación.
 

@@ -40,7 +40,7 @@ def check(nombre, cond):
         FALLAS.append(nombre)
 
 
-def correr(campos=None, quitar=(), extra=None):
+def correr(campos=None, quitar=(), extra=None, base=False):
     f = copy.deepcopy(BASE)
     f['campos'].update(campos or {})
     for k in quitar:
@@ -49,7 +49,7 @@ def correr(campos=None, quitar=(), extra=None):
         f.update(extra)
     tmp = Path(tempfile.mkdtemp())
     (tmp / 'f.json').write_text(__import__('json').dumps(f, ensure_ascii=False), encoding='utf-8')
-    r = G.generar(tmp / 'f.json', tmp / 'out')
+    r = G.generar(tmp / 'f.json', tmp / 'out', completar_con_base=base)
     c = tmp / 'out' / 'CONTRATO_TEST-001.docx'
     return r, (D.texto_docx(c) if c.exists() else '')
 
@@ -92,6 +92,13 @@ check('sin canon → NO_GENERABLE', r['contrato'] == 'CONTRATO_NO_GENERABLE')
 
 r, t = correr(quitar=['inm_destino'])
 check('sin destino → APTO_PARA_REVISION con resaltado', r['contrato'] == 'CONTRATO_APTO_PARA_REVISION' and '⟦REVISIÓN REQUERIDA: Destino' in t)
+
+r, t = correr(quitar=['inm_destino', 'iva_tasa', 'inm_primera_ocupacion', 'inm_cochera', 'inq_tel'], base=True)
+check('modo contrato base: destino/IVA/primera ocupación tomados del base', 'principalmente a vivienda personal' in t
+      and 'IVA del 5%' in t and 'para primera ocupación' in t)
+check('modo contrato base: nunca completa datos del locatario ni la cochera',
+      '⟦REVISIÓN REQUERIDA: Teléfono' in t and '⟦REVISIÓN REQUERIDA: Cochera' in t)
+check('modo contrato base: lo tomado queda registrado', len(r['tomados_de_base']) == 3)
 
 r, t = correr({'inm_ctacte': 'xx-xxxx-01'})
 check('placeholder xx-xxxx-01 → faltante', 'xx-xxxx-01' not in t and r['contrato'] == 'CONTRATO_APTO_PARA_REVISION')

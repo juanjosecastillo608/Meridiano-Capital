@@ -35,6 +35,16 @@ propietario para notificaciones, cochera (N° o NO), primera ocupación, destino
 autorización de domicilio fiscal/comercial, tasa de IVA, los 3 contactos de urgencia y el
 primer pago. Además, la dirección del edificio difiere de la del contrato base (N° 2100 vs. N.º 986): hay que confirmarla.
 
+## Regeneración literal sobre el contrato base (D-098, 2026-10-08)
+
+El founder indicó que el contrato base está completo y que solo deben cambiarse los datos por
+los de la ficha, dejando tal cual lo que la ficha no trae. Se regeneró en modo
+`--completar-con-base`. Se tomaron del base: destino, IVA 5%, primera ocupación,
+autorización de domicilio fiscal/comercial, tratamiento del representante, medios de
+notificación del propietario y contactos de urgencia. Resultado: **CONTRATO_APTO_PARA_REVISION**,
+control final 38/38 OK. **Único dato abierto: la cochera de 16 A.** No se copió la Cochera N.º 54,
+que figura en el base para el 16 F.
+
 ## Alertas abiertas
 
 - Cuenta de tercero en EE.UU. mientras factura la S.A.: la contadora define el

@@ -18,7 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from motor import ficha as F                     # noqa: E402
-from motor.validacion import validar_y_contexto  # noqa: E402
+from motor.validacion import validar_y_contexto, aplicar_valores_base  # noqa: E402
 from motor import documento as D                 # noqa: E402
 from motor.ficha import _norm                    # noqa: E402
 
@@ -121,6 +121,10 @@ def informe(path, ref, ficha, hall, chk, marcas, est, c, archivos):
         D.parrafo(d, f"• {a['documento']}: PENDIENTE_DOCUMENTAL. {a.get('observacion', '')}", A.LEFT, 10, after=2)
     if not c['_pendientes_documentales']:
         D.parrafo(d, 'Ninguno.', A.LEFT, 10)
+    if ficha.get('tomados_de_base'):
+        D.parrafo(d, '**E2. DATOS QUE NO FIGURAN EN LA FICHA, TOMADOS TAL CUAL DEL CONTRATO BASE**', A.LEFT)
+        D._tabla(d, ['Campo', 'Valor usado', 'Origen'], [[t['campo'], t['valor'], t['origen']] for t in ficha['tomados_de_base']],
+                 [4.5, 7.5, 4.5], 8.5)
     if ficha.get('reglas'):
         D.parrafo(d, '**F. REGLAS ESCRITAS EN LA FICHA (para verificación humana)**', A.LEFT)
         for r in ficha['reglas']:
@@ -137,12 +141,14 @@ def informe(path, ref, ficha, hall, chk, marcas, est, c, archivos):
     d.save(path)
 
 
-def generar(ficha_path, salida, ref=None, permitir_repo=False):
+def generar(ficha_path, salida, ref=None, permitir_repo=False, completar_con_base=False, base_externa=None):
     salida = Path(salida)
     if _dentro_del_repo(salida) and not permitir_repo:
         sys.exit(f'ERROR: {salida} está dentro del repo. La ficha y el contrato tienen PII: elegí una carpeta fuera del repo.')
     salida.mkdir(parents=True, exist_ok=True)
     ficha = F.leer(ficha_path)
+    if completar_con_base:
+        aplicar_valores_base(ficha, base_externa)
     c, hall, p = validar_y_contexto(ficha)
     ref = ref or ficha['campos'].get('id_expediente') or re.sub(r'[^A-Za-z0-9]+', '_', f"{c['_ficha'].get('inm_unidad', '')}_{c['_ficha'].get('inq_nombre', '')}").strip('_')[:60] or 'EXPEDIENTE'
     archivos, chk, marcas = [], [], []
@@ -161,7 +167,8 @@ def generar(ficha_path, salida, ref=None, permitir_repo=False):
     informe(control, ref, ficha, hall, chk, marcas, est, c, archivos + [f'control_{ref}.json'])
     res = {'ref': ref, 'ficha': est[0], 'contrato': est[1], 'expediente': est[2], 'hallazgos': hall,
            'control_final': chk, 'resaltados': list(dict.fromkeys(marcas)),
-           'pendientes_documentales': c['_pendientes_documentales'], 'archivos': archivos}
+           'pendientes_documentales': c['_pendientes_documentales'], 'archivos': archivos,
+           'tomados_de_base': ficha.get('tomados_de_base', [])}
     (salida / f'control_{ref}.json').write_text(json.dumps(res, ensure_ascii=False, indent=1, default=str), encoding='utf-8')
     return res
 
@@ -172,6 +179,9 @@ def main():
     ap.add_argument('--salida', help='Carpeta de salida (fuera del repo)')
     ap.add_argument('--ref', help='Referencia del expediente para los nombres de archivo')
     ap.add_argument('--plantilla-ficha', help='Escribe la Ficha Maestra v2 en blanco en esta ruta y termina')
+    ap.add_argument('--completar-con-base', nargs='?', const='', metavar='VALORES_BASE.json',
+                    help='Lo que no figura en la ficha se toma tal cual del contrato base. Opcional: .json (FUERA del repo) '
+                         'con datos del propietario/edificio del contrato base')
     ap.add_argument('--migrar', help='Escribe la ficha leída en formato v2 (prellenada) en esta ruta y termina')
     a = ap.parse_args()
     if a.plantilla_ficha:
@@ -188,7 +198,12 @@ def main():
         F.escribir_docx(a.migrar, vals); print('Ficha migrada a v2:', a.migrar); return
     if not a.salida:
         ap.error('falta --salida')
-    r = generar(a.ficha, a.salida, a.ref)
+    if a.completar_con_base and _dentro_del_repo(Path(a.completar_con_base)):
+        sys.exit('ERROR: el archivo de valores base tiene PII; guardalo fuera del repo.')
+    r = generar(a.ficha, a.salida, a.ref, completar_con_base=a.completar_con_base is not None,
+                base_externa=a.completar_con_base or None)
+    for t in r['tomados_de_base']:
+        print(f"  · tomado del contrato base: {t['campo']} = {t['valor']}")
     print(f"FICHA: {r['ficha']}\nCONTRATO: {r['contrato']}\nEXPEDIENTE: {r['expediente']}")
     for h in r['hallazgos']:
         print(f"  - [{h['estado']}] {h['campo']}: {h['detalle']}" + ('  (BLOQUEA)' if h['bloquea'] else ''))

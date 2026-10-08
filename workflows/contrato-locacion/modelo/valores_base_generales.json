@@ -1,0 +1,9 @@
+{
+  "_origen": "Términos del contrato base aprobado (JUMACABE / Habitalis, 2026-09) que se usan TAL CUAL cuando la ficha no los trae, solo en modo --completar-con-base (instrucción del founder 2026-10-08: 'lo que no figura en la ficha se deja tal cual está en el contrato'). Sin PII.",
+  "campos": {
+    "inm_destino": "principalmente a vivienda personal",
+    "iva_tasa": "5%",
+    "inm_primera_ocupacion": "SI",
+    "inm_autoriza_domicilio": "SI"
+  }
+}

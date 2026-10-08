@@ -140,21 +140,42 @@ pendientes, reglas escritas en la ficha) y `control_<ref>.json`.
   (nunca se copian bienes de otra unidad) y el expediente queda con pendiente documental.
 - "No incorporar a X como parte" escrito en la ficha → el control verifica que X no figure.
 
-### Diferencias deliberadas frente al contrato base (validadas por regresión)
+### Texto literal del contrato base (D-098)
 
-Se regeneró el contrato base desde una ficha con sus mismos datos: el texto coincide salvo:
+El modelo reproduce **literalmente** el contrato base, incluidos sus errores de tipeo
+("los comprobante legal", "con posterior", la comilla suelta de la Cláusula Novena, listas
+sin espacio después del ";"), por instrucción del founder: *"el contrato de locación de
+MERIDIANO Capital está completo, solo debes cambiar los datos del contrato por los datos de
+la ficha"*. Solo cambian los datos. Validado por regresión: al regenerar el contrato base desde
+una ficha con sus datos, las únicas diferencias de texto son:
 
-1. Comparecencia del representante: "por el Sr. *Nombre*, en su carácter de *Carácter*" (el
-   carácter sale de la ficha en vez de ir fijo delante del nombre).
-2. Pago: "Si el día de vencimiento fuera inhábil…" (sirve tanto para un día fijo como para una ventana 1–5).
-3. Cuenta: se listan con etiqueta los datos bancarios que tenga la ficha (banco, titular,
-   documento, número, routing, SWIFT, IBAN) y se agrega la cláusula de cuenta de tercero
-   (regla 18 del sistema v1.0) cuando corresponde.
-4. Correcciones de tipeo/puntuación: listas con "; " y minúscula, "del comprobante legal",
-   "con posterioridad" (el base estaba cortado), tildes en títulos de anexos, comilla suelta eliminada.
-5. Anexo I: los bienes del base (16 F) no se copian; se cargan desde la ficha de cada unidad.
-6. **[EXTENSION]** Tope de la penalidad por mora = 5% del canon (en el base, USD 47,50 sobre
-   USD 950). Ocupación posterior: canon/30 y 50%, con el mismo redondeo que el base.
+1. Comparecencia: "por el *{Carácter}* *{Sr.}* *{Nombre}*". El carácter sale de la ficha
+   (en LOC-001: "Síndico de la empresa").
+2. Cuenta: los rótulos del base (Banco, Codigo Swift, Titular de la cuenta, CI, Cuenta en
+   dólares estadounidenses N.º) y, a continuación, los datos extra que traiga la ficha
+   (dirección del banco, plataforma, tipo, routing, IBAN).
+3. Cuenta de tercero: se agrega el párrafo de designación, autorización y efecto cancelatorio
+   cuando el titular ≠ propietario (regla 18 del sistema v1.0; en LOC-001 lo pide además la propia ficha).
+4. Anexo I: los bienes del 16 F no se copian, porque el inventario es propio de cada unidad.
+5. **[EXTENSION]** Tope de mora = 5% del canon (USD 47,50 sobre USD 950 en el base).
+
+### Modo "contrato base": lo que no figura en la ficha queda como en el base (D-098)
+
+```bash
+python workflows/contrato-locacion/generar_contrato.py FICHA.docx --salida CARPETA \
+       --completar-con-base ~/expedientes/VALORES_BASE_JUMACABE_HABITALIS.json
+```
+
+- `modelo/valores_base_generales.json` (en el repo, sin PII): términos del base que se usan
+  tal cual: destino "principalmente a vivienda personal", IVA 5%, primera ocupación, autorización de
+  domicilio fiscal/comercial.
+- El `.json` externo (**fuera del repo**, con PII) trae los datos del propietario y del edificio del
+  base (tratamiento del representante, e-mail/WhatsApp de notificaciones, contactos de urgencia,
+  administración). Se aplican **solo** si la ficha es del mismo propietario o del mismo edificio.
+- **Nunca** se completan desde el base los datos del locatario ni los propios de la unidad
+  (cochera, NIS, Cta. Cte. Ctral., inventario): alquilarle a un inquilino la cochera de otra unidad
+  sería un error material. Esos datos quedan resaltados.
+- Todo lo tomado del base figura en el CONTROL (sección E2).
 
 ### Hallazgo al construir el motor
 

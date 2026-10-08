@@ -67,6 +67,38 @@ def _minuscula_inicial(s):
     return s[:1].lower() + s[1:] if s else s
 
 
+def aplicar_valores_base(ficha, base_externa=None):
+    """Modo "contrato base": lo que no figura en la ficha se toma tal cual del contrato base.
+
+    - modelo/valores_base_generales.json (en el repo, sin PII): términos del contrato base.
+    - base_externa (.json FUERA del repo, con PII): datos del propietario y del edificio del
+      contrato base; solo se aplican si la ficha es del mismo propietario / mismo edificio.
+    Nunca se completan datos del locatario ni datos propios de la unidad (cochera, NIS, Cta. Cte., inventario).
+    Devuelve la lista de campos tomados del base.
+    """
+    campos = ficha.setdefault('campos', {})
+    tomados = []
+
+    def completar(dic, origen):
+        for k, v in dic.items():
+            if k in CAMPO and es_placeholder(campos.get(k, '')) and v:
+                campos[k] = v
+                tomados.append({'campo': CAMPO[k][2], 'valor': v, 'origen': origen})
+
+    gen = json.loads((AQUI / 'modelo' / 'valores_base_generales.json').read_text(encoding='utf-8'))
+    completar(gen['campos'], 'contrato base (términos generales)')
+    if base_externa:
+        b = json.loads(Path(base_externa).read_text(encoding='utf-8'))
+        prop = b.get('propietario', {})
+        if _norm(prop.get('aplica_si_razon_social', '')) == _norm(campos.get('prop_razon_social', '')):
+            completar(prop.get('campos', {}), 'contrato base (mismo propietario)')
+        edi = b.get('edificio', {})
+        if _norm(edi.get('aplica_si_edificio', '')) == _norm(campos.get('inm_edificio', '')):
+            completar(edi.get('campos', {}), 'contrato base (mismo edificio)')
+    ficha['tomados_de_base'] = tomados
+    return tomados
+
+
 def validar_y_contexto(ficha):
     f = {k: (v or '').strip() for k, v in ficha.get('campos', {}).items()}
     hall = []
@@ -106,6 +138,8 @@ def validar_y_contexto(ficha):
     trat = val('repr_tratamiento')
     c['repr_nombre'] = ph('repr_nombre')
     art_r = {'SR': 'el', 'SRA': 'la', 'SRTA': 'la'}.get(_norm(trat).replace(' ', ''), '')
+    c['repr_caracter'] = ph('repr_caracter')
+    c['repr_trat_nombre'] = f"{(trat + ' ') if trat else ''}{c['repr_nombre']}"
     c['repr_presentacion'] = f"{(art_r + ' ') if art_r else ''}{(trat + ' ') if trat else ''}{c['repr_nombre']}, en su carácter de {ph('repr_caracter')}"
 
     trat_i = val('inq_tratamiento')
@@ -276,17 +310,18 @@ def validar_y_contexto(ficha):
     if ini and dias and not c['primer_pago']:
         lo, hi = min(dias), max(dias)
         if not (lo <= ini.day <= hi):
-            H('Primer pago', 'REVISION_REQUERIDA', f'El contrato inicia el día {ini.day} y el vencimiento es {venc.lower()}: '
-              'definir en la ficha ("Primer pago") cuándo se paga el primer canon. El modelo hace devengar el canon desde la entrega formal.')
+            H('Primer pago', 'OBSERVACION', f'El contrato inicia el día {ini.day} y el vencimiento es {venc.lower()}: '
+              'si se quiere precisar, completar "Primer pago" en la ficha. El modelo ya cubre el caso: el canon se devenga desde la entrega formal y se paga por adelantado.', revision=False)
 
     # 6. Cuenta
     ben = val('cta_beneficiario')
     c['cta_beneficiario'] = ph('cta_beneficiario')
     filas = []
-    for k, etq in (('cta_banco', 'Banco'), ('cta_dir_banco', 'Dirección del banco'), ('cta_beneficiario', 'Titular de la cuenta'),
-                   ('cta_doc_titular', 'Documento del titular'), ('cta_moneda', 'Moneda / plataforma'), ('cta_tipo', 'Tipo de cuenta'),
-                   ('cta_numero', 'Número de cuenta'), ('cta_routing', 'Routing (Wire/ACH)'), ('cta_swift', 'Código SWIFT/BIC'),
-                   ('cta_iban', 'IBAN')):
+    # Mismo orden y rótulos que el contrato base; los datos extra de la ficha van al final.
+    for k, etq in (('cta_banco', 'Banco'), ('cta_swift', 'Codigo Swift'), ('cta_beneficiario', 'Titular de la cuenta'),
+                   ('cta_doc_titular', 'CI'), ('cta_numero', 'Cuenta en dólares estadounidenses N.º'),
+                   ('cta_dir_banco', 'Dirección del banco'), ('cta_moneda', 'Moneda / plataforma'), ('cta_tipo', 'Tipo de cuenta'),
+                   ('cta_routing', 'Routing (Wire/ACH)'), ('cta_iban', 'IBAN')):
         if val(k) or CAMPO[k][3] == 'C':
             filas.append((etq, ph(k)))
     c['cuenta_filas'] = filas
