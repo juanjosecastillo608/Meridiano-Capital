@@ -25,6 +25,16 @@ control de expediente tienen PII completa y se conservan **fuera de git**
   lo confirma el escribano).
 - **EXPEDIENTE_CON_PENDIENTES_DOCUMENTALES**: Anexo I – Inventario.
 
+## Regeneración con el modelo aprobado (D-097, 2026-10-08)
+
+Contrato regenerado automáticamente sobre el modelo base de Meridiano (WF-04 v1.1):
+**FICHA_VALIDADA · CONTRATO_APTO_PARA_REVISION · EXPEDIENTE_CON_PENDIENTES_DOCUMENTALES**,
+control final 32/32 OK. El modelo pide datos que la ficha v1 no tenía. Se entregó al
+founder una ficha v2 prellenada (fuera de git) para completar: e-mail y WhatsApp del
+propietario para notificaciones, cochera (N° o NO), primera ocupación, destino,
+autorización de domicilio fiscal/comercial, tasa de IVA, los 3 contactos de urgencia y el
+primer pago. Además, la dirección del edificio difiere de la del contrato base (N° 2100 vs. N.º 986): hay que confirmarla.
+
 ## Alertas abiertas
 
 - Cuenta de tercero en EE.UU. mientras factura la S.A.: la contadora define el

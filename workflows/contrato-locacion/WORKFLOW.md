@@ -1,6 +1,6 @@
 # WF-04 · Contrato de Locación (Sistema de Contratos de Locación v1.0)
 
-Capa WORKFLOWS. Adoptado el 2026-10-08 (D-096) a partir del prompt maestro
+Capa WORKFLOWS. Adoptado el 2026-10-08 (D-096) y automatizado el mismo día (D-097) a partir del prompt maestro
 "SISTEMA DE CONTRATOS DE LOCACIÓN – MERIDIANO, Versión 1.0" del founder.
 Primer caso: `contracts/cases/LOC-001/`.
 
@@ -89,9 +89,75 @@ En `contracts/cases/LOC-NNN/` solo se versiona un `README.md` de estado, con
 alias (`LOCATARIO-A`, `TERCERO-BENEFICIARIO-A`), sin datos de contacto ni
 números de cuenta.
 
-## Pendiente del sistema
+## Automatización (v1.1, D-097)
 
-No existe todavía en el repo un **modelo contractual de locación aprobado por
-MERIDIANO**. Hasta que exista, las cláusulas generales que no salen de la
-ficha (conservación, jurisdicción, domicilios) se marcan `[EXTENSION]` en el
-control y quedan sujetas a revisión del abogado.
+Desde el 2026-10-08 el contrato **se genera automáticamente desde la ficha**, sobre el
+modelo contractual aprobado por el founder (contrato base JUMACABE / Habitalis, 2026-09).
+
+```bash
+# 1. Ficha en blanco para un expediente nuevo (o copiar plantilla/FICHA_MAESTRA_LOCACION_v2_EN_BLANCO.docx)
+python workflows/contrato-locacion/generar_contrato.py --plantilla-ficha ~/expedientes/LOC-002/FICHA.docx
+
+# 2. Completar la ficha en Word y generar contrato + Anexos I–V + control
+python workflows/contrato-locacion/generar_contrato.py ~/expedientes/LOC-002/FICHA.docx --salida ~/expedientes/LOC-002/
+
+# Ficha v1 (formato LOC-001) → ficha v2 prellenada con los campos nuevos vacíos
+python workflows/contrato-locacion/generar_contrato.py FICHA_v1.docx --migrar FICHA_v2.docx
+
+# Tests (datos ficticios, sin PII)
+python workflows/contrato-locacion/test_contrato_locacion.py
+```
+
+El generador **se niega a escribir dentro del repo** (PII). Salida por expediente:
+`CONTRATO_<ref>.docx` (membrete Meridiano, cláusulas 1–25, Anexos I–V, firmas),
+`CONTROL_<ref>.docx` (estados, VALIDACION_FICHA, CONTROL_FINAL_CONTRATO, resaltados,
+pendientes, reglas escritas en la ficha) y `control_<ref>.json`.
+
+| Archivo | Qué es |
+|---|---|
+| `modelo/MODELO_CONTRATO_LOCACION_v1.txt` | Texto del contrato aprobado con variables `{{ c.* }}` y bloques condicionales. Cambiar una cláusula = registrar decisión. |
+| `modelo/parametros_modelo.json` | Constantes del modelo (mora 0,15%/día, tope, preavisos, devolución de depósito). |
+| `plantilla/shell_meridiano.docx` | Membrete (logo + pie) del contrato base, sin contenido. |
+| `plantilla/FICHA_MAESTRA_LOCACION_v2_EN_BLANCO.docx` | Ficha v2 (niveles C/R/O por campo). |
+| `motor/ficha.py` | Esquema de la ficha, lector (.docx v1/v2 o .json) y escritor. |
+| `motor/validacion.py` | VALIDACION_FICHA() + contexto del modelo. Nunca completa un dato faltante. |
+| `motor/documento.py` | Render a .docx. Datos faltantes salen resaltados `⟦REVISIÓN REQUERIDA⟧`. |
+| `generar_contrato.py` | CLI + CONTROL_FINAL_CONTRATO() + estados finales. |
+
+### Reglas del motor
+
+- Nivel **C** faltante, codeudor = SI (el modelo no tiene cláusula de codeudor), fechas
+  incoherentes, IVA/expensas no incluidos, reajuste, moneda ≠ USD, inmueble no amoblado o
+  servicios a cargo del propietario → **CONTRATO_NO_GENERABLE** (el modelo no cubre el caso;
+  se necesita cláusula aprobada).
+- Nivel **R** faltante → el contrato se genera con el punto resaltado → **APTO_PARA_REVISION**.
+- Valores de relleno (`xx-xxxx-01`, `XXXX`, `[COMPLETAR]`, `000000`) = faltante.
+- Sin hallazgos de revisión, sin resaltados y control final 100% → **APTO_PARA_FIRMA**.
+- Cuenta cuyo titular ≠ propietario → cláusula de designación, autorización y efecto
+  cancelatorio; si el titular mezcla sociedad y persona física, además pide confirmar el titular real.
+- Tasa de IVA vs. destino contrastada con D-001/D-045 (vivienda 5%; comercial/temporal 10%).
+- Inventario: si la ficha no trae ítems, el Anexo I sale como planilla por sectores sin bienes
+  (nunca se copian bienes de otra unidad) y el expediente queda con pendiente documental.
+- "No incorporar a X como parte" escrito en la ficha → el control verifica que X no figure.
+
+### Diferencias deliberadas frente al contrato base (validadas por regresión)
+
+Se regeneró el contrato base desde una ficha con sus mismos datos: el texto coincide salvo:
+
+1. Comparecencia del representante: "por el Sr. *Nombre*, en su carácter de *Carácter*" (el
+   carácter sale de la ficha en vez de ir fijo delante del nombre).
+2. Pago: "Si el día de vencimiento fuera inhábil…" (sirve tanto para un día fijo como para una ventana 1–5).
+3. Cuenta: se listan con etiqueta los datos bancarios que tenga la ficha (banco, titular,
+   documento, número, routing, SWIFT, IBAN) y se agrega la cláusula de cuenta de tercero
+   (regla 18 del sistema v1.0) cuando corresponde.
+4. Correcciones de tipeo/puntuación: listas con "; " y minúscula, "del comprobante legal",
+   "con posterioridad" (el base estaba cortado), tildes en títulos de anexos, comilla suelta eliminada.
+5. Anexo I: los bienes del base (16 F) no se copian; se cargan desde la ficha de cada unidad.
+6. **[EXTENSION]** Tope de la penalidad por mora = 5% del canon (en el base, USD 47,50 sobre
+   USD 950). Ocupación posterior: canon/30 y 50%, con el mismo redondeo que el base.
+
+### Hallazgo al construir el motor
+
+El contrato base (16 F) ubica el edificio en **Avenida Molas López N.º 986** y la ficha de
+LOC-001 (16 A) en **N° 2100**, y el base se firmó con Cta. Cte. Ctral. `xx-xxxx-01` (relleno).
+El motor toma siempre lo que diga cada ficha: confirmar la numeración correcta del edificio.

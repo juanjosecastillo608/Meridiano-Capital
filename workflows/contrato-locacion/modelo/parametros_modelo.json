@@ -1,0 +1,11 @@
+{
+  "_origen": "Valores del contrato base aprobado por el founder (JUMACABE / Habitalis, 2026-09). Cambiar acá cambia todos los contratos futuros: registrar el cambio en DECISION_REGISTER.md.",
+  "penalidad_diaria_pct": 0.15,
+  "tope_penalidad_pct_del_canon": 5,
+  "_tope_nota": "[EXTENSION] En el base el tope es USD 47,50 sobre canon USD 950 (= 5%). Se generaliza como 5% del canon.",
+  "ocupacion_posterior_divisor_dias": 30,
+  "ocupacion_posterior_penalidad_pct": 50,
+  "preaviso_rescision_dias": 60,
+  "preaviso_cambio_cuenta_dias_habiles": 10,
+  "devolucion_deposito_dias": 30
+}
