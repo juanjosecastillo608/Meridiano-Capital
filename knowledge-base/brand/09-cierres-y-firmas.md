@@ -55,6 +55,7 @@ En representacion de Meridiano Capital · Asuncion, Paraguay
 
 ## El cierre (ultima pagina o diapositiva)
 
+- **WEB ID — NUNCA en piezas para clientes (D-102, founder 2026-10-10)**: es un numero interno de Meridiano que identifica al captador. No va en portada, pies, cierre, aviso legal ni notas del orador; tampoco en PDF, Excel compartidos ni mensajes.
 - **Retrato de Juan Jose Castillo — SIEMPRE (D-099, founder 2026-10-03)**: toda presentacion cierra con la foto aprobada `production/generadores/assets-puerto-fenix/jjc_retrato.jpg` (en el kit de presentaciones: `d.closing({ photo: ... })`, columna derecha a sangre, rostro sin recortar). No retocar ni deformar.
 
 - Fondo: **tierra colorada #8B3323** — color de cierre de marca (ver `05-sistema-cromatico.md`).

@@ -2,7 +2,7 @@
 
 **Uso interno de Meridiano Capital. No enviar al inversor.**
 Actualización: **2026-10-10** · Estado: **VERSIÓN FINAL PARA EL CLIENTE** · Informe automático: **APROBADO CON OBSERVACIONES**.
-Historial: preliminar (02/10) → final (03/10) → **actualización (10/10): tipo de cambio del día, superficies y 3 fotos nuevas**.
+Historial: preliminar (02/10) → final (03/10) → **actualización (10/10): tipo de cambio del día, superficies, 3 fotos nuevas, año de construcción 1990 y retiro del WEB ID (D-102)**.
 
 ---
 
@@ -13,6 +13,8 @@ Historial: preliminar (02/10) → final (03/10) → **actualización (10/10): ti
 | Actualizar todos los datos a la fecha de hoy | **Tipo de cambio:** Gs **5.694** por USD, cierre interbancario del viernes **09/10/2026** (hoy es sábado). Fuente: BCP, informado por ABC Color el 09/10/2026; mercado minorista ~G. 5.720. La versión anterior usaba Gs 5.873 (02/10/2026). **Mercado:** avisos de alquiler y comparable de venta reconsultados el 10/10/2026 |
 | Terreno 11 × 31 m, 340 m² | Cargado como dato confirmado. **Observación:** 11 × 31 = 341 m². Se usa la superficie informada (340 m²); la diferencia de 1 m² es redondeo de medidas |
 | 1.109 m² construidos | Cargado. Nueva diapositiva 5 "Superficies y valor" y nueva hoja `Superficies_Valor` del Excel |
+| Año de construcción 1990 | Cargado como dato confirmado: 36 años al 2026. Aparece en la portada, el resumen, la diapositiva de superficies (reemplaza al índice de construcción, que pasa a la etiqueta de m²), las condiciones y los riesgos (actualizar instalaciones o impermeabilización según la inspección técnica). La advertencia del costo de reposición ahora dice que no descuenta los 36 años ni el estado de conservación |
+| Quitar el WEB ID de todas las presentaciones | Retirado de la portada, la diapositiva de condiciones, el aviso legal del cierre, el Excel (fuente del precio) y las respuestas del asesor. Verificado con un barrido del PPTX (incluidas las notas), el PDF y el Excel: 0 coincidencias. Regla permanente **D-102**: es un número interno que identifica al captador; solo puede figurar en documentos internos como este |
 | Fotos nuevas | Fachada frontal en la portada (reemplaza a la vista aérea, que pasa al recorrido). Acceso principal y escalera vista hacia el lucernario. El recorrido se dividió en dos diapositivas: fachada y acceso / circulación y terraza |
 
 ## 2. Efecto del tipo de cambio (el mismo ingreso en guaraníes)
@@ -103,15 +105,15 @@ El guaraní se apreció frente al dólar en las últimas semanas. La pieza lo me
 
 | Control | Resultado |
 |---|---|
-| Excel (`recalc.py`) | 230 fórmulas, 0 errores (corregidas 2 referencias de la hoja nueva antes de entregar) |
+| Excel (`recalc.py`) | 232 fórmulas, 0 errores (corregidas 2 referencias de la hoja nueva antes de entregar) |
 | PPTX (`validate.py`) | Todas las validaciones pasan |
 | PDF | 17 páginas generadas desde el PPTX; tipografías incrustadas |
 | Revisión visual | 17 diapositivas + vista general. Se acortó la nota de la portada (cortaba el WEB ID) |
-| Datos personales | Falsos positivos (WEB ID). Sin datos de inquilinos |
+| Datos personales | Falsos positivos (montos en guaraníes leídos como CI/RUC). Sin datos de inquilinos. WEB ID: 0 coincidencias en las piezas del cliente |
 | Informe automático | **APROBADO CON OBSERVACIONES** (`trabajo/VALIDACION_EDIFICIO_CIUDAD_NUEVA.md`) |
 
 **Pendientes, ninguno bloquea el envío:**
 1. Confirmar qué fila del detalle es el local comercial (afecta solo el IVA de 10 %).
 2. Confirmar a la vista el tipo de cambio del BCP del 09/10/2026.
 3. Terreno: confirmar 340 vs. 341 m² con el título.
-4. Antigüedad del edificio, para afinar el análisis de valor.
+4. Casa San Bernardino (otra rama) todavía muestra su WEB ID en portada, pies y cierre: corregir cuando el founder lo autorice (D-102).

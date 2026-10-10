@@ -20,6 +20,7 @@ const OUT = process.argv[2] || path.join(ROOT, "projects/edificio-ciudad-nueva/e
 
 // ---- parámetros (iguales a la hoja Parametros del Excel) ----
 const PRECIO = 340000, TC = 5694, TC_FECHA = "09/10/2026"; // D-100: TC del día (actualización 10/10/2026)
+const ANIO = 1990, ANTIG = 2026 - ANIO; // founder 10/10/2026
 const TERRENO = 340, FRENTE = 11, FONDO = 31, CONSTR = 1109, COSTO_M2 = 650, UNIDADES = 14, COMP_PRECIO = 650000, COMP_UNID = 9; // founder 10/10/2026; costo: 06-costos-de-construccion.md
 const IVA_DPTO = 0.05, IVA_COM = 0.10, VAC = 0.03, ADM = 0.08, MANT = 0.05, FIJOS = 1200, IRE = 0.10, IVA_VENTA = 0.015;
 const ESC = [["Conservador", 0.03, 0.02], ["Base", 0.05, 0.035], ["Optimista", 0.08, 0.05]];
@@ -85,7 +86,7 @@ const PM2 = PRECIO / CONSTR, REPO = CONSTR * COSTO_M2, PREC_REPO = PRECIO / REPO
     photo: IMG("fachada-frontal.jpg"), ax: 0.5, ay: 0.45, photoAlt: "Fachada frontal del edificio",
     eyebrow: "Edificio de renta en venta", title: "Edificio\nCiudad Nueva", subtitle: "9 de Marzo c/ Mayor Bullo  ·  Ciudad Nueva, Asunción",
     figures: [[usd(PRECIO), "Precio de venta"], [`${miles(CONSTR)} m²`, `Construidos sobre ${TERRENO} m² de terreno`]],
-    footnote: `Datos con verificación documental  ·  TC Gs ${miles(TC)} (BCP, ${TC_FECHA})  ·  WEB ID 143028006-118`,
+    footnote: `Construido en ${ANIO}  ·  Datos con verificación documental  ·  TC Gs ${miles(TC)} (BCP, ${TC_FECHA})`,
     notes: `Foto: fachada frontal del edificio (recorte proporcional, sin deformación). ${FUENTES}`,
   });
 
@@ -93,7 +94,7 @@ const PM2 = PRECIO / CONSTR, REPO = CONSTR * COSTO_M2, PREC_REPO = PRECIO / REPO
   let s = d.slide("light"); n++;
   d.eyebrow(s, "Resumen del inmueble");
   d.title(s, "Edificio de renta con 13 departamentos y un local comercial");
-  d.text(s, "Activo en operación, 100% alquilado, a una cuadra de la Av. Eusebio Ayala y a pocos minutos a pie del Mercado 4, el principal polo comercial minorista del país.",
+  d.text(s, `Edificio construido en ${ANIO}, en operación y 100% alquilado, a una cuadra de la Av. Eusebio Ayala y a pocos minutos a pie del Mercado 4, el principal polo comercial minorista del país.`,
     { x: M, y: 1.85, w: 11.5, h: 0.6, fontSize: 13, color: C.grey, lineSpacingMultiple: 1.2 });
   [[usd(PRECIO), "Precio de venta"], [`${miles(CONSTR)} m²`, "Superficie construida"], [`${TERRENO} m²`, `Terreno de ${FRENTE} × ${FONDO} m`], ["6 · 6 · 1", "Dptos. de 1, 2 y 3 dorm. + 1 local"],
    [gs(GS_MES), `Ingreso mensual  ·  ${usd(USD_MES)}`], [pct(YB), "Rentabilidad bruta sobre precio"], [pct(YN), "Rentabilidad neta final"], [pct(PROY[1].tir, 1), "TIR estimada a 5 años (base)"]].forEach((f, i) => {
@@ -167,14 +168,14 @@ const PM2 = PRECIO / CONSTR, REPO = CONSTR * COSTO_M2, PREC_REPO = PRECIO / REPO
     d.text(s, `${FONDO} m de fondo`, { x: xL + wL + 0.1, y: yL + hL / 2 - 0.15, w: 1.4, h: 0.3, fontSize: 10, color: C.grey });
     d.text(s, `${TERRENO} m²`, { x: xL, y: yL + hL / 2 - 0.25, w: wL, h: 0.5, fontFace: SERIF, fontSize: 16, align: "center", color: C.tierra });
   }
-  [[`${miles(CONSTR)} m²`, "Superficie construida total"], [`${dec(IND)} veces`, "Construido sobre la superficie del terreno"],
+  [[`${miles(CONSTR)} m²`, `Superficie construida  ·  ${dec(IND)} veces el terreno`], [`${ANIO}`, `Año de construcción  ·  ${ANTIG} años`],
    [`${usd(PM2)}`, "Por m² construido, terreno incluido"], [`${usd(REPO)}`, `Costo de construir hoy ${miles(CONSTR)} m² (USD ${COSTO_M2}/m², sin terreno)`],
    [pct(PREC_REPO, 0), "El precio frente a ese costo de construcción nueva"], [usd(PRECIO / UNIDADES), `Por unidad de renta (${UNIDADES} unidades)`]].forEach((f, i) => {
     const x = 4.0 + (i % 2) * 4.4, y = 2.15 + Math.floor(i / 2) * 1.35;
     d.hair(s, x, y - 0.12, 4.1);
     d.figure(s, f[0], f[1], { x, y, w: 4.2, size: 24 });
   });
-  d.text(s, `Referencia del barrio: un edificio de 9 unidades en Ciudad Nueva se publica en ${usd(COMP_PRECIO)} (unos ${usd(COMP_PRECIO / COMP_UNID)} por unidad). Valores de referencia, no tasación: el edificio es usado y el costo de construcción nueva no descuenta antigüedad.`,
+  d.text(s, `Referencia del barrio: un edificio de 9 unidades en Ciudad Nueva se publica en ${usd(COMP_PRECIO)} (unos ${usd(COMP_PRECIO / COMP_UNID)} por unidad). Valores de referencia, no tasación: el costo de construcción nueva no descuenta los ${ANTIG} años del edificio ni su estado de conservación.`,
     { x: 4.0, y: 6.15, w: R - 4.0, h: 0.55, fontSize: 9.5, italic: true, color: C.grey, lineSpacingMultiple: 1.15 });
   d.footer(s, n);
   s.addNotes(`Superficies: founder 10/10/2026 (11 × 31 = 341 m²; se usa la superficie informada de 340 m²). Costo USD ${COSTO_M2}/m²: edificio de departamentos, calidad básica (knowledge-base/investment/market-intelligence/construction-costs/06-costos-de-construccion.md). Comparable: InfoCasas Ref #GB49D6, consulta 10/10/2026, precio de oferta sin superficie publicada. Precio/m² construido ${PM2.toFixed(2)}; costo de reposición ${REPO}; precio/reposición ${(PREC_REPO * 100).toFixed(1)}%.`);
@@ -341,12 +342,12 @@ const PM2 = PRECIO / CONSTR, REPO = CONSTR * COSTO_M2, PREC_REPO = PRECIO / REPO
   s._mcDark = true;
   d.figure(s, usd(PRECIO), "Precio de venta", { x: M + 0.4, y: 2.35, w: 4.5, size: 44 });
   d.hair(s, M + 0.4, 3.75, 4.4, C.navy_tint);
-  d.text(s, "Referencia WEB ID 143028006-118", { x: M + 0.4, y: 3.95, w: 4.4, h: 0.3, fontSize: 12 });
+  d.text(s, `Edificio construido en ${ANIO}`, { x: M + 0.4, y: 3.95, w: 4.4, h: 0.3, fontSize: 12 });
   d.text(s, "Precio en dólares estadounidenses. Alquileres cobrados en guaraníes.", { x: M + 0.4, y: 4.4, w: 4.4, h: 0.8, fontSize: 12, transparency: 15, lineSpacingMultiple: 1.2 });
   d.hair(s, M + 0.4, 5.55, 4.4, C.navy_tint);
   d.text(s, `${pct(YB)} bruta  ·  ${pct(YN)} neta final  ·  ${usd(NETO / 12)} netos por mes`, { x: M + 0.4, y: 5.7, w: 4.4, h: 0.6, fontSize: 11, color: C.lapacho, lineSpacingMultiple: 1.2 });
   s._mcDark = false;
-  [["Activo", `13 departamentos y 1 local comercial, más terraza. ${miles(CONSTR)} m² construidos sobre ${TERRENO} m² de terreno.`], ["Ocupación", "100% alquilado. Datos informados con verificación documental."],
+  [["Activo", `13 departamentos y 1 local comercial, más terraza. ${miles(CONSTR)} m² construidos en ${ANIO} sobre ${TERRENO} m² de terreno.`], ["Ocupación", "100% alquilado. Datos informados con verificación documental."],
    ["Ingreso", `${gs(GS_MES)} por mes  ·  ${usd(BRUTO)} por año al tipo de cambio del día.`],
    ["Forma de pago y entrega", "A acordar en la negociación y el boleto de compraventa."]].forEach(([k, v], i) => block(s, 6.3, 1.95 + i * 1.15, R - 6.3, k, v, { fontSize: 13 }));
   d.footer(s, n);
@@ -379,7 +380,7 @@ const PM2 = PRECIO / CONSTR, REPO = CONSTR * COSTO_M2, PREC_REPO = PRECIO / REPO
   d.title(s, "Riesgos a evaluar en un edificio de renta");
   [["Rotación de inquilinos", "La vacancia de la zona es baja, pero no es cero: hay renovaciones, renegociaciones y meses de recambio."],
    ["Tipo de cambio", "Los alquileres se cobran en guaraníes y el precio está en dólares. En las últimas semanas el dólar bajó frente al guaraní; si la tendencia se revierte, la renta en USD baja."],
-   ["Costos de operación", "Un edificio de 13 unidades requiere mantenimiento continuo; obras mayores se presupuestan aparte."],
+   ["Costos de operación", `Un edificio de ${ANIO} con 13 unidades requiere mantenimiento continuo; la inspección técnica define si conviene actualizar instalaciones o impermeabilización.`],
    ["Impuestos", "El impuesto a la renta depende de la estructura de compra y lo determina el contador."],
    ["Valor de reventa", "La plusvalía presentada son escenarios: el valor futuro depende del mercado y del estado del activo."]].forEach(([t, b], i) => {
     const y = 1.95 + i * 0.84;
@@ -398,7 +399,7 @@ const PM2 = PRECIO / CONSTR, REPO = CONSTR * COSTO_M2, PREC_REPO = PRECIO / REPO
     signaturePreset: "U_brief_founder",
     contact: { name: "Lic. Juan José Castillo" },
     photo: RETRATO, photoAlt: "Juan José Castillo",
-    disclaimer: "Documento comercial de referencia. Precio y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa. No constituye una garantía de rentabilidad.  ·  WEB ID 143028006-118",
+    disclaimer: "Documento comercial de referencia. Precio y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa. No constituye una garantía de rentabilidad.",
     notes: "Retrato aprobado de Juan José Castillo (D-099: siempre en el cierre). Firma según el pedido del founder. Contacto: 09-cierres-y-firmas.md.",
   });
 

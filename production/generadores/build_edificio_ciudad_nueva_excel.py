@@ -97,7 +97,7 @@ P = sheet("Parametros", "Parámetros del análisis — todos editables", [46, 16
 legend(P, 2)
 header(P, 4, ["Parámetro", "Valor", "Tipo", "Fuente / criterio"])
 PR = plist(P, 5, [
-    ("precio", "Precio de venta (USD)", 340000, USD, "Dato confirmado", "Founder (WEB ID 143028006-118)."),
+    ("precio", "Precio de venta (USD)", 340000, USD, "Dato confirmado", "Founder."),
     ("tc", "Tipo de cambio del día (Gs por USD)", 5694, '#,##0', "Dato de mercado",
      "Cierre del mercado interbancario del viernes 09/10/2026 (último día hábil al sábado 10/10/2026): G. 5.694. Fuente: BCP, informado por ABC Color 09/10/2026 (mercado minorista ~G. 5.720). Actualización anterior: G. 5.873 (02/10/2026)."),
     ("tc_fecha", "Fecha del tipo de cambio", "09/10/2026", None, "Dato de mercado", "D-100 (founder 03/10/2026): recalcular siempre al tipo de cambio del día, aunque la planilla traiga otro."),
@@ -130,6 +130,7 @@ PR = plist(P, 5, [
     ("sup_constr", "Superficie construida total (m²)", 1109, "#,##0", "Dato confirmado", "Founder 10/10/2026."),
     ("costo_m2", "Costo de construcción de referencia — edificio de departamentos, calidad básica (USD/m²)", 650, USD, "Criterio Meridiano",
      "knowledge-base/investment/market-intelligence/construction-costs/06-costos-de-construccion.md (categoría A, founder 2026-08-15). Obra nueva terminada, sin terreno."),
+    ("anio", "Año de construcción", 1990, "0", "Dato confirmado", "Founder 10/10/2026."),
     ("comp_precio", "Comparable: edificio en venta en Ciudad Nueva (USD)", 650000, USD, "Dato de mercado (C)", "InfoCasas Ref #GB49D6: edificio de 5 niveles y 9 unidades en Ciudad Nueva, consulta 10/10/2026 (precio de oferta; superficie no publicada)."),
     ("comp_unid", "Comparable: unidades del edificio publicado", 9, "0", "Dato de mercado (C)", "Ídem."),
 ])
@@ -347,12 +348,14 @@ sv = [
     ("Precio por unidad (USD)", f"={PR['precio']}/B13", USD, "Precio / 14 unidades."),
     ("Comparable: precio por unidad del edificio publicado en Ciudad Nueva (USD)", f"={PR['comp_precio']}/{PR['comp_unid']}", USD, "USD 650.000 / 9 unidades (precio de oferta)."),
     ("Ingreso bruto anual por m² construido (USD)", f"={BRUTO}/B7", USD2, "Ingreso bruto anual / m² construidos."),
+    ("Año de construcción", f"={PR['anio']}", "0", "Informado por el founder."),
+    ("Antigüedad en 2026 (años)", f"=2026-{PR['anio']}", "0", "Año del análisis − año de construcción."),
 ]
 for i, (lab, f, fmt, base) in enumerate(sv, 5):
     put(SV, f"A{i}", lab, BOLD)
     put(SV, f"B{i}", f, INPUT if isinstance(f, int) else CALC, fmt)
     put(SV, f"C{i}", base, CALC).alignment = Alignment(wrap_text=True)
-SV.cell(row=18, column=1, value="Referencias, no tasación: el edificio es usado (antigüedad no informada) y el costo de reposición no descuenta depreciación. "
+SV.cell(row=20, column=1, value="Referencias, no tasación: el edificio es de 1990 y el costo de reposición no descuenta depreciación ni estado de conservación. "
         "El comparable es un precio de oferta sin superficie publicada.").font = NOTE
 
 # --------------------------------------------------------------- Proyeccion

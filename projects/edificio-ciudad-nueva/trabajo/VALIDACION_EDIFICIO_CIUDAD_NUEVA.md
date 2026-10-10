@@ -55,6 +55,7 @@
 - Decisión aplicada: Aviso legal 'venta' + no garantía de rentabilidad (D-098 snapshot)
 - Decisión aplicada: [EXTENSION] título de firma según el brief del founder
 - Decisión aplicada: Actualización 10/10/2026: TC Gs 5.694 (BCP 09/10/2026), superficies del founder, 3 fotos nuevas (fachada en portada)
+- Decisión aplicada: D-102: WEB ID retirado de todas las piezas para el cliente; año de construcción 1990 agregado
 - Tokens de marca: `assets/brand_tokens.json` (snapshot 2026-09-25 (D-098))
 
 ## 3. Tipografía, logos y editabilidad
@@ -88,14 +89,11 @@
 
 ## 8. Barrido de datos personales (revisión humana obligatoria)
 
-- diap. 1: teléfono no autorizado → `143028006-118`
 - diap. 2: número con formato de CI/RUC → `19.550.000`
 - diap. 9: número con formato de CI/RUC → `19.550.000`
 - diap. 12: número con formato de CI/RUC → `1.158.333`
 - diap. 12: número con formato de CI/RUC → `1.516.667`
-- diap. 14: teléfono no autorizado → `143028006-118`
 - diap. 14: número con formato de CI/RUC → `19.550.000`
-- diap. 17: teléfono no autorizado → `143028006-118`
 - diap. notas 3: teléfono no autorizado → `2026-09-23.1`
 
 ## 9. Render

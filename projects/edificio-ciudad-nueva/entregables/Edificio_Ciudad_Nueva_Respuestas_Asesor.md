@@ -41,7 +41,7 @@ Hay margen. Hoy los departamentos de 1 dormitorio promedian Gs 1,16 millones y l
 Trabajamos escenarios de valorización del 2 %, 3,5 % y 5 % anual en dólares. En el escenario base, el valor estimado a 5 años es de USD 403.813, y sumando la renta, la TIR estimada es del **11,7 %**. El rango va de 10,2 % a 13,5 %. Son escenarios hipotéticos, no garantizados.
 
 **9. ¿Qué superficies tiene y cuánto vale por m²?**
-El terreno mide 11 m de frente por 31 m de fondo (340 m²) y el edificio tiene 1.109 m² construidos. El precio equivale a unos USD 307 por m² construido, terreno incluido. Construir hoy esa misma superficie costaría unos USD 720.850 sin contar el terreno, así que el precio es el 47 % de ese costo. Es una referencia, no una tasación: el edificio es usado.
+El terreno mide 11 m de frente por 31 m de fondo (340 m²) y el edificio, construido en 1990, tiene 1.109 m² construidos. El precio equivale a unos USD 307 por m² construido, terreno incluido. Construir hoy esa misma superficie costaría unos USD 720.850 sin contar el terreno, así que el precio es el 47 % de ese costo. Es una referencia, no una tasación: el edificio tiene 36 años y su estado se confirma con la inspección técnica.
 
 **10. ¿Puedo comprarlo desde el exterior? ¿Conviene una sociedad?**
 Sí. Lo acompañamos con la cédula de identidad paraguaya, la cuenta bancaria y, si va a sumar más propiedades, con el análisis de una sociedad anónima. La decisión entre persona física y S.A. la toman con el abogado, el escribano y el contador; nosotros coordinamos todo el proceso.
@@ -51,4 +51,4 @@ Coordinamos una visita al edificio con inspección técnica. Después avanzamos 
 
 ---
 
-*No prometer continuidad de la renta ni plusvalía. No dar antigüedad ni situación registral: no fueron informadas.*
+*No prometer continuidad de la renta ni plusvalía. No dar situación registral (la revisa el escribano). No mencionar nunca el WEB ID: es un código interno de Meridiano (D-102).*

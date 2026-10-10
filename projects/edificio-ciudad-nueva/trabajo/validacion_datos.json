@@ -4,7 +4,7 @@
     "asset_type": "edificio de renta (residencial + local)",
     "operation": "venta",
     "audience": "inversor",
-    "meridiano_role": "comercialización/asesoramiento (pedido del founder: 'edificio en venta', WEB ID propio)"
+    "meridiano_role": "comercialización/asesoramiento (pedido del founder: 'edificio en venta')"
   },
   "errors": [],
   "needs_confirmation": [],

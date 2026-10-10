@@ -33,7 +33,8 @@
   "D-082/D-083 IVA de venta 1,5%",
   "Aviso legal 'venta' + no garantía de rentabilidad (D-098 snapshot)",
   "[EXTENSION] título de firma según el brief del founder",
-  "Actualización 10/10/2026: TC Gs 5.694 (BCP 09/10/2026), superficies del founder, 3 fotos nuevas (fachada en portada)"
+  "Actualización 10/10/2026: TC Gs 5.694 (BCP 09/10/2026), superficies del founder, 3 fotos nuevas (fachada en portada)",
+  "D-102: WEB ID retirado de todas las piezas para el cliente; año de construcción 1990 agregado"
  ],
  "contradictions": [
   {
@@ -65,10 +66,12 @@
   "Fotos de 1125–1536 px de ancho: aptas para pantalla y PDF; impresión grande limitada"
  ],
  "forbid": [
-  "juanjosecastillo@",
-  "century21",
+  "143028006",
+  "Campo Agreste",
+  "WEB ID",
   "c21.com.py",
-  "Campo Agreste"
+  "century21",
+  "juanjosecastillo@"
  ],
  "allowed_emails": [
   "juancastillo@meridianocapital.net"

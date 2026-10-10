@@ -1,6 +1,6 @@
-# Edificio Ciudad Nueva — edificio de renta en venta (WEB ID 143028006-118)
+# Edificio Ciudad Nueva — edificio de renta en venta (WEB ID interno 143028006-118; nunca en piezas para clientes, D-102)
 
-Presentación para inversores · **versión final para el cliente**, actualizada el 2026-10-10 · TC del día Gs 5.694 (BCP, 09/10/2026) · terreno 340 m² (11 × 31 m), 1.109 m² construidos · retrato de JJC al cierre (D-099).
+Presentación para inversores · **versión final para el cliente**, actualizada el 2026-10-10 · TC del día Gs 5.694 (BCP, 09/10/2026) · terreno 340 m² (11 × 31 m), 1.109 m² construidos en 1990 · retrato de JJC al cierre (D-099).
 
 | Archivo | Contenido |
 |---|---|
