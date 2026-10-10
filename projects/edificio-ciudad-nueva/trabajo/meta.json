@@ -32,7 +32,8 @@
   "D-001 IVA alquiler",
   "D-082/D-083 IVA de venta 1,5%",
   "Aviso legal 'venta' + no garantía de rentabilidad (D-098 snapshot)",
-  "[EXTENSION] título de firma según el brief del founder"
+  "[EXTENSION] título de firma según el brief del founder",
+  "Actualización 10/10/2026: TC Gs 5.694 (BCP 09/10/2026), superficies del founder, 3 fotos nuevas (fachada en portada)"
  ],
  "contradictions": [
   {
@@ -42,18 +43,19 @@
   }
  ],
  "questions": [
-  "Confirmar cuál fila del detalle corresponde al local comercial (impacta solo en la asignación del IVA 10%).",
-  "Superficie de terreno y construida (no informada; fuera de la presentación)."
+  "Confirmar cuál fila del detalle corresponde al local comercial (afecta solo la asignación del IVA 10%).",
+  "Superficie de terreno: 340 m² informados vs. 11 × 31 = 341 m² (se usa 340)."
  ],
  "visual_qa": [
-  "d3: mapa propio desde OSM/Overture, rótulos corregidos en 3 iteraciones",
-  "d4/d8: espaciados corregidos tras el 1.er render",
-  "d2: barra inferior acortada a una línea",
-  "Revisión de las 15 diapositivas y vista general sin defectos"
+  "d1: fachada frontal en portada (recorte proporcional ay 0,45, edificio completo)",
+  "d5: nueva diapositiva de superficies con terreno a escala (forma nativa)",
+  "d7/d8: recorrido dividido en dos diapositivas; fotos sin recorte",
+  "Revisión de las 17 diapositivas y vista general sin defectos"
  ],
  "warnings": [
-  "TC del día obtenido de resultados de búsqueda (BCP/ABC Color); las páginas originales están bloqueadas por la red del entorno",
-  "Datos de mercado de alquiler: avisos InfoCasas (categoría C)",
+  "TC del día obtenido de resultados de búsqueda (BCP/ABC Color 09/10/2026); las páginas originales están bloqueadas por la red del entorno",
+  "Datos de mercado de alquiler y comparable de venta: avisos InfoCasas (categoría C), consulta 10/10/2026",
+  "Costo de reposición: obra nueva calidad básica, sin depreciación; referencia, no tasación",
   "Plusvalía y proyección: escenarios hipotéticos rotulados"
  ],
  "text_changes": [

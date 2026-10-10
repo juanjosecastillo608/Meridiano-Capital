@@ -7,12 +7,7 @@
     "meridiano_role": "comercialización/asesoramiento (pedido del founder: 'edificio en venta', WEB ID propio)"
   },
   "errors": [],
-  "needs_confirmation": [
-    {
-      "field": "superficie",
-      "issue": "sin dato de 'superficie' para una operación de venta: no inventarlo; omitir la sección o pedirlo"
-    }
-  ],
+  "needs_confirmation": [],
   "warnings": [
     {
       "field": "moneda",
@@ -24,33 +19,41 @@
     {
       "id": "bruto_check",
       "formula": "alquiler_mensual_gs / tc * 12",
-      "computed": 39945.513366,
-      "stated": "39.946",
-      "diff_pct": 0.0012,
+      "computed": 41201.264489,
+      "stated": "41.201",
+      "diff_pct": 0.0006,
       "status": "coincide"
     },
     {
       "id": "neto_check",
       "formula": "(alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9",
-      "computed": 27146.562234,
-      "stated": "27.147",
-      "diff_pct": 0.0016,
+      "computed": 28033.909378,
+      "stated": "28.034",
+      "diff_pct": 0.0003,
       "status": "coincide"
     },
     {
       "id": "rent_bruta_check",
       "formula": "(alquiler_mensual_gs / tc * 12) / precio * 100",
-      "computed": 11.74868,
-      "stated": "11,75",
-      "diff_pct": 0.0112,
+      "computed": 12.118019,
+      "stated": "12,12",
+      "diff_pct": 0.0163,
       "status": "coincide"
     },
     {
       "id": "rent_neta_check",
       "formula": "((alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9) / precio * 100",
-      "computed": 7.984283,
-      "stated": "7,98",
-      "diff_pct": 0.0537,
+      "computed": 8.245267,
+      "stated": "8,25",
+      "diff_pct": 0.0574,
+      "status": "coincide"
+    },
+    {
+      "id": "precio_m2_check",
+      "formula": "precio / sup_construida",
+      "computed": 306.582507,
+      "stated": "306,58",
+      "diff_pct": 0.0008,
       "status": "coincide"
     }
   ],
@@ -69,27 +72,25 @@
     },
     {
       "field": "tc",
-      "note": "'5.873' interpretado como miles (formato es-PY)"
+      "note": "'5.694' interpretado como miles (formato es-PY)"
+    },
+    {
+      "field": "sup_construida",
+      "note": "'1.109' interpretado como miles (formato es-PY)"
     },
     {
       "field": "bruto_anual_usd",
-      "note": "'39.946' interpretado como miles (formato es-PY)"
+      "note": "'41.201' interpretado como miles (formato es-PY)"
     },
     {
       "field": "neto_anual_usd",
-      "note": "'27.147' interpretado como miles (formato es-PY)"
-    },
-    {
-      "field": "superficie",
-      "note": "no numérico: ''"
+      "note": "'28.034' interpretado como miles (formato es-PY)"
     }
   ],
-  "pending_fields": [
-    "superficie"
-  ],
+  "pending_fields": [],
   "currencies": [
     "PYG",
     "USD"
   ],
-  "result": "REQUIERE_CONFIRMACION"
+  "result": "OK"
 }

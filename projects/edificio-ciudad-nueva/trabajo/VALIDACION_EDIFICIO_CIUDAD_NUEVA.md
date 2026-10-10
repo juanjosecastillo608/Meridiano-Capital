@@ -1,6 +1,6 @@
 # Validación: Edificio Ciudad Nueva
 
-**Resultado: NO APROBADO**
+**Resultado: APROBADO CON OBSERVACIONES**
 
 | Campo | Valor |
 |---|---|
@@ -12,15 +12,13 @@
 | Firma aplicada | U_brief_founder (Broker Inmobiliario | Meridiano Capital) + retrato JJC (D-099) |
 | PowerPoint | `Edificio_Ciudad_Nueva_Meridiano_FINAL.pptx` |
 | PDF | `Edificio_Ciudad_Nueva_Meridiano_FINAL.pdf` |
-| Diapositivas | 15 |
-
-## Bloqueantes
-- ❌ Datos materiales que requieren confirmación del usuario: 1
+| Diapositivas | 17 |
 
 ## Observaciones
 - ⚠️ Posibles datos personales: revisar el contexto de cada coincidencia (puede ser un dato legítimo como una calle o un número de lote).
-- ⚠️ TC del día obtenido de resultados de búsqueda (BCP/ABC Color); las páginas originales están bloqueadas por la red del entorno
-- ⚠️ Datos de mercado de alquiler: avisos InfoCasas (categoría C)
+- ⚠️ TC del día obtenido de resultados de búsqueda (BCP/ABC Color 09/10/2026); las páginas originales están bloqueadas por la red del entorno
+- ⚠️ Datos de mercado de alquiler y comparable de venta: avisos InfoCasas (categoría C), consulta 10/10/2026
+- ⚠️ Costo de reposición: obra nueva calidad básica, sin depreciación; referencia, no tasación
 - ⚠️ Plusvalía y proyección: escenarios hipotéticos rotulados
 
 ## 1. Archivos recibidos
@@ -56,30 +54,30 @@
 - Decisión aplicada: D-082/D-083 IVA de venta 1,5%
 - Decisión aplicada: Aviso legal 'venta' + no garantía de rentabilidad (D-098 snapshot)
 - Decisión aplicada: [EXTENSION] título de firma según el brief del founder
+- Decisión aplicada: Actualización 10/10/2026: TC Gs 5.694 (BCP 09/10/2026), superficies del founder, 3 fotos nuevas (fachada en portada)
 - Tokens de marca: `assets/brand_tokens.json` (snapshot 2026-09-25 (D-098))
 
 ## 3. Tipografía, logos y editabilidad
 
 - Tipografías declaradas: Fraunces, Poppins
 - Fuentes incrustadas en el PDF: Fraunces-Regular, Poppins-Bold, Poppins-Italic, Poppins-Regular
-- Logos vectoriales (SVG) en el archivo: 15
-- Elementos editables: 184 textos, 6 tablas, 2 gráficos, 38 formas; 20 imágenes
+- Logos vectoriales (SVG) en el archivo: 17
+- Elementos editables: 213 textos, 6 tablas, 2 gráficos, 47 formas; 25 imágenes
 - Diapositivas aplanadas: ninguna
 
 ## 4. Imágenes
 
-- Verificadas: 20 · desviación máxima de proporción: **0.0010%** (tolerancia 0.5%) · resultado: **OK**
+- Verificadas: 25 · desviación máxima de proporción: **0.0010%** (tolerancia 0.5%) · resultado: **OK**
 
 ## 5. Datos comerciales
 
-- Resultado de la validación: **REQUIERE_CONFIRMACION** · monedas: PYG, USD
-- `bruto_check`: alquiler_mensual_gs / tc * 12 = 39945.513366 → coincide (declarado 39.946)
-- `neto_check`: (alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9 = 27146.562234 → coincide (declarado 27.147)
-- `rent_bruta_check`: (alquiler_mensual_gs / tc * 12) / precio * 100 = 11.74868 → coincide (declarado 11,75)
-- `rent_neta_check`: ((alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9) / precio * 100 = 7.984283 → coincide (declarado 7,98)
-- ❓ superficie: sin dato de 'superficie' para una operación de venta: no inventarlo; omitir la sección o pedirlo
+- Resultado de la validación: **OK** · monedas: PYG, USD
+- `bruto_check`: alquiler_mensual_gs / tc * 12 = 41201.264489 → coincide (declarado 41.201)
+- `neto_check`: (alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9 = 28033.909378 → coincide (declarado 28.034)
+- `rent_bruta_check`: (alquiler_mensual_gs / tc * 12) / precio * 100 = 12.118019 → coincide (declarado 12,12)
+- `rent_neta_check`: ((alquiler_mensual_gs / tc * 12 * (1 - 0.03 - 0.08 - 0.05) - iva_mensual_gs / tc * 12 - gastos_anuales) * 0.9) / precio * 100 = 8.245267 → coincide (declarado 8,25)
+- `precio_m2_check`: precio / sup_construida = 306.582507 → coincide (declarado 306,58)
 - ⚠️ moneda: monedas mixtas ['PYG', 'USD']: no convertir ni sumar sin tipo de cambio documentado
-- Campos pendientes (fuera de la presentación): ['superficie']
 
 ## 6. Contradicciones
 
@@ -92,29 +90,28 @@
 
 - diap. 1: teléfono no autorizado → `143028006-118`
 - diap. 2: número con formato de CI/RUC → `19.550.000`
-- diap. 7: número con formato de CI/RUC → `19.550.000`
-- diap. 10: número con formato de CI/RUC → `1.158.333`
-- diap. 10: número con formato de CI/RUC → `1.516.667`
-- diap. 12: teléfono no autorizado → `143028006-118`
-- diap. 12: número con formato de CI/RUC → `19.550.000`
-- diap. 15: teléfono no autorizado → `143028006-118`
+- diap. 9: número con formato de CI/RUC → `19.550.000`
+- diap. 12: número con formato de CI/RUC → `1.158.333`
+- diap. 12: número con formato de CI/RUC → `1.516.667`
+- diap. 14: teléfono no autorizado → `143028006-118`
+- diap. 14: número con formato de CI/RUC → `19.550.000`
+- diap. 17: teléfono no autorizado → `143028006-118`
 - diap. notas 3: teléfono no autorizado → `2026-09-23.1`
 
 ## 9. Render
 
-- PDF: 15 páginas / 15 diapositivas · OK
-- PNG de revisión: 15 + vista general `00_vista_general.png`
+- PDF: 17 páginas / 17 diapositivas · OK
+- PNG de revisión: 17 + vista general `00_vista_general.png`
 
 ## 10. Revisión visual (diapositiva por diapositiva)
-- d3: mapa propio desde OSM/Overture, rótulos corregidos en 3 iteraciones
-- d4/d8: espaciados corregidos tras el 1.er render
-- d2: barra inferior acortada a una línea
-- Revisión de las 15 diapositivas y vista general sin defectos
+- d1: fachada frontal en portada (recorte proporcional ay 0,45, edificio completo)
+- d5: nueva diapositiva de superficies con terreno a escala (forma nativa)
+- d7/d8: recorrido dividido en dos diapositivas; fotos sin recorte
+- Revisión de las 17 diapositivas y vista general sin defectos
 
 ## 11. Preguntas para el usuario
-1. superficie: sin dato de 'superficie' para una operación de venta: no inventarlo; omitir la sección o pedirlo
-2. Confirmar cuál fila del detalle corresponde al local comercial (impacta solo en la asignación del IVA 10%).
-3. Superficie de terreno y construida (no informada; fuera de la presentación).
+1. Confirmar cuál fila del detalle corresponde al local comercial (afecta solo la asignación del IVA 10%).
+2. Superficie de terreno: 340 m² informados vs. 11 × 31 = 341 m² (se usa 340).
 
 ## 12. Limitaciones
 - Fotos de 1125–1536 px de ancho: aptas para pantalla y PDF; impresión grande limitada

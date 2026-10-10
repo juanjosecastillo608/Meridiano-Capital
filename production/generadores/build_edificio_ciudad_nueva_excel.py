@@ -2,7 +2,8 @@
 
 Genera projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Alquileres_Rentabilidad.xlsx con fórmulas.
 Fuentes: detalle de alquileres y planilla del propietario (verificados por el founder el 2026-10-03),
-tipo de cambio del día (BCP, cierre interbancario 02/10/2026), parámetros del founder (IVA 5%/10%, vacancia 3%,
+superficies informadas por el founder el 2026-10-10 (terreno 11 x 31 m, 340 m²; 1.109 m² construidos),
+tipo de cambio del día (BCP, cierre interbancario 09/10/2026; actualización del 10/10/2026), parámetros del founder (IVA 5%/10%, vacancia 3%,
 administración 8%) y del motor de Meridiano (mantenimiento 5%, IVA de venta 1,5%).
 Regla del founder (2026-10-03): recalcular siempre al tipo de cambio del día y dejar asentada su fecha.
 Recalcular después con la skill xlsx (scripts/recalc.py).
@@ -97,9 +98,9 @@ legend(P, 2)
 header(P, 4, ["Parámetro", "Valor", "Tipo", "Fuente / criterio"])
 PR = plist(P, 5, [
     ("precio", "Precio de venta (USD)", 340000, USD, "Dato confirmado", "Founder (WEB ID 143028006-118)."),
-    ("tc", "Tipo de cambio del día (Gs por USD)", 5873, '#,##0', "Dato de mercado",
-     "Cierre del mercado interbancario del viernes 02/10/2026 (último día hábil al 03/10/2026). Fuente: BCP, Mercado Libre Fluctuante Interbancario; informado por ABC Color 02/10/2026. Casas de cambio ese día: G. 5.780 compra / G. 5.860 venta."),
-    ("tc_fecha", "Fecha del tipo de cambio", "02/10/2026", None, "Dato de mercado", "Regla del founder (03/10/2026): recalcular siempre al tipo de cambio del día, aunque la planilla traiga otro."),
+    ("tc", "Tipo de cambio del día (Gs por USD)", 5694, '#,##0', "Dato de mercado",
+     "Cierre del mercado interbancario del viernes 09/10/2026 (último día hábil al sábado 10/10/2026): G. 5.694. Fuente: BCP, informado por ABC Color 09/10/2026 (mercado minorista ~G. 5.720). Actualización anterior: G. 5.873 (02/10/2026)."),
+    ("tc_fecha", "Fecha del tipo de cambio", "09/10/2026", None, "Dato de mercado", "D-100 (founder 03/10/2026): recalcular siempre al tipo de cambio del día, aunque la planilla traiga otro."),
     ("tc_planilla", "Tipo de cambio de la planilla original (referencia histórica)", 6100, '#,##0', "Dato recibido", "Planilla del propietario (sin fecha). Solo para comparar; no se usa en los resultados."),
     ("iva_dpto", "IVA alquiler residencial (departamentos)", 0.05, "0%", "Dato confirmado", "Founder 03/10/2026 + D-001/D-045 (parametros_mercado.json › fiscal)."),
     ("iva_com", "IVA alquiler comercial (local y cocheras)", 0.10, "0%", "Dato confirmado",
@@ -118,11 +119,19 @@ PR = plist(P, 5, [
     ("a_cons", "Valorización anual del inmueble (USD) — conservador", 0.02, "0.0%", "Supuesto", "Hipótesis de escenario, no garantizada."),
     ("a_base", "Valorización anual del inmueble (USD) — base", 0.035, "0.0%", "Supuesto", "Hipótesis de escenario, no garantizada."),
     ("a_opt", "Valorización anual del inmueble (USD) — optimista", 0.05, "0.0%", "Supuesto", "Hipótesis de escenario, no garantizada."),
-    ("mk1_lo", "Mercado 1 dormitorio — valor bajo publicado (Gs/mes)", 2500000, GS, "Dato de mercado (C)", "InfoCasas, alquiler 1 dormitorio en Ciudad Nueva, consulta 03/10/2026 (avisos, no contratos)."),
-    ("mk1_hi", "Mercado 1 dormitorio — valor alto publicado (Gs/mes)", 3000000, GS, "Dato de mercado (C)", "Ídem."),
-    ("mk2_lo", "Mercado 2 dormitorios — valor bajo publicado (Gs/mes)", 2100000, GS, "Dato de mercado (C)", "InfoCasas, alquiler 2 dormitorios en Ciudad Nueva, consulta 03/10/2026."),
-    ("mk2_hi", "Mercado 2 dormitorios — valor alto publicado (Gs/mes)", 4200000, GS, "Dato de mercado (C)", "Ídem."),
-    ("mkl_lo", "Mercado local comercial — desde (Gs/mes)", 2700000, GS, "Dato de mercado (C)", "InfoCasas, salones comerciales en Ciudad Nueva, consulta 03/10/2026."),
+    ("mk1_lo", "Mercado 1 dormitorio — valor bajo publicado (Gs/mes)", 3000000, GS, "Dato de mercado (C)", "InfoCasas, alquiler 1 dormitorio en Ciudad Nueva, consulta 10/10/2026 (avisos, no contratos): Gs 3.000.000 (44 m²) a Gs 3.200.000 (51 m²)."),
+    ("mk1_hi", "Mercado 1 dormitorio — valor alto publicado (Gs/mes)", 3200000, GS, "Dato de mercado (C)", "Ídem."),
+    ("mk2_lo", "Mercado 2 dormitorios — valor bajo publicado (Gs/mes)", 2100000, GS, "Dato de mercado (C)", "InfoCasas, alquiler 2 dormitorios en Ciudad Nueva, consulta 10/10/2026 (77 avisos; desde Gs 2.100.000 por 100 m²)."),
+    ("mk2_hi", "Mercado 2 dormitorios — valor alto publicado (Gs/mes)", 6300000, GS, "Dato de mercado (C)", "Ídem."),
+    ("mkl_lo", "Mercado local comercial — desde (Gs/mes)", 2700000, GS, "Dato de mercado (C)", "InfoCasas, salones comerciales en Ciudad Nueva, consulta 03/10/2026 (sin cambios relevados al 10/10/2026)."),
+    ("frente", "Frente del terreno (m)", 11, "0.00", "Dato confirmado", "Founder 10/10/2026."),
+    ("fondo", "Fondo del terreno (m)", 31, "0.00", "Dato confirmado", "Founder 10/10/2026."),
+    ("sup_terreno", "Superficie del terreno informada (m²)", 340, "#,##0", "Dato confirmado", "Founder 10/10/2026: 340 m². Nota: 11 × 31 = 341 m² (diferencia de 1 m², redondeo de medidas; se usa la superficie informada)."),
+    ("sup_constr", "Superficie construida total (m²)", 1109, "#,##0", "Dato confirmado", "Founder 10/10/2026."),
+    ("costo_m2", "Costo de construcción de referencia — edificio de departamentos, calidad básica (USD/m²)", 650, USD, "Criterio Meridiano",
+     "knowledge-base/investment/market-intelligence/construction-costs/06-costos-de-construccion.md (categoría A, founder 2026-08-15). Obra nueva terminada, sin terreno."),
+    ("comp_precio", "Comparable: edificio en venta en Ciudad Nueva (USD)", 650000, USD, "Dato de mercado (C)", "InfoCasas Ref #GB49D6: edificio de 5 niveles y 9 unidades en Ciudad Nueva, consulta 10/10/2026 (precio de oferta; superficie no publicada)."),
+    ("comp_unid", "Comparable: unidades del edificio publicado", 9, "0", "Dato de mercado (C)", "Ídem."),
 ])
 
 # ---------------------------------------------------------- Datos_Originales
@@ -312,6 +321,40 @@ put(R_, "B15", f"=(B13-2764-1200)/{PR['precio']}", CALC, "0.00%")
 put(R_, "C15", "Reemplazada por el cálculo completo de arriba (IVA por concepto, vacancia, administración, mantenimiento, IRE).", CALC)
 R_.cell(row=17, column=1, value="Indicadores sobre el precio de venta, sin gastos de adquisición (escribanía, impuestos de transferencia, honorarios). No constituyen rentabilidad garantizada.").font = NOTE
 
+put(R_, "A19", "Sensibilidad al tipo de cambio (mismo ingreso en guaraníes)", TITLE)
+header(R_, 20, ["Tipo de cambio (Gs/USD)", "Rent. bruta", "Rent. neta final"])
+for i, (lab, tc_) in enumerate([("Planilla original: 6.100", 6100), ("Actualización 02/10/2026: 5.873", 5873), ("Hoy (09/10/2026): TC del día", PR["tc"]), ("Escenario: 6.300", 6300)], 21):
+    put(R_, f"A{i}", lab, BOLD)
+    tcref = tc_ if isinstance(tc_, str) else tc_
+    put(R_, f"B{i}", f"={GS_TOT}*12/{tcref}/{PR['precio']}", CALC, "0.00%")
+    put(R_, f"C{i}", f"=(({GS_TOT}*12/{tcref})*(1-{IVAEF}-{PR['vac']}-{PR['adm']}-{PR['mant']})-{PR['fijos']})*(1-{PR['ire']})/{PR['precio']}", CALC, "0.00%")
+R_.cell(row=25, column=1, value="Los alquileres se cobran en guaraníes: si el guaraní se aprecia (TC más bajo), la renta en USD sube; si se deprecia, baja.").font = NOTE
+
+# --------------------------------------------------------- Superficies_Valor
+SV = sheet("Superficies_Valor", "Superficies y valor del inmueble", [62, 18, 66])
+legend(SV, 2)
+header(SV, 4, ["Indicador", "Valor", "Base de cálculo"])
+sv = [
+    ("Terreno: frente × fondo (m²)", f"={PR['frente']}*{PR['fondo']}", "#,##0", "11 × 31 = 341 m² (control aritmético)."),
+    ("Superficie de terreno informada (m²)", f"={PR['sup_terreno']}", "#,##0", "Se usa la superficie informada (340 m²)."),
+    ("Superficie construida total (m²)", f"={PR['sup_constr']}", "#,##0", "Informada por el founder."),
+    ("Índice de construcción (m² construidos / m² de terreno)", "=B7/B6", "0.00", "Veces la superficie del terreno."),
+    ("Precio por m² construido (USD, terreno incluido)", f"={PR['precio']}/B7", USD2, "Precio / superficie construida."),
+    ("Precio por m² de terreno (USD, construcción incluida)", f"={PR['precio']}/B6", USD2, "Precio / superficie del terreno."),
+    ("Costo de construir hoy la misma superficie (USD, sin terreno)", f"=B7*{PR['costo_m2']}", USD, "1.109 m² × USD 650/m² (edificio de departamentos, calidad básica, obra nueva)."),
+    ("Precio / costo de construcción nueva", f"={PR['precio']}/B11", "0%", "El precio equivale a este % del costo de levantar hoy un edificio de igual superficie, sin contar el terreno."),
+    ("Unidades que generan renta (13 dptos. + local)", 14, "0", "Composición comercial."),
+    ("Precio por unidad (USD)", f"={PR['precio']}/B13", USD, "Precio / 14 unidades."),
+    ("Comparable: precio por unidad del edificio publicado en Ciudad Nueva (USD)", f"={PR['comp_precio']}/{PR['comp_unid']}", USD, "USD 650.000 / 9 unidades (precio de oferta)."),
+    ("Ingreso bruto anual por m² construido (USD)", f"={BRUTO}/B7", USD2, "Ingreso bruto anual / m² construidos."),
+]
+for i, (lab, f, fmt, base) in enumerate(sv, 5):
+    put(SV, f"A{i}", lab, BOLD)
+    put(SV, f"B{i}", f, INPUT if isinstance(f, int) else CALC, fmt)
+    put(SV, f"C{i}", base, CALC).alignment = Alignment(wrap_text=True)
+SV.cell(row=18, column=1, value="Referencias, no tasación: el edificio es usado (antigüedad no informada) y el costo de reposición no descuenta depreciación. "
+        "El comparable es un precio de oferta sin superficie publicada.").font = NOTE
+
 # --------------------------------------------------------------- Proyeccion
 PJ = sheet("Proyeccion", "Proyección de alquiler a 5 años — tres escenarios (USD, TC del día constante)", [20, 16, 16, 16, 16, 16, 16])
 legend(PJ, 2)
@@ -346,7 +389,7 @@ for i, (lab, crit, lo, hi) in enumerate(mk, 16):
     put(PJ, f"F{i}", f"=COUNTIFS({RNG('E')},{crit})", CALC, "0")
 put(PJ, "A18", "Local comercial (desde)", BOLD)
 put(PJ, "C18", f"={PR['mkl_lo']}", LINK, GS)
-PJ.cell(row=19, column=1, value="Avisos publicados (InfoCasas, consulta 03/10/2026, categoría C): incluyen unidades más nuevas o con amenities, por lo que no son "
+PJ.cell(row=19, column=1, value="Avisos publicados (InfoCasas, consulta 10/10/2026, categoría C): incluyen unidades más nuevas o con amenities, por lo que no son "
         "comparables directos. La brecha indica margen de ajuste en renovaciones, sujeto al estado de cada unidad.").font = NOTE
 
 # ---------------------------------------------------------------- Plusvalia
@@ -377,7 +420,7 @@ for i, lab in [(5, "Valorización anual supuesta"), (6, "Valor estimado al año 
 PV.cell(row=22, column=1, value="Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. Sin gastos de adquisición ni comisión de venta. "
         "El valor de salida depende del mercado, del estado del edificio y de la ocupación al momento de vender.").font = NOTE
 
-wb._sheets = [wb["Rentabilidad"], wb["Ingresos_Gastos"], wb["Proyeccion"], wb["Plusvalia"], wb["Alquileres_Unidad"], wb["Conciliacion"], wb["Datos_Originales"], wb["Parametros"]]
+wb._sheets = [wb["Rentabilidad"], wb["Ingresos_Gastos"], wb["Superficies_Valor"], wb["Proyeccion"], wb["Plusvalia"], wb["Alquileres_Unidad"], wb["Conciliacion"], wb["Datos_Originales"], wb["Parametros"]]
 for ws in wb.worksheets:
     ws.page_setup.orientation = "landscape"
     ws.page_setup.fitToWidth = 1

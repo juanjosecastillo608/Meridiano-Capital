@@ -19,7 +19,8 @@ const UBIC = JSON.parse(fs.readFileSync(path.join(ROOT, "projects/edificio-ciuda
 const OUT = process.argv[2] || path.join(ROOT, "projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pptx");
 
 // ---- parámetros (iguales a la hoja Parametros del Excel) ----
-const PRECIO = 340000, TC = 5873, TC_FECHA = "02/10/2026";
+const PRECIO = 340000, TC = 5694, TC_FECHA = "09/10/2026"; // D-100: TC del día (actualización 10/10/2026)
+const TERRENO = 340, FRENTE = 11, FONDO = 31, CONSTR = 1109, COSTO_M2 = 650, UNIDADES = 14, COMP_PRECIO = 650000, COMP_UNID = 9; // founder 10/10/2026; costo: 06-costos-de-construccion.md
 const IVA_DPTO = 0.05, IVA_COM = 0.10, VAC = 0.03, ADM = 0.08, MANT = 0.05, FIJOS = 1200, IRE = 0.10, IVA_VENTA = 0.015;
 const ESC = [["Conservador", 0.03, 0.02], ["Base", 0.05, 0.035], ["Optimista", 0.08, 0.05]];
 const ALQ = [
@@ -61,7 +62,8 @@ const AV = (re) => UBIC.avenidas.find((a) => re.test(a.via));
 const D_EA = AV(/Eusebio Ayala/).por_calle_m, D_RF = AV(/Rodriguez de Francia/).por_calle_m, D_M4 = UBIC.mercado4.por_calle_m;
 const MAPS = `https://www.google.com/maps/search/?api=1&query=${UBIC.punto_referencia.lat},${UBIC.punto_referencia.lon}`;
 const TC_TXT = `Tipo de cambio: Gs ${miles(TC)} por USD (BCP, cierre interbancario del ${TC_FECHA}).`;
-const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (verificados 03/10/2026); ${TC_TXT}`;
+const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (verificados 03/10/2026); superficies informadas por el founder (10/10/2026); ${TC_TXT}`;
+const PM2 = PRECIO / CONSTR, REPO = CONSTR * COSTO_M2, PREC_REPO = PRECIO / REPO, IND = CONSTR / TERRENO;
 
 (async () => {
   // Firma pedida por el founder (rank 1): "Broker Inmobiliario | Meridiano Capital".
@@ -80,11 +82,11 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
 
   // 1 — Portada
   d.cover({
-    photo: IMG("vista-aerea-edificio.jpg"), photoMode: "panel", photoAlt: "Vista aérea del edificio con su contorno marcado en rojo",
+    photo: IMG("fachada-frontal.jpg"), ax: 0.5, ay: 0.45, photoAlt: "Fachada frontal del edificio",
     eyebrow: "Edificio de renta en venta", title: "Edificio\nCiudad Nueva", subtitle: "9 de Marzo c/ Mayor Bullo  ·  Ciudad Nueva, Asunción",
-    figures: [[usd(PRECIO), "Precio de venta"], [pct(YB), "Rentabilidad bruta"]],
-    footnote: `Datos informados con verificación documental  ·  TC Gs ${miles(TC)} (BCP, ${TC_FECHA})  ·  WEB ID 143028006-118`,
-    notes: `Foto: vista aérea del edificio (sin recorte; el contorno rojo es de la fuente). ${FUENTES}`,
+    figures: [[usd(PRECIO), "Precio de venta"], [`${miles(CONSTR)} m²`, `Construidos sobre ${TERRENO} m² de terreno`]],
+    footnote: `Datos con verificación documental  ·  TC Gs ${miles(TC)} (BCP, ${TC_FECHA})  ·  WEB ID 143028006-118`,
+    notes: `Foto: fachada frontal del edificio (recorte proporcional, sin deformación). ${FUENTES}`,
   });
 
   // 2 — Resumen
@@ -93,11 +95,11 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.title(s, "Edificio de renta con 13 departamentos y un local comercial");
   d.text(s, "Activo en operación, 100% alquilado, a una cuadra de la Av. Eusebio Ayala y a pocos minutos a pie del Mercado 4, el principal polo comercial minorista del país.",
     { x: M, y: 1.85, w: 11.5, h: 0.6, fontSize: 13, color: C.grey, lineSpacingMultiple: 1.2 });
-  [[usd(PRECIO), "Precio de venta"], ["6 · 6 · 1", "Dptos. de 1, 2 y 3 dormitorios + 1 local"], [gs(GS_MES), `Ingreso mensual  ·  ${usd(USD_MES)}`],
-   [pct(YB), "Rentabilidad bruta sobre precio"], [pct(YN), "Rentabilidad neta final"], [pct(PROY[1].tir, 1), "TIR estimada a 5 años (escenario base)"]].forEach((f, i) => {
-    const x = M + (i % 3) * 4.05, y = 2.85 + Math.floor(i / 3) * 1.6;
-    d.hair(s, x, y - 0.12, 3.7);
-    d.figure(s, f[0], f[1], { x, y, w: 3.8, size: 28 });
+  [[usd(PRECIO), "Precio de venta"], [`${miles(CONSTR)} m²`, "Superficie construida"], [`${TERRENO} m²`, `Terreno de ${FRENTE} × ${FONDO} m`], ["6 · 6 · 1", "Dptos. de 1, 2 y 3 dorm. + 1 local"],
+   [gs(GS_MES), `Ingreso mensual  ·  ${usd(USD_MES)}`], [pct(YB), "Rentabilidad bruta sobre precio"], [pct(YN), "Rentabilidad neta final"], [pct(PROY[1].tir, 1), "TIR estimada a 5 años (base)"]].forEach((f, i) => {
+    const x = M + (i % 4) * 3.05, y = 2.85 + Math.floor(i / 4) * 1.6;
+    d.hair(s, x, y - 0.12, 2.8);
+    d.figure(s, f[0], f[1], { x, y, w: 2.95, size: 23 });
   });
   s.addShape(pres.ShapeType.rect, { x: M, y: 6.05, w: R - M, h: 0.58, fill: { color: C.white }, line: { color: C.linea, width: 0.75 } });
   d.text(s, `Ocupación: 100% alquilado  ·  Datos informados con verificación documental  ·  Tipo de cambio Gs ${miles(TC)} por USD (BCP, ${TC_FECHA})`,
@@ -154,7 +156,30 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.footer(s, n);
   s.addNotes("Reseña para inversores extranjeros. Vacancia baja: criterio del founder (zona de alto tránsito y demanda), modelada al 3%. No se citan cifras de visitantes exactas por no tener una fuente primaria verificada.");
 
-  // 5 — Distribución
+  // 5 — Superficies y valor
+  s = d.slide("light"); n++;
+  d.eyebrow(s, "Superficies y valor");
+  d.title(s, `${TERRENO} m² de terreno y ${miles(CONSTR)} m² construidos`);
+  { // terreno a escala (forma nativa editable)
+    const hL = 4.1, wL = hL * FRENTE / FONDO, xL = M + 0.55, yL = 2.05;
+    s.addShape(pres.ShapeType.rect, { x: xL, y: yL, w: wL, h: hL, fill: { color: C.white }, line: { color: C.petroleo, width: 1.5 } });
+    d.text(s, `${FRENTE} m de frente`, { x: xL - 0.4, y: yL + hL + 0.08, w: wL + 0.8, h: 0.28, fontSize: 10, align: "center", color: C.grey });
+    d.text(s, `${FONDO} m de fondo`, { x: xL + wL + 0.1, y: yL + hL / 2 - 0.15, w: 1.4, h: 0.3, fontSize: 10, color: C.grey });
+    d.text(s, `${TERRENO} m²`, { x: xL, y: yL + hL / 2 - 0.25, w: wL, h: 0.5, fontFace: SERIF, fontSize: 16, align: "center", color: C.tierra });
+  }
+  [[`${miles(CONSTR)} m²`, "Superficie construida total"], [`${dec(IND)} veces`, "Construido sobre la superficie del terreno"],
+   [`${usd(PM2)}`, "Por m² construido, terreno incluido"], [`${usd(REPO)}`, `Costo de construir hoy ${miles(CONSTR)} m² (USD ${COSTO_M2}/m², sin terreno)`],
+   [pct(PREC_REPO, 0), "El precio frente a ese costo de construcción nueva"], [usd(PRECIO / UNIDADES), `Por unidad de renta (${UNIDADES} unidades)`]].forEach((f, i) => {
+    const x = 4.0 + (i % 2) * 4.4, y = 2.15 + Math.floor(i / 2) * 1.35;
+    d.hair(s, x, y - 0.12, 4.1);
+    d.figure(s, f[0], f[1], { x, y, w: 4.2, size: 24 });
+  });
+  d.text(s, `Referencia del barrio: un edificio de 9 unidades en Ciudad Nueva se publica en ${usd(COMP_PRECIO)} (unos ${usd(COMP_PRECIO / COMP_UNID)} por unidad). Valores de referencia, no tasación: el edificio es usado y el costo de construcción nueva no descuenta antigüedad.`,
+    { x: 4.0, y: 6.15, w: R - 4.0, h: 0.55, fontSize: 9.5, italic: true, color: C.grey, lineSpacingMultiple: 1.15 });
+  d.footer(s, n);
+  s.addNotes(`Superficies: founder 10/10/2026 (11 × 31 = 341 m²; se usa la superficie informada de 340 m²). Costo USD ${COSTO_M2}/m²: edificio de departamentos, calidad básica (knowledge-base/investment/market-intelligence/construction-costs/06-costos-de-construccion.md). Comparable: InfoCasas Ref #GB49D6, consulta 10/10/2026, precio de oferta sin superficie publicada. Precio/m² construido ${PM2.toFixed(2)}; costo de reposición ${REPO}; precio/reposición ${(PREC_REPO * 100).toFixed(1)}%.`);
+
+  // 6 — Distribución
   s = d.slide("light"); n++;
   d.eyebrow(s, "Distribución de las unidades");
   d.title(s, "Cuatro niveles de departamentos más terraza");
@@ -173,21 +198,32 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.footer(s, n);
   s.addNotes(`Montos del detalle de alquileres; USD al TC del día (Gs ${miles(TC)}, ${TC_FECHA}).`);
 
-  // 6 — Recorrido fotográfico
+  // 7 — Recorrido: fachada y acceso
   s = d.slide("dark"); n++;
   d.eyebrow(s, "Recorrido fotográfico");
-  d.title(s, "Circulación común y terraza");
-  [["escalera-circulacion-comun.jpg", "Escalera y circulación común", "Escalera con baranda metálica y revestimiento en las áreas comunes."],
-   ["terraza.jpg", "Terraza superior", "Terraza amplia con vistas abiertas hacia el skyline de Asunción."]].forEach(([f, t, sub], i) => {
-    const x = M + i * 6.15, w = 5.9, h = w * 2 / 3;
-    d.photo(s, IMG(f), { x, y: 1.95, w, h }, { alt: t });
-    d.text(s, t, { x, y: 1.95 + h + 0.14, w, h: 0.32, fontSize: 13, bold: true });
-    d.text(s, sub, { x, y: 1.95 + h + 0.46, w, h: 0.32, fontSize: 11, transparency: 25 });
-  });
+  d.title(s, "Fachada y acceso");
+  { const h = 4.3, wA = h * 1.5, wB = h * 0.75, gap = 0.3, x0 = M + (R - M - (wA + gap + wB)) / 2;
+    [["vista-aerea-edificio.jpg", "Vista aérea del edificio y su entorno", x0, wA], ["acceso-principal.jpg", "Acceso principal", x0 + wA + gap, wB]].forEach(([f, t, x, w]) => {
+      d.photo(s, IMG(f), { x, y: 1.95, w, h }, { alt: t });
+      d.text(s, t, { x, y: 1.95 + h + 0.12, w, h: 0.32, fontSize: 12, bold: true });
+    }); }
   d.footer(s, n);
-  s.addNotes("Fotos del edificio sin edición. La fachada y el volumen se ven en la vista aérea de la portada.");
+  s.addNotes("Fotos del edificio sin edición ni recorte (proporción del marco = proporción de la foto). El contorno rojo de la vista aérea es de la fuente. La fachada frontal está en la portada.");
 
-  // 7 — Alquileres
+  // 8 — Recorrido: circulación y terraza
+  s = d.slide("white"); n++;
+  d.eyebrow(s, "Recorrido fotográfico");
+  d.title(s, "Circulación común y terraza");
+  { const h = 4.3, wA = h * 1.5, hB = (h - 0.1) / 2, wB = hB * 1.5, gap = 0.3, x0 = M + (R - M - (wA + gap + wB)) / 2;
+    d.photo(s, IMG("terraza.jpg"), { x: x0, y: 1.95, w: wA, h }, { alt: "Terraza superior" });
+    d.text(s, "Terraza superior con vistas abiertas sobre la ciudad", { x: x0, y: 1.95 + h + 0.12, w: wA, h: 0.32, fontSize: 12, bold: true });
+    d.photo(s, IMG("escalera-circulacion-comun.jpg"), { x: x0 + wA + gap, y: 1.95, w: wB, h: hB }, { alt: "Escalera y circulación común" });
+    d.photo(s, IMG("escalera-vista-cenital.jpg"), { x: x0 + wA + gap, y: 1.95 + hB + 0.1, w: wB, h: hB }, { alt: "Escalera, vista hacia el lucernario" });
+    d.text(s, "Escalera y circulación común", { x: x0 + wA + gap, y: 1.95 + h + 0.12, w: wB, h: 0.32, fontSize: 12, bold: true }); }
+  d.footer(s, n);
+  s.addNotes("Fotos del edificio sin edición ni recorte. No se atribuyen a un piso o unidad.");
+
+  // 9 — Alquileres
   s = d.slide("light"); n++;
   d.eyebrow(s, "Alquileres vigentes");
   d.title(s, `Ingreso mensual: ${gs(GS_MES)}  ·  ${usd(USD_MES)}`);
@@ -201,7 +237,7 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.footer(s, n);
   s.addNotes(`Detalle de alquileres verificado (founder 03/10/2026). Sin datos de inquilinos. ${TC_TXT}`);
 
-  // 8 — Ingresos y egresos
+  // 10 — Ingresos y egresos
   s = d.slide("white"); n++;
   d.eyebrow(s, "Ingresos y egresos anuales");
   d.title(s, "Del ingreso bruto al resultado neto");
@@ -231,7 +267,7 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.footer(s, n);
   s.addNotes(`Método del motor de Meridiano (calculadora.py): cada concepto como % del bruto. IVA efectivo ${pct(IVA_EF)}. Gastos fijos USD 1.200 de la planilla verificada. Obras mayores (impermeabilización, fachada) no incluidas en el 5% de mantenimiento: se presupuestan tras la inspección técnica. ${TC_TXT}`);
 
-  // 9 — Rentabilidad
+  // 11 — Rentabilidad
   s = d.slide("dark"); n++;
   d.eyebrow(s, "Rentabilidad");
   d.title(s, "Indicadores sobre el precio de venta");
@@ -252,7 +288,7 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.footer(s, n);
   s.addNotes(`Bruta ${(YB * 100).toFixed(4)}%; antes de IRE ${(YPRE * 100).toFixed(4)}%; neta final ${(YN * 100).toFixed(4)}%. Con el TC de la planilla original (Gs 6.100) la bruta era 11,31%: se reemplaza por el TC del día según la regla del founder.`);
 
-  // 10 — Proyección de alquiler
+  // 12 — Proyección de alquiler
   s = d.slide("light"); n++;
   d.eyebrow(s, "Proyección de alquiler");
   d.title(s, "Resultado neto anual proyectado a cinco años");
@@ -266,13 +302,13 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
     { x: 8.3, y: 1.95, w: R - 8.3, colW: [1.55, 1.5, 1.38], rowH: 0.48, fontSize: 11 });
   d.text(s, [
     { text: "Margen de ajuste. ", options: { bold: true } },
-    { text: `Hoy el promedio es ${gs(avg("1 dorm."))} en 1 dormitorio y ${gs(avg("2 dorm."))} en 2 dormitorios. Los avisos publicados en Ciudad Nueva van de Gs 2,5 a 3,0 millones (1 dorm.) y de Gs 2,1 a 4,2 millones (2 dorm.): hay espacio para ajustar en cada renovación, según el estado de cada unidad.` },
+    { text: `Hoy el promedio es ${gs(avg("1 dorm."))} en 1 dormitorio y ${gs(avg("2 dorm."))} en 2 dormitorios. Los avisos publicados hoy en Ciudad Nueva van de Gs 3,0 a 3,2 millones (1 dorm.) y de Gs 2,1 a 6,3 millones (2 dorm.): hay espacio para ajustar en cada renovación, según el estado de cada unidad.` },
   ], { x: 8.3, y: 4.05, w: R - 8.3, h: 2.3, fontSize: 10.5, lineSpacingMultiple: 1.2 });
   d.text(s, "Proyección ilustrativa en USD al tipo de cambio del día constante; no garantizada.", { x: M, y: 6.3, w: 7.3, h: 0.35, fontSize: 9.5, italic: true, color: C.grey });
   d.footer(s, n);
   s.addNotes(`Crecimiento de alquileres en Gs: conservador 3% (bajo la inflación; IPC usado para el ajuste fiscal 2026: 4,1%), base 5%, optimista 8% (convergencia hacia avisos). Avisos: InfoCasas, consulta 03/10/2026, categoría C (avisos, no contratos; incluyen unidades más nuevas). Netos: ${PROY.map((p) => `${p.n} ${p.netos.map((v) => Math.round(v)).join("/")}`).join("; ")}.`);
 
-  // 11 — Plusvalía y retorno total
+  // 13 — Plusvalía y retorno total
   s = d.slide("white"); n++;
   d.eyebrow(s, "Plusvalía y retorno total");
   d.title(s, "Escenarios a cinco años");
@@ -290,13 +326,14 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   s._mcDark = true;
   d.figure(s, pct(PROY[1].tir, 1), "TIR estimada, escenario base", { x: 9.5, y: 2.2, w: 3.1, size: 40 });
   d.text(s, `Compra a ${usd(PRECIO)}, cinco años de renta neta creciente y venta al valor estimado del año 5.`, { x: 9.5, y: 3.6, w: 3.1, h: 1.2, fontSize: 11.5, lineSpacingMultiple: 1.2 });
+  d.text(s, `Punto de partida: el precio equivale al ${pct(PREC_REPO, 0)} del costo de construir hoy la misma superficie, sin contar el terreno.`, { x: 9.5, y: 4.8, w: 3.1, h: 0.95, fontSize: 10.5, color: C.lapacho, lineSpacingMultiple: 1.15 });
   s._mcDark = false;
   d.text(s, "Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. No incluyen gastos de adquisición ni comisión de venta. El valor futuro depende del mercado, del estado del edificio y de su ocupación al vender.",
     { x: M, y: 6.05, w: R - M, h: 0.6, fontSize: 9.5, italic: true, color: C.grey, lineSpacingMultiple: 1.15 });
   d.footer(s, n);
   s.addNotes(`Valorización anual en USD: 2% / 3,5% / 5%. IVA de venta 1,5% efectivo (D-082/D-083). TIR con flujos: -precio en año 0, renta neta años 1-5 y venta neta de IVA en año 5. Ganancia total = plusvalía − IVA de venta + renta neta acumulada.`);
 
-  // 12 — Precio y condiciones
+  // 14 — Precio y condiciones
   s = d.slide("light"); n++;
   d.eyebrow(s, "Precio y condiciones");
   d.title(s, "Venta del edificio completo");
@@ -309,13 +346,13 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.hair(s, M + 0.4, 5.55, 4.4, C.navy_tint);
   d.text(s, `${pct(YB)} bruta  ·  ${pct(YN)} neta final  ·  ${usd(NETO / 12)} netos por mes`, { x: M + 0.4, y: 5.7, w: 4.4, h: 0.6, fontSize: 11, color: C.lapacho, lineSpacingMultiple: 1.2 });
   s._mcDark = false;
-  [["Activo", "Edificio de renta: 13 departamentos y 1 local comercial, más terraza."], ["Ocupación", "100% alquilado. Datos informados con verificación documental."],
+  [["Activo", `13 departamentos y 1 local comercial, más terraza. ${miles(CONSTR)} m² construidos sobre ${TERRENO} m² de terreno.`], ["Ocupación", "100% alquilado. Datos informados con verificación documental."],
    ["Ingreso", `${gs(GS_MES)} por mes  ·  ${usd(BRUTO)} por año al tipo de cambio del día.`],
    ["Forma de pago y entrega", "A acordar en la negociación y el boleto de compraventa."]].forEach(([k, v], i) => block(s, 6.3, 1.95 + i * 1.15, R - 6.3, k, v, { fontSize: 13 }));
   d.footer(s, n);
   s.addNotes(`${TC_TXT} Forma de pago y plazos: a acordar.`);
 
-  // 13 — Proceso de compra
+  // 15 — Proceso de compra
   s = d.slide("white"); n++;
   d.eyebrow(s, "Proceso de compra");
   d.title(s, "Cómo avanzamos, paso a paso");
@@ -336,12 +373,12 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.footer(s, n);
   s.addNotes("Proceso de acompañamiento de Meridiano (captar → estructurar → invertir → administrar). No se afirman situación registral ni estado estructural: se verifican en los pasos 1 y 3.");
 
-  // 14 — Riesgos
+  // 16 — Riesgos
   s = d.slide("light"); n++;
   d.eyebrow(s, "Consideraciones");
   d.title(s, "Riesgos a evaluar en un edificio de renta");
   [["Rotación de inquilinos", "La vacancia de la zona es baja, pero no es cero: hay renovaciones, renegociaciones y meses de recambio."],
-   ["Tipo de cambio", "Los alquileres se cobran en guaraníes y el precio está en dólares: la rentabilidad en USD varía con la cotización."],
+   ["Tipo de cambio", "Los alquileres se cobran en guaraníes y el precio está en dólares. En las últimas semanas el dólar bajó frente al guaraní; si la tendencia se revierte, la renta en USD baja."],
    ["Costos de operación", "Un edificio de 13 unidades requiere mantenimiento continuo; obras mayores se presupuestan aparte."],
    ["Impuestos", "El impuesto a la renta depende de la estructura de compra y lo determina el contador."],
    ["Valor de reventa", "La plusvalía presentada son escenarios: el valor futuro depende del mercado y del estado del activo."]].forEach(([t, b], i) => {
@@ -354,7 +391,7 @@ const FUENTES = `Fuentes: detalle de alquileres y planilla del propietario (veri
   d.footer(s, n);
   s.addNotes("Riesgos generales del tipo de operación.");
 
-  // 15 — Cierre con retrato (D-099)
+  // 17 — Cierre con retrato (D-099)
   d.closing({
     headline: "Coordinemos su visita al edificio",
     lead: "Le presentamos los contratos, el detalle de ingresos y la documentación del inmueble, y lo acompañamos en cada paso de la compra.",

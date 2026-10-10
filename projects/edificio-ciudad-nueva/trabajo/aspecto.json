@@ -1,7 +1,7 @@
 {
-  "file": "projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pptx",
+  "file": "../entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pptx",
   "tolerance_pct": 0.5,
-  "images_checked": 20,
+  "images_checked": 25,
   "max_deviation_pct": 0.001,
   "deformed": [],
   "unchecked": [],
@@ -12,26 +12,26 @@
     {
       "slide": 1,
       "shape": "Image 0",
-      "alt": "Vista aérea del edificio con su contorno marcado en rojo",
+      "alt": "Fachada frontal del edificio",
       "media": "ppt/media/image-1-1.jpg",
       "kind": "raster",
       "source_size": [
-        1125,
-        750
+        844,
+        1125
       ],
       "crop_pct": {
         "l": 0.0,
-        "t": 0.0,
+        "t": 5.64,
         "r": 0.0,
-        "b": 0.0
+        "b": 6.894
       },
       "frame_in": [
-        5.633,
-        3.755
+        6.433,
+        7.5
       ],
-      "aspect_deviation_pct": 0.0,
+      "aspect_deviation_pct": 0.0004,
       "axis": null,
-      "effective_ppi": 199.7,
+      "effective_ppi": 131.2,
       "status": "ok"
     },
     {
@@ -222,58 +222,8 @@
     {
       "slide": 6,
       "shape": "Image 0",
-      "alt": "Escalera y circulación común",
-      "media": "ppt/media/image-6-1.jpg",
-      "kind": "raster",
-      "source_size": [
-        1500,
-        1000
-      ],
-      "crop_pct": {
-        "l": 0.0,
-        "t": 0.0,
-        "r": 0.0,
-        "b": 0.0
-      },
-      "frame_in": [
-        5.9,
-        3.933
-      ],
-      "aspect_deviation_pct": 0.0,
-      "axis": null,
-      "effective_ppi": 254.2,
-      "status": "ok"
-    },
-    {
-      "slide": 6,
-      "shape": "Image 1",
-      "alt": "Terraza superior",
-      "media": "ppt/media/image-6-2.jpg",
-      "kind": "raster",
-      "source_size": [
-        1536,
-        1024
-      ],
-      "crop_pct": {
-        "l": 0.0,
-        "t": 0.0,
-        "r": 0.0,
-        "b": 0.0
-      },
-      "frame_in": [
-        5.9,
-        3.933
-      ],
-      "aspect_deviation_pct": 0.0,
-      "axis": null,
-      "effective_ppi": 260.3,
-      "status": "ok"
-    },
-    {
-      "slide": 6,
-      "shape": "Image 2",
       "alt": "Isotipo Meridiano Capital",
-      "media": "ppt/media/image-6-4.svg",
+      "media": "ppt/media/image-6-2.svg",
       "kind": "svg",
       "source_size": [
         120.0,
@@ -290,7 +240,7 @@
         0.3
       ],
       "svg_fallback": {
-        "media": "ppt/media/image-6-3.png",
+        "media": "ppt/media/image-6-1.png",
         "kind": "raster",
         "size": [
           1600,
@@ -304,8 +254,58 @@
     {
       "slide": 7,
       "shape": "Image 0",
+      "alt": "Vista aérea del edificio y su entorno",
+      "media": "ppt/media/image-7-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1125,
+        750
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        6.45,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "effective_ppi": 174.4,
+      "status": "ok"
+    },
+    {
+      "slide": 7,
+      "shape": "Image 1",
+      "alt": "Acceso principal",
+      "media": "ppt/media/image-7-2.jpg",
+      "kind": "raster",
+      "source_size": [
+        844,
+        1125
+      ],
+      "crop_pct": {
+        "l": 0.015,
+        "t": 0.0,
+        "r": 0.015,
+        "b": 0.0
+      },
+      "frame_in": [
+        3.225,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0004,
+      "axis": null,
+      "effective_ppi": 261.6,
+      "status": "ok"
+    },
+    {
+      "slide": 7,
+      "shape": "Image 2",
       "alt": "Isotipo Meridiano Capital",
-      "media": "ppt/media/image-7-2.svg",
+      "media": "ppt/media/image-7-4.svg",
       "kind": "svg",
       "source_size": [
         120.0,
@@ -322,7 +322,7 @@
         0.3
       ],
       "svg_fallback": {
-        "media": "ppt/media/image-7-1.png",
+        "media": "ppt/media/image-7-3.png",
         "kind": "raster",
         "size": [
           1600,
@@ -336,8 +336,83 @@
     {
       "slide": 8,
       "shape": "Image 0",
+      "alt": "Terraza superior",
+      "media": "ppt/media/image-8-1.jpg",
+      "kind": "raster",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        6.45,
+        4.3
+      ],
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "effective_ppi": 238.1,
+      "status": "ok"
+    },
+    {
+      "slide": 8,
+      "shape": "Image 1",
+      "alt": "Escalera y circulación común",
+      "media": "ppt/media/image-8-2.jpg",
+      "kind": "raster",
+      "source_size": [
+        1500,
+        1000
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        3.15,
+        2.1
+      ],
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "effective_ppi": 476.2,
+      "status": "ok"
+    },
+    {
+      "slide": 8,
+      "shape": "Image 2",
+      "alt": "Escalera, vista hacia el lucernario",
+      "media": "ppt/media/image-8-3.jpg",
+      "kind": "raster",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        3.15,
+        2.1
+      ],
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "effective_ppi": 487.6,
+      "status": "ok"
+    },
+    {
+      "slide": 8,
+      "shape": "Image 3",
       "alt": "Isotipo Meridiano Capital",
-      "media": "ppt/media/image-8-2.svg",
+      "media": "ppt/media/image-8-5.svg",
       "kind": "svg",
       "source_size": [
         120.0,
@@ -354,7 +429,7 @@
         0.3
       ],
       "svg_fallback": {
-        "media": "ppt/media/image-8-1.png",
+        "media": "ppt/media/image-8-4.png",
         "kind": "raster",
         "size": [
           1600,
@@ -560,8 +635,72 @@
     {
       "slide": 15,
       "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-15-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-15-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 16,
+      "shape": "Image 0",
+      "alt": "Isotipo Meridiano Capital",
+      "media": "ppt/media/image-16-2.svg",
+      "kind": "svg",
+      "source_size": [
+        120.0,
+        120.0
+      ],
+      "crop_pct": {
+        "l": 0.0,
+        "t": 0.0,
+        "r": 0.0,
+        "b": 0.0
+      },
+      "frame_in": [
+        0.3,
+        0.3
+      ],
+      "svg_fallback": {
+        "media": "ppt/media/image-16-1.png",
+        "kind": "raster",
+        "size": [
+          1600,
+          1600
+        ]
+      },
+      "aspect_deviation_pct": 0.0,
+      "axis": null,
+      "status": "ok"
+    },
+    {
+      "slide": 17,
+      "shape": "Image 0",
       "alt": "Juan José Castillo",
-      "media": "ppt/media/image-15-1.jpg",
+      "media": "ppt/media/image-17-1.jpg",
       "kind": "raster",
       "source_size": [
         1024,
@@ -583,10 +722,10 @@
       "status": "ok"
     },
     {
-      "slide": 15,
+      "slide": 17,
       "shape": "Image 1",
       "alt": "Meridiano Capital",
-      "media": "ppt/media/image-15-3.svg",
+      "media": "ppt/media/image-17-3.svg",
       "kind": "svg",
       "source_size": [
         430.0,
@@ -603,7 +742,7 @@
         0.781
       ],
       "svg_fallback": {
-        "media": "ppt/media/image-15-2.png",
+        "media": "ppt/media/image-17-2.png",
         "kind": "raster",
         "size": [
           1600,

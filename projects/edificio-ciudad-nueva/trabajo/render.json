@@ -1,8 +1,8 @@
 {
   "source": "projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pptx",
-  "expected_pages": 15,
+  "expected_pages": 17,
   "pdf": "projects/edificio-ciudad-nueva/entregables/Edificio_Ciudad_Nueva_Meridiano_FINAL.pdf",
-  "pdf_pages": 15,
+  "pdf_pages": 17,
   "pngs": [
     "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-01.png",
     "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-02.png",
@@ -18,7 +18,9 @@
     "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-12.png",
     "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-13.png",
     "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-14.png",
-    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-15.png"
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-15.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-16.png",
+    "projects/edificio-ciudad-nueva/trabajo/revision/diapositiva-17.png"
   ],
   "overview": "projects/edificio-ciudad-nueva/trabajo/revision/00_vista_general.png",
   "pdf_fonts": [
