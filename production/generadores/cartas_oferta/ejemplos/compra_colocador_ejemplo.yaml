@@ -9,7 +9,7 @@ ciudad: Asunción
 fecha: 2026-10-13
 subtitulo: "Departamento · Barrio EJEMPLO"
 destinatario: ["Señores", "INMOBILIARIA-CAPTADORA-A", "Atte. AGENTE-CAPTADOR-A", "Presente"]
-presenta: "Meridiano Capital, a través de Juan José Castillo · Asesor inmobiliario (colocador)"
+presenta: "Meridiano Capital, a través de Juan José Castillo · Broker inmobiliario (colocador)"
 proponente: {etiqueta: "Oferente / comprador", nombre: COMPRADOR-A, documento: "C.I. N° [PENDIENTE]"}
 bloque_partes_extra:
   - ["Captador", "INMOBILIARIA-CAPTADORA-A, a través de AGENTE-CAPTADOR-A"]
@@ -40,5 +40,5 @@ intervencion: >-
   facultad para aceptar ni recibir fondos por su sola intervención.
 firmas:
   - {nombre: COMPRADOR-A, documento: "C.I. N° [PENDIENTE]", cargo: Oferente}
-  - {nombre: Lic. Juan José Castillo, cargo: Asesor inmobiliario, entidad: MERIDIANO CAPITAL}
+  - {nombre: Lic. Juan José Castillo, cargo: Broker inmobiliario, entidad: MERIDIANO CAPITAL}
 respuesta: {habilitada: true, parte: parte propietaria}

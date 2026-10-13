@@ -48,6 +48,10 @@ condiciones numeradas → vigencia, efecto de la aceptación e intervención →
 **constancia de recepción** (no es aceptación; fija desde cuándo corre la vigencia) + **formulario de respuesta**
 (acepto / rechazo / contraoferta) con, si corresponde, el reconocimiento de comisión de la parte que paga.
 
+## Regla de firma del founder (D-097)
+
+Juan José Castillo interviene y firma siempre como **Broker inmobiliario** (MERIDIANO CAPITAL) en ventas y alquileres. `aplicar_reglas_founder()` lo aplica al cargar cualquier ficha: en todo texto que lo nombre, "asesor inmobiliario" pasa a "broker inmobiliario", y su bloque de firma lleva ese cargo aunque la ficha diga otra cosa. No toca a otros agentes.
+
 ## Marca
 
 - Membrete: `../logo_horizontal.png`, lockup oficial vigente (isotipo "partido por el meridiano" D-034 + wordmark Fraunces D-036), rasterizado por `../rasterize_assets.js`. **No usar el triángulo simétrico viejo** (histórico, v1.0 del manual).

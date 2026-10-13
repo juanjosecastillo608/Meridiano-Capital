@@ -31,7 +31,8 @@ Siempre con el generador `production/generadores/cartas_oferta/` (ficha YAML →
 - Destinatario con "Atte." cuando la carta va a una empresa o inmobiliaria.
 - Tabla de condiciones económicas: canon por m², superficie, canon mensual e inicio/plazo en alquiler; precio y cronograma en compra.
 - Cierre: "Sin otro particular y aguardando una respuesta favorable, saludamos atentamente."
-- Firmas: Juan José Castillo (asesor inmobiliario, MERIDIANO CAPITAL) y el proponente o su representante.
+- Firmas: Juan José Castillo y el proponente o su representante. **Juan José Castillo firma siempre como "Broker inmobiliario" — MERIDIANO CAPITAL** en intervenciones de venta y alquiler (D-097). El generador lo aplica solo: corrige "asesor inmobiliario" en cualquier texto que lo nombre y fija el cargo de su firma.
+- Subtítulo bajo el título en la tipografía de cuerpo (Poppins → Calibri) sin cursiva. Párrafos del cuerpo en negro, incluido el de intervención.
 - Pie: "Meridiano Capital · Asunción, Paraguay · meridianocapital.net".
 
 ## Hallazgo de marca (Brand Guardian)

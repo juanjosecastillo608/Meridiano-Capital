@@ -5,7 +5,11 @@ Compraventa de una casa en Gral. Carlos Díaz León N° 3126, Barrio Herrera, As
 > Es un caso independiente de `HERRERA-001` (edificio inconcluso, otro vendedor): no comparten datos.
 > PII según `governance/PII_POLICY.md`: solo nombre, rol y documento de las partes. Los documentos fuente (boleta municipal 2016, foto de cédula) **no se versionan**.
 
-## Estado: 🟡 Carta de oferta v2 en BORRADOR PARA REVISIÓN
+## Estado: 🟢 Carta de oferta v3 LISTA PARA FIRMA (no significa firmada ni aceptada)
+
+El escribano revisó la v2 sin observaciones (founder, 13-10-2026). La v3 solo cambia la forma: subtítulo en la tipografía de cuerpo, párrafo de intervención en negro y Juan José Castillo como Broker inmobiliario (D-097).
+
+### Antecedente: v2
 
 La v2 incorpora las respuestas del founder del 2026-10-13: la titular es soltera; el pago es 100 % con préstamo bancario y queda sujeto a su aprobación definitiva; puede convenirse una seña a cuenta; la vigencia es de 7 días; la respuesta se da por escrito en el formulario adjunto; la escritura se otorga en el plazo que fije el banco; la posesión se entrega contra la cancelación del precio; la comisión es del 5,5 % con IVA incluido.
 
@@ -13,7 +17,10 @@ No quedan `[PENDIENTE]` en la carta. Antes de LISTO PARA FIRMA falta la revisió
 
 | Archivo | Contenido |
 |---|---|
-| `carta-oferta/ficha_HERRERA-002-OF01_v2.yaml` | **Ficha vigente** (fuente de la v2; regenerar con `production/generadores/cartas_oferta/`) |
+| `carta-oferta/ficha_HERRERA-002-OF01_v3.yaml` | **Ficha vigente** (fuente de la v3) |
+| `carta-oferta/02_Carta_Oferta_HERRERA-002-OF01_v3.docx` / `.pdf` | **Carta v3 — LISTA PARA FIRMA** |
+| `carta-oferta/03_Control_Oferta_HERRERA-002-OF01_v3.md` | Control automático v3 |
+| `carta-oferta/ficha_HERRERA-002-OF01_v2.yaml` | Ficha v2 (se conserva) |
 | `carta-oferta/02_Carta_Oferta_HERRERA-002-OF01_v2.docx` / `.pdf` | Carta v2 con membrete oficial |
 | `carta-oferta/03_Control_Oferta_HERRERA-002-OF01_v2.md` | Control automático v2 + observaciones del analista |
 | `carta-oferta/01_Ficha_Operacion_Oferta_HERRERA-002-OF01.md` | Ficha v1 (trazabilidad de fuentes E1–E3; superada en lo económico por la ficha YAML v2) |

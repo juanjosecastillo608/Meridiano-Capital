@@ -51,6 +51,10 @@ PIE_DEFECTO = "Meridiano Capital · Asunción, Paraguay · meridianocapital.net"
 # Lockup horizontal oficial vigente (D-034 + wordmark Fraunces D-036), rasterizado por ../rasterize_assets.js
 LOGO = Path(__file__).resolve().parent.parent / "logo_horizontal.png"
 
+# Juan José Castillo interviene y firma siempre como broker inmobiliario en ventas y alquileres (founder, 2026-10-13).
+AGENTE_FOUNDER = "juan jose castillo"
+CARGO_FOUNDER = "Broker inmobiliario"
+
 PEND = re.compile(r"(\[PENDIENTE(?::[^\]]*)?\])")
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
          "septiembre", "octubre", "noviembre", "diciembre"]
@@ -288,6 +292,28 @@ class Carta:
         self.no_cortar(t.rows[0])
 
 
+def _sin_acentos(t):
+    import unicodedata
+    return "".join(ch for ch in unicodedata.normalize("NFD", t) if unicodedata.category(ch) != "Mn").lower()
+
+
+def aplicar_reglas_founder(x):
+    """Recorre la ficha: en todo texto que nombre a Juan José Castillo, "asesor inmobiliario" pasa a
+    "broker inmobiliario", y su firma lleva siempre el cargo Broker inmobiliario / MERIDIANO CAPITAL."""
+    if isinstance(x, dict):
+        y = {k: aplicar_reglas_founder(v) for k, v in x.items()}
+        if AGENTE_FOUNDER in _sin_acentos(str(y.get("nombre", ""))):
+            y["cargo"] = CARGO_FOUNDER
+            y.setdefault("entidad", "MERIDIANO CAPITAL")
+        return y
+    if isinstance(x, list):
+        return [aplicar_reglas_founder(v) for v in x]
+    if isinstance(x, str) and AGENTE_FOUNDER in _sin_acentos(x):
+        x = re.sub(r"Asesor inmobiliario", "Broker inmobiliario", x)
+        return re.sub(r"asesor inmobiliario", "broker inmobiliario", x)
+    return x
+
+
 # ---------------------------------------------------------------- validación
 OBLIGATORIOS = {
     "comun": ["codigo", "version", "tipo", "rol_meridiano", "fecha", "destinatario", "presenta",
@@ -407,7 +433,8 @@ def render(f, salida: Path, estado):
 
     c.p(f.get("titulo", "CARTA DE OFERTA DE COMPRA" if es_compra else "CARTA DE OFERTA DE ALQUILER"),
         font=SERIF, size=16, color=PETROLEO, align=WD_ALIGN_PARAGRAPH.CENTER, after=0, spacing=20)
-    sub = c.p(f.get("subtitulo", ""), italic=True, color=PETROLEO, size=10.5,
+    # Subtítulo en la sans de cuerpo (Poppins -> Calibri), sin cursiva: la cursiva no es parte del sistema (04-tipografia.md)
+    sub = c.p(f.get("subtitulo", ""), font=SANS, color=PETROLEO, size=11,
               align=WD_ALIGN_PARAGRAPH.CENTER, after=8)
     c.borde(sub, color=HEX_PETROLEO, sz=6)
 
@@ -476,7 +503,7 @@ def render(f, salida: Path, estado):
     c.p("Vigencia, respuesta y alcance", font=SERIF, size=12, color=PETROLEO, keep=True, before=4, after=3)
     c.p(vigencia_texto(f["vigencia"]), align=WD_ALIGN_PARAGRAPH.JUSTIFY)
     c.p(f["efecto_aceptacion"], align=WD_ALIGN_PARAGRAPH.JUSTIFY)
-    c.p(f["intervencion"], align=WD_ALIGN_PARAGRAPH.JUSTIFY, color=GRIS, keep=True)
+    c.p(f["intervencion"], align=WD_ALIGN_PARAGRAPH.JUSTIFY, keep=True)
     c.p(f.get("cierre", "Sin otro particular y aguardando una respuesta favorable, saludamos atentamente."), keep=True)
     c.firmas(f["firmas"])
 
@@ -546,7 +573,7 @@ def main():
     a = ap.parse_args()
 
     ficha = Path(a.ficha)
-    f = yaml.safe_load(ficha.read_text(encoding="utf-8"))
+    f = aplicar_reglas_founder(yaml.safe_load(ficha.read_text(encoding="utf-8")))
     salida = Path(a.salida) if a.salida else ficha.parent
     salida.mkdir(parents=True, exist_ok=True)
     base = f"02_Carta_Oferta_{f.get('codigo')}_v{f.get('version')}"

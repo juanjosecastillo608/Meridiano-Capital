@@ -10,7 +10,7 @@ fecha: 2026-10-13
 titulo: CARTA DE OFERTA DE ALQUILER
 subtitulo: "Edificio EJEMPLO · Piso 4° con 2 cocheras"
 destinatario: ["Señores", "DESARROLLADORA EJEMPLO S.A.", "Atte. PROPIETARIO-A", "Presente"]
-presenta: "Meridiano Capital, a través de Juan José Castillo · Asesor inmobiliario"
+presenta: "Meridiano Capital, a través de Juan José Castillo · Broker inmobiliario"
 proponente:
   etiqueta: "Proponente / inquilino"
   nombre: "EMPRESA-INQUILINA-A S.R.L."
@@ -19,7 +19,7 @@ proponente:
 referencia: "Propuesta de alquiler – Piso 4° y 2 cocheras"
 parrafos_intro:
   - >-
-    Por medio de la presente, Meridiano Capital, a través de su asesor inmobiliario Juan José Castillo,
+    Por medio de la presente, Meridiano Capital, a través de su broker inmobiliario Juan José Castillo,
     presenta formalmente a EMPRESA-INQUILINA-A S.R.L., representada por REPRESENTANTE-A, en carácter de
     potencial inquilino, y somete a consideración la siguiente propuesta de alquiler del Piso 4° del
     Edificio EJEMPLO, con una superficie aproximada de 200 m².
@@ -43,10 +43,10 @@ efecto_aceptacion: >-
   definitivo entre el propietario y EMPRESA-INQUILINA-A S.R.L.
 intervencion: >-
   Meridiano Capital interviene en la presentación y canalización comercial de esta propuesta a través
-  de Juan José Castillo, en su carácter de asesor inmobiliario, sin facultad para aceptar en nombre de
+  de Juan José Castillo, en su carácter de broker inmobiliario, sin facultad para aceptar en nombre de
   las partes ni recibir fondos por su sola intervención.
 firmas:
-  - {nombre: Lic. Juan José Castillo, cargo: Asesor inmobiliario, entidad: MERIDIANO CAPITAL}
+  - {nombre: Lic. Juan José Castillo, cargo: Broker inmobiliario, entidad: MERIDIANO CAPITAL}
   - {nombre: REPRESENTANTE-A, cargo: Representante, entidad: EMPRESA-INQUILINA-A S.R.L.}
 respuesta:
   habilitada: true
