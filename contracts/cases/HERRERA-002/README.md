@@ -13,7 +13,7 @@ El escribano revisó la v2 sin observaciones (founder, 13-10-2026). La v3 solo c
 
 La v2 incorpora las respuestas del founder del 2026-10-13: la titular es soltera; el pago es 100 % con préstamo bancario y queda sujeto a su aprobación definitiva; puede convenirse una seña a cuenta; la vigencia es de 7 días; la respuesta se da por escrito en el formulario adjunto; la escritura se otorga en el plazo que fije el banco; la posesión se entrega contra la cancelación del precio; la comisión es del 5,5 % con IVA incluido.
 
-No quedan `[PENDIENTE]` en la carta. Antes de LISTO PARA FIRMA falta la revisión del escribano sobre el efecto de la aceptación y el estado civil vs. el apellido. Ver las observaciones en el control v2.
+En la v2 ya no quedaban `[PENDIENTE]`; solo faltaba la revisión del escribano (efecto de la aceptación y estado civil vs. apellido), que quedó resuelta en la v3.
 
 | Archivo | Contenido |
 |---|---|
