@@ -1,0 +1,53 @@
+# EJEMPLO FICTICIO — estructura tomada del modelo de carta de alquiler de la casa
+# (oficina corporativa, Meridiano presenta al inquilino = COLOCADOR). Ningún dato es real.
+codigo: EJ-ALQ-001
+version: 1
+tipo: alquiler
+rol_meridiano: COLOCADOR
+revision_juridica_ok: false
+ciudad: Asunción
+fecha: 2026-10-13
+titulo: CARTA DE OFERTA DE ALQUILER
+subtitulo: "Edificio EJEMPLO · Piso 4° con 2 cocheras"
+destinatario: ["Señores", "DESARROLLADORA EJEMPLO S.A.", "Atte. PROPIETARIO-A", "Presente"]
+presenta: "Meridiano Capital, a través de Juan José Castillo · Asesor inmobiliario"
+proponente:
+  etiqueta: "Proponente / inquilino"
+  nombre: "EMPRESA-INQUILINA-A S.R.L."
+  documento: "RUC N.º [PENDIENTE: RUC de la empresa]"
+  representante: "REPRESENTANTE-A"
+referencia: "Propuesta de alquiler – Piso 4° y 2 cocheras"
+parrafos_intro:
+  - >-
+    Por medio de la presente, Meridiano Capital, a través de su asesor inmobiliario Juan José Castillo,
+    presenta formalmente a EMPRESA-INQUILINA-A S.R.L., representada por REPRESENTANTE-A, en carácter de
+    potencial inquilino, y somete a consideración la siguiente propuesta de alquiler del Piso 4° del
+    Edificio EJEMPLO, con una superficie aproximada de 200 m².
+titulo_canon: Condiciones económicas propuestas
+canon:
+  - ["Canon propuesto", "USD 10,50 / m² · IVA y expensas incluidos"]
+  - ["Superficie estimada", "200 m² aproximadamente"]
+  - ["Canon mensual estimado", "USD 2.100 · IVA y expensas incluidos"]
+  - ["Inicio / plazo", "1 de noviembre de 2026 · hasta 3 años, sujeto a acuerdo definitivo"]
+  - ["Garantía / depósito", "[PENDIENTE: garantía y depósito propuestos]"]
+titulo_condiciones: Adecuaciones a cargo del propietario
+condiciones:
+  - texto: Modificación del acceso a la kitchenette para integrarla al área arrendada.
+  - texto: Las adecuaciones deberán estar concluidas para la fecha prevista de inicio de la locación.
+vigencia:
+  dias: 15
+  tipo: corridos
+  desde: la fecha de su presentación
+efecto_aceptacion: >-
+  La aceptación de la oferta y la instrumentación de la locación quedarán sujetas al acuerdo
+  definitivo entre el propietario y EMPRESA-INQUILINA-A S.R.L.
+intervencion: >-
+  Meridiano Capital interviene en la presentación y canalización comercial de esta propuesta a través
+  de Juan José Castillo, en su carácter de asesor inmobiliario, sin facultad para aceptar en nombre de
+  las partes ni recibir fondos por su sola intervención.
+firmas:
+  - {nombre: Lic. Juan José Castillo, cargo: Asesor inmobiliario, entidad: MERIDIANO CAPITAL}
+  - {nombre: REPRESENTANTE-A, cargo: Representante, entidad: EMPRESA-INQUILINA-A S.R.L.}
+respuesta:
+  habilitada: true
+  parte: parte propietaria

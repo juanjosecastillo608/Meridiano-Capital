@@ -1,0 +1,44 @@
+# EJEMPLO FICTICIO — estructura tomada del modelo de intención de compra de la casa
+# (Meridiano aporta al comprador = COLOCADOR; reserva + seña + saldo). Ningún dato es real.
+codigo: EJ-COMP-001
+version: 1
+tipo: compra
+rol_meridiano: COLOCADOR
+revision_juridica_ok: false
+ciudad: Asunción
+fecha: 2026-10-13
+subtitulo: "Departamento · Barrio EJEMPLO"
+destinatario: ["Señores", "INMOBILIARIA-CAPTADORA-A", "Atte. AGENTE-CAPTADOR-A", "Presente"]
+presenta: "Meridiano Capital, a través de Juan José Castillo · Asesor inmobiliario (colocador)"
+proponente: {etiqueta: "Oferente / comprador", nombre: COMPRADOR-A, documento: "C.I. N° [PENDIENTE]"}
+bloque_partes_extra:
+  - ["Captador", "INMOBILIARIA-CAPTADORA-A, a través de AGENTE-CAPTADOR-A"]
+referencia: "Oferta de compra – Departamento en Barrio EJEMPLO"
+parrafos_intro:
+  - >-
+    Por la presente, COMPRADOR-A, cliente de Meridiano Capital, formula su oferta de compra del inmueble
+    captado por INMOBILIARIA-CAPTADORA-A, en los términos siguientes, para su elevación a la parte propietaria.
+inmueble:
+  - ["Ubicación", "[PENDIENTE: dirección]"]
+  - ["Cuenta corriente catastral", "[PENDIENTE]"]
+precio:
+  solicitado: "USD 80.000 (ochenta mil dólares estadounidenses)"
+  ofertado_importe: 73000
+  moneda: USD
+  ofertado_letras: "setenta y tres mil dólares estadounidenses"
+pagos:
+  - {concepto: Reserva, importe: 2000, hito: "Al aceptarse la oferta, por transferencia", condicion: "Se imputa al precio"}
+  - {concepto: Seña de trato, importe: 38000, hito: "Firma del contrato privado, máx. 15 días corridos desde la reserva", condicion: "Se imputa al precio"}
+  - {concepto: Saldo, importe: 33000, hito: "Firma de la escritura", condicion: "Transferencia bancaria"}
+condiciones:
+  - {titulo: Gastos de transferencia, texto: "A cargo del comprador."}
+  - {titulo: Impuestos, texto: "Impuesto inmobiliario al día por parte del vendedor. IVA de la venta según corresponda por ley: [PENDIENTE: confirmar con el contador — no fijar un porcentaje sin verificarlo]."}
+vigencia: {dias: 5, tipo: hábiles, desde: la fecha de emisión}
+efecto_aceptacion: "[PENDIENTE: definir efecto de la aceptación]"
+intervencion: >-
+  Meridiano Capital interviene como inmobiliaria colocadora a través de Juan José Castillo, sin
+  facultad para aceptar ni recibir fondos por su sola intervención.
+firmas:
+  - {nombre: COMPRADOR-A, documento: "C.I. N° [PENDIENTE]", cargo: Oferente}
+  - {nombre: Lic. Juan José Castillo, cargo: Asesor inmobiliario, entidad: MERIDIANO CAPITAL}
+respuesta: {habilitada: true, parte: parte propietaria}
