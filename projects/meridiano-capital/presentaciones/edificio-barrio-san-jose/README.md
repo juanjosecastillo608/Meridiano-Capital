@@ -1,6 +1,6 @@
 # Edificio Barrio San José — presentación comercial v3
 
-Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la misma estructura, el mismo diseño y el mismo método de cálculo. Tiene 19 láminas. Agrega una tercera lámina de fotos para incluir las fotos interiores nuevas y una lámina de **potencial de optimización** con la proyección recibida.
+Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la misma estructura, el mismo diseño y el mismo método de cálculo. Tiene 20 láminas. Agrega una tercera lámina de fotos para incluir las fotos interiores nuevas una lámina de **potencial de optimización** con la proyección recibida y una de **referencias de mercado** (alquileres publicados en Ciudad del Este), tomada del estudio de mercado preliminar del 2026-10-13 (`fuente/Estudio_de_mercado_Edificio_Barrio_San_Jose_2026-10-13.pdf`).
 
 - PDF: `Edificio_Barrio_San_Jose_Meridiano_Capital_v3.pdf`
 - Fuente: `fuente/model.py` (calcula el modelo), `fuente/gen.py` y `fuente/style.css` (generan el HTML, que se imprime a PDF con Chromium). Las imágenes y las fuentes tipográficas no se versionan.
@@ -25,8 +25,16 @@ Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la
 - Bruta 8,25% · neta antes de IRE 6,06% · neta final 5,45% · TIR estimada a 5 años 7,3% / 8,9% / 10,5%.
 - La proyección recibida (Gs 19,4 a 19,9 M por mes, bruta de 14,5% a 14,9%) se muestra **solo como escenario a validar**. Supone +80% en el canon de los departamentos y no tiene un AMC del barrio.
 
+## Discrepancias detectadas por el estudio de mercado (2026-10-13)
+- Antigüedad: el founder indica 2006; la publicación en InfoCasas dice de 9 a 15 años. El deck usa 2006.
+- Terraza de 200 m²: según la publicación. No está claro si está incluida en los 600 m².
+- Dirección declarada en la publicación: Av. Senador Long. El punto de Google Maps no está vinculado a la parcela.
+- 4 cocheras y 10 baños: según la publicación, sin verificar.
+
 ## Pendiente antes del envío definitivo
 - Dirección escrita y distancias por calle. El enlace de Google Maps del edificio (https://maps.app.goo.gl/jtpSEDXhJ8mzXVPY8) ya está en la lámina de ubicación.
 - Contratos, depósitos e historial de cobro.
 - Renta de la habitación terminada y costo de obra de la habitación a terminar.
-- AMC de alquiler del barrio San José (SK-14). No hay datos de mercado de Ciudad del Este en `knowledge-base/`.
+- Superficie de cada unidad: sin ese dato, el alquiler de mercado no se puede estimar y el objetivo de Gs 1.800.000 no se confirma ni se descarta (confianza baja).
+- Rango de venta del edificio completo: las referencias reunidas no alcanzan.
+- Referencias de alquiler de Ciudad del Este guardadas en `knowledge-base/investment/market-intelligence/rentals/08-referencias-alquiler-ciudad-del-este.md`.

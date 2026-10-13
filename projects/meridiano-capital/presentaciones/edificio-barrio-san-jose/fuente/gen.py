@@ -53,16 +53,16 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de renta con 8 depart
 <div class="box">Ocupación: renta activa en 8 dptos. y casa, según información recibida · Contratos pendientes de verificación documental · Tipo de cambio {TCTXT}</div>''', 2))
 
 # 03 UBICACION
-loc = [('Ciudad', 'Ciudad del Este, departamento de Alto Paraná'), ('Barrio', 'San José'), ('Dirección exacta', 'A confirmar con el título y el plano del inmueble')]
+loc = [('Ciudad', 'Ciudad del Este, departamento de Alto Paraná'), ('Barrio', 'San José'), ('Dirección declarada', 'Av. Senador Long, frente a la vía, según la publicación del inmueble'), ('Cocheras', '4, según la publicación; a verificar en la visita')]
 lh = ''.join(f'<div class="li"><div class="eb sm">{a}</div><div class="lt">{b}</div></div>' for a, b in loc)
 S.append(slide(f'''{head('Ubicación', 'Barrio San José, Ciudad del Este')}
 <div class="two"><div class="mapimg"><img src="img/aerial.jpg"><div class="cap">Vista aérea del entorno · el edificio, señalado</div></div>
 <div class="locr">{lh}
 <a class="glink" href="https://maps.app.goo.gl/jtpSEDXhJ8mzXVPY8">Abrir en Google Maps</a>
-<p class="note">Ubicación del edificio en Google Maps. Dirección escrita y distancias por calle a los principales ejes, a confirmar antes de la oferta.</p></div></div>''', 3))
+<p class="note">Ubicación del edificio en Google Maps. La parcela exacta se confirma con el título y el plano antes de la oferta.</p></div></div>''', 3))
 
 # 04 ZONA
-pts = [('Demanda de alquiler accesible', 'Monoambientes y casa orientados a quienes trabajan en el comercio y los servicios de la ciudad. A validar con relevamiento de mercado del barrio.'),
+pts = [('Demanda de alquiler accesible', 'Monoambientes y casa orientados a quienes trabajan en el comercio y los servicios de la ciudad. En el barrio se publican desde habitaciones con baño hasta departamentos de 2 dormitorios.'),
        ('Renta diversificada', '11 unidades de renta: la salida de un inquilino afecta solo una parte del ingreso total.'),
        ('Margen de optimización', 'El canon promedio actual es Gs 1.000.000 por departamento; la proyección recibida plantea Gs 1.800.000, sujeta a validación.')]
 ph = ''.join(f'<div class="pt"><div class="pn">0{i+1}</div><div><div class="pth">{a}</div><div class="ptt">{b}</div></div></div>' for i, (a, b) in enumerate(pts))
@@ -70,7 +70,7 @@ S.append(slide(f'''{head('La zona para el inversor', 'Ciudad del Este: el polo c
 <div class="two z"><div class="ztext"><p>Ciudad del Este, capital del departamento de Alto Paraná, es la segunda ciudad del Paraguay y uno de los principales centros comerciales de la región. Se une con Foz do Iguaçu (Brasil) por el Puente de la Amistad y forma, con Puerto Iguazú (Argentina), la Triple Frontera.</p>
 <p>Su economía gira en torno al comercio de frontera, los servicios y la actividad vinculada a la represa de Itaipú. Esa base de trabajo sostiene una demanda de vivienda en alquiler de escala accesible, como la que ofrece este edificio.</p></div>
 <div><div class="eb sm">Por qué importa para la renta</div>{ph}</div></div>
-<div class="src">Contexto general de Ciudad del Este. Alquileres de mercado y vacancia del barrio San José: pendientes de relevamiento con comparables verificados; no se usan datos sin fuente.</div>''', 4))
+<div class="src">Contexto general de Ciudad del Este. Referencias de alquiler publicadas en InfoCasas, ViaParaguay, MercadoProp, Asuncion.estate y Century 21, consultadas el 13/10/2026 (ver lámina 15). Vacancia del barrio: sin dato publicado.</div>''', 4))
 
 # 05 SUPERFICIES
 sv = [('600 m²', 'Superficie construida · 1,3 veces el terreno'), ('2006', 'Año de construcción · 20 años'),
@@ -80,7 +80,7 @@ svh = ''.join(f'<div class="k"><div class="v">{v}</div><div class="l">{l}</div><
 S.append(slide(f'''{head('Superficies y valor', '459 m² de terreno y 600 m² construidos')}
 <div class="sup"><div class="lot"><div class="rect" style="width:120px;height:302px"><span>459 m²</span></div><div class="dimr">34 m de fondo</div><div class="dimb">13,5 m de frente</div></div>
 <div><div class="kgrid k2">{svh}</div>
-<div class="src" style="position:static;margin-top:14px">Referencia: tabla de costos de construcción de Meridiano Capital (edificio de departamentos, calidad básica). Sin comparables de venta verificados en el barrio a la fecha. Valores de referencia, no tasación: el costo de construcción nueva no descuenta los 20 años del edificio ni su estado de conservación.</div></div></div>''', 5))
+<div class="src" style="position:static;margin-top:14px">Referencia: tabla de costos de construcción de Meridiano Capital (edificio de departamentos, calidad básica). Edificios publicados en Ciudad del Este: uno en esquina de 720 m² a USD 275.000 (USD 382/m²) y uno con renta activa de 8 dptos. y 3 locales en Ciudad Nueva a USD 780.000 (InfoCasas, 13/10/2026); difieren en ubicación, composición y estado. Valores de referencia, no tasación: el costo de construcción nueva no descuenta los 20 años del edificio ni su estado de conservación.</div></div></div>''', 5))
 
 # 06 DISTRIBUCION
 rows = [('Primer y segundo piso', '8 dptos. monoambiente (4 + 4)', 'Gs 8.000.000', usd(8e6 / TC)), ('Planta baja', 'Casa', 'Gs 3.000.000', usd(3e6 / TC)),
@@ -173,6 +173,25 @@ S.append(slide(f'''{head('Potencial de optimización', 'La proyección recibida 
 <tr class="sub"><td>Supuesto</td><td>8 dptos. a Gs 1,0 M · casa Gs 3,0 M</td><td>8 dptos. a Gs 1,8 M · casa · 1 habitación</td><td>8 dptos. a Gs 1,8 M · casa · 2 habitaciones</td><td>Ídem inferior · casa a Gs 3,5 M</td></tr></table>
 <p class="note2"><b>Lo que debe validarse.</b> Un canon de Gs 1.800.000 implica +80% sobre el promedio actual por departamento: requiere comparables de alquiler verificados del barrio. Las habitaciones suponen Gs 1.000.000 cada una; la segunda necesita terminación, con costo de obra aún no presupuestado. Escenarios brutos: no equivalen a renta neta ni garantizan ocupación o precio.</p>''', 14))
 
+# 15 REFERENCIAS DE ALQUILER
+cmp = [('Habitación con baño', '18 m²', 'Barrio San José', 'Gs 1.000.000', 'MercadoProp'),
+       ('Monoambiente', '25 m²', 'Ciudad del Este', 'Gs 1.500.000', 'Asuncion.estate'),
+       ('Dúplex 2 dorm.', '—', 'Barrio San José', 'Gs 2.300.000', 'MercadoProp'),
+       ('Depto. 1 dorm.', '60 m²', 'KM 9 Acaray', 'Gs 2.300.000', 'Asuncion.estate'),
+       ('Depto. 1 dorm.', '32 m²', 'Ciudad del Este', 'Gs 2.700.000', 'Asuncion.estate'),
+       ('Monoambiente, Zuba 12', '28 m²', 'KM 8', 'Gs 3.000.000', 'InfoCasas'),
+       ('Depto. amoblado', '36 m²', 'Barrio San José', 'USD 700', 'ViaParaguay')]
+cmh = ''.join(f'<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td><td>{e}</td></tr>' for a, b, c, d, e in cmp)
+lec = [('Canon actual', 'Gs 1.000.000 por departamento: en línea con la referencia más básica del barrio, una habitación con baño de 18 m².'),
+       ('Objetivo recibido', 'Gs 1.800.000 se ubica entre esa referencia y los monoambientes de 25 a 28 m² (Gs 1,5 a 3,0 M), que en su mayoría son edificios nuevos o de la zona KM 8.'),
+       ('Lo que falta', 'Superficie y estado de cada unidad del edificio: sin ese dato el objetivo no se confirma ni se descarta.'),
+       ('Confianza', 'Baja: muestra pública heterogénea; precios publicados, no contratos cerrados.')]
+lch = ''.join(f'<div class="ci"><b>{a}</b><span>{b}</span></div>' for a, b in lec)
+S.append(slide(f'''{head('Referencias de mercado', 'Alquileres publicados en Ciudad del Este')}
+<div class="two d11 cmp"><table class="t"><tr><th>Oferta</th><th>Superficie</th><th>Ubicación</th><th>Precio por mes</th><th>Fuente</th></tr>{cmh}</table>
+<div class="crit"><div class="eb sm">Lectura para este edificio</div>{lch}</div></div>
+<div class="src">Ofertas consultadas el 13/10/2026 en portales inmobiliarios; disponibilidad no confirmada. Selección de monoambientes, estudios y unidades de 1 a 2 dormitorios del estudio de mercado preliminar de Meridiano Capital.</div>''', 15))
+
 # 15 PLUSVALIA
 def rowp(lbl, f, cls=''): return f'<tr class="{cls}"><td>{lbl}</td>' + ''.join(f'<td>{f(pr[k])}</td>' for k in ['Conservador', 'Base', 'Optimista']) + '</tr>'
 vals = {'Conservador': '2,0%', 'Base': '3,5%', 'Optimista': '5,0%'}
@@ -181,17 +200,17 @@ pt_ += rowp('Valor estimado al año 5', lambda p: usd(p['V'])) + rowp('Plusvalí
 S.append(slide(f'''{head('Plusvalía y retorno total', 'Escenarios a cinco años')}
 <div class="two d15"><table class="t big"><tr><th>Concepto</th><th>Conservador</th><th>Base</th><th>Optimista</th></tr>{pt_}</table>
 <div class="dbox"><div class="bigv bv2">{pct(pr['Base']['tir'],1)}</div><div class="bs">TIR estimada, escenario base</div><p>Compra a Gs 1.600.000.000 ({usd(P)}), cinco años de renta neta creciente sobre la renta actual y venta al valor estimado del año 5.</p><p class="gold">Punto de partida: el precio equivale al {pct(M['pct_costo'],0)} del costo de construir hoy la misma superficie, sin contar el terreno.</p></div></div>
-<div class="src">Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. No incluyen la optimización de alquileres, gastos de adquisición ni comisión de venta. El valor futuro depende del mercado, del estado del edificio y de su ocupación al vender.</div>''', 15))
+<div class="src">Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. No incluyen la optimización de alquileres, gastos de adquisición ni comisión de venta. El valor futuro depende del mercado, del estado del edificio y de su ocupación al vender.</div>''', 16))
 
 # 16 PRECIO
-info = [('Activo', '8 departamentos monoambiente, 1 casa y 2 habitaciones independientes (una a terminar). 600 m² construidos en 2006 sobre 459 m² de terreno.'),
+info = [('Activo', '8 departamentos monoambiente, 1 casa y 2 habitaciones independientes (una a terminar); 4 cocheras según la publicación. 600 m² construidos en 2006 sobre 459 m² de terreno.'),
         ('Ocupación', 'Renta activa en los 8 departamentos y la casa, según información recibida. Pendiente de verificación documental.'),
         ('Ingreso', f'Gs 11.000.000 por mes · Gs 132.000.000 por año ({usd(G)} al tipo de cambio del día).'),
         ('Título y forma de pago', 'Inmueble titulado, según información recibida; el escribano lo verifica. Forma de pago y entrega a acordar en el boleto de compraventa.')]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)
 S.append(slide(f'''{head('Precio y condiciones', 'Venta del edificio completo')}
 <div class="two d16"><div class="dbox big"><div class="bigv">Gs 1.600.000.000</div><div class="bs">Precio de venta · aprox. {usd(P)}</div><p>Edificio construido en 2006</p><p>Precio y alquileres en guaraníes. Equivalente en dólares: {TCTXT}.</p><div class="dfoot">{pct(M['bruta'])} bruta · {pct(M['neta'])} neta final · Gs {n(round(net*TC/12,-3))} netos por mes</div></div>
-<div class="info">{ih}</div></div>''', 16))
+<div class="info">{ih}</div></div>''', 17))
 
 # 17 PROCESO
 steps = [('Visita al edificio', 'Recorrido de los departamentos, la casa y las habitaciones, con inspección técnica de estructura, instalaciones e impermeabilización.'),
@@ -202,7 +221,7 @@ steps = [('Visita al edificio', 'Recorrido de los departamentos, la casa y las h
          ('Administración', 'Traspaso de los contratos vigentes, ajuste de alquileres y administración del edificio, si el inversor lo desea.')]
 sh = ''.join(f'<div class="st"><div class="sth"><span class="pn">0{i+1}</span><b>{a}</b></div><p>{b}</p></div>' for i, (a, b) in enumerate(steps))
 S.append(slide(f'''{head('Proceso de compra', 'Cómo avanzamos, paso a paso')}<div class="steps">{sh}</div>
-<div class="src">Para inversores del exterior acompañamos también la cédula de identidad paraguaya y la apertura de cuenta bancaria. Las tareas legales, notariales y contables las realizan el abogado, el escribano y el contador; Meridiano Capital coordina y acompaña.</div>''', 17))
+<div class="src">Para inversores del exterior acompañamos también la cédula de identidad paraguaya y la apertura de cuenta bancaria. Las tareas legales, notariales y contables las realizan el abogado, el escribano y el contador; Meridiano Capital coordina y acompaña.</div>''', 18))
 
 # 18 CONSIDERACIONES
 rk = [('Canon proyectado', 'La proyección de Gs 1.800.000 por departamento (+80%) no está validada con comparables del barrio; la base de este análisis es la renta actual.'),
@@ -213,7 +232,7 @@ rk = [('Canon proyectado', 'La proyección de Gs 1.800.000 por departamento (+80
       ('Valor de reventa', 'La plusvalía presentada son escenarios: el valor futuro depende del mercado y del estado del activo.')]
 rkh = ''.join(f'<div class="rk"><b>{a}</b><span>{b}</span></div>' for a, b in rk)
 S.append(slide(f'''{head('Consideraciones', 'Riesgos a evaluar en un edificio de renta')}<div class="rks">{rkh}</div>
-<div class="src">Cifras de referencia, no garantizadas. Se recomienda evaluar la operación con asesoría propia.</div>''', 18))
+<div class="src">Cifras de referencia, no garantizadas. Se recomienda evaluar la operación con asesoría propia.</div>''', 19))
 
 # 19 CIERRE
 S.append(f'''<section class="s close"><div class="cl2">{logo(True)}
