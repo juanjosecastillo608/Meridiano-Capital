@@ -58,8 +58,8 @@ lh = ''.join(f'<div class="li"><div class="eb sm">{a}</div><div class="lt">{b}</
 S.append(slide(f'''{head('Ubicación', 'Barrio San José, Ciudad del Este')}
 <div class="two"><div class="mapimg"><img src="img/aerial.jpg"><div class="cap">Vista aérea del entorno · el edificio, señalado</div></div>
 <div class="locr">{lh}
-<a class="glink" href="https://maps.app.goo.gl/ioWAjR6oRHMunAMcA">Abrir en Google Maps</a>
-<p class="note">Enlace de ubicación recibido del propietario. Coordenadas, dirección y distancias por calle a los principales ejes se confirman antes de la oferta.</p></div></div>''', 3))
+<a class="glink" href="https://maps.app.goo.gl/jtpSEDXhJ8mzXVPY8">Abrir en Google Maps</a>
+<p class="note">Ubicación del edificio en Google Maps. Dirección escrita y distancias por calle a los principales ejes, a confirmar antes de la oferta.</p></div></div>''', 3))
 
 # 04 ZONA
 pts = [('Demanda de alquiler accesible', 'Monoambientes y casa orientados a quienes trabajan en el comercio y los servicios de la ciudad. A validar con relevamiento de mercado del barrio.'),

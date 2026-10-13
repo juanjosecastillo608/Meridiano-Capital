@@ -26,7 +26,7 @@ Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la
 - La proyección recibida (Gs 19,4 a 19,9 M por mes, bruta de 14,5% a 14,9%) se muestra **solo como escenario a validar**. Supone +80% en el canon de los departamentos y no tiene un AMC del barrio.
 
 ## Pendiente antes del envío definitivo
-- Dirección exacta, coordenadas y distancias. No se pudo resolver el enlace de Google Maps desde este entorno.
+- Dirección escrita y distancias por calle. El enlace de Google Maps del edificio (https://maps.app.goo.gl/jtpSEDXhJ8mzXVPY8) ya está en la lámina de ubicación.
 - Contratos, depósitos e historial de cobro.
 - Renta de la habitación terminada y costo de obra de la habitación a terminar.
 - AMC de alquiler del barrio San José (SK-14). No hay datos de mercado de Ciudad del Este en `knowledge-base/`.
