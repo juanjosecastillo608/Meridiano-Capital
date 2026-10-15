@@ -3,7 +3,7 @@
 Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la misma estructura, el mismo diseño y el mismo método de cálculo. Tiene 20 láminas. Agrega una tercera lámina de fotos para incluir las fotos interiores nuevas una lámina de **potencial de optimización** con la proyección recibida y una de **referencias de mercado** (alquileres publicados en Ciudad del Este), tomada del estudio de mercado preliminar del 2026-10-13 (`fuente/Estudio_de_mercado_Edificio_Barrio_San_Jose_2026-10-13.pdf`).
 
 - PDF: `Edificio_Barrio_San_Jose_Meridiano_Capital_v3.pdf`
-- Fuente: `fuente/model.py` (calcula el modelo), `fuente/gen.py` y `fuente/style.css` (generan el HTML, que se imprime a PDF con Chromium). Las imágenes y las fuentes tipográficas no se versionan.
+- Fuente: `fuente/` (modelo, generador, estilos, fuentes e imágenes). Se regenera con `../build_presentaciones.py`. El teléfono y el tipo de cambio salen de `../_config/meridiano.json` (D-096/D-097).
 
 ## Datos confirmados (recibidos)
 - Precio: Gs 1.600.000.000.
@@ -14,7 +14,7 @@ Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la
 - Título: titulado según la información recibida, sin revisar.
 
 ## Supuestos (mismo criterio que M4 salvo donde se indica)
-- Tipo de cambio Gs 5.694 por USD (BCP, 09/10/2026), el mismo que usa M4. **El tipo de cambio de Gs 5.950 de la versión anterior se descartó porque no tenía fecha.**
+- Tipo de cambio: el vigente en `../_config/meridiano.json`. Al 15/10/2026: Gs 5.698,03 (BCP, referencial del 14/10/2026); el precio equivale a USD 280.799. Antes se usaba Gs 5.694 (BCP, 09/10/2026). **El Gs 5.950 de la versión anterior se descartó porque no tenía fecha.**
 - IVA 5% sobre alquiler residencial (D-001), administración 8%, mantenimiento 5% e IRE 10%, como en M4.
 - Vacancia 4%: es el valor por defecto del repo para departamentos. M4 usó 3%, pero lo justificaba con la demanda de su zona, y para San José no hay datos del barrio.
 - Gastos fijos: Gs 6.000.000 por año. **El propietario no los informó.**
@@ -32,6 +32,7 @@ Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la
 - 4 cocheras y 10 baños: según la publicación, sin verificar.
 
 ## Pendiente antes del envío definitivo
+- Teléfono unificado a +595 982 853 111 (D-096); el +595 981 257 217 del Excel quedó descartado.
 - Dirección escrita y distancias por calle. El enlace de Google Maps del edificio (https://maps.app.goo.gl/jtpSEDXhJ8mzXVPY8) ya está en la lámina de ubicación.
 - Contratos, depósitos e historial de cobro.
 - Renta de la habitación terminada y costo de obra de la habitación a terminar.

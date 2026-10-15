@@ -20,6 +20,14 @@ Antes de confiar en o mostrar cualquier cifra de rentabilidad (propia o generada
 - **D-003/D-046 — RESUELTA (2026-08-10)**: `evaluar_renta()` ya descuenta la ocupación real (55-65%, 60% por defecto) en la rama de alquiler temporal, vía el nuevo parámetro `ocupacion_pct`. Baja materialmente el yield neto reportado de `temporal_departamento`/`temporal_casa` frente al cálculo anterior — no es un bug, es el comportamiento correcto.
 - **D-004/D-089 — RESUELTA (2026-08-28)**: los dos valores que mezclaban lógica y config en `calculadora.py` (`limpieza_pct` de renta temporal, `meses_hasta_pre_pozo` de reventa) ya viven en `parametros_mercado.json`. No quedan UNRESOLVED de impacto financiero directo a esta fecha — ver `governance/PRIORITY_PLAN.md` para todo lo demás que sigue abierto (no financiero).
 
+## Presentaciones comerciales — tipo de cambio y contacto (D-096/D-097)
+
+Antes de actualizar o regenerar cualquier presentación de `projects/meridiano-capital/presentaciones/`:
+
+1. **Verificar la cotización del BCP del día** (referencial del dólar; se publica después de las 13:00). Actualizar `presentaciones/_config/meridiano.json` (`gs_por_usd`, `fecha`, `fuente`, `verificado_el`) y **informar siempre al founder la fecha del tipo de cambio usado**. Si no se pudo verificar en la fuente oficial, decirlo explícitamente.
+2. **Teléfono único: +595 982 853 111.** Nunca escribir teléfono ni tipo de cambio a mano en un deck: los generadores los leen de `_config/meridiano.json` vía `_config/comun.py`.
+3. Regenerar con `python projects/meridiano-capital/presentaciones/build_presentaciones.py` (corre modelo, generador, PDF y verificación). `verificar_presentaciones.py` también corre en el pre-commit y en CI.
+
 ## Protocolo de PII y seguridad — obligatorio antes de cualquier commit
 
 Ver `governance/PII_POLICY.md` para la política completa (qué puede/no puede

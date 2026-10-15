@@ -1,3 +1,6 @@
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
+from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
 import json, os
 B = os.path.dirname(os.path.abspath(__file__))
 M = json.load(open(os.path.join(B, 'model.json')))
@@ -16,7 +19,7 @@ def rate(x): return 'USD ' + (n(x, 1) if x % 1 else n(x))
 
 PROJ = 'Edificio Sajonia'
 FOOT_TXT = f'Meridiano Capital · {PROJ} · Venta'
-TCTXT = 'Gs 5.694 por USD (BCP, 09/10/2026)'
+TCTXT = tc_texto()
 MAPS = 'https://maps.app.goo.gl/9VVqh4HZrwiZkHqo9'
 
 ISO_DARK = '<svg viewBox="0 0 120 120" class="iso"><path d="M60 6 L14 100 L106 100 Z" fill="none" stroke="#14313A" stroke-width="6" stroke-linejoin="round"/><line x1="4" y1="112" x2="116" y2="112" stroke="#14313A" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="72" r="9" fill="#C9982E"/></svg>'
@@ -52,7 +55,7 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 <div class="addr">Av. Ygatimí 1351 · Zona Palacio de Justicia, Asunción</div>
 <div class="cvk"><div><div class="v">USD 220.000</div><div class="l">Precio de venta · venta rápida USD 185.000</div></div>
 <div><div class="v">803 m²</div><div class="l">Construidos sobre 268 m² de terreno</div></div></div>
-<div class="cf">Construido en 1980 · Hoy desocupado, sin renta · Rentabilidad estimada tras la puesta en valor · TC Gs 5.694 (BCP, 09/10/2026)</div></div>
+<div class="cf">Construido en 1980 · Hoy desocupado, sin renta · Rentabilidad estimada tras la puesta en valor · {tc_corto()}</div></div>
 <div class="cr"><img src="img/fachada_lat.jpg" style="object-position:52% 50%"></div></section>''')
 
 # 02 RESUMEN
@@ -197,7 +200,7 @@ def srow(a, d):
 srows = [srow(a, d) for a in 'ABC' for d in (M['DESC'], 0)]
 S.append(slide(f'''{head('Qué mueve el resultado', 'Sensibilidad: costo de obra y alquiler')}
 <div class="two cx2"><div><div class="altt">Bruta · neta final sobre inversión total, compra a USD 220.000</div>{table(['Alternativa y obra', 'Alquiler −15%', 'Alquiler base', 'Alquiler +15%'], srows, 't big')}</div>
-{crit('Lectura', [('La obra es la palanca', 'Sin el descuento del 25%, la bruta cae unos 2 puntos en cada alternativa: B queda en 9,3%, A en 11,5% y C en 11,0%.'), ('El alquiler', 'Un 15% menos de alquiler resta entre 1,7 y 2 puntos brutos; las oficinas (A y C) son las más expuestas por su vacancia y por la falta de cocheras.'), ('El precio', 'Comprar a USD 185.000 suma entre 0,8 y 1,1 puntos brutos en cada alternativa.'), ('Presupuesto real', 'Antes de ofertar: presupuesto de obra sobre el edificio real con arquitecto o constructor.')])}</div>''', num()))
+{crit('Lectura', [('La obra es la palanca', f"Sin el descuento del 25%, la bruta cae unos 2 puntos en cada alternativa: B queda en {pct(M['sens']['B|0|1.0|pedido'][0], 1)}, A en {pct(M['sens']['A|0|1.0|pedido'][0], 1)} y C en {pct(M['sens']['C|0|1.0|pedido'][0], 1)}."), ('El alquiler', 'Un 15% menos de alquiler resta entre 1,7 y 2 puntos brutos; las oficinas (A y C) son las más expuestas por su vacancia y por la falta de cocheras.'), ('El precio', 'Comprar a USD 185.000 suma entre 0,8 y 1,1 puntos brutos en cada alternativa.'), ('Presupuesto real', 'Antes de ofertar: presupuesto de obra sobre el edificio real con arquitecto o constructor.')])}</div>''', num()))
 
 # 17 PLUSVALIA
 pr = M['proj']
@@ -246,7 +249,7 @@ S.append(f'''<section class="s close"><div class="cl2">{logo()}
 <h2 class="ch">Coordinemos su visita al edificio</h2>
 <p class="cp">Recorremos el edificio con una inspección técnica, preparamos el anteproyecto y el presupuesto de la alternativa que elija, y lo acompañamos en cada paso de la compra y de la obra.</p>
 <div class="crule"></div><div class="cn">Lic. Juan José Castillo</div><div class="cr2">Broker Inmobiliario &nbsp;|&nbsp; Meridiano Capital</div>
-<div class="cc">+595 981 257 217 &nbsp;·&nbsp; juancastillo@meridianocapital.net &nbsp;·&nbsp; www.meridianocapital.net</div>
+<div class="cc">{contacto_linea()}</div>
 <div class="disc">Documento comercial de referencia. Precio y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa. Las rentabilidades son estimaciones posteriores a una obra aún no presupuestada y no constituyen una garantía.</div></div>
 <div class="cimg"><img src="img/portrait.jpg"></div></section>''')
 

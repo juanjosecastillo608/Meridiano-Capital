@@ -1,5 +1,8 @@
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
+from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
 import json, os
-TC = 5694                  # Gs por USD (BCP, 09/10/2026)
+TC = TC_CFG                # Gs por USD: _config/meridiano.json (D-097)
 PRICES = {'pedido': 220_000, 'rapida': 185_000}   # confirmados por el founder, 15/10/2026
 M2 = 803                   # construidos, según ACM (sin verificación técnica)
 RENT_EFF = 0.80            # supuesto: superficie alquilable / construida

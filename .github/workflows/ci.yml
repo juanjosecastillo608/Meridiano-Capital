@@ -51,3 +51,17 @@ jobs:
           fi
           git diff --name-only "$BASE" HEAD | xargs -r git add --
           python scripts/pre-commit-checks.py
+
+  presentaciones:
+    name: Presentaciones (teléfono y tipo de cambio, D-096/D-097)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar pdftotext
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: Verificar presentaciones
+        run: python projects/meridiano-capital/presentaciones/verificar_presentaciones.py

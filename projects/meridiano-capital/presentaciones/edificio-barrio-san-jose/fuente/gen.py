@@ -1,7 +1,10 @@
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
+from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
 import json, os
 B = os.path.dirname(os.path.abspath(__file__))
 M = json.load(open(os.path.join(B, 'model.json')))
-TC = 5694
+TC = TC_CFG
 P = M['P']; G = M['G']
 
 def n(x, d=0):
@@ -13,7 +16,7 @@ def gs(x): return 'Gs ' + n(x)
 
 PROJ = 'Edificio Barrio San José'
 FOOT_TXT = f'Meridiano Capital · {PROJ} · Venta'
-TCTXT = 'Gs 5.694 por USD (BCP, 09/10/2026)'
+TCTXT = tc_texto()
 
 ISO_DARK = '<svg viewBox="0 0 120 120" class="iso"><path d="M60 6 L14 100 L106 100 Z" fill="none" stroke="#14313A" stroke-width="6" stroke-linejoin="round"/><line x1="4" y1="112" x2="116" y2="112" stroke="#14313A" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="72" r="9" fill="#C9982E"/></svg>'
 ISO_LIGHT = ISO_DARK.replace('#14313A', '#F3EDE3')
@@ -40,7 +43,7 @@ S.append(f'''<section class="s cover">
 <div class="addr">Barrio San José · Ciudad del Este, Alto Paraná</div>
 <div class="cvk"><div><div class="v">Gs 1.600 M</div><div class="l">Precio de venta · {usd(P)}</div></div>
 <div><div class="v">600 m²</div><div class="l">Construidos sobre 459 m² de terreno</div></div></div>
-<div class="cf">Construido en 2006 · Datos informados, pendientes de verificación documental · TC Gs 5.694 (BCP, 09/10/2026)</div></div>
+<div class="cf">Construido en 2006 · Datos informados, pendientes de verificación documental · {tc_corto()}</div></div>
 <div class="cr"><img src="img/facade.jpg" style="object-position:28% 50%"></div></section>''')
 
 # 02 RESUMEN
@@ -239,7 +242,7 @@ S.append(f'''<section class="s close"><div class="cl2">{logo(True)}
 <h2 class="ch">Coordinemos su visita al edificio</h2>
 <p class="cp">Le presentamos el detalle de ingresos, la documentación del inmueble y una simulación ajustada a su estrategia de renta, y lo acompañamos en cada paso de la compra.</p>
 <div class="crule"></div><div class="cn">Lic. Juan José Castillo</div><div class="cr2">Broker Inmobiliario &nbsp;|&nbsp; Meridiano Capital</div>
-<div class="cc">+595 981 257 217 &nbsp;·&nbsp; juancastillo@meridianocapital.net &nbsp;·&nbsp; www.meridianocapital.net</div>
+<div class="cc">{contacto_linea()}</div>
 <div class="disc">Documento comercial de referencia. Precio y condiciones sujetos a confirmación y disponibilidad; las condiciones definitivas se formalizan en el boleto de compraventa. No constituye una garantía de rentabilidad.</div></div>
 <div class="cimg"><img src="img/portrait.jpg"></div></section>''')
 

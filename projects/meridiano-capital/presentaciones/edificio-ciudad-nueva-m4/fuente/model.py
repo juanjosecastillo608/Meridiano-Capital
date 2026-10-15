@@ -1,5 +1,8 @@
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
+from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
 import json, os
-TC = 5694; P = 340_000
+TC = TC_CFG; P = 340_000
 RENTS = [  # (nivel, concepto, Gs/mes, clase)
  ('Tercer piso','2 dorm.',1_500_000,'D'),('Tercer piso','2 dorm.',1_500_000,'D'),('Tercer piso','1 dorm.',1_200_000,'D'),('Tercer piso','1 dorm.',1_100_000,'D'),
  ('Segundo piso','2 dorm.',1_600_000,'D'),('Segundo piso','2 dorm.',1_500_000,'D'),('Segundo piso','2 dorm.',1_500_000,'D'),('Segundo piso','2 dorm.',1_500_000,'D'),('Segundo piso','1 dorm.',1_250_000,'D'),

@@ -1,6 +1,8 @@
-import os
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
+from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
 import json
-TC=5694
+TC=TC_CFG
 precio_gs=1_600_000_000
 P=precio_gs/TC
 renta_m=11_000_000

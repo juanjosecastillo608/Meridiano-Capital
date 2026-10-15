@@ -3,7 +3,7 @@
 Es la **plantilla maestra** de las presentaciones de Meridiano Capital. La v1 se armó en LibreOffice Impress y su archivo fuente no está en el repo. Esta v2 la reconstruye lámina por lámina (17 láminas) con el mismo pipeline HTML → PDF que Barrio San José y Sajonia. Mantiene el mismo contenido y el mismo diseño, con la tipografía corregida.
 
 - PDF: `Edificio_Ciudad_Nueva_13_Departamentos_zona_M4_v2.pdf`
-- Fuente: `fuente/model.py` (recalcula todas las cifras desde el detalle de alquileres), `fuente/gen.py`, `fuente/style.css` y `fuente/fonts.css`. Las imágenes y los archivos .woff2 no se versionan.
+- Fuente: `fuente/` (modelo que recalcula todo desde el detalle de alquileres, generador, estilos, fuentes e imágenes). Se regenera con `../build_presentaciones.py`. El teléfono y el tipo de cambio salen de `../_config/meridiano.json` (D-096/D-097).
 
 ## Cambios v1 → v2 (2026-10-15)
 - **Tipografía:**
@@ -12,7 +12,7 @@ Es la **plantilla maestra** de las presentaciones de Meridiano Capital. La v1 se
   - En la v1, la J de "Juan José" se apoyaba sobre la línea base por el diseño propio de Fraunces.
 - **Contenido:** sin cambios. Mismos textos, cifras, fotos, mapa, enlace de ubicación y contacto.
 
-## Verificación de cifras (recalculadas desde los 15 conceptos de alquiler)
+## Verificación de cifras al TC de la v1 (Gs 5.694), recalculadas desde los 15 conceptos de alquiler
 Todas coinciden con la v1:
 - **Ingresos:**
   - Totales por nivel: 5,30 / 7,35 / 2,90 / 4,00 millones.
@@ -28,5 +28,8 @@ Todas coinciden con la v1:
 ## Observaciones a confirmar
 1. **Local comercial:** el resumen dice "13 departamentos y un local comercial", pero el detalle de alquileres no tiene ninguna línea "Local". Hay 13 departamentos (6 de 1 dorm., 6 de 2 dorm. y 1 de 3 dorm.), "Cochera" y "Cochera y departamento". Si "Cochera y departamento" incluye una vivienda, esa parte pagaría IVA del 5% y no del 10%.
 2. **Distancias** (90 / 320 / 480 m por calle) y **avisos de Ciudad Nueva** (Gs 3,0–3,2 M y 2,1–6,3 M): no se pudieron reverificar desde este entorno; quedan como en la v1.
-3. **Teléfono:** M4 usa +595 982 853 111; Barrio San José y Sajonia usan +595 981 257 217. Confirmar cuál es el vigente para unificar.
-4. **Tipo de cambio:** la v1 y la v2 usan Gs 5.694 (BCP, 09/10/2026). Actualizarlo al día del envío.
+3. **Teléfono:** resuelto — +595 982 853 111 en todas las presentaciones (D-096).
+4. **Tipo de cambio:** actualizado a Gs 5.698,03 (BCP, referencial del 14/10/2026; antes Gs 5.694 del 09/10). Con el nuevo TC:
+   - Ingreso anual: USD 41.172.
+   - Rentabilidad: bruta 12,11%, neta 8,24% y neta antes de IRE 9,15%; 8,3 veces.
+   - Escenarios a 5 años: TIR 10,2% / 11,7% / 13,5%, sin cambios.

@@ -3,7 +3,7 @@
 Este deck sigue la plantilla maestra M4 / Barrio San José. Tiene 21 láminas y está adaptado a un activo **sin renta actual**: compara **tres alternativas** de puesta en valor (oficinas y locales, departamentos y mixto) a **dos precios de compra**.
 
 - PDF: `Edificio_Sajonia_Meridiano_Capital_v3.pdf` (reemplaza la v2).
-- Fuente: `fuente/model.py` (calcula el modelo), `fuente/gen.py` y `fuente/style.css` (generan el HTML, que se imprime a PDF con Chromium).
+- Fuente: `fuente/` (modelo, generador, estilos, fuentes e imágenes). Se regenera con `../build_presentaciones.py`. El teléfono y el tipo de cambio salen de `../_config/meridiano.json` (D-096/D-097).
 - Estudio de mercado del 15/10/2026: `fuente/Estudio_mercado_Sajonia.md`, `fuente/Datos_mercado_Sajonia.json` e `fuente/Instrucciones_Claude_Code_Sajonia.md`. **Están redactados**: se quitaron el nombre de la agente y el del cliente vendedor.
 - El ACM y el folleto de RE/MAX **no se versionan**, porque contienen datos de terceros.
 
@@ -43,14 +43,14 @@ Este deck sigue la plantilla maestra M4 / Barrio San José. Tiene 21 láminas y 
 - **Gastos:** vacancia de referencia de Meridiano; IVA del 10% en oficinas y locales y del 5% en vivienda; administración 8%, mantenimiento 5%, gastos fijos de Gs 9 M por año (supuesto) e IRE 10%.
 - **TIR:** un año de obra, cuatro años de renta y venta al cierre del año 5. La valorización parte de la inversión total.
 
-## Resultados (v3)
+## Resultados (v3, TC Gs 5.698 del 14/10/2026)
 | | A · Oficinas | B · Departamentos | C · Mixto |
 |---|---|---|---|
 | Puesta en valor | USD 231.866 | USD 298.114 | USD 253.949 |
-| Bruta a USD 220.000 / 185.000 | 13,48% / 14,61% | 11,06% / 11,87% | 12,97% / 14,01% |
-| Neta final a USD 220.000 / 185.000 | 7,82% / 8,47% | 7,40% / 7,94% | 7,98% / 8,62% |
+| Bruta a USD 220.000 / 185.000 | 13,47% / 14,60% | 11,06% / 11,86% | 12,96% / 14,00% |
+| Neta final a USD 220.000 / 185.000 | 7,81% / 8,47% | 7,40% / 7,93% | 7,97% / 8,61% |
 | TIR base a 5 años, 220.000 / 185.000 | 9,7% / 10,4% | 9,5% / 10,1% | 9,9% / 10,6% |
-| Bruta sin el descuento de obra (a 220.000) | 11,51% | 9,28% | 11,01% |
+| Bruta sin el descuento de obra (a 220.000) | 11,51% | 9,28% | 11,00% |
 
 **Lectura:**
 - **C · Mixto** tiene la mejor neta y la mejor TIR, con menos exposición a oficinas que A. Su contrapartida es separar accesos, medidores y seguridad contra incendio por uso.
@@ -63,5 +63,5 @@ Este deck sigue la plantilla maestra M4 / Barrio San José. Tiene 21 láminas y 
 - Anteproyecto y factibilidad municipal del cambio de uso: Plan Regulador y Ordenanza 468/14 de seguridad contra incendio.
 - Confirmar con los anunciantes la disponibilidad de los comparables.
 - Confirmar si las fotos de interiores con retoque corresponden al edificio.
-- Tipo de cambio del día de envío.
+- Tipo de cambio: actualizar `../_config/meridiano.json` con el del día de envío (D-097).
 - Identificación catastral; el folleto dice barrio Dr. Francia.
