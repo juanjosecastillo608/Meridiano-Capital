@@ -3,8 +3,8 @@ B = os.path.dirname(os.path.abspath(__file__))
 M = json.load(open(os.path.join(B, 'model.json')))
 TC = M['TC']; PR = M['PRICES']
 A, Bm = M['A'], M['B']
-cxA, cxB = M['cxA'], M['cxB']
-eA, eB = A['ev'], Bm['ev']
+cxA, cxB, cxC = M['cxA'], M['cxB'], M['cxC']
+eA, eB, eC = A['ev'], Bm['ev'], M['C']['ev']
 
 def n(x, d=0):
     s = f"{x:,.{d}f}"
@@ -57,9 +57,9 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 
 # 02 RESUMEN
 S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de oficinas de tres niveles para reconvertir en renta')}
-<p class="lead">Edificio construido en 1980 como sede de oficinas, a pasos del Parque Carlos Antonio López y en la zona del Palacio de Justicia. Hoy está desocupado y no genera renta: su valor está en la puesta en valor, como oficinas y locales o, como alternativa principal, en departamentos para alquiler. El análisis se presenta a dos precios: el de venta y el de venta rápida.</p>
+<p class="lead">Edificio construido en 1980 como sede de oficinas, a pasos del Parque Carlos Antonio López y en la zona del Palacio de Justicia. Hoy está desocupado y no genera renta: su valor está en la puesta en valor. Se analizan tres alternativas (oficinas y locales, departamentos y uso mixto) a dos precios: el de venta y el de venta rápida.</p>
 {kgrid([('USD 220.000', 'Precio de venta'), ('USD 185.000', 'Precio de venta rápida (−15,9%)'), ('803 m²', 'Construidos · 3 niveles'), ('268 m²', 'Terreno de 8 × 33,44 m'),
-        (usd(cxB['total']), 'Puesta en valor estimada (departamentos)'), (pct(eB['pedido']['bruta']) , 'Bruta sobre inversión total · a USD 220.000'), (pct(eB['rapida']['bruta']), 'Bruta sobre inversión total · a USD 185.000'), (pct(eB['pedido']['neta']) + ' · ' + pct(eB['rapida']['neta']), 'Neta final (departamentos) · a cada precio')])}
+        (pct(eA['pedido']['bruta']) + ' · ' + pct(eA['pedido']['neta']), 'A · Oficinas: bruta · neta a USD 220.000'), (pct(eB['pedido']['bruta']) + ' · ' + pct(eB['pedido']['neta']), 'B · Departamentos: bruta · neta a USD 220.000'), (pct(eC['pedido']['bruta']) + ' · ' + pct(eC['pedido']['neta']), 'C · Mixto: bruta · neta a USD 220.000'), (pct(eC['rapida']['neta']), 'Mejor neta: C a USD 185.000')], 'kgrid ks')}
 <div class="box">Sin renta actual: toda rentabilidad es una estimación posterior a la obra · Obra según la tabla de Meridiano Capital con un 25% de descuento por el estado actual del edificio, a confirmar con presupuesto · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACION
@@ -118,34 +118,43 @@ S.append(slide(f'''{head('Potencial del espacio', 'Referencia de cómo podría v
 <div class="ph"><figure style="width:1020px"><img src="img/render.jpg" style="height:412px"><figcaption>Imágenes generadas con inteligencia artificial a modo ilustrativo; no son fotografías del estado actual</figcaption></figure></div>''', num(), dark=True))
 
 # 10 ALTERNATIVAS
-mixtxt = ' · '.join(f'{q} × {t.lower()}' for t, q, _, _, _ in M['MIX'])
-altA_rows = [(['Uso', 'Oficinas y locales comerciales'], ''), (['Programa', f'Plantas libres por nivel; {round(M["A_m2"])} m² alquilables (80% de lo construido)'], ''),
-             (['Obra', 'Puesta en valor sobre lo existente: fachada, instalaciones, sanitarios, climatización y terminaciones'], ''), (['Costo de obra', f'{rate(cxA["rate"])}/m² (tabla básica USD 350 − 25%)'], 'b')]
-altB_rows = [(['Uso', 'Departamentos para alquiler y un local en planta baja'], ''), (['Programa', '2 dptos. de 2 dormitorios, 3 de 1 dormitorio, 5 monoambientes y 1 local'], ''),
-             (['Obra', 'Cambio de uso: cocinas y baños por unidad, instalaciones individuales, patio de luz y terminaciones'], ''), (['Costo de obra', f'{rate(cxB["rate"])}/m² (tabla estándar USD 450 − 25%)'], 'b')]
-S.append(slide(f'''{head('Alternativas de puesta en valor', 'Dos caminos para volver a generar renta')}
-<div class="two alt"><div><div class="altt">A · Oficinas y locales</div>{table(['', ''], altA_rows, 't nohead')}</div>
-<div><div class="altt gold">B · Departamentos para alquiler <span>alternativa principal</span></div>{table(['', ''], altB_rows, 't nohead')}</div></div>
-<p class="note2"><b>Por qué B es la principal.</b> Diversifica el ingreso en 10 unidades, con menos vacancia que las oficinas y una tasa de IVA menor (5% frente a 10%). A rinde más en el papel, pero depende de alquilar 642 m² de oficinas sin cocheras con solo cuatro anuncios de referencia. El programa de B es preliminar: unidades, patio de luz y cambio de uso deben validarse con un arquitecto y con la Municipalidad.</p>''', num()))
+ALT_NAMES = {'A': 'A · Oficinas y locales', 'B': 'B · Departamentos', 'C': 'C · Mixto'}
+def alt_card(a, rows, gold=False):
+    return f'<div><div class="altt{" gold" if gold else ""}">{ALT_NAMES[a]}</div>{table(["", ""], rows, "t nohead sm")}</div>'
+altA_rows = [(['Programa', f'Plantas libres de oficinas y local; {round(M["A_m2"])} m² alquilables (80% de lo construido)'], ''),
+             (['Obra', 'Puesta en valor del uso original: fachada, instalaciones, sanitarios, climatización y terminaciones'], ''),
+             (['Costo', f'{rate(cxA["rate"])}/m² (tabla básica USD 350 − 25%)'], 'b')]
+altB_rows = [(['Programa', '2 dptos. de 2 dorm., 3 de 1 dorm., 5 monoambientes y 1 local en PB'], ''),
+             (['Obra', 'Cambio de uso: cocinas y baños por unidad, instalaciones individuales, patio de luz'], ''),
+             (['Costo', f'{rate(cxB["rate"])}/m² (tabla estándar USD 450 − 25%)'], 'b')]
+altC_rows = [(['Programa', f'Local en PB y oficinas en niveles 1 y 2 ({round(M["C_OF_M2"])} m²); nivel 3: 1 dpto. de 2 dorm., 1 de 1 dorm. y 2 monoambientes'], ''),
+             (['Obra', 'Puesta en valor de oficinas y cambio de uso solo en el nivel 3; accesos y medidores separados'], ''),
+             (['Costo', f'{rate(cxC["rate"])}/m² promedio (2 niveles a USD 262,5 + 1 a USD 337,5)'], 'b')]
+S.append(slide(f'''{head('Alternativas de puesta en valor', 'Tres caminos para volver a generar renta')}
+<div class="two alt3">{alt_card('A', altA_rows)}{alt_card('B', altB_rows, True)}{alt_card('C', altC_rows)}</div>
+<p class="note2"><b>Cómo se comparan.</b> A conserva el uso original y requiere la obra más liviana, pero concentra todo el ingreso en oficinas sin cocheras. B diversifica en 10 unidades con menos vacancia e IVA más bajo, a cambio de la obra más cara. C combina ambos: menor obra que B y menor exposición a oficinas que A, pero exige separar accesos, medidores y seguridad contra incendio por uso. Los programas de B y C son preliminares y deben validarse con un arquitecto y con la Municipalidad.</p>''', num()))
 
 # 11 CAPEX
-def cxrows(cx, label):
-    return [([f'Obra: 803 m² × {rate(cx["rate"])}', usd(cx['obra'])], ''), (['Aprobaciones e imprevistos (10%)', usd(cx['imprev'])], ''), ([f'Puesta en valor', usd(cx['total'])], 'b'),
-            (['+ Precio de venta (USD 220.000)', usd(cx['total'] + PR['pedido'])], 'tot'), (['+ Venta rápida (USD 185.000)', usd(cx['total'] + PR['rapida'])], 'tot')]
-S.append(slide(f'''{head('Costo de puesta en valor', 'Inversión total a cada precio de compra')}
-<div class="two cx"><div><div class="altt">A · Oficinas y locales</div>{table(['Concepto', 'USD'], cxrows(cxA, 'oficinas'), 't big')}</div>
-<div><div class="altt gold">B · Departamentos</div>{table(['Concepto', 'USD'], cxrows(cxB, 'departamentos'), 't big')}</div>
-{crit('Criterios', [('Costos por m²', 'Tabla de Meridiano Capital, "remodelación sobre obra existente", con un 25% de descuento por el estado actual del edificio.'), ('Imprevistos', 'Supuesto de 10%: edificio de 46 años, con instalaciones a revisar.'), ('Plazo', 'Supuesto de 12 meses entre proyecto, permisos y obra, sin renta.'), ('Excluye', 'Gastos de adquisición, mobiliario y comisión de alquiler.')])}</div>''', num()))
+def cxrows(cx):
+    return [(['Obra', usd(cx['obra'])], ''), (['Imprevistos (10%)', usd(cx['imprev'])], ''), (['Puesta en valor', usd(cx['total'])], 'b'),
+            (['Inversión a USD 220.000', usd(cx['total'] + PR['pedido'])], 'tot'), (['Inversión a USD 185.000', usd(cx['total'] + PR['rapida'])], 'tot')]
+S.append(slide(f'''{head('Costo de puesta en valor', 'Inversión total por alternativa y precio de compra')}
+<div class="two alt3"><div><div class="altt">{ALT_NAMES['A']} · {rate(cxA['rate'])}/m²</div>{table(['Concepto', 'USD'], cxrows(cxA), 't big')}</div>
+<div><div class="altt gold">{ALT_NAMES['B']} · {rate(cxB['rate'])}/m²</div>{table(['Concepto', 'USD'], cxrows(cxB), 't big')}</div>
+<div><div class="altt">{ALT_NAMES['C']} · {rate(round(cxC['rate'], 1))}/m²</div>{table(['Concepto', 'USD'], cxrows(cxC), 't big')}</div></div>
+<p class="note2 sm"><b>Criterios.</b> Costos por m² de la tabla de Meridiano Capital ("remodelación sobre obra existente") con un 25% de descuento por el estado actual del edificio, aplicados sobre los 803 m². Imprevistos: supuesto de 10% por la antigüedad del edificio. Plazo: supuesto de 12 meses sin renta. Excluye gastos de adquisición, mobiliario y comisión de alquiler.</p>''', num()))
 
 # 12 INGRESOS ESTIMADOS
-ra = [([a, b, gs(c), usd(c / TC)], '') for a, b, c in A['alt']['lines']] + [(['Total', '', gs(A['alt']['mes']), usd(A['alt']['mes'] / TC)], 'tot')]
-rb = [([a, b, gs(c), usd(c / TC)], '') for a, b, c in Bm['alt']['lines']] + [(['Total', '11 unidades', gs(Bm['alt']['mes']), usd(Bm['alt']['mes'] / TC)], 'tot')]
-sup = [('Oficinas', 'Gs 45.000/m²: O3, oficina de 160 m² sin muebles en Sajonia (Gs 46.350/m²).')] + [(t.replace('Departamento ', ''), f'{gs(c)} · {r}') for t, _, _, c, r in M['MIX']]
+def inc_rows(a, total_lbl=''):
+    alt = M[a]['alt']
+    return [([l, d, gs(c), usd(c / TC)], '') for l, d, c in alt['lines']] + [(['Total', total_lbl, gs(alt['mes']), usd(alt['mes'] / TC)], 'tot')]
+sup = [('Oficinas', 'Gs 45.000/m²: O3, oficina de 160 m² sin muebles en Sajonia (Gs 46.350/m²).')] + \
+      [(lbl, f"{gs(M['REF'][k])} · {M['REF_TXT'][k]}") for lbl, k in [('2 dormitorios', '2D'), ('1 dormitorio', '1D'), ('Monoambiente', 'MONO'), ('Local en PB', 'LOCAL')]]
 S.append(slide(f'''{head('Ingresos estimados', 'Alquiler mensual tras la puesta en valor')}
-<div class="two cx2 cmp"><div><div class="altt">A · Oficinas y locales</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], ra, 't sm')}
-<div class="altt gold" style="margin-top:18px">B · Departamentos y local</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], rb, 't sm')}</div>
-{crit('Base de mercado (estudio 15/10/2026)', sup)}</div>
-<p class="note2 sm">Las unidades del edificio no tendrán cochera; todos los comparables de vivienda, salvo D1, la incluyen. Por eso los monoambientes se ubican por debajo de su banda y los 2 dormitorios en el piso de la suya.</p>''', num()))
+<div class="two cx2 cmp"><div><div class="altt">{ALT_NAMES['A']}</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], inc_rows('A'), 't xs')}
+<div class="altt gold" style="margin-top:8px">{ALT_NAMES['B']}</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], inc_rows('B', '11 unidades'), 't xs')}
+<div class="altt" style="margin-top:8px">{ALT_NAMES['C']}</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], inc_rows('C'), 't xs')}</div>
+{crit('Base de mercado (estudio 15/10/2026)', sup)}</div>''', num()))
 
 # 13 REFERENCIAS DE MERCADO
 rc = [('O1', 'Oficina', 'Av. C. A. López, zona Palacio', '32 m² · 1', 'Gs 2.700.000', '84.375'), ('O3', 'Oficina sin muebles', 'Sajonia', '160 m² · 1', 'Gs 7.416.000', '46.350'),
@@ -159,51 +168,49 @@ S.append(slide(f'''{head('Referencias de mercado', 'Alquileres publicados en Saj
 <div class="src">Estudio de mercado de Meridiano Capital, consulta del 15/10/2026 en InfoCasas y Jariton. Precios pedidos, no contratos cerrados; disponibilidad no confirmada; O1 es un anuncio de 2023. Excluidos de la estadística: O2 (superficie inconsistente) y T4 (área de terraza ambigua).</div>''', num()))
 
 # 14 INGRESOS Y EGRESOS
-def er(e, alt):
+def er(a):
+    e, alt = M[a]['ev']['pedido'], M[a]['alt']
     G = e['G']
-    return [(['Ingreso bruto anual', '100%', usd(G)], 'b'), ([f'IVA', pct(alt['iva'], 1), '– ' + usd(e['iva_u'])], ''),
+    return [(['Ingreso bruto anual', '100%', usd(G)], 'b'), (['IVA', pct(alt['iva'], 1), '– ' + usd(e['iva_u'])], ''),
             (['Vacancia', pct(alt['vac'], 1), '– ' + usd(e['vac_u'])], ''), (['Administración', '8,0%', '– ' + usd(e['adm_u'])], ''), (['Mantenimiento', '5,0%', '– ' + usd(e['man_u'])], ''),
-            (['Gastos fijos del edificio', pct(M['FIJOS'] / G, 1), '– ' + usd(M['FIJOS'])], ''), (['Resultado antes de IRE', pct(e['pre'] / G, 1), usd(e['pre'])], 'b'),
-            (['IRE estimado (10%)', pct(e['ire_u'] / G, 1), '– ' + usd(e['ire_u'])], ''), (['Resultado neto anual', pct(e['net'] / G, 1), usd(e['net'])], 'tot')]
+            (['Gastos fijos', pct(M['FIJOS'] / G, 1), '– ' + usd(M['FIJOS'])], ''), (['Antes de IRE', pct(e['pre'] / G, 1), usd(e['pre'])], 'b'),
+            (['IRE estimado (10%)', pct(e['ire_u'] / G, 1), '– ' + usd(e['ire_u'])], ''), (['Neto anual', pct(e['net'] / G, 1), usd(e['net'])], 'tot')]
 S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al resultado neto')}
-<div class="two cx3"><div><div class="altt">A · Oficinas y locales</div>{table(['Concepto', '% del bruto', 'USD por año'], er(eA['pedido'], A['alt']), 't sm ie')}</div>
-<div><div class="altt gold">B · Departamentos y local</div>{table(['Concepto', '% del bruto', 'USD por año'], er(eB['pedido'], Bm['alt']), 't sm ie')}</div></div>
-<p class="note2 sm">El resultado operativo no depende del precio de compra. IVA: 10% en oficinas y locales; 5% en vivienda (ponderado en B). Vacancia de referencia de Meridiano: 10% oficinas, 8% locales, 4% departamentos. Gastos fijos: supuesto de Gs 9.000.000 por año. IRE: 10% estimado si se compra por sociedad; el contador define la base real.</p>''', num()))
+<div class="two alt3"><div><div class="altt">{ALT_NAMES['A']}</div>{table(['Concepto', '%', 'USD/año'], er('A'), 't sm ie')}</div>
+<div><div class="altt gold">{ALT_NAMES['B']}</div>{table(['Concepto', '%', 'USD/año'], er('B'), 't sm ie')}</div>
+<div><div class="altt">{ALT_NAMES['C']}</div>{table(['Concepto', '%', 'USD/año'], er('C'), 't sm ie')}</div></div>
+<p class="note2 sm">El resultado operativo no depende del precio de compra. IVA: 10% en oficinas y locales, 5% en vivienda; vacancia de referencia de Meridiano: 10% oficinas, 8% locales, 4% vivienda (ponderados por ingreso en B y C). Gastos fijos: supuesto de Gs 9.000.000 por año. IRE: 10% estimado si se compra por sociedad; el contador define la base real.</p>''', num()))
 
 # 15 RENTABILIDAD
-def c(a, p, k, d=2): return pct(M[a]['ev'][p][k], d)
-S.append(slide(f'''{head('Rentabilidad estimada', 'Indicadores sobre la inversión total, a cada precio')}<div class="rule"></div>
-<div class="rg4"><div></div><div class="bl2 c">A · a USD 220.000</div><div class="bl2 c">A · a USD 185.000</div><div class="bl2 c gold">B · a USD 220.000</div><div class="bl2 c gold">B · a USD 185.000</div>
-<div class="rl">Bruta sobre inversión total</div><div class="bigv m4">{c('A','pedido','bruta')}</div><div class="bigv m4">{c('A','rapida','bruta')}</div><div class="bigv m4">{c('B','pedido','bruta')}</div><div class="bigv m4">{c('B','rapida','bruta')}</div>
-<div class="rl">Neta antes de IRE</div><div class="midv">{c('A','pedido','neta_pre')}</div><div class="midv">{c('A','rapida','neta_pre')}</div><div class="midv">{c('B','pedido','neta_pre')}</div><div class="midv">{c('B','rapida','neta_pre')}</div>
-<div class="rl">Neta final</div><div class="midv">{c('A','pedido','neta')}</div><div class="midv">{c('A','rapida','neta')}</div><div class="midv">{c('B','pedido','neta')}</div><div class="midv">{c('B','rapida','neta')}</div>
-<div class="rl">Inversión total</div><div class="midv s2">{usd(eA['pedido']['inv'])}</div><div class="midv s2">{usd(eA['rapida']['inv'])}</div><div class="midv s2">{usd(eB['pedido']['inv'])}</div><div class="midv s2">{usd(eB['rapida']['inv'])}</div></div>
-<div class="bs how"><b>Cómo leer estas cifras.</b> El denominador es el precio más la puesta en valor, sin gastos de adquisición. Son estimaciones posteriores a la obra, con alquileres tomados del estudio de mercado: no hay renta actual que las respalde. La venta rápida mejora la bruta en alrededor de un punto: la obra pesa más que el precio. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
+def c(a, p, k): return pct(M[a]['ev'][p][k])
+hdr = '<div></div>' + ''.join(f'<div class="bl2 c{" gold" if a == "B" else ""}">{a} · USD {"220" if p == "pedido" else "185"} mil</div>' for a in 'ABC' for p in ('pedido', 'rapida'))
+def rowr(lbl, k, cls):
+    return f'<div class="rl">{lbl}</div>' + ''.join(f'<div class="{cls}">{c(a, p, k) if k != "inv" else usd(M[a]["ev"][p]["inv"])}</div>' for a in 'ABC' for p in ('pedido', 'rapida'))
+S.append(slide(f'''{head('Rentabilidad estimada', 'Tres alternativas a dos precios de compra')}<div class="rule"></div>
+<div class="rg6">{hdr}{rowr('Bruta sobre inversión total', 'bruta', 'bigv m6')}{rowr('Neta antes de IRE', 'neta_pre', 'midv')}{rowr('Neta final', 'neta', 'midv')}{rowr('Inversión total', 'inv', 'midv s2')}</div>
+<div class="bs how"><b>Cómo leer estas cifras.</b> A = oficinas y locales; B = departamentos; C = mixto. El denominador es el precio más la puesta en valor, sin gastos de adquisición. Son estimaciones posteriores a la obra, con alquileres del estudio de mercado: no hay renta actual que las respalde. La venta rápida suma entre 0,8 y 1,1 puntos brutos, porque la obra pesa más que el precio. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
 
 # 16 SENSIBILIDAD
-def sens(a, rates, p):
-    rows = []
-    for t, d in rates:
-        lbl = f'{rate(t * (1 - d))}/m²' + (' (sin descuento)' if d == 0 else '')
-        cells = [pct(M['sens'][f'{a}|{t}|{d}|{k}|{p}'][0]) + ' · ' + pct(M['sens'][f'{a}|{t}|{d}|{k}|{p}'][1]) for k in ('0.85', '1.0', '1.15')]
-        rows.append(([lbl] + cells, 'b' if (t, d) == rates[0] else ''))
-    return table(['Costo de obra', 'Alquiler −15%', 'Alquiler base', 'Alquiler +15%'], rows, 't sm')
+def srow(a, d):
+    lbl = f'{ALT_NAMES[a].split(" · ")[1]} · obra {"−25%" if d else "sin descuento"}'
+    return ([lbl] + [pct(M['sens'][f'{a}|{d}|{k}|pedido'][0]) + ' · ' + pct(M['sens'][f'{a}|{d}|{k}|pedido'][1]) for k in ('0.85', '1.0', '1.15')], 'b' if d else '')
+srows = [srow(a, d) for a in 'ABC' for d in (M['DESC'], 0)]
 S.append(slide(f'''{head('Qué mueve el resultado', 'Sensibilidad: costo de obra y alquiler')}
-<div class="two cx2"><div><div class="altt gold">B · Departamentos · a USD 220.000 · bruta · neta final</div>{sens('B', [(450, 0.25), (350, 0.25), (450, 0)], 'pedido')}
-<div class="altt" style="margin-top:14px">A · Oficinas · a USD 220.000</div>{sens('A', [(350, 0.25), (450, 0.25), (350, 0)], 'pedido')}</div>
-{crit('Lectura', [('La obra es la palanca', 'Sin el descuento del 25%, la alternativa B baja a 9,3% bruto; con él, llega a 11,1%.'), ('El precio suma menos', f'A USD 185.000 y obra base, B pasa a {pct(eB["rapida"]["bruta"])} bruta y {pct(eB["rapida"]["neta"])} neta: entre 0,8 y 1,1 puntos más en cada alternativa.'), ('Precio para 10% bruto (B)', f'Con estos supuestos, la alternativa B alcanza el 10% bruto comprando hasta {usd(eB["pedido"]["max_price10"])}.'), ('Presupuesto real', 'Antes de ofertar: presupuesto de obra sobre el edificio real con arquitecto o constructor.')])}</div>''', num()))
+<div class="two cx2"><div><div class="altt">Bruta · neta final sobre inversión total, compra a USD 220.000</div>{table(['Alternativa y obra', 'Alquiler −15%', 'Alquiler base', 'Alquiler +15%'], srows, 't big')}</div>
+{crit('Lectura', [('La obra es la palanca', 'Sin el descuento del 25%, la bruta cae unos 2 puntos en cada alternativa: B queda en 9,3%, A en 11,5% y C en 11,0%.'), ('El alquiler', 'Un 15% menos de alquiler resta entre 1,7 y 2 puntos brutos; las oficinas (A y C) son las más expuestas por su vacancia y por la falta de cocheras.'), ('El precio', 'Comprar a USD 185.000 suma entre 0,8 y 1,1 puntos brutos en cada alternativa.'), ('Presupuesto real', 'Antes de ofertar: presupuesto de obra sobre el edificio real con arquitecto o constructor.')])}</div>''', num()))
 
 # 17 PLUSVALIA
-prp, prr = M['proj']['pedido'], M['proj']['rapida']
-def rowp(lbl, f, cls=''): return ([lbl] + [f(prp[k]) for k in ['Conservador', 'Base', 'Optimista']], cls)
-prow = [rowp('Alquileres, ajuste anual', lambda p: '+' + n(p['gr'] * 100, 1) + '%'), rowp('Valorización anual supuesta', lambda p: n(p['val'] * 100, 1) + '%'),
-        rowp('Valor estimado al año 5', lambda p: usd(p['V'])), rowp('Plusvalía sobre inversión total', lambda p: usd(p['plus'])), rowp('IVA de la venta futura (1,5%)', lambda p: '– ' + usd(p['ivav'])),
-        rowp('Renta neta acumulada (años 2 a 5)', lambda p: usd(p['acum'])), rowp('Ganancia total estimada', lambda p: usd(p['total']), 'b'), rowp('TIR a 5 años · compra a USD 220.000', lambda p: pct(p['tir'], 1), 'tot'),
-        (['TIR a 5 años · compra a USD 185.000'] + [pct(prr[k]['tir'], 1) for k in ['Conservador', 'Base', 'Optimista']], 'tot')]
-S.append(slide(f'''{head('Plusvalía y retorno total', 'Alternativa B: escenarios a cinco años')}
-<div class="two d15">{table(['Concepto', 'Conservador', 'Base', 'Optimista'], prow, 't big pv')}
-<div class="dbox"><div class="bigv bv2">{pct(prp['Base']['tir'],1)} · {pct(prr['Base']['tir'],1)}</div><div class="bs">TIR estimada, escenario base, a USD 220.000 y a USD 185.000</div><p>Compra, un año de obra sin renta ({usd(cxB['total'])}), cuatro años de renta neta y venta al valor estimado del año 5.</p><p class="gold">Supuesto clave: el valor del edificio terminado parte de la inversión total y se valoriza desde el fin de la obra. Oficinas (A), escenario base: {pct(M['projA']['pedido']['tir'],1)} · {pct(M['projA']['rapida']['tir'],1)}.</p></div></div>
-<div class="src">Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. No incluyen gastos de adquisición ni comisión de venta. El valor futuro depende del mercado, de la calidad de la obra y de la ocupación al vender.</div>''', num()))
+pr = M['proj']
+trows = []
+for a in 'ABC':
+    for p in ('pedido', 'rapida'):
+        x = pr[a][p]
+        trows.append(([f'{ALT_NAMES[a]} · USD {"220.000" if p == "pedido" else "185.000"}'] + [pct(x[k]['tir'], 1) for k in ('Conservador', 'Base', 'Optimista')] + [usd(x['Base']['total'])], 'b' if p == 'pedido' else ''))
+best = max(((a, p) for a in 'ABC' for p in ('pedido', 'rapida')), key=lambda t: pr[t[0]][t[1]]['Base']['tir'])
+S.append(slide(f'''{head('Plusvalía y retorno total', 'TIR estimada a cinco años por alternativa')}
+<div class="two d15">{table(['Alternativa · precio', 'Conservador', 'Base', 'Optimista', 'Ganancia base'], trows, 't big')}
+<div class="dbox"><div class="bigv bv2">{pct(pr['C']['pedido']['Base']['tir'],1)} · {pct(pr['C']['rapida']['Base']['tir'],1)}</div><div class="bs">TIR base del mixto (C), a USD 220.000 y a USD 185.000: la más alta de las tres</div><p>Compra, un año de obra sin renta, cuatro años de renta neta y venta al valor estimado del año 5. Escenarios: alquileres +3/+5/+8% y valorización 2/3,5/5% anual.</p><p class="gold">Supuesto clave: el valor del edificio terminado parte de la inversión total y se valoriza desde el fin de la obra.</p></div></div>
+<div class="src">Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. Ganancia base = plusvalía − IVA de la venta futura (1,5%) + renta neta acumulada, a USD 220.000 o USD 185.000 según la fila. No incluyen gastos de adquisición ni comisión de venta.</div>''', num()))
 
 # 18 PRECIO Y CONDICIONES
 info = [('Activo', 'Edificio de oficinas de 3 niveles, 803 m² construidos en 1980 sobre 268 m² de terreno. Sin estacionamiento propio.'),
@@ -212,7 +219,7 @@ info = [('Activo', 'Edificio de oficinas de 3 niveles, 803 m² construidos en 19
         ('Forma de pago y entrega', 'A acordar en la negociación y el boleto de compraventa.')]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)
 S.append(slide(f'''{head('Precio y condiciones', 'Venta del edificio completo')}
-<div class="two d16"><div class="dbox big"><div class="bigv">USD 220.000</div><div class="bs">Precio de venta · {gs(PR['pedido'] * TC)}</div><div class="bigv sm2">USD 185.000</div><div class="bs">Precio de venta rápida</div><p>Edificio construido en 1980. Precio en dólares; alquileres futuros estimados en guaraníes, convertidos al {TCTXT}.</p><div class="dfoot">Departamentos: inversión total {usd(eB['pedido']['inv'])} · bruta {pct(eB['pedido']['bruta'])} · neta {pct(eB['pedido']['neta'])}</div></div>
+<div class="two d16"><div class="dbox big"><div class="bigv">USD 220.000</div><div class="bs">Precio de venta · {gs(PR['pedido'] * TC)}</div><div class="bigv sm2">USD 185.000</div><div class="bs">Precio de venta rápida</div><p>Edificio construido en 1980. Precio en dólares; alquileres futuros estimados en guaraníes, convertidos al {TCTXT}.</p><div class="dfoot">Neta final a USD 220.000: A {pct(eA['pedido']['neta'])} · B {pct(eB['pedido']['neta'])} · C {pct(eC['pedido']['neta'])}</div></div>
 <div class="info">{ih}</div></div>''', num()))
 
 # 19 PROCESO
@@ -224,9 +231,9 @@ S.append(slide(f'''{head('Proceso de compra', 'Cómo avanzamos, paso a paso')}<d
 <div class="src">Para inversores del exterior acompañamos también la cédula de identidad paraguaya y la apertura de cuenta bancaria. Las tareas legales, notariales, contables y de obra las realizan el abogado, el escribano, el contador y el arquitecto; Meridiano Capital coordina y acompaña.</div>''', num()))
 
 # 20 CONSIDERACIONES
-rk = [('Costo de obra', 'Es la variable decisiva: tabla de Meridiano con 25% de descuento, sin presupuesto sobre el edificio real.'),
+rk = [('Costo de obra', 'Es la variable decisiva en las tres alternativas: tabla de Meridiano con 25% de descuento, sin presupuesto sobre el edificio real.'),
       ('Sin renta actual', 'Doce meses o más sin ingresos entre compra, permisos y obra, más el tiempo de alquilar las unidades.'),
-      ('Normativa y cambio de uso', 'Departamentos, patio de luz, seguridad contra incendio y usos permitidos requieren aprobación municipal.'),
+      ('Normativa y cambio de uso', 'Departamentos, uso mixto (accesos y medidores separados), patio de luz, seguridad contra incendio y usos permitidos requieren aprobación municipal.'),
       ('Sin estacionamiento', 'Casi todos los comparables incluyen cochera; puede reducir el canon o alargar la colocación.'),
       ('Referencias de mercado', 'Pocos anuncios por tipología, precios pedidos y disponibilidad sin confirmar: confianza baja a media.'),
       ('Estado del edificio', 'Construcción de 1980: la inspección técnica define el alcance real de la obra.'),

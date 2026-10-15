@@ -15,28 +15,40 @@ def capex(table_rate, desc=DESC):
     return dict(table=table_rate, rate=rate, obra=obra, imprev=obra * IMPREV, total=obra * (1 + IMPREV))
 
 A_m2 = M2 * RENT_EFF
-# Alquiler base: estudio de mercado de Sajonia (15/10/2026)
+LEVEL_M2 = M2 / 3                       # supuesto: 3 niveles de superficie similar
 OF_BASE = 45_000            # Gs/m²/mes: O3, oficina de 160 m² sin muebles (Gs 46.350/m²), redondeado
-MIX = [  # (tipología, cantidad, m² aprox., canon base Gs/mes, referencia)
-    ('Departamento 2 dormitorios', 2, 70, 3_000_000, 'T1–T2: Gs 3,0–4,5 M; piso de la banda estándar'),
-    ('Departamento 1 dormitorio', 3, 50, 2_500_000, 'D1–D2: Gs 1,4–3,0 M; punto medio-alto'),
-    ('Monoambiente', 5, 35, 2_200_000, 'M1–M2: Gs 2,5–3,0 M con cochera; por debajo de la banda'),
-    ('Local comercial en PB', 1, 60, 2_700_000, 'Unos Gs 45.000/m² en 60 m²'),
-]
+REF = {'2D': 3_000_000, '1D': 2_500_000, 'MONO': 2_200_000, 'LOCAL': 2_700_000}
+REF_TXT = {'2D': 'T1–T2: Gs 3,0–4,5 M; piso de la banda estándar', '1D': 'D1–D2: Gs 1,4–3,0 M; punto medio-alto',
+           'MONO': 'M1–M2: Gs 2,5–3,0 M con cochera; por debajo de la banda', 'LOCAL': 'Unos Gs 45.000/m² en 60 m²'}
+TAX = {'OF': (0.10, 0.10), 'LOCAL': (0.10, 0.08), 'VIV': (0.05, 0.04)}   # (IVA, vacancia)
+MIX = [('Departamento 2 dormitorios', 2, '2D'), ('Departamento 1 dormitorio', 3, '1D'), ('Monoambiente', 5, 'MONO'), ('Local comercial en PB', 1, 'LOCAL')]
+
+def build(comps, k):
+    lines, mes, iva, vac = [], 0, 0, 0
+    for label, detail, gs_mes, cls in comps:
+        m = gs_mes * k
+        lines.append((label, detail, m)); mes += m
+        iva += m * TAX[cls][0]; vac += m * TAX[cls][1]
+    return dict(lines=lines, mes=mes, iva=iva / mes, vac=vac / mes)
 
 def altA(k=1.0):
-    m = A_m2 * OF_BASE * k
-    return dict(lines=[('Oficinas y locales', f'{round(A_m2)} m² alquilables', m)], mes=m, iva=0.10, vac=0.10)
+    return build([('Oficinas y locales', f'{round(A_m2)} m² alquilables', A_m2 * OF_BASE, 'OF')], k)
 
 def altB(k=1.0):
-    lines = [(t, f'{q} × {n_(c * k)}', q * c * k) for t, q, _, c, _ in MIX]
-    m = sum(x[2] for x in lines)
-    loc = lines[-1][2]; w = loc / m
-    return dict(lines=lines, mes=m, iva=0.05 * (1 - w) + 0.10 * w, vac=0.04 * (1 - w) + 0.08 * w)
+    return build([(t, f'{q} × Gs {REF[c] * k:,.0f}'.replace(',', '.'), q * REF[c], 'LOCAL' if c == 'LOCAL' else 'VIV') for t, q, c in MIX], k)
 
-def n_(x):
-    return 'Gs ' + f"{round(x, -3):,.0f}".replace(',', '.')
+# C · Mixto: nivel 1 local + oficinas, nivel 2 oficinas, nivel 3 viviendas (1 × 2D, 1 × 1D, 2 mono)
+C_OF_M2 = 2 * LEVEL_M2 * RENT_EFF - 60
+def altC(k=1.0):
+    return build([('Oficinas, niveles 1 y 2', f'{round(C_OF_M2)} m² alquilables', C_OF_M2 * OF_BASE, 'OF'),
+                  ('Local comercial en PB', '1 unidad', REF['LOCAL'], 'LOCAL'),
+                  ('Departamentos, nivel 3', '1 × 2 dorm. · 1 × 1 dorm. · 2 monoamb.', REF['2D'] + REF['1D'] + 2 * REF['MONO'], 'VIV')], k)
 
+def capexC(desc=DESC):
+    of, viv = capex(TABLA['basica'], desc), capex(TABLA['estandar'], desc)
+    obra = 2 / 3 * of['obra'] + 1 / 3 * viv['obra']
+    return dict(table='mixto', rate=obra / M2, obra=obra, imprev=obra * IMPREV, total=obra * (1 + IMPREV),
+                detail=f"2 niveles × USD {of['rate']:g} + 1 nivel × USD {viv['rate']:g}")
 def neto(G, iva, vac):
     pre = G * (1 - iva - vac - ADM - MAN) - FIJOS
     return pre, pre * (1 - IRE)
@@ -53,9 +65,9 @@ def evaluate(alt, cx, P):
     G = alt['mes'] * 12 / TC
     pre, net = neto(G, alt['iva'], alt['vac'])
     inv = P + cx['total']
-    return dict(P=P, G=G, pre=pre, net=net, inv=inv, bruta=G / inv, bruta_compra=G / P, neta=net / inv, neta_pre=pre / inv,
+    return dict(P=P, G=G, pre=pre, net=net, inv=inv, bruta=G / inv, neta=net / inv, neta_pre=pre / inv,
                 iva_u=G * alt['iva'], vac_u=G * alt['vac'], adm_u=G * ADM, man_u=G * MAN, ire_u=pre * IRE,
-                max_inv10=G / 0.10, max_price10=G / 0.10 - cx['total'])
+                max_price10=G / 0.10 - cx['total'])
 
 def proj(alt, cx, P, gr, val):
     ev = evaluate(alt, cx, P)
@@ -65,33 +77,28 @@ def proj(alt, cx, P, gr, val):
     cf = [-P, -cx['total']] + nets[:3] + [nets[3] + V - ivav]
     return dict(nets=nets, V=V, plus=V - ev['inv'], ivav=ivav, acum=sum(nets), total=V - ev['inv'] - ivav + sum(nets), tir=irr(cf), gr=gr, val=val)
 
-cxA, cxB = capex(TABLA['basica']), capex(TABLA['estandar'])
-out = dict(TC=TC, PRICES=PRICES, M2=M2, A_m2=A_m2, FIJOS=FIJOS, DESC=DESC, OF_BASE=OF_BASE, MIX=MIX, cxA=cxA, cxB=cxB,
-           cxA_full=capex(TABLA['basica'], 0), cxB_full=capex(TABLA['estandar'], 0), nuevo=M2 * 650,
+cxA, cxB, cxC = capex(TABLA['basica']), capex(TABLA['estandar']), capexC()
+ALTS = {'A': (altA, cxA, lambda d: capex(TABLA['basica'], d)), 'B': (altB, cxB, lambda d: capex(TABLA['estandar'], d)), 'C': (altC, cxC, capexC)}
+out = dict(TC=TC, PRICES=PRICES, M2=M2, A_m2=A_m2, C_OF_M2=C_OF_M2, LEVEL_M2=LEVEL_M2, FIJOS=FIJOS, DESC=DESC, OF_BASE=OF_BASE, REF=REF, REF_TXT=REF_TXT, MIX=MIX,
+           cxA=cxA, cxB=cxB, cxC=cxC, nuevo=M2 * 650,
            acm=dict(terreno=73_645, edif=160_680, mercado=234_325, competitivo=210_893, rapida=187_460))
-out['A'] = dict(alt=altA(), ev={p: evaluate(altA(), cxA, P) for p, P in PRICES.items()})
-out['B'] = dict(alt=altB(), ev={p: evaluate(altB(), cxB, P) for p, P in PRICES.items()})
-out['scen'] = {f'{a}|{k}|{p}': evaluate(fa(k), cx, P)['bruta'] for a, fa, cx in [('A', altA, cxA), ('B', altB, cxB)]
-               for k in (0.85, 1.0, 1.15) for p, P in PRICES.items()}
-# sensibilidad B y A: costo de obra (tabla con y sin descuento) × alquiler, a ambos precios
-out['sens'] = {}
-for a, fa, rates in [('B', altB, [(450, DESC), (350, DESC), (450, 0)]), ('A', altA, [(350, DESC), (450, DESC), (350, 0)])]:
-    for t, d in rates:
+out['sens'], out['proj'] = {}, {}
+for a, (fa, cx, fcx) in ALTS.items():
+    out[a] = dict(alt=fa(), ev={p: evaluate(fa(), cx, P) for p, P in PRICES.items()})
+    for d in (DESC, 0):
         for k in (0.85, 1.0, 1.15):
             for p, P in PRICES.items():
-                e = evaluate(fa(k), capex(t, d), P)
-                out['sens'][f'{a}|{t}|{d}|{k}|{p}'] = [e['bruta'], e['neta']]
-out['proj'] = {p: {nm: proj(altB(), cxB, P, gr, val) for nm, gr, val in [('Conservador', .03, .02), ('Base', .05, .035), ('Optimista', .08, .05)]}
-               for p, P in PRICES.items()}
-out['projA'] = {p: proj(altA(), cxA, P, .05, .035) for p, P in PRICES.items()}
+                e = evaluate(fa(k), fcx(d), P)
+                out['sens'][f'{a}|{d}|{k}|{p}'] = [e['bruta'], e['neta']]
+    out['proj'][a] = {p: {nm: proj(fa(), cx, P, gr, val) for nm, gr, val in [('Conservador', .03, .02), ('Base', .05, .035), ('Optimista', .08, .05)]}
+                      for p, P in PRICES.items()}
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 
 if __name__ == '__main__':
-    print('capex A', cxA, '\ncapex B', cxB)
-    for a in 'AB':
-        print(a, 'mes Gs', round(out[a]['alt']['mes']))
+    for a in 'ABC':
+        print(a, 'capex', round(out['cx' + a]['total']), 'mes Gs', round(out[a]['alt']['mes']), 'iva %.3f vac %.3f' % (out[a]['alt']['iva'], out[a]['alt']['vac']))
         for p in PRICES:
             e = out[a]['ev'][p]
-            print('  ', p, 'inv', round(e['inv']), 'bruta inv %.2f%%  neta %.2f%%  bruta s/compra %.2f%%' % (e['bruta'] * 100, e['neta'] * 100, e['bruta_compra'] * 100), 'maxprice10', round(e['max_price10']))
-    for p in PRICES:
-        print(p, {k: '%.1f%%' % (v['tir'] * 100) for k, v in out['proj'][p].items()}, 'A base %.1f%%' % (out['projA'][p]['tir'] * 100))
+            print('  ', p, 'inv', round(e['inv']), 'bruta %.2f%% neta %.2f%%' % (e['bruta'] * 100, e['neta'] * 100),
+                  'TIR', {k: '%.1f%%' % (v['tir'] * 100) for k, v in out['proj'][a][p].items()})
+        print('   sin desc', '%.2f%%' % (out['sens'][f'{a}|0|1.0|pedido'][0] * 100))
