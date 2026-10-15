@@ -144,3 +144,8 @@ h2{font-family:Fraunces,serif;font-weight:400;font-size:37px;line-height:1.15;ma
 .rl{font-size:15px;color:#cfd6d7}.bl2.c{margin-top:0}.bl2.gold{color:var(--gold)}
 .bigv.m{font-size:56px}.midv.s2{font-size:26px}
 .s.dark .how{margin-top:34px}
+.rg4{display:grid;grid-template-columns:250px repeat(4,1fr);gap:14px 26px;margin-top:22px;align-items:baseline}
+.bigv.m4{font-size:44px}.rg4 .midv{font-size:28px}.rg4 .midv.s2{font-size:21px}.rg4 .bl2{font-size:14px}
+.bigv.sm2{font-size:34px;margin-top:22px}
+.refs td:first-child{font-weight:700}.t.refs td{padding:7px 11px}
+.rks.c7 .rk{padding:10px 0 11px}

@@ -1,0 +1,1172 @@
+{
+  "schema_version": "1.1",
+  "title": "Datos de mercado: Edificio Sajonia",
+  "research_date": "2026-10-15",
+  "timezone": "America/Asuncion",
+  "prepared_for": "Meridiano Capital",
+  "status": "preliminary_market_evidence_not_appraisal",
+  "scope": [
+    "office",
+    "studio",
+    "one_bedroom",
+    "two_bedrooms",
+    "mixed_use_conversion"
+  ],
+  "subject": {
+    "name": "Edificio Sajonia / entorno Palacio de Justicia",
+    "country": "Paraguay",
+    "city": "Asunción",
+    "user_neighborhood_label": "Sajonia",
+    "document_neighborhood_label": "Dr. Francia",
+    "address_from_maps": "Av. Ygatimí 1351",
+    "maps_url": "https://maps.app.goo.gl/9VVqh4HZrwiZkHqo9",
+    "coordinates": {
+      "lat": -25.2845963,
+      "lon": -57.650608,
+      "provenance": "Google Maps place coordinates"
+    },
+    "pdf_coordinates": {
+      "lat": -25.284546,
+      "lon": -57.6505748
+    },
+    "cadastral_identity_confirmed": false,
+    "document": {
+      "filename": "Edificio-Sajonia.pdf",
+      "reference": "143094028-29",
+      "pages": 6
+    },
+    "confirmed_from_attachment": {
+      "land_m2": 267.52,
+      "front_m": 8,
+      "depth_m": 33.44,
+      "parking_spaces": 0,
+      "original_use": "office",
+      "approximate_construction_era": "1980s"
+    },
+    "attachment_inconsistencies": [
+      "Página 4 informa fondo 33,00 m y área 268 m² versus 33,44 m y 267,52 m² de página 2",
+      "Página 6 contiene imágenes generadas con IA, no inspección de interiores",
+      "ACM informa 268 m² de terreno y 803 m² construidos; cotejar precisión y áreas con planos/mensura"
+    ],
+    "built_area_m2": null,
+    "net_rentable_area_m2": null,
+    "current_rent_monthly": null,
+    "current_occupancy": null,
+    "confirmed_asking_price": {
+      "currency": "USD",
+      "amount": 220000,
+      "type": "user_confirmed",
+      "confirmed_at": "2026-10-15",
+      "is_closed_transaction": false
+    },
+    "unit_schedule": [],
+    "candidate_public_listing": {
+      "url": "https://www.infocasas.com.py/edificio-de-3-niveles-en-sajonia-asuncion-ubicacion-estrategica-zona-poder-judicial-ideal-para-estudios-juridicos-coworkings-y-profesionales-independientes/193695129",
+      "match_status": "possible_not_confirmed",
+      "listed_built_m2": 803,
+      "header_price": {
+        "currency": "USD",
+        "amount": 220000
+      },
+      "description_price": {
+        "currency": "USD",
+        "amount": 250000
+      },
+      "publication_date": "2026-04-30",
+      "floors_description": 3,
+      "floors_field": 4,
+      "conflicts": [
+        "Precio 220.000 versus 250.000",
+        "3 niveles versus ficha 4",
+        "Georreferencia genérica Parque Carlos A. López; no dirección Ygatimí confirmada",
+        "Terreno 8 × 33 frente a 8 × 33,44 del PDF"
+      ],
+      "do_not_use_as_verified_subject_input": true,
+      "price_resolution": {
+        "current_reference": 220000,
+        "currency": "USD",
+        "source": "user_confirmation",
+        "description_250000_status": "conflicting_public_text_not_current_subject_price"
+      }
+    },
+    "confirmed_quick_sale_price": {
+      "currency": "USD",
+      "amount": 185000,
+      "type": "user_confirmed",
+      "confirmed_at": "2026-10-15",
+      "is_closed_transaction": false,
+      "classification": "seller_quick_sale_scenario",
+      "time_to_sale_guaranteed": false
+    },
+    "reported_built_area": {
+      "value_m2": 803,
+      "source": "ACM-[cliente]-marzo-2025.pdf, página 1",
+      "status": "client_document_reported_not_technically_verified"
+    },
+    "documents": [
+      {
+        "filename": "Edificio-Sajonia.pdf",
+        "reference": "143094028-29",
+        "pages": 6
+      },
+      {
+        "filename": "ACM-[cliente]-marzo-2025.pdf",
+        "pages": 1,
+        "document_period": "2025-03",
+        "date_basis": "filename",
+        "client_label": "[cliente vendedor]",
+        "agency": "RE/MAX Proactiva",
+        "preparer": "[agente de RE/MAX Proactiva]",
+        "association": "supplied_by_user_for_subject_not_cadastrally_verified"
+      }
+    ]
+  },
+  "comparables": [
+    {
+      "id": "O1",
+      "operation": "rent",
+      "typology": "office",
+      "currency": "PYG",
+      "asking_price": 2700000,
+      "price_period": "month",
+      "area_m2": 32,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Av. Carlos Antonio López; 3 cuadras del Palacio según anuncio",
+      "url": "https://www.infocasas.com.py/oficina-zona-palacio/190485041",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2023-08-14",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "excluded",
+      "expenses": "excluded",
+      "furnishing": "unknown",
+      "warnings": [
+        "Anuncio antiguo; revalidar precio y disponibilidad",
+        "Piso inconsistente entre descripción y ficha"
+      ],
+      "asking_price_per_m2": 84375
+    },
+    {
+      "id": "O2",
+      "operation": "rent",
+      "typology": "office",
+      "currency": "PYG",
+      "asking_price": 2000000,
+      "price_period": "month",
+      "area_m2": 30,
+      "area_basis": "built_reported_inconsistent",
+      "parking_spaces": 1,
+      "location_as_advertised": "Av. Carlos Antonio López; 3 cuadras del Palacio según anuncio",
+      "url": "https://www.infocasas.com.py/oficina-zona-palacio/190485040",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": false,
+      "iva": "excluded",
+      "expenses": "excluded",
+      "furnishing": "unknown",
+      "warnings": [
+        "Dimensiones 4,55 × 4,20 = 19,11 m² frente a ficha de 30 m²",
+        "Piso inconsistente"
+      ],
+      "asking_price_per_m2": null
+    },
+    {
+      "id": "O3",
+      "operation": "rent",
+      "typology": "office",
+      "currency": "PYG",
+      "asking_price": 7416000,
+      "price_period": "month",
+      "area_m2": 160,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Sajonia; calle no precisada",
+      "url": "https://www.infocasas.com.py/alquilo-oficina-en-sajonia-%E2%80%93-160-m%C2%B2-%E2%80%93-gs-7416000/194231902",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-09-09",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unfurnished_equipped_ac",
+      "warnings": [
+        "Cantidad de baños inconsistente"
+      ],
+      "included_services": [
+        "mantenimiento periódico de AA",
+        "seguridad Protek según descripción"
+      ],
+      "duplicate_group": "office_160_sajonia",
+      "asking_price_per_m2": 46350
+    },
+    {
+      "id": "O4",
+      "operation": "rent",
+      "typology": "office",
+      "currency": "PYG",
+      "asking_price": 15650000,
+      "price_period": "month",
+      "area_m2": 220,
+      "area_basis": "covered",
+      "parking_spaces": 2,
+      "location_as_advertised": "Sajonia; entorno estadio y Palacio según anuncio",
+      "url": "https://www.infocasas.com.py/alquilo-oficina-premium-equipada-en-sajonia-asuncion/194238862",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-09-10",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "fully_furnished_equipped",
+      "warnings": [
+        "Producto premium; no equiparar a oficinas básicas",
+        "Cantidad de baños inconsistente"
+      ],
+      "included_services": [
+        "seguridad",
+        "mantenimiento según descripción"
+      ],
+      "duplicate_group": "office_220_premium_sajonia",
+      "asking_price_per_m2": 71136.36
+    },
+    {
+      "id": "M1",
+      "operation": "rent",
+      "typology": "studio",
+      "currency": "PYG",
+      "asking_price": 2500000,
+      "price_period": "month",
+      "area_m2": 42,
+      "area_basis": "covered",
+      "parking_spaces": 1,
+      "location_as_advertised": "Morelia Sajonia Residence; Juan de Garay",
+      "url": "https://www.infocasas.com.py/alquilo-departamento-monoabiente/192719229",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2025-08-05",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unknown",
+      "warnings": [
+        "Revalidar anuncio de 2025"
+      ],
+      "asking_price_per_m2": 59523.81
+    },
+    {
+      "id": "M2",
+      "operation": "rent",
+      "typology": "studio",
+      "currency": "PYG",
+      "asking_price": 3000000,
+      "price_period": "month",
+      "area_m2": 30,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Sajonia; zona Palacio sin dirección precisa",
+      "url": "https://www.infocasas.com.py/alquilo-monoambiente-a-estrenar-en-sajonia-con-cochera-gs-3000000/193982938",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "included",
+      "expenses": "included",
+      "furnishing": "semi_furnished",
+      "warnings": [],
+      "duplicate_group": "studio_30_sajonia",
+      "asking_price_per_m2": 100000
+    },
+    {
+      "id": "D1",
+      "operation": "rent",
+      "typology": "one_bedroom",
+      "currency": "PYG",
+      "asking_price": 1400000,
+      "price_period": "month",
+      "area_m2": 50,
+      "area_basis": "built",
+      "parking_spaces": 0,
+      "location_as_advertised": "El Mirador; Conrado Rios Galladro, zona parque Carlos A. López",
+      "url": "https://www.jariton.com.py/propiedades/alquiler-de-departamentos-zona-parque-carlos-antonio-lopez/194161777/?listing_type=0",
+      "source": "Jariton",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "reported_zero_unconfirmed",
+      "furnishing": "unknown",
+      "warnings": [
+        "Se privilegia ficha individual sobre precios diferentes del listado general",
+        "Producto básico sin cochera; dirección requiere confirmar"
+      ],
+      "asking_price_per_m2": 28000
+    },
+    {
+      "id": "D2",
+      "operation": "rent",
+      "typology": "one_bedroom",
+      "currency": "PYG",
+      "asking_price": 3000000,
+      "price_period": "month",
+      "area_m2": 47,
+      "area_basis": "covered",
+      "parking_spaces": 1,
+      "location_as_advertised": "Edificio Alemania; zona Palacio",
+      "url": "https://www.infocasas.com.py/departamentoalquilerzona-palacio-de-justicia-sajonia-asuncion/194399635",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-10-14",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "included",
+      "furnishing": "unknown",
+      "warnings": [],
+      "asking_price_per_m2": 63829.79
+    },
+    {
+      "id": "T1",
+      "operation": "rent",
+      "typology": "two_bedrooms",
+      "currency": "PYG",
+      "asking_price": 3000000,
+      "price_period": "month",
+      "area_m2": 70,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Cnel. Panchito López casi Juan de Garay",
+      "url": "https://www.infocasas.com.py/departamentoalquilercoronel-panchito-lopez-casi-juan-de-garay-sajonia-asuncion/194074619",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unknown",
+      "warnings": [],
+      "asking_price_per_m2": 42857.14
+    },
+    {
+      "id": "T2",
+      "operation": "rent",
+      "typology": "two_bedrooms",
+      "currency": "PYG",
+      "asking_price": 4500000,
+      "price_period": "month",
+      "area_m2": 83,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Mayor José de Jesús Martínez; zona Defensores del Chaco",
+      "url": "https://www.infocasas.com.py/en-alquiler-departamento-de-2-habitaciones-en-sajonia-a554/194361868",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-10-06",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "included",
+      "expenses": "included",
+      "furnishing": "equipped_kitchen",
+      "warnings": [],
+      "included_services": [
+        "agua"
+      ],
+      "asking_price_per_m2": 54216.87
+    },
+    {
+      "id": "T3",
+      "operation": "rent",
+      "typology": "two_bedrooms",
+      "currency": "PYG",
+      "asking_price": 5500000,
+      "price_period": "month",
+      "area_m2": 62,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Sajonia; dirección no precisada",
+      "url": "https://www.infocasas.com.py/alquilo-departamento-2-dorm-en-sajonia/194122772",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-08-16",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "included",
+      "expenses": "unknown",
+      "furnishing": "fully_furnished_equipped",
+      "warnings": [
+        "Expensas de Gs. 10 en ficha: dato anómalo, no utilizar",
+        "Terraza de 5 m² sin aclarar relación con superficie construida"
+      ],
+      "duplicate_group": "two_bed_62_furnished_sajonia",
+      "asking_price_per_m2": 88709.68
+    },
+    {
+      "id": "T4",
+      "operation": "rent",
+      "typology": "two_bedrooms",
+      "currency": "PYG",
+      "asking_price": 5500000,
+      "price_period": "month",
+      "area_m2": 60,
+      "area_basis": "built_reported_terrace_uncertain",
+      "parking_spaces": 2,
+      "location_as_advertised": "Habitalis Sajonia",
+      "url": "https://www.infocasas.com.py/alquilo-departamento-semiamoblado-de-2-habitaciones-en-sajonia-/193399990",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": false,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "semi_furnished_extensive_equipment",
+      "warnings": [
+        "Ficha informa también terraza de 60 m²; denominador no fiable",
+        "Dos cocheras y equipamiento; referencia superior no homologada"
+      ],
+      "asking_price_per_m2": null
+    },
+    {
+      "id": "B1",
+      "operation": "sale",
+      "typology": "whole_mixed_building",
+      "currency": "PYG",
+      "asking_price": 1800000000,
+      "price_period": "sale",
+      "area_m2": 548,
+      "area_basis": "built",
+      "parking_spaces": null,
+      "location_as_advertised": "Sajonia; esquina; 4 cuadras Palacio según anuncio",
+      "url": "https://www.amambaypropiedades.com/propiedades/0144-edificio-de-salones-oficinas-y-dptos-en-barrio-sajonia/",
+      "source": "Amambay Propiedades",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unknown",
+      "warnings": [
+        "Renta mencionada sin importe",
+        "Listado de agencia muestra USD 220.000; no convertir ni tratar como segundo comparable"
+      ],
+      "land_m2": 193,
+      "floors": 3,
+      "condition": "to_renovate",
+      "unit_mix": {
+        "offices": 10,
+        "studios": 2,
+        "commercial_units": 5
+      },
+      "conflicting_price": {
+        "amount": 220000,
+        "currency": "USD",
+        "url": "https://www.amambaypropiedades.com/vencidario-de-propiedad/sajonia/",
+        "status": "category_reference_not_homologated"
+      },
+      "asking_price_per_m2": 3284671.53
+    },
+    {
+      "id": "B2",
+      "operation": "sale",
+      "typology": "whole_office_building",
+      "currency": "USD",
+      "asking_price": 230000,
+      "price_period": "sale",
+      "area_m2": 458,
+      "area_basis": "built",
+      "parking_spaces": null,
+      "location_as_advertised": "Sajonia; cerca del Palacio según anuncio",
+      "url": "https://tucasapy.com/propiedad/en-venta-edificio-en-barrio-sajonia-asuncion-72966700",
+      "source": "TuCasaPY",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "fully_furnished",
+      "warnings": [
+        "Superficie de terreno no diferenciada",
+        "No confundir con el inmueble sujeto"
+      ],
+      "floors": 3,
+      "land_m2": null,
+      "asking_price_per_m2": 502.18
+    },
+    {
+      "id": "S1",
+      "operation": "sale",
+      "typology": "office",
+      "currency": "USD",
+      "asking_price": 56500,
+      "price_period": "sale",
+      "area_m2": 30,
+      "area_basis": "own",
+      "parking_spaces": 1,
+      "location_as_advertised": "Complejo Tribunales; Sajonia",
+      "url": "https://www.amambaypropiedades.com/propiedades/0852-oficina-en-complejo-tribunales-barrio-sajonia/",
+      "source": "Amambay Propiedades",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "contextual",
+      "use_in_observed_range": false,
+      "use_in_area_statistics": false,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unknown",
+      "warnings": [
+        "Etiqueta Vendido: referencia histórica, no oferta vigente ni precio de cierre",
+        "Precio desde; incluye cochera"
+      ],
+      "listing_status": "sold_label",
+      "asking_price_per_m2": null
+    },
+    {
+      "id": "S2",
+      "operation": "sale",
+      "typology": "studio",
+      "currency": "PYG",
+      "asking_price": 300000000,
+      "price_period": "sale",
+      "area_m2": 30,
+      "area_basis": "own_description",
+      "parking_spaces": 1,
+      "location_as_advertised": "Complejo Tribunales; De las Llanas c/ Av. Carlos A. López",
+      "url": "https://ubicaprop.com.py/propiedad/%F0%9F%8F%99%EF%B8%8F-monoambiente-en-venta-complejo-tribunales/",
+      "source": "UbicaProp",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unknown",
+      "warnings": [
+        "30 m² propios en descripción versus 43 m² ficha",
+        "Ficha dice 1 dormitorio pero descripción monoambiente",
+        "Renta actual mencionada sin monto"
+      ],
+      "area_alternative_m2": 43,
+      "area_alternative_basis": "listing_field_unspecified",
+      "asking_price_per_m2": 10000000
+    },
+    {
+      "id": "S3",
+      "operation": "sale",
+      "typology": "one_bedroom",
+      "currency": "USD",
+      "asking_price": 67000,
+      "price_period": "sale",
+      "area_m2": 47,
+      "area_basis": "total_description_built_field",
+      "parking_spaces": 1,
+      "location_as_advertised": "Torre M; Mayor Martínez c/ Ramón de las Llanas",
+      "url": "https://www.infocasas.com.py/departamento-en-venta-en-sajonia-1-dormitorio-cochera-amenities/193796492",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": null,
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "equipped_kitchen",
+      "warnings": [
+        "Fecha de ingreso no disponible; ignorar metadata genérica 2020"
+      ],
+      "amenities": [
+        "piscina",
+        "gimnasio",
+        "quincho",
+        "seguridad"
+      ],
+      "asking_price_per_m2": 1425.53
+    },
+    {
+      "id": "S4",
+      "operation": "sale",
+      "typology": "one_bedroom",
+      "currency": "USD",
+      "asking_price": 70000,
+      "price_period": "sale",
+      "area_m2": 60,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Juan de Zalazar; Nuestra Señora de la Asunción c/ Jejuí",
+      "url": "https://www.infocasas.com.py/vendo-departamento-en-asuncion-en-sajonia/194177435",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-08-28",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "contextual",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unknown",
+      "warnings": [
+        "Etiqueta Sajonia no basta: dirección corresponde a referencia ampliada, no micromercado confirmado"
+      ],
+      "asking_price_per_m2": 1166.67
+    },
+    {
+      "id": "S5",
+      "operation": "sale",
+      "typology": "two_bedrooms",
+      "currency": "USD",
+      "asking_price": 111710,
+      "price_period": "sale",
+      "area_m2": 78,
+      "area_basis": "built",
+      "parking_spaces": null,
+      "location_as_advertised": "Edificio Alemania; Isabel La Católica y Mariano Roque Alonso según ficha",
+      "url": "https://www.infocasas.com.py/vendo-departamento-de-dos-dormitorios-edificio-alemania-en-barrio-sajonia/194346074",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-10-02",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "unknown",
+      "warnings": [
+        "Múltiples superficies en descripción; confirmar precio de unidad 78 m²",
+        "Cochera USD 13.000 adicional"
+      ],
+      "parking_price_separate": {
+        "amount": 13000,
+        "currency": "USD"
+      },
+      "amenities": [
+        "piscina",
+        "gimnasio",
+        "ascensores",
+        "seguridad"
+      ],
+      "asking_price_per_m2": 1432.18
+    },
+    {
+      "id": "S6",
+      "operation": "sale",
+      "typology": "two_bedrooms",
+      "currency": "PYG",
+      "asking_price": 650000000,
+      "price_period": "sale",
+      "area_m2": 78,
+      "area_basis": "built",
+      "parking_spaces": 1,
+      "location_as_advertised": "Zona Av. Carlos Antonio López / Palacio según anuncio",
+      "url": "https://www.infocasas.com.py/en-venta-departamento-de-2-habitaciones-en-barrio-sajonia-v267/194380922",
+      "source": "InfoCasas",
+      "consulted_at": "2026-10-15",
+      "publication_date": "2026-10-09",
+      "availability_confirmed": false,
+      "evidence_type": "published_asking_price",
+      "comparison_class": "secondary",
+      "use_in_observed_range": true,
+      "use_in_area_statistics": true,
+      "iva": "unknown",
+      "expenses": "unknown",
+      "furnishing": "equipped_kitchen_ac",
+      "warnings": [],
+      "amenities": [
+        "seguridad",
+        "quinchos",
+        "generador",
+        "play room"
+      ],
+      "asking_price_per_m2": 8333333.33
+    }
+  ],
+  "excluded_or_duplicate_listings": [
+    {
+      "url": "https://www.infocasas.com.py/alquilo-oficina-a-media-cuadra-de-la-av-carlos-antonio-lopez/193829662",
+      "reason": "Precio oculto y área de 1 m² no fiable"
+    },
+    {
+      "url": "https://www.infocasas.com.py/alquilo-oficina-en-sajonia/193667538",
+      "reason": "Precio oculto"
+    },
+    {
+      "url": "https://www.infocasas.com.py/departamento-tipo-loft-amoblado-en-alquiler-%E2%80%93-barrio-sajonia/193632763",
+      "reason": "Precio oculto; loft amoblado de 76 m²"
+    },
+    {
+      "url": "https://www.infocasas.com.py/alquilo-departamento-en-sajonia/194048104",
+      "reason": "Precio oculto; posible duplicado M2"
+    },
+    {
+      "url": "https://www.infocasas.com.py/alquilo-departamento-de-1-habitacion-en-sajonia/194118955",
+      "reason": "Precio oculto"
+    },
+    {
+      "url": "https://www.infocasas.com.py/alquilo-departamento-2-dorm-en-sajonia/194196173",
+      "reason": "Precio oculto; probable duplicado T3"
+    },
+    {
+      "url": "https://www.infocasas.com.py/alquilo-depto-de-2-dormitorios-en-el-barrio-sajonia/193999467",
+      "reason": "Precio oculto"
+    },
+    {
+      "url": "https://www.infocasas.com.py/-dpto-edificio-peninsula-1-en-el-emblematico-barrio-sajonia/193354765",
+      "reason": "Precio no visible; 39,45 m² propios en texto versus 3.945 en ficha"
+    }
+  ],
+  "observed_rental_bands": [
+    {
+      "typology": "office",
+      "currency": "PYG",
+      "n": 4,
+      "monthly_min": 2000000,
+      "monthly_max": 15650000,
+      "interpretation": "Escalas 30–220 m² y equipamiento distintos; NO constituye banda para una única oficina",
+      "ids": [
+        "O1",
+        "O2",
+        "O3",
+        "O4"
+      ]
+    },
+    {
+      "typology": "studio",
+      "currency": "PYG",
+      "n": 2,
+      "monthly_min": 2500000,
+      "monthly_max": 3000000,
+      "interpretation": "30–42 m²; ambas con cochera; no trasladar íntegro a sujeto sin estacionamiento",
+      "ids": [
+        "M1",
+        "M2"
+      ]
+    },
+    {
+      "typology": "one_bedroom",
+      "currency": "PYG",
+      "n": 2,
+      "monthly_min": 1400000,
+      "monthly_max": 3000000,
+      "interpretation": "50 m² básico sin cochera frente a 47 m² moderno con cochera y expensas",
+      "ids": [
+        "D1",
+        "D2"
+      ]
+    },
+    {
+      "typology": "two_bedrooms",
+      "currency": "PYG",
+      "n": 4,
+      "monthly_min": 3000000,
+      "monthly_max": 5500000,
+      "standard_reference_min": 3000000,
+      "standard_reference_max": 4500000,
+      "interpretation": "70–83 m² estándar: 3–4,5 millones; 5,5 millones amoblado/equipado y cochera",
+      "ids": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ]
+    }
+  ],
+  "valuation": {
+    "subject_market_sale_range": null,
+    "subject_market_rent_range": null,
+    "subject_recommended_asking_price": 220000,
+    "reason": "Sin superficie neta rentable, identidad del anuncio, inspección, CAPEX y rent roll; muestra de edificios enteros reducida y heterogénea",
+    "retail_unit_prices_are_not_whole_building_values": true,
+    "achieved_transaction_evidence_count": 0,
+    "subject_recommended_asking_price_basis": "adopted_user_instruction_not_independent_value_estimate",
+    "subject_quick_sale_scenario": 185000
+  },
+  "scenarios": [
+    {
+      "id": "retain_office",
+      "label": "Mantener oficinas",
+      "approved": false,
+      "unit_mix": null,
+      "capex": null,
+      "monthly_potential_rent": null,
+      "occupancy": null
+    },
+    {
+      "id": "mixed_use",
+      "label": "Oficinas + viviendas",
+      "approved": false,
+      "unit_mix": null,
+      "capex": null,
+      "monthly_potential_rent": null,
+      "occupancy": null
+    },
+    {
+      "id": "residential",
+      "label": "Reconversión residencial",
+      "approved": false,
+      "unit_mix": null,
+      "capex": null,
+      "monthly_potential_rent": null,
+      "occupancy": null
+    }
+  ],
+  "formulas": {
+    "monthly_potential": "sum(quantity_i * normalized_monthly_rent_i)",
+    "monthly_effective": "sum(quantity_i * normalized_monthly_rent_i * occupancy_i)",
+    "annual_gross": "monthly_potential * 12",
+    "gross_yield_pct": "annual_gross / purchase_price_same_currency * 100",
+    "price_to_annual_rent": "purchase_price_same_currency / annual_gross",
+    "noi": "effective_annual_income - owner_operating_expenses",
+    "yield_on_total_cost": "noi / (purchase_price + acquisition_costs + capex + leasing_costs)",
+    "monthly_gap": "market_rent - current_comparable_rent",
+    "percentage_gap": "(market_rent / current_comparable_rent - 1) * 100 only if current rent > 0"
+  },
+  "required_inputs": [
+    "Identidad documental/catastral del activo y del anuncio; precio ya confirmado por usuario",
+    "Título, finca, cuenta catastral y uso autorizado",
+    "Planos aprobados y relevamiento de áreas por nivel",
+    "Superficie construida y neta rentable",
+    "Estado estructural e instalaciones; ascensor y accesibilidad",
+    "Rent roll, ocupación, contratos y vencimientos",
+    "Certificado municipal de usos, estacionamientos y patrimonio",
+    "Proyecto de seguridad contra incendio y evacuación",
+    "Anteproyecto viable con iluminación, ventilación, cocinas y desagües",
+    "CAPEX cotizado por alternativa, contingencia y plazo",
+    "Gastos del propietario, impuestos, administración y mantenimiento",
+    "Tipo de cambio verificable si ingresos PYG y compra USD"
+  ],
+  "legal_sources": {
+    "plan": "https://www.asuncion.gov.py/plan-regulador",
+    "fire": "https://www.asuncion.gov.py/wp-content/uploads/2019/06/ord-2014-468.pdf"
+  },
+  "guardrails": [
+    "null significa no informado, nunca cero",
+    "No convertir monedas sin fuente y fecha de tipo de cambio",
+    "No asumir precio de cierre, absorción, descuentos o vacancia",
+    "No aplicar 803 m² como área neta rentable",
+    "No asignar viviendas por campos dormitorios de anuncio comercial",
+    "No aplicar renta de vivienda con cochera y amenities sin ajuste justificado",
+    "No calcular TIR sin flujo temporal y salida explícitos",
+    "No presentar habilitación de uso mixto o subdivisión como aprobada",
+    "No usar fotos IA como estado actual",
+    "No combinar venta minorista por unidad con venta de edificio entero",
+    "Revalidar disponibilidad directamente con anunciantes antes de inversión",
+    "No volver a solicitar precio pedido: USD 220.000 y venta rápida USD 185.000 confirmados por usuario",
+    "No tratar 8,9% de gastos del ACM como regla tributaria vigente",
+    "Sensibilidad de renta necesaria en USD es matemática; no convertir ni prometer renta"
+  ],
+  "revision": {
+    "version": 2,
+    "date": "2026-10-15",
+    "reason": "Precios confirmados por el usuario e incorporación del ACM recibido"
+  },
+  "historical_acm": {
+    "source": {
+      "filename": "ACM-[cliente]-marzo-2025.pdf",
+      "page": 1,
+      "document_period": "2025-03",
+      "date_basis": "filename",
+      "consulted_at": "2026-10-15"
+    },
+    "status": "client_supplied_historical_analysis_not_current_independent_appraisal",
+    "indicated_values_usd": {
+      "market": 234325,
+      "competitive": 210893,
+      "quick_sale": 187460,
+      "out_of_range": 257758
+    },
+    "reported_subject_inputs": {
+      "land_m2": 268,
+      "built_m2": 803,
+      "land_rate_usd_m2": 275,
+      "building_rate_usd_m2": 200,
+      "land_component_usd": 73645,
+      "building_component_usd": 160680,
+      "total_usd": 234325
+    },
+    "arithmetic_audit": {
+      "land_from_displayed_inputs_usd": 73700,
+      "building_from_displayed_inputs_usd": 160600,
+      "total_from_displayed_inputs_usd": 234300,
+      "total_reported_minus_recomputed_usd": 25,
+      "possible_cause": "Rounding or hidden precision; not confirmed"
+    },
+    "listed_properties": [
+      {
+        "reference": "143063148-139",
+        "type": "house_commercial",
+        "land_m2": 497,
+        "built_m2": 100,
+        "total_added_m2": 597,
+        "asking_usd": 280000,
+        "reported_usd_m2": 469,
+        "location_note": "1 cuadra Palacio según ACM"
+      },
+      {
+        "reference": "143075004-71",
+        "type": "house_commercial",
+        "land_m2": 420,
+        "built_m2": 300,
+        "total_added_m2": 720,
+        "asking_usd": 197000,
+        "reported_usd_m2": 274,
+        "location_note": "1 cuadra Palacio según ACM"
+      },
+      {
+        "reference": "143063128-161",
+        "type": "land",
+        "land_m2": 210,
+        "built_m2": null,
+        "total_added_m2": 210,
+        "asking_usd": 54487,
+        "reported_usd_m2": 259,
+        "location_note": "Detrás parque CAL según ACM"
+      },
+      {
+        "reference": "143063192-124",
+        "type": "land",
+        "land_m2": 404,
+        "built_m2": null,
+        "total_added_m2": 404,
+        "asking_usd": 130000,
+        "reported_usd_m2": 322,
+        "location_note": "Sobre Colón según ACM"
+      },
+      {
+        "reference": "143063076-63",
+        "type": "land",
+        "land_m2": 1722,
+        "built_m2": null,
+        "total_added_m2": 1722,
+        "asking_usd": 530000,
+        "reported_usd_m2": 308,
+        "location_note": "Sobre Colón según ACM"
+      }
+    ],
+    "claimed_sales_2024": [
+      {
+        "reference": "143014167-55",
+        "type": "house",
+        "reported_area_m2": 350,
+        "area_basis": "column_alignment_not_fully_specified",
+        "price_pyg": 600000000,
+        "reported_price_m2": 220,
+        "column_currency_label": "PYG",
+        "computed_price_pyg_m2": 1714285.71
+      },
+      {
+        "reference": "143013007-67",
+        "type": "residence",
+        "reported_area_m2": 1230,
+        "area_basis": "column_alignment_not_fully_specified",
+        "price_pyg": 1460000000,
+        "reported_price_m2": 152,
+        "column_currency_label": "PYG",
+        "computed_price_pyg_m2": 1186991.87
+      },
+      {
+        "reference": "143079001-2",
+        "type": "house",
+        "reported_area_m2": 568,
+        "area_basis": "column_alignment_not_fully_specified",
+        "price_pyg": 520000000,
+        "reported_price_m2": 117,
+        "column_currency_label": "PYG",
+        "computed_price_pyg_m2": 915492.96
+      },
+      {
+        "reference": "143005020-135",
+        "type": "residence",
+        "reported_area_m2": 280,
+        "area_basis": "column_alignment_not_fully_specified",
+        "price_pyg": 720000000,
+        "reported_price_m2": 330,
+        "column_currency_label": "PYG",
+        "computed_price_pyg_m2": 2571428.57
+      }
+    ],
+    "claims_of_closed_sales": 4,
+    "closed_sales_independently_verified": 0,
+    "expenses_model": {
+      "commission_pct": 5.5,
+      "tax_pct": 2.4,
+      "notary_pct": 1,
+      "total_pct": 8.9,
+      "status": "historical_acm_assumptions_not_verified_current_tax_or_fee_rules"
+    },
+    "warnings": [
+      "Comparables históricos sin enlaces ni prueba de vigencia o cierre",
+      "Promedio USD 326/m² mezcla casas sobre suma terreno+construcción y terrenos sobre terreno",
+      "Promedio declarado de vendidos 224 no coincide con media simple visible 204,75",
+      "Columna precio/m² rotulada Gs. no concuerda con precio total PYG y área",
+      "Tasas 275 y 200 USD/m² no justificadas mediante homologación, costo ni depreciación",
+      "Cifras de componentes difieren de multiplicaciones con áreas visibles; podría haber precisión oculta",
+      "No usar valor histórico como valoración actual ni atribuir uso mixto aprobado"
+    ]
+  },
+  "price_analysis": {
+    "currency": "USD",
+    "asking": 220000,
+    "quick_sale": 185000,
+    "absolute_discount": 35000,
+    "discount_pct": 15.91,
+    "asking_vs_historical_acm_market_pct": -6.11,
+    "quick_sale_vs_historical_acm_quick_sale_pct": -1.31,
+    "conditional_asking_usd_per_reported_built_m2": 273.97,
+    "conditional_quick_sale_usd_per_reported_built_m2": 230.39,
+    "same_income_yield_relative_increase_pct": 18.92,
+    "caveat": "Arithmetic comparisons; not independent valuation, achieved discount, achieved yield or time-to-sale forecast"
+  },
+  "price_scenarios": [
+    {
+      "id": "asking",
+      "currency": "USD",
+      "purchase_price_assumption": 220000,
+      "source": "user_confirmed_asking_price"
+    },
+    {
+      "id": "quick_sale",
+      "currency": "USD",
+      "purchase_price_assumption": 185000,
+      "source": "user_confirmed_quick_sale_price"
+    }
+  ],
+  "yield_hurdle_sensitivity": [
+    {
+      "target_gross_yield_pct": 6,
+      "currency": "USD",
+      "required_monthly_gross_rent_at_220000": 1100,
+      "required_monthly_gross_rent_at_185000": 925,
+      "classification": "mathematical_hurdle_not_market_rent_forecast",
+      "excludes": [
+        "capex",
+        "acquisition_costs",
+        "vacancy",
+        "operating_expenses",
+        "financing"
+      ]
+    },
+    {
+      "target_gross_yield_pct": 8,
+      "currency": "USD",
+      "required_monthly_gross_rent_at_220000": 1466.67,
+      "required_monthly_gross_rent_at_185000": 1233.33,
+      "classification": "mathematical_hurdle_not_market_rent_forecast",
+      "excludes": [
+        "capex",
+        "acquisition_costs",
+        "vacancy",
+        "operating_expenses",
+        "financing"
+      ]
+    },
+    {
+      "target_gross_yield_pct": 10,
+      "currency": "USD",
+      "required_monthly_gross_rent_at_220000": 1833.33,
+      "required_monthly_gross_rent_at_185000": 1541.67,
+      "classification": "mathematical_hurdle_not_market_rent_forecast",
+      "excludes": [
+        "capex",
+        "acquisition_costs",
+        "vacancy",
+        "operating_expenses",
+        "financing"
+      ]
+    },
+    {
+      "target_gross_yield_pct": 12,
+      "currency": "USD",
+      "required_monthly_gross_rent_at_220000": 2200,
+      "required_monthly_gross_rent_at_185000": 1850,
+      "classification": "mathematical_hurdle_not_market_rent_forecast",
+      "excludes": [
+        "capex",
+        "acquisition_costs",
+        "vacancy",
+        "operating_expenses",
+        "financing"
+      ]
+    }
+  ],
+  "historical_expense_model_sensitivity": [
+    {
+      "sale_price_usd": 220000,
+      "commission_usd": 12100,
+      "tax_assumption_usd": 5280,
+      "notary_assumption_usd": 2200,
+      "total_expenses_usd": 19580,
+      "seller_net_usd": 200420,
+      "status": "conditional_using_historical_acm_rates_not_actual_verified_costs"
+    },
+    {
+      "sale_price_usd": 185000,
+      "commission_usd": 10175,
+      "tax_assumption_usd": 4440,
+      "notary_assumption_usd": 1850,
+      "total_expenses_usd": 16465,
+      "seller_net_usd": 168535,
+      "status": "conditional_using_historical_acm_rates_not_actual_verified_costs"
+    }
+  ]
+}
