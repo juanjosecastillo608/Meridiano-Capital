@@ -57,7 +57,7 @@ kp = [('USD 350.000', f'Precio publicado · {gs(round(PUB["Pgs"], -6))}'), ('400
       ('Gs 20.000.000', f'Ingreso mensual informado · {usd(20e6 / TC)}'), (pct(PUB['bruta']), 'Rentabilidad bruta sobre USD 350.000'), (pct(PUB['saldo']), 'Saldo después de gastos informados ÷ precio'), (pct(PUB['neta']), 'Neta conservadora Meridiano')]
 kh = ''.join(f'<div class="k"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in kp)
 S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de tres pisos con doce unidades de renta')}
-<p class="lead">Edificio en el barrio San Miguel (Área 2) de Ciudad del Este, construido en dos etapas (1998 y 2016), con planos municipales aprobados según el propietario. Informa 100% de ocupación e ingresos de Gs 20.000.000 por mes, con gastos de Gs 2.700.000 que incluyen IVA, mantenimiento y administración. Contratos vigentes verificados. Analizamos el precio publicado y el de venta rápida informado por el propietario (USD 290.000).</p>
+<p class="lead">Edificio en el barrio San Miguel (Área 2) de Ciudad del Este, construido en dos etapas (1998 y 2016), con planos municipales aprobados según el propietario. Informa 100% de ocupación e ingresos de Gs 20.000.000 por mes, con gastos de Gs 2.700.000 que incluyen IVA, mantenimiento y administración. Contratos vigentes verificados. Analizamos el precio publicado y un precio de venta rápida de USD 290.000 sugerido por Meridiano Capital.</p>
 <div class="kgrid">{kh}</div>
 <div class="box">Contratos vigentes verificados por Meridiano Capital · Gastos sin desglose completo (faltan los no incluidos en los Gs 2,7 M) · Tipo de cambio {TCTXT}</div>''', 2))
 
@@ -65,9 +65,9 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de tres pisos con doc
 loc = [('Ciudad', 'Ciudad del Este, departamento de Alto Paraná · ubicación confirmada'), ('Barrio', 'San Miguel, Área 2'), ('Edificio', 'Tres pisos sobre terreno de 12 × 30 m, con salón comercial al frente'),
        ('Opcional', 'Estacionamiento techado lindero, de las mismas medidas, en venta por separado')]
 lh = ''.join(f'<div class="li"><div class="eb sm">{a}</div><div class="lt">{b}</div></div>' for a, b in loc)
-pin = '<svg viewBox="0 0 540 440" style="width:540px;height:440px;display:block"><rect width="540" height="440" fill="#14313A"/>' + ''.join(f'<line x1="{x}" y1="0" x2="{x}" y2="440" stroke="#24505c" stroke-width="1"/>' for x in range(30, 540, 60)) + ''.join(f'<line x1="0" y1="{y}" x2="540" y2="{y}" stroke="#24505c" stroke-width="1"/>' for y in range(20, 440, 60)) + '<path d="M0 300 C 140 260, 260 330, 540 250" stroke="#C9982E" stroke-width="3" fill="none" opacity=".55"/><path d="M270 120 c-38 0 -62 28 -62 60 c0 46 62 110 62 110 s62 -64 62 -110 c0 -32 -24 -60 -62 -60z" fill="#C9982E"/><circle cx="270" cy="180" r="20" fill="#14313A"/><text x="270" y="345" text-anchor="middle" fill="#F3EDE3" font-family="Poppins" font-size="18" font-weight="600">Barrio San Miguel · Área 2</text><text x="270" y="372" text-anchor="middle" fill="#F3EDE3" font-family="Poppins" font-size="13" opacity=".8">Ciudad del Este, Alto Paraná</text></svg>'
+pin = '<img src="img/ubicacion.jpg" style="object-position:84% 50%">'
 S.append(slide(f'''{head('Ubicación', 'Barrio San Miguel, Área 2, Ciudad del Este')}
-<div class="two"><div class="mapimg">{pin}<div class="cap">Esquema ilustrativo, sin escala · ubicación exacta en el enlace</div></div>
+<div class="two"><div class="mapimg">{pin}<div class="cap">Vista satelital del entorno (Google Maps) · el edificio, señalado con el marcador rojo</div></div>
 <div class="locr">{lh}
 <a class="glink" href="{MAPS}">Abrir en Google Maps</a>
 <p class="note">Ubicación confirmada por Meridiano Capital. Los datos de la parcela se cotejan con el título y el plano antes de la escritura.</p></div></div>''', 3))
@@ -220,11 +220,11 @@ S.append(slide(f'''{head('Opción adicional', 'Estacionamiento techado lindero: 
 # 18 PRECIO
 info = [('Activo', '3 monoambientes, 5 departamentos de 1 dormitorio, 1 de 2 y 1 de 4, 1 casa de 2 habitaciones atrás y 1 salón comercial al frente. 400 m² sobre 360 m² de terreno, en tres pisos.'),
         ('Ocupación e ingreso', f'100% alquilado, contratos vigentes verificados · Gs 20.000.000 por mes ({usd(20e6/TC)}) · gastos de Gs 2.700.000 con IVA, mantenimiento y administración.'),
-        ('Venta rápida', f'El propietario informa USD 290.000 para una operación rápida ({pct(M["desc_rapida"], 1)} menos), con condiciones a acordar.'),
+        ('Venta rápida', f'Precio de USD 290.000 ({pct(M["desc_rapida"], 1)} menos) sugerido por Meridiano Capital según el estudio de mercado y las referencias de la zona, para una operación en plazo corto; sujeto a aceptación del propietario.'),
         ('Título y forma de pago', 'Planos municipales aprobados según el propietario; título y dominio los verifica el escribano. Forma de pago en el boleto.')]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)
 S.append(slide(f'''{head('Precio y condiciones', 'Venta del edificio completo')}
-<div class="two d16"><div class="dbox big"><div class="bigv">USD 350.000</div><div class="bs">Precio publicado · aprox. {gs(round(PUB['Pgs'], -6))}</div><p>Venta rápida informada: USD 290.000</p><p>Precio en dólares; alquileres en guaraníes. Equivalencias: {TCTXT}.</p><div class="dfoot">{pct(PUB['bruta'])} bruta · {pct(PUB['saldo'])} saldo ÷ precio · {pct(PUB['neta'])} neta conservadora</div></div>
+<div class="two d16"><div class="dbox big"><div class="bigv">USD 350.000</div><div class="bs">Precio publicado · aprox. {gs(round(PUB['Pgs'], -6))}</div><p>Venta rápida sugerida por Meridiano Capital: USD 290.000</p><p>Precio en dólares; alquileres en guaraníes. Equivalencias: {TCTXT}.</p><div class="dfoot">{pct(PUB['bruta'])} bruta · {pct(PUB['saldo'])} saldo ÷ precio · {pct(PUB['neta'])} neta conservadora</div></div>
 <div class="info">{ih}</div></div>''', 18))
 
 # 19 PROCESO

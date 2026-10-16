@@ -12,7 +12,7 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
 - Estudio de mercado: `fuente/estudio/`. Contiene los datos, el informe, las instrucciones, `modelar_san_miguel.mjs` y el rent roll para completar. El nombre del cliente de un ACM anterior se omitió por PII_POLICY.
 
 ## Datos confirmados (informados por el founder o el propietario, no auditados)
-- **Precio:** USD 350.000 publicado. El propietario informa USD 290.000 para venta rápida.
+- **Precio:** USD 350.000 publicado. La venta rápida a USD 290.000 es una **sugerencia de Meridiano Capital**, basada en el estudio de mercado y las referencias de la zona. No es un precio informado por el propietario.
 - **Superficies:** terreno de 12 × 30 m (360 m²) y unos 400 m² construidos, en 3 pisos.
 - **Etapas de obra:**
   - 1998: primera etapa, hasta el 1er piso.
@@ -66,6 +66,7 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
 - **Fotos:** son del propietario y algunas parecen retocadas. En la foto de cocina y estar se recortó un retrato familiar que se veía en la pared.
 
 ## Registro de cambios
+- **2026-10-16 (v1, actualización 2):** la lámina 3 usa la vista satelital de la ubicación. Se corrige el origen del precio de venta rápida: USD 290.000 es una sugerencia de Meridiano Capital, no del propietario.
 - **2026-10-16 (v1, actualización):** datos confirmados por el founder.
   - Nueva ubicación: Ciudad del Este.
   - Tipologías: 3 monoambientes, 5 departamentos de 1 dormitorio, 1 de 2 y 1 de 4, y la casa de 2 habitaciones.

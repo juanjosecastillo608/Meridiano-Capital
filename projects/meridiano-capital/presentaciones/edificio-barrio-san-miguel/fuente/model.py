@@ -6,7 +6,7 @@ import json
 # El estudio de mercado del 16/10/2026 usó Gs 5.750 (BCP intradía 09:00); este modelo usa el TC central (D-097)
 # y recalcula todo con él, como pide estudio/Instrucciones_San_Miguel.md.
 TC = TC_CFG
-PRECIOS = {'pub': 350_000, 'rap': 290_000}       # publicado / venta rápida (propietario)
+PRECIOS = {'pub': 350_000, 'rap': 290_000}       # publicado / venta rápida (sugerencia de Meridiano Capital)
 PARKING = 120_000                                # opción separada, fuera del caso base
 renta_m, gastos_m = 20_000_000, 2_700_000        # declarados; gastos con IVA, mantenimiento y administración
 G = renta_m * 12 / TC                            # bruto anual USD

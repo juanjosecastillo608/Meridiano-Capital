@@ -21,7 +21,7 @@ Este paquete es la fuente de trabajo del edificio San Miguel / Área 2, Alto Par
 6. Un salón comercial frontal y una casa independiente posterior de dos dormitorios.
 7. Doce unidades en total: once residenciales y una comercial.
 8. Ocupación del 100%, ingresos Gs. 20.000.000/mes y gastos Gs. 2.700.000/mes, declarados y no auditados.
-9. Precios del propietario: USD 350.000 publicado y USD 290.000 para venta rápida.
+9. Precios: USD 350.000 publicado por el propietario; USD 290.000 de venta rápida es una sugerencia de Meridiano Capital según el estudio de mercado y las referencias de la zona (corrección del founder, 16/10/2026).
 10. Estacionamiento techado lindero: opción independiente, terreno 360 m² y precio USD 120.000; no incluido en los alquileres actuales ni en el caso base.
 
 ## Tipo de cambio y presentación
