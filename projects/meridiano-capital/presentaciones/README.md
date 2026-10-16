@@ -5,6 +5,7 @@
 | Edificio Ciudad Nueva (zona Mercado 4), **plantilla maestra** | `edificio-ciudad-nueva-m4/` | `fuente/` |
 | Edificio Barrio San José (Ciudad del Este) | `edificio-barrio-san-jose/` | `fuente/` |
 | Edificio Sajonia (Asunción) | `edificio-sajonia/` | `fuente/` |
+| Edificio Barrio San Miguel (Ciudad del Este) | `edificio-barrio-san-miguel/` | `fuente/` |
 
 Cada `fuente/` contiene todo lo necesario para reconstruir el PDF:
 - `model.py`: cálculo de las cifras.
@@ -37,6 +38,6 @@ python build_presentaciones.py
   - Rechaza PDF generados con un tipo de cambio distinto del vigente.
 
 ## Tipo de cambio vigente
-Gs 5.698,03 por USD: cotización referencial del BCP del **14/10/2026**, verificada el 15/10/2026.
+Gs 5.698,03 por USD: cotización referencial del BCP del **14/10/2026**, verificada el 15/10/2026 y re-verificada el 16/10/2026. Ese día no se encontró una publicación oficial más reciente que fuera accesible.
 - La cifra del BCP se tomó de la planilla publicada vía buscador; el sitio del BCP no es accesible desde el entorno de Claude Code.
 - Reemplaza Gs 5.694,47 (interbancario, 09/10/2026).

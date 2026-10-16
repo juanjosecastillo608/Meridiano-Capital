@@ -1,0 +1,13 @@
+unit_id,unit_type,bedrooms,bathrooms,area_m2,area_basis,rent_amount,rent_currency,monthly_rent_pyg,iva_included,expensas_amount,expensas_currency,services_included,furnished,parking_included,occupancy_status,lease_start,lease_end,reajuste,monthly_collected_pyg,source_document,notes
+DEP-01,departamento,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Asignar dormitorios 1 2 o 4 solo con confirmacion individual
+DEP-02,departamento,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Asignar dormitorios 1 2 o 4 solo con confirmacion individual
+DEP-03,departamento,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Asignar dormitorios 1 2 o 4 solo con confirmacion individual
+DEP-04,departamento,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Asignar dormitorios 1 2 o 4 solo con confirmacion individual
+DEP-05,departamento,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Asignar dormitorios 1 2 o 4 solo con confirmacion individual
+DEP-06,departamento,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Asignar dormitorios 1 2 o 4 solo con confirmacion individual
+DEP-07,departamento,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Asignar dormitorios 1 2 o 4 solo con confirmacion individual
+MON-01,monoambiente,0,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Adicional a los siete departamentos
+MON-02,monoambiente,0,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Adicional a los siete departamentos
+MON-03,monoambiente,0,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Adicional a los siete departamentos
+COM-01,salon_comercial,,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Frente
+CAS-01,casa_independiente,2,,,,,,,,,,,,,ocupada_segun_propietario,,,,,,Parte posterior

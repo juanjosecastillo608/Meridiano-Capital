@@ -11,7 +11,7 @@
     "gs_por_usd": 5698.03,
     "fecha": "2026-10-14",
     "fuente": "BCP, cotización referencial",
-    "verificado_el": "2026-10-15",
-    "nota_verificacion": "Valor del 14/10/2026 tomado de la planilla de cotización referencial de monedas del BCP (bcp.gov.py/webapps/web/cotizacion/monedas) vía buscador; el sitio del BCP no fue accesible directamente desde el entorno. El de hoy se publica después de las 13:00. El valor anterior era Gs 5.694,47 (BCP, interbancario, 09/10/2026)."
+    "verificado_el": "2026-10-16",
+    "nota_verificacion": "Valor del 14/10/2026 tomado de la planilla de cotización referencial de monedas del BCP (bcp.gov.py/webapps/web/cotizacion/monedas) vía buscador; el sitio del BCP no es accesible directamente desde el entorno. Re-verificado el 16/10/2026: no se encontró publicación oficial del 15/10 ni del 16/10 accesible; el estudio de mercado de San Miguel cita Gs 5.750 (BCP, promedio intradía interbancario 16/10/2026 09:00, no cierre), que no se adopta por no ser cotización referencial de cierre. Valor anterior: Gs 5.694,47 (BCP, interbancario, 09/10/2026)."
   }
 }
