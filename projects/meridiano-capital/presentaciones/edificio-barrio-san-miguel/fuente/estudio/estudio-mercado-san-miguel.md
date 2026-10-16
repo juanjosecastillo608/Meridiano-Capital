@@ -205,7 +205,7 @@ Para preservar la relación saldo/precio del edificio solo después de sumar USD
 - **Evaluar primero el edificio solo:** conservar los dos precios como escenarios comerciales y basar la decisión en flujo normalizado, CAPEX e inversión integral. No calificar USD 290.000 como oportunidad de mercado únicamente por su rendimiento declarado.
 - **Actualizar alquileres de forma selectiva:** completar el rent roll y contrastar cada unidad con referencias verdaderamente equivalentes; revisar vencimientos antes de fijar una estrategia. No asignar el mismo aumento a las doce unidades.
 - **Separar la opción de estacionamiento:** medir capacidad, ocupación alcanzable, tarifas y costos, y construir su propia evaluación. No incorporar ingresos potenciales al caso base del edificio.
-- **Corregir comunicación comercial:** sustituir el 9% no definido por rentabilidad bruta calculada, identificando precio, fecha, FX y exclusiones; reservar “neta” para un flujo suficientemente documentado.
+- **Comunicación comercial:** usar solo la rentabilidad calculada por Meridiano Capital, identificando precio, fecha, FX y exclusiones; reservar “neta” para un flujo suficientemente documentado.
 
 ## J. Confianza y limitaciones
 

@@ -122,8 +122,6 @@
     "asking_price_usd": 350000,
     "quick_sale_price_usd": 290000,
     "price_evidence": "asking: owner_confirmed; quick_sale: meridiano_capital_suggestion",
-    "advertised_annual_yield_fraction": 0.09,
-    "advertised_yield_basis": null,
     "independently_estimated_market_value_usd": null,
     "market_monthly_rent_pyg": null,
     "market_rent_gap_pyg": null,
@@ -131,7 +129,8 @@
     "coordinates_note": "Coordenadas y etiqueta de Maps corresponden al enlace anterior; reemplazado el 2026-10-16 por el enlace confirmado por el founder",
     "legal_municipality_evidence": "founder_confirmed 2026-10-16",
     "leases_status": "Todos los contratos vigentes, verificados por el founder 2026-10-16",
-    "quick_sale_price_evidence": "Sugerencia de Meridiano Capital según estudio de mercado y referencias de la zona (corrección del founder 2026-10-16); no informado por el propietario"
+    "quick_sale_price_evidence": "Sugerencia de Meridiano Capital según estudio de mercado y referencias de la zona (corrección del founder 2026-10-16); no informado por el propietario",
+    "advertised_yield": "Excluida del análisis por decisión del founder (2026-10-16): dato del aviso no validado por Meridiano Capital"
   },
   "optional_parking": {
     "name": "Estacionamiento techado lindero opcional",

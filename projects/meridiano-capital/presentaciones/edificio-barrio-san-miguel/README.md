@@ -55,7 +55,6 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
 | Con estacionamiento (caso mecánico, sin renta incremental): bruta / saldo | 8,96% / 7,75% | 10,27% / 8,89% |
 
 ## Discrepancias y pendientes
-- **Rentabilidad publicada:** el aviso publica "9% de rentabilidad anual" sin informar su base. Queda entre la neta antes de IRE (9,63%) y la neta final (8,66%).
 - **Documentación pendiente:**
   - Renta por contrato, vencimientos y reajustes, para completar `fuente/estudio/Rent_roll_San_Miguel_para_completar.csv`. Las tipologías ya están cargadas.
   - Los gastos no incluidos en los Gs 2,7 M (impuesto inmobiliario, seguros y otros).
@@ -66,7 +65,7 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
 - **Fotos:** son del propietario y algunas parecen retocadas. En la foto de cocina y estar se recortó un retrato familiar que se veía en la pared.
 
 ## Registro de cambios
-- **2026-10-16 (v1, actualización 3):** se quita de la lámina 20 la mención a la rentabilidad publicada en el aviso, que Meridiano Capital no valida.
+- **2026-10-16 (v1, actualización 3):** se quita de todo el análisis (láminas 12 y 20, README y datos del estudio) la rentabilidad publicada en el aviso. Meridiano Capital no la valida: el informe usa solo las cifras calculadas con su propia base de datos.
 - **2026-10-16 (v1, actualización 2):** la lámina 3 usa la vista satelital de la ubicación. Se corrige el origen del precio de venta rápida: USD 290.000 es una sugerencia de Meridiano Capital, no del propietario.
 - **2026-10-16 (v1, actualización):** datos confirmados por el founder.
   - Nueva ubicación: Ciudad del Este.

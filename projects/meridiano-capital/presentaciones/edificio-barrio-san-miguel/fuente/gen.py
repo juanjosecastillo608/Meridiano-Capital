@@ -153,7 +153,7 @@ S.append(slide(f'''{head('Rentabilidad', 'Indicadores sobre los dos precios')}<d
 {rrow('Saldo informado ÷ precio', 'saldo', sub='Después de IVA, mantenimiento y administración')}
 {rrow('Neta conservadora Meridiano', 'neta', sub='Con ajustes de referencia e impuesto a la renta')}
 {rrow('Precio ÷ ingreso bruto anual', 'veces', sub='Múltiplo estático, no plazo de recuperación')}
-<div class="bs how" style="margin-top:18px"><b>Cómo leer estas cifras.</b> El aviso publica "9% de rentabilidad anual" sin informar su base: queda entre la neta antes de impuesto a la renta ({pct(PUB['neta_pre'])}) y la neta final ({pct(PUB['neta'])}). La neta incluye vacancia 4% y otros gastos supuestos; no incluye gastos de adquisición ni CAPEX (aún sin inspección). Referencia, no garantía.</div>''', 12, dark=True))
+<div class="bs how" style="margin-top:18px"><b>Cómo leer estas cifras.</b> Calculadas por Meridiano Capital sobre la renta y los gastos informados, al tipo de cambio del día. La neta antes de impuesto a la renta es {pct(PUB['neta_pre'])} a USD 350.000 y {pct(RAP['neta_pre'])} a USD 290.000. La neta incluye vacancia 4% y otros gastos supuestos; no incluye gastos de adquisición ni CAPEX (aún sin inspección). Referencia, no garantía.</div>''', 12, dark=True))
 
 # 13 SENSIBILIDADES
 sr = ''.join(f'<tr class="{"b" if i == 0 else ""}"><td>{s["n"]}</td><td>{gs(s["ing"])}</td><td>{gs(s["gas"])}</td><td>{pct(s["pub"]["bruta"])}</td><td>{pct(s["pub"]["saldo"])}</td><td>{pct(s["rap"]["bruta"])}</td><td>{pct(s["rap"]["saldo"])}</td></tr>' for i, s in enumerate(M['sens']))
