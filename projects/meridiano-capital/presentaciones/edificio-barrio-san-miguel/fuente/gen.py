@@ -240,7 +240,6 @@ S.append(slide(f'''{head('Proceso de compra', 'Cómo avanzamos, paso a paso')}<d
 
 # 20 CONSIDERACIONES
 rk = [('Gastos incompletos', 'Los Gs 2,7 M incluyen IVA, mantenimiento y administración; los demás gastos se estiman con un supuesto hasta recibir el detalle.'),
-      ('Rentabilidad publicada', 'El 9% del aviso no informa su base; se usa la renta informada y gastos explícitos, no el porcentaje publicitado.'),
       ('Vencimientos', 'Contratos vigentes hoy: su plazo y reajuste definen la estabilidad del ingreso en los próximos años.'),
       ('Estado y CAPEX', 'Etapas de 1998 y 2016, sin inspección técnica ni presupuesto de mantenimiento todavía.'),
       ('Tipo de cambio', 'Precio en dólares y alquileres en guaraníes: el retorno en USD depende de la evolución del guaraní.'),
