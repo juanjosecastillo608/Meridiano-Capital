@@ -48,34 +48,34 @@ S.append(f'''<section class="s cover">
 <div class="addr">Barrio San Miguel, Área 2 · Ciudad del Este, Alto Paraná</div>
 <div class="cvk" style="gap:40px"><div><div class="v" style="white-space:nowrap">USD 350.000</div><div class="l">Precio de venta publicado</div></div>
 <div><div class="v">400 m²</div><div class="l">Construidos sobre 360 m² de terreno</div></div>
-<div><div class="v">12 rentas</div><div class="l">100% alquilado, según el propietario</div></div></div>
+<div><div class="v">12 rentas</div><div class="l">100% alquilado, contratos vigentes</div></div></div>
 <div class="cf">Etapas de 1998 y 2016 · Datos informados, pendientes de verificación documental · {tc_corto()}</div></div>
 <div class="cr"><img src="img/facade.jpg" style="object-position:50% 40%"></div></section>''')
 
 # 02 RESUMEN
 kp = [('USD 350.000', f'Precio publicado · {gs(round(PUB["Pgs"], -6))}'), ('400 m²', 'Construcción total aproximada'), ('360 m²', 'Terreno de 12 × 30 m'), ('12', 'Rentas: 7 dptos. · 3 monoambientes · salón · casa'),
-      ('Gs 20.000.000', f'Ingreso mensual informado · {usd(20e6 / TC)}'), (pct(PUB['bruta']), 'Rentabilidad bruta sobre USD 350.000'), (pct(PUB['saldo']), 'Saldo informado ÷ precio (no NOI auditado)'), (pct(PUB['neta']), 'Neta conservadora Meridiano')]
+      ('Gs 20.000.000', f'Ingreso mensual informado · {usd(20e6 / TC)}'), (pct(PUB['bruta']), 'Rentabilidad bruta sobre USD 350.000'), (pct(PUB['saldo']), 'Saldo después de gastos informados ÷ precio'), (pct(PUB['neta']), 'Neta conservadora Meridiano')]
 kh = ''.join(f'<div class="k"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in kp)
 S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de tres pisos con doce unidades de renta')}
-<p class="lead">Edificio en el barrio San Miguel (Área 2) de Ciudad del Este, construido en dos etapas (1998 y 2016), con planos municipales aprobados según el propietario. Informa 100% de ocupación e ingresos de Gs 20.000.000 por mes, con gastos de Gs 2.700.000. Analizamos el precio publicado y el de venta rápida informado por el propietario (USD 290.000).</p>
+<p class="lead">Edificio en el barrio San Miguel (Área 2) de Ciudad del Este, construido en dos etapas (1998 y 2016), con planos municipales aprobados según el propietario. Informa 100% de ocupación e ingresos de Gs 20.000.000 por mes, con gastos de Gs 2.700.000 que incluyen IVA, mantenimiento y administración. Contratos vigentes verificados. Analizamos el precio publicado y el de venta rápida informado por el propietario (USD 290.000).</p>
 <div class="kgrid">{kh}</div>
-<div class="box">Ingresos, gastos y ocupación: informados por el propietario, sin contratos ni rent roll revisados · Tipo de cambio {TCTXT}</div>''', 2))
+<div class="box">Contratos vigentes verificados por Meridiano Capital · Gastos sin desglose completo (faltan los no incluidos en los Gs 2,7 M) · Tipo de cambio {TCTXT}</div>''', 2))
 
 # 03 UBICACION
-loc = [('Ciudad declarada', 'Ciudad del Este, departamento de Alto Paraná'), ('Barrio', 'San Miguel, Área 2'), ('Coordenadas', f'{D["subject"]["coordinates"]["latitude"]}, {D["subject"]["coordinates"]["longitude"]} · código F97W+H2W'),
-       ('A verificar', 'Google Maps rotula el punto como Presidente Franco, municipio lindero: el municipio legal se confirma con la finca, el padrón y el catastro.')]
+loc = [('Ciudad', 'Ciudad del Este, departamento de Alto Paraná · ubicación confirmada'), ('Barrio', 'San Miguel, Área 2'), ('Edificio', 'Tres pisos sobre terreno de 12 × 30 m, con salón comercial al frente'),
+       ('Opcional', 'Estacionamiento techado lindero, de las mismas medidas, en venta por separado')]
 lh = ''.join(f'<div class="li"><div class="eb sm">{a}</div><div class="lt">{b}</div></div>' for a, b in loc)
 pin = '<svg viewBox="0 0 540 440" style="width:540px;height:440px;display:block"><rect width="540" height="440" fill="#14313A"/>' + ''.join(f'<line x1="{x}" y1="0" x2="{x}" y2="440" stroke="#24505c" stroke-width="1"/>' for x in range(30, 540, 60)) + ''.join(f'<line x1="0" y1="{y}" x2="540" y2="{y}" stroke="#24505c" stroke-width="1"/>' for y in range(20, 440, 60)) + '<path d="M0 300 C 140 260, 260 330, 540 250" stroke="#C9982E" stroke-width="3" fill="none" opacity=".55"/><path d="M270 120 c-38 0 -62 28 -62 60 c0 46 62 110 62 110 s62 -64 62 -110 c0 -32 -24 -60 -62 -60z" fill="#C9982E"/><circle cx="270" cy="180" r="20" fill="#14313A"/><text x="270" y="345" text-anchor="middle" fill="#F3EDE3" font-family="Poppins" font-size="18" font-weight="600">Barrio San Miguel · Área 2</text><text x="270" y="372" text-anchor="middle" fill="#F3EDE3" font-family="Poppins" font-size="13" opacity=".8">Ciudad del Este, Alto Paraná</text></svg>'
 S.append(slide(f'''{head('Ubicación', 'Barrio San Miguel, Área 2, Ciudad del Este')}
 <div class="two"><div class="mapimg">{pin}<div class="cap">Esquema ilustrativo, sin escala · ubicación exacta en el enlace</div></div>
 <div class="locr">{lh}
 <a class="glink" href="{MAPS}">Abrir en Google Maps</a>
-<p class="note">Ubicación recibida del propietario. La parcela exacta y su jurisdicción se confirman con el título y el plano antes de la oferta.</p></div></div>''', 3))
+<p class="note">Ubicación confirmada por Meridiano Capital. Los datos de la parcela se cotejan con el título y el plano antes de la escritura.</p></div></div>''', 3))
 
 # 04 ZONA
 pts = [('Demanda de alquiler accesible', 'Departamentos de 1 y 2 dormitorios y monoambientes orientados a quienes trabajan en el comercio y los servicios de la ciudad.'),
        ('Renta diversificada', '12 unidades de renta, una de ellas comercial: la salida de un inquilino afecta solo una parte del ingreso total.'),
-       ('Mezcla de producto', 'Departamentos de 1, 2 y 4 dormitorios, monoambientes, un salón al frente y una casa atrás: atienden demandas distintas.')]
+       ('Mezcla de producto', 'Cinco departamentos de 1 dormitorio, uno de 2, uno de 4, tres monoambientes, un salón y una casa: atienden demandas distintas.')]
 ph = ''.join(f'<div class="pt"><div class="pn">0{i+1}</div><div><div class="pth">{a}</div><div class="ptt">{b}</div></div></div>' for i, (a, b) in enumerate(pts))
 S.append(slide(f'''{head('La zona para el inversor', 'Ciudad del Este: el polo comercial de la frontera')}
 <div class="two z"><div class="ztext"><p>Ciudad del Este, capital del departamento de Alto Paraná, es la segunda ciudad del Paraguay y uno de los principales centros comerciales de la región. Se une con Foz do Iguaçu (Brasil) por el Puente de la Amistad y forma, con Puerto Iguazú (Argentina), la Triple Frontera.</p>
@@ -94,19 +94,19 @@ S.append(slide(f'''{head('Superficies y valor', '360 m² de terreno y 400 m² co
 <div class="src" style="position:static;margin-top:14px">Referencia: tabla de costos de construcción de Meridiano Capital (edificio de departamentos, calidad básica). Valores de referencia, no tasación: el costo de construcción nueva no descuenta la antigüedad ni el estado de conservación, y los 400 m² son un total aproximado (falta confirmar si incluye la casa posterior y las circulaciones).</div></div></div>''', 5))
 
 # 06 DISTRIBUCION
-rows = [('Departamentos', '7', '1, 2 y 4 dormitorios', 'Cantidad por tipología no informada'), ('Monoambientes', '3', 'Adicionales a los 7 departamentos', 'Confirmado por el propietario'),
-        ('Salón comercial', '1', 'Al frente del edificio', 'Renta comercial (IVA 10%)'), ('Casa independiente', '1', '2 dormitorios, parte posterior', '—')]
+rows = [('Monoambientes', '3', 'Ambiente único', 'Residencial'), ('Dptos. de 1 dormitorio', '5', '1 dormitorio', 'Residencial'), ('Dpto. de 2 dormitorios', '1', '2 dormitorios', 'Residencial'),
+        ('Dpto. de 4 dormitorios', '1', '4 dormitorios', 'Residencial'), ('Casa independiente', '1', '2 habitaciones, al fondo', 'Residencial'), ('Salón comercial', '1', 'Al frente del edificio', 'Comercial (IVA 10%)')]
 rh = ''.join(f'<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td></tr>' for a, b, c, d in rows)
-rh += '<tr class="tot"><td>Total</td><td>12</td><td>11 residenciales y 1 comercial</td><td>Gs 20.000.000 por mes en conjunto</td></tr>'
-bars = [('Dptos.', 7), ('Monoamb.', 3), ('Salón', 1), ('Casa', 1)]
+rh += '<tr class="tot"><td>Total</td><td>12</td><td>11 residenciales · 1 comercial</td><td>Gs 20.000.000 / mes</td></tr>'
+bars = [('Mono.', 3), ('1 dorm.', 5), ('2 dorm.', 1), ('4 dorm.', 1), ('Casa', 1), ('Salón', 1)]
 bh = ''
 for i, (l, v) in enumerate(bars):
-    h = 170 * v / 7; x = 18 + i * 64
-    bh += f'<rect x="{x}" y="{200-h}" width="40" height="{h}" fill="#14313A"/><text x="{x+20}" y="{194-h}" class="bl">{v}</text><text x="{x+20}" y="218" class="bx">{l}</text>'
+    h = 170 * v / 5; x = 8 + i * 44
+    bh += f'<rect x="{x}" y="{200-h}" width="32" height="{h}" fill="#14313A"/><text x="{x+16}" y="{194-h}" class="bl">{v}</text><text x="{x+16}" y="218" class="bx">{l}</text>'
 S.append(slide(f'''{head('Distribución de las unidades', 'Tres pisos, salón al frente y casa al fondo')}
-<div class="two d6"><table class="t"><tr><th>Unidad</th><th>Cant.</th><th>Composición</th><th>Observación</th></tr>{rh}</table>
+<div class="two d6"><table class="t sm"><tr><th>Unidad</th><th>Cant.</th><th>Composición</th><th>Observación</th></tr>{rh}</table>
 <div class="chart"><div class="ct">Unidades de renta por tipo</div><svg viewBox="0 0 270 225">{bh}</svg></div></div>
-<p class="note2">La renta se informó como total del edificio: no está desagregada por unidad, por eso no se reparte entre las doce rentas. Composición informada por el propietario, pendiente de verificar en la visita y contra contratos.</p>''', 6))
+<p class="note2">Composición confirmada y contratos vigentes verificados. La renta se presenta como total del edificio, sin repartirla en partes iguales entre las doce unidades: el detalle por contrato se entrega en la etapa de oferta.</p>''', 6))
 
 # 07-08 FOTOS
 S.append(slide(f'''{head('Recorrido fotográfico', 'Fachada y circulación exterior')}
@@ -123,25 +123,25 @@ et = [('1998', 'Primera etapa', 'Construcción hasta el primer piso, según el p
 eh = ''.join(f'<div class="st"><div class="sth"><span class="pn">{a}</span><b>{b}</b></div><p>{c}</p></div>' for a, b, c in et)
 S.append(slide(f'''{head('Historia constructiva', 'Dos etapas de obra: 1998 y 2016')}<div class="steps">{eh}</div>
 <div class="two d10" style="margin-top:26px"><div class="crit">{crit([('Edad mixta', 'Parte de la estructura tiene 28 años y parte 10: instalaciones, impermeabilización y la junta entre etapas se revisan en la inspección técnica.'), ('Documentación', 'Comparar planos aprobados con lo construido: los 400 m² son un total aproximado.')])}</div>
-<div class="crit">{crit([('CAPEX', 'Sin inspección ni presupuesto de mantenimiento: la inversión integral se calcula después de la visita técnica.'), ('Jurisdicción', 'La aprobación municipal se verifica en el municipio que resulte de la finca y el catastro.')])}</div></div>''', 9))
+<div class="crit">{crit([('CAPEX', 'Sin inspección ni presupuesto de mantenimiento: la inversión integral se calcula después de la visita técnica.'), ('Planos', 'La aprobación municipal de Ciudad del Este se coteja con la escribanía antes de la escritura.')])}</div></div>''', 9))
 
 # 10 ALQUILERES VIGENTES
 ar = [('Ingreso mensual informado', 'Gs 20.000.000', usd(20e6 / TC)), ('Gastos mensuales informados', '– Gs 2.700.000', '– ' + usd(2.7e6 / TC)), ('Saldo mensual informado', 'Gs 17.300.000', usd(17.3e6 / TC))]
 arh = ''.join(f'<tr class="{"tot" if i == 2 else ""}"><td>{a}</td><td>{b}</td><td>{c}</td></tr>' for i, (a, b, c) in enumerate(ar))
-arh += f'<tr class="sub"><td>Gastos sobre ingreso</td><td>{pct(M["gastos_ratio"], 1)}</td><td>Desglose no informado</td></tr><tr class="sub"><td>Ocupación declarada</td><td>100%</td><td>12 de 12 unidades</td></tr>'
+arh += f'<tr class="sub"><td>Gastos sobre ingreso</td><td>{pct(M["gastos_ratio"], 1)}</td><td>Incluye IVA, mantenimiento y administración</td></tr><tr class="sub"><td>Ocupación</td><td>100%</td><td>12 de 12 unidades con contrato vigente</td></tr>'
 S.append(slide(f'''{head('Alquileres vigentes', f'Ingreso mensual: Gs 20.000.000 · {usd(20e6/TC)}')}
 <div class="two d10"><table class="t big"><tr><th>Concepto</th><th>Gs por mes</th><th>USD por mes</th></tr>{arh}</table>
-<div class="crit"><div class="eb sm">Estado de la información</div>{crit([('Fuente', 'Montos totales informados por el propietario; no auditados.'), ('Pendiente', 'Rent roll por unidad, contratos, depósitos, historial de cobro y si el IVA está incluido.'), ('Gastos', 'Gs 2.700.000 sin desglose: falta separar servicios, tributos, administración y mantenimiento.'), ('Tipo de cambio', TCTXT + '.')])}</div></div>''', 10))
+<div class="crit"><div class="eb sm">Estado de la información</div>{crit([('Contratos', 'Los 12 contratos están vigentes y fueron verificados por Meridiano Capital.'), ('Gastos', 'Los Gs 2.700.000 incluyen IVA, mantenimiento y administración. Faltan los demás gastos (impuesto inmobiliario, seguros, servicios no recuperados).'), ('Pendiente', 'Historial de cobro y vencimientos, para el análisis de la oferta.'), ('Tipo de cambio', TCTXT + '.')])}</div></div>''', 10))
 
 # 11 INGRESOS Y EGRESOS
 pre, net = M['pre'], M['net']
-er = [('Ingreso bruto anual', '100%', usd(G), 'b'), ('Gastos informados por el propietario', pct(M['GI'] / G, 1), '– ' + usd(M['GI']), ''), ('Saldo anual informado', pct(M['SALDO'] / G, 1), usd(M['SALDO']), 'b'),
-      ('IVA (5% alquiler residencial)', pct(.05, 1), '– ' + usd(M['iva']), ''), ('Vacancia', pct(.04, 1), '– ' + usd(M['vac']), ''), ('Administración', pct(.08, 1), '– ' + usd(M['adm']), ''), ('Mantenimiento', pct(.05, 1), '– ' + usd(M['man']), ''),
+er = [('Ingreso bruto anual', '100%', usd(G), 'b'), ('Gastos informados (IVA, mant. y administración)', pct(M['GI'] / G, 1), '– ' + usd(M['GI']), ''), ('Saldo anual informado', pct(M['SALDO'] / G, 1), usd(M['SALDO']), 'b'),
+      ('Vacancia de referencia', pct(.04, 1), '– ' + usd(M['vac']), ''), ('Otros gastos no informados (supuesto)', pct(M['OTROS'] / G, 1), '– ' + usd(M['OTROS']), ''),
       ('Resultado antes de impuesto a la renta', pct(pre / G, 1), usd(pre), 'b'), ('Impuesto a la renta estimado (IRE 10%)', pct(M['ire'] / G, 1), '– ' + usd(M['ire']), ''), ('Resultado neto conservador', pct(net / G, 1), usd(net), 'tot')]
 erh = ''.join(f'<tr class="{c}"><td>{a}</td><td>{b}</td><td>{d}</td></tr>' for a, b, d, c in er)
 S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al resultado neto conservador')}
 <div class="two d11"><table class="t big"><tr><th>Concepto</th><th>% del bruto</th><th>USD por año</th></tr>{erh}</table>
-<div class="crit"><div class="eb sm">Criterios</div>{crit([('Saldo informado', 'Ingresos menos gastos declarados: no es un resultado neto auditado.'), ('Ajustes Meridiano', 'Sumamos IVA, vacancia 4%, administración 8% y mantenimiento 5% de referencia. Si los Gs 2,7 M ya incluyen alguno, la neta real resulta mayor.'), ('IVA', '5% residencial. El salón tributa 10%: su renta no está desagregada.'), ('Impuesto a la renta', '10% estimado si se compra por sociedad; el contador define la base real.')])}</div></div>''', 11))
+<div class="crit"><div class="eb sm">Criterios</div>{crit([('Gastos informados', 'Gs 2.700.000 por mes, que ya incluyen IVA, mantenimiento y administración: no se vuelven a descontar.'), ('Vacancia 4%', 'Reserva prudente para rotación de inquilinos, aunque hoy los 12 contratos están vigentes.'), ('Otros gastos', 'Supuesto de Gs 6.000.000 por año (impuesto inmobiliario, seguros y otros), igual que en San José, hasta recibir el detalle.'), ('Impuesto a la renta', '10% estimado si se compra por sociedad; el contador define la base real.')])}</div></div>''', 11))
 
 # 12 RENTABILIDAD (dos precios)
 def rrow(lbl, k, d=2, sub=''):
@@ -150,10 +150,10 @@ def rrow(lbl, k, d=2, sub=''):
 S.append(slide(f'''{head('Rentabilidad', 'Indicadores sobre los dos precios')}<div class="rule"></div>
 <div style="display:grid;grid-template-columns:330px 1fr 1fr;margin-top:14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8"><div></div><div>Publicado · USD 350.000</div><div>Venta rápida · USD 290.000</div></div>
 {rrow('Rentabilidad bruta', 'bruta', sub='Gs 240.000.000 de ingreso anual ÷ precio')}
-{rrow('Saldo informado ÷ precio', 'saldo', sub='Después de los gastos declarados; no auditado')}
+{rrow('Saldo informado ÷ precio', 'saldo', sub='Después de IVA, mantenimiento y administración')}
 {rrow('Neta conservadora Meridiano', 'neta', sub='Con ajustes de referencia e impuesto a la renta')}
 {rrow('Precio ÷ ingreso bruto anual', 'veces', sub='Múltiplo estático, no plazo de recuperación')}
-<div class="bs how" style="margin-top:18px"><b>Cómo leer estas cifras.</b> El aviso publica "9% de rentabilidad anual" sin informar su base: no coincide con ninguno de estos cálculos. Cifras sobre la renta informada, sin gastos de adquisición ni CAPEX (aún sin inspección). Referencia, no garantía.</div>''', 12, dark=True))
+<div class="bs how" style="margin-top:18px"><b>Cómo leer estas cifras.</b> El aviso publica "9% de rentabilidad anual" sin informar su base: queda entre la neta antes de impuesto a la renta ({pct(PUB['neta_pre'])}) y la neta final ({pct(PUB['neta'])}). La neta incluye vacancia 4% y otros gastos supuestos; no incluye gastos de adquisición ni CAPEX (aún sin inspección). Referencia, no garantía.</div>''', 12, dark=True))
 
 # 13 SENSIBILIDADES
 sr = ''.join(f'<tr class="{"b" if i == 0 else ""}"><td>{s["n"]}</td><td>{gs(s["ing"])}</td><td>{gs(s["gas"])}</td><td>{pct(s["pub"]["bruta"])}</td><td>{pct(s["pub"]["saldo"])}</td><td>{pct(s["rap"]["bruta"])}</td><td>{pct(s["rap"]["saldo"])}</td></tr>' for i, s in enumerate(M['sens']))
@@ -189,7 +189,7 @@ assert all(R[i] for i in ('R01', 'R02', 'R03', 'R04'))
 cmh = ''.join(f'<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td><td>{e}</td></tr>' for a, b, c, d, e in cmp)
 S.append(slide(f'''{head('Referencias de mercado', 'Alquileres publicados en Ciudad del Este')}
 <div class="two d11 cmp"><table class="t"><tr><th>Oferta</th><th>Superficie</th><th>Ubicación</th><th>Precio por mes</th><th>Fuente</th></tr>{cmh}</table>
-<div class="crit"><div class="eb sm">Lectura para este edificio</div>{crit([('Más cercana', 'La referencia de Riachuelo, en el mismo barrio: Gs 2,7 M por un 2 dormitorios de 65 m² con cochera.'), ('Lo que falta', 'Renta, superficie y estado de cada unidad: sin rent roll no se compara unidad por unidad ni se estima una brecha de alquiler.'), ('Sin referencia', 'Monoambientes básicos, departamentos de 4 dormitorios, casa de 2 dormitorios y salón frontal.'), ('Confianza', 'Baja: muestra pequeña de ofertas publicadas, no contratos cerrados.')])}</div></div>
+<div class="crit"><div class="eb sm">Lectura para este edificio</div>{crit([('Más cercana', 'La referencia de Riachuelo, en el mismo barrio: Gs 2,7 M por un 2 dormitorios de 65 m² con cochera.'), ('Lo que falta', 'Renta y superficie de cada unidad para compararlas una a una: sin ese detalle no se estima una brecha de alquiler.'), ('Sin referencia', 'Monoambientes básicos, el departamento de 4 dormitorios, la casa de 2 habitaciones y el salón frontal.'), ('Confianza', 'Baja: muestra pequeña de ofertas publicadas, no contratos cerrados.')])}</div></div>
 <div class="src">Ofertas consultadas el 16/10/2026; disponibilidad no confirmada. Excluidas del análisis: un departamento premium amoblado con amenities (USD 1.600) y un tinglado con oficina. Equivalencias en guaraníes al tipo de cambio del día.</div>''', 15))
 
 # 16 REFERENCIAS DE VENTA
@@ -218,10 +218,10 @@ S.append(slide(f'''{head('Opción adicional', 'Estacionamiento techado lindero: 
 <div class="crit"><div class="eb sm">Cómo se lee</div>{crit([('Compra opcional', 'Terreno de 12 × 30 m (360 m²) que linda con el edificio; no forma parte del caso base ni de los alquileres actuales.'), ('Caso mecánico', 'Suma el precio del estacionamiento sin sumarle renta: por eso los rendimientos bajan. No es una neta conjunta.'), ('Umbrales', 'Saldo mensual que el estacionamiento debería generar por sí solo; no es una estimación de mercado.'), ('Pendiente', 'Capacidad, superficie techada, accesos, título, gastos y contratos.')])}</div></div>''', 17))
 
 # 18 PRECIO
-info = [('Activo', '7 departamentos de 1, 2 y 4 dormitorios, 3 monoambientes, 1 salón comercial al frente y 1 casa de 2 dormitorios atrás. 400 m² sobre 360 m² de terreno, en tres pisos.'),
-        ('Ocupación e ingreso', f'100% alquilado según el propietario · Gs 20.000.000 por mes ({usd(20e6/TC)}) · gastos de Gs 2.700.000.'),
+info = [('Activo', '3 monoambientes, 5 departamentos de 1 dormitorio, 1 de 2 y 1 de 4, 1 casa de 2 habitaciones atrás y 1 salón comercial al frente. 400 m² sobre 360 m² de terreno, en tres pisos.'),
+        ('Ocupación e ingreso', f'100% alquilado, contratos vigentes verificados · Gs 20.000.000 por mes ({usd(20e6/TC)}) · gastos de Gs 2.700.000 con IVA, mantenimiento y administración.'),
         ('Venta rápida', f'El propietario informa USD 290.000 para una operación rápida ({pct(M["desc_rapida"], 1)} menos), con condiciones a acordar.'),
-        ('Título y forma de pago', 'Planos municipales aprobados según el propietario; título, municipio y dominio los verifica el escribano. Forma de pago en el boleto.')]
+        ('Título y forma de pago', 'Planos municipales aprobados según el propietario; título y dominio los verifica el escribano. Forma de pago en el boleto.')]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)
 S.append(slide(f'''{head('Precio y condiciones', 'Venta del edificio completo')}
 <div class="two d16"><div class="dbox big"><div class="bigv">USD 350.000</div><div class="bs">Precio publicado · aprox. {gs(round(PUB['Pgs'], -6))}</div><p>Venta rápida informada: USD 290.000</p><p>Precio en dólares; alquileres en guaraníes. Equivalencias: {TCTXT}.</p><div class="dfoot">{pct(PUB['bruta'])} bruta · {pct(PUB['saldo'])} saldo ÷ precio · {pct(PUB['neta'])} neta conservadora</div></div>
@@ -229,7 +229,7 @@ S.append(slide(f'''{head('Precio y condiciones', 'Venta del edificio completo')}
 
 # 19 PROCESO
 steps = [('Visita e inspección', 'Recorrido de las doce unidades, el salón y la casa, con inspección técnica de estructura, instalaciones, impermeabilización y la unión entre etapas.'),
-         ('Rent roll y gastos', 'Contratos, renta por unidad, cobros y desglose de los Gs 2.700.000 de gastos.'),
+         ('Renta y gastos', 'Detalle de renta por contrato, historial de cobro y los gastos no incluidos en los Gs 2.700.000.'),
          ('Revisión notarial', 'Título, municipio, informe de condiciones de dominio, planos aprobados e impuesto inmobiliario al día, a cargo del escribano.'),
          ('Estructura y fiscal', 'Compra a nombre propio o por sociedad (S.A.), IVA e impuesto a la renta, con el contador.'),
          ('Oferta y escritura', 'Propuesta de precio y forma de pago; boleto de compraventa y escritura pública ante el escribano.'),
@@ -239,9 +239,9 @@ S.append(slide(f'''{head('Proceso de compra', 'Cómo avanzamos, paso a paso')}<d
 <div class="src">Para inversores del exterior acompañamos también la cédula de identidad paraguaya y la apertura de cuenta bancaria. Las tareas legales, notariales y contables las realizan el abogado, el escribano y el contador; Meridiano Capital coordina y acompaña.</div>''', 19))
 
 # 20 CONSIDERACIONES
-rk = [('Información no auditada', 'Ingresos, gastos y ocupación son totales informados: rent roll, contratos y cobros son condición previa a la oferta.'),
-      ('Rentabilidad publicada', 'El 9% del aviso no informa su base y no coincide con estos cálculos: se usa la renta informada, no el porcentaje publicitado.'),
-      ('Ubicación', 'Maps rotula el punto en Presidente Franco: el municipio legal, que define tributos y normativa, se confirma con la finca y el catastro.'),
+rk = [('Gastos incompletos', 'Los Gs 2,7 M incluyen IVA, mantenimiento y administración; los demás gastos se estiman con un supuesto hasta recibir el detalle.'),
+      ('Rentabilidad publicada', 'El 9% del aviso no informa su base; se usa la renta informada y gastos explícitos, no el porcentaje publicitado.'),
+      ('Vencimientos', 'Contratos vigentes hoy: su plazo y reajuste definen la estabilidad del ingreso en los próximos años.'),
       ('Estado y CAPEX', 'Etapas de 1998 y 2016, sin inspección técnica ni presupuesto de mantenimiento todavía.'),
       ('Tipo de cambio', 'Precio en dólares y alquileres en guaraníes: el retorno en USD depende de la evolución del guaraní.'),
       ('Impuestos y reventa', 'El impuesto a la renta depende de la estructura de compra (contador). La plusvalía presentada son escenarios.')]

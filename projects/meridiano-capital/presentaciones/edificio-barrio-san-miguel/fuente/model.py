@@ -8,15 +8,18 @@ import json
 TC = TC_CFG
 PRECIOS = {'pub': 350_000, 'rap': 290_000}       # publicado / venta rápida (propietario)
 PARKING = 120_000                                # opción separada, fuera del caso base
-renta_m, gastos_m = 20_000_000, 2_700_000        # declarados, sin desglose
+renta_m, gastos_m = 20_000_000, 2_700_000        # declarados; gastos con IVA, mantenimiento y administración
 G = renta_m * 12 / TC                            # bruto anual USD
 GI = gastos_m * 12 / TC                          # gastos informados anuales USD
 SALDO = G - GI                                   # saldo informado (no NOI auditado)
-# Ajustes de referencia Meridiano (conservadores; pueden duplicar partidas incluidas en los Gs 2,7 M)
-iva, vac, adm, man, ire = 0.05, 0.04, 0.08, 0.05, 0.10
+# Los Gs 2,7 M ya incluyen IVA, mantenimiento y administración (founder, 16/10/2026); faltan los demás gastos.
+# Ajustes Meridiano: vacancia 4% de referencia + otros gastos no informados (supuesto, igual que San José) + IRE 10%.
+vac, ire = 0.04, 0.10
+otros_gs = 6_000_000; OTROS = otros_gs / TC     # Gs 6 M por año (supuesto)
 
 def neto(g):
-    pre = g * (1 - iva - vac - adm - man) - GI
+    # IVA y administración son % del alquiler: los gastos informados escalan con la renta
+    pre = g * (1 - vac) - GI * g / G - OTROS
     return pre, pre * (1 - ire)
 
 pre, net = neto(G)
@@ -29,8 +32,8 @@ def irr(cfs):
         else: hi = m
     return m
 
-out = dict(TC=TC, G=G, GI=GI, SALDO=SALDO, pre=pre, net=net,
-           iva=G * iva, vac=G * vac, adm=G * adm, man=G * man, ire=pre * ire,
+out = dict(TC=TC, G=G, GI=GI, SALDO=SALDO, pre=pre, net=net, OTROS=OTROS,
+           vac=G * vac, ire=pre * ire,
            gastos_ratio=gastos_m / renta_m, desc_rapida=1 - PRECIOS['rap'] / PRECIOS['pub'],
            costo_nuevo=400 * 650)
 for k, P in PRECIOS.items():

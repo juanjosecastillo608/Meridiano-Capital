@@ -18,22 +18,24 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
   - 1998: primera etapa, hasta el 1er piso.
   - 2016: se termina la segunda etapa.
   - Los planos municipales están aprobados según el propietario. No se revisaron.
-- **Unidades:** 12 en total.
-  - 7 departamentos de 1, 2 y 4 dormitorios. No se sabe cuántos hay de cada tipo.
-  - 3 monoambientes, adicionales a los departamentos.
+- **Unidades:** 12 en total (confirmado por el founder el 16/10/2026).
+  - 3 monoambientes.
+  - 5 departamentos de 1 dormitorio, 1 de 2 dormitorios y 1 de 4 dormitorios.
+  - 1 casa de 2 habitaciones en la parte de atrás.
   - 1 salón comercial al frente.
-  - 1 casa de 2 dormitorios en la parte de atrás.
-- **Renta y gastos:** ingresos de Gs 20.000.000 por mes, gastos de Gs 2.700.000 por mes (sin desglose) y 100% de ocupación.
+- **Renta y gastos:** ingresos de Gs 20.000.000 por mes y gastos de Gs 2.700.000 por mes. Los gastos **incluyen IVA, mantenimiento y administración**; faltan todos los demás.
+- **Ocupación:** 100%. Todos los contratos están vigentes, verificados por el founder.
 - **Opcional:** el estacionamiento techado lindero, en un terreno de 12 × 30 m, cuesta USD 120.000.
-- **Ubicación:** https://maps.app.goo.gl/b1ppbnL6vLtBu2d39
+- **Ubicación:** https://maps.app.goo.gl/KJkB7gKmRfRJdXdA7, en Ciudad del Este (confirmado por el founder). Reemplaza el enlace anterior, que Google Maps rotulaba como Presidente Franco.
 
 ## Supuestos
 - **Tipo de cambio:** se usa el vigente en `_config`, Gs 5.698,03 (BCP, referencial del 14/10/2026). Es el último dato oficial que se pudo verificar el 16/10/2026.
   - El estudio usó Gs 5.750 (BCP, intradía 16/10 09:00, no cierre). Por eso sus porcentajes (11,93% / 10,32%) difieren levemente de los del deck (12,03% / 10,41%).
-- **Neta conservadora:** se calcula sobre el saldo informado.
-  - Se descuentan IVA 5%, vacancia 4%, administración 8%, mantenimiento 5% e IRE 10%, como en el maestro.
-  - Puede duplicar partidas que ya estén incluidas en los Gs 2,7 M. Si es así, la neta real es mayor.
-  - El salón tributa IVA 10%, pero su renta no está desagregada.
+- **Neta conservadora:** se calcula sobre el saldo informado. IVA, mantenimiento y administración no se vuelven a descontar, porque ya están en los Gs 2,7 M.
+  - Vacancia de referencia: 4%.
+  - Otros gastos no informados: **supuesto** de Gs 6.000.000 por año, igual que en San José.
+  - IRE: 10%.
+  - Los gastos informados se proyectan en proporción a la renta, porque IVA y administración son un % del alquiler.
 - **TIR hipotética a 5 años:**
   - Inversión: el precio de compra.
   - Flujos: la neta conservadora.
@@ -47,18 +49,27 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
 |---|---:|---:|
 | Bruta | 12,03% | 14,52% |
 | Saldo informado ÷ precio | 10,41% | 12,56% |
-| Neta conservadora | 6,99% | 8,43% |
-| TIR hipotética (conservador / base / optimista) | 6,7 / 8,9 / 10,5% | 8,2 / 10,4 / 12,1% |
+| Neta antes de IRE | 9,63% | 11,62% |
+| Neta conservadora | 8,66% | 10,46% |
+| TIR hipotética (conservador / base / optimista) | 8,4 / 10,6 / 12,2% | 10,2 / 12,4 / 14,0% |
 | Con estacionamiento (caso mecánico, sin renta incremental): bruta / saldo | 8,96% / 7,75% | 10,27% / 8,89% |
 
 ## Discrepancias y pendientes
-- **Rentabilidad publicada:** el aviso publica "9% de rentabilidad anual" sin informar su base. No coincide con ninguno de los cálculos.
-- **Ubicación:** Google Maps rotula el punto como **Presidente Franco**. Hay que confirmar el municipio con la finca, el padrón y el catastro.
+- **Rentabilidad publicada:** el aviso publica "9% de rentabilidad anual" sin informar su base. Queda entre la neta antes de IRE (9,63%) y la neta final (8,66%).
 - **Documentación pendiente:**
-  - Rent roll por unidad (`fuente/estudio/Rent_roll_San_Miguel_para_completar.csv`), contratos, cobros y si el IVA está incluido.
-  - Desglose de los gastos.
+  - Renta por contrato, vencimientos y reajustes, para completar `fuente/estudio/Rent_roll_San_Miguel_para_completar.csv`. Las tipologías ya están cargadas.
+  - Los gastos no incluidos en los Gs 2,7 M (impuesto inmobiliario, seguros y otros).
   - Inspección técnica y CAPEX.
   - Si los 400 m² incluyen la casa y las circulaciones.
 - **Estacionamiento:** faltan capacidad, superficie techada, título, gastos y contratos.
 - **Comparables:** faltan comparables de monoambientes básicos, de departamentos de 4 dormitorios, de una casa de 2 dormitorios y del salón. V02, V07 y V08 están por debajo del precio por m²: hay que confirmarlos antes de ajustar.
 - **Fotos:** son del propietario y algunas parecen retocadas. En la foto de cocina y estar se recortó un retrato familiar que se veía en la pared.
+
+## Registro de cambios
+- **2026-10-16 (v1, actualización):** datos confirmados por el founder.
+  - Nueva ubicación: Ciudad del Este.
+  - Tipologías: 3 monoambientes, 5 departamentos de 1 dormitorio, 1 de 2 y 1 de 4, y la casa de 2 habitaciones.
+  - Los gastos incluyen IVA, mantenimiento y administración.
+  - Contratos vigentes verificados.
+  - La neta conservadora sube de 6,99% a 8,66% (con USD 350.000) porque ya no se descuentan dos veces IVA, administración y mantenimiento.
+- **2026-10-16 (v1):** primera versión.
