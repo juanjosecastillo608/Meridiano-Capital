@@ -1,12 +1,14 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
+  "package_version": "2.0",
   "asset_id": "edificio-san-miguel-area-2",
-  "analysis_date": "2026-10-16",
+  "analysis_date": "2026-10-17",
   "language": "es",
   "status": "entrega_documental_completa_con_limitaciones_de_evidencia",
   "evidence_labels": {
     "owner_reported": "Dato recibido del propietario; no auditado documentalmente",
     "owner_confirmed": "Confirmación explícita del propietario en esta conversación",
+    "meridiano_verified_subject_to_plans": "Verificado por Meridiano, sujeto a constancia en planos municipales",
     "published_asking": "Oferta publicada; disponibilidad y cierre no confirmados",
     "calculated": "Cálculo reproducible a partir de entradas identificadas",
     "hypothetical": "Supuesto de sensibilidad; no pronóstico de mercado",
@@ -14,15 +16,16 @@
   },
   "fx": {
     "pair": "USD/PYG",
-    "pyg_per_usd": 5750,
+    "pyg_per_usd": 5770.91,
     "date": "2026-10-16",
-    "time": "09:00",
+    "time": "13:00",
     "timezone": "America/Asuncion",
-    "basis": "Referencia interbancaria intradía, promedio acumulado BCP",
-    "closing_rate": false,
+    "basis": "Último cierre publicado disponible al sábado 17/10/2026: promedio acumulado interbancario BCP del viernes 16/10/2026",
+    "closing_rate": true,
     "retail_rate": false,
     "source_url": "https://www.bcp.gov.py/webapps/web/cotizacion/referencial-fluctuante-interbancario",
-    "accessed_date": "2026-10-16",
+    "accessed_date": "2026-10-17",
+    "analysis_day_rate_published": false,
     "conversion_rule": "USD = PYG / pyg_per_usd; PYG = USD * pyg_per_usd",
     "warning": "Actualizar y recalcular todas las conversiones si cambia la fecha del informe; no reutilizar las conversiones automáticas de los portales"
   },
@@ -38,15 +41,25 @@
     },
     "maps_label": "Epifanio Méndez Fleitas, Presidente Franco 100140; F97W+H2W",
     "legal_municipality": "Ciudad del Este",
-    "location_conflict": "Resuelto 2026-10-16: el founder confirma Ciudad del Este con el nuevo enlace de ubicación",
+    "location_conflict": "Resuelto por el founder el 2026-10-16: Ciudad del Este",
     "land_area_m2": 360,
     "land_dimensions_m": {
       "front": 12,
       "depth": 30
     },
-    "built_area_m2_approx": 400,
-    "built_area_basis": "Total aproximado informado; pendiente verificar inclusión de casa posterior y áreas comunes",
-    "floors_reported": 3,
+    "built_area_m2": 592,
+    "unit_area_sum_m2": 592,
+    "built_area_basis": "Suma de áreas de las doce unidades de Hoja1!C3:C14, incluido salón y casa posterior; verificado por Meridiano, sujeto a constancia en planos municipales. La planilla no define área propia/cubierta ni identifica áreas comunes por separado.",
+    "area_verification": "meridiano_verified_subject_to_plans",
+    "additional_common_area_m2": null,
+    "floors_reported": 4,
+    "levels_from_schedule": [
+      "PB",
+      "1",
+      "2",
+      "3"
+    ],
+    "floors_basis": "Cuatro niveles inferidos de la asignación de unidades en planilla; casa al fondo sin nivel indicado; sujeto a constancia en planos",
     "construction_stages": [
       {
         "year": 1998,
@@ -60,11 +73,13 @@
     "municipal_plans_approved_owner_reported": true,
     "municipal_plans_reviewed": false,
     "photos_reviewed": false,
-    "san_miguel_documents_reviewed": [],
+    "san_miguel_documents_reviewed": [
+      "Edificio-Barrio-San-Jose-Aliquileres-Octubre26.xlsx, Hoja1!A1:D15; asignación a San Miguel confirmada por usuario el 17/10/2026"
+    ],
     "unrelated_attachments_excluded": [
       "Documentos de San José",
       "Documentos de Sajonia",
-      "ACM de marzo 2025 correspondiente a un trabajo anterior (cliente omitido por PII_POLICY)"
+      "ACM de marzo 2025 de un trabajo anterior (cliente omitido por PII_POLICY)"
     ],
     "unit_mix": [
       {
@@ -76,11 +91,10 @@
           4
         ],
         "counts_by_bedrooms": {
-          "1": 5,
-          "2": 1,
-          "4": 1
-        },
-        "confirmation": "founder_confirmed 2026-10-16"
+          "1": 1,
+          "2": 4,
+          "4": 2
+        }
       },
       {
         "type": "studio",
@@ -102,12 +116,13 @@
     "residential_units": 11,
     "commercial_units": 1,
     "occupancy_fraction_owner_reported": 1,
-    "rent_roll_available": false,
-    "monthly_gross_income_pyg": 20000000,
+    "rent_roll_available": true,
+    "monthly_gross_income_pyg": 22200000,
     "monthly_expenses_reported_pyg": 2700000,
-    "income_evidence": "owner_reported",
+    "income_evidence": "meridiano_verified_subject_to_plans",
+    "income_basis": "Suma de cánones mensuales de la planilla, no certificación independiente de cobranza bancaria",
     "expenses_evidence": "owner_reported",
-    "iva_included": "IVA incluido dentro de los gastos informados de Gs 2.700.000 (founder 2026-10-16)",
+    "iva_included": "Incluido dentro de los gastos de Gs 2.700.000 (founder_confirmed 2026-10-16)",
     "expenses_breakdown": {
       "includes": [
         "IVA",
@@ -126,12 +141,165 @@
     "market_monthly_rent_pyg": null,
     "market_rent_gap_pyg": null,
     "maps_url_previous": "https://maps.app.goo.gl/b1ppbnL6vLtBu2d39",
-    "coordinates_note": "Coordenadas y etiqueta de Maps corresponden al enlace anterior; reemplazado el 2026-10-16 por el enlace confirmado por el founder",
+    "coordinates_note": "Coordenadas y etiqueta de Maps corresponden al enlace anterior; el founder reemplazó el enlace y confirmó Ciudad del Este el 2026-10-16",
     "legal_municipality_evidence": "founder_confirmed 2026-10-16",
     "leases_status": "Todos los contratos vigentes, verificados por el founder 2026-10-16",
-    "quick_sale_price_evidence": "Sugerencia de Meridiano Capital según estudio de mercado y referencias de la zona (corrección del founder 2026-10-16); no informado por el propietario",
-    "advertised_yield": "Excluida del análisis por decisión del founder (2026-10-16): dato del aviso no validado por Meridiano Capital"
+    "quick_sale_price_evidence": "Sugerencia de Meridiano Capital según el estudio de mercado y las referencias de la zona (corrección del founder 2026-10-16); no informado por el propietario",
+    "advertised_yield": "Excluida de todo el análisis por decisión del founder (2026-10-16): dato del aviso no validado por Meridiano Capital"
   },
+  "source_schedule": {
+    "original_filename": "Edificio-Barrio-San-Jose-Aliquileres-Octubre26.xlsx",
+    "relative_path": "fuentes/Edificio-Barrio-San-Jose-Aliquileres-Octubre26.xlsx",
+    "sha256": "7c2933bedf13855334aa70684916bd7eb73ca6c4170f5dada1878e649f9b1b05",
+    "sheet": "Hoja1",
+    "unit_rows": "A3:D14",
+    "area_total_cell": "Hoja1!C15",
+    "area_total_formula": "=SUM(C3:C14)",
+    "area_total_cached_m2": 592,
+    "rent_total_cell": "Hoja1!D15",
+    "rent_total_formula": "=SUM(D3:D14)",
+    "rent_total_cached_pyg": 22200000,
+    "currency_basis": "PYG según el contexto confirmado del inmueble; encabezado sin moneda explícita",
+    "asset_assignment_confirmed": true,
+    "asset_assignment_confirmation_date": "2026-10-17",
+    "filename_conflict_resolved": "El usuario confirmó que corresponde a San Miguel pese al nombre San José; conservar el archivo original sin renombrar ni modificar",
+    "verification_label": "Verificado por Meridiano, sujeto a constancia en planos municipales",
+    "verification_scope": "Alquileres, superficies y distribución según planilla. No convierte gastos, cobranzas, planos, títulos ni precios de mercado en datos auditados.",
+    "workbook_modified": false
+  },
+  "superseded_values": {
+    "version": "1.0 del 16/10/2026, no utilizar como escenario vigente",
+    "built_area_m2": 400,
+    "monthly_gross_income_pyg": 20000000,
+    "monthly_reported_balance_pyg": 17300000,
+    "floors_reported": 3,
+    "fx_pyg_per_usd": 5750,
+    "fx_time": "09:00",
+    "reason": "Sustituidos por detalle de unidades verificado por Meridiano y referencia BCP de cierre disponible en la fecha nueva"
+  },
+  "units": [
+    {
+      "unit_id": "COM-01",
+      "unit_type": "commercial_front",
+      "floor": "PB",
+      "bedrooms": null,
+      "area_m2": 40,
+      "monthly_rent_pyg": 1000000,
+      "source_row": 3,
+      "source_range": "Hoja1!A3:D3"
+    },
+    {
+      "unit_id": "MON-01",
+      "unit_type": "studio",
+      "floor": "PB",
+      "bedrooms": 0,
+      "area_m2": 30,
+      "monthly_rent_pyg": 2700000,
+      "source_row": 4,
+      "source_range": "Hoja1!A4:D4"
+    },
+    {
+      "unit_id": "MON-02",
+      "unit_type": "studio",
+      "floor": "PB",
+      "bedrooms": 0,
+      "area_m2": 30,
+      "monthly_rent_pyg": 2700000,
+      "source_row": 5,
+      "source_range": "Hoja1!A5:D5"
+    },
+    {
+      "unit_id": "MON-03",
+      "unit_type": "studio",
+      "floor": "PB",
+      "bedrooms": 0,
+      "area_m2": 30,
+      "monthly_rent_pyg": 2700000,
+      "source_row": 6,
+      "source_range": "Hoja1!A6:D6"
+    },
+    {
+      "unit_id": "DEP-01",
+      "unit_type": "apartment",
+      "floor": "1",
+      "bedrooms": 4,
+      "area_m2": 60,
+      "monthly_rent_pyg": 2000000,
+      "source_row": 7,
+      "source_range": "Hoja1!A7:D7"
+    },
+    {
+      "unit_id": "DEP-02",
+      "unit_type": "apartment",
+      "floor": "1",
+      "bedrooms": 2,
+      "area_m2": 58,
+      "monthly_rent_pyg": 1500000,
+      "source_row": 8,
+      "source_range": "Hoja1!A8:D8"
+    },
+    {
+      "unit_id": "DEP-03",
+      "unit_type": "apartment",
+      "floor": "2",
+      "bedrooms": 4,
+      "area_m2": 65,
+      "monthly_rent_pyg": 2500000,
+      "source_row": 9,
+      "source_range": "Hoja1!A9:D9"
+    },
+    {
+      "unit_id": "DEP-04",
+      "unit_type": "apartment",
+      "floor": "2",
+      "bedrooms": 2,
+      "area_m2": 58,
+      "monthly_rent_pyg": 1500000,
+      "source_row": 10,
+      "source_range": "Hoja1!A10:D10"
+    },
+    {
+      "unit_id": "DEP-05",
+      "unit_type": "apartment",
+      "floor": "3",
+      "bedrooms": 2,
+      "area_m2": 58,
+      "monthly_rent_pyg": 1500000,
+      "source_row": 11,
+      "source_range": "Hoja1!A11:D11"
+    },
+    {
+      "unit_id": "DEP-06",
+      "unit_type": "apartment",
+      "floor": "3",
+      "bedrooms": 2,
+      "area_m2": 58,
+      "monthly_rent_pyg": 1400000,
+      "source_row": 12,
+      "source_range": "Hoja1!A12:D12"
+    },
+    {
+      "unit_id": "DEP-07",
+      "unit_type": "apartment",
+      "floor": "3",
+      "bedrooms": 1,
+      "area_m2": 40,
+      "monthly_rent_pyg": 1200000,
+      "source_row": 13,
+      "source_range": "Hoja1!A13:D13"
+    },
+    {
+      "unit_id": "CAS-01",
+      "unit_type": "rear_independent_house",
+      "floor": "casa fondo",
+      "bedrooms": 2,
+      "bedrooms_source": "Descripción anterior del propietario; Hoja1!B14 está vacía",
+      "area_m2": 65,
+      "monthly_rent_pyg": 1500000,
+      "source_row": 14,
+      "source_range": "Hoja1!A14:D14"
+    }
+  ],
   "optional_parking": {
     "name": "Estacionamiento techado lindero opcional",
     "asking_price_usd": 120000,
@@ -156,7 +324,7 @@
       "id": "R01",
       "url": "https://viaparaguay.com/es/propiedades/departamento-2-dormitorios-en-alquiler-en-area-2-cde",
       "source": "Vía Paraguay",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "publication_date_note": "Metadatos y antigüedad relativa no conciliados",
       "location": "Riachuelo, San Miguel / Área 2, CDE según anuncio",
@@ -176,18 +344,21 @@
       "expensas": null,
       "iva_included": null,
       "services_included": null,
-      "similarity": "secundario_cercano_geograficamente",
+      "similarity": "referencia_geografica_con_alerta_de_disponibilidad",
       "availability_verified": false,
-      "quantitative_use": true,
-      "evidence": "published_asking"
+      "quantitative_use": false,
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante",
+      "availability_warning": "El 17/10 la página indica que no aparece en el listado de la inmobiliaria desde hace 14 días; puede estar alquilada, pausada o retirada",
+      "exclusion_reason": "No usar como oferta disponible actual; solo antecedente de precio publicado geográficamente cercano"
     },
     {
       "id": "R02",
       "url": "https://www.infocasas.com.py/se-alquila-departamento-en-el-centro-de-cde/192744557",
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
-      "publication_date": null,
-      "publication_date_note": "Fecha no conciliada entre metadatos y ficha; no tratar como publicación reciente acreditada",
+      "accessed_date": "2026-10-17",
+      "publication_date": "2025-08-12",
+      "publication_date_note": "Fecha de ingreso indicada en el texto de la ficha; metadato genérico 2020 descartado",
       "location": "Centro de CDE",
       "location_precision": "zona declarada",
       "type": "apartment",
@@ -213,14 +384,15 @@
       "availability_verified": false,
       "quantitative_use": true,
       "duplicate_group": "R02_variantes_mismo_anuncio",
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "R03",
       "url": "https://www.infocasas.com.py/alquilo-dpto-2-hab-km9-acaray/193676790",
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
-      "publication_date": null,
+      "accessed_date": "2026-10-17",
+      "publication_date": "2026-04-25",
       "location": "Km 9 Acaray, CDE según anuncio",
       "location_precision": "zona declarada",
       "type": "apartment",
@@ -230,7 +402,7 @@
       "area_basis": "edificada",
       "price": 2500000,
       "currency": "PYG",
-      "price_provenance": "Metadescripción de la publicación; cuerpo enmascara el precio",
+      "price_provenance": "Cabecera de precio y metadescripción; descripción parcialmente enmascarada",
       "period": "month",
       "parking_spaces": 0,
       "furnished": null,
@@ -245,13 +417,14 @@
       "similarity": "secundario",
       "availability_verified": false,
       "quantitative_use": true,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "R04",
       "url": "https://www.inovainmobiliaria.com/559/inmuebles/alquiler-departamento-2-dormitorios-ciudad-del-este-py-10",
       "source": "Inova Inmobiliaria",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Km 7 Ciudad Nueva, una cuadra de Julio César Riquelme según anuncio",
       "location_precision": "zona y referencia declaradas",
@@ -277,13 +450,15 @@
       "similarity": "secundario_producto_superior",
       "availability_verified": false,
       "quantitative_use": true,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante",
+      "period_note": "Periodicidad mensual según el contexto de oferta; confirmar contractualmente"
     },
     {
       "id": "R05",
       "url": "https://www.infocasas.com.py/alquilo-departamento-2-dorm-en-boqueron-cde/193622997",
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Picuiba, Boquerón, CDE",
       "location_precision": "calle y barrio declarados",
@@ -305,13 +480,14 @@
       "availability_verified": false,
       "quantitative_use": false,
       "exclusion_reason": "Producto premium no homologable a alquiler básico; conservar como contexto",
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "R06",
       "url": "https://www.inovainmobiliaria.com/547/inmuebles/alquiler-oficina-ciudad-del-este-py-10",
       "source": "Inova Inmobiliaria",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Km 9 Monday",
       "location_precision": "zona declarada",
@@ -331,8 +507,9 @@
       "similarity": "contextual_comercial_no_minorista",
       "availability_verified": false,
       "quantitative_use": false,
-      "exclusion_reason": "No comparable directo con salón comercial frontal de superficie desconocida",
-      "evidence": "published_asking"
+      "exclusion_reason": "Tinglado de 192 m² no homologable al salón frontal de 40 m²",
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     }
   ],
   "sale_comparables": [
@@ -343,7 +520,7 @@
         "https://www.infocasas.com.py/edificio-venta-ciudad-del-este-alto-parana-paraguay/193950177"
       ],
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Km 7, Ciudad Nueva, Av. Julio César Riquelme",
       "location_precision": "avenida y barrio declarados",
@@ -356,13 +533,14 @@
       "similarity": "secundario",
       "availability_verified": false,
       "duplicate_group": "V01_edificio_8departamentos_3locales",
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "V02",
       "url": "https://www.infocasas.com.py/excelente-oportunidad-departamentos-con-salones-comerciales-ciudad-del-este-/191250370",
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": "2024-08-23",
       "location": "San Roque, Aguateros del Chaco y Capellanes del Chaco",
       "location_precision": "intersección declarada",
@@ -375,13 +553,14 @@
       "description": "Vivienda y salones; requiere mantenimiento según publicación",
       "similarity": "secundario_antiguo_a_reconfirmar",
       "availability_verified": false,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "V03",
       "url": "https://www.infocasas.com.py/en-venta-edificio-con-estacionamiento-ciudad-del-este/194091946",
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Centro de CDE",
       "location_precision": "zona declarada",
@@ -395,13 +574,14 @@
       "description": "Siete niveles, 16 departamentos, comercial y estacionamiento lindero; escala superior",
       "similarity": "contextual",
       "availability_verified": false,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "V04",
       "url": "https://www.infocasas.com.py/vendo-edificio-comercial-en-cde/192953035",
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Pampliega casi Av. Mayor Rivas Ortellado, CDE",
       "location_precision": "calle y referencia declaradas",
@@ -414,7 +594,8 @@
       "description": "12 departamentos de 3 dormitorios y 3 salones; anuncia 6,25% sin base bruta/neta acreditada",
       "similarity": "contextual",
       "availability_verified": false,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "V05",
@@ -433,13 +614,16 @@
       "description": "Showroom, oficinas y taller; dos plantas",
       "similarity": "contextual",
       "availability_verified": false,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "last_successful_accessed_date": "2026-10-16",
+      "last_refresh_attempt_date": "2026-10-17",
+      "refresh_status": "Fallo de recuperación HTTP el 17/10; se conserva referencia contextual de la consulta del 16/10, no revalidada"
     },
     {
       "id": "V06",
       "url": "https://viaparaguay.com/en/propiedades/house-with-commercial-space-for-sale-in-san-miguel-cde",
       "source": "Vía Paraguay",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Avenida Cerro León, San Miguel, CDE",
       "location_precision": "avenida y barrio declarados",
@@ -452,13 +636,14 @@
       "description": "Casa con local/oficina frontal, 5 dormitorios, 5 baños, equipamiento y quincho; no edificio de 12 rentas",
       "similarity": "secundario_geografico_no_tipologico",
       "availability_verified": false,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "V07",
       "url": "https://viaparaguay.com/en/propiedades/building-for-sale-in-ciudad-nueva-ciudad-del-este",
       "source": "Vía Paraguay",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Ciudad Nueva, Wildo Osmar Britos esq. Av. San Jorge; referencia a Av. San José",
       "location_precision": "dirección declarada; referencias a conciliar",
@@ -469,16 +654,17 @@
       "built_area_m2": 400,
       "built_area_basis": "cubierta declarada",
       "description": "4 departamentos, tres niveles, amoblado, 2 estacionamientos techados y 6 descubiertos según anuncio",
-      "similarity": "secundario_escala_constructiva_similar",
+      "similarity": "secundario_menor_superficie_y_menos_unidades",
       "availability_verified": false,
       "price_caution": "Reconfirmar importe, estado, situación jurídica y si existe otra oferta del mismo activo; no inferir descuento del sujeto",
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     },
     {
       "id": "V08",
       "url": "https://viaparaguay.com/en/propiedades/residential-building-for-sale-in-pablo-rojas-alto-parana",
       "source": "Vía Paraguay",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": null,
       "location": "Calle Aniceto Ruiz, Pablo Rojas, CDE",
       "location_precision": "calle y barrio declarados",
@@ -491,7 +677,8 @@
       "description": "8 dormitorios, 7 baños y toilette; no informa cantidad de unidades independientes ni renta",
       "similarity": "secundario_con_datos_incompletos",
       "availability_verified": false,
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     }
   ],
   "land_context": [
@@ -499,7 +686,7 @@
       "id": "T01",
       "url": "https://www.infocasas.com.py/terreno-en-venta/194101847",
       "source": "InfoCasas",
-      "accessed_date": "2026-10-16",
+      "accessed_date": "2026-10-17",
       "publication_date": "2026-08-11",
       "location": "Av. Perú Km 7, Don Bosco, CDE según anuncio",
       "price": 600000000,
@@ -508,7 +695,8 @@
       "similarity": "contextual_no_misma_zona",
       "availability_verified": false,
       "warning": "Terreno en otra ubicación; no tasa el estacionamiento techado",
-      "evidence": "published_asking"
+      "evidence": "published_asking",
+      "refresh_status": "Página consultada el 17/10; disponibilidad no confirmada con anunciante"
     }
   ],
   "excluded_or_historical": [
@@ -555,8 +743,7 @@
     }
   ],
   "gaps": [
-    "Rentas actuales individuales y desglose de los 7 departamentos por dormitorios",
-    "Superficies por unidad, salón, casa y áreas comunes; verificación de los 400 m²",
+    "Constancia en planos municipales de 592 m² de unidades y niveles PB, 1, 2 y 3; base de medición y áreas comunes no desglosadas",
     "Comparables básicos suficientes de monoambientes y departamentos de 4 dormitorios",
     "Comparables de casa de 2 dormitorios y salón frontal semejantes en el micromercado",
     "Contratos, cobranzas, IVA, expensas, servicios y garantías",
@@ -566,10 +753,26 @@
     "Precios de cierre, tiempos de absorción y tasas de capitalización locales verificadas"
   ],
   "confidence": {
-    "arithmetic": "alta_sobre_entradas_declaradas",
-    "owner_operating_data_documentary_verification": "baja",
+    "arithmetic": "alta_sobre_planilla_conciliada",
+    "unit_rents_and_areas": "verificado_por_Meridiano_sujeto_a_constancia_en_planos",
+    "owner_operating_data_documentary_verification": "rentas_y_areas_verificadas_por_Meridiano_sin_auditoria_de_cobros_ni_gastos",
     "market_rent_subject": "baja",
     "sale_market_value_subject": "baja",
     "parking_market_rent": "baja"
+  },
+  "research_access_limitations": [
+    {
+      "date": "2026-10-17",
+      "urls": [
+        "https://www.infocasas.com.py/alquiler/departamentos/alto-parana/ciudad-del-este/monoambiente/al-frente",
+        "https://www.infocasas.com.py/alquiler/inmuebles/alto-parana/ciudad-del-este/4-dormitorios/baratos"
+      ],
+      "limitation": "Categorías devuelven desafío de verificación web en lugar de fichas; precios de resultados de búsqueda no se incorporaron como comparables verificados",
+      "effect": "No se completó una muestra homologable de monoambientes ni cuatro dormitorios compactos; conservar alquileres objetivo como null"
+    }
+  ],
+  "founder_corrections_applied": {
+    "date": "2026-10-17",
+    "note": "Correcciones del founder del 16/10/2026 que prevalecen sobre el paquete v2: ubicación (Ciudad del Este, nuevo enlace), composición de gastos, contratos verificados, origen del precio de venta rápida y exclusión de la rentabilidad del aviso. La composición por dormitorios de la planilla (1×1, 4×2, 2×4) reemplaza a la informada por mensaje el 16/10 (5×1, 1×2, 1×4)."
   }
 }

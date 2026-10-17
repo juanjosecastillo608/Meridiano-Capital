@@ -8,10 +8,10 @@
     "web": "www.meridianocapital.net"
   },
   "tipo_cambio": {
-    "gs_por_usd": 5698.03,
-    "fecha": "2026-10-14",
-    "fuente": "BCP, cotización referencial",
-    "verificado_el": "2026-10-16",
-    "nota_verificacion": "Valor del 14/10/2026 tomado de la planilla de cotización referencial de monedas del BCP (bcp.gov.py/webapps/web/cotizacion/monedas) vía buscador; el sitio del BCP no es accesible directamente desde el entorno. Re-verificado el 16/10/2026: no se encontró publicación oficial del 15/10 ni del 16/10 accesible; el estudio de mercado de San Miguel cita Gs 5.750 (BCP, promedio intradía interbancario 16/10/2026 09:00, no cierre), que no se adopta por no ser cotización referencial de cierre. Valor anterior: Gs 5.694,47 (BCP, interbancario, 09/10/2026)."
+    "gs_por_usd": 5770.91,
+    "fecha": "2026-10-16",
+    "fuente": "BCP, interbancario, cierre",
+    "verificado_el": "2026-10-17",
+    "nota_verificacion": "Cierre del 16/10/2026 (promedio acumulado interbancario a las 13:00, \"Cierre 16/10\") en bcp.gov.py/webapps/web/cotizacion/referencial-fluctuante-interbancario, último dato publicado al sábado 17/10/2026, según el estudio de mercado de San Miguel v2.0 (consultado el 17/10). No se pudo verificar directamente: el sitio del BCP no es accesible desde el entorno y el buscador no devolvió el dato. Valor anterior: Gs 5.698,03 (BCP, cotización referencial del 14/10/2026)."
   }
 }

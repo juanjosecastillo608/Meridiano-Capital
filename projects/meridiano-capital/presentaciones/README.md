@@ -38,6 +38,6 @@ python build_presentaciones.py
   - Rechaza PDF generados con un tipo de cambio distinto del vigente.
 
 ## Tipo de cambio vigente
-Gs 5.698,03 por USD: cotización referencial del BCP del **14/10/2026**, verificada el 15/10/2026 y re-verificada el 16/10/2026. Ese día no se encontró una publicación oficial más reciente que fuera accesible.
-- La cifra del BCP se tomó de la planilla publicada vía buscador; el sitio del BCP no es accesible desde el entorno de Claude Code.
-- Reemplaza Gs 5.694,47 (interbancario, 09/10/2026).
+Gs 5.770,91 por USD: cierre interbancario del BCP del **16/10/2026**, último publicado al 17/10/2026.
+- El dato viene del estudio de mercado de San Miguel v2.0. El sitio del BCP no es accesible desde el entorno de Claude Code y el buscador no lo devolvió.
+- Reemplaza Gs 5.698,03 (referencial del 14/10/2026). Las cuatro presentaciones se regeneraron con este valor el 17/10/2026; las cifras de los README de M4, San José y Sajonia corresponden al tipo de cambio anterior.

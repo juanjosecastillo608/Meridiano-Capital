@@ -11,11 +11,16 @@ const round = (v) => Math.round((v + Number.EPSILON) * 100) / 100;
 const gross = s.monthly_gross_income_pyg;
 const costs = s.monthly_expenses_reported_pyg;
 const balance = gross - costs;
+const units = d.units;
+const totalArea = units.reduce((a,u)=>a+u.area_m2,0);
+const unitGross = units.reduce((a,u)=>a+u.monthly_rent_pyg,0);
+const studioGross = units.filter(u=>u.unit_type==='studio').reduce((a,u)=>a+u.monthly_rent_pyg,0);
 const scenarios = [
-  {id:'base', label:'Flujo actual informado', gross, costs, assumption:'Sin ajuste; ocupación total declarada, no auditada'},
+  {id:'base', label:'Planilla verificada por Meridiano', gross, costs, assumption:'Rentas y áreas verificadas por Meridiano, sujeto a constancia en planos municipales; ocupación declarada; gastos previos mantenidos, sin auditoría de cobros'},
   {id:'conservador', label:'Ingresos -10%; gastos +10%', gross:gross*.9, costs:costs*1.1, assumption:'Pérdida agregada de ingresos, no un número de unidades vacantes; prueba hipotética'},
   {id:'estres', label:'Ingresos -20%; gastos constantes', gross:gross*.8, costs, assumption:'Prueba hipotética; no predicción'},
-  {id:'mejora_sensibilidad', label:'Ingresos +10%; gastos +10%', gross:gross*1.1, costs:costs*1.1, assumption:'Solo sensibilidad; incremento no respaldado por comparables, CAPEX y plazo desconocidos'}
+  {id:'mejora_sensibilidad', label:'Ingresos +10%; gastos +10%', gross:gross*1.1, costs:costs*1.1, assumption:'Solo sensibilidad; incremento no respaldado por comparables, CAPEX y plazo desconocidos'},
+  {id:'un_mono_vacante', label:'Vacancia de un monoambiente de 2.700.000 PYG', gross:gross-2700000, costs, assumption:'Prueba por unidad real durante doce meses, resto de rentas y gastos sin cambios; no se pronostica vacancia'}
 ];
 const prices = [s.asking_price_usd, s.quick_sale_price_usd];
 const cases = [];
@@ -60,23 +65,45 @@ const normalize = c => {
   return {...c,price_usd:round(usd),price_pyg:round(pyg),price_usd_per_m2:area?round(usd/area):null,price_pyg_per_m2:area?round(pyg/area):null};
 };
 const data = {
-  schema_version:'1.0.0', analysis_date:d.analysis_date, fx:d.fx,
+  schema_version:'2.0.0', package_version:d.package_version, analysis_date:d.analysis_date, fx:d.fx,
   definitions:{
-    reported_balance:'Ingresos menos gastos declarados; no NOI auditado ni beneficio neto definitivo',
+    reported_balance:'Rentas verificadas por Meridiano en planilla menos gastos previos declarados; no NOI auditado ni beneficio neto definitivo',
     gross_yield:'Ingreso bruto anual convertido a USD / precio de compra en USD * 100',
     reported_balance_yield:'Saldo anual después de gastos informados convertido a USD / precio de compra * 100',
     price_to_rent:'Precio / renta bruta anual; múltiplo estático, no plazo real de recuperación',
     unknown:'null no equivale a cero',
     optional_parking:'No forma parte del caso base ni de los ingresos actuales'
   },
+  source_verification:d.source_schedule,
+  unit_metrics:units.map(u=>({...u,
+    verification_status:d.source_schedule.verification_label,
+    monthly_rent_usd:round(u.monthly_rent_pyg/fx),
+    monthly_rent_pyg_per_m2:round(u.monthly_rent_pyg/u.area_m2),
+    gross_rent_share_pct:round(u.monthly_rent_pyg/gross*100),
+    market_rent_target_pyg:null, market_rent_gap_pyg:null, market_rent_gap_pct:null
+  })),
+  unit_mix_summary:[
+    {key:'studios',label:'Monoambientes',filter:u=>u.unit_type==='studio'},
+    {key:'apartment_1br',label:'Departamento 1 dormitorio',filter:u=>u.unit_type==='apartment'&&u.bedrooms===1},
+    {key:'apartment_2br',label:'Departamentos 2 dormitorios',filter:u=>u.unit_type==='apartment'&&u.bedrooms===2},
+    {key:'apartment_4br',label:'Departamentos 4 dormitorios',filter:u=>u.unit_type==='apartment'&&u.bedrooms===4},
+    {key:'commercial',label:'Salón comercial',filter:u=>u.unit_type==='commercial_front'},
+    {key:'house',label:'Casa posterior',filter:u=>u.unit_type==='rear_independent_house'}
+  ].map(g=>{const us=units.filter(g.filter);const a=us.reduce((v,u)=>v+u.area_m2,0);const r=us.reduce((v,u)=>v+u.monthly_rent_pyg,0);return {key:g.key,label:g.label,count:us.length,area_m2:a,monthly_rent_pyg:r,monthly_rent_share_pct:round(r/gross*100)};}),
   operating_summary:{
+    total_unit_area_m2:totalArea, total_units:units.length,
     monthly_gross_pyg:gross, monthly_expenses_pyg:costs, monthly_reported_balance_pyg:balance,
     annual_gross_pyg:gross*12, annual_expenses_pyg:costs*12, annual_reported_balance_pyg:balance*12,
     monthly_gross_usd:round(gross/fx), monthly_expenses_usd:round(costs/fx),monthly_reported_balance_usd:round(balance/fx),
     annual_gross_usd:round(gross*12/fx), annual_expenses_usd:round(costs*12/fx),annual_reported_balance_usd:round(balance*12/fx),
     reported_expense_ratio_pct:round(costs/gross*100),
     quick_sale_discount_pct:round((prices[0]-prices[1])/prices[0]*100),
-    built_price_usd_per_m2:prices.map(price=>({price_usd:price,usd_per_m2:round(price/s.built_area_m2_approx)}))
+    built_price_usd_per_m2:prices.map(price=>({price_usd:price,usd_per_m2:round(price/totalArea),area_basis:s.built_area_basis})),
+    studio_income_pyg:studioGross, studio_income_share_pct:round(studioGross/gross*100),
+    difference_from_superseded_area_m2:totalArea-d.superseded_values.built_area_m2,
+    area_change_pct:round((totalArea/d.superseded_values.built_area_m2-1)*100),
+    difference_from_superseded_monthly_gross_pyg:gross-d.superseded_values.monthly_gross_income_pyg,
+    monthly_gross_change_pct:round((gross/d.superseded_values.monthly_gross_income_pyg-1)*100)
   },
   building_scenarios:cases,
   optional_parking_scenarios:optionalCases,
@@ -88,7 +115,7 @@ const data = {
   income_capitalization_sensitivity:{
     is_market_valuation:false,
     rate_market_evidence_available:false,
-    description:'Sensibilidad matemática sobre saldo declarado, no tasa de capitalización acreditada',
+    description:'Sensibilidad matemática sobre saldo calculado con rentas verificadas por Meridiano y gastos previos declarados; no tasa de capitalización acreditada',
     rows:[.08,.09,.10,.11,.12].map(rate=>({hypothetical_rate_pct:round(rate*100),implied_price_usd:round(balance*12/fx/rate)}))
   },
   market_conclusions:{
@@ -97,36 +124,41 @@ const data = {
     estimated_monthly_rent_gap_pyg:null,
     recommended_market_publication_price_usd:null,
     asking_price_owner_usd:350000,
-    quick_sale_price_owner_usd:290000,
-    reason:'Muestra no homologable y rent roll ausente; precios del propietario no equivalen a tasación independiente',
+    quick_sale_price_meridiano_suggestion_usd:290000,
+    reason:'Rent roll disponible y verificado por Meridiano; faltan homologación de estado, servicios y contratos y evidencia de cierres. Los precios del propietario no equivalen a tasación independiente',
     no_automatic_rent_increase:true
   },
   normalized_rental_comparables:d.rental_comparables.map(normalize),
   normalized_sale_comparables:d.sale_comparables.map(normalize),
   normalized_land_context:d.land_context.map(c=>({...normalize(c),land_price_usd_per_m2:round((c.currency==='USD'?c.price:c.price/fx)/c.land_area_m2)}))
 };
-const header = ['unit_id','unit_type','bedrooms','bathrooms','area_m2','area_basis','rent_amount','rent_currency','monthly_rent_pyg','iva_included','expensas_amount','expensas_currency','services_included','furnished','parking_included','occupancy_status','lease_start','lease_end','reajuste','monthly_collected_pyg','source_document','notes'];
-const unit = (unit_id, unit_type, bedrooms, notes) => ({unit_id,unit_type,bedrooms,occupancy_status:'ocupada_segun_propietario',notes});
-const units = [
-  ...Array.from({length:7},(_,i)=>unit(`DEP-${String(i+1).padStart(2,'0')}`,'departamento','','Asignar dormitorios 1 2 o 4 solo con confirmacion individual')),
-  ...Array.from({length:3},(_,i)=>unit(`MON-${String(i+1).padStart(2,'0')}`,'monoambiente',0,'Adicional a los siete departamentos')),
-  unit('COM-01','salon_comercial','','Frente'),
-  unit('CAS-01','casa_independiente',2,'Parte posterior')
-];
+const header = ['unit_id','unit_type','floor','bedrooms','bathrooms','area_m2','area_basis','rent_amount','rent_currency','monthly_rent_pyg','iva_included','expensas_amount','expensas_currency','services_included','furnished','parking_included','occupancy_status','lease_start','lease_end','reajuste','monthly_collected_pyg','source_document','source_range','verification_status','monthly_rent_pyg_per_m2','notes'];
+const csvUnits=units.map(u=>({...u,
+  area_basis:'Según planilla; sujeto a constancia en planos',
+  rent_amount:u.monthly_rent_pyg,rent_currency:'PYG',
+  occupancy_status:'ocupada_contrato_vigente_verificado_por_founder',
+  source_document:d.source_schedule.original_filename,
+  verification_status:d.source_schedule.verification_label,
+  monthly_rent_pyg_per_m2:round(u.monthly_rent_pyg/u.area_m2),
+  notes:u.bedrooms_source??'IDs de trabajo; no números oficiales de puerta'
+}));
 assert.equal(s.unit_mix.reduce((a,c)=>a+c.count,0),12);
 assert.equal(units.length,12);
-assert.equal(gross-costs,17300000);
+assert.equal(totalArea,592);
+assert.equal(totalArea,d.source_schedule.area_total_cached_m2);
+assert.equal(unitGross,gross);
+assert.equal(unitGross,d.source_schedule.rent_total_cached_pyg);
+assert.equal(gross-costs,19500000);
 assert.equal(d.optional_parking.included_in_current_building_rents,false);
 assert.equal(d.optional_parking.base_investment_includes_parking,false);
-assert.equal(cases.find(c=>c.scenario==='base'&&c.building_purchase_price_usd===350000).gross_yield_pct,11.93);
-assert.equal(cases.find(c=>c.scenario==='base'&&c.building_purchase_price_usd===290000).reported_balance_yield_pct,12.45);
+assert.ok(Math.abs(cases.find(c=>c.scenario==='base'&&c.building_purchase_price_usd===350000).gross_yield_pct-gross*12/fx/350000*100)<.0051);
+assert.ok(Math.abs(cases.find(c=>c.scenario==='base'&&c.building_purchase_price_usd===290000).reported_balance_yield_pct-balance*12/fx/290000*100)<.0051);
 assert.equal(optionalCases[0].combined_purchase_price_usd,470000);
 assert.equal(optionalCases[1].combined_purchase_price_usd,410000);
 assert.equal(data.market_conclusions.independently_estimated_market_value_usd,null);
 for(const c of [...d.rental_comparables,...d.sale_comparables,...d.land_context]) assert.ok(c.url.startsWith('https://'));
 fs.writeFileSync(path.join(dir,'Modelo_inversion_San_Miguel.json'),JSON.stringify(data,null,2)+'\n');
-const csvPath=path.join(dir,'Rent_roll_San_Miguel_para_completar.csv');
+const csvPath=path.join(dir,'Rent_roll_San_Miguel.csv');
 const csvCell=v=>{const t=String(v??'');return /[",\n]/.test(t)?`"${t.replaceAll('"','""')}"`:t;};
-if(!fs.existsSync(csvPath)) fs.writeFileSync(csvPath,[header,...units.map(u=>header.map(k=>u[k]??''))].map(row=>row.map(csvCell).join(',')).join('\n')+'\n');
-else console.log('Rent roll existente conservado sin sobrescribir.');
+fs.writeFileSync(csvPath,[header,...csvUnits.map(u=>header.map(k=>u[k]??''))].map(row=>row.map(csvCell).join(',')).join('\n')+'\n');
 console.log(JSON.stringify({validation:'OK',units:units.length,rental_records:d.rental_comparables.length,sale_records:d.sale_comparables.length,base_cases:cases.filter(c=>c.scenario==='base'),parking_cases:optionalCases},null,2));

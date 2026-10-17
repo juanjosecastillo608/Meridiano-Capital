@@ -1,0 +1,177 @@
+{
+  "original_filename": "Edificio-Barrio-San-Jose-Aliquileres-Octubre26.xlsx",
+  "sha256": "7c2933bedf13855334aa70684916bd7eb73ca6c4170f5dada1878e649f9b1b05",
+  "sheet": "Hoja1",
+  "title_cell": "Hoja1!A1",
+  "title": "Detalle de Cada Departamento por Piso con sus Valores de Alquileres Mensual",
+  "currency_basis": "PYG según contexto confirmado del inmueble; encabezado no expresa moneda",
+  "asset_assignment": "San Miguel confirmado por usuario el 2026-10-17 pese a nombre de archivo San José",
+  "rows": [
+    {
+      "source_row": 3,
+      "floor_original": "PB",
+      "description_original": "Salon",
+      "area_m2": 40,
+      "monthly_rent_pyg": 1000000,
+      "source_cells": {
+        "floor": "Hoja1!A3",
+        "description": "Hoja1!B3",
+        "area": "Hoja1!C3",
+        "rent": "Hoja1!D3"
+      }
+    },
+    {
+      "source_row": 4,
+      "floor_original": "PB",
+      "description_original": "mono",
+      "area_m2": 30,
+      "monthly_rent_pyg": 2700000,
+      "source_cells": {
+        "floor": "Hoja1!A4",
+        "description": "Hoja1!B4",
+        "area": "Hoja1!C4",
+        "rent": "Hoja1!D4"
+      }
+    },
+    {
+      "source_row": 5,
+      "floor_original": "PB",
+      "description_original": "monoambiente",
+      "area_m2": 30,
+      "monthly_rent_pyg": 2700000,
+      "source_cells": {
+        "floor": "Hoja1!A5",
+        "description": "Hoja1!B5",
+        "area": "Hoja1!C5",
+        "rent": "Hoja1!D5"
+      }
+    },
+    {
+      "source_row": 6,
+      "floor_original": "PB",
+      "description_original": "monoambiente",
+      "area_m2": 30,
+      "monthly_rent_pyg": 2700000,
+      "source_cells": {
+        "floor": "Hoja1!A6",
+        "description": "Hoja1!B6",
+        "area": "Hoja1!C6",
+        "rent": "Hoja1!D6"
+      }
+    },
+    {
+      "source_row": 7,
+      "floor_original": 1,
+      "description_original": "4 dormitorios",
+      "area_m2": 60,
+      "monthly_rent_pyg": 2000000,
+      "source_cells": {
+        "floor": "Hoja1!A7",
+        "description": "Hoja1!B7",
+        "area": "Hoja1!C7",
+        "rent": "Hoja1!D7"
+      }
+    },
+    {
+      "source_row": 8,
+      "floor_original": 1,
+      "description_original": "2 dormitorios",
+      "area_m2": 58,
+      "monthly_rent_pyg": 1500000,
+      "source_cells": {
+        "floor": "Hoja1!A8",
+        "description": "Hoja1!B8",
+        "area": "Hoja1!C8",
+        "rent": "Hoja1!D8"
+      }
+    },
+    {
+      "source_row": 9,
+      "floor_original": 2,
+      "description_original": "4 dormitorios",
+      "area_m2": 65,
+      "monthly_rent_pyg": 2500000,
+      "source_cells": {
+        "floor": "Hoja1!A9",
+        "description": "Hoja1!B9",
+        "area": "Hoja1!C9",
+        "rent": "Hoja1!D9"
+      }
+    },
+    {
+      "source_row": 10,
+      "floor_original": 2,
+      "description_original": "2 dormitorios",
+      "area_m2": 58,
+      "monthly_rent_pyg": 1500000,
+      "source_cells": {
+        "floor": "Hoja1!A10",
+        "description": "Hoja1!B10",
+        "area": "Hoja1!C10",
+        "rent": "Hoja1!D10"
+      }
+    },
+    {
+      "source_row": 11,
+      "floor_original": 3,
+      "description_original": "2 dormitorios",
+      "area_m2": 58,
+      "monthly_rent_pyg": 1500000,
+      "source_cells": {
+        "floor": "Hoja1!A11",
+        "description": "Hoja1!B11",
+        "area": "Hoja1!C11",
+        "rent": "Hoja1!D11"
+      }
+    },
+    {
+      "source_row": 12,
+      "floor_original": 3,
+      "description_original": "2 dormitorios",
+      "area_m2": 58,
+      "monthly_rent_pyg": 1400000,
+      "source_cells": {
+        "floor": "Hoja1!A12",
+        "description": "Hoja1!B12",
+        "area": "Hoja1!C12",
+        "rent": "Hoja1!D12"
+      }
+    },
+    {
+      "source_row": 13,
+      "floor_original": 3,
+      "description_original": "1 dormitorio",
+      "area_m2": 40,
+      "monthly_rent_pyg": 1200000,
+      "source_cells": {
+        "floor": "Hoja1!A13",
+        "description": "Hoja1!B13",
+        "area": "Hoja1!C13",
+        "rent": "Hoja1!D13"
+      }
+    },
+    {
+      "source_row": 14,
+      "floor_original": "casa fondo",
+      "description_original": null,
+      "area_m2": 65,
+      "monthly_rent_pyg": 1500000,
+      "source_cells": {
+        "floor": "Hoja1!A14",
+        "description": "Hoja1!B14",
+        "area": "Hoja1!C14",
+        "rent": "Hoja1!D14"
+      }
+    }
+  ],
+  "totals": {
+    "area_formula": "=SUM(C3:C14)",
+    "area_cached": 592,
+    "area_cell": "Hoja1!C15",
+    "rent_formula": "=SUM(D3:D14)",
+    "rent_cached": 22200000,
+    "rent_cell": "Hoja1!D15"
+  },
+  "verification_status": "Verificado por Meridiano, sujeto a constancia en planos municipales",
+  "source_workbook_modified": false
+}
