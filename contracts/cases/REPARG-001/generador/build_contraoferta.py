@@ -161,16 +161,25 @@ def rule(doc, color=GOLD, sz=6, before=2, after=8):
     return p
 
 
-def field(p, instr, **kw):
-    r = run(p, "", **kw)
-    for tag, attr in (("w:fldChar", "begin"), ("w:instrText", instr), ("w:fldChar", "end")):
+def field(p, instr, placeholder="1", **kw):
+    # Campo completo (begin / instr / separate / resultado / end), cada parte en su propio
+    # run con la misma tipografía: si no, Word y LibreOffice muestran el número con el
+    # tamaño por defecto del documento en vez del del pie.
+    def parte(tag, attr=None, text=None):
+        r = run(p, "", **kw)
         el = OxmlElement(tag)
-        if tag == "w:fldChar":
+        if attr:
             el.set(qn("w:fldCharType"), attr)
-        else:
+        if text is not None:
             el.set(qn("xml:space"), "preserve")
-            el.text = attr
+            el.text = text
         r._element.append(el)
+
+    parte("w:fldChar", "begin")
+    parte("w:instrText", text=f" {instr} ")
+    parte("w:fldChar", "separate")
+    run(p, placeholder, **kw)
+    parte("w:fldChar", "end")
 
 
 def logo_bytes():
@@ -461,15 +470,14 @@ def build():
     cell_margins(f, top=0, bottom=0, left=300, right=300)
     firma(f.cell(0, 0), [("MABEL TORRICO", PET, True),
                          ("En representación de M.T. BAT S.A.", TEXTO, False),
-                         ("C.I. N.º ______________", TEXTO, False),
+                         ("C.I. N.º 2035707", TEXTO, False),
                          ("PARTE VENDEDORA", GOLD_D, True)])
     firma(f.cell(0, 1), [("MATÍAS MANZATO", PET, True),
                          ("C.I. N.º 9489984", TEXTO, False),
                          ("COMPRADOR / OFERENTE", GOLD_D, True)])
     firma(f.cell(1, 0), [("JUAN JOSÉ CASTILLO", PET, True),
-                         ("Broker Inmobiliario", TEXTO, True),
-                         ("MERIDIANO CAPITAL", PET, True),
-                         ("Inmobiliaria colocadora", GOLD_D, True)])
+                         ("C.I. N.º 9289273 · Broker Inmobiliario", TEXTO, False),
+                         ("INMOBILIARIA COLOCADORA", GOLD_D, True)])
     firma(f.cell(1, 1), [("LOURDES BARATTO", PET, True),
                          ("C.I. N.º 4480441", TEXTO, False),
                          ("ASESORA INMOBILIARIA", GOLD_D, True)])

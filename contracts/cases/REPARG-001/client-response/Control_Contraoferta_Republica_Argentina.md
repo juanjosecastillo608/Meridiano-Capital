@@ -5,6 +5,12 @@
 > Versión 3 (Ref. interna REPARG-001-CO01 · v3): 2026-10-22, con fecha de emisión **23 de octubre de 2026**.
 > Generador: `contracts/cases/REPARG-001/generador/build_contraoferta.py`.
 
+## 000. Versión 3.1: ajustes de firma y pie (2026-10-22, founder)
+
+- **Juan José Castillo**: C.I. N.º 9289273, informada por el founder. Por pedido del founder, la firma se acorta a 3 renglones: "JUAN JOSÉ CASTILLO / C.I. N.º 9289273 · Broker Inmobiliario / INMOBILIARIA COLOCADORA". Se quitó "MERIDIANO CAPITAL" de la firma (la marca sigue en el membrete y en el cuadro de intervinientes). "Inmobiliaria colocadora" pasa a mayúsculas, como el rol de los demás firmantes. Esta excepción a la firma canónica del encargo inicial la pidió expresamente el founder.
+- **Mabel Torrico**: C.I. N.º 2035707, informada por el founder. Queda resuelto ese pendiente.
+- **Pie de página**: el número de página se generaba con un campo incompleto y salía con el tamaño por defecto del documento. Ahora el campo está completo (begin/separate/resultado/end) y todo el pie usa Poppins de 7 pt.
+
 ## 00. Versión 3: correcciones del founder (2026-10-22) y formato del modelo Casa Herrera
 
 | Corrección pedida | Qué se hizo |
@@ -18,7 +24,7 @@ Resultado: 3 páginas A4 (carta y firmas en las páginas 1 y 2; recepción y res
 
 **El modelo `Carta oferta Modelo.pdf` (Casa Herrera) NO se versiona en este caso.** Contiene datos y la firma manuscrita de una clienta de otra operación (HERRERA-002). Solo se tomó su estructura; no se copió ningún dato, condición ni firma.
 
-Pendientes que siguen abiertos: redacción del IVA (§5), C.I. de Mabel Torrico (espacio en blanco en la firma) y los puntos de §6.
+Pendientes que siguen abiertos: redacción del IVA (§5) y los puntos de §6. (La C.I. de Mabel Torrico quedó resuelta en la v3.1.)
 
 ## 0. Cambios de la versión 2 respecto de la versión 1 (borrador del 2026-10-22)
 
