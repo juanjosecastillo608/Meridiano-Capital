@@ -2,10 +2,25 @@
 
 > **Documento interno de Meridiano Capital. NO se envía a las partes.**
 > Acompaña a `Respuesta_Contraoferta_Republica_Argentina_Meridiano.docx` / `.pdf`.
-> Versión 2: 2026-10-22, con fecha de emisión **23 de octubre de 2026**.
+> Versión 3 (Ref. interna REPARG-001-CO01 · v3): 2026-10-22, con fecha de emisión **23 de octubre de 2026**.
 > Generador: `contracts/cases/REPARG-001/generador/build_contraoferta.py`.
 
-## 0. Cambios respecto de la versión 1 (borrador del 2026-10-22)
+## 00. Versión 3: correcciones del founder (2026-10-22) y formato del modelo Casa Herrera
+
+| Corrección pedida | Qué se hizo |
+|---|---|
+| "Señor Matías Manzato" aparecía 2 veces en el encabezado | Destinatario una sola vez: "Señor / Matías Manzato / Presente". Se eliminó el saludo repetido "Señor Matías Manzato:" (en la observación del founder figuraba "Constanzo"; el nombre correcto, Manzato, no cambió) |
+| La frase "Meridiano Capital, a través de su broker inmobiliario Juan José Castillo, en su carácter de inmobiliaria colocadora, canaliza la respuesta comunicada por la parte vendedora" tenía demasiadas comas | Se dividió en frases cortas: "Por medio de la presente le transmitimos la respuesta de la parte vendedora a su propuesta formal de compra del 16 de octubre de 2026 por USD 700.000. Meridiano Capital actúa en esta operación como inmobiliaria colocadora a través de su broker inmobiliario Juan José Castillo." Se revisaron con el mismo criterio el párrafo del inmueble, el de intermediación, el del precio, la formalización y el alcance |
+| Lugar y espacio de firma para todos los intervinientes, con sus datos (según el modelo de Casa Herrera) | Bloque de firmas 2×2 en la página 2, junto al cierre: **Mabel Torrico** (en representación de M.T. BAT S.A., C.I. a completar, parte vendedora); **Matías Manzato** (C.I. 9489984, comprador/oferente); **Juan José Castillo** (Broker Inmobiliario, MERIDIANO CAPITAL, inmobiliaria colocadora); **Lourdes Baratto** (C.I. 4480441, asesora inmobiliaria). Una línea aclara que la vendedora firma en conformidad y el comprador en toma de conocimiento |
+| Formato del modelo | Título centrado con espaciado de letras, fecha y "Ref. interna" a la derecha, cuadro de intervinientes con etiquetas en petróleo, línea "Ref.:" centrada, secciones con títulos en serif ("Precio y forma de pago", "Condiciones de la operación", "Vigencia, respuesta y alcance"). Se agregó la página 3 **"Constancia de recepción"** + **"Respuesta de la parte compradora"** (acepta / rechaza / contrapropuesta, con firma, aclaración y C.I., fecha y hora), igual que en el modelo |
+
+Resultado: 3 páginas A4 (carta y firmas en las páginas 1 y 2; recepción y respuesta en la página 3).
+
+**El modelo `Carta oferta Modelo.pdf` (Casa Herrera) NO se versiona en este caso.** Contiene datos y la firma manuscrita de una clienta de otra operación (HERRERA-002). Solo se tomó su estructura; no se copió ningún dato, condición ni firma.
+
+Pendientes que siguen abiertos: redacción del IVA (§5), C.I. de Mabel Torrico (espacio en blanco en la firma) y los puntos de §6.
+
+## 0. Cambios de la versión 2 respecto de la versión 1 (borrador del 2026-10-22)
 
 | Tema | v1 | v2 | Fuente |
 |---|---|---|---|
@@ -109,13 +124,13 @@ Así la carta no fija por escrito una base incorrecta. Para el comprador no camb
 
 > "Siempre que se nombra a Meridiano y hay intermediación de venta se aclara que es a través de su broker inmobiliario Juan José Castillo."
 
-Se aplicó en cada mención de Meridiano dentro del cuerpo:
-- El cuadro de partes.
+En la v3 se aplica en cada una de las 4 menciones de Meridiano dentro del cuerpo:
+- El cuadro de intervinientes ("Meridiano Capital, a través de Juan José Castillo · Broker inmobiliario", formato del modelo).
 - La apertura.
 - El párrafo de intermediación.
-- La condición 9.
+- "Vigencia, respuesta y alcance".
 
-Se aplicó con la constante `MERIDIANO` del generador para que no haya variaciones. Excepciones deliberadas:
+En la v3 se redactó en frases cortas, sin la cadena de incisos entre comas que señaló el founder. Excepciones deliberadas:
 - El pie de página institucional (datos de contacto, no una mención de intermediación).
 - El bloque de firma, que ya nombra a Juan José Castillo.
 
@@ -139,8 +154,8 @@ El cierre se reformuló para no nombrar a Meridiano sin necesidad. **[EXTENSION]
 - [x] Fecha "Asunción, 23 de octubre de 2026" y vigencia de 30 días hábiles.
 - [x] Nombres, C.I. 9489984, Cta. Catastral 14-0322-17, M.T. BAT S.A., Sra. Mabel Torrico, Edificio Inox.
 - [x] Las 4 menciones de Meridiano en el cuerpo llevan "a través de su broker inmobiliario Juan José Castillo".
-- [x] La firma de JUAN JOSÉ CASTILLO va junto al cierre en la página 2, sin quedar sola.
-- [x] PDF A4 de 2 páginas. Se revisaron visualmente las dos y coinciden con el .docx (mismo generador; PDF exportado con LibreOffice).
+- [x] Firmas de los 4 intervinientes (vendedora, comprador, JJC, Lourdes Baratto) en la página 2, junto al cierre, sin quedar solas. Destinatario una sola vez. Constancia de recepción y respuesta en la página 3.
+- [x] PDF A4 de 3 páginas (v3). Se revisaron visualmente las tres y coinciden con el .docx (mismo generador; PDF exportado con LibreOffice).
 - [x] Sin errores de codificación; no aparecen USD 890.000, USD 45.100, Casa Herrera ni firmas de terceros.
 - [x] Barrido de PII de los documentos fuente: solo nombre y C.I., permitidos en `contracts/` por `PII_POLICY.md`; sin domicilios, emails, teléfonos ni RUC.
 - [ ] **No se envió a las partes**: queda para la decisión del founder (en particular §5).

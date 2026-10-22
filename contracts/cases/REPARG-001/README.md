@@ -13,7 +13,7 @@ Contiene PII de las partes (nombre y C.I.) dentro de lo que permite `governance/
 | 2026-10-16 | Propuesta formal de compra del oferente por USD 700.000 (250.000 a la aceptación + 450.000 contra escritura) |
 | s/f | Carta de presentación de cliente y reconocimiento de comisión por intermediación (5,5 %, 50/50 entre asesores). Tiene campos sin completar |
 | s/f (recibidas 2026-10-22) | Condiciones pactadas (`CONDICION_DE_COMPRA.docx`): USD 820.000 = reserva 82.000 + seña 168.000 + saldo 570.000 |
-| 2026-10-23 | Fecha de emisión de la respuesta y contraoferta (v2). **No enviada: pendiente de la decisión sobre la redacción del IVA** (ver control §5) |
+| 2026-10-23 | Fecha de emisión de la respuesta y contraoferta (v3: firmas de todos los intervinientes, constancia de recepción y respuesta, formato del modelo Casa Herrera). **No enviada: pendiente de la decisión sobre la redacción del IVA** (ver control §5) |
 
 ## Índice
 

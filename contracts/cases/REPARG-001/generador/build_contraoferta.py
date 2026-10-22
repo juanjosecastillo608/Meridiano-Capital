@@ -33,11 +33,11 @@ SERIF, SANS = "Fraunces", "Poppins"
 # Fuentes: CONDICIÓN DE COMPRA.docx (condiciones pactadas) y Carta de Presentación de
 # Cliente (Edificio Inox) — ver client-response/Control_Contraoferta_Republica_Argentina.md
 FECHA_EMISION = "23 de octubre de 2026"
+REF_INTERNA = "REPARG-001-CO01 · v3"
 PRECIO, RESERVA, SENA, SALDO = 820_000, 82_000, 168_000, 570_000
 assert RESERVA + SENA + SALDO == PRECIO
-# Regla del founder: si se nombra a Meridiano en una intermediación de venta, siempre
-# "a través de su broker inmobiliario Juan José Castillo".
-MERIDIANO = "Meridiano Capital, a través de su broker inmobiliario Juan José Castillo"
+# Regla del founder: si se nombra a Meridiano en una intermediación de venta, siempre se
+# aclara "a través de su broker inmobiliario Juan José Castillo" (frases cortas, sin incisos).
 
 
 def usd(n):
@@ -64,7 +64,7 @@ def para(doc_or_cell, text="", *, size=9, color=TEXTO, bold=False, italic=False,
     p = doc_or_cell.add_paragraph()
     pf = p.paragraph_format
     pf.space_before, pf.space_after = Pt(before), Pt(after)
-    pf.line_spacing = 1.06
+    pf.line_spacing = 1.04
     pf.alignment = align
     pf.keep_with_next = keep_next
     if text:
@@ -182,13 +182,82 @@ def logo_bytes():
 
 
 def condicion(doc, n, titulo, cuerpo):
-    p = para(doc, after=3)
+    p = para(doc, after=2)
     p.paragraph_format.left_indent = Cm(0.75)
     p.paragraph_format.first_line_indent = Cm(-0.75)
     run(p, f"{n}.\t", size=9, color=GOLD_D, bold=True)
     run(p, titulo + " ", size=9, color=PET, bold=True)
     run(p, cuerpo, size=9)
     p.paragraph_format.tab_stops.add_tab_stop(Cm(0.75))
+    return p
+
+
+def tracking(r, twips):
+    # Espaciado entre letras del titular (estilo del modelo de carta de oferta).
+    sp = OxmlElement("w:spacing")
+    sp.set(qn("w:val"), str(twips))
+    r._element.get_or_add_rPr().append(sp)
+
+
+def heading(doc, text, before=6):
+    # Encabezado de sección en serif, como el modelo ("Inmueble", "Precio", ...).
+    p = para(doc, text, font=SERIF, size=12, color=PET, align=WD_ALIGN_PARAGRAPH.LEFT,
+             before=before, after=3, keep_next=True)
+    pPr = p._p.get_or_add_pPr()
+    bdr = OxmlElement("w:pBdr")
+    bot = OxmlElement("w:bottom")
+    for k, v in (("val", "single"), ("sz", "4"), ("color", LINEA), ("space", "2")):
+        bot.set(qn(f"w:{k}"), v)
+    bdr.append(bot)
+    pPr.append(bdr)
+    return p
+
+
+def ficha(doc, filas, anchos=(5.0, 12.0), *, oscuro=True):
+    # Tabla etiqueta/valor: etiqueta en petróleo (o crema) y valor en negrita, como el modelo.
+    t = doc.add_table(rows=len(filas), cols=2)
+    borders(t)
+    cell_margins(t, top=30, bottom=30)
+    t.alignment = WD_TABLE_ALIGNMENT.CENTER
+    for i, (k, v) in enumerate(filas):
+        shade(t.cell(i, 0), PET if oscuro else CREMA)
+        cell_text(t.cell(i, 0), k.upper(), size=7.5, color="FFFFFF" if oscuro else PET, bold=True)
+        cell_text(t.cell(i, 1), v, size=8.5, bold=oscuro, color=PET if oscuro else TEXTO)
+        cant_split(t.rows[i])
+    widths(t, list(anchos))
+    return t
+
+
+def firma(cell, lineas):
+    # Espacio en blanco para firmar + línea + datos del firmante.
+    # lineas: [(texto, color, negrita)]; la primera es el nombre.
+    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
+    p = cell.paragraphs[0]
+    p.paragraph_format.space_before = Pt(20)
+    p.paragraph_format.space_after = Pt(0)
+    p.paragraph_format.keep_with_next = True
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    pPr = p._p.get_or_add_pPr()
+    bdr = OxmlElement("w:pBdr")
+    top = OxmlElement("w:top")
+    for k, v in (("val", "single"), ("sz", "6"), ("color", PET), ("space", "4")):
+        top.set(qn(f"w:{k}"), v)
+    bdr.append(top)
+    pPr.append(bdr)
+    texto, color, negrita = lineas[0]
+    run(p, texto, size=9.5, color=color, bold=negrita)
+    for i, (texto, color, negrita) in enumerate(lineas[1:], start=1):
+        q = cell.add_paragraph()
+        q.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        q.paragraph_format.space_after = Pt(0)
+        q.paragraph_format.keep_with_next = i < len(lineas) - 1
+        run(q, texto, size=8, color=color, bold=negrita)
+
+
+def opcion(doc, texto):
+    p = para(doc, after=3, align=WD_ALIGN_PARAGRAPH.LEFT)
+    run(p, "☐  ", size=10, color=PET)
+    run(p, texto, size=9)
     return p
 
 
@@ -206,20 +275,14 @@ def build():
 
     # ---------- Encabezado: logo ----------
     hdr = sec.header
-    ht = hdr.add_table(rows=1, cols=2, width=Cm(17.0))
-    widths(ht, [10.0, 7.0])
-    lp = ht.cell(0, 0).paragraphs[0]
+    lp = hdr.paragraphs[0]
     lp.add_run().add_picture(logo_bytes(), height=Cm(1.0))
-    rp = ht.cell(0, 1).paragraphs[0]
-    rp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run(rp, "EDIFICIO INOX · REPÚBLICA ARGENTINA", size=7.5, color=GOLD_D, bold=True)
-    ht.cell(0, 1).vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
     hrule = hdr.add_paragraph()
     hrule.paragraph_format.space_after = Pt(0)
     pPr = hrule._p.get_or_add_pPr()
     bdr = OxmlElement("w:pBdr")
     bot = OxmlElement("w:bottom")
-    for k, v in (("val", "single"), ("sz", "4"), ("color", LINEA)):
+    for k, v in (("val", "single"), ("sz", "4"), ("color", GOLD)):
         bot.set(qn(f"w:{k}"), v)
     bdr.append(bot)
     pPr.append(bdr)
@@ -236,73 +299,63 @@ def build():
     run(fp2, " de ", size=7, color=GREY)
     field(fp2, "NUMPAGES", size=7, color=GREY)
 
+    # ---------- Título centrado (estilo del modelo) ----------
+    p = para(doc, align=WD_ALIGN_PARAGRAPH.CENTER, before=4, after=1)
+    tracking(run(p, "RESPUESTA A PROPUESTA DE COMPRA Y CONTRAOFERTA", font=SERIF, size=14.5,
+                 color=PET), 30)
+    para(doc, "Edificio Inox · Avda. República Argentina esquina Tobatí · Asunción",
+         size=9.5, color=GREY, align=WD_ALIGN_PARAGRAPH.CENTER, after=0)
+    rule(doc, color=LINEA, sz=4, after=4)
+
     # ---------- Lugar, fecha y referencia ----------
-    p = para(doc, align=WD_ALIGN_PARAGRAPH.RIGHT, after=1)
-    run(p, f"Asunción, {FECHA_EMISION}", size=9.5, color=GREY)
-    p = para(doc, align=WD_ALIGN_PARAGRAPH.RIGHT, after=6)
-    run(p, "Ref.: Propuesta formal de compra del 16 de octubre de 2026 por USD 700.000",
-        size=8.5, color=GREY, italic=True)
+    para(doc, f"Asunción, {FECHA_EMISION}", size=9.5, color=GOLD_D,
+         align=WD_ALIGN_PARAGRAPH.RIGHT, after=0)
+    para(doc, f"Ref. interna: {REF_INTERNA}", size=7.5, color=GREY,
+         align=WD_ALIGN_PARAGRAPH.RIGHT, after=6)
 
-    # ---------- Título ----------
-    para(doc, "RESPUESTA A PROPUESTA DE COMPRA Y CONTRAOFERTA", font=SERIF, size=15.5,
-         color=PET, align=WD_ALIGN_PARAGRAPH.LEFT, after=1)
-    para(doc, "Edificio Inox — República Argentina esquina Tobatí, Asunción", font=SERIF,
-         size=11.5, color=GOLD_D, align=WD_ALIGN_PARAGRAPH.LEFT, after=0)
-    rule(doc, after=5)
+    # ---------- Intervinientes ----------
+    ficha(doc, [
+        ("Comprador / oferente", "Matías Manzato · C.I. N.º 9489984"),
+        ("Parte vendedora", "M.T. BAT Sociedad Anónima · representante: Sra. Mabel Torrico"),
+        ("Inmobiliaria colocadora", "Meridiano Capital, a través de Juan José Castillo · "
+                                    "Broker inmobiliario"),
+        ("Asesora inmobiliaria", "Lourdes Baratto"),
+    ])
 
-    # ---------- Cuadro de partes ----------
-    filas = [
-        ("Comprador y oferente", "Matías Manzato — C.I. N.º 9489984"),
-        ("Parte vendedora", "M.T. BAT Sociedad Anónima — representante: Sra. Mabel Torrico"),
-        ("Inmueble", "Edificio Inox, edificio mixto de departamentos y locales comerciales — Avda. "
-                     "República Argentina esquina Tobatí, Asunción — Cta. Cte. Catastral N.º 14-0322-17"),
-        ("Inmobiliaria colocadora", MERIDIANO),
-    ]
-    t = doc.add_table(rows=len(filas), cols=2)
-    borders(t)
-    cell_margins(t, top=28, bottom=28)
-    t.alignment = WD_TABLE_ALIGNMENT.CENTER
-    for i, (k, v) in enumerate(filas):
-        shade(t.cell(i, 0), CREMA)
-        cell_text(t.cell(i, 0), k.upper(), size=7.5, color=PET, bold=True)
-        cell_text(t.cell(i, 1), v, size=8.5)
-        cant_split(t.rows[i])
-    widths(t, [4.2, 12.8])
+    # ---------- Destinatario (una sola vez) ----------
+    para(doc, "Señor", align=WD_ALIGN_PARAGRAPH.LEFT, before=8, after=0)
+    para(doc, "Matías Manzato", color=PET, bold=True, align=WD_ALIGN_PARAGRAPH.LEFT, after=0)
+    para(doc, "Presente", align=WD_ALIGN_PARAGRAPH.LEFT, after=6)
+    para(doc, "Ref.: Respuesta a su propuesta de compra del 16 de octubre de 2026 – Edificio Inox, "
+              "Asunción", color=PET, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, after=6)
 
-    # ---------- Destinatario ----------
-    p = para(doc, before=7, after=0, align=WD_ALIGN_PARAGRAPH.LEFT)
-    run(p, "Señor ", size=9.5)
-    run(p, "Matías Manzato", size=9.5, color=PET, bold=True)
-    run(p, " — C.I. N.º 9489984", size=9.5)
-    para(doc, "Presente", align=WD_ALIGN_PARAGRAPH.LEFT, after=0)
-    para(doc, "Señor Matías Manzato:", before=7, after=4, align=WD_ALIGN_PARAGRAPH.LEFT)
+    # ---------- Apertura (frases cortas, sin cadenas de incisos) ----------
+    def cuerpo(texto, after=5):
+        q = para(doc, texto, after=after)
+        q.paragraph_format.first_line_indent = Cm(1.0)
+        return q
 
-    # ---------- Apertura ----------
-    para(doc,
-         "En relación con su propuesta formal de compra de fecha 16 de octubre de 2026, por "
-         "USD 700.000, correspondiente al Edificio Inox, ubicado en Avda. República Argentina "
-         "esquina Tobatí de Asunción, identificado con Cuenta Corriente Catastral N.º 14-0322-17, "
-         "propiedad de M.T. BAT Sociedad Anónima, cuya representante identificada es la señora "
-         f"Mabel Torrico, {MERIDIANO}, en su carácter de inmobiliaria colocadora, canaliza la "
-         "respuesta comunicada por la parte vendedora.", after=5)
-    para(doc,
-         "Su presentación como interesado consta en la carta de presentación de cliente y "
-         "reconocimiento de comisión por intermediación dirigida a la parte vendedora, en la que "
-         "se deja constancia de la intermediación de ambos asesores inmobiliarios intervinientes: "
-         f"la señora Lourdes Baratto y {MERIDIANO}.", after=5)
-    para(doc,
-         "En consideración de los presupuestos y las necesidades de remodelación planteadas por la "
-         "parte compradora para la regularización de planos y los arreglos básicos del edificio, la "
-         "parte vendedora acepta reducir el precio de venta a USD 820.000 (ochocientos veinte mil "
-         "dólares estadounidenses), conforme a las condiciones que se detallan a continuación. "
-         "La reducción no implica que la parte vendedora asuma la ejecución ni el costo de dichas "
-         "reformas o regularizaciones.", after=6)
+    cuerpo("Por medio de la presente le transmitimos la respuesta de la parte vendedora a su "
+           "propuesta formal de compra del 16 de octubre de 2026 por USD 700.000. "
+           "Meridiano Capital actúa en esta operación como inmobiliaria colocadora a través de su "
+           "broker inmobiliario Juan José Castillo.")
+    cuerpo("Su propuesta se refiere al Edificio Inox, ubicado en Avda. República Argentina esquina "
+           "Tobatí de Asunción e identificado con la Cuenta Corriente Catastral N.º 14-0322-17. "
+           "El inmueble es propiedad de M.T. BAT Sociedad Anónima, representada por la señora "
+           "Mabel Torrico.")
+    cuerpo("Su presentación como interesado consta en la carta de presentación de cliente y "
+           "reconocimiento de comisión dirigida a la parte vendedora. Esa carta deja constancia de "
+           "la intermediación de los dos asesores inmobiliarios intervinientes: la señora Lourdes "
+           "Baratto y Meridiano Capital a través de su broker inmobiliario Juan José Castillo.")
+    cuerpo("La parte vendedora tuvo en cuenta los presupuestos y las necesidades de remodelación "
+           "que usted planteó para regularizar los planos y realizar los arreglos básicos del "
+           "edificio. En consideración de ello, acepta reducir el precio de venta a USD 820.000 "
+           "(ochocientos veinte mil dólares estadounidenses) en las condiciones que se detallan a "
+           "continuación. La reducción no implica que la parte vendedora asuma la ejecución ni el "
+           "costo de esas reformas o regularizaciones.", after=2)
 
-    # ---------- 1. Precio y forma de pago ----------
-    p = para(doc, after=4, keep_next=True)
-    run(p, "1.  ", size=9.5, color=GOLD_D, bold=True)
-    run(p, "Precio y forma de pago", size=9.5, color=PET, bold=True)
-
+    # ---------- Precio y forma de pago ----------
+    heading(doc, "Precio y forma de pago")
     filas_pago = [
         ("Reserva", "Ochenta y dos mil dólares estadounidenses",
          "Una vez aceptada la presente propuesta, mediante transferencia bancaria a la cuenta "
@@ -345,84 +398,121 @@ def build():
         cant_split(r)
     widths(pagos, [4.6, 9.2, 3.2])
     keep_together(pagos)
-
-    para(doc,
-         "La reserva y la seña de trato se imputan íntegramente al precio. El saldo de USD 570.000 "
-         "sustituye al saldo de USD 450.000 previsto en su propuesta.", before=4, after=6)
+    para(doc, "La reserva y la seña de trato se imputan íntegramente al precio. El saldo de "
+              "USD 570.000 sustituye al saldo de USD 450.000 previsto en su propuesta.",
+         before=4, after=2)
 
     # ---------- Condiciones ----------
-    p = para(doc, after=4, keep_next=True)
-    run(p, "Condiciones de la operación", size=9.5, color=PET, bold=True)
-    condicion(doc, 2, "Comisión inmobiliaria.",
+    heading(doc, "Condiciones de la operación")
+    condicion(doc, 1, "Comisión inmobiliaria.",
               "La comisión inmobiliaria del 5,5 % (cinco coma cinco por ciento) será abonada en un "
               "100 % por la parte vendedora.")
-    condicion(doc, 3, "Gastos de transferencia.",
+    condicion(doc, 2, "Gastos de transferencia.",
               "Los gastos de transferencia serán pagados en un 50 % por la parte compradora y en un "
               "50 % por la parte vendedora. Este reparto es independiente de los impuestos "
               "indicados en los puntos siguientes.")
-    condicion(doc, 4, "IVA.",
-              "El IVA correspondiente a la venta del inmueble, a la tasa del 5 % aplicable a la "
-              "enajenación de inmuebles, será pagado por la parte vendedora, como lo establece la "
-              "ley. No se adiciona al precio de USD 820.000.")
-    condicion(doc, 5, "Impuestos inmobiliarios.",
-              "Los impuestos inmobiliarios deben estar al día, a cargo de la parte vendedora, como "
-              "lo establece la ley.")
-    condicion(doc, 6, "Aprobación bancaria.",
+    condicion(doc, 3, "IVA.",
+              "El IVA correspondiente a la venta del inmueble será pagado por la parte vendedora a "
+              "la tasa del 5 % aplicable a la enajenación de inmuebles, como lo establece la ley. "
+              "No se adiciona al precio de USD 820.000.")
+    condicion(doc, 4, "Impuestos inmobiliarios.",
+              "Los impuestos inmobiliarios deben estar al día y son a cargo de la parte vendedora, "
+              "como lo establece la ley.")
+    condicion(doc, 5, "Aprobación bancaria.",
               "Toda la operación y las transferencias estarán sujetas a la aprobación del banco "
-              "interviniente. La parte vendedora se compromete a facilitar y gestionar, de común "
-              "acuerdo, toda la información y documentación necesaria que soliciten los bancos "
+              "interviniente. La parte vendedora se compromete a facilitar y gestionar de común "
+              "acuerdo toda la información y la documentación que soliciten los bancos "
               "intervinientes en las transferencias.")
-    condicion(doc, 7, "Acompañamiento de transición.",
+    condicion(doc, 6, "Acompañamiento de transición.",
               "La parte vendedora se compromete a acompañar a la parte compradora durante seis (6) "
-              "meses desde la compra, brindando toda la información y el conocimiento necesarios "
-              "para el traspaso de la documentación y de la gestión de locación del edificio. Este "
-              "acompañamiento tiene carácter informativo y de transición; no constituye garantía de "
-              "renta, administración del edificio, cobranza ni responsabilidad por las decisiones "
+              "meses desde la compra. Brindará toda la información y el conocimiento necesarios para "
+              "el traspaso de la documentación y de la gestión de locación del edificio. Este "
+              "acompañamiento es informativo y de transición: no constituye garantía de renta, "
+              "administración del edificio ni cobranza, ni responsabilidad por las decisiones "
               "futuras de la parte compradora.")
-    condicion(doc, 8, "Verificación documental.",
-              "Conforme a su propuesta, la operación continúa sujeta a la verificación de la "
-              "documentación de dominio del inmueble y de que este se encuentre libre de gravámenes, "
-              "sin que la presente implique que dicha verificación ya se haya realizado.")
-    condicion(doc, 9, "Formalización.",
-              "Las condiciones aquí comunicadas deberán instrumentarse por escrito y ser suscritas "
-              "por la parte compradora y por la parte vendedora, esta última por medio de quien "
-              f"acredite facultades suficientes. {MERIDIANO}, en su carácter de inmobiliaria "
-              "colocadora, canaliza esta respuesta sin ejercer representación legal de ninguna de "
-              "las partes ni obligar a M.T. BAT Sociedad Anónima.")
+    condicion(doc, 7, "Verificación documental.",
+              "Conforme a su propuesta, la operación sigue sujeta a la verificación de la "
+              "documentación de dominio del inmueble y de que se encuentre libre de gravámenes. "
+              "La presente no implica que esa verificación ya se haya realizado.")
+    condicion(doc, 8, "Formalización.",
+              "Las condiciones aquí comunicadas deberán instrumentarse por escrito y ser firmadas "
+              "por la parte compradora y por la parte vendedora. Por la parte vendedora firmará "
+              "quien acredite facultades suficientes.")
 
-    # ---------- Vigencia ----------
-    v = doc.add_table(rows=1, cols=1)
-    borders(v, color=GOLD, sz=6, inside=False)
-    cell_margins(v, top=45, bottom=45, left=140, right=140)
-    shade(v.cell(0, 0), FILA)
-    vp = v.cell(0, 0).paragraphs[0]
-    vp.paragraph_format.space_after = Pt(0)
-    run(vp, "Vigencia: ", size=9.5, color=PET, bold=True)
-    run(vp, f"la presente propuesta tiene una validez de 30 días hábiles a partir de su fecha de "
-            f"emisión ({FECHA_EMISION}).", size=9.5)
-    widths(v, [17.0])
+    # ---------- Vigencia, respuesta y alcance ----------
+    heading(doc, "Vigencia, respuesta y alcance")
+    para(doc, "La presente propuesta tiene una validez de 30 (treinta) días hábiles a partir de su "
+              f"fecha de emisión, el {FECHA_EMISION}. La parte compradora comunicará su respuesta "
+              "por escrito mediante el formulario adjunto a la presente.", after=4)
+    para(doc, "Meridiano Capital interviene como inmobiliaria colocadora a través de su broker "
+              "inmobiliario Juan José Castillo, con la función de presentar y canalizar esta "
+              "respuesta. Ninguno de los asesores inmobiliarios intervinientes representa "
+              "legalmente a las partes ni está facultado para obligar a M.T. BAT Sociedad Anónima, "
+              "aceptar en nombre de la parte compradora o recibir fondos de la operación.", after=4)
+    para(doc, "Sin otro particular y aguardando una respuesta favorable, le saludamos "
+              "atentamente.", after=3, keep_next=True)
 
-    # ---------- Cierre + firma (bloque indivisible) ----------
-    para(doc,
-         "Quedamos a su disposición para recibir su conformidad y coordinar con ambas partes los "
-         "pasos de instrumentación de la operación, junto con los profesionales que intervengan en "
-         "su formalización. Esperando una respuesta favorable, le saludamos muy atentamente.",
-         before=7, after=20, keep_next=True, align=WD_ALIGN_PARAGRAPH.LEFT)
-    p = para(doc, align=WD_ALIGN_PARAGRAPH.LEFT, after=0, keep_next=True)
-    p.paragraph_format.left_indent = Cm(9.8)
-    pPr = p._p.get_or_add_pPr()
-    bdr = OxmlElement("w:pBdr")
-    top = OxmlElement("w:top")
-    for k, val in (("val", "single"), ("sz", "6"), ("color", PET), ("space", "4")):
-        top.set(qn(f"w:{k}"), val)
-    bdr.append(top)
-    pPr.append(bdr)
-    run(p, "JUAN JOSÉ CASTILLO", size=10.5, color=PET, bold=True)
-    for i, (txt, col) in enumerate((("Broker Inmobiliario", TEXTO), ("MERIDIANO CAPITAL", PET),
-                                     ("Inmobiliaria colocadora", GOLD_D))):
-        q = para(doc, txt, size=9, color=col, bold=True, align=WD_ALIGN_PARAGRAPH.LEFT, after=0,
-                 keep_next=i < 2)
-        q.paragraph_format.left_indent = Cm(9.8)
+    # ---------- Firmas de los intervinientes ----------
+    para(doc, "Firmas de los intervinientes. La parte vendedora firma en conformidad con estas "
+              "condiciones; la parte compradora, en toma de conocimiento.", size=8,
+         color=GREY, italic=True, after=0, keep_next=True, align=WD_ALIGN_PARAGRAPH.LEFT)
+    f = doc.add_table(rows=2, cols=2)
+    f.alignment = WD_TABLE_ALIGNMENT.CENTER
+    cell_margins(f, top=0, bottom=0, left=300, right=300)
+    firma(f.cell(0, 0), [("MABEL TORRICO", PET, True),
+                         ("En representación de M.T. BAT S.A.", TEXTO, False),
+                         ("C.I. N.º ______________", TEXTO, False),
+                         ("PARTE VENDEDORA", GOLD_D, True)])
+    firma(f.cell(0, 1), [("MATÍAS MANZATO", PET, True),
+                         ("C.I. N.º 9489984", TEXTO, False),
+                         ("COMPRADOR / OFERENTE", GOLD_D, True)])
+    firma(f.cell(1, 0), [("JUAN JOSÉ CASTILLO", PET, True),
+                         ("Broker Inmobiliario", TEXTO, True),
+                         ("MERIDIANO CAPITAL", PET, True),
+                         ("Inmobiliaria colocadora", GOLD_D, True)])
+    firma(f.cell(1, 1), [("LOURDES BARATTO", PET, True),
+                         ("C.I. N.º 4480441", TEXTO, False),
+                         ("ASESORA INMOBILIARIA", GOLD_D, True)])
+    for r in f.rows:
+        cant_split(r)
+    widths(f, [8.5, 8.5])
+    keep_together(f)
+
+    # ---------- Página de recepción y respuesta de la parte compradora ----------
+    # Salto con page_break_before (no un párrafo de salto): evita que el keep_with_next de
+    # las firmas arrastre todo el bloque a la página siguiente.
+    heading(doc, "Constancia de recepción", before=0).paragraph_format.page_break_before = True
+    para(doc, "Recibí copia de esta respuesta y contraoferta. Esta constancia acredita únicamente "
+              "la recepción y no implica aceptación.", after=5)
+    ficha(doc, [
+        ("Fecha y hora de recepción", "____ / ____ / ________ · ____ : ____ hs (hora de Asunción)"),
+        ("Firma", ""),
+        ("Aclaración y documento", "Matías Manzato · C.I. N.º 9489984"),
+    ], oscuro=False)
+
+    heading(doc, "Respuesta de la parte compradora", before=14)
+    para(doc, "Marcar una sola opción:", after=3, align=WD_ALIGN_PARAGRAPH.LEFT)
+    opcion(doc, "Acepto íntegramente la contraoferta en los términos de esta carta.")
+    opcion(doc, "Rechazo la contraoferta.")
+    opcion(doc, "Formulo la siguiente contrapropuesta (no implica aceptación de los términos de "
+                "esta carta):")
+    caja = doc.add_table(rows=1, cols=1)
+    borders(caja, inside=False)
+    caja.rows[0].height = Cm(3.2)
+    widths(caja, [17.0])
+    para(doc, "En caso de aceptación, las partes instrumentarán la operación por escrito conforme a "
+              "las condiciones detalladas en esta carta, con la intervención de los asesores "
+              "inmobiliarios y de la escribanía que corresponda.", before=8, after=5)
+    ficha(doc, [
+        ("Firma", ""),
+        ("Aclaración y C.I. N.º", "Matías Manzato · C.I. N.º 9489984"),
+        ("Fecha y hora", "____ / ____ / ________ · ____ : ____ hs (hora de Asunción)"),
+    ], oscuro=False)
+    for t in (doc.tables[-1], doc.tables[-3]):
+        for r in t.rows:
+            if r.cells[0].text.strip().upper() == "FIRMA":
+                r.height = Cm(1.3)
+
 
     SALIDA.mkdir(parents=True, exist_ok=True)
     out = SALIDA / NOMBRE
