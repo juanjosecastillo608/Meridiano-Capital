@@ -467,6 +467,7 @@ def render(f, salida: Path, estado):
         filas = []
         if pr.get("solicitado"):
             filas.append(("Precio de venta publicado (referencia)", pr["solicitado"]))
+        filas += [tuple(x) for x in pr.get("referencias", [])]  # p. ej. oferta anterior no aceptada
         imp = pr["ofertado_importe"]
         filas.append(("Precio ofertado", f"{pr.get('moneda', 'Gs')} {fmt_miles(imp) if isinstance(imp, int) else imp} "
                                          f"({pr.get('ofertado_letras', '[PENDIENTE: en letras]')})"))

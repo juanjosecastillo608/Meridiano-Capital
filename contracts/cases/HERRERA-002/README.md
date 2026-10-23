@@ -5,7 +5,19 @@ Compraventa de una casa en Gral. Carlos Díaz León N° 3126, Barrio Herrera, As
 > Es un caso independiente de `HERRERA-001` (edificio inconcluso, otro vendedor): no comparten datos.
 > PII según `governance/PII_POLICY.md`: solo nombre, rol y documento de las partes. Los documentos fuente (boleta municipal 2016, foto de cédula) **no se versionan**.
 
-## Estado: 🟢 Carta de oferta v3 LISTA PARA FIRMA (no significa firmada ni aceptada)
+## Estado: 🟢 Contraoferta OF02 LISTA PARA FIRMA (23-10-2026)
+
+La propietaria **no aceptó** la oferta OF01 (Gs 1.000.000.000). La compradora mejora su oferta a **Gs 1.120.000.000** (+12 %) en la carta `HERRERA-002-OF02`, que mantiene sin cambios las condiciones de OF01 v3 revisadas por el escribano. Comisión: 5,5 % con IVA incluido = Gs 61.600.000. Vigencia: 7 días corridos desde la recepción.
+
+⚠️ Antes de enviarla hay que confirmar que el préstamo pre-aprobado cubre Gs 1.120 millones. La carta sigue diciendo que la compra se financia en su totalidad con ese préstamo.
+
+| Archivo | Contenido |
+|---|---|
+| `carta-oferta/ficha_HERRERA-002-OF02_v1.yaml` | **Ficha vigente** de la contraoferta |
+| `carta-oferta/02_Carta_Oferta_HERRERA-002-OF02_v1.docx` / `.pdf` | **Carta de contraoferta — LISTA PARA FIRMA** |
+| `carta-oferta/03_Control_Oferta_HERRERA-002-OF02_v1.md` | Control automático + observaciones |
+
+## Antecedente: oferta OF01 v3 (13-10-2026, no aceptada)
 
 El escribano revisó la v2 sin observaciones (founder, 13-10-2026). La v3 solo cambia la forma: subtítulo en la tipografía de cuerpo, párrafo de intervención en negro y Juan José Castillo como Broker inmobiliario (D-097).
 

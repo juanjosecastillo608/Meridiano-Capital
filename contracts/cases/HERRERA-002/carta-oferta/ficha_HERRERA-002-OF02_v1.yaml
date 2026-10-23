@@ -1,0 +1,150 @@
+# Ficha de carta de CONTRAOFERTA — HERRERA-002-OF02 v1 (mejora de la oferta OF01 no aceptada)
+# Generar con:
+#   python production/generadores/cartas_oferta/generar_carta_oferta.py contracts/cases/HERRERA-002/carta-oferta/ficha_HERRERA-002-OF02_v1.yaml
+# Fuentes: E1 boleta municipal 2016, E2 cédula de la oferente, E3 instrucciones del founder (13-10-2026, dos mensajes).
+
+codigo: HERRERA-002-OF02
+version: 1
+tipo: compra
+rol_meridiano: CAPTADOR
+mandato_documentado: false
+revision_juridica_ok: true   # mismas condiciones que OF01 v3, revisadas por el escribano; solo cambia el precio
+ciudad: Asunción
+fecha: 2026-10-23
+titulo: CARTA DE CONTRAOFERTA DE COMPRA
+
+subtitulo: "Casa · Gral. Carlos Díaz León N° 3126 · Barrio Herrera"
+destinatario:
+  - Señora
+  - Andrea Elizabeth Cáceres de Ruiz
+  - Presente
+
+presenta: "Meridiano Capital, a través de Juan José Castillo · Broker inmobiliario (captador)"
+proponente:
+  etiqueta: "Oferente / compradora"
+  nombre: Ana Liesel Guggiari Niederberger
+  documento: "C.I. N° 3.209.470"
+bloque_partes_extra:
+  - ["Colocador", "Supremo EAS, a través de Mario Luis Dávalos Díaz"]
+
+referencia: "Contraoferta de compra – Mejora de la oferta del 13 de octubre de 2026 – Casa en Gral. Carlos Díaz León N° 3126, Barrio Herrera"
+
+parrafos_intro:
+  - >-
+    Con referencia a la oferta de compra de fecha 13 de octubre de 2026, por Gs 1.000.000.000 (mil
+    millones de guaraníes), que no fue aceptada por la parte vendedora, la señora Ana Liesel Guggiari
+    Niederberger, con Cédula de Identidad paraguaya N° 3.209.470, presentada por Supremo EAS a través de
+    su agente Mario Luis Dávalos Díaz, mejora su propuesta y formula la presente contraoferta de compra
+    del inmueble de su propiedad que se describe a continuación, la cual Meridiano Capital canaliza y
+    somete a su consideración.
+  - >-
+    La contraoferta modifica únicamente el precio. Todas las demás condiciones de la oferta anterior se
+    mantienen sin cambios y se transcriben a continuación para que la presente sea completa en sí misma.
+
+titulo_inmueble: Inmueble objeto de la oferta
+inmueble:
+  - ["Tipo", "Casa"]
+  - ["Ubicación", "Gral. Carlos Díaz León N° 3126, Barrio Herrera, Asunción"]
+  - ["Cuenta corriente catastral", "14-0504-18-0"]
+  - ["Superficie de terreno", "402 m² (según registro municipal)"]
+  - ["Superficie edificada", "112 m² (según registro municipal)"]
+
+precio:
+  solicitado: "USD 220.000 (doscientos veinte mil dólares estadounidenses)"
+  referencias:
+    - ["Oferta anterior (13-10-2026, no aceptada)", "Gs 1.000.000.000 (mil millones de guaraníes)"]
+  ofertado_importe: 1120000000
+  moneda: Gs
+  ofertado_letras: "mil ciento veinte millones de guaraníes"
+  nota: >-
+    La oferta se formula y se pagará íntegramente en guaraníes. El precio ofertado es una suma fija
+    en guaraníes y no se ajustará por variaciones del tipo de cambio.
+
+pagos:
+  - concepto: "Seña (opcional)"
+    importe: "A convenir"
+    hito: "A convenir por escrito entre las partes"
+    condicion: "Pago a cuenta, se imputa al precio"
+    complementa_al_total: true
+  - concepto: "Préstamo bancario pre-aprobado"
+    importe: "1.120.000.000, menos la seña si se conviene"
+    hito: "Firma de la escritura, en el plazo que defina el banco"
+    condicion: "Sujeto a la aprobación definitiva del préstamo"
+    complementa_al_total: true
+notas_pago:
+  - >-
+    En caso de convenirse una seña, su importe, forma de pago, receptor y condiciones de devolución o
+    retención se acordarán por escrito entre las partes antes de su entrega.
+
+condiciones:
+  - titulo: Financiación
+    texto: >-
+      La compra se financia en su totalidad con un préstamo bancario en guaraníes pre-aprobado a
+      favor de la compradora, y queda sujeta a la aprobación definitiva de dicho préstamo por la
+      entidad financiera.
+  - titulo: Escritura
+    texto: >-
+      La escritura pública traslativa de dominio se otorgará en el plazo que establezca la entidad
+      financiera para el desembolso del préstamo.
+  - titulo: Entrega de la posesión
+    texto: La posesión del inmueble se entregará a la compradora contra la cancelación total del precio.
+  - titulo: Gastos de escritura
+    texto: Los gastos de escrituración estarán a cargo de la compradora.
+  - titulo: Impuestos y comisión
+    texto: >-
+      El impuesto a las transacciones y el IVA que correspondan a la venta, así como la comisión de
+      intermediación, estarán a cargo de la parte vendedora.
+
+vigencia:
+  dias: 7
+  tipo: corridos
+  desde: "la fecha de su presentación, consignada en la constancia de recepción adjunta"
+  canal: "La parte vendedora comunicará su respuesta por escrito, mediante el formulario de respuesta adjunto a la presente."
+  fecha_presentacion: 2026-10-23   # SUPUESTO para el cálculo: si se presenta otro día, vence 7 días después de esa fecha
+
+efecto_aceptacion: >-
+  La aceptación por escrito de la presente oferta expresa la conformidad de la parte vendedora con el
+  precio y las condiciones aquí detallados. La compraventa quedará sujeta a la aprobación definitiva
+  del préstamo bancario y se instrumentará mediante la escritura pública correspondiente.
+
+intervencion: >-
+  Meridiano Capital interviene como inmobiliaria captadora del lado de la parte vendedora, a través de
+  Juan José Castillo, en su carácter de broker inmobiliario, en la presentación y canalización de esta
+  oferta. Supremo EAS interviene como inmobiliaria colocadora, a través de su agente Mario Luis Dávalos
+  Díaz. Ninguna de las inmobiliarias intervinientes está facultada, por su sola intervención, para
+  aceptar la oferta en nombre de la parte vendedora, firmar por la oferente ni recibir fondos.
+
+firmas:
+  - nombre: Ana Liesel Guggiari Niederberger
+    documento: "C.I. N° 3.209.470"
+    cargo: Oferente / compradora
+  - nombre: Lic. Juan José Castillo
+    cargo: Broker inmobiliario
+    entidad: MERIDIANO CAPITAL
+
+comision:
+  porcentaje: 5.5
+  iva_incluido: true
+  a_cargo_de: la parte vendedora
+
+respuesta:
+  habilitada: true
+  parte: parte vendedora
+  texto_aceptacion: >-
+    En caso de aceptación, la parte vendedora reconoce la intervención de Meridiano Capital y de
+    Supremo EAS en esta operación y asume el pago de la comisión de intermediación del cinco coma cinco
+    por ciento (5,5 %), IVA incluido, sobre el precio de venta, equivalente a Gs 61.600.000 (sesenta
+    y un millones seiscientos mil guaraníes), así como el impuesto a las transacciones y el IVA que correspondan
+    a la venta.
+  campos:
+    - Firma
+    - Aclaración y C.I. N°
+    - ["Fecha y hora", "____ / ____ / ______  ·  ____ : ____ hs (hora de Asunción)"]
+
+observaciones:
+  - "Contexto (founder, 23-10-2026): la propietaria no aceptó la oferta OF01 de Gs 1.000.000.000. La compradora mejora a Gs 1.120.000.000 (+Gs 120.000.000, +12 %). No se informó si la propietaria hizo una contraoferta con un precio propio; si la hubo, conviene registrarla en el caso."
+  - "VERIFICAR ANTES DE ENVIAR: la carta mantiene que la compra se financia en su totalidad con el préstamo pre-aprobado. Ese préstamo se pre-aprobó con la oferta de Gs 1.000 millones. Confirmar que cubre Gs 1.120 millones (o lo que corresponda, menos la seña); si no alcanza, la diferencia sale de fondos propios y hay que ajustar la cláusula de financiación y la tabla de pagos."
+  - "Condiciones: idénticas a OF01 v3 (revisada por el escribano). Solo cambian el precio, la fecha, la referencia y el importe de la comisión."
+  - "Comisión: 5,5 % IVA incluido sobre Gs 1.120.000.000 = Gs 61.600.000 (neto Gs 56.000.000 + IVA Gs 5.600.000), a cargo de la vendedora."
+  - "Vigencia: 7 días corridos desde la constancia de recepción. Si se presenta hoy (23-10-2026), vence el 30-10-2026 (fin del día)."
+  - "Brecha con el precio pedido (ESTIMACIÓN, tipo de cambio no verificado al día): con ≈ Gs 5.904/USD, Gs 1.120 millones ≈ USD 189.700, ~13,8 % por debajo de USD 220.000 (la OF01 estaba ~23 % por debajo)."
