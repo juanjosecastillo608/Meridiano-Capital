@@ -81,6 +81,10 @@ def main(argv):
     exe = chrome()
     for d in decks:
         build(d, exe)
+    # Decks con entregables propios (PPTX/PDF/XLSX), p. ej. edificio-catedral
+    if not [a for a in argv if not a.startswith('--')]:
+        for script in sorted(glob.glob(os.path.join(BASE, '*', 'fuente', 'build_entregables.py'))):
+            subprocess.run([sys.executable, script], cwd=os.path.dirname(script), check=True)
     return subprocess.call([sys.executable, os.path.join(BASE, 'verificar_presentaciones.py')])
 
 

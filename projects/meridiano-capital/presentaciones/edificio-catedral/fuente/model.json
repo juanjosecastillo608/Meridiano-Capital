@@ -1,0 +1,123 @@
+{
+ "tc": 6060.86,
+ "tc_texto": "Gs 6.061 por USD (BCP, cotización referencial del 03/11/2026)",
+ "tc_corto": "TC Gs 6.061 (BCP, 03/11/2026)",
+ "tc_cfg": {
+  "gs_por_usd": 6060.86,
+  "fecha": "2026-11-03",
+  "fuente": "BCP, cotización referencial",
+  "verificado_el": "2026-11-05",
+  "nota_verificacion": "Referencial del 03/11/2026 según la planilla de cotización referencial de monedas del BCP (bcp.gov.py/webapps/web/cotizacion/monedas), obtenida vía buscador el 05/11/2026; el sitio del BCP no es accesible desde el entorno (DNS/proxy). No se encontró un referencial oficial del 04/11 ni del 05/11. Prensa del 03-04/11 (ABC Color, RDN) informa la suba del dólar por encima de Gs 6.000. Valor anterior: Gs 5.770,91 (BCP, interbancario, cierre del 16/10/2026)."
+ },
+ "contacto": {
+  "nombre": "Lic. Juan José Castillo",
+  "cargo": "Broker Inmobiliario | Meridiano Capital",
+  "telefono": "+595 982 853 111",
+  "email": "juancastillo@meridianocapital.net",
+  "web": "www.meridianocapital.net"
+ },
+ "precio_usd": 960000,
+ "precio_gs": 5818425600.0,
+ "frente": 17.5,
+ "fondo": 40.0,
+ "terreno": 700,
+ "construido": 2290,
+ "relacion_construido_terreno": 3.2714285714285714,
+ "usd_m2_construido": 419.2139737991266,
+ "usd_por_unidad": 64000.0,
+ "dptos": 12,
+ "locales": 3,
+ "cocheras": 12,
+ "canon_dpto": 3000000,
+ "canon_local": 3000000,
+ "canon_dpto_usd": 494.97926036899054,
+ "res_m": 36000000,
+ "com_m": 9000000,
+ "tot_m": 45000000,
+ "res_a": 432000000,
+ "com_a": 108000000,
+ "tot_a": 540000000,
+ "res": {
+  "ingreso_anual_gs": 432000000,
+  "ingreso_anual_usd": 71277.01349313464,
+  "bruta": 0.07424688905534858,
+  "recuperacion": 13.468577777777778
+ },
+ "tot": {
+  "ingreso_anual_gs": 540000000,
+  "ingreso_anual_usd": 89096.2668664183,
+  "bruta": 0.09280861131918573,
+  "recuperacion": 10.774862222222222
+ },
+ "sens_fuente": [
+  {
+   "n": "Implícito en el 9,75% de la descripción",
+   "tc": 5769.2307692307695,
+   "res": 0.078,
+   "tot": 0.0975
+  },
+  {
+   "n": "Usado en la planilla del PDF (sin fecha)",
+   "tc": 6000,
+   "res": 0.075,
+   "tot": 0.09375
+  },
+  {
+   "n": "BCP, interbancario, cierre del 16/10/2026",
+   "tc": 5770.91,
+   "res": 0.0779773034062219,
+   "tot": 0.09747162925777737
+  },
+  {
+   "n": "BCP vigente en _config (2026-11-03)",
+   "tc": 6060.86,
+   "res": 0.07424688905534858,
+   "tot": 0.09280861131918573
+  }
+ ],
+ "sens": [
+  {
+   "n": "Ilustrativo",
+   "tc": 5800,
+   "vigente": false,
+   "res": 0.07758620689655173,
+   "tot": 0.09698275862068965
+  },
+  {
+   "n": "Ilustrativo",
+   "tc": 6000,
+   "vigente": false,
+   "res": 0.075,
+   "tot": 0.09375
+  },
+  {
+   "n": "Vigente",
+   "tc": 6060.86,
+   "vigente": true,
+   "res": 0.07424688905534858,
+   "tot": 0.09280861131918573
+  },
+  {
+   "n": "Ilustrativo",
+   "tc": 6300,
+   "vigente": false,
+   "res": 0.07142857142857142,
+   "tot": 0.08928571428571429
+  }
+ ],
+ "fuente": {
+  "tc_pdf": 6000,
+  "impuesto_anual": 18000000,
+  "expensas": 0,
+  "bruta_pdf": 0.075,
+  "neta_pdf": 0.0719,
+  "rent_comprobada": 0.07,
+  "bruta_descripcion": 0.0975
+ },
+ "auditoria": {
+  "bruta_pdf_recalc": 0.075,
+  "neta_pdf_recalc": 0.071875,
+  "neta_fuente_tc_actual": 0.07115326867804239,
+  "tc_implicito_975": 5769.2307692307695
+ }
+}

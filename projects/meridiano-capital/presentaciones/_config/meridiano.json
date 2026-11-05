@@ -8,10 +8,10 @@
     "web": "www.meridianocapital.net"
   },
   "tipo_cambio": {
-    "gs_por_usd": 5770.91,
-    "fecha": "2026-10-16",
-    "fuente": "BCP, interbancario, cierre",
-    "verificado_el": "2026-10-17",
-    "nota_verificacion": "Cierre del 16/10/2026 (promedio acumulado interbancario a las 13:00, \"Cierre 16/10\") en bcp.gov.py/webapps/web/cotizacion/referencial-fluctuante-interbancario, último dato publicado al sábado 17/10/2026, según el estudio de mercado de San Miguel v2.0 (consultado el 17/10). No se pudo verificar directamente: el sitio del BCP no es accesible desde el entorno y el buscador no devolvió el dato. Valor anterior: Gs 5.698,03 (BCP, cotización referencial del 14/10/2026)."
+    "gs_por_usd": 6060.86,
+    "fecha": "2026-11-03",
+    "fuente": "BCP, cotización referencial",
+    "verificado_el": "2026-11-05",
+    "nota_verificacion": "Referencial del 03/11/2026 según la planilla de cotización referencial de monedas del BCP (bcp.gov.py/webapps/web/cotizacion/monedas), obtenida vía buscador el 05/11/2026; el sitio del BCP no es accesible desde el entorno (DNS/proxy). No se encontró un referencial oficial del 04/11 ni del 05/11. Prensa del 03-04/11 (ABC Color, RDN) informa la suba del dólar por encima de Gs 6.000. Valor anterior: Gs 5.770,91 (BCP, interbancario, cierre del 16/10/2026)."
   }
 }

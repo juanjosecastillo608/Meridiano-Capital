@@ -6,6 +6,7 @@
 | Edificio Barrio San José (Ciudad del Este) | `edificio-barrio-san-jose/` | `fuente/` |
 | Edificio Sajonia (Asunción) | `edificio-sajonia/` | `fuente/` |
 | Edificio Barrio San Miguel (Ciudad del Este) | `edificio-barrio-san-miguel/` | `fuente/` |
+| Edificio Catedral (Ciudad del Este) — PPTX, PDF, XLSX y documentos | `edificio-catedral/entregables/` | `fuente/` + `production/generadores/build_edificio_catedral_presentacion.js` |
 
 Cada `fuente/` contiene todo lo necesario para reconstruir el PDF:
 - `model.py`: cálculo de las cifras.
@@ -38,6 +39,7 @@ python build_presentaciones.py
   - Rechaza PDF generados con un tipo de cambio distinto del vigente.
 
 ## Tipo de cambio vigente
-Gs 5.770,91 por USD: cierre interbancario del BCP del **16/10/2026**, último publicado al 17/10/2026.
-- El dato viene del estudio de mercado de San Miguel v2.0. El sitio del BCP no es accesible desde el entorno de Claude Code y el buscador no lo devolvió.
-- Reemplaza Gs 5.698,03 (referencial del 14/10/2026). Las cuatro presentaciones se regeneraron con este valor el 17/10/2026; las cifras de los README de M4, San José y Sajonia corresponden al tipo de cambio anterior.
+Gs 6.060,86 por USD: cotización referencial del BCP del **03/11/2026**, verificada el 05/11/2026.
+- La cifra se tomó de la planilla del BCP vía buscador. El sitio del BCP no es accesible desde el entorno de Claude Code y no se encontró un referencial del 04/11 ni del 05/11.
+- Reemplaza Gs 5.770,91 (cierre interbancario del 16/10/2026).
+- Las cinco presentaciones se regeneraron el 05/11/2026. Las cifras de los README de M4, San José, Sajonia y San Miguel corresponden a tipos de cambio anteriores.

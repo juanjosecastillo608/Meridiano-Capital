@@ -51,7 +51,7 @@ def main():
     for f in glob.glob(os.path.join(BASE, '*', 'fuente', '*.py')):
         revisar_texto(os.path.relpath(f, BASE), open(f, encoding='utf-8').read(), problemas, True)
     if shutil.which('pdftotext'):
-        for f in glob.glob(os.path.join(BASE, '*', '*.pdf')):
+        for f in glob.glob(os.path.join(BASE, '*', '*.pdf')) + glob.glob(os.path.join(BASE, '*', 'entregables', '*.pdf')):
             txt = subprocess.run(['pdftotext', f, '-'], capture_output=True, text=True).stdout
             revisar_texto(os.path.relpath(f, BASE), re.sub(r'\s+', ' ', txt), problemas, False)
     else:
