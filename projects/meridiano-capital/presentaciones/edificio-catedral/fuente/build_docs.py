@@ -27,7 +27,8 @@ def comp_linea(c):
     uso = 'en estadísticas' if c['usar_en_estadisticas'] else f"excluido: {c.get('motivo_exclusion')}"
     return f"| {c['codigo']} | {c['descripcion'][:70]} | {c['zona']} | {det or '—'} | {pub} | {gs(round(c['gs']))} | {c['comparabilidad']} · {uso} | [{c['fuente'].split(' (')[0]}]({c['url']}) |"
 SERIE = ' · '.join(f"{s['n']}: Gs {n(s['tc'], 2)} → {pct(s['res'])} / {pct(s['tot'])}" for s in M['sens'])
-ESC = '\n'.join(f"| {e['n']} | {gs(e['canon_dpto'])} × {e['dptos']} | {gs(e['canon_salon']) + ' × ' + str(e['salones']) if e['salones'] else '—'} | {gs(e['mensual'])} | {gs(e['anual'])} | {pct(e['bruta'])} | {n(e['recuperacion'], 1)} años |" for e in M['escenarios'])
+ESC = '\n'.join(f"| {e['n']} | {gs(e['canon_dpto'])} × {e['dptos']} | {gs(e['canon_salon']) + ' × ' + str(e['salones']) if e['salones'] else '—'} | {gs(e['mensual'])} | {gs(e['anual'])} | {pct(e['pub']['bruta'])} · {n(e['pub']['recuperacion'], 1)} años | {pct(e['rap']['bruta'])} · {n(e['rap']['recuperacion'], 1)} años |" for e in M['escenarios'])
+PP, PR = M['precios']['pub'], M['precios']['rap']
 COMPS = '\n'.join(comp_linea(c) for c in MK['comparables'])
 
 control = f"""# Edificio Catedral — Control interno
@@ -41,6 +42,7 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 | `Aerea Edificio`, `Frente Edificio`, `Lateral Edificio` | Fotos de las láminas 1, 6 y 7 |
 | `Ubicacion.png` | Mapa de la lámina 3 (base Google Maps con rótulos agregados) |
 | Pedido del founder (05/11/2026) | Hipótesis de los 3 locales, estructura de la pieza y entregables |
+| Datos del founder (07/11/2026) | Precio de venta rápida sugerido de USD 800.000; 1 salón alquilado y 2 desocupados; departamentos de 150 m²; ubicación confirmada (https://maps.app.goo.gl/uPDUSU5wzgi6K3iNA) |
 | Estudio de mercado de alquileres (07/11/2026) y su planilla | Comparables R1–R12 y C1–C14, escenarios y recomendaciones. Guardado con el estándar de estudios: `knowledge-base/investment/market-intelligence/estudios/CDE-CATEDRAL-2026-11-07/` (D-100) |
 
 ## 2. Tipo de cambio
@@ -54,24 +56,29 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 | Concepto | Fórmula | Resultado |
 |---|---|---:|
 | Terreno | 17,50 × 40 | 700 m² (coincide con lo informado) |
-| Precio en Gs | USD 960.000 × {n(M['tc'], 2)} | {gs(M['precio_gs'])} |
+| Precio publicado en Gs | USD 960.000 × {n(M['tc'], 2)} | {gs(PP['Pgs'])} |
+| Precio de venta rápida en Gs (sugerido por Meridiano) | USD 800.000 × {n(M['tc'], 2)} | {gs(PR['Pgs'])} ({n(PR['desc'] * 100, 1)}% menos que el publicado) |
 | Renta residencial mensual | 12 × Gs 3.000.000 | {gs(M['res_m'])} |
 | Renta residencial anual | × 12 meses | {gs(M['res_a'])} ({usd(M['res']['ingreso_anual_usd'])}) |
-| Renta comercial mensual (hipótesis) | 3 × Gs 3.000.000 | {gs(M['com_m'])} |
-| Renta total anual proyectada | (36 + 9) M × 12 | {gs(M['tot_a'])} ({usd(M['tot']['ingreso_anual_usd'])}) |
-| Bruta residencial | 432 M ÷ precio en Gs | **{pct(M['res']['bruta'])}** |
-| Bruta total proyectada | 540 M ÷ precio en Gs | **{pct(M['tot']['bruta'])}** |
-| Recuperación simple bruta | precio ÷ renta anual | {n(M['res']['recuperacion'], 2)} años (residencial) · {n(M['tot']['recuperacion'], 2)} años (total) |
-| USD por m² construido informado | 960.000 ÷ 2.290 | {usd(M['usd_m2_construido'])} |
+| Salón alquilado (canon no informado; hipótesis) | 1 × Gs 3.000.000 | Gs 3.000.000 |
+| Renta actual estimada | 36 M + 3 M | {gs(M['act_m'])} por mes · {gs(M['act_a'])} por año ({usd(M['act']['ingreso_anual_usd'])}) |
+| Renta potencial (con los 2 salones desocupados) | 36 M + 9 M | {gs(M['tot_m'])} por mes · {gs(M['tot_a'])} por año ({usd(M['tot']['ingreso_anual_usd'])}) |
+| Bruta residencial | 432 M ÷ precio en Gs | **{pct(PP['res']['bruta'])}** publicado · **{pct(PR['res']['bruta'])}** venta rápida |
+| Bruta actual estimada | 468 M ÷ precio en Gs | **{pct(PP['act']['bruta'])}** publicado · **{pct(PR['act']['bruta'])}** venta rápida |
+| Bruta potencial | 540 M ÷ precio en Gs | **{pct(PP['tot']['bruta'])}** publicado · **{pct(PR['tot']['bruta'])}** venta rápida |
+| Canon por m² del departamento | 3.000.000 ÷ 150 m² | {gs(M['gs_m2_dpto'])}/m² |
+| Recuperación simple bruta (renta actual) | precio ÷ renta anual | {n(PP['act']['recuperacion'], 1)} años publicado · {n(PR['act']['recuperacion'], 1)} años venta rápida |
+| USD por m² construido informado | precio ÷ 2.290 | {usd(PP['usd_m2'])} publicado · {usd(PR['usd_m2'])} venta rápida |
 
-**Escenarios del estudio (internos, en el Excel; la presentación muestra el informado y el central):**
+**Escenarios (internos, en el Excel; la presentación muestra el residencial, el actual y el potencial a los dos precios):**
 
-| Escenario | Departamentos | Salones | Mensual | Anual | Bruta | Recuperación |
+| Escenario | Departamentos | Salones | Mensual | Anual | USD 960.000 | USD 800.000 |
 |---|---|---|---:|---:|---:|---:|
 {ESC}
 
 Condiciones:
-- **Inferior:** cánones en la parte baja de la muestra y salones sin renta. Es el piso de la muestra, no un caso garantizado.
+- **Actual:** 12 departamentos y el salón alquilado, cuyo canon no fue informado (se usa la mediana del estudio).
+- **Inferior:** departamentos en la parte baja de la muestra y el salón alquilado a Gs 2,5 M, piso del rango. Se adaptó al dato del 07/11: el salón alquilado se mantiene. Es el piso de la muestra, no un caso garantizado.
 - **Superior:** requiere renovar contratos con ajuste, buen estado de las unidades y buen frente de los salones. Ninguna de esas condiciones está comprobada (confianza baja).
 
 ## 3 bis. Estudio de mercado (consulta del 07/11/2026)
@@ -89,7 +96,7 @@ Condiciones:
 - **Limitaciones:**
   - Ningún aviso informa su fecha de publicación y no se confirmó la disponibilidad.
   - La muestra del Barrio Catedral estricto es de un solo aviso (1 dormitorio).
-  - No hay superficie individual de las unidades del edificio.
+  - Superficie de los departamentos: 150 m² cada uno (founder, 07/11/2026). El canon equivale a Gs 20.000/m², por debajo de los avisos con superficie publicada (Gs 22.222 a 64.804/m²). El más parecido es el Edificio Oriental: 150 m² en el microcentro, a USD 1.500.
 - **Equivalencias:** los montos en guaraníes de la tabla usan el TC vigente (Gs {n(M['tc'], 2)}).
 
 | Código | Aviso | Zona | Detalle | Publicado | En Gs | Comparabilidad y uso | Fuente |
@@ -115,14 +122,16 @@ Duplicado eliminado: A1613 = COD 1938 (R2). Descartados por no comparables: dep�
 | Precio | USD 960.000 | Confirmado (fuente y pedido) |
 | Terreno | 17,50 × 40 m = 700 m² | Confirmado y verificado |
 | Superficie construida | 2.290 m² | Informado; **pendiente de planos** |
+| Superficie por departamento | 150 m² (1.800 m² en total) | Founder, 07/11/2026; a constatar en planos |
+| Precio de venta rápida | USD 800.000 | **Sugerido por Meridiano Capital** (founder, 07/11/2026); sujeto a aceptación del propietario |
 | Niveles y composición | 4 niveles; 12 departamentos (4 por piso, pisos 1 a 3) y 3 salones en planta baja | Confirmado (fuente) |
 | Estacionamiento | 12 plazas cubiertas en planta baja; 1 por departamento | Confirmado (fuente) |
 | Servicios | Pozo artesiano | Confirmado (fuente); estado pendiente |
 | Departamentos | 3 dormitorios (1 en suite + 2 con baño compartido) + habitación de servicio con baño, sala, comedor-cocina, lavadero, balcón | Confirmado (fuente); sin superficies por unidad |
 | Renta residencial | 12 × Gs 3.000.000, 12 unidades ocupadas | Informado; fecha del relevamiento **no informada** (PDF del 27/08/2026 según metadatos) |
-| Renta comercial | 3 × Gs 3.000.000 | **Hipótesis**, sujeta a confirmación |
+| Salones | 1 alquilado y 2 desocupados | Founder, 07/11/2026. El canon del alquilado no fue informado: hipótesis de Gs 3.000.000; los 2 desocupados son renta potencial |
 | Planos aprobados y documentación en regla | — | Declaración de la fuente, sin respaldo adjunto |
-| Ubicación | Pampliega casi Av. Mayor Rivas Ortellado | **Referencial**: el enlace https://maps.app.goo.gl/EA3DMnVUaTTddxLc9 no pudo abrirse desde el entorno; se usó el mapa recibido |
+| Ubicación | Pampliega casi Av. Mayor Rivas Ortellado | **Confirmada** por el founder el 07/11/2026: https://maps.app.goo.gl/uPDUSU5wzgi6K3iNA (enlace y QR de la lámina 3). El mapa de la lámina es la vista del entorno recibida |
 | Cellshop | Futuro centro comercial de 53.000 m² | Apertura proyectada para fines de 2026 según prensa (ABC Color, 15/07/2026); no confirmada |
 | Impuesto anual | Gs 18.000.000 (planilla del PDF) | **Pendiente de validación**: sin comprobante, concepto ni período |
 
@@ -136,14 +145,15 @@ Duplicado eliminado: A1613 = COD 1938 (R2). Descartados por no comparables: dep�
 1. Título, titularidad, cuenta corriente catastral e informe de condiciones de dominio.
 2. Planos aprobados, superficies (2.290 m²) y permisos o situación municipal.
 3. Contratos de los 12 departamentos: vencimientos, reajustes, depósitos, cobros y morosidad.
-4. Situación real de los 3 salones: si están alquilados, a qué canon y con qué contratos.
+4. Contrato y canon del salón alquilado; estado y condiciones para alquilar los 2 desocupados.
 5. Gastos operativos e impuestos, para calcular la renta neta.
 6. Estado del pozo artesiano, las instalaciones y el mantenimiento (inspección técnica).
 7. Condiciones de venta, forma de pago y gastos de escritura.
-8. Confirmar la ubicación exacta del marcador y la fecha del relevamiento de alquileres.
+8. Confirmar la fecha del relevamiento de alquileres. La ubicación ya fue confirmada el 07/11/2026.
 9. Aclarar el impuesto de Gs 18.000.000 por año de la fuente: concepto, período y comprobantes.
 10. Facturas de servicios y gastos comunes; habilitaciones y situación municipal de los salones.
 11. Superficie, frente, estado e instalaciones de cada salón, para pasar de la hipótesis al canon real.
+13. Aceptación del propietario del precio de venta rápida sugerido (USD 800.000) y condiciones de pago.
 12. Regenerar los materiales con el TC del día antes de cada reunión (volatilidad alta).
 
 ## 7. Marca (Brand Guardian, matriz de 10 criterios)
@@ -193,11 +203,14 @@ Respuestas breves para las consultas previsibles de un inversor. Cifras al tipo 
 Según el documento recibido, los 12 departamentos estaban alquilados a Gs 3.000.000 cada uno: {gs(M['res_m'])} por mes y {gs(M['res_a'])} por año. Antes de la oferta revisamos contratos y cobros, y confirmamos la fecha de ese relevamiento, que no figura en la fuente.
 
 **¿Y los locales?**
-Proyectamos los 3 salones a Gs 3.000.000 por mes cada uno: {gs(M['com_m'])} por mes. Es una hipótesis: todavía no confirmamos si están alquilados ni a qué canon.
+De los 3 salones, 1 está alquilado y 2 están desocupados. El canon del alquilado no fue informado: usamos Gs 3.000.000, la mediana del mercado, hasta ver su contrato. Los 2 desocupados son renta potencial: Gs 6.000.000 por mes si se alquilan al mismo valor.
 
 **¿Qué rentabilidad tiene?**
-- Bruta sobre el precio, residencial: {pct(M['res']['bruta'])}.
-- Bruta proyectada con los locales: {pct(M['tot']['bruta'])}.
+| | USD 960.000 (publicado) | USD 800.000 (venta rápida sugerida) |
+|---|---:|---:|
+| Actual: 12 dptos. y 1 salón | {pct(PP['act']['bruta'])} | {pct(PR['act']['bruta'])} |
+| Solo los departamentos | {pct(PP['res']['bruta'])} | {pct(PR['res']['bruta'])} |
+| Potencial: con los 2 salones desocupados alquilados | {pct(PP['tot']['bruta'])} | {pct(PR['tot']['bruta'])} |
 
 Son brutas: no descuentan gastos, impuestos, vacancia ni gastos de compra. No la llamamos neta hasta tener los gastos.
 
@@ -215,8 +228,8 @@ Sí, dentro del mercado y en la banda baja.
 **¿El ingreso mensual total está comprobado?**
 No.
 - Lo residencial ({gs(M['res_m'])} por mes) es información del vendedor, sin fecha de relevamiento y sin contratos revisados.
-- Lo comercial ({gs(M['com_m'])} por mes) es una hipótesis.
-- El total de {gs(M['tot_m'])} es una proyección bruta.
+- El salón alquilado (Gs 3.000.000 por mes) es una hipótesis: falta su contrato.
+- La renta actual estimada es {gs(M['act_m'])} por mes. Los {gs(M['tot_m'])} suponen alquilar los 2 salones desocupados: es una proyección bruta.
 
 **¿Qué margen de mejora tienen los alquileres?**
 - Departamentos: moderado, hacia Gs 3,3–3,5 M por unidad según estado y superficie, y solo al renovar cada contrato.
@@ -228,29 +241,33 @@ Ningún aumento es automático: depende de los contratos, la ley y la negociaci�
 - El 9,75% se calculó con un dólar de unos Gs 5.770, el de mediados de octubre. Con la cotización del BCP del {f_tc} (Gs {n(M['tc'], 2)}), la misma cuenta da {pct(M['tot']['bruta'])}.
 - El 7% surge de una planilla con dólar a Gs 6.000, solo los departamentos y un único gasto. No pudimos verificar su base, por eso trabajamos con nuestros propios cálculos.
 
+**¿Hay margen en el precio?**
+Meridiano Capital sugiere un precio de venta rápida de USD 800.000, {n(PR['desc'] * 100, 1)}% menos que el publicado. Con ese precio, la bruta actual sube de {pct(PP['act']['bruta'])} a {pct(PR['act']['bruta'])}. Está sujeto a que el propietario lo acepte.
+
 **¿Por qué cambia la rentabilidad con el dólar?**
 El precio está en dólares y los alquileres en guaraníes. Si sube el dólar, la renta medida en dólares baja, y al revés. Con la misma renta, la bruta total fue 9,75% con el dólar del 16/10 (Gs 5.770,91) y es {pct(M['tot']['bruta'])} con el del {f_tc} (Gs {n(M['tc'], 2)}). En el Excel se cambia el tipo de cambio y todo se recalcula.
 
 **¿En cuánto tiempo recupero la inversión?**
-Con la renta bruta, sin gastos: unos {n(M['res']['recuperacion'], 1)} años con los departamentos y {n(M['tot']['recuperacion'], 1)} años con los locales. Es una recuperación simple, no una TIR.
+Con la renta bruta actual, sin gastos: unos {n(PP['act']['recuperacion'], 1)} años al precio publicado y {n(PR['act']['recuperacion'], 1)} años a la venta rápida sugerida. Con los 2 salones desocupados alquilados: {n(PP['tot']['recuperacion'], 1)} y {n(PR['tot']['recuperacion'], 1)} años. Es una recuperación simple, no una TIR.
 
 **¿Cuántos metros tiene?**
 - Terreno: 700 m² (17,50 × 40 m).
 - Superficie construida informada: 2.290 m², que confirmaremos con los planos.
-- Precio por m² construido: {usd(M['usd_m2_construido'])}.
+- Departamentos: 150 m² cada uno.
+- Precio por m² construido: {usd(PP['usd_m2'])} al precio publicado y {usd(PR['usd_m2'])} a la venta rápida.
 
 **¿Cómo son los departamentos?**
 - Tres dormitorios: uno en suite y dos con baño compartido.
 - Además, habitación de servicio con baño.
 - Sala, comedor-cocina, lavadero y tendedero, balcón amplio y una cochera.
 
-No tenemos todavía la superficie de cada unidad.
+Cada departamento tiene 150 m². Al canon actual equivale a Gs 20.000/m², por debajo de los avisos con superficie publicada.
 
 **¿Tiene la documentación en regla?**
 El vendedor declara planos aprobados y documentación en regla. Lo verificamos con el escribano: título, catastro, planos y situación municipal.
 
 **¿Dónde queda exactamente?**
-Sobre Pampliega casi Av. Mayor Rivas Ortellado, Barrio Catedral, cerca de la Catedral San Blas, Shopping China y el Hotel Acaray. La ubicación exacta la confirmamos en la visita. El Cellshop es un proyecto futuro, sin fecha confirmada.
+Sobre Pampliega casi Av. Mayor Rivas Ortellado, Barrio Catedral, cerca de la Catedral San Blas, Shopping China y el Hotel Acaray. La ubicación está confirmada: https://maps.app.goo.gl/uPDUSU5wzgi6K3iNA. El Cellshop es un proyecto con apertura proyectada para fines de 2026 según prensa, no confirmada.
 
 **¿Necesita obras?**
 No lo afirmamos hasta hacer la inspección técnica: estructura, instalaciones, pozo artesiano y mantenimiento.

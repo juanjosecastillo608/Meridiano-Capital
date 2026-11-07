@@ -28,21 +28,23 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
 - **Opcional:** el estacionamiento lindero de 12 × 30 m cuesta USD 120.000.
 
 ## Supuestos
-- **Tipo de cambio:** el vigente en `_config`, Gs 5.770,91. Es el cierre interbancario del BCP del 16/10/2026, último dato publicado al 17/10, tomado del estudio v2.0. No se pudo verificar directamente desde el entorno.
+- **Tipo de cambio:** el vigente en `_config`. Al 07/11/2026: Gs 6.480,35 (BCP, cotización referencial del 06/11/2026). El estudio v2.0 usó Gs 5.770,91 (cierre interbancario del 16/10/2026).
 - **Neta conservadora:** sobre el saldo, se descuentan vacancia 4%, otros gastos no informados (supuesto de Gs 6.000.000 por año) e IRE 10%. IVA, mantenimiento y administración no se descuentan dos veces.
 - **TIR hipotética a 5 años:** la inversión es el precio, los flujos son la neta conservadora y la salida es al año 5, menos el IVA de venta de 1,5% (D-082). Escenarios (alquiler / valorización): 0/0%, 3/2% y 5/3,5%.
 - **Costo de construcción nueva:** USD 650/m² sobre 592 m².
 
-## Resultados (TC Gs 5.770,91)
+## Resultados (TC Gs 6.480,35 del 06/11/2026; regenerados el 07/11/2026)
 | | USD 350.000 | USD 290.000 |
 |---|---:|---:|
-| Bruta | 13,19% | 15,92% |
-| Saldo ÷ precio | 11,59% | 13,98% |
-| Neta antes de IRE | 10,76% | 12,99% |
-| Neta conservadora | 9,68% | 11,69% |
-| TIR hipotética (conservador / base / optimista) | 9,4 / 11,6 / 13,2% | 11,4 / 13,7 / 15,3% |
-| Con estacionamiento (caso mecánico, sin renta incremental): bruta / saldo | 9,82% / 8,63% | 11,26% / 9,89% |
+| Bruta | 11,75% | 14,18% |
+| Saldo ÷ precio | 10,32% | 12,45% |
+| Neta antes de IRE | 9,58% | 11,57% |
+| Neta conservadora | 8,62% | 10,41% |
+| TIR hipotética (conservador / base / optimista) | 8,4 / 10,5 / 12,1% | 10,2 / 12,4 / 14,0% |
+| Con estacionamiento (caso mecánico, sin renta incremental): bruta / saldo | 8,75% / 7,68% | 10,03% / 8,81% |
 | USD por m² de unidades | 591 | 490 |
+
+Con el TC del 16/10 (Gs 5.770,91) eran 13,19% / 15,92% de bruta y 9,68% / 11,69% de neta conservadora. La baja se explica solo por el tipo de cambio.
 
 ## Discrepancias y pendientes
 - **Composición:** la planilla (1 de 1 dormitorio, 4 de 2 y 2 de 4) reemplaza la composición enviada por mensaje el 16/10 (5 de 1, 1 de 2 y 1 de 4). **A confirmar por el founder.**
@@ -55,6 +57,7 @@ Este deck sigue el maestro **Edificio Barrio San José**, con la misma estructur
 - **Planilla original:** `Edificio-Barrio-San-Jose-Aliquileres-Octubre26.xlsx` todavía no se recibió; la extracción por celdas está en `fuente/estudio/`.
 
 ## Registro de cambios
+- **2026-11-07:** se regeneró con el TC del BCP del 06/11/2026 (Gs 6.480,35). Las rentabilidades en dólares bajan por la suba del dólar; los datos del edificio no cambian.
 - **2026-10-17 (v1, actualización 4):** paquete de estudio v2.0.
   - Planilla por unidad: 592 m² y Gs 22.200.000 por mes.
   - Composición 1/4/2 y cuatro niveles (planta baja y tres pisos).

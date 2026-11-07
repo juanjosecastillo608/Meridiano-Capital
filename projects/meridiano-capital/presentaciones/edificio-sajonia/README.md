@@ -43,14 +43,16 @@ Este deck sigue la plantilla maestra M4 / Barrio San José. Tiene 21 láminas y 
 - **Gastos:** vacancia de referencia de Meridiano; IVA del 10% en oficinas y locales y del 5% en vivienda; administración 8%, mantenimiento 5%, gastos fijos de Gs 9 M por año (supuesto) e IRE 10%.
 - **TIR:** un año de obra, cuatro años de renta y venta al cierre del año 5. La valorización parte de la inversión total.
 
-## Resultados (v3, TC Gs 5.698 del 14/10/2026)
+## Resultados (v3, TC Gs 6.480,35 del 06/11/2026; regenerados el 07/11/2026)
 | | A · Oficinas | B · Departamentos | C · Mixto |
 |---|---|---|---|
 | Puesta en valor | USD 231.866 | USD 298.114 | USD 253.949 |
-| Bruta a USD 220.000 / 185.000 | 13,47% / 14,60% | 11,06% / 11,86% | 12,96% / 14,00% |
-| Neta final a USD 220.000 / 185.000 | 7,81% / 8,47% | 7,40% / 7,93% | 7,97% / 8,61% |
-| TIR base a 5 años, 220.000 / 185.000 | 9,7% / 10,4% | 9,5% / 10,1% | 9,9% / 10,6% |
-| Bruta sin el descuento de obra (a 220.000) | 11,51% | 9,28% | 11,00% |
+| Bruta a USD 220.000 / 185.000 | 11,85% / 12,84% | 9,72% / 10,43% | 11,40% / 12,31% |
+| Neta final a USD 220.000 / 185.000 | 6,87% / 7,44% | 6,50% / 6,98% | 7,01% / 7,57% |
+| TIR base a 5 años, 220.000 / 185.000 | 8,9% / 9,5% | 8,7% / 9,2% | 9,1% / 9,7% |
+| Bruta sin el descuento de obra (a 220.000) | 10,12% | 8,16% | 9,67% |
+
+Con el TC del 14/10 (Gs 5.698) las brutas eran 13,47% / 11,06% / 12,96% a USD 220.000. La baja se explica solo por el tipo de cambio: el precio y la obra están en dólares y la renta en guaraníes.
 
 **Lectura:**
 - **C · Mixto** tiene la mejor neta y la mejor TIR, con menos exposición a oficinas que A. Su contrapartida es separar accesos, medidores y seguridad contra incendio por uso.

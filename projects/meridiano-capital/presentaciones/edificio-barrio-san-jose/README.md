@@ -14,7 +14,7 @@ Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la
 - Título: titulado según la información recibida, sin revisar.
 
 ## Supuestos (mismo criterio que M4 salvo donde se indica)
-- Tipo de cambio: el vigente en `../_config/meridiano.json`. Al 15/10/2026: Gs 5.698,03 (BCP, referencial del 14/10/2026); el precio equivale a USD 280.799. Antes se usaba Gs 5.694 (BCP, 09/10/2026). **El Gs 5.950 de la versión anterior se descartó porque no tenía fecha.**
+- Tipo de cambio: el vigente en `../_config/meridiano.json`. Al 07/11/2026: Gs 6.480,35 (BCP, cotización referencial del 06/11/2026); el precio equivale a USD 246.900. Antes: Gs 5.698,03 (14/10/2026, USD 280.799) y Gs 5.694 (09/10/2026). **El Gs 5.950 de la versión anterior se descartó porque no tenía fecha.**
 - IVA 5% sobre alquiler residencial (D-001), administración 8%, mantenimiento 5% e IRE 10%, como en M4.
 - Vacancia 4%: es el valor por defecto del repo para departamentos. M4 usó 3%, pero lo justificaba con la demanda de su zona, y para San José no hay datos del barrio.
 - Gastos fijos: Gs 6.000.000 por año. **El propietario no los informó.**
@@ -39,3 +39,9 @@ Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la
 - Superficie de cada unidad: sin ese dato, el alquiler de mercado no se puede estimar y el objetivo de Gs 1.800.000 no se confirma ni se descarta (confianza baja).
 - Rango de venta del edificio completo: las referencias reunidas no alcanzan.
 - Referencias de alquiler de Ciudad del Este guardadas en `knowledge-base/investment/market-intelligence/rentals/08-referencias-alquiler-ciudad-del-este.md`.
+
+## Actualización al 07/11/2026
+- **Tipo de cambio:** el precio y la renta están en guaraníes, así que la suba del dólar no cambia los porcentajes: bruta 8,25%, neta final 5,45% y TIR de 7,3% / 8,9% / 10,5%. Cambian solo los equivalentes en dólares: precio USD 246.900 e ingreso anual USD 20.369.
+- **Pendientes:** siguen abiertos la antigüedad (2006 o 9 a 15 años), la terraza de 200 m², los contratos y cobros, la renta de la habitación terminada y el costo de terminar la segunda.
+- **Mercado:** las referencias del barrio están normalizadas en el estudio `CDE-SAN-JOSE-2026-10-13` (estándar D-100). Para una nueva versión conviene sumar los comparables de Ciudad del Este de los estudios de Catedral y San Miguel.
+

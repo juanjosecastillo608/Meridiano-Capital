@@ -9,6 +9,7 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 | `Aerea Edificio`, `Frente Edificio`, `Lateral Edificio` | Fotos de las láminas 1, 6 y 7 |
 | `Ubicacion.png` | Mapa de la lámina 3 (base Google Maps con rótulos agregados) |
 | Pedido del founder (05/11/2026) | Hipótesis de los 3 locales, estructura de la pieza y entregables |
+| Datos del founder (07/11/2026) | Precio de venta rápida sugerido de USD 800.000; 1 salón alquilado y 2 desocupados; departamentos de 150 m²; ubicación confirmada (https://maps.app.goo.gl/uPDUSU5wzgi6K3iNA) |
 | Estudio de mercado de alquileres (07/11/2026) y su planilla | Comparables R1–R12 y C1–C14, escenarios y recomendaciones. Guardado con el estándar de estudios: `knowledge-base/investment/market-intelligence/estudios/CDE-CATEDRAL-2026-11-07/` (D-100) |
 
 ## 2. Tipo de cambio
@@ -22,27 +23,33 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 | Concepto | Fórmula | Resultado |
 |---|---|---:|
 | Terreno | 17,50 × 40 | 700 m² (coincide con lo informado) |
-| Precio en Gs | USD 960.000 × 6.480,35 | Gs 6.221.136.000 |
+| Precio publicado en Gs | USD 960.000 × 6.480,35 | Gs 6.221.136.000 |
+| Precio de venta rápida en Gs (sugerido por Meridiano) | USD 800.000 × 6.480,35 | Gs 5.184.280.000 (16,7% menos que el publicado) |
 | Renta residencial mensual | 12 × Gs 3.000.000 | Gs 36.000.000 |
 | Renta residencial anual | × 12 meses | Gs 432.000.000 (USD 66.663) |
-| Renta comercial mensual (hipótesis) | 3 × Gs 3.000.000 | Gs 9.000.000 |
-| Renta total anual proyectada | (36 + 9) M × 12 | Gs 540.000.000 (USD 83.329) |
-| Bruta residencial | 432 M ÷ precio en Gs | **6,94%** |
-| Bruta total proyectada | 540 M ÷ precio en Gs | **8,68%** |
-| Recuperación simple bruta | precio ÷ renta anual | 14,40 años (residencial) · 11,52 años (total) |
-| USD por m² construido informado | 960.000 ÷ 2.290 | USD 419 |
+| Salón alquilado (canon no informado; hipótesis) | 1 × Gs 3.000.000 | Gs 3.000.000 |
+| Renta actual estimada | 36 M + 3 M | Gs 39.000.000 por mes · Gs 468.000.000 por año (USD 72.218) |
+| Renta potencial (con los 2 salones desocupados) | 36 M + 9 M | Gs 45.000.000 por mes · Gs 540.000.000 por año (USD 83.329) |
+| Bruta residencial | 432 M ÷ precio en Gs | **6,94%** publicado · **8,33%** venta rápida |
+| Bruta actual estimada | 468 M ÷ precio en Gs | **7,52%** publicado · **9,03%** venta rápida |
+| Bruta potencial | 540 M ÷ precio en Gs | **8,68%** publicado · **10,42%** venta rápida |
+| Canon por m² del departamento | 3.000.000 ÷ 150 m² | Gs 20.000/m² |
+| Recuperación simple bruta (renta actual) | precio ÷ renta anual | 13,3 años publicado · 11,1 años venta rápida |
+| USD por m² construido informado | precio ÷ 2.290 | USD 419 publicado · USD 349 venta rápida |
 
-**Escenarios del estudio (internos, en el Excel; la presentación muestra el informado y el central):**
+**Escenarios (internos, en el Excel; la presentación muestra el residencial, el actual y el potencial a los dos precios):**
 
-| Escenario | Departamentos | Salones | Mensual | Anual | Bruta | Recuperación |
+| Escenario | Departamentos | Salones | Mensual | Anual | USD 960.000 | USD 800.000 |
 |---|---|---|---:|---:|---:|---:|
-| Residencial informado | Gs 3.000.000 × 12 | — | Gs 36.000.000 | Gs 432.000.000 | 6,94% | 14,4 años |
-| Combinado central | Gs 3.000.000 × 12 | Gs 3.000.000 × 3 | Gs 45.000.000 | Gs 540.000.000 | 8,68% | 11,5 años |
-| Inferior | Gs 2.800.000 × 12 | — | Gs 33.600.000 | Gs 403.200.000 | 6,48% | 15,4 años |
-| Superior | Gs 3.500.000 × 12 | Gs 4.500.000 × 3 | Gs 55.500.000 | Gs 666.000.000 | 10,71% | 9,3 años |
+| Residencial informado | Gs 3.000.000 × 12 | — | Gs 36.000.000 | Gs 432.000.000 | 6,94% · 14,4 años | 8,33% · 12,0 años |
+| Actual estimado | Gs 3.000.000 × 12 | Gs 3.000.000 × 1 | Gs 39.000.000 | Gs 468.000.000 | 7,52% · 13,3 años | 9,03% · 11,1 años |
+| Potencial (salones vacantes alquilados) | Gs 3.000.000 × 12 | Gs 3.000.000 × 3 | Gs 45.000.000 | Gs 540.000.000 | 8,68% · 11,5 años | 10,42% · 9,6 años |
+| Inferior | Gs 2.800.000 × 12 | Gs 2.500.000 × 1 | Gs 36.100.000 | Gs 433.200.000 | 6,96% · 14,4 años | 8,36% · 12,0 años |
+| Superior | Gs 3.500.000 × 12 | Gs 4.500.000 × 3 | Gs 55.500.000 | Gs 666.000.000 | 10,71% · 9,3 años | 12,85% · 7,8 años |
 
 Condiciones:
-- **Inferior:** cánones en la parte baja de la muestra y salones sin renta. Es el piso de la muestra, no un caso garantizado.
+- **Actual:** 12 departamentos y el salón alquilado, cuyo canon no fue informado (se usa la mediana del estudio).
+- **Inferior:** departamentos en la parte baja de la muestra y el salón alquilado a Gs 2,5 M, piso del rango. Se adaptó al dato del 07/11: el salón alquilado se mantiene. Es el piso de la muestra, no un caso garantizado.
 - **Superior:** requiere renovar contratos con ajuste, buen estado de las unidades y buen frente de los salones. Ninguna de esas condiciones está comprobada (confianza baja).
 
 ## 3 bis. Estudio de mercado (consulta del 07/11/2026)
@@ -60,7 +67,7 @@ Condiciones:
 - **Limitaciones:**
   - Ningún aviso informa su fecha de publicación y no se confirmó la disponibilidad.
   - La muestra del Barrio Catedral estricto es de un solo aviso (1 dormitorio).
-  - No hay superficie individual de las unidades del edificio.
+  - Superficie de los departamentos: 150 m² cada uno (founder, 07/11/2026). El canon equivale a Gs 20.000/m², por debajo de los avisos con superficie publicada (Gs 22.222 a 64.804/m²). El más parecido es el Edificio Oriental: 150 m² en el microcentro, a USD 1.500.
 - **Equivalencias:** los montos en guaraníes de la tabla usan el TC vigente (Gs 6.480,35).
 
 | Código | Aviso | Zona | Detalle | Publicado | En Gs | Comparabilidad y uso | Fuente |
@@ -111,14 +118,16 @@ Duplicado eliminado: A1613 = COD 1938 (R2). Descartados por no comparables: dep�
 | Precio | USD 960.000 | Confirmado (fuente y pedido) |
 | Terreno | 17,50 × 40 m = 700 m² | Confirmado y verificado |
 | Superficie construida | 2.290 m² | Informado; **pendiente de planos** |
+| Superficie por departamento | 150 m² (1.800 m² en total) | Founder, 07/11/2026; a constatar en planos |
+| Precio de venta rápida | USD 800.000 | **Sugerido por Meridiano Capital** (founder, 07/11/2026); sujeto a aceptación del propietario |
 | Niveles y composición | 4 niveles; 12 departamentos (4 por piso, pisos 1 a 3) y 3 salones en planta baja | Confirmado (fuente) |
 | Estacionamiento | 12 plazas cubiertas en planta baja; 1 por departamento | Confirmado (fuente) |
 | Servicios | Pozo artesiano | Confirmado (fuente); estado pendiente |
 | Departamentos | 3 dormitorios (1 en suite + 2 con baño compartido) + habitación de servicio con baño, sala, comedor-cocina, lavadero, balcón | Confirmado (fuente); sin superficies por unidad |
 | Renta residencial | 12 × Gs 3.000.000, 12 unidades ocupadas | Informado; fecha del relevamiento **no informada** (PDF del 27/08/2026 según metadatos) |
-| Renta comercial | 3 × Gs 3.000.000 | **Hipótesis**, sujeta a confirmación |
+| Salones | 1 alquilado y 2 desocupados | Founder, 07/11/2026. El canon del alquilado no fue informado: hipótesis de Gs 3.000.000; los 2 desocupados son renta potencial |
 | Planos aprobados y documentación en regla | — | Declaración de la fuente, sin respaldo adjunto |
-| Ubicación | Pampliega casi Av. Mayor Rivas Ortellado | **Referencial**: el enlace https://maps.app.goo.gl/EA3DMnVUaTTddxLc9 no pudo abrirse desde el entorno; se usó el mapa recibido |
+| Ubicación | Pampliega casi Av. Mayor Rivas Ortellado | **Confirmada** por el founder el 07/11/2026: https://maps.app.goo.gl/uPDUSU5wzgi6K3iNA (enlace y QR de la lámina 3). El mapa de la lámina es la vista del entorno recibida |
 | Cellshop | Futuro centro comercial de 53.000 m² | Apertura proyectada para fines de 2026 según prensa (ABC Color, 15/07/2026); no confirmada |
 | Impuesto anual | Gs 18.000.000 (planilla del PDF) | **Pendiente de validación**: sin comprobante, concepto ni período |
 
@@ -132,14 +141,15 @@ Duplicado eliminado: A1613 = COD 1938 (R2). Descartados por no comparables: dep�
 1. Título, titularidad, cuenta corriente catastral e informe de condiciones de dominio.
 2. Planos aprobados, superficies (2.290 m²) y permisos o situación municipal.
 3. Contratos de los 12 departamentos: vencimientos, reajustes, depósitos, cobros y morosidad.
-4. Situación real de los 3 salones: si están alquilados, a qué canon y con qué contratos.
+4. Contrato y canon del salón alquilado; estado y condiciones para alquilar los 2 desocupados.
 5. Gastos operativos e impuestos, para calcular la renta neta.
 6. Estado del pozo artesiano, las instalaciones y el mantenimiento (inspección técnica).
 7. Condiciones de venta, forma de pago y gastos de escritura.
-8. Confirmar la ubicación exacta del marcador y la fecha del relevamiento de alquileres.
+8. Confirmar la fecha del relevamiento de alquileres. La ubicación ya fue confirmada el 07/11/2026.
 9. Aclarar el impuesto de Gs 18.000.000 por año de la fuente: concepto, período y comprobantes.
 10. Facturas de servicios y gastos comunes; habilitaciones y situación municipal de los salones.
 11. Superficie, frente, estado e instalaciones de cada salón, para pasar de la hipótesis al canon real.
+13. Aceptación del propietario del precio de venta rápida sugerido (USD 800.000) y condiciones de pago.
 12. Regenerar los materiales con el TC del día antes de cada reunión (volatilidad alta).
 
 ## 7. Marca (Brand Guardian, matriz de 10 criterios)

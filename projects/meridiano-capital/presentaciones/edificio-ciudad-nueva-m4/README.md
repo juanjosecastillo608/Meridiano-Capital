@@ -29,7 +29,12 @@ Todas coinciden con la v1:
 1. **Local comercial:** el resumen dice "13 departamentos y un local comercial", pero el detalle de alquileres no tiene ninguna línea "Local". Hay 13 departamentos (6 de 1 dorm., 6 de 2 dorm. y 1 de 3 dorm.), "Cochera" y "Cochera y departamento". Si "Cochera y departamento" incluye una vivienda, esa parte pagaría IVA del 5% y no del 10%.
 2. **Distancias** (90 / 320 / 480 m por calle) y **avisos de Ciudad Nueva** (Gs 3,0–3,2 M y 2,1–6,3 M): no se pudieron reverificar desde este entorno; quedan como en la v1.
 3. **Teléfono:** resuelto — +595 982 853 111 en todas las presentaciones (D-096).
-4. **Tipo de cambio:** actualizado a Gs 5.698,03 (BCP, referencial del 14/10/2026; antes Gs 5.694 del 09/10). Con el nuevo TC:
-   - Ingreso anual: USD 41.172.
-   - Rentabilidad: bruta 12,11%, neta 8,24% y neta antes de IRE 9,15%; 8,3 veces.
-   - Escenarios a 5 años: TIR 10,2% / 11,7% / 13,5%, sin cambios.
+4. **Tipo de cambio:** se actualiza en cada regeneración (D-097). Al 07/11/2026 el vigente es Gs 6.480,35 (BCP, cotización referencial del 06/11/2026). El precio está en dólares (USD 340.000) y la renta en guaraníes, así que la suba del dólar baja las rentabilidades:
+   - Ingreso anual: USD 36.202.
+   - Rentabilidad: bruta 10,65%, neta antes de IRE 8,01% y neta final 7,21%; 9,4 veces.
+   - Escenarios a 5 años: neto del año 5 de USD 27.712 / 30.014 / 33.723 y TIR de 9,1% / 10,7% / 12,4%.
+   - Con el TC de la v1 (Gs 5.694) eran 12,12% bruta, 8,25% neta y TIR base de 11,7%. La diferencia se explica solo por el tipo de cambio.
+
+## Pendientes (al 07/11/2026)
+- Observaciones 1 y 2: siguen abiertas. Falta confirmar el local comercial frente al detalle de alquileres, y reverificar las distancias y los avisos de Ciudad Nueva.
+- Ciudad Nueva todavía no tiene un estudio de mercado con el estándar D-100 (`knowledge-base/investment/market-intelligence/estudios/`). Conviene relevarlo antes de la próxima versión.

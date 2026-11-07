@@ -1,6 +1,6 @@
 # Edificio Catedral (Ciudad del Este) — presentación para inversores
 
-Edificio de renta de uso mixto en Pampliega casi Av. Mayor Rivas Ortellado, Barrio Catedral, en venta a USD 960.000. Tiene 12 departamentos, 3 salones y 12 cocheras sobre 700 m² de terreno, con 2.290 m² construidos informados.
+Edificio de renta de uso mixto en Pampliega casi Av. Mayor Rivas Ortellado, Barrio Catedral, en venta a USD 960.000. Meridiano Capital sugiere un precio de venta rápida de USD 800.000. La ubicación está confirmada: https://maps.app.goo.gl/uPDUSU5wzgi6K3iNA. Tiene 12 departamentos de 150 m², 3 salones (1 alquilado y 2 desocupados) y 12 cocheras sobre 700 m² de terreno, con 2.290 m² construidos informados.
 
 ## Entregables (`entregables/`)
 | Archivo | Contenido |
@@ -29,10 +29,13 @@ python projects/meridiano-capital/presentaciones/edificio-catedral/fuente/build_
   - `fuente/build_docs.py`: los dos documentos.
 
 ## Resultados (TC Gs 6.480,35, BCP referencial del 06/11/2026)
-| | Mensual | Anual | Bruta | Recuperación simple |
-|---|---:|---:|---:|---:|
-| Residencial informado (12 × Gs 3.000.000) | Gs 36.000.000 | Gs 432.000.000 | 6,94% | 14,4 años |
-| Total proyectado con 3 locales a Gs 3.000.000 (hipótesis) | Gs 45.000.000 | Gs 540.000.000 | 8,68% | 11,5 años |
+| Bruta | Renta anual | USD 960.000 (publicado) | USD 800.000 (venta rápida sugerida) |
+|---|---:|---:|---:|
+| Actual: 12 dptos. y 1 salón (canon del salón: hipótesis) | Gs 468.000.000 | 7,52% · 13,3 años | 9,03% · 11,1 años |
+| Solo los departamentos (informado) | Gs 432.000.000 | 6,94% · 14,4 años | 8,33% · 12,0 años |
+| Potencial: con los 2 salones desocupados alquilados | Gs 540.000.000 | 8,68% · 11,5 años | 10,42% · 9,6 años |
+
+Los años corresponden a la recuperación simple bruta. Los escenarios inferior y superior del estudio, a los dos precios, están en el Excel y en el control interno.
 
 **Mercado** (estudio `CDE-CATEDRAL-2026-11-07`, en `knowledge-base/investment/market-intelligence/estudios/`):
 - Departamentos de 3 dormitorios: mediana de Gs 5,1 M; las unidades estándar van de Gs 3,0 a 6,0 M. El canon del edificio está dentro del mercado, en la banda baja.
