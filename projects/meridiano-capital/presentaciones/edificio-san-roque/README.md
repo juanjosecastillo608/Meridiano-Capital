@@ -21,6 +21,8 @@ Agrega una lámina sobre la ampliación de dos pisos en la terraza.
 **Fotos:**
 - `fachada.jpg`: fachada actual, enviada por el founder el 07/11. Se difuminaron las caras de los dos peatones; la patente del auto no es legible. Es la imagen de portada.
 - `planta_baja.jpg`: salón de PB con entrepiso, enviado por el founder el 07/11. Rotulado "a verificar en la visita".
+- `mapa.jpg`: vista aérea de Google Maps enviada por el founder, con el marcador del edificio (aprox. −25,2905, −57,6267). Se recortó la barra de captura de pantalla.
+- `qr_ubicacion.png`: QR de https://maps.app.goo.gl/BqVMt7V2gT9mkx5J6, con los colores de la marca. Se verificó que al escanearlo abre ese enlace.
 - `tinglado.jpg`: foto del fondo del lote.
 - `interior.jpg`: planta alta, recortada para que no aparezca la persona de la foto original.
 - **Retirado:** el render de IA de la v1 inicial, porque mostraba el mismo salón de PB retocado y ahora hay foto real.
@@ -74,7 +76,7 @@ A USD 170.000, B supera el 8% bruto, pero no llega al 10%.
 Los Gs 11 M por mes del aviso darían 8,15% bruto sobre USD 250.000 sin obra. No es comparable, porque supone las plantas altas terminadas y alquiladas, y no se muestra (D-099).
 
 ## Pendiente
-1. Medir las distancias a pie al Ministerio de Salud y a los sanatorios con el geocoding (SK-16). Los enlaces de Google Maps no se pueden abrir desde este entorno.
+1. Medir la distancia exacta a pie al Ministerio de Salud (según el mapa, menos de dos cuadras) y a los sanatorios con el geocoding (SK-16). Los enlaces de Google Maps no se pueden abrir desde este entorno.
 2. Recibir los planos actuales y proyectados. El mensaje los mencionaba, pero no llegaron entre los archivos adjuntos.
 3. Aclarar la superficie del terreno, 585,80 m² frente a 9 × 69 = 621 m², con la mensura y el título.
 4. Confirmar el estado real de las plantas altas y si hoy hay algún contrato de alquiler. El aviso menciona "3 unidades generadoras de ingresos", pero también un piso sin terminar.
@@ -86,5 +88,6 @@ Los Gs 11 M por mes del aviso darían 8,15% bruto sobre USD 250.000 sin obra. No
   - Venta rápida de USD 170.000 confirmada por el founder; el análisis muestra ahora los dos precios.
   - Ubicación exacta y cercanía al Ministerio de Salud.
   - Fotos reales de la fachada y de la planta baja; sale el render de IA.
+  - Lámina 3 rehecha con el mapa aéreo y el QR de la ubicación. Según el mapa, el Ministerio de Salud está sobre Brasil, entre Herrera y Pettirossi, a menos de dos cuadras. En la misma cuadra de Herrera hay consultorios médicos.
   - Dirección corregida a Luis Alberto de Herrera casi Brasil, sobre la misma calle que la sede del Ministerio de Salud. El enlace de ubicación figura como texto en la lámina 3. Los salones de Eusebio Ayala (L1–L3) pasan a ser comparables de la zona, no del frente del edificio.
   - Vacancia de consultorios en 10%.

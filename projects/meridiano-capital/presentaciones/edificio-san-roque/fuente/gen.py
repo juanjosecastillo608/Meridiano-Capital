@@ -71,16 +71,18 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de tres niveles para 
 <div class="box">Rentabilidades sobre el precio más la obra para terminar el edificio, con alquileres del estudio de mercado de Meridiano Capital · Sin contratos de alquiler verificados · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
-loc = [('Dirección', 'Luis Alberto de Herrera casi Brasil, barrio San Roque, Asunción'), ('Zona', 'Centro de Asunción · barrio San Roque'),
-       ('Entorno comercial', 'Zona de comercios y servicios del centro, con alto tránsito vehicular y peatonal'),
-       ('Entorno de salud', 'Ministerio de Salud Pública, sobre la misma calle Brasil (Av. Pettirossi y Brasil), Sanatorio Adventista, Hospital Universitario Nuestra Señora de la Asunción y Sanatorio San Roque')]
-lh = ''.join(f'<div class="li"><div class="eb sm">{a}</div><div class="lt">{b}</div></div>' for a, b in loc)
-pts = [('Frente', '9 m sobre Luis Alberto de Herrera, con salón comercial terminado'), ('Fondo', '69 m: estacionamiento para varios vehículos y tinglado de 60 m²'), ('Altura', '3 niveles construidos y terraza de 160 m²')]
-ph = ''.join(f'<div class="pt"><div class="pn">0{i+1}</div><div><div class="pth">{a}</div><div class="ptt">{b}</div></div></div>' for i, (a, b) in enumerate(pts))
-S.append(slide(f'''{head('Ubicación', 'Luis Alberto de Herrera casi Brasil, San Roque')}
-<div class="two z"><div class="locr">{lh}<a class="glink" href="{MAPS}">Ubicación en Google Maps: {MAPS.replace("https://", "")}</a></div>
-<div><div class="eb sm">El lote</div>{ph}<p class="note">Lote angosto y profundo, con acceso vehicular lateral: el fondo permite estacionamiento propio, poco habitual en el centro, y es la base del potencial de un segundo bloque.</p></div></div>
-<div class="src">Dirección y enlace de ubicación confirmados por el founder el 07/11/2026; identificación catastral a confirmar. Direcciones del Ministerio y de los sanatorios según directorios públicos; distancias a pie a medir.</div>''', num()))
+MAPS_QR = 'https://maps.app.goo.gl/BqVMt7V2gT9mkx5J6'   # enlace para el QR, enviado por el founder el 07/11/2026
+loc = [('Dirección', 'Luis Alberto de Herrera casi Brasil, barrio San Roque, Asunción'),
+       ('Ministerio de Salud Pública', 'Sobre la calle Brasil, entre Herrera y Pettirossi: a menos de dos cuadras del edificio, según el mapa'),
+       ('Entorno inmediato', 'Consultorios médicos sobre la misma cuadra de Herrera, Universidad del Chaco, hoteles y comercios del centro'),
+       ('Sanatorios del barrio', 'Sanatorio Adventista, Hospital Universitario Nuestra Señora de la Asunción y Sanatorio San Roque'),
+       ('El lote', '9 m de frente sobre Herrera y 69 m de fondo, con acceso vehicular lateral, estacionamiento y tinglado de 60 m²')]
+lh = ''.join(f'<div class="li" style="padding:9px 0 10px"><div class="eb sm">{a}</div><div class="lt" style="font-size:14px">{b}</div></div>' for a, b in loc)
+S.append(slide(f'''{head('Ubicación', 'Luis Alberto de Herrera casi Brasil, a pasos del Ministerio de Salud')}
+<div class="two" style="margin-top:22px"><div><div class="mapimg"><img src="img/mapa.jpg" style="height:300px;object-position:50% 50%"><div class="cap">Vista aérea: el marcador indica el edificio; el Ministerio de Salud está sobre la calle Brasil · Imagen de Google Maps</div></div>
+<div style="display:flex;gap:18px;align-items:center;margin-top:14px"><img src="img/qr_ubicacion.png" style="width:104px;height:104px"><div><div class="eb sm">Escanee para abrir la ubicación</div><a class="glink" style="margin-top:6px" href="{MAPS_QR}">{MAPS_QR.replace("https://", "")}</a><div style="font-size:12px;margin-top:6px">También: <a href="{MAPS}" style="color:var(--tierra)">{MAPS.replace("https://", "")}</a></div></div></div></div>
+<div class="locr">{lh}</div></div>
+<div class="src">Dirección y enlaces de ubicación confirmados por el founder el 07/11/2026; identificación catastral a confirmar. Distancias estimadas sobre el mapa, a medir a pie.</div>''', num()))
 
 # 04 ZONA
 zp = [('Demanda comercial', 'Salones de 200 a 600 m² sobre la Av. Eusebio Ayala se publican entre Gs 14.000 y 30.000 por m² por mes.'),
