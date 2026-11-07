@@ -76,6 +76,7 @@ El pre-commit (`scripts/pre-commit-checks.py`) y CI (`estudios-de-mercado`) vali
 
 | Estudio | Ciudad y zona | Consulta | TC del estudio | Comparables (en estadísticas) | Confianza | Usado en |
 |---|---|---|---|---|---|---|
+| `CDE-MICROCENTRO-2026-11-07` | CDE, microcentro / Av. San Blas | 07/11/2026 | Gs 6.480,35 (BCP, 06/11) | 10 (5): 3 salones y depósitos, 4 oficinas y 3 ventas, más 4 referencias de prensa | MEDIA-BAJA | `.../galeria-san-blas-cde/` |
 | `CDE-CATEDRAL-2026-11-07` | CDE, Barrio Catedral / microcentro | 07/11/2026 | Gs 6.480,35 (BCP, 06/11) | 26 (22): 12 residenciales y 14 comerciales | MEDIA | `projects/meridiano-capital/presentaciones/edificio-catedral/` |
 | `CDE-SAN-MIGUEL-2026-10-17` | CDE, San Miguel / Área 2 | 17/10/2026 | Gs 5.770,91 (BCP, cierre 16/10) | 15 (11): 6 de alquiler, 8 de venta y 1 terreno | BAJA en mercado | `.../edificio-barrio-san-miguel/` |
 | `CDE-SAN-JOSE-2026-10-13` | CDE, Barrio San José | 13/10/2026 | Gs 5.698,03 (BCP, 14/10) | 13 (13): 11 de alquiler y 2 de venta, sin enlaces por fila | BAJA | `.../edificio-barrio-san-jose/` y `rentals/08` |

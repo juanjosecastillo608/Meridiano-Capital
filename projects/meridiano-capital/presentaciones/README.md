@@ -7,6 +7,7 @@
 | Edificio Sajonia (Asunción) | `edificio-sajonia/` | `fuente/` |
 | Edificio San Roque (Asunción) | `edificio-san-roque/` | `fuente/` |
 | Edificio Barrio San Miguel (Ciudad del Este) | `edificio-barrio-san-miguel/` | `fuente/` |
+| Galería San Blas (Ciudad del Este) | `galeria-san-blas-cde/` | `fuente/` |
 | Edificio Catedral (Ciudad del Este) — PPTX, PDF, XLSX y documentos | `edificio-catedral/entregables/` | `fuente/` + `production/generadores/build_edificio_catedral_presentacion.js` |
 
 Cada `fuente/` contiene todo lo necesario para reconstruir el PDF:
