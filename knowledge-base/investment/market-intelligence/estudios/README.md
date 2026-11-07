@@ -79,6 +79,7 @@ El pre-commit (`scripts/pre-commit-checks.py`) y CI (`estudios-de-mercado`) vali
 | `CDE-CATEDRAL-2026-11-07` | CDE, Barrio Catedral / microcentro | 07/11/2026 | Gs 6.480,35 (BCP, 06/11) | 26 (22): 12 residenciales y 14 comerciales | MEDIA | `projects/meridiano-capital/presentaciones/edificio-catedral/` |
 | `CDE-SAN-MIGUEL-2026-10-17` | CDE, San Miguel / Área 2 | 17/10/2026 | Gs 5.770,91 (BCP, cierre 16/10) | 15 (11): 6 de alquiler, 8 de venta y 1 terreno | BAJA en mercado | `.../edificio-barrio-san-miguel/` |
 | `CDE-SAN-JOSE-2026-10-13` | CDE, Barrio San José | 13/10/2026 | Gs 5.698,03 (BCP, 14/10) | 13 (13): 11 de alquiler y 2 de venta, sin enlaces por fila | BAJA | `.../edificio-barrio-san-jose/` y `rentals/08` |
+| `ASU-SAJONIA-2026-11-07` | Asunción, Sajonia: consultorios, oficinas para abogados y vivienda | 07/11/2026 | Gs 6.480,35 (BCP, 06/11) | 12 (7): 6 consultorios, 3 oficinas, 2 departamentos y 1 edificio en venta, más 4 referencias de salud | MEDIA-BAJA | `.../edificio-sajonia/` (v4) |
 | `ASU-SAJONIA-2026-10-15` | Asunción, Sajonia / Palacio de Justicia | 15/10/2026 | Gs 5.698,03 (BCP, 14/10) | 17 (15): 12 de alquiler y 5 de venta, sin enlaces por fila | MEDIA-BAJA | `.../edificio-sajonia/` y `rentals/09` |
 
 **Pendiente de normalizar:** los enlaces por fila de San José y Sajonia. Están en los informes originales de cada deck, pero no se transcribieron a la base.

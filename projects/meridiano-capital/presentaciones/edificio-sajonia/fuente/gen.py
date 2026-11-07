@@ -55,14 +55,14 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 <div class="addr">Av. Ygatimí 1351 · Zona Palacio de Justicia, Asunción</div>
 <div class="cvk"><div><div class="v">USD 220.000</div><div class="l">Precio de venta · venta rápida USD 185.000</div></div>
 <div><div class="v">803 m²</div><div class="l">Construidos sobre 268 m² de terreno</div></div></div>
-<div class="cf">Construido en 1980 · Hoy desocupado, sin renta · Rentabilidad estimada tras la puesta en valor · {tc_corto()}</div></div>
+<div class="cf">Construido en 1980 · Hoy desocupado, sin renta · Tres usos: oficinas, departamentos o clínica de consultorios · {tc_corto()}</div></div>
 <div class="cr"><img src="img/fachada_lat.jpg" style="object-position:52% 50%"></div></section>''')
 
 # 02 RESUMEN
 S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de oficinas de tres niveles para reconvertir en renta')}
-<p class="lead">Edificio construido en 1980 como sede de oficinas, a pasos del Parque Carlos Antonio López y en la zona del Palacio de Justicia. Hoy está desocupado y no genera renta: su valor está en la puesta en valor. Se analizan tres alternativas (oficinas y locales, departamentos y uso mixto) a dos precios: el de venta y el de venta rápida.</p>
+<p class="lead">Edificio construido en 1980 como sede de oficinas, a pasos del Parque Carlos Antonio López y en la zona del Palacio de Justicia. Hoy está desocupado y no genera renta: su valor está en la puesta en valor. Se analizan tres usos excluyentes entre sí (oficinas para estudios jurídicos, departamentos de alquiler o clínica de consultorios médicos) a dos precios: el de venta y el de venta rápida.</p>
 {kgrid([('USD 220.000', 'Precio de venta'), ('USD 185.000', 'Precio de venta rápida (−15,9%)'), ('803 m²', 'Construidos · 3 niveles'), ('268 m²', 'Terreno de 8 × 33,44 m'),
-        (pct(eA['pedido']['bruta']) + ' · ' + pct(eA['pedido']['neta']), 'A · Oficinas: bruta · neta a USD 220.000'), (pct(eB['pedido']['bruta']) + ' · ' + pct(eB['pedido']['neta']), 'B · Departamentos: bruta · neta a USD 220.000'), (pct(eC['pedido']['bruta']) + ' · ' + pct(eC['pedido']['neta']), 'C · Mixto: bruta · neta a USD 220.000'), (pct(eC['rapida']['neta']), 'Mejor neta: C a USD 185.000')], 'kgrid ks')}
+        (pct(eA['pedido']['bruta']) + ' · ' + pct(eA['pedido']['neta']), 'A · Oficinas: bruta · neta a USD 220.000'), (pct(eB['pedido']['bruta']) + ' · ' + pct(eB['pedido']['neta']), 'B · Departamentos: bruta · neta a USD 220.000'), (pct(eC['pedido']['bruta']) + ' · ' + pct(eC['pedido']['neta']), 'C · Clínica: bruta · neta a USD 220.000'), (pct(eA['rapida']['neta']), 'Mejor neta: A a USD 185.000')], 'kgrid ks')}
 <div class="box">Sin renta actual: toda rentabilidad es una estimación posterior a la obra · Obra según la tabla de Meridiano Capital con un 25% de descuento por el estado actual del edificio, a confirmar con presupuesto · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACION
@@ -75,15 +75,16 @@ S.append(slide(f'''{head('Ubicación', 'Av. Ygatimí, frente al Parque Carlos An
 <p class="note">Sin estacionamiento propio. El terreno presenta declive hacia el norte y el edificio está por encima del nivel de la calle. Identificación catastral a confirmar.</p></div></div>''', num()))
 
 # 04 ZONA
-pts = [('Demanda profesional', 'Estudios jurídicos, escribanías y oficinas técnicas usan la cercanía al Poder Judicial como argumento comercial.'),
+pts = [('Demanda jurídica', 'Estudios jurídicos, escribanías y peritos usan la cercanía al Palacio de Justicia como argumento comercial.'),
+       ('Entorno de salud', 'Edificio histórico del Hospital de Clínicas, con atención ambulatoria, Centro de Salud N.º 8 y Hospital de Barrio Obrero en el barrio vecino.'),
        ('Vivienda en alquiler', 'Se publican monoambientes y departamentos de 1 y 2 dormitorios entre Gs 1,4 y 5,5 millones (lámina 13).'),
-       ('Ubicación consolidada', 'Barrio tradicional con transporte, comercios y servicios, a minutos del centro y de las oficinas de gobierno.')]
+       ]
 ph = ''.join(f'<div class="pt"><div class="pn">0{i+1}</div><div><div class="pth">{a}</div><div class="ptt">{b}</div></div></div>' for i, (a, b) in enumerate(pts))
 S.append(slide(f'''{head('La zona para el inversor', 'Sajonia: entre el Palacio de Justicia y el centro')}
 <div class="two z"><div class="ztext"><p>Sajonia es uno de los barrios tradicionales de Asunción, junto al centro histórico y a la Costanera. En su borde se ubica el Palacio de Justicia, que concentra la actividad del Poder Judicial y atrae a diario a abogados, escribanos, peritos y público.</p>
-<p>Esa actividad sostiene dos demandas: oficinas para profesionales y vivienda en alquiler de escala chica para quienes trabajan o estudian en la zona. Los anuncios del estudio de mercado muestran oferta activa en ambos segmentos.</p></div>
+<p>Esa actividad sostiene oficinas para profesionales y vivienda de escala chica. El barrio también tiene un perfil de salud, aunque el Hospital de Clínicas se trasladó a San Lorenzo y su edificio de Sajonia hoy conserva solo atención ambulatoria.</p></div>
 <div><div class="eb sm">Por qué importa para la renta</div>{ph}</div></div>
-<div class="src">Estudio de mercado de Meridiano Capital, corte al 15/10/2026: 12 anuncios de alquiler y 8 de venta con precio, en InfoCasas, Jariton, Amambay Propiedades, TuCasaPY y UbicaProp. Precios pedidos; disponibilidad no confirmada. Vacancia del barrio: sin dato publicado.</div>''', num()))
+<div class="src">Estudios de mercado de Meridiano Capital del 15/10/2026 (oficinas y vivienda) y del 07/11/2026 (consultorios, oficinas para abogados y entorno de salud), en InfoCasas, Jariton, Cazzola y otros portales. Precios pedidos; disponibilidad no confirmada. Vacancia del barrio: sin dato publicado.</div>''', num()))
 
 # 05 SUPERFICIES Y VALOR
 acm = M['acm']
@@ -121,43 +122,47 @@ S.append(slide(f'''{head('Potencial del espacio', 'Referencia de cómo podría v
 <div class="ph"><figure style="width:1020px"><img src="img/render.jpg" style="height:412px"><figcaption>Imágenes generadas con inteligencia artificial a modo ilustrativo; no son fotografías del estado actual</figcaption></figure></div>''', num(), dark=True))
 
 # 10 ALTERNATIVAS
-ALT_NAMES = {'A': 'A · Oficinas y locales', 'B': 'B · Departamentos', 'C': 'C · Mixto'}
+ALT_NAMES = {'A': 'A · Oficinas para abogados', 'B': 'B · Departamentos', 'C': 'C · Clínica de consultorios'}
 def alt_card(a, rows, gold=False):
     return f'<div><div class="altt{" gold" if gold else ""}">{ALT_NAMES[a]}</div>{table(["", ""], rows, "t nohead sm")}</div>'
-altA_rows = [(['Programa', f'Plantas libres de oficinas y local; {round(M["A_m2"])} m² alquilables (80% de lo construido)'], ''),
+altA_rows = [(['Programa', f'Oficinas para estudios jurídicos y escribanías; {round(M["A_m2"])} m² alquilables (80% de lo construido)'], ''),
              (['Obra', 'Puesta en valor del uso original: fachada, instalaciones, sanitarios, climatización y terminaciones'], ''),
              (['Costo', f'{rate(cxA["rate"])}/m² (tabla básica USD 350 − 25%)'], 'b')]
 altB_rows = [(['Programa', '2 dptos. de 2 dorm., 3 de 1 dorm., 5 monoambientes y 1 local en PB'], ''),
              (['Obra', 'Cambio de uso: cocinas y baños por unidad, instalaciones individuales, patio de luz'], ''),
              (['Costo', f'{rate(cxB["rate"])}/m² (tabla estándar USD 450 − 25%)'], 'b')]
-altC_rows = [(['Programa', f'Local en PB y oficinas en niveles 1 y 2 ({round(M["C_OF_M2"])} m²); nivel 3: 1 dpto. de 2 dorm., 1 de 1 dorm. y 2 monoambientes'], ''),
-             (['Obra', 'Puesta en valor de oficinas y cambio de uso solo en el nivel 3; accesos y medidores separados'], ''),
-             (['Costo', f'{rate(cxC["rate"])}/m² promedio (2 niveles a USD 262,5 + 1 a USD 337,5)'], 'b')]
+altC_rows = [(['Programa', f'{M["N_CONS"]} consultorios ({" + ".join(str(q) for q in M["CONS_NIV"])} por nivel), recepción y sala de espera por nivel; uso exclusivo de salud'], ''),
+             (['Obra', 'Lavamanos por consultorio, sanitarios accesibles, ascensor para pacientes, climatización y habilitación sanitaria'], ''),
+             (['Costo', f'{rate(cxC["rate_base"])}/m² (tabla estándar USD 450 − 25%) + ascensor {usd(cxC["ascensor"])}'], 'b')]
 S.append(slide(f'''{head('Alternativas de puesta en valor', 'Tres caminos para volver a generar renta')}
 <div class="two alt3">{alt_card('A', altA_rows)}{alt_card('B', altB_rows, True)}{alt_card('C', altC_rows)}</div>
-<p class="note2"><b>Cómo se comparan.</b> A conserva el uso original y requiere la obra más liviana, pero concentra todo el ingreso en oficinas sin cocheras. B diversifica en 10 unidades con menos vacancia e IVA más bajo, a cambio de la obra más cara. C combina ambos: menor obra que B y menor exposición a oficinas que A, pero exige separar accesos, medidores y seguridad contra incendio por uso. Los programas de B y C son preliminares y deben validarse con un arquitecto y con la Municipalidad.</p>''', num()))
+<p class="note2"><b>Tres usos que no se mezclan.</b> Por reglamentación, los consultorios médicos no pueden compartir el edificio con oficinas de abogados ni con departamentos: se elige un uso para todo el edificio (a confirmar en la habilitación). A conserva el uso original y requiere la obra más liviana. B diversifica en 11 unidades con menos vacancia e IVA más bajo. C apunta a la demanda médica, con la obra más cara (ascensor y habilitación sanitaria). Los programas son preliminares: deben validarse con un arquitecto, la Municipalidad y, en C, el Ministerio de Salud.</p>''', num()))
 
 # 11 CAPEX
 def cxrows(cx):
     return [(['Obra', usd(cx['obra'])], ''), (['Imprevistos (10%)', usd(cx['imprev'])], ''), (['Puesta en valor', usd(cx['total'])], 'b'),
             (['Inversión a USD 220.000', usd(cx['total'] + PR['pedido'])], 'tot'), (['Inversión a USD 185.000', usd(cx['total'] + PR['rapida'])], 'tot')]
+def cxrowsC(cx):
+    return [(['Obra, ' + rate(cx['rate_base']) + '/m²', usd(cx['obra_m2'])], ''), (['Ascensor (supuesto)', usd(cx['ascensor'])], ''), (['Imprevistos (10%)', usd(cx['imprev'])], ''), (['Puesta en valor', usd(cx['total'])], 'b'),
+            (['Inversión a USD 220.000', usd(cx['total'] + PR['pedido'])], 'tot'), (['Inversión a USD 185.000', usd(cx['total'] + PR['rapida'])], 'tot')]
 S.append(slide(f'''{head('Costo de puesta en valor', 'Inversión total por alternativa y precio de compra')}
 <div class="two alt3"><div><div class="altt">{ALT_NAMES['A']} · {rate(cxA['rate'])}/m²</div>{table(['Concepto', 'USD'], cxrows(cxA), 't big')}</div>
 <div><div class="altt gold">{ALT_NAMES['B']} · {rate(cxB['rate'])}/m²</div>{table(['Concepto', 'USD'], cxrows(cxB), 't big')}</div>
-<div><div class="altt">{ALT_NAMES['C']} · {rate(round(cxC['rate'], 1))}/m²</div>{table(['Concepto', 'USD'], cxrows(cxC), 't big')}</div></div>
-<p class="note2 sm"><b>Criterios.</b> Costos por m² de la tabla de Meridiano Capital ("remodelación sobre obra existente") con un 25% de descuento por el estado actual del edificio, aplicados sobre los 803 m². Imprevistos: supuesto de 10% por la antigüedad del edificio. Plazo: supuesto de 12 meses sin renta. Excluye gastos de adquisición, mobiliario y comisión de alquiler.</p>''', num()))
+<div><div class="altt">{ALT_NAMES['C']}</div>{table(['Concepto', 'USD'], cxrowsC(cxC), 't big')}</div></div>
+<p class="note2 sm"><b>Criterios.</b> Costos por m² de la tabla de Meridiano Capital ("remodelación sobre obra existente") con un 25% de descuento por el estado actual del edificio, aplicados sobre los 803 m². Clínica: tabla estándar, la de cambio de uso, más un ascensor de USD 45.000 (supuesto) para pacientes. Imprevistos: supuesto de 10% por la antigüedad del edificio. Plazo: supuesto de 12 meses sin renta. Excluye gastos de adquisición, mobiliario y comisión de alquiler.</p>''', num()))
 
 # 12 INGRESOS ESTIMADOS
 def inc_rows(a, total_lbl=''):
     alt = M[a]['alt']
     return [([l, d, gs(c), usd(c / TC)], '') for l, d, c in alt['lines']] + [(['Total', total_lbl, gs(alt['mes']), usd(alt['mes'] / TC)], 'tot')]
 sup = [('Oficinas', 'Gs 45.000/m²: O3, oficina de 160 m² sin muebles en Sajonia (Gs 46.350/m²).')] + \
-      [(lbl, f"{gs(M['REF'][k])} · {M['REF_TXT'][k]}") for lbl, k in [('2 dormitorios', '2D'), ('1 dormitorio', '1D'), ('Monoambiente', 'MONO'), ('Local en PB', 'LOCAL')]]
+      [(lbl, f"{gs(M['REF'][k])} · {M['REF_TXT'][k]}") for lbl, k in [('2 dormitorios', '2D'), ('1 dormitorio', '1D'), ('Monoambiente', 'MONO'), ('Local en PB', 'LOCAL')]] + \
+      [('Consultorio', f"{gs(M['CONS_RENT'])} por unidad vacía, sin servicios: supuesto de Meridiano sobre K1–K3 (lámina 14).")]
 S.append(slide(f'''{head('Ingresos estimados', 'Alquiler mensual tras la puesta en valor')}
 <div class="two cx2 cmp"><div><div class="altt">{ALT_NAMES['A']}</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], inc_rows('A'), 't xs')}
 <div class="altt gold" style="margin-top:8px">{ALT_NAMES['B']}</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], inc_rows('B', '11 unidades'), 't xs')}
-<div class="altt" style="margin-top:8px">{ALT_NAMES['C']}</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], inc_rows('C'), 't xs')}</div>
-{crit('Base de mercado (estudio 15/10/2026)', sup)}</div>''', num()))
+<div class="altt" style="margin-top:8px">{ALT_NAMES['C']}</div>{table(['Concepto', 'Detalle', 'Gs por mes', 'USD'], inc_rows('C', str(M['N_CONS']) + ' consultorios'), 't xs')}</div>
+{crit('Base de mercado (estudios 15/10 y 07/11/2026)', sup)}</div>''', num()))
 
 # 13 REFERENCIAS DE MERCADO
 rc = [('O1', 'Oficina', 'Av. C. A. López, zona Palacio', '32 m² · 1', 'Gs 2.700.000', '84.375'), ('O3', 'Oficina sin muebles', 'Sajonia', '160 m² · 1', 'Gs 7.416.000', '46.350'),
@@ -170,7 +175,18 @@ S.append(slide(f'''{head('Referencias de mercado', 'Alquileres publicados en Saj
 <p class="note2 sm"><b>Bandas observadas.</b> Monoambientes Gs 2,5–3,0 M (ambos con cochera) · 1 dormitorio Gs 1,4–3,0 M · 2 dormitorios estándar Gs 3,0–4,5 M · oficinas Gs 46.000–84.000/m² según tamaño y equipamiento.</p>
 <div class="src">Estudio de mercado de Meridiano Capital, consulta del 15/10/2026 en InfoCasas y Jariton. Precios pedidos, no contratos cerrados; disponibilidad no confirmada; O1 es un anuncio de 2023. Excluidos de la estadística: O2 (superficie inconsistente) y T4 (área de terraza ambigua).</div>''', num()))
 
-# 14 INGRESOS Y EGRESOS
+# 14 CONSULTORIOS Y SALUD
+kc = [('K1', 'Consultorio en edificio médico, 4.º piso', 'San Roque', '70 m²', 'Gs 1.750.000', '25.000'), ('K2', 'Consultorio en clínica, con secretaria y limpieza', 'Bernardino Caballero', '120 m²', 'Gs 2.150.000', '17.917'),
+      ('K3', 'Consultorio', 'Villa Aurelia', '148 m²', 'Gs 5.000.000', '33.784'), ('O6', 'Local apto consultorios u oficinas', 'Zona CPJ', '117 m²', 'Gs 7.000.000', '59.829')]
+req = M['req']
+S.append(slide(f'''{head('Mercado de consultorios', 'Demanda médica: consultorios y entorno de salud')}
+<div class="two cx2 cmp"><div>{table(['ID', 'Tipología', 'Barrio', 'Superficie', 'Precio por mes', 'Gs/m²'], [(list(r), '') for r in kc], 't sm refs')}
+<p class="note2 sm"><b>Sin consultorios publicados en Sajonia.</b> K1–K3 son de otros barrios de Asunción. Un consultorio chico, de 15 a 18 m², se alquila por unidad: la base de {gs(M['CONS_RENT'])} por consultorio es un supuesto de Meridiano, entre K1 y el alquiler por turnos de las clínicas (Gs 60.000–80.000 por hora).</p>
+<p class="note2 sm"><b>Alquiler que haría falta.</b> Para igualar la neta de las oficinas (A), cada consultorio debería alquilarse en {gs(req['A|pedido'])} por mes; para igualar la de departamentos (B), en {gs(req['B|pedido'])}. Es una herramienta inversa, no un precio de mercado.</p></div>
+{crit('Entorno de salud', [('Ex Hospital de Clínicas', 'El hospital se trasladó a San Lorenzo; su edificio de Sajonia conserva atención ambulatoria parcial.'), ('Centro de Salud N.º 8', 'Ministerio de Salud, en el barrio Sajonia.'), ('Hospital de Barrio Obrero', 'Barrio vecino; unos 1.000 pacientes por día según la Defensoría del Pueblo.'), ('Lectura', 'Hay actividad médica, pero el gran generador de demanda del barrio se fue: la clínica es la apuesta con más incertidumbre de colocación.')])}</div>
+<div class="src">Estudio de mercado de Meridiano Capital del 07/11/2026 (ASU-SAJONIA-2026-11-07): InfoCasas, Jariton, Última Hora y Ministerio de Salud. Precios pedidos; distancias a hospitales no medidas.</div>''', num()))
+
+# 15 INGRESOS Y EGRESOS
 def er(a):
     e, alt = M[a]['ev']['pedido'], M[a]['alt']
     G = e['G']
@@ -182,7 +198,7 @@ S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al res
 <div class="two alt3"><div><div class="altt">{ALT_NAMES['A']}</div>{table(['Concepto', '%', 'USD/año'], er('A'), 't sm ie')}</div>
 <div><div class="altt gold">{ALT_NAMES['B']}</div>{table(['Concepto', '%', 'USD/año'], er('B'), 't sm ie')}</div>
 <div><div class="altt">{ALT_NAMES['C']}</div>{table(['Concepto', '%', 'USD/año'], er('C'), 't sm ie')}</div></div>
-<p class="note2 sm">El resultado operativo no depende del precio de compra. IVA: 10% en oficinas y locales, 5% en vivienda; vacancia de referencia de Meridiano: 10% oficinas, 8% locales, 4% vivienda (ponderados por ingreso en B y C). Gastos fijos: supuesto de Gs 9.000.000 por año. IRE: 10% estimado si se compra por sociedad; el contador define la base real.</p>''', num()))
+<p class="note2 sm">El resultado operativo no depende del precio de compra. IVA: 10% en oficinas, locales y consultorios, 5% en vivienda; vacancia de referencia de Meridiano: 10% oficinas, 8% locales, 4% vivienda y 15% consultorios (supuesto, producto nuevo en la zona), ponderada por ingreso en B. Gastos fijos: supuesto de Gs 9.000.000 por año. IRE: 10% estimado si se compra por sociedad; el contador define la base real.</p>''', num()))
 
 # 15 RENTABILIDAD
 def c(a, p, k): return pct(M[a]['ev'][p][k])
@@ -191,7 +207,7 @@ def rowr(lbl, k, cls):
     return f'<div class="rl">{lbl}</div>' + ''.join(f'<div class="{cls}">{c(a, p, k) if k != "inv" else usd(M[a]["ev"][p]["inv"])}</div>' for a in 'ABC' for p in ('pedido', 'rapida'))
 S.append(slide(f'''{head('Rentabilidad estimada', 'Tres alternativas a dos precios de compra')}<div class="rule"></div>
 <div class="rg6">{hdr}{rowr('Bruta sobre inversión total', 'bruta', 'bigv m6')}{rowr('Neta antes de IRE', 'neta_pre', 'midv')}{rowr('Neta final', 'neta', 'midv')}{rowr('Inversión total', 'inv', 'midv s2')}</div>
-<div class="bs how"><b>Cómo leer estas cifras.</b> A = oficinas y locales; B = departamentos; C = mixto. El denominador es el precio más la puesta en valor, sin gastos de adquisición. Son estimaciones posteriores a la obra, con alquileres del estudio de mercado: no hay renta actual que las respalde. La venta rápida suma entre 0,8 y 1,1 puntos brutos, porque la obra pesa más que el precio. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
+<div class="bs how"><b>Cómo leer estas cifras.</b> A = oficinas para abogados; B = departamentos; C = clínica de consultorios. El denominador es el precio más la puesta en valor, sin gastos de adquisición. Son estimaciones posteriores a la obra, con alquileres del estudio de mercado: no hay renta actual que las respalde. La venta rápida suma entre 0,6 y 1,0 puntos brutos, porque la obra pesa más que el precio. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
 
 # 16 SENSIBILIDAD
 def srow(a, d):
@@ -200,7 +216,7 @@ def srow(a, d):
 srows = [srow(a, d) for a in 'ABC' for d in (M['DESC'], 0)]
 S.append(slide(f'''{head('Qué mueve el resultado', 'Sensibilidad: costo de obra y alquiler')}
 <div class="two cx2"><div><div class="altt">Bruta · neta final sobre inversión total, compra a USD 220.000</div>{table(['Alternativa y obra', 'Alquiler −15%', 'Alquiler base', 'Alquiler +15%'], srows, 't big')}</div>
-{crit('Lectura', [('La obra es la palanca', f"Sin el descuento del 25%, la bruta cae unos 2 puntos en cada alternativa: B queda en {pct(M['sens']['B|0|1.0|pedido'][0], 1)}, A en {pct(M['sens']['A|0|1.0|pedido'][0], 1)} y C en {pct(M['sens']['C|0|1.0|pedido'][0], 1)}."), ('El alquiler', 'Un 15% menos de alquiler resta entre 1,7 y 2 puntos brutos; las oficinas (A y C) son las más expuestas por su vacancia y por la falta de cocheras.'), ('El precio', 'Comprar a USD 185.000 suma entre 0,8 y 1,1 puntos brutos en cada alternativa.'), ('Presupuesto real', 'Antes de ofertar: presupuesto de obra sobre el edificio real con arquitecto o constructor.')])}</div>''', num()))
+{crit('Lectura', [('La obra es la palanca', f"Sin el descuento del 25%, la bruta cae entre 1,5 y 1,7 puntos: B queda en {pct(M['sens']['B|0|1.0|pedido'][0], 1)}, A en {pct(M['sens']['A|0|1.0|pedido'][0], 1)} y C en {pct(M['sens']['C|0|1.0|pedido'][0], 1)}."), ('El alquiler', 'Un 15% menos de alquiler resta entre 1,5 y 1,8 puntos brutos. Oficinas y consultorios son los más expuestos por su vacancia y por la falta de cocheras.'), ('El precio', 'Comprar a USD 185.000 suma entre 0,6 y 1,0 puntos brutos en cada alternativa.'), ('Presupuesto real', 'Antes de ofertar: presupuesto de obra sobre el edificio real con arquitecto o constructor.')])}</div>''', num()))
 
 # 17 PLUSVALIA
 pr = M['proj']
@@ -212,7 +228,7 @@ for a in 'ABC':
 best = max(((a, p) for a in 'ABC' for p in ('pedido', 'rapida')), key=lambda t: pr[t[0]][t[1]]['Base']['tir'])
 S.append(slide(f'''{head('Plusvalía y retorno total', 'TIR estimada a cinco años por alternativa')}
 <div class="two d15">{table(['Alternativa · precio', 'Conservador', 'Base', 'Optimista', 'Ganancia base'], trows, 't big')}
-<div class="dbox"><div class="bigv bv2">{pct(pr['C']['pedido']['Base']['tir'],1)} · {pct(pr['C']['rapida']['Base']['tir'],1)}</div><div class="bs">TIR base del mixto (C), a USD 220.000 y a USD 185.000: la más alta de las tres</div><p>Compra, un año de obra sin renta, cuatro años de renta neta y venta al valor estimado del año 5. Escenarios: alquileres +3/+5/+8% y valorización 2/3,5/5% anual.</p><p class="gold">Supuesto clave: el valor del edificio terminado parte de la inversión total y se valoriza desde el fin de la obra.</p></div></div>
+<div class="dbox"><div class="bigv bv2">{pct(pr['A']['pedido']['Base']['tir'],1)} · {pct(pr['A']['rapida']['Base']['tir'],1)}</div><div class="bs">TIR base de oficinas (A), a USD 220.000 y a USD 185.000: la más alta de las tres</div><p>Compra, un año de obra sin renta, cuatro años de renta neta y venta al valor estimado del año 5. Escenarios: alquileres +3/+5/+8% y valorización 2/3,5/5% anual.</p><p class="gold">Supuesto clave: el valor del edificio terminado parte de la inversión total y se valoriza desde el fin de la obra.</p></div></div>
 <div class="src">Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. Ganancia base = plusvalía − IVA de la venta futura (1,5%) + renta neta acumulada, a USD 220.000 o USD 185.000 según la fila. No incluyen gastos de adquisición ni comisión de venta.</div>''', num()))
 
 # 18 PRECIO Y CONDICIONES
@@ -234,12 +250,12 @@ S.append(slide(f'''{head('Proceso de compra', 'Cómo avanzamos, paso a paso')}<d
 <div class="src">Para inversores del exterior acompañamos también la cédula de identidad paraguaya y la apertura de cuenta bancaria. Las tareas legales, notariales, contables y de obra las realizan el abogado, el escribano, el contador y el arquitecto; Meridiano Capital coordina y acompaña.</div>''', num()))
 
 # 20 CONSIDERACIONES
-rk = [('Costo de obra', 'Es la variable decisiva en las tres alternativas: tabla de Meridiano con 25% de descuento, sin presupuesto sobre el edificio real.'),
+rk = [('Costo de obra', 'Es la variable decisiva: tabla de Meridiano con 25% de descuento y, en la clínica, un ascensor estimado; sin presupuesto sobre el edificio real.'),
+      ('Demanda médica', 'El Hospital de Clínicas se trasladó a San Lorenzo y no hay consultorios publicados en Sajonia: el alquiler por consultorio es un supuesto.'),
       ('Sin renta actual', 'Doce meses o más sin ingresos entre compra, permisos y obra, más el tiempo de alquilar las unidades.'),
-      ('Normativa y cambio de uso', 'Departamentos, uso mixto (accesos y medidores separados), patio de luz, seguridad contra incendio y usos permitidos requieren aprobación municipal.'),
+      ('Normativa y uso exclusivo', 'Consultorios: habilitación del Ministerio de Salud y uso exclusivo, sin oficinas ni viviendas (criterio a confirmar). Departamentos: patio de luz e incendio con la Municipalidad.'),
       ('Sin estacionamiento', 'Casi todos los comparables incluyen cochera; puede reducir el canon o alargar la colocación.'),
-      ('Referencias de mercado', 'Pocos anuncios por tipología, precios pedidos y disponibilidad sin confirmar: confianza baja a media.'),
-      ('Estado del edificio', 'Construcción de 1980: la inspección técnica define el alcance real de la obra.'),
+            ('Estado del edificio', 'Construcción de 1980: la inspección técnica define el alcance real de la obra.'),
       ('Tipo de cambio e impuestos', 'Precio en dólares y alquileres en guaraníes; el IRE depende de la estructura de compra y lo determina el contador.')]
 S.append(slide(f'''{head('Consideraciones', 'Riesgos a evaluar en un edificio para poner en valor')}<div class="rks c7">{''.join(f'<div class="rk"><b>{a}</b><span>{b}</span></div>' for a, b in rk)}</div>
 <div class="src">Cifras de referencia, no garantizadas. Se recomienda evaluar la operación con asesoría propia.</div>''', num()))

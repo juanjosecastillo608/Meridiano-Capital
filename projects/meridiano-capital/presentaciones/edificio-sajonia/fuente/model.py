@@ -35,23 +35,26 @@ def build(comps, k):
     return dict(lines=lines, mes=mes, iva=iva / mes, vac=vac / mes)
 
 def altA(k=1.0):
-    return build([('Oficinas y locales', f'{round(A_m2)} m² alquilables', A_m2 * OF_BASE, 'OF')], k)
+    return build([('Oficinas', f'{round(A_m2)} m² alquilables', A_m2 * OF_BASE, 'OF')], k)
 
 def altB(k=1.0):
     return build([(t, f'{q} × Gs {REF[c] * k:,.0f}'.replace(',', '.'), q * REF[c], 'LOCAL' if c == 'LOCAL' else 'VIV') for t, q, c in MIX], k)
 
-# C · Mixto: nivel 1 local + oficinas, nivel 2 oficinas, nivel 3 viviendas (1 × 2D, 1 × 1D, 2 mono)
-C_OF_M2 = 2 * LEVEL_M2 * RENT_EFF - 60
+# C · Clínica de consultorios (v4, 2026-11-07). Uso exclusivo: según el founder, la reglamentación no permite
+# mezclar consultorios con oficinas de abogados ni con departamentos (a confirmar con la habilitación del MSPyBS).
+N_CONS = 20                 # supuesto de programa: 6 en PB + 7 + 7, de 15 a 18 m² con lavamanos
+CONS_NIV = [6, 7, 7]
+CONS_RENT = 1_500_000       # supuesto de Meridiano: Gs por consultorio por mes, vacío y sin servicios (estudio 07/11/2026)
+ASCENSOR = 45_000           # supuesto: USD, ascensor para pacientes en un edificio de 3 niveles
+TAX['MED'] = (0.10, 0.15)   # IVA comercial 10%; vacancia 15%, supuesto: producto nuevo en la zona
 def altC(k=1.0):
-    return build([('Oficinas, niveles 1 y 2', f'{round(C_OF_M2)} m² alquilables', C_OF_M2 * OF_BASE, 'OF'),
-                  ('Local comercial en PB', '1 unidad', REF['LOCAL'], 'LOCAL'),
-                  ('Departamentos, nivel 3', '1 × 2 dorm. · 1 × 1 dorm. · 2 monoamb.', REF['2D'] + REF['1D'] + 2 * REF['MONO'], 'VIV')], k)
+    return build([(f'Consultorios, nivel {i + 1}', f'{q} × Gs {CONS_RENT * k:,.0f}'.replace(',', '.'), q * CONS_RENT, 'MED') for i, q in enumerate(CONS_NIV)], k)
 
 def capexC(desc=DESC):
-    of, viv = capex(TABLA['basica'], desc), capex(TABLA['estandar'], desc)
-    obra = 2 / 3 * of['obra'] + 1 / 3 * viv['obra']
-    return dict(table='mixto', rate=obra / M2, obra=obra, imprev=obra * IMPREV, total=obra * (1 + IMPREV),
-                detail=f"2 niveles × USD {of['rate']:g} + 1 nivel × USD {viv['rate']:g}")
+    base = capex(TABLA['estandar'], desc)
+    obra = base['obra'] + ASCENSOR
+    return dict(table='clinica', rate=obra / M2, rate_base=base['rate'], obra=obra, obra_m2=base['obra'], ascensor=ASCENSOR,
+                imprev=obra * IMPREV, total=obra * (1 + IMPREV))
 def neto(G, iva, vac):
     pre = G * (1 - iva - vac - ADM - MAN) - FIJOS
     return pre, pre * (1 - IRE)
@@ -82,7 +85,7 @@ def proj(alt, cx, P, gr, val):
 
 cxA, cxB, cxC = capex(TABLA['basica']), capex(TABLA['estandar']), capexC()
 ALTS = {'A': (altA, cxA, lambda d: capex(TABLA['basica'], d)), 'B': (altB, cxB, lambda d: capex(TABLA['estandar'], d)), 'C': (altC, cxC, capexC)}
-out = dict(TC=TC, PRICES=PRICES, M2=M2, A_m2=A_m2, C_OF_M2=C_OF_M2, LEVEL_M2=LEVEL_M2, FIJOS=FIJOS, DESC=DESC, OF_BASE=OF_BASE, REF=REF, REF_TXT=REF_TXT, MIX=MIX,
+out = dict(TC=TC, PRICES=PRICES, M2=M2, A_m2=A_m2, N_CONS=N_CONS, CONS_NIV=CONS_NIV, CONS_RENT=CONS_RENT, ASCENSOR=ASCENSOR, TAXC=TAX['MED'], LEVEL_M2=LEVEL_M2, FIJOS=FIJOS, DESC=DESC, OF_BASE=OF_BASE, REF=REF, REF_TXT=REF_TXT, MIX=MIX,
            cxA=cxA, cxB=cxB, cxC=cxC, nuevo=M2 * 650,
            acm=dict(terreno=73_645, edif=160_680, mercado=234_325, competitivo=210_893, rapida=187_460))
 out['sens'], out['proj'] = {}, {}
@@ -95,6 +98,13 @@ for a, (fa, cx, fcx) in ALTS.items():
                 out['sens'][f'{a}|{d}|{k}|{p}'] = [e['bruta'], e['neta']]
     out['proj'][a] = {p: {nm: proj(fa(), cx, P, gr, val) for nm, gr, val in [('Conservador', .03, .02), ('Base', .05, .035), ('Optimista', .08, .05)]}
                       for p, P in PRICES.items()}
+# Alquiler por consultorio que iguala la neta final de A y de B (a cada precio): herramienta inversa, no un dato de mercado
+out['req'] = {}
+for p, P in PRICES.items():
+    for ref in 'AB':
+        target = out[ref]['ev'][p]['neta'] * (P + cxC['total'])
+        G = (target / (1 - IRE) + FIJOS) / (1 - TAX['MED'][0] - TAX['MED'][1] - ADM - MAN)
+        out['req'][f'{ref}|{p}'] = G * TC / 12 / N_CONS
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 
 if __name__ == '__main__':
@@ -105,3 +115,4 @@ if __name__ == '__main__':
             print('  ', p, 'inv', round(e['inv']), 'bruta %.2f%% neta %.2f%%' % (e['bruta'] * 100, e['neta'] * 100),
                   'TIR', {k: '%.1f%%' % (v['tir'] * 100) for k, v in out['proj'][a][p].items()})
         print('   sin desc', '%.2f%%' % (out['sens'][f'{a}|0|1.0|pedido'][0] * 100))
+    print('req', {k: round(v) for k, v in out['req'].items()})
