@@ -1,6 +1,6 @@
 # Edificio San Roque — presentación comercial v1
 
-**Inmueble:** edificio en el centro de Asunción, barrio San Roque, sobre Av. Eusebio Ayala, a metros de Luis A. de Herrera. Se vende a USD 250.000; la venta rápida es de USD 170.000 (founder, 07/11/2026). Está cerca de la sede del Ministerio de Salud Pública (Av. Pettirossi y Brasil) y de varios sanatorios.
+**Inmueble:** edificio en el centro de Asunción, barrio San Roque, sobre **Luis Alberto de Herrera casi Brasil** (dirección confirmada por el founder el 07/11/2026). Se vende a USD 250.000; la venta rápida es de USD 170.000 (founder, 07/11/2026). Está cerca de la sede del Ministerio de Salud Pública (Av. Pettirossi y Brasil) y de varios sanatorios.
 - Ubicación exacta: https://maps.app.goo.gl/dc9bF3eS4CBVMc8h7. Referencia del Ministerio, enviada por el founder: https://maps.app.goo.gl/JMMxZ6GZyqhGWvjQ6. Ningún enlace se puede abrir desde este entorno, así que las distancias quedan por medir.
 - Terreno de 585,80 m² (9 × 69 m) y 499,4 m² construidos en 3 niveles.
 - Salón comercial terminado en planta baja, dos plantas altas por terminar y terraza de 160 m².
@@ -29,7 +29,7 @@ Agrega una lámina sobre la ampliación de dos pisos en la terraza.
 ## Supuestos (todos a validar)
 - **Superficies:** los 499,4 m² se reparten en PB con entrepiso (179,4 m²) y dos plantas de 160 m². Es un supuesto, porque no se recibieron planos.
 - **Alquileres:**
-  - Salón de PB: Gs 4,0 M, según el aviso; dentro de la banda de la Av. Eusebio Ayala.
+  - Salón de PB: Gs 4,0 M, según el aviso; dentro de la banda de salones de la zona (L1–L4).
   - Oficinas: Gs 32.000/m² sobre 256 m² alquilables.
   - Departamentos: 4 de 2 dormitorios (2 por planta, de unos 65 m²) a Gs 2,8 M, techo de la banda sin muebles, por el estacionamiento propio.
   - Consultorios: 12 (4 por nivel) a Gs 1,5 M, el mismo criterio que en Sajonia.
@@ -86,4 +86,5 @@ Los Gs 11 M por mes del aviso darían 8,15% bruto sobre USD 250.000 sin obra. No
   - Venta rápida de USD 170.000 confirmada por el founder; el análisis muestra ahora los dos precios.
   - Ubicación exacta y cercanía al Ministerio de Salud.
   - Fotos reales de la fachada y de la planta baja; sale el render de IA.
+  - Dirección corregida a Luis Alberto de Herrera casi Brasil, sobre la misma calle que la sede del Ministerio de Salud. El enlace de ubicación figura como texto en la lámina 3. Los salones de Eusebio Ayala (L1–L3) pasan a ser comparables de la zona, no del frente del edificio.
   - Vacancia de consultorios en 10%.

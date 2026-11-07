@@ -1,6 +1,6 @@
 # Estudio de mercado — Edificio San Roque (07/11/2026)
 
-**Sujeto:** edificio de 499,4 m² construidos sobre 585,80 m² de terreno, sobre Av. Eusebio Ayala, a metros de Luis A. de Herrera, en el barrio San Roque de Asunción. Tiene salón comercial terminado en la planta baja, dos plantas altas por terminar y una terraza de 160 m². Se publica en venta a USD 250.000.
+**Sujeto:** edificio de 499,4 m² construidos sobre 585,80 m² de terreno, sobre Luis Alberto de Herrera casi Brasil, en el barrio San Roque de Asunción (dirección confirmada por el founder el 07/11/2026). Tiene salón comercial terminado en la planta baja, dos plantas altas por terminar y una terraza de 160 m². Se publica en venta a USD 250.000.
 
 **Ficha del estudio:**
 - **Tipo de cambio:** Gs 6.480,35 (BCP, cotización referencial del 06/11/2026).
@@ -22,7 +22,7 @@
 | L5 | Local chico | San Roque | 23 | 2.100.000 | 91.304 | No: otra escala |
 | L6 | Local en shopping | Eusebio Ayala | 16 | 8.500.000 | 531.250 | No: producto de shopping |
 
-**Lectura:** el aviso pide Gs 4,0 M por el salón de PB con entrepiso, unos Gs 22.000/m² sobre ~180 m². Ese valor queda dentro de la banda de Gs 14.000–30.000/m².
+**Lectura:** los salones de Eusebio Ayala son comparables de la zona, no del frente del edificio. El aviso pide Gs 4,0 M por el salón de PB con entrepiso, unos Gs 22.000/m² sobre ~180 m². Ese valor queda dentro de la banda de Gs 14.000–30.000/m².
 
 ## Oficinas y consultorios
 | ID | Aviso | Ubicación | m² | Precio por mes | En estadística |
@@ -34,7 +34,7 @@
 K1 es el mismo aviso que K1 de `ASU-SAJONIA-2026-11-07`.
 
 **Entorno de salud (directorios públicos, a verificar):**
-- Ministerio de Salud Pública y Bienestar Social, sede central: Avda. Pettirossi esq. Brasil (Devex y encabezados de reportes del MSPBS). Según el founder, está cerca del edificio; la distancia está por medir.
+- Ministerio de Salud Pública y Bienestar Social, sede central: Avda. Pettirossi esq. Brasil (Devex y encabezados de reportes del MSPBS). El edificio está sobre la misma calle Brasil; la distancia a pie está por medir.
 - Sanatorio Adventista: Av. Silvio Pettirossi 380 y Paí Pérez.
 - Hospital Universitario Nuestra Señora de la Asunción: Eligio Ayala 1293 y Curupayty.
 - Sanatorio San Roque.

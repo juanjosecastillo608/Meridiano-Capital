@@ -56,7 +56,7 @@ num()
 S.append(f'''<section class="s cover"><div class="cl">{logo()}
 <div class="eb g" style="margin-top:96px">Edificio con salón comercial y potencial de ampliación · en venta</div>
 <h1>Edificio<br>San Roque</h1>
-<div class="addr">Av. Eusebio Ayala, a metros de Luis A. de Herrera · Asunción</div>
+<div class="addr">Luis Alberto de Herrera casi Brasil · San Roque, Asunción</div>
 <div class="cvk"><div><div class="v">{usd(P)}</div><div class="l">Precio de venta · venta rápida {usd(PR)}</div></div>
 <div><div class="v">499 m²</div><div class="l">Construidos sobre 585,80 m² de terreno</div></div></div>
 <div class="cf">Cerca del Ministerio de Salud y de sanatorios · Tres opciones de renta · Potencial de ampliación · {tc_corto()}</div></div>
@@ -71,16 +71,16 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Edificio de tres niveles para 
 <div class="box">Rentabilidades sobre el precio más la obra para terminar el edificio, con alquileres del estudio de mercado de Meridiano Capital · Sin contratos de alquiler verificados · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
-loc = [('Dirección', 'Av. Eusebio Ayala, a metros de Luis A. de Herrera, Asunción (ubicación exacta en el enlace)'), ('Zona', 'Centro de Asunción · barrio San Roque'),
-       ('Entorno comercial', 'Eje de comercios y servicios con alto tránsito vehicular y peatonal'),
-       ('Entorno de salud', 'Ministerio de Salud Pública (Av. Pettirossi y Brasil), Sanatorio Adventista, Hospital Universitario Nuestra Señora de la Asunción y Sanatorio San Roque')]
+loc = [('Dirección', 'Luis Alberto de Herrera casi Brasil, barrio San Roque, Asunción'), ('Zona', 'Centro de Asunción · barrio San Roque'),
+       ('Entorno comercial', 'Zona de comercios y servicios del centro, con alto tránsito vehicular y peatonal'),
+       ('Entorno de salud', 'Ministerio de Salud Pública, sobre la misma calle Brasil (Av. Pettirossi y Brasil), Sanatorio Adventista, Hospital Universitario Nuestra Señora de la Asunción y Sanatorio San Roque')]
 lh = ''.join(f'<div class="li"><div class="eb sm">{a}</div><div class="lt">{b}</div></div>' for a, b in loc)
-pts = [('Frente', '9 m sobre la avenida, con salón comercial terminado'), ('Fondo', '69 m: estacionamiento para varios vehículos y tinglado de 60 m²'), ('Altura', '3 niveles construidos y terraza de 160 m²')]
+pts = [('Frente', '9 m sobre Luis Alberto de Herrera, con salón comercial terminado'), ('Fondo', '69 m: estacionamiento para varios vehículos y tinglado de 60 m²'), ('Altura', '3 niveles construidos y terraza de 160 m²')]
 ph = ''.join(f'<div class="pt"><div class="pn">0{i+1}</div><div><div class="pth">{a}</div><div class="ptt">{b}</div></div></div>' for i, (a, b) in enumerate(pts))
-S.append(slide(f'''{head('Ubicación', 'Centro de Asunción, sobre la Av. Eusebio Ayala')}
-<div class="two z"><div class="locr">{lh}<a class="glink" href="{MAPS}">Abrir en Google Maps</a></div>
+S.append(slide(f'''{head('Ubicación', 'Luis Alberto de Herrera casi Brasil, San Roque')}
+<div class="two z"><div class="locr">{lh}<a class="glink" href="{MAPS}">Ubicación en Google Maps: {MAPS.replace("https://", "")}</a></div>
 <div><div class="eb sm">El lote</div>{ph}<p class="note">Lote angosto y profundo, con acceso vehicular lateral: el fondo permite estacionamiento propio, poco habitual en el centro, y es la base del potencial de un segundo bloque.</p></div></div>
-<div class="src">Ubicación exacta en el enlace de Google Maps; identificación catastral a confirmar. Direcciones del Ministerio y de los sanatorios según directorios públicos; distancias a pie a medir.</div>''', num()))
+<div class="src">Dirección y enlace de ubicación confirmados por el founder el 07/11/2026; identificación catastral a confirmar. Direcciones del Ministerio y de los sanatorios según directorios públicos; distancias a pie a medir.</div>''', num()))
 
 # 04 ZONA
 zp = [('Demanda comercial', 'Salones de 200 a 600 m² sobre la Av. Eusebio Ayala se publican entre Gs 14.000 y 30.000 por m² por mes.'),
@@ -89,7 +89,7 @@ zp = [('Demanda comercial', 'Salones de 200 a 600 m² sobre la Av. Eusebio Ayala
       ]
 zh = ''.join(f'<div class="pt"><div class="pn">0{i+1}</div><div><div class="pth">{a}</div><div class="ptt">{b}</div></div></div>' for i, (a, b) in enumerate(zp))
 S.append(slide(f'''{head('La zona para el inversor', 'San Roque: comercio, salud y vivienda en el centro')}
-<div class="two z"><div class="ztext"><p>San Roque es uno de los barrios centrales de Asunción, entre el microcentro y los ejes de las avenidas Eusebio Ayala y Mariscal López. Combina comercio sobre avenida, oficinas y el polo de salud que forman el Ministerio de Salud Pública y los sanatorios del barrio.</p>
+<div class="two z"><div class="ztext"><p>San Roque es uno de los barrios centrales de Asunción, entre el microcentro y los ejes de las avenidas Eusebio Ayala y Mariscal López. El edificio está sobre Luis Alberto de Herrera casi Brasil, la calle que lleva a la sede del Ministerio de Salud. Combina comercio sobre avenida, oficinas y el polo de salud que forman el Ministerio de Salud Pública y los sanatorios del barrio.</p>
 <p>Ese polo sostiene la demanda de consultorios y de oficinas para el sector salud; la vivienda de 2 dormitorios se alquila entre Gs 2,3 y 2,8 millones sin muebles. Por normativa, la clínica de consultorios no puede compartir el edificio con oficinas ni con viviendas: cada opción es un uso para todo el edificio.</p></div>
 <div><div class="eb sm">Por qué importa para la renta</div>{zh}</div></div>
 <div class="src">Estudio de mercado de Meridiano Capital del 07/11/2026 (ASU-SAN-ROQUE-2026-11-07) en InfoCasas, Amambay Propiedades, Century 21 y otros portales. Precios pedidos; disponibilidad no confirmada. Vacancia del barrio: sin dato publicado.</div>''', num()))
@@ -112,7 +112,7 @@ S.append(slide(f'''{head('El edificio hoy', 'Planta baja terminada y dos plantas
 
 # 07 FOTOS
 S.append(slide(f'''{head('Recorrido fotográfico', 'Fachada y planta baja')}
-<div class="ph"><figure style="width:560px"><img src="img/fachada.jpg" style="height:412px;object-position:47% 50%"><figcaption>Fachada sobre la Av. Eusebio Ayala y acceso lateral al estacionamiento</figcaption></figure>
+<div class="ph"><figure style="width:560px"><img src="img/fachada.jpg" style="height:412px;object-position:47% 50%"><figcaption>Fachada sobre Luis Alberto de Herrera y acceso lateral al estacionamiento</figcaption></figure>
 <figure style="width:450px"><img src="img/planta_baja.jpg" style="height:412px"><figcaption>Salón de planta baja con entrepiso · a verificar en la visita</figcaption></figure></div>''', num(), dark=True))
 S.append(slide(f'''{head('Recorrido fotográfico', 'Fondo del lote y plantas altas')}
 <div class="ph"><figure style="width:640px"><img src="img/tinglado.jpg" style="height:412px"><figcaption>Fondo del lote: estacionamiento y tinglado</figcaption></figure>
@@ -143,7 +143,7 @@ S.append(slide(f'''{head('Costo de la obra', 'Inversión total por opción y pre
 def inc_rows(a, lbl=''):
     alt = M[a]['alt']
     return [([l, d, gs(c), usd(c / TC)], '') for l, d, c in alt['lines']] + [(['Total', lbl, gs(alt['mes']), usd(alt['mes'] / TC)], 'tot')]
-sup = [('Salón de PB', f"{gs(M['PB_RENT'])}: valor del aviso, dentro de la banda de la Av. Eusebio Ayala (L1–L3)."),
+sup = [('Salón de PB', f"{gs(M['PB_RENT'])}: valor del aviso, dentro de la banda de salones de la zona (L1–L4)."),
        ('Oficinas', f"Gs {n(M['OF_BASE'])}/m²: entre O1 (Gs 36.000/m²) y K1 (Gs 25.000/m²)."),
        ('2 dormitorios', f"{gs(M['D2_RENT'])}: techo de la banda sin muebles (R1–R4), por el estacionamiento propio."),
        ('Consultorio', f"{gs(M['CONS_RENT'])} por unidad vacía, sin servicios: supuesto de Meridiano (lámina 13).")]
