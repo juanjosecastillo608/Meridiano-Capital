@@ -1,6 +1,6 @@
 # Edificio Catedral — Respuestas para el asesor
 
-Respuestas breves para las consultas previsibles de un inversor. Cifras al tipo de cambio Gs 6.061 por USD (BCP, cotización referencial del 03/11/2026).
+Respuestas breves para las consultas previsibles de un inversor. Cifras al tipo de cambio Gs 6.480 por USD (BCP, cotización referencial del 06/11/2026).
 
 **¿Cuánto renta hoy el edificio?**
 Según el documento recibido, los 12 departamentos estaban alquilados a Gs 3.000.000 cada uno: Gs 36.000.000 por mes y Gs 432.000.000 por año. Antes de la oferta revisamos contratos y cobros, y confirmamos la fecha de ese relevamiento, que no figura en la fuente.
@@ -9,24 +9,47 @@ Según el documento recibido, los 12 departamentos estaban alquilados a Gs 3.000
 Proyectamos los 3 salones a Gs 3.000.000 por mes cada uno: Gs 9.000.000 por mes. Es una hipótesis: todavía no confirmamos si están alquilados ni a qué canon.
 
 **¿Qué rentabilidad tiene?**
-- Bruta sobre el precio, residencial: 7,42%.
-- Bruta proyectada con los locales: 9,28%.
+- Bruta sobre el precio, residencial: 6,94%.
+- Bruta proyectada con los locales: 8,68%.
 
 Son brutas: no descuentan gastos, impuestos, vacancia ni gastos de compra. No la llamamos neta hasta tener los gastos.
 
+**¿Los alquileres de los departamentos están en valores de mercado?**
+Sí, dentro del mercado y en la banda baja.
+- Los avisos de 3 dormitorios en CDE (consulta del 07/11/2026) van de Gs 3,0 M a Gs 9,7 M, con mediana de Gs 5,1 M. La parte alta son unidades amobladas o premium.
+- Los estándar sin amoblar se publican entre Gs 3,0 M y Gs 6,0 M.
+- Un rango razonable para estos departamentos es Gs 3,0 M a Gs 3,5 M, según estado y superficie, que todavía no conocemos.
+
+**¿Cuánto podrían generar los salones?**
+- En 14 avisos de salones de CDE, la mediana es Gs 3,0 M; los estándar van de Gs 1,5 M a Gs 5,0 M.
+- Los salones premium del microcentro se publican a USD 700–1.350 por 75 m².
+- La hipótesis de Gs 3.000.000 por salón está en la mediana. El rango razonable es Gs 2,5 M a Gs 4,5 M, según superficie, frente y estado. No es una tasación: falta el dato de cada salón.
+
+**¿El ingreso mensual total está comprobado?**
+No.
+- Lo residencial (Gs 36.000.000 por mes) es información del vendedor, sin fecha de relevamiento y sin contratos revisados.
+- Lo comercial (Gs 9.000.000 por mes) es una hipótesis.
+- El total de Gs 45.000.000 es una proyección bruta.
+
+**¿Qué margen de mejora tienen los alquileres?**
+- Departamentos: moderado, hacia Gs 3,3–3,5 M por unidad según estado y superficie, y solo al renovar cada contrato.
+- Salones: potencialmente mayor si tienen buen frente, hasta unos Gs 4,5 M según la muestra.
+
+Ningún aumento es automático: depende de los contratos, la ley y la negociación.
+
 **El aviso decía 9,75% y "7% comprobado". ¿Por qué ustedes muestran otra cifra?**
-- El 9,75% se calculó con un dólar de unos Gs 5.770, el de mediados de octubre. Con la cotización del BCP del 03/11/2026 (Gs 6.060,86), la misma cuenta da 9,28%.
+- El 9,75% se calculó con un dólar de unos Gs 5.770, el de mediados de octubre. Con la cotización del BCP del 06/11/2026 (Gs 6.480,35), la misma cuenta da 8,68%.
 - El 7% surge de una planilla con dólar a Gs 6.000, solo los departamentos y un único gasto. No pudimos verificar su base, por eso trabajamos con nuestros propios cálculos.
 
 **¿Por qué cambia la rentabilidad con el dólar?**
-El precio está en dólares y los alquileres en guaraníes. Si sube el dólar, la renta medida en dólares baja, y al revés. En el Excel se cambia el tipo de cambio y todo se recalcula.
+El precio está en dólares y los alquileres en guaraníes. Si sube el dólar, la renta medida en dólares baja, y al revés. Con la misma renta, la bruta total fue 9,75% con el dólar del 16/10 (Gs 5.770,91) y es 8,68% con el del 06/11/2026 (Gs 6.480,35). En el Excel se cambia el tipo de cambio y todo se recalcula.
 
 **¿En cuánto tiempo recupero la inversión?**
-Con la renta bruta, sin gastos: unos 13,5 años con los departamentos y 10,8 años con los locales. Es una recuperación simple, no una TIR.
+Con la renta bruta, sin gastos: unos 14,4 años con los departamentos y 11,5 años con los locales. Es una recuperación simple, no una TIR.
 
 **¿Cuántos metros tiene?**
 - Terreno: 700 m² (17,50 × 40 m).
-- Superficie construida informada: 2.290 m², que confirmamos con los planos.
+- Superficie construida informada: 2.290 m², que confirmaremos con los planos.
 - Precio por m² construido: USD 419.
 
 **¿Cómo son los departamentos?**

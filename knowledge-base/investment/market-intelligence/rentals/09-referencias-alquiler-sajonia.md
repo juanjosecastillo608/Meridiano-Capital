@@ -1,4 +1,5 @@
 Fuente original: estudio de mercado de Meridiano Capital "Edificio Sajonia" (corte 2026-10-15), copia redactada en `projects/meridiano-capital/presentaciones/edificio-sajonia/fuente/`. Reemplaza la versión anterior de este archivo, que se basaba en resúmenes de buscador.
+> Normalizado con el estándar de estudios (D-100): `../estudios/ASU-SAJONIA-2026-10-15/estudio.json`, consolidado en `data/comparables-alquiler.csv`.
 
 # Referencias de alquiler y venta: Sajonia, Asunción (preliminar)
 

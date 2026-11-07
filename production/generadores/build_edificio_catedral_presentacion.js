@@ -66,14 +66,14 @@ const xr = 8.0, wr = W - MG - xr;
 d.text(s, "DIRECCIÓN", { x: xr, y: 1.95, w: wr, h: 0.25, fontSize: 10, bold: true, color: C.gold_d, charSpacing: 2 });
 d.text(s, "Pampliega casi Av. Mayor Rivas Ortellado, Barrio Catedral, Ciudad del Este", { x: xr, y: 2.22, w: wr, h: 0.6, fontSize: 13 });
 d.text(s, "ENTORNO", { x: xr, y: 3.0, w: wr, h: 0.25, fontSize: 10, bold: true, color: C.gold_d, charSpacing: 2 });
-d.text(s, bullets(["Catedral San Blas", "Shopping China", "Hotel Acaray", "Futuro centro comercial Cellshop (proyecto anunciado; fecha no confirmada)"]),
+d.text(s, bullets(["Catedral San Blas", "Shopping China", "Hotel Acaray", "Futuro centro comercial Cellshop (apertura proyectada para fines de 2026 según prensa; no confirmada)"]),
   { x: xr, y: 3.27, w: wr, h: 1.5, fontSize: 12.5 });
 d.photo(s, IMG("qr_ubicacion.png"), { x: xr, y: 4.95, w: 1.15, h: 1.15 }, { mode: "contain", alt: "Código QR de la ubicación en Google Maps", hyperlink: MAPS });
 d.text(s, [{ text: "Abrir en Google Maps", options: { hyperlink: { url: MAPS }, bold: true, color: C.tierra } }, { text: "\nmaps.app.goo.gl/EA3DMnVUaTTddxLc9", options: { fontSize: 10, color: C.grey } }],
   { x: xr + 1.3, y: 5.05, w: wr - 1.3, h: 0.7, fontSize: 12 });
 d.text(s, "Ubicación referencial: el marcador corresponde al mapa recibido y se confirma en la visita y con el título.", { x: xr, y: 6.2, w: wr, h: 0.45, fontSize: 10, color: C.grey, italic: true });
 d.footer(s, 3);
-notes(s, "Mapa: Ubicacion.png (adjunto del founder, base Google Maps con rótulos agregados). El enlace no pudo abrirse desde el entorno de trabajo: ubicación referencial. Sin distancias ni tiempos de traslado (no documentados). Cellshop: proyecto futuro, sin fecha ni estado de obra respaldados.");
+notes(s, "Mapa: Ubicacion.png (adjunto del founder, base Google Maps con rótulos agregados). El enlace no pudo abrirse desde el entorno de trabajo: ubicación referencial. Sin distancias ni tiempos de traslado (no documentados). Cellshop: complejo de 53.000 m² con apertura proyectada para el Black Friday 2026 según ABC Color (15/07/2026); proyección publicada, no confirmada.");
 
 // 04 ENTORNO
 s = d.slide("light"); d.eyebrow(s, "Entorno"); title(s, "Microcentro de Ciudad del Este");
@@ -168,7 +168,38 @@ d.text(s, [{ text: "Cómo leer esta proyección\n", options: { bold: true, fontS
 d.footer(s, 10);
 notes(s, "Hipótesis de locales: instrucción comercial del founder (05/11/2026), no informada en el PDF. 3 × 3.000.000 = 9.000.000/mes; 108.000.000/año. Total 45.000.000/mes; 540.000.000/año.");
 
-// 11 RENTABILIDAD BRUTA
+// 11-12 MERCADO (estudio estándar CDE-CATEDRAL-2026-11-07, D-100)
+const MK = M.mercado; const CP = Object.fromEntries(MK.comparables.map((c) => [c.codigo, c]));
+const fmM = (x) => "Gs " + n(x / 1e6, 1) + " M";
+const precioPub = (c) => c.moneda === "USD" ? usd(c.precio) : gs(c.precio);
+const mktSlide = (num, eyebrowTxt, titleTxt, rowsSpec, figs, lectura, nota, notesTxt) => {
+  const s = d.slide("light"); d.eyebrow(s, eyebrowTxt); title(s, titleTxt, { fontSize: 27 });
+  const body = [["Aviso", "Zona", "Publicado", "En Gs"]].concat(rowsSpec.map(([cod, txt]) => [txt, CP[cod].zona.replace(", CDE", ""), precioPub(CP[cod]), gs(Math.round(CP[cod].gs))]));
+  d.table(s, body, { x: MG, y: 1.95, w: 7.75, colW: [3.4, 1.5, 1.3, 1.55], fontSize: 10.5, rowH: 0.47 });
+  figs.forEach(([v, l], i) => d.figure(s, v, l, { x: 8.75, y: 1.95 + i * 1.05, w: 4.0, size: 24 }));
+  card(s, 8.75, 5.15, 3.98, 1.45, C.white);
+  d.text(s, lectura, { x: 8.95, y: 5.25, w: 3.6, h: 1.28, fontSize: 10.5, lineSpacingMultiple: 1.15 });
+  d.text(s, nota, { x: MG, y: 6.4, w: 7.75, h: 0.45, fontSize: 9, color: C.grey, italic: true });
+  d.footer(s, num); notes(s, notesTxt);
+};
+mktSlide(11, "Mercado de alquileres · departamentos", "Gs 3.000.000 por departamento: dentro del mercado, en la banda baja",
+  [["R1", "Edificio Oriental, 3 dorm., 150 m², cochera"], ["R2", "3 dorm. amoblado, suite y servicio, cochera"], ["R7", "3 suites, 270 m², semi amoblado"],
+   ["R4", "3 hab., piso 3, sin ascensor ni cochera"], ["R5", "3 hab., semi amoblado, amenities"], ["R8", "Casa de 3 dorm., 120 m²"]],
+  [[fmM(MK.res.mediana), `Mediana de ${MK.res.n} avisos de 3 dormitorios en CDE`], [`${fmM(MK.res.std_min)} a ${fmM(MK.res.std_max)}`, "Unidades estándar, sin amoblar"],
+   [gs(M.canon_dpto), "Canon informado del edificio"]],
+  `Rango preliminar de mercado para estos departamentos: ${fmM(MK.res.rango_prelim[0])} a ${fmM(MK.res.rango_prelim[1])}, según estado y superficie (confianza media-baja). Cualquier ajuste se negocia al renovar contratos.`,
+  `Avisos publicados consultados el 07/11/2026 (InfoCasas, MercadoProp, UbicaProp): disponibilidad no confirmada, no son contratos. Equivalencias al ${M.tc_corto}.`,
+  "Fuente: estudio de mercado CDE-CATEDRAL-2026-11-07 (knowledge-base/investment/market-intelligence/estudios/). Mediana de los 8 avisos de 3 dormitorios R1-R8; estándar sin amoblar R4-R8. Precio/m² del edificio no calculado: sin superficie individual acreditada.");
+mktSlide(12, "Mercado comercial · salones", "Gs 3.000.000 por salón: en la mediana de los salones publicados",
+  [["C1", "Esquina, Av. Cap. Emeterio Miranda, 75 m²"], ["C2", "Premium, doble Av. Eusebio Ayala, 75 m²"], ["C3", "Salón de 50 m²"],
+   ["C8", "Av. Itaipú Oeste, 48 m², agua incluida"], ["C10", "Esquina sobre avenida, 100 m²"], ["C14", "Local Km 3½, 168 m²"]],
+  [[fmM(MK.com.mediana), `Mediana de ${MK.com.n} avisos de salones en CDE`], [`${fmM(MK.com.std_min)} a ${fmM(MK.com.std_max)}`, "Salones estándar (sin el premium)"],
+   [gs(M.canon_local), "Hipótesis por salón del edificio"]],
+  `Rango preliminar por salón: ${fmM(MK.com.rango_prelim[0])} a ${fmM(MK.com.rango_prelim[1])}, según superficie, frente y estado, que todavía no conocemos. Es una hipótesis, no una tasación: falta confirmar si los salones están alquilados.`,
+  `Avisos publicados consultados el 07/11/2026 (RE/MAX, InfoCasas, ViaParaguay, MercadoProp): disponibilidad no confirmada, no son contratos. Equivalencias al ${M.tc_corto}.`,
+  "Fuente: estudio de mercado CDE-CATEDRAL-2026-11-07. Mediana de los 14 avisos C1-C14; rango estándar sin el premium C2. Microcentro: galerías hasta USD 50/m² (Última Hora, 16/10/2026).");
+
+// 13 RENTABILIDAD BRUTA
 s = d.slide("dark"); d.eyebrow(s, "Rentabilidad bruta"); title(s, "Indicadores sobre el precio de venta");
 d.hair(s, MG, 1.9, 12.13);
 [[pct(M.res.bruta), "Rentabilidad bruta residencial", `${gs(M.res_a)} anuales informados ÷ precio`, `Recuperación simple bruta: ${n(M.res.recuperacion, 1)} años`],
@@ -181,19 +212,19 @@ d.hair(s, MG, 1.9, 12.13);
 });
 d.text(s, `Precio: ${usd(M.precio_usd)} × Gs ${n(M.tc, 2)} = ${gs(M.precio_gs)}.\nTipo de cambio: ${M.tc_texto}.`,
   { x: MG, y: 4.35, w: 7.9, h: 0.65, fontSize: 11.5, lineSpacingMultiple: 1.2, transparency: 10 });
-const rows = [["Tipo de cambio", "Residencial", "Total"]].concat(M.sens.map((t) => [`Gs ${n(t.tc, t.vigente ? 2 : 0)}${t.vigente ? " (vigente)" : ""}`, pct(t.res), pct(t.tot)]));
+const rows = [["Fecha BCP", "Gs/USD", "Resid.", "Total"]].concat(M.sens.map((t) => [t.n.slice(0, 5) + (t.vigente ? " (vigente)" : ""), n(t.tc, 2), pct(t.res), pct(t.tot)]));
 s.addTable(rows.map((r, i) => r.map((c) => ({ text: c, options: i === 0 ? { bold: true, color: C.petroleo, fill: { color: C.lapacho } } : { color: C.crema, bold: i > 0 && M.sens[i - 1].vigente, fill: { color: i > 0 && M.sens[i - 1].vigente ? C.navy_tint : C.navy2 } } }))),
-  { x: 8.6, y: 2.15, w: 4.13, colW: [1.73, 1.25, 1.15], fontFace: SANS, fontSize: 11, rowH: 0.48, border: { type: "solid", pt: 0.75, color: C.navy_tint }, margin: [0, 0.1, 0, 0.1], valign: "middle" });
-d.text(s, "Sensibilidad al tipo de cambio: el precio está en dólares y la renta en guaraníes. Valores ilustrativos alrededor de la cotización vigente.",
-  { x: 8.6, y: 4.65, w: 4.13, h: 0.75, fontSize: 9.5, transparency: 20, lineSpacingMultiple: 1.15 });
+  { x: 8.6, y: 2.15, w: 4.13, colW: [1.45, 0.94, 0.86, 0.88], fontFace: SANS, fontSize: 10.5, rowH: 0.42, border: { type: "solid", pt: 0.75, color: C.navy_tint }, margin: [0, 0.1, 0, 0.1], valign: "middle" });
+d.text(s, "Sensibilidad al tipo de cambio: el precio está en dólares y la renta en guaraníes. Con la suba del dólar de las últimas semanas, la misma renta rinde menos sobre el precio.",
+  { x: 8.6, y: 4.75, w: 4.13, h: 0.65, fontSize: 9.5, transparency: 20, lineSpacingMultiple: 1.15 });
 d.hair(s, MG, 5.45, 12.13);
 d.text(s, [{ text: "Cómo leer estas cifras. ", options: { bold: true } },
   { text: "Son rentabilidades brutas: no descuentan gastos, impuestos, vacancia, morosidad, gastos de adquisición ni inversiones. La recuperación simple no es una TIR. Cifras de referencia, no garantizadas." }],
   { x: MG, y: 5.6, w: 12.13, h: 0.8, fontSize: 11.5, lineSpacingMultiple: 1.2 });
-d.footer(s, 11);
-notes(s, "Fórmulas: precio Gs = USD 960.000 × TC; bruta = ingreso anual Gs ÷ precio Gs; recuperación = precio Gs ÷ ingreso anual Gs. Tabla de sensibilidad: valores ilustrativos de Gs 5.800, 6.000 y 6.300 más el referencial BCP vigente en _config. Las cifras publicadas por la fuente (7% 'comprobada', 9,75%) no se reproducen como resultado: ver Control Interno.");
+d.footer(s, 13);
+notes(s, "Fórmulas: precio Gs = USD 960.000 × TC; bruta = ingreso anual Gs ÷ precio Gs; recuperación = precio Gs ÷ ingreso anual Gs. Tabla de sensibilidad: serie BCP (cierre interbancario del 16/10 y referenciales del 03, 04, 05 y 06/11/2026; el vigente sale de _config). Las cifras publicadas por la fuente (7% 'comprobada', 9,75%) no se reproducen como resultado: ver Control Interno.");
 
-// 12 GASTOS
+// 14 GASTOS
 s = d.slide("light"); d.eyebrow(s, "Del bruto al neto"); title(s, "Gastos a relevar antes de calcular la renta neta");
 d.text(s, "La proyección de Gs 540.000.000 anuales es bruta. La renta neta se calcula cuando se conozcan estos conceptos:", { x: MG, y: 1.9, w: 12.1, h: 0.4, fontSize: 13 });
 const gst = [["Impuestos y tasas", "Impuesto inmobiliario, IVA de los alquileres e impuesto a la renta según la estructura de compra."],
@@ -203,10 +234,10 @@ const gst = [["Impuestos y tasas", "Impuesto inmobiliario, IVA de los alquileres
   ["Adecuaciones", "Inversiones que surjan de la inspección técnica."]];
 gst.forEach(([a, b], i) => { const x = MG + (i % 2) * 6.15, y = 2.55 + Math.floor(i / 2) * 1.0; d.hair(s, x, y - 0.08, 5.9);
   d.text(s, a, { x, y, w: 2.2, h: 0.8, fontSize: 12.5, bold: true }); d.text(s, b, { x: x + 2.25, y, w: 3.65, h: 0.85, fontSize: 11.5, color: C.grey }); });
-d.footer(s, 12);
+d.footer(s, 14);
 notes(s, "La fuente solo informa un impuesto anual de Gs 18.000.000 y expensas Gs 0 en su planilla; no alcanza para una renta neta. Sin datos completos no se calcula ni se promete rentabilidad neta.");
 
-// 13 DOCUMENTACION Y PROXIMOS PASOS
+// 15 DOCUMENTACION Y PROXIMOS PASOS
 s = d.slide("light"); d.eyebrow(s, "Documentación y próximos pasos"); title(s, "Lo que revisamos antes de una oferta");
 const docs = ["Título, titularidad y cuenta corriente catastral", "Planos aprobados y superficies", "Permisos y situación municipal",
   "Contratos de los 12 departamentos", "Ocupación y alquileres de los 3 locales", "Comprobantes de cobro, depósitos y morosidad",
@@ -217,10 +248,10 @@ d.text(s, bullets(docs), { x: MG + 0.3, y: 2.45, w: 6.8, h: 4.05, fontSize: 12.5
 d.text(s, "La fuente declara planos aprobados y documentación en regla; los respaldos se verifican en esta etapa.", { x: MG + 0.3, y: 6.1, w: 6.8, h: 0.45, fontSize: 10, color: C.grey, italic: true });
 const steps = [["01", "Visita e inspección técnica"], ["02", "Documentación y contratos"], ["03", "Estructura de compra y fiscal, con abogado, escribano y contador"], ["04", "Oferta, boleto y escritura"], ["05", "Administración del edificio, si el inversor lo desea"]];
 steps.forEach(([k, t], i) => { const y = 2.0 + i * 0.92; serif(s, k, { x: 8.3, y, w: 0.6, h: 0.45, fontSize: 20, color: C.tierra }); d.text(s, t, { x: 9.0, y: y + 0.05, w: 3.73, h: 0.75, fontSize: 12.5 }); });
-d.footer(s, 13);
+d.footer(s, 15);
 notes(s, "Lista de documentación: pedido del founder. Las tareas legales, notariales y contables las realizan el abogado, el escribano y el contador; Meridiano Capital coordina y acompaña.");
 
-// 14 CIERRE (preset C: 'Broker Inmobiliario · Meridiano Capital', pedido del founder; J/j en Lora)
+// 16 CIERRE (preset C: 'Broker Inmobiliario · Meridiano Capital', pedido del founder; J/j en Lora)
 s = d.slide("closing");
 const colW = 7.6;
 d.photo(s, IMG("retrato_jjc.jpg"), { x: 8.55, y: 0, w: W - 8.55, h: H }, { ax: 0.5, ay: 0, alt: "Juan José Castillo" });

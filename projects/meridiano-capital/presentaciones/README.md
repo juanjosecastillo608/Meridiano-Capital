@@ -39,7 +39,7 @@ python build_presentaciones.py
   - Rechaza PDF generados con un tipo de cambio distinto del vigente.
 
 ## Tipo de cambio vigente
-Gs 6.060,86 por USD: cotización referencial del BCP del **03/11/2026**, verificada el 05/11/2026.
-- La cifra se tomó de la planilla del BCP vía buscador. El sitio del BCP no es accesible desde el entorno de Claude Code y no se encontró un referencial del 04/11 ni del 05/11.
-- Reemplaza Gs 5.770,91 (cierre interbancario del 16/10/2026).
-- Las cinco presentaciones se regeneraron el 05/11/2026. Las cifras de los README de M4, San José, Sajonia y San Miguel corresponden a tipos de cambio anteriores.
+Gs 6.480,35 por USD: cotización referencial del BCP del **06/11/2026**, la última publicada al 07/11/2026.
+- La cifra se tomó de la planilla del BCP vía buscador y coincide con el estudio de mercado de Catedral del 07/11. El sitio del BCP no es accesible desde el entorno de Claude Code.
+- Serie reciente: 03/11 Gs 6.060,86 · 04/11 Gs 6.144,02 · 05/11 Gs 6.388,47. El guaraní se depreció cerca de 9,5% entre el 26/10 y el 05/11.
+- Las cinco presentaciones se regeneraron el 07/11/2026. Las cifras de los README de M4, San José, Sajonia y San Miguel corresponden a tipos de cambio anteriores.

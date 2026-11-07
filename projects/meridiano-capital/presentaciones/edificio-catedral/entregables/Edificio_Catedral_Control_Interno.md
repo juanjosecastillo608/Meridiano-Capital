@@ -1,6 +1,6 @@
 # Edificio Catedral — Control interno
 
-Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación `Edificio_Catedral_Meridiano_FINAL` (PPTX y PDF) y del Excel `Edificio_Catedral_Rentabilidad.xlsx`. Generado el 05/11/2026 desde `fuente/model.json`.
+Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación `Edificio_Catedral_Meridiano_FINAL` (PPTX y PDF) y del Excel `Edificio_Catedral_Rentabilidad.xlsx`. Generado el 07/11/2026 desde `fuente/model.json`.
 
 ## 1. Archivos recibidos
 | Archivo | Uso |
@@ -9,38 +9,100 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 | `Aerea Edificio`, `Frente Edificio`, `Lateral Edificio` | Fotos de las láminas 1, 6 y 7 |
 | `Ubicacion.png` | Mapa de la lámina 3 (base Google Maps con rótulos agregados) |
 | Pedido del founder (05/11/2026) | Hipótesis de los 3 locales, estructura de la pieza y entregables |
+| Estudio de mercado de alquileres (07/11/2026) y su planilla | Comparables R1–R12 y C1–C14, escenarios y recomendaciones. Guardado con el estándar de estudios: `knowledge-base/investment/market-intelligence/estudios/CDE-CATEDRAL-2026-11-07/` (D-100) |
 
 ## 2. Tipo de cambio
-- **Usado:** Gs 6.060,86 por USD. Fuente: BCP, cotización referencial del **03/11/2026**, verificado el 2026-11-05. Página: https://www.bcp.gov.py/webapps/web/cotizacion/monedas
-- **Cómo se obtuvo:** la planilla del BCP se leyó vía buscador. El sitio del BCP no resuelve desde el entorno de trabajo (DNS/proxy). No se encontró un referencial del 04/11 ni del 05/11/2026.
-- **Valor anterior:** Gs 5.770,91, interbancario, cierre del 16/10/2026.
+- **Usado:** Gs 6.480,35 por USD. Fuente: BCP, cotización referencial del **06/11/2026**, verificado el 2026-11-07. Página: https://www.bcp.gov.py/webapps/web/cotizacion/monedas
+- **Cómo se obtuvo:** la planilla del BCP se leyó vía buscador y coincide con el estudio de mercado del 07/11/2026. El sitio del BCP no resuelve desde el entorno de trabajo (DNS/proxy).
+- **Serie usada en la lámina 13:** 16/10/2026: Gs 5.770,91 → 7,80% / 9,75% · 03/11/2026: Gs 6.060,86 → 7,42% / 9,28% · 04/11/2026: Gs 6.144,02 → 7,32% / 9,16% · 05/11/2026: Gs 6.388,47 → 7,04% / 8,80% · 06/11/2026: Gs 6.480,35 → 6,94% / 8,68%.
+- **Hallazgo cambiario:** el referencial pasó de Gs 5.833,41 (26/10) a Gs 6.388,47 (05/11), +9,5% en diez días, y a Gs 6.480,35 el 06/11 (contexto: resolución sobre Ueno Bank y tensión política, según ABC Color del 06/11/2026). Con el mismo edificio y la misma renta, la bruta total pasó de 9,75% (TC del 16/10) a 8,68%. Antes de cada reunión hay que regenerar los materiales con el TC del día.
 - **Fuente única:** el valor vive en `presentaciones/_config/meridiano.json` (D-097) y se edita en `Parametros!B5` del Excel.
 
 ## 3. Cálculos (todos reproducibles en el Excel)
 | Concepto | Fórmula | Resultado |
 |---|---|---:|
 | Terreno | 17,50 × 40 | 700 m² (coincide con lo informado) |
-| Precio en Gs | USD 960.000 × 6.060,86 | Gs 5.818.425.600 |
+| Precio en Gs | USD 960.000 × 6.480,35 | Gs 6.221.136.000 |
 | Renta residencial mensual | 12 × Gs 3.000.000 | Gs 36.000.000 |
-| Renta residencial anual | × 12 meses | Gs 432.000.000 (USD 71.277) |
+| Renta residencial anual | × 12 meses | Gs 432.000.000 (USD 66.663) |
 | Renta comercial mensual (hipótesis) | 3 × Gs 3.000.000 | Gs 9.000.000 |
-| Renta total anual proyectada | (36 + 9) M × 12 | Gs 540.000.000 (USD 89.096) |
-| Bruta residencial | 432 M ÷ precio en Gs | **7,42%** |
-| Bruta total proyectada | 540 M ÷ precio en Gs | **9,28%** |
-| Recuperación simple bruta | precio ÷ renta anual | 13,47 años (residencial) · 10,77 años (total) |
+| Renta total anual proyectada | (36 + 9) M × 12 | Gs 540.000.000 (USD 83.329) |
+| Bruta residencial | 432 M ÷ precio en Gs | **6,94%** |
+| Bruta total proyectada | 540 M ÷ precio en Gs | **8,68%** |
+| Recuperación simple bruta | precio ÷ renta anual | 14,40 años (residencial) · 11,52 años (total) |
 | USD por m² construido informado | 960.000 ÷ 2.290 | USD 419 |
 
-**Sensibilidad (lámina 11):** Gs 5.800,00 → 7,76% / 9,70% · Gs 6.000,00 → 7,50% / 9,38% · Gs 6.060,86 → 7,42% / 9,28% · Gs 6.300,00 → 7,14% / 8,93%.
+**Escenarios del estudio (internos, en el Excel; la presentación muestra el informado y el central):**
+
+| Escenario | Departamentos | Salones | Mensual | Anual | Bruta | Recuperación |
+|---|---|---|---:|---:|---:|---:|
+| Residencial informado | Gs 3.000.000 × 12 | — | Gs 36.000.000 | Gs 432.000.000 | 6,94% | 14,4 años |
+| Combinado central | Gs 3.000.000 × 12 | Gs 3.000.000 × 3 | Gs 45.000.000 | Gs 540.000.000 | 8,68% | 11,5 años |
+| Inferior | Gs 2.800.000 × 12 | — | Gs 33.600.000 | Gs 403.200.000 | 6,48% | 15,4 años |
+| Superior | Gs 3.500.000 × 12 | Gs 4.500.000 × 3 | Gs 55.500.000 | Gs 666.000.000 | 10,71% | 9,3 años |
+
+Condiciones:
+- **Inferior:** cánones en la parte baja de la muestra y salones sin renta. Es el piso de la muestra, no un caso garantizado.
+- **Superior:** requiere renovar contratos con ajuste, buen estado de las unidades y buen frente de los salones. Ninguna de esas condiciones está comprobada (confianza baja).
+
+## 3 bis. Estudio de mercado (consulta del 07/11/2026)
+- **Departamentos de 3 dormitorios:**
+  - Muestra de 8 avisos: de Gs 3,0 M a Gs 9,7 M, con mediana de Gs 5,1 M.
+  - Unidades estándar sin amoblar (5 avisos): de Gs 3,0 M a Gs 6,0 M, mediana Gs 4,9 M.
+  - El canon de Gs 3.000.000 está **dentro del mercado, en la banda baja**. Rango preliminar: Gs 3,0 M a Gs 3,5 M (confianza media-baja).
+- **Salones:**
+  - Muestra de 14 avisos con mediana de Gs 3,0 M; los estándar van de Gs 1,5 M a Gs 5,0 M.
+  - La hipótesis de Gs 3.000.000 queda **en la mediana**. Rango preliminar: Gs 2,5 M a Gs 4,5 M según superficie, frente y estado (confianza media-baja).
+- **Contexto:**
+  - Mediana de alquiler de departamento en CDE: USD 804 por mes (TuLugar).
+  - Galerías del microcentro: hasta USD 50/m² (Última Hora, 16/10/2026).
+  - Cellshop: 53.000 m², con apertura proyectada para el Black Friday 2026 según ABC Color del 15/07/2026. Es una proyección publicada, no confirmada.
+- **Limitaciones:**
+  - Ningún aviso informa su fecha de publicación y no se confirmó la disponibilidad.
+  - La muestra del Barrio Catedral estricto es de un solo aviso (1 dormitorio).
+  - No hay superficie individual de las unidades del edificio.
+- **Equivalencias:** los montos en guaraníes de la tabla usan el TC vigente (Gs 6.480,35).
+
+| Código | Aviso | Zona | Detalle | Publicado | En Gs | Comparabilidad y uso | Fuente |
+|---|---|---|---|---|---|---|---|
+| R1 | Edificio Oriental, 2º piso (RE/MAX) | Microcentro, CDE | 3 dorm., 150 m² | USD 1.500 | Gs 9.720.525 | ALTA · en estadísticas | [RE/MAX vía InfoCasas](https://www.infocasas.com.py/alquiler/departamentos/alto-parana/ciudad-del-este) |
+| R2 | Depto amoblado, 3 dorm. (1 suite), área de servicio con cuarto y baño, | Centro, CDE | 3 dorm. | USD 800 | Gs 5.184.280 | ALTA · en estadísticas | [MercadoProp](https://www.mercadoprop.net/py/departamentos-alquiler-ciudad_del_este-alto_parana) |
+| R3 | Dúplex amoblado, 3 dorm. (1 suite), cochera, terraza con quincho — COD | Barrio San José, CDE | 3 dorm. | USD 1.200 | Gs 7.776.420 | MEDIA-ALTA · en estadísticas | [MercadoProp](https://www.mercadoprop.net/py/departamentos-alquiler-ciudad_del_este-alto_parana) |
+| R4 | Penthouse frente al Área 8, 3 hab. (1 suite), piso 3, sin ascensor ni  | Área 8, CDE | 3 dorm. | Gs 5.000.000 | Gs 5.000.000 | MEDIA · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/inmuebles/alto-parana/ciudad-del-este/baratos/pagina3) |
+| R5 | Depto Km 5,5, 3 hab. (1 suite), semi amoblado, cochera, amenities y se | Km 5,5, CDE | 3 dorm. | Gs 4.500.000 | Gs 4.500.000 | MEDIA · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/departamentos/alto-parana/ciudad-del-este/3-dormitorios/baratos) |
+| R6 | Depto 3 dorm., expensas incluidas (visto en índice de búsqueda; no vis | CDE (zona no informada) | 3 dorm. | Gs 4.900.000 | Gs 4.900.000 | MEDIA-BAJA · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/departamentos/alto-parana/ciudad-del-este/3-dormitorios/baratos) |
+| R7 | Depto Av. San José, 3 suites, semi amoblado, cochera | Av. San José, CDE | 3 dorm., 270 m² | Gs 6.000.000 | Gs 6.000.000 | MEDIA · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/departamentos/alto-parana/ciudad-del-este) |
+| R8 | Casa Km 7 Barrio Mburucuyá, 3 dorm. — casa, no departamento | Km 7 Mburucuyá, CDE | 3 dorm., 120 m² | Gs 3.000.000 | Gs 3.000.000 | BAJA-MEDIA · en estadísticas | [UbicaProp](https://ubicaprop.com.py/propiedad/casa-en-alquiler-3/) |
+| R9 | Depto CDE — COD 3713 | CDE | — | Gs 2.800.000 | Gs 2.800.000 | BAJA · excluido: Dormitorios no informados: fuera de la muestra de 3 dormitorios | [Clasipar](https://clasipar.paraguay.com/alquiler/inmuebles/alto-parana) |
+| R10 | Depto cerca de UNINTER, con ascensor | CDE | — | Gs 2.200.000 | Gs 2.200.000 | BAJA · excluido: Dormitorios no informados: fuera de la muestra de 3 dormitorios | [Clasipar](https://clasipar.paraguay.com/alquiler/inmuebles/alto-parana) |
+| R11 | Depto Área 4 | Área 4, CDE | — | Gs 3.000.000 | Gs 3.000.000 | BAJA · excluido: Dormitorios no informados: fuera de la muestra de 3 dormitorios | [Clasipar](https://clasipar.paraguay.com/alquiler/inmuebles/alto-parana) |
+| R12 | Depto 1 dorm., sala, cocina-comedor, lavadero, estacionamiento | Barrio Catedral, CDE | 1 dorm. | Gs 1.700.000 | Gs 1.700.000 | REFERENCIA · excluido: 1 dormitorio: referencia de zona, no comparable directo | [MercadoProp](https://www.mercadoprop.net/py/departamentos-alquiler-ciudad_del_este-alto_parana) |
+| C1 | Salón en esquina, Av. Cap. Emeterio Miranda, a metros de rotonda Oasis | Microcentro, CDE | 75 m² | USD 700 | Gs 4.536.245 | ALTA · en estadísticas | [RE/MAX](https://www.remax.com.py/143050056-103) |
+| C2 | Salón céntrico premium, doble Av. Eusebio Ayala esq. Curupayty, frente | Centro, CDE | 75 m² | USD 1.350 | Gs 8.748.472 | ALTA (extremo superior) · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/locales-comerciales/alto-parana/ciudad-del-este) |
+| C3 | Salón comercial 50 m² | Bernardino Caballero, CDE | 50 m² | Gs 3.000.000 | Gs 3.000.000 | MEDIA-ALTA · en estadísticas | [ViaParaguay](https://viaparaguay.com/es/propiedades/alquiler/comerciales/ciudad/ciudad-del-este) |
+| C4 | Sala comercial Km 3½ | Área 1, CDE | — | Gs 2.200.000 | Gs 2.200.000 | MEDIA · en estadísticas | [ViaParaguay](https://viaparaguay.com/es/propiedades/alquiler/comerciales/ciudad/ciudad-del-este) |
+| C5 | Sala comercial | Área 1, CDE | — | Gs 5.000.000 | Gs 5.000.000 | MEDIA · en estadísticas | [ViaParaguay](https://viaparaguay.com/es/propiedades/alquiler/comerciales/ciudad/ciudad-del-este) |
+| C6 | Salón comercial | Bernardino Caballero, CDE | — | Gs 2.500.000 | Gs 2.500.000 | MEDIA · en estadísticas | [ViaParaguay](https://viaparaguay.com/es/propiedades/alquiler/comerciales/ciudad/ciudad-del-este) |
+| C7 | Salón comercial | Bernardino Caballero, CDE | — | Gs 2.800.000 | Gs 2.800.000 | MEDIA · en estadísticas | [ViaParaguay](https://viaparaguay.com/es/propiedades/alquiler/comerciales/ciudad/ciudad-del-este) |
+| C8 | Salón Av. Itaipú Oeste, a 1 cuadra de Arena Shop (incluye agua y basur | Área 1, CDE | 48 m² | USD 450 | Gs 2.916.158 | ALTA (pequeño) · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/inmuebles/alto-parana/ciudad-del-este/monoambiente/1-bano) |
+| C9 | Salón Km 8 Acaray: PB 120 m² + planta alta con balcón, cochera, agua y | Km 8 Acaray, CDE | 120 m² | Gs 3.000.000 | Gs 3.000.000 | MEDIA · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/inmuebles/alto-parana/ciudad-del-este/baratos) |
+| C10 | Salón en esquina sobre avenida asfaltada, alto flujo vehicular | Km 9 Acaray, CDE | 100 m² | Gs 4.000.000 | Gs 4.000.000 | MEDIA · en estadísticas | [InfoCasas](https://www.infocasas.com.py/alquiler/locales-comerciales/alto-parana/ciudad-del-este) |
+| C11 | Salón a metros de la ruta | CDE | — | Gs 2.500.000 | Gs 2.500.000 | BAJA-MEDIA · en estadísticas | [Clasipar](https://clasipar.paraguay.com/alquiler/inmuebles/alto-parana) |
+| C12 | Salón zona concurrida | CDE | — | Gs 2.300.000 | Gs 2.300.000 | BAJA-MEDIA · en estadísticas | [Clasipar](https://clasipar.paraguay.com/alquiler/inmuebles/alto-parana) |
+| C13 | Salón comercial | CDE | — | Gs 1.500.000 | Gs 1.500.000 | BAJA · en estadísticas | [Clasipar](https://clasipar.paraguay.com/alquiler/inmuebles/alto-parana) |
+| C14 | Local Km 3½, cerca del centro | Km 3½, CDE | 168 m² | Gs 3.000.000 | Gs 3.000.000 | MEDIA · en estadísticas | [MercadoProp](https://www.mercadoprop.net/py/propiedades-alquiler-ciudad_del_este-alto_parana) |
+
+Duplicado eliminado: A1613 = COD 1938 (R2). Descartados por no comparables: depósitos, salones de eventos, locales corporativos, clubes premium y avisos de 2025 que no se pudieron reverificar.
 
 ## 4. Auditoría de las cifras publicadas por la fuente
 - **"Rentabilidad comprobada: 7%"** — **NO CONCILIADA.**
   - Base: la planilla del PDF usa Gs 36.000.000 por mes (solo departamentos), un tipo de cambio de **Gs 6.000 sin fecha ni fuente** y un solo gasto (impuesto anual Gs 18.000.000; expensas Gs 0).
   - Resultado: renta bruta 7,50% y "neta" 7,19%. Reproducidas exactamente, pero la "neta" omite mantenimiento, administración, seguros, vacancia, IVA e impuesto a la renta.
   - El 7% no coincide con ninguno de los dos valores y no tiene respaldo de cobros: no se presenta como rentabilidad comprobada.
-  - Con el tipo de cambio vigente, esa misma "neta" daría 7,12%.
+  - Con el tipo de cambio vigente, esa misma "neta" daría 6,65%.
 - **"9,75% de rentabilidad bruta anual estimada"** (descripción comercial) — **no vigente.**
   - Con Gs 540.000.000 anuales, implica un tipo de cambio de Gs 5.769,23, que coincide con el cierre interbancario del BCP del 16/10/2026 (Gs 5.770,91). Es un cálculo inverso, no prueba de la cotización usada.
-  - Con el referencial del 03/11/2026, la bruta total es **9,28%**.
+  - Con el referencial del 06/11/2026, la bruta total es **8,68%**.
   - No se reproduce en la presentación (criterio del founder: no mostrar rentabilidades publicadas que Meridiano no validó, aplicado en San Miguel el 16/10/2026). Queda en el Excel (`Auditoria_Fuente`) y en este control.
 
 ## 5. Datos y estado
@@ -57,7 +119,8 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 | Renta comercial | 3 × Gs 3.000.000 | **Hipótesis**, sujeta a confirmación |
 | Planos aprobados y documentación en regla | — | Declaración de la fuente, sin respaldo adjunto |
 | Ubicación | Pampliega casi Av. Mayor Rivas Ortellado | **Referencial**: el enlace https://maps.app.goo.gl/EA3DMnVUaTTddxLc9 no pudo abrirse desde el entorno; se usó el mapa recibido |
-| Cellshop | Futuro centro comercial | Proyecto sin fecha ni estado de obra respaldados |
+| Cellshop | Futuro centro comercial de 53.000 m² | Apertura proyectada para fines de 2026 según prensa (ABC Color, 15/07/2026); no confirmada |
+| Impuesto anual | Gs 18.000.000 (planilla del PDF) | **Pendiente de validación**: sin comprobante, concepto ni período |
 
 **Excluido de la pieza por falta de respaldo:**
 - "Potencial de expansión o remodelación".
@@ -74,6 +137,10 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 6. Estado del pozo artesiano, las instalaciones y el mantenimiento (inspección técnica).
 7. Condiciones de venta, forma de pago y gastos de escritura.
 8. Confirmar la ubicación exacta del marcador y la fecha del relevamiento de alquileres.
+9. Aclarar el impuesto de Gs 18.000.000 por año de la fuente: concepto, período y comprobantes.
+10. Facturas de servicios y gastos comunes; habilitaciones y situación municipal de los salones.
+11. Superficie, frente, estado e instalaciones de cada salón, para pasar de la hipótesis al canon real.
+12. Regenerar los materiales con el TC del día antes de cada reunión (volatilidad alta).
 
 ## 7. Marca (Brand Guardian, matriz de 10 criterios)
 1. Estrategia: APROBADO. Muestra a Meridiano como asesor que verifica y acompaña; no promete rentabilidad.
@@ -100,11 +167,12 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 **Aviso legal:** disclaimer de venta (D-098), más "no constituye una garantía de rentabilidad".
 
 ## 8. Validaciones técnicas
-- PPTX: `validate.py` (skill pptx) superado; 14 diapositivas editables (textos, tablas y gráfico nativos).
+- PPTX: `validate.py` (skill pptx) superado; 16 diapositivas editables (textos, tablas y gráfico nativos), con dos láminas de mercado nuevas (11 y 12).
 - Imágenes: `validate_image_aspect_ratios.py` superado, desviación máxima 0,001% sobre una tolerancia de 0,5%.
-- PDF: generado desde el PPTX final con LibreOffice; 14 páginas; fuentes incrustadas Fraunces, Poppins y Lora (más OpenSymbol para las viñetas).
-- Revisión visual de las 14 diapositivas: sin cortes ni superposiciones.
-- Excel: recalculado con LibreOffice; coincide con `model.json` (bruta residencial y total, renta anual, auditoría). Celdas de entrada en azul sobre crema.
+- PDF: generado desde el PPTX final con LibreOffice; 16 páginas; fuentes incrustadas Fraunces, Poppins y Lora (más OpenSymbol para las viñetas).
+- Revisión visual de las 16 diapositivas: sin cortes ni superposiciones.
+- Excel: recalculado con LibreOffice; coincide con `model.json`: bruta residencial y total, renta anual, escenarios, medianas de mercado y auditoría. Celdas de entrada en azul sobre crema.
+- Presentación, Excel, control interno y respuestas usan el mismo TC, con la misma fecha y fuente: todos se generan desde `model.json`.
 - Contacto: teléfono único +595 982 853 111 (D-096), leído de `_config`.
 - Datos personales: no se incluyen nombres de terceros, patentes ni datos de inquilinos. El autor que figura en los metadatos del PDF fuente no se reproduce.
 

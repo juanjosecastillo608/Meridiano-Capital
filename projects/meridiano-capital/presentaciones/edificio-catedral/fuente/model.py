@@ -9,6 +9,12 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 from comun import CFG, TC, tc_texto, tc_corto, CONTACTO  # D-096 / D-097
 
 B = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.abspath(os.path.join(B, '..', '..', '..', '..', '..'))
+# Estudio de mercado estándar (knowledge-base/investment/market-intelligence/estudios/, D-100)
+ESTUDIO_ID = 'CDE-CATEDRAL-2026-11-07'
+ESTUDIO = json.load(open(os.path.join(REPO, 'knowledge-base', 'investment', 'market-intelligence', 'estudios', ESTUDIO_ID, 'estudio.json'), encoding='utf-8'))
+# Serie BCP para la sensibilidad (referencial salvo el 16/10, cierre interbancario); la última es la vigente de _config
+SERIE_TC = [('16/10/2026', 5_770.91), ('03/11/2026', 6_060.86), ('04/11/2026', 6_144.02), ('05/11/2026', 6_388.47)]
 
 PRECIO_USD = 960_000
 FRENTE_M, FONDO_M = 17.50, 40.00
@@ -54,8 +60,9 @@ M = dict(
     res=escenario(res_a, TC), tot=escenario(tot_a, TC),
     sens_fuente=[dict(n=n, tc=t, res=escenario(res_a, t)['bruta'], tot=escenario(tot_a, t)['bruta']) for n, t in tcs],
     # Sensibilidad para el inversor: valores ilustrativos + el vigente (sin cifras publicadas por la fuente)
-    sens=[dict(n=n, tc=t, vigente=(t == TC), res=escenario(res_a, t)['bruta'], tot=escenario(tot_a, t)['bruta'])
-          for n, t in sorted([('Ilustrativo', 5_800), ('Ilustrativo', 6_000), ('Vigente', TC), ('Ilustrativo', 6_300)], key=lambda x: x[1])],
+    sens=[dict(n=f, tc=t, vigente=False, res=escenario(res_a, t)['bruta'], tot=escenario(tot_a, t)['bruta']) for f, t in SERIE_TC if t != TC]
+         + [dict(n=f"{CFG['tipo_cambio']['fecha'][8:]}/{CFG['tipo_cambio']['fecha'][5:7]}/{CFG['tipo_cambio']['fecha'][:4]}", tc=TC, vigente=True,
+                 res=escenario(res_a, TC)['bruta'], tot=escenario(tot_a, TC)['bruta'])],
     fuente=FUENTE,
     auditoria=dict(
         bruta_pdf_recalc=res_a / (PRECIO_USD * FUENTE['tc_pdf']),
@@ -64,6 +71,36 @@ M = dict(
         tc_implicito_975=tot_a / (PRECIO_USD * FUENTE['bruta_descripcion']),
     ),
 )
+
+
+# ---- Mercado (estudio estándar), reconvertido al TC vigente
+def gs_de(c):
+    return c['precio'] if c['moneda'] == 'PYG' else c['precio'] * TC
+
+
+def mediana(v):
+    v = sorted(v); n = len(v)
+    return v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2
+
+
+comps = [dict(c, gs=gs_de(c)) for c in ESTUDIO['comparables']]
+res3 = [c for c in comps if c['uso'] == 'residencial' and c['usar_en_estadisticas']]
+res_std = [c for c in res3 if c['codigo'] in ('R4', 'R5', 'R6', 'R7', 'R8')]   # estándar, según el estudio
+com = [c for c in comps if c['uso'] == 'comercial' and c['usar_en_estadisticas']]
+com_std = [c for c in com if c['codigo'] != 'C2']                                 # sin el premium
+M['mercado'] = dict(
+    estudio_id=ESTUDIO_ID, fecha_consulta=ESTUDIO['fecha_consulta'], tc_estudio=ESTUDIO['tc'], comparables=comps,
+    res=dict(n=len(res3), min=min(c['gs'] for c in res3), max=max(c['gs'] for c in res3), mediana=mediana([c['gs'] for c in res3]),
+             std_n=len(res_std), std_min=min(c['gs'] for c in res_std), std_max=max(c['gs'] for c in res_std), std_mediana=mediana([c['gs'] for c in res_std]),
+             rango_prelim=(3_000_000, 3_500_000)),
+    com=dict(n=len(com), mediana=mediana([c['gs'] for c in com]), max=max(c['gs'] for c in com),
+             std_min=min(c['gs'] for c in com_std), std_max=max(c['gs'] for c in com_std), rango_prelim=(2_500_000, 4_500_000)),
+    contexto=ESTUDIO.get('referencias_contexto', []))
+# Escenarios del estudio (internos: Excel y control; la presentación muestra informado y central)
+ESC = [('Residencial informado', 3_000_000, 12, 0, 0), ('Combinado central', 3_000_000, 12, 3_000_000, 3),
+       ('Inferior', 2_800_000, 12, 0, 0), ('Superior', 3_500_000, 12, 4_500_000, 3)]
+M['escenarios'] = [dict(n=n, canon_dpto=cd, dptos=d, canon_salon=cs, salones=sl, mensual=cd * d + cs * sl, anual=(cd * d + cs * sl) * 12,
+                        bruta=(cd * d + cs * sl) * 12 / precio_gs, recuperacion=precio_gs / ((cd * d + cs * sl) * 12)) for n, cd, d, cs, sl in ESC]
 json.dump(M, open(os.path.join(B, 'model.json'), 'w'), ensure_ascii=False, indent=1)
 if __name__ == '__main__':
     print(f"TC {TC} | precio Gs {precio_gs:,.0f}")
@@ -72,3 +109,8 @@ if __name__ == '__main__':
     for s in M['sens_fuente'] + M['sens']:
         print(f"  {s['n']}: TC {s['tc']:.2f} → res {s['res']*100:.2f}% · total {s['tot']*100:.2f}%")
     print('Auditoría', {k: round(v, 4) for k, v in M['auditoria'].items()})
+    mr = M['mercado']
+    print('Mercado res', {k: (round(v) if isinstance(v, float) else v) for k, v in mr['res'].items()})
+    print('Mercado com', {k: (round(v) if isinstance(v, float) else v) for k, v in mr['com'].items()})
+    for e in M['escenarios']:
+        print(f"  {e['n']}: Gs {e['mensual']:,}/mes · bruta {e['bruta']*100:.2f}% · {e['recuperacion']:.1f} años")

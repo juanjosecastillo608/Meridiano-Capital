@@ -10,6 +10,7 @@ Este repo es el sistema operativo de conocimiento y desarrollo de Meridiano Capi
 4. **Antes de entregar cualquier pieza de marca** (deck, web, post, ad, prompt de imagen/video), correr el audit de Brand Guardian: `knowledge-base/ai/04-director-creativo-y-brand-guardian.md` + Matriz de Decisión de 10 criterios (`knowledge-base/ai/05-matriz-de-decision.md`). Un veredicto NO ALINEADO en reglas duras de logo/color bloquea la entrega.
 5. **Prompts de imagen/video con IA**: usar siempre el Prompt Engine de 5 bloques (`knowledge-base/ai/06-prompt-engine.md`), nunca improvisar paleta.
 6. **Antes de analizar un proyecto inmobiliario nuevo** (desarrollo, compra, tasación), correr `workflows/nuevo-proyecto-inmobiliario/` (WF-03) — consulta `knowledge-base/investment/market-intelligence/` (costos, ventas, alquiler, Airbnb, comparables, zonas) antes de investigar desde cero. Regla **"nuevo proyecto ≠ nueva base"** — ver `documentation/real-estate-os/`.
+7. **Todo estudio de mercado nuevo se guarda con el estándar D-100**: `knowledge-base/investment/market-intelligence/estudios/<CIUDAD>-<ZONA>-<AAAA-MM-DD>/estudio.json`, más el informe sin datos personales. Después se corre `estudios/consolidar.py` para regenerar las bases consolidadas de alquiler y venta que consulta SK-11. Ver `estudios/README.md`.
 
 ## Bloqueantes financieros activos — no ignorar
 

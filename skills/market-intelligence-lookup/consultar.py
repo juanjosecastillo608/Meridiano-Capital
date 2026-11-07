@@ -30,6 +30,9 @@ DATASETS = {
     "sales": MI_DIR / "sales" / "data" / "valor-m2-venta-por-barrio-calidad-etapa.csv",
     "comparables": MI_DIR / "comparables" / "data" / "comparables-venta-en-pozo-asuncion.csv",
     "neighborhoods": MI_DIR / "neighborhoods" / "data" / "categoria-de-zona-por-barrio-asuncion.csv",
+    # bases consolidadas de los estudios de mercado estándar (estudios/consolidar.py), todas las ciudades
+    "comparables_alquiler": MI_DIR / "rentals" / "data" / "comparables-alquiler.csv",
+    "comparables_venta": MI_DIR / "sales" / "data" / "comparables-venta.csv",
 }
 
 # columna que trae el nombre de barrio en cada dataset (no es siempre la misma)
@@ -39,6 +42,8 @@ BARRIO_COL = {
     "sales": "Barrio",
     "comparables": "Zona/Barrio",
     "neighborhoods": "Barrio",
+    "comparables_alquiler": "Zona",
+    "comparables_venta": "Zona",
 }
 TIPOLOGIA_COL = {
     "rentals": "Tipologia",
@@ -46,6 +51,8 @@ TIPOLOGIA_COL = {
     "sales": "Tipologia",
     "comparables": "Tipologia",
     "neighborhoods": None,
+    "comparables_alquiler": "Tipologia",
+    "comparables_venta": "Tipologia",
 }
 
 
@@ -90,7 +97,7 @@ def main():
     parser.add_argument("--barrio", required=True, help="Nombre (o parte) del barrio a buscar")
     parser.add_argument("--tipologia", default=None, help="Filtrar ademas por tipologia (monoambiente, 1 dormitorio, etc.)")
     parser.add_argument("--dataset", default=None, choices=list(DATASETS.keys()),
-                         help="Limitar la consulta a un solo dataset. Si se omite, consulta los 5.")
+                         help="Limitar la consulta a un solo dataset. Si se omite, consulta todos.")
     args = parser.parse_args()
 
     datasets_a_consultar = [args.dataset] if args.dataset else list(DATASETS.keys())

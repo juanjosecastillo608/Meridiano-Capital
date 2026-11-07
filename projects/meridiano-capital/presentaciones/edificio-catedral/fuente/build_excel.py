@@ -1,7 +1,8 @@
 """Excel editable del Edificio Catedral: entradas separadas de fórmulas.
 
 Hojas: Parametros (tipo de cambio y precio), Datos_PDF (lo que dice la fuente), Hipotesis_Locales,
-Escenarios (fórmulas), Sensibilidad_TC, Auditoria_Fuente y Gastos_Pendientes.
+Escenarios (fórmulas), Escenarios_Mercado, Sensibilidad_TC, Sensibilidad_Canon, Comp_Residenciales, Comp_Comerciales,
+Auditoria_Fuente y Gastos_Pendientes. Los comparables salen del estudio estándar CDE-CATEDRAL-2026-11-07 (D-100).
 Las celdas de entrada van en azul sobre crema; todo lo demás son fórmulas.
 """
 import os, json
@@ -124,10 +125,68 @@ e.row_dimensions[12].height = 45; e.merge_cells('A12:D12')
 sv = sheet('Sensibilidad_TC', 'Sensibilidad de la rentabilidad bruta al tipo de cambio', [34, 18, 22, 22])
 header(sv, 3, ['Escenario de tipo de cambio', 'Gs por USD', 'Bruta residencial', 'Bruta total'])
 for i, s in enumerate(M['sens'], start=4):
-    label(sv, f'A{i}', 'Vigente (= Parametros!B5)' if s['vigente'] else 'Ilustrativo')
+    label(sv, f'A{i}', f"{s['n']} (vigente = Parametros!B5)" if s['vigente'] else f"{s['n']} (BCP)")
     put(sv, f'B{i}', '=Parametros!B5' if s['vigente'] else s['tc'], TCF, inp=not s['vigente'])
     put(sv, f'C{i}', f'=Escenarios!$B$7/(Parametros!$B$4*B{i})', PCT)
     put(sv, f'D{i}', f'=Escenarios!$D$7/(Parametros!$B$4*B{i})', PCT)
+
+# --- Escenarios_Mercado (estudio del 07/11/2026)
+em = sheet('Escenarios_Mercado', 'Escenarios del estudio de mercado (brutos)', [30, 18, 10, 18, 10, 18, 20, 18, 14, 50])
+header(em, 3, ['Escenario', 'Canon dpto (Gs)', 'Dptos', 'Canon salón (Gs)', 'Salones', 'Renta mensual (Gs)', 'Renta anual (Gs)', 'Bruta s/precio', 'Recuperación (años)', 'Condición'])
+cond = {'Residencial informado': 'Dato informado por el vendedor; contratos y cobros sin revisar',
+        'Combinado central': 'Salones en la mediana de la muestra (hipótesis); 12 meses de ocupación de las 15 unidades',
+        'Inferior': 'Parte baja de la muestra y salones sin renta: piso razonado, no garantizado',
+        'Superior': 'Requiere renovar contratos con ajuste, buen estado y buen frente de los salones: confianza baja'}
+for i, e in enumerate(M['escenarios'], start=4):
+    label(em, f'A{i}', e['n'], bold=e['n'] == 'Combinado central')
+    put(em, f'B{i}', e['canon_dpto'], GS, inp=True); put(em, f'C{i}', e['dptos'], '0', inp=True)
+    put(em, f'D{i}', e['canon_salon'], GS, inp=True); put(em, f'E{i}', e['salones'], '0', inp=True)
+    put(em, f'F{i}', f'=B{i}*C{i}+D{i}*E{i}', GS); put(em, f'G{i}', f'=F{i}*Parametros!$B$8', GS)
+    put(em, f'H{i}', f'=G{i}/Parametros!$B$9', PCT); put(em, f'I{i}', f'=Parametros!$B$9/G{i}', '0.0')
+    note(em, f'J{i}', cond[e['n']])
+
+# --- Sensibilidad_Canon (cánones y ocupación, TC vigente)
+sc = sheet('Sensibilidad_Canon', 'Sensibilidad a cánones y ocupación (TC vigente)', [52, 16, 10, 16, 10, 18, 14, 14])
+header(sc, 3, ['Variable (todo lo demás constante)', 'Canon dpto (Gs)', 'Dptos', 'Canon salón (Gs)', 'Salones', 'Renta anual (Gs)', 'Bruta', 'Recuperación'])
+filas = [('Canon dpto Gs 2.800.000 (sin salones)', 2_800_000, 12, 0, 0), ('Canon dpto Gs 3.000.000 (informado)', 3_000_000, 12, 0, 0),
+         ('Canon dpto Gs 3.500.000 (sin salones)', 3_500_000, 12, 0, 0), ('Canon salón Gs 2.200.000 (dptos a Gs 3.000.000)', 3_000_000, 12, 2_200_000, 3),
+         ('Canon salón Gs 3.000.000 (central)', 3_000_000, 12, 3_000_000, 3), ('Canon salón Gs 4.500.000 (dptos a Gs 3.000.000)', 3_000_000, 12, 4_500_000, 3),
+         ('Ocupación 10 de 12 dptos (sin salones)', 3_000_000, 10, 0, 0), ('Ocupación 11 de 12 dptos (sin salones)', 3_000_000, 11, 0, 0),
+         ('Ocupación 12 de 12 dptos (sin salones)', 3_000_000, 12, 0, 0)]
+for i, (l, cd, nd, cs, ns) in enumerate(filas, start=4):
+    label(sc, f'A{i}', l)
+    for col, v, f_ in (('B', cd, GS), ('C', nd, '0'), ('D', cs, GS), ('E', ns, '0')):
+        put(sc, f'{col}{i}', v, f_, inp=True)
+    put(sc, f'F{i}', f'=(B{i}*C{i}+D{i}*E{i})*Parametros!$B$8', GS)
+    put(sc, f'G{i}', f'=F{i}/Parametros!$B$9', PCT); put(sc, f'H{i}', f'=Parametros!$B$9/F{i}', '0.0')
+note(sc, 'A14', 'Todos los cánones distintos del informado son supuestos apoyados en la muestra de comparables; la ocupación variable es ilustrativa.')
+
+
+def hoja_comp(nombre, titulo, uso):
+    ws = sheet(nombre, titulo, [7, 54, 26, 8, 10, 9, 14, 20, 20, 12, 70])
+    header(ws, 3, ['Cód.', 'Aviso', 'Zona', 'Dorm.', 'Sup. m²', 'Moneda', 'Publicado', 'En Gs (TC vigente)', 'Comparabilidad', 'Estadística', 'Fuente (enlace)'])
+    cs = [c for c in M['mercado']['comparables'] if c['uso'] == uso]
+    usados = []
+    for i, c in enumerate(cs, start=4):
+        label(ws, f'A{i}', c['codigo']); label(ws, f'B{i}', c['descripcion']); label(ws, f'C{i}', c['zona'])
+        put(ws, f'D{i}', c.get('dormitorios'), '0'); put(ws, f'E{i}', c.get('superficie_m2'), '#,##0')
+        put(ws, f'F{i}', 'USD' if c['moneda'] == 'USD' else 'Gs'); put(ws, f'G{i}', c['precio'], '#,##0', inp=True)
+        put(ws, f'H{i}', f'=IF(F{i}="USD",G{i}*Parametros!$B$5,G{i})', GS)
+        label(ws, f'I{i}', c['comparabilidad']); label(ws, f'J{i}', 'Sí' if c['usar_en_estadisticas'] else 'No')
+        ws[f'K{i}'] = c['url']; ws[f'K{i}'].hyperlink = c['url']; ws[f'K{i}'].font = Font(name='Poppins', color='8B3323', underline='single')
+        if c['usar_en_estadisticas']:
+            usados.append(f'H{i}')
+    r = 4 + len(cs) + 1
+    label(ws, f'B{r}', 'Mediana de los avisos en estadística', bold=True); put(ws, f'H{r}', f'=MEDIAN({",".join(usados)})', GS, bold=True)
+    label(ws, f'B{r+1}', 'Mínimo', bold=True); put(ws, f'H{r+1}', f'=MIN({",".join(usados)})', GS)
+    label(ws, f'B{r+2}', 'Máximo', bold=True); put(ws, f'H{r+2}', f'=MAX({",".join(usados)})', GS)
+    note(ws, f'B{r+4}', f"Avisos publicados consultados el {M['mercado']['fecha_consulta'][8:]}/{M['mercado']['fecha_consulta'][5:7]}/{M['mercado']['fecha_consulta'][:4]}; disponibilidad no confirmada; no son contratos. "
+         "Base completa y estándar: knowledge-base/investment/market-intelligence/estudios/CDE-CATEDRAL-2026-11-07/.")
+    return ws
+
+
+hoja_comp('Comp_Residenciales', 'Comparables residenciales (estudio CDE-CATEDRAL-2026-11-07)', 'residencial')
+hoja_comp('Comp_Comerciales', 'Comparables comerciales (estudio CDE-CATEDRAL-2026-11-07)', 'comercial')
 
 # --- Auditoria_Fuente
 a = sheet('Auditoria_Fuente', 'Auditoría de las rentabilidades publicadas por la fuente', [52, 20, 74])

@@ -118,6 +118,20 @@ def check_presentaciones(paths, problems):
                 problems.append(f"[PRESENTACIONES] {line[2:]}")
 
 
+ESTUDIOS = "knowledge-base/investment/market-intelligence/estudios/"
+
+
+def check_estudios(paths, problems):
+    """Estándar de estudios de mercado: esquema, PII y bases consolidadas al día."""
+    if not any(x.startswith(ESTUDIOS) for x in paths):
+        return
+    r = subprocess.run([sys.executable, ESTUDIOS + "consolidar.py", "--check"], capture_output=True, text=True)
+    if r.returncode != 0:
+        for line in r.stdout.splitlines():
+            if line.strip().startswith(("✗", "-")):
+                problems.append(f"[ESTUDIOS] {line.strip()}")
+
+
 def main():
     problems = []
     for path in staged_files():
@@ -134,6 +148,7 @@ def main():
         check_known_pii(path, text, problems)
 
     check_presentaciones(staged_files(), problems)
+    check_estudios(staged_files(), problems)
 
     if problems:
         print("pre-commit-checks.py encontró lo siguiente (no bloquea automáticamente,")

@@ -1,4 +1,5 @@
 Fuente original: estudio de mercado preliminar "Edificio Barrio San José, Ciudad del Este" (Meridiano Capital, 2026-10-13), copia en `projects/meridiano-capital/presentaciones/edificio-barrio-san-jose/fuente/`.
+> Normalizado con el estándar de estudios (D-100): `../estudios/CDE-SAN-JOSE-2026-10-13/estudio.json`, consolidado en `data/comparables-alquiler.csv`. Para Ciudad del Este ver también `CDE-CATEDRAL-2026-11-07` y `CDE-SAN-MIGUEL-2026-10-17`.
 
 # Referencias de alquiler: Ciudad del Este (preliminar, confianza baja)
 

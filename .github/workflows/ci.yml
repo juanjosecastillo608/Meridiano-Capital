@@ -65,3 +65,17 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - name: Verificar presentaciones
         run: python projects/meridiano-capital/presentaciones/verificar_presentaciones.py
+
+  estudios-de-mercado:
+    name: Estudios de mercado (estándar y bases consolidadas)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validar estudios y bases consolidadas
+        run: |
+          python knowledge-base/investment/market-intelligence/estudios/consolidar.py
+          git diff --exit-code -- knowledge-base/investment/market-intelligence/rentals/data/comparables-alquiler.csv knowledge-base/investment/market-intelligence/sales/data/comparables-venta.csv
