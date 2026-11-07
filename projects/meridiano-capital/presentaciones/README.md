@@ -5,6 +5,7 @@
 | Edificio Ciudad Nueva (zona Mercado 4), **plantilla maestra** | `edificio-ciudad-nueva-m4/` | `fuente/` |
 | Edificio Barrio San José (Ciudad del Este) | `edificio-barrio-san-jose/` | `fuente/` |
 | Edificio Sajonia (Asunción) | `edificio-sajonia/` | `fuente/` |
+| Edificio San Roque (Asunción) | `edificio-san-roque/` | `fuente/` |
 | Edificio Barrio San Miguel (Ciudad del Este) | `edificio-barrio-san-miguel/` | `fuente/` |
 | Edificio Catedral (Ciudad del Este) — PPTX, PDF, XLSX y documentos | `edificio-catedral/entregables/` | `fuente/` + `production/generadores/build_edificio_catedral_presentacion.js` |
 
@@ -42,4 +43,4 @@ python build_presentaciones.py
 Gs 6.480,35 por USD: cotización referencial del BCP del **06/11/2026**, la última publicada al 07/11/2026.
 - La cifra se tomó de la planilla del BCP vía buscador y coincide con el estudio de mercado de Catedral del 07/11. El sitio del BCP no es accesible desde el entorno de Claude Code.
 - Serie reciente: 03/11 Gs 6.060,86 · 04/11 Gs 6.144,02 · 05/11 Gs 6.388,47. El guaraní se depreció cerca de 9,5% entre el 26/10 y el 05/11.
-- Las cinco presentaciones se regeneraron el 07/11/2026. Las cifras de los README de M4, San José, Sajonia y San Miguel corresponden a tipos de cambio anteriores.
+- Las presentaciones se regeneraron el 07/11/2026; San Roque (v1) se creó ese día. Los README de M4, San José, Sajonia y San Roque ya están al TC vigente.
