@@ -152,7 +152,7 @@ S.append(slide(f'''{head('Proceso de compra', 'Cómo avanzamos, paso a paso')}<d
 <div class="src">Para inversores del exterior acompañamos también la cédula de identidad paraguaya y la apertura de cuenta bancaria. Las tareas legales, notariales y contables las realizan el abogado, el escribano y el contador; Meridiano Capital coordina y acompaña.</div>''', 15))
 # 16
 rk = [('Rotación de inquilinos', 'La vacancia de la zona es baja, pero no es cero: hay renovaciones, renegociaciones y meses de recambio.'),
-      ('Tipo de cambio', 'Los alquileres se cobran en guaraníes y el precio está en dólares. En las últimas semanas el dólar bajó frente al guaraní; si la tendencia se revierte, la renta en USD baja.'),
+      ('Tipo de cambio', 'Los alquileres se cobran en guaraníes y el precio está en dólares. Desde mediados de octubre el dólar subió frente al guaraní y la renta medida en USD bajó; las cifras de este documento usan el tipo de cambio del día.'),
       ('Costos de operación', 'Un edificio de 1990 con 13 unidades requiere mantenimiento continuo; la inspección técnica define si conviene actualizar instalaciones o impermeabilización.'),
       ('Impuestos', 'El impuesto a la renta depende de la estructura de compra y lo determina el contador.'), ('Valor de reventa', 'La plusvalía presentada son escenarios: el valor futuro depende del mercado y del estado del activo.')]
 S.append(slide(f'''{head('Consideraciones', 'Riesgos a evaluar en un edificio de renta')}<div class="rks">{''.join(f'<div class="rk"><b>{a}</b><span>{b}</span></div>' for a, b in rk)}</div>

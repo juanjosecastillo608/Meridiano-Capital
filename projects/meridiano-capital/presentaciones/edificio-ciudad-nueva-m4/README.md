@@ -1,40 +1,49 @@
 # Edificio Ciudad Nueva (zona Mercado 4) — presentación comercial v2
 
-Es la **plantilla maestra** de las presentaciones de Meridiano Capital. La v1 se armó en LibreOffice Impress y su archivo fuente no está en el repo. Esta v2 la reconstruye lámina por lámina (17 láminas) con el mismo pipeline HTML → PDF que Barrio San José y Sajonia. Mantiene el mismo contenido y el mismo diseño, con la tipografía corregida.
+Es la **plantilla maestra** de las presentaciones de Meridiano Capital: un edificio de renta de 1990 en 9 de Marzo c/ Mayor Bullo, barrio Ciudad Nueva, Asunción, a USD 340.000. Tiene 17 láminas. Esta v2 reconstruye lámina por lámina la v1, que se había armado en LibreOffice Impress, con el pipeline HTML → PDF común a todas las presentaciones.
 
-- PDF: `Edificio_Ciudad_Nueva_13_Departamentos_zona_M4_v2.pdf`
-- Fuente: `fuente/` (modelo que recalcula todo desde el detalle de alquileres, generador, estilos, fuentes e imágenes). Se regenera con `../build_presentaciones.py`. El teléfono y el tipo de cambio salen de `../_config/meridiano.json` (D-096/D-097).
+- **PDF para enviar a inversores:** `Edificio_Ciudad_Nueva_13_Departamentos_zona_M4_v2.pdf`. Regenerado el **07/11/2026** con el tipo de cambio del BCP del 06/11/2026.
+- **Fuente:** `fuente/`, con el modelo (recalcula todo desde los 15 conceptos de alquiler), el generador, los estilos, las fuentes y las imágenes.
+- **Cómo regenerar:** `python projects/meridiano-capital/presentaciones/build_presentaciones.py edificio-ciudad-nueva-m4`. El teléfono y el tipo de cambio salen de `../_config/meridiano.json` (D-096/D-097). Antes de cada envío hay que verificar la cotización del BCP del día.
 
-## Cambios v1 → v2 (2026-10-15)
-- **Tipografía:**
-  - Fraunces con el ajuste oficial de D-036 (`opsz 80 / SOFT 24 / WONK 0`).
-  - J y j de Lora, regla P-008 `[EXTENSION]`.
-  - En la v1, la J de "Juan José" se apoyaba sobre la línea base por el diseño propio de Fraunces.
-- **Contenido:** sin cambios. Mismos textos, cifras, fotos, mapa, enlace de ubicación y contacto.
+## Cifras vigentes (TC Gs 6.480,35, BCP referencial del 06/11/2026)
+| Indicador | Valor |
+|---|---:|
+| Precio | USD 340.000 |
+| Ingreso mensual (15 conceptos, 100% alquilado) | Gs 19.550.000 · USD 3.017 |
+| Ingreso bruto anual | USD 36.202 |
+| Rentabilidad bruta | **10,65%** |
+| Neta antes de impuesto a la renta | 8,01% |
+| Rentabilidad neta final | **7,21%** (USD 24.501 por año, USD 2.042 por mes) |
+| Precio ÷ ingreso bruto anual | 9,4 veces |
+| TIR estimada a 5 años (conservador / base / optimista) | 9,1% / **10,7%** / 12,4% |
+| Neto del año 5 (conservador / base / optimista) | USD 27.712 / 30.014 / 33.723 |
+| USD por m² construido | USD 307 (1.109 m²) |
+| Precio frente al costo de construir hoy la misma superficie | 47% (USD 720.850 a USD 650/m², sin terreno) |
 
-## Verificación de cifras al TC de la v1 (Gs 5.694), recalculadas desde los 15 conceptos de alquiler
-Todas coinciden con la v1:
-- **Ingresos:**
-  - Totales por nivel: 5,30 / 7,35 / 2,90 / 4,00 millones.
-  - Ingreso mensual: Gs 19.550.000.
-  - Ingreso anual: USD 41.201 al TC de 5.694.
-- **IVA ponderado:** 5,49%, con el 10% aplicado a "Cochera" y "Cochera y departamento".
-- **Gastos:** vacancia 3%, administración 8%, mantenimiento 5%, gastos fijos USD 1.200 e IRE 10%.
-- **Rentabilidad:** bruta 12,12%, neta antes de IRE 9,16%, neta final 8,25% y 8,3 veces.
-- **Promedios de alquiler:** 1 dormitorio Gs 1.158.333; 2 dormitorios Gs 1.516.667.
-- **Superficies:** USD 307/m², costo de construcción nueva USD 720.850 (el precio equivale al 47%) y USD 24.286 por unidad (14 unidades).
-- **Escenarios a 5 años:** neto del año 5 de USD 31.688 / 34.308 / 38.529 y TIR de 10,2% / 11,7% / 13,5%.
+**Supuestos:**
+- IVA ponderado de 5,49%: 5% en departamentos y 10% en "Cochera" y "Cochera y departamento".
+- Vacancia 3%, administración 8%, mantenimiento 5%, gastos fijos de USD 1.200 por año e IRE 10%.
+- Escenarios a 5 años: alquileres que suben 3%, 5% u 8% por año y valorización de 2%, 3,5% o 5%. Incluyen el IVA de la venta futura de 1,5% (D-082).
+- Son cifras de referencia, no garantizadas.
 
-## Observaciones a confirmar
-1. **Local comercial:** el resumen dice "13 departamentos y un local comercial", pero el detalle de alquileres no tiene ninguna línea "Local". Hay 13 departamentos (6 de 1 dorm., 6 de 2 dorm. y 1 de 3 dorm.), "Cochera" y "Cochera y departamento". Si "Cochera y departamento" incluye una vivienda, esa parte pagaría IVA del 5% y no del 10%.
-2. **Distancias** (90 / 320 / 480 m por calle) y **avisos de Ciudad Nueva** (Gs 3,0–3,2 M y 2,1–6,3 M): no se pudieron reverificar desde este entorno; quedan como en la v1.
-3. **Teléfono:** resuelto — +595 982 853 111 en todas las presentaciones (D-096).
-4. **Tipo de cambio:** se actualiza en cada regeneración (D-097). Al 07/11/2026 el vigente es Gs 6.480,35 (BCP, cotización referencial del 06/11/2026). El precio está en dólares (USD 340.000) y la renta en guaraníes, así que la suba del dólar baja las rentabilidades:
-   - Ingreso anual: USD 36.202.
-   - Rentabilidad: bruta 10,65%, neta antes de IRE 8,01% y neta final 7,21%; 9,4 veces.
-   - Escenarios a 5 años: neto del año 5 de USD 27.712 / 30.014 / 33.723 y TIR de 9,1% / 10,7% / 12,4%.
-   - Con el TC de la v1 (Gs 5.694) eran 12,12% bruta, 8,25% neta y TIR base de 11,7%. La diferencia se explica solo por el tipo de cambio.
+**Efecto del tipo de cambio:** el precio está en dólares y la renta en guaraníes. Con el TC de la v1 (Gs 5.694, 09/10/2026) la bruta era 12,12%, la neta 8,25% y la TIR base 11,7%. La baja a 10,65%, 7,21% y 10,7% se explica solo por la suba del dólar; los datos del edificio no cambiaron.
 
-## Pendientes (al 07/11/2026)
-- Observaciones 1 y 2: siguen abiertas. Falta confirmar el local comercial frente al detalle de alquileres, y reverificar las distancias y los avisos de Ciudad Nueva.
-- Ciudad Nueva todavía no tiene un estudio de mercado con el estándar D-100 (`knowledge-base/investment/market-intelligence/estudios/`). Conviene relevarlo antes de la próxima versión.
+| Fecha del TC (BCP) | Gs por USD | Bruta | Neta final |
+|---|---:|---:|---:|
+| 09/10/2026 (v1) | 5.694,47 | 12,12% | 8,25% |
+| 14/10/2026 | 5.698,03 | 12,11% | 8,24% |
+| 06/11/2026 (vigente) | 6.480,35 | 10,65% | 7,21% |
+
+## Observaciones abiertas (al 07/11/2026)
+1. **Local comercial:** el resumen y la portada dicen "13 departamentos y un local comercial", pero el detalle de alquileres no tiene ninguna línea "Local". Tiene 13 departamentos (6 de 1 dormitorio, 6 de 2 y 1 de 3), "Cochera" y "Cochera y departamento". Si "Cochera y departamento" incluye una vivienda, esa parte pagaría IVA del 5% y no del 10%.
+2. **Distancias y avisos de Ciudad Nueva:** las distancias (90 / 320 / 480 m por calle) y los avisos del barrio (Gs 3,0–3,2 M para 1 dormitorio y Gs 2,1–6,3 M para 2 dormitorios) no se pudieron reverificar desde este entorno. Quedan como en la v1.
+3. **Estudio de mercado:** Ciudad Nueva todavía no tiene un estudio con el estándar D-100 (`knowledge-base/investment/market-intelligence/estudios/`). Conviene relevarlo antes de la próxima versión, sobre todo para respaldar los alquileres de 1 y 2 dormitorios.
+
+## Registro de cambios
+- **2026-11-07:** regenerada con el TC del BCP del 06/11/2026 (Gs 6.480,35). La lámina 16 (riesgos) decía que "el dólar bajó frente al guaraní"; se corrigió, porque desde mediados de octubre el dólar subió y la renta en USD bajó.
+- **2026-11-05:** regenerada con el TC del 03/11/2026 (Gs 6.060,86).
+- **2026-10-15:** teléfono único +595 982 853 111 (D-096) y TC del 14/10/2026 (Gs 5.698,03).
+- **2026-10-15 (v1 → v2):** tipografía corregida. Fraunces con el ajuste oficial de D-036 (`opsz 80 / SOFT 24 / WONK 0`); J y j de Lora, regla P-008 `[EXTENSION]`. En la v1, la J de "Juan José" se apoyaba sobre la línea base. Contenido sin cambios: mismos textos, cifras, fotos, mapa, enlace de ubicación y contacto.
+
+**Verificación de la v2 al TC de la v1 (Gs 5.694):** las 15 cifras de alquiler (totales por nivel 5,30 / 7,35 / 2,90 / 4,00 millones; promedios de Gs 1.158.333 para 1 dormitorio y Gs 1.516.667 para 2) reproducen exactamente la v1: bruta 12,12%, neta 8,25% y TIR de 10,2% / 11,7% / 13,5%.
