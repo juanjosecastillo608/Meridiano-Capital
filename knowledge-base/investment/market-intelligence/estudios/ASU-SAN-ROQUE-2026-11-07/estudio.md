@@ -33,7 +33,8 @@
 
 K1 es el mismo aviso que K1 de `ASU-SAJONIA-2026-11-07`.
 
-**Entorno de salud (Asunción Times, a verificar):**
+**Entorno de salud (directorios públicos, a verificar):**
+- Ministerio de Salud Pública y Bienestar Social, sede central: Avda. Pettirossi esq. Brasil (Devex y encabezados de reportes del MSPBS). Según el founder, está cerca del edificio; la distancia está por medir.
 - Sanatorio Adventista: Av. Silvio Pettirossi 380 y Paí Pérez.
 - Hospital Universitario Nuestra Señora de la Asunción: Eligio Ayala 1293 y Curupayty.
 - Sanatorio San Roque.
@@ -55,4 +56,4 @@ K1 es el mismo aviso que K1 de `ASU-SAJONIA-2026-11-07`.
 - Son precios pedidos, no contratos, y la disponibilidad no está confirmada.
 - Varios avisos residenciales no informan superficie ni fecha.
 - Varios enlaces apuntan al listado del barrio y no a la ficha individual.
-- La ubicación exacta del sujeto no se pudo verificar: el enlace de Google Maps no es accesible desde este entorno.
+- La ubicación exacta del sujeto está en el enlace de Google Maps que envió el founder, pero ese enlace no se puede abrir desde este entorno; las distancias quedan por medir.

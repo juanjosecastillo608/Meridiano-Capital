@@ -5,7 +5,7 @@ import json
 
 # Edificio San Roque (Asunción) — v1, 2026-11-07. Mismo esquema que Edificio Sajonia v4.
 TC = TC_CFG                 # Gs por USD: _config/meridiano.json (D-097)
-PRICES = {'pedido': 250_000, 'rapida': 225_000}   # pedido: aviso del vendedor; rápida: supuesto de Meridiano (−10%), a confirmar por el founder
+PRICES = {'pedido': 250_000, 'rapida': 170_000}   # confirmados por el founder, 07/11/2026
 TERRENO, M2 = 585.80, 499.4                          # según el aviso (9 × 69 m = 621 m²: diferencia a aclarar con la mensura)
 # supuesto de reparto de los 499,4 m²: PB con entrepiso + 2 plantas de 160 m² (la losa de terraza es de 160 m²)
 NIV = {'PB': M2 - 320, 'P1': 160, 'P2': 160}
@@ -14,7 +14,7 @@ IMPREV = 0.10               # supuesto
 FIJOS = 7_000_000 / TC      # supuesto: gastos fijos anuales (edificio más chico que Sajonia)
 ADM, MAN, IRE = 0.08, 0.05, 0.10
 TABLA = {'basica': 350, 'estandar': 450, 'nueva': 650}   # 06-costos-de-construccion.md
-TAX = {'OF': (0.10, 0.10), 'LOCAL': (0.10, 0.08), 'VIV': (0.05, 0.04), 'MED': (0.10, 0.12)}   # (IVA, vacancia)
+TAX = {'OF': (0.10, 0.10), 'LOCAL': (0.10, 0.08), 'VIV': (0.05, 0.04), 'MED': (0.10, 0.10)}   # (IVA, vacancia); consultorios 10%: cerca del Ministerio de Salud y de sanatorios (supuesto)
 
 # Bases de alquiler (estudio ASU-SAN-ROQUE-2026-11-07)
 PB_RENT = 4_000_000         # aviso del vendedor para el salón de PB; dentro de la banda de Eusebio Ayala (Gs 14.000–30.000/m²)
