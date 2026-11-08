@@ -7,7 +7,7 @@
 - **Precios:** USD 2.500.000 de venta y **USD 1.700.000 de venta rápida**, sugerido por el founder el 08/11/2026.
 - **Ocupación:** la casa textil (Galaxia) es del propietario, así que no hay contrato de alquiler.
 
-**La presentación:** 23 láminas, mismo esquema que Sajonia y San Roque.
+**La presentación:** 25 láminas (desde el 08/11: fotos de locales y accesos en la lámina 11, opción C ajustada en la lámina 19), mismo esquema que Sajonia y San Roque.
 - **Análisis comparativo de mercado (lámina 6) y comparables de venta (lámina 7):** estiman el valor por tres métodos.
 - **Tres opciones de renta, a los dos precios:**
   - A · Galería de locales.
@@ -77,6 +77,22 @@
 - **A la venta rápida**, la galería de locales llega a 9,53% bruta con poca obra. Es la mejor relación entre retorno y riesgo.
 - **El shopping con operador (B)** tiene la neta más estable, con poca vacancia y poca gestión para el propietario. Pero exige la obra de conversión y comparte el 40% de la renta con el operador. Solo conviene con un operador solvente y un contrato largo.
 - **C** tiene la mejor TIR, pero necesita USD 2,1 M más, permisos y verificación estructural.
+
+## Opción C ajustada, hacia el 10% bruto (lámina 19, pedido del founder del 08/11/2026)
+Palancas acumuladas. Todas son supuestos a validar.
+
+| Palanca | Alquiler mensual | Obra total | Bruta / neta a USD 2,5 M | Bruta / neta a USD 1,7 M |
+|---|---:|---:|---|---|
+| C base | USD 31.752 | USD 2.142.360 | 8,21% / 4,35% | 9,92% / 5,25% |
+| + vidrieras a las dos calles (240 m², +USD 8/m²) | USD 33.672 | USD 2.142.360 | 8,70% / 4,62% | 10,52% / 5,59% |
+| + cuarto piso de oficinas | USD 38.952 | USD 2.711.610 | 8,97% / 4,80% | 10,60% / 5,67% |
+| + oficinas estándar USD 720/m², sin DVH, refuerzo de 10% | USD 38.952 | USD 2.525.490 | 9,30% / 4,98% | 11,06% / 5,92% |
+| + oficinas a USD 12/m² | USD 40.872 | USD 2.525.490 | **9,76% / 5,23%** | **11,61% / 6,22%** |
+
+**Resultados de la C ajustada:**
+- Llega al 10% bruto exacto con una compra de **USD 2.379.150**.
+- TIR base: 6,1% a USD 2,5 M y 6,8% a USD 1,7 M.
+- **Condición decisiva:** que el FOT y la estructura permitan 4 pisos sobre la galería.
 
 ## Uso interno (no va en el deck)
 **Precio máximo de compra para una bruta objetivo:**

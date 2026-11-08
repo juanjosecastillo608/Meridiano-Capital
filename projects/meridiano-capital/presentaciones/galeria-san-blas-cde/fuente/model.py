@@ -44,16 +44,20 @@ def altA(k=1.0): return build(galeria(k))
 def altB(k=1.0):
     gross = sum(x[2] for x in sublet(k))
     return build([('Alquiler maestro del operador', f'{int(SHARE * 100)}% de USD {n0(gross)} de subalquiler', gross * SHARE, 'MASTER')])
-def altC(k=1.0):
-    of = OF_NEW_M2 * 0.80
-    return build(galeria(k) + [('Oficinas corporativas, 3 pisos nuevos', f'{n0(of)} m² × USD {OF_RATE * k:g}', of * OF_RATE * k, 'OF')])
+def altC(k=1.0, pisos=3, of_rate=OF_RATE, frente=0.0):
+    of = pisos * 600 * 0.80
+    lines = galeria(k)
+    if frente:   # locales a la calle por los dos frentes: 240 m² alquilables que pasan de la tarifa interior a la de vidriera (supuesto)
+        lines.append(('Prima de vidriera en los dos frentes', f'240 m² × USD {frente * k:g} adicionales', 240 * frente * k, 'COM'))
+    return build(lines + [(f'Oficinas corporativas, {pisos} pisos nuevos', f'{n0(of)} m² × USD {of_rate * k:g}', of * of_rate * k, 'OF')])
 
 def mk(parts):
     o = sum(v for _, v in parts)
     return dict(parts=parts, obra=o, imprev=o * IMPREV, total=o * (1 + IMPREV))
 def capexA(f=1.0): return mk([('Refacción y subdivisión en locales', M2 * REFAC_RATE * f)])
 def capexB(f=1.0): return mk([('Conversión a shopping', M2 * CONV_RATE * f), ('Escalera mecánica o ascensor', ESCALERAS * f), ('Instalaciones gastronómicas', GASTRO * f)])
-def capexC(f=1.0): return mk([('Refacción de la galería', M2 * REFAC_RATE * f), ('Oficinas nuevas con refuerzo', OF_NEW_M2 * OF_NEW_RATE * (1 + REFUERZO) * f), ('Ascensores', ASCENSORES * f)])
+def capexC(f=1.0, pisos=3, rate=OF_NEW_RATE, refuerzo=REFUERZO):
+    return mk([('Refacción de la galería', M2 * REFAC_RATE * f), ('Oficinas nuevas con refuerzo', pisos * 600 * rate * (1 + refuerzo) * f), ('Ascensores', ASCENSORES * f)])
 
 def neto(G, iva, vac, adm=ADM, man=MAN):
     pre = G * (1 - iva - vac - adm - man) - FIJOS
@@ -123,6 +127,31 @@ CAP = (0.09, 0.075)                      # tasa de capitalización comercial en 
 acm_inc = (min(noi[a] / CAP[0] - CX[a]['total'] for a in 'AB'), max(noi[a] / CAP[1] - CX[a]['total'] for a in 'AB'))
 out['acm'] = dict(comp=acm_comp, cost=acm_cost, inc=acm_inc, comp_m2=COMP_EDIF, suelo=SUELO, constr_new=CONSTR_NEW, deprec=DEPREC, cap=CAP, noi=noi,
                   rango=(acm_cost[1], acm_comp[0]))   # criterio de Meridiano: del techo del método del costo al piso de los comparables (los comparables son precios pedidos)
+# --- Ruta de la opción C hacia el 10% bruto: palancas acumuladas (supuestos a validar)
+STEPS = [('C base', {}, {}),
+         ('Locales con vidriera a las dos calles', {'frente': 8.0}, {}),
+         ('Un cuarto piso de oficinas', {'frente': 8.0, 'pisos': 4}, {'pisos': 4}),
+         ('Oficinas estándar sin DVH y refuerzo de 10%', {'frente': 8.0, 'pisos': 4}, {'pisos': 4, 'rate': 720, 'refuerzo': 0.10}),
+         ('Oficinas a USD 12/m²', {'frente': 8.0, 'pisos': 4, 'of_rate': 12.0}, {'pisos': 4, 'rate': 720, 'refuerzo': 0.10})]
+out['ruta'] = []
+for nm, ka, kc in STEPS:
+    alt, cx = altC(**ka), capexC(**kc)
+    row = dict(nombre=nm, mes=alt['mes'], obra=cx['total'])
+    for p, P in PRICES.items():
+        e = evaluate('C', alt, cx, P); row[p] = [e['bruta'], e['neta'], e['inv']]
+    out['ruta'].append(row)
+CO_A, CO_C = STEPS[-1][1], STEPS[-1][2]
+cxo = capexC(**CO_C); alto = altC(**CO_A)
+out['Copt'] = dict(alt=alto, cx=cxo, ev={p: evaluate('C', alto, cxo, P) for p, P in PRICES.items()})
+def proj_opt(P, gr, val):
+    ev = evaluate('C', alto, cxo, P)
+    nets = [neto(ev['G'] * (1 + gr) ** k, alto['iva'], alto['vac'])[1] for k in range(3)]
+    ga = altA(); na = neto(ga['mes'] * 12, ga['iva'], ga['vac'])[1]
+    cf = [-P - cxo['total'] * 0.5, -cxo['total'] * 0.5, na, nets[0], nets[1], nets[2]]
+    V = ev['inv'] * (1 + val) ** 4; cf[-1] += V - V * 0.015
+    return dict(tir=irr(cf), total=V - ev['inv'] - V * 0.015 + na + sum(nets))
+out['Copt']['p10'] = out['Copt']['ev']['pedido']['G'] / 0.10 - cxo['total']
+out['Copt']['proj'] = {p: {nm: proj_opt(P, gr, val) for nm, gr, val in [('Conservador', .02, .02), ('Base', .03, .035), ('Optimista', .05, .05)]} for p, P in PRICES.items()}
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 
 if __name__ == '__main__':
@@ -133,3 +162,5 @@ if __name__ == '__main__':
                   'TIR', {k: '%.1f%%' % (v['tir'] * 100) for k, v in out['proj'][a][p].items()})
     print('sublet', round(out['sublet_total']))
     print({k: (v if not isinstance(v, (tuple, list)) else [round(x) if x > 10 else x for x in v]) for k, v in out['acm'].items() if k != 'noi'})
+    for r in out['ruta']: print(r['nombre'], round(r['mes']), round(r['obra']), ['%.2f%%/%.2f%%' % (r[p][0]*100, r[p][1]*100) for p in PRICES])
+    print('Copt TIR', {p: {k: '%.1f%%' % (v['tir']*100) for k, v in out['Copt']['proj'][p].items()} for p in PRICES})

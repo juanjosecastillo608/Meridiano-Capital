@@ -65,7 +65,7 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Un lote pasante en el corazón
 <p class="lead">Galería comercial de dos niveles que une la Av. San Blas con la calle Camilo Recalde, en el microcentro de Ciudad del Este. Hoy la ocupa la casa textil del propietario. Se analiza su valor de mercado y tres formas de ponerla en renta, a dos precios: el de venta y el de venta rápida.</p>
 {kgrid([(usd(P), 'Precio de venta'), (usd(PR), 'Precio de venta rápida (−32%)'), (mill(ACM['rango'][0]) + ' – ' + n(ACM['rango'][1] / 1e6, 2) + ' M', 'Rango de valor de mercado estimado (lámina 6)'), ('900 · 1.572 m²', 'Terreno · construidos en 2 niveles'),
         (pct(ev['A']['neta']) + ' · ' + pct(evr['A']['neta']), 'A · Galería de locales: neta a cada precio'), (pct(ev['B']['neta']) + ' · ' + pct(evr['B']['neta']), 'B · Shopping con operador: neta a cada precio'),
-        (pct(ev['C']['neta']) + ' · ' + pct(evr['C']['neta']), 'C · Galería y oficinas: neta a cada precio'), (pct(evr['A']['bruta']), 'Bruta de A a USD 1.700.000')], 'kgrid ks')}
+        (pct(ev['C']['neta']) + ' · ' + pct(evr['C']['neta']), 'C · Galería y oficinas: neta a cada precio'), (pct(M['ruta'][-1]['pedido'][0]) + ' · ' + pct(M['ruta'][-1]['rapida'][0]), 'C ajustada: bruta a cada precio (lámina 20)')], 'kgrid ks')}
 <div class="box">Rentabilidades sobre el precio más la obra de cada opción, con alquileres del estudio de mercado de Meridiano Capital, en dólares · Sin renta actual: la casa textil es del propietario · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
@@ -141,6 +141,12 @@ S.append(slide(f'''{head('Recorrido fotográfico', 'La galería por dentro')}
 <figure style="width:300px"><img src="img/escalera2.jpg" style="height:412px;object-position:50% 50%"><figcaption>Escalera doble a la planta alta</figcaption></figure>
 <figure style="width:220px"><img src="img/pasillo.jpg" style="height:412px"><figcaption>Pasillo de calle a calle</figcaption></figure></div>''', num(), dark=True))
 
+# 10b FOTOS LOCALES
+S.append(slide(f'''{head('Recorrido fotográfico', 'Locales, vidrieras y accesos')}
+<div class="ph"><figure style="width:430px"><img src="img/acceso.jpg" style="height:412px"><figcaption>Acceso con locales a ambos lados</figcaption></figure>
+<figure style="width:360px"><img src="img/local_vidriera.jpg" style="height:412px;object-position:60% 50%"><figcaption>Local con vidriera sobre el pasillo</figcaption></figure>
+<figure style="width:220px"><img src="img/pasillo2.jpg" style="height:412px"><figcaption>Pasillo y locales con cortina</figcaption></figure></div>''', num(), dark=True))
+
 # 11 OPCIONES
 def card(a, rows, gold=False):
     return f'<div><div class="altt{" gold" if gold else ""}">{ALT[a]}</div>{table(["", ""], rows, "t nohead sm")}</div>'
@@ -215,6 +221,15 @@ S.append(slide(f'''{head('Rentabilidad estimada', 'Tres opciones de renta a dos 
 <div class="rg6">{hdr}{rowr('Bruta sobre inversión total', 'bruta', 'bigv m6')}{rowr('Neta antes de IRE', 'neta_pre', 'midv')}{rowr('Neta final', 'neta', 'midv')}{rowr('Inversión total', 'inv', 'midv s2')}</div>
 <div class="bs how"><b>Cómo leer estas cifras.</b> A = galería de locales; B = shopping con operador único; C = galería y oficinas. El denominador es el precio más la obra, sin gastos de adquisición. Son estimaciones con alquileres pedidos del mercado, sin contratos que las respalden. A la venta rápida de USD 1.700.000, la galería de locales llega a {pct(evr['A']['bruta'])} bruta. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
 
+# 17b RUTA AL 10%
+ru = M['ruta']; co = M['Copt']
+rrows = [([('' if i == 0 else '+ ') + r['nombre'], usd(r['mes']), usd(r['obra']), pct(r['pedido'][0]) + ' · ' + pct(r['pedido'][1]), pct(r['rapida'][0]) + ' · ' + pct(r['rapida'][1])], 'tot' if i == len(ru) - 1 else ('b' if i == 0 else '')) for i, r in enumerate(ru)]
+S.append(slide(f'''{head('Opción C ajustada', 'Cómo acercar la galería con oficinas al 10% bruto')}
+<div class="two cx2"><div>{table(['Palanca (acumulada)', 'Alquiler mensual', 'Obra total', 'Bruta · neta a USD 2,5 M', 'Bruta · neta a USD 1,7 M'], rrows, 't big')}
+<p class="note2 sm">Con las cuatro palancas, C llega a {pct(ru[-1]['pedido'][0])} bruta al precio de venta y a {pct(ru[-1]['rapida'][0])} a la venta rápida. Alcanza exactamente el 10% bruto con una compra de {usd(co['p10'])}. TIR base de C ajustada: {pct(co['proj']['pedido']['Base']['tir'], 1)} a USD 2,5 M y {pct(co['proj']['rapida']['Base']['tir'], 1)} a USD 1,7 M.</p></div>
+{crit('Condiciones de cada palanca', [('Vidrieras a la calle', 'Abrir locales con frente a la Av. San Blas y a Camilo Recalde: 240 m² que se alquilan USD 8/m² por encima de los locales interiores.'), ('Cuarto piso', 'Sujeto al FOT del Plan Regulador y a que la estructura lo soporte: es la condición decisiva.'), ('Obra más eficiente', 'Oficinas estándar (USD 720/m²) con vidrio común y refuerzo de 10%, según el cálculo estructural.'), ('Canon de oficinas', 'USD 12/m²: techo de la banda publicada, para un edificio nuevo con ascensor y vista al puente.')])}</div>
+<div class="src">Escenario optimista de Meridiano Capital: cada palanca es un supuesto a validar con arquitecto, ingeniero estructural, Municipalidad y sondeo de inquilinos. No es una rentabilidad garantizada.</div>''', num()))
+
 # 18 SENSIBILIDAD
 def srow(a, f):
     lbl = f'{ALT[a].split(" · ")[1]} · obra {"de tabla" if f == 1.0 else "+25%"}'
@@ -253,7 +268,7 @@ S.append(slide(f'''{head('Proceso de compra', 'Cómo avanzamos, paso a paso')}<d
 
 # 22 CONSIDERACIONES
 rk = [('Precio y valor', 'El precio de USD 2.500.000 está por encima del rango de valor estimado; la venta rápida de USD 1.700.000 está dentro.'),
-      ('Rentabilidad', 'Aun a USD 1.700.000, las netas estimadas quedan por debajo del 10% de referencia de Meridiano: la tesis combina renta, suelo y ubicación.'),
+      ('Rentabilidad', 'Las brutas de dos dígitos solo aparecen con la venta rápida o con la opción C ajustada; las netas quedan por debajo del 10% de referencia de Meridiano.'),
       ('Comercio de frontera', 'La renta depende del flujo de compradores de Brasil; el nuevo control de compras brasileño es un riesgo a seguir.'),
       ('Operador del shopping', 'B depende de encontrar un operador solvente y de su contrato: plazo, garantías y ajuste.'),
       ('Obra y normativa', 'Sin presupuesto ni verificación estructural; en C, altura, FOS y FOT según el Plan Regulador de Ciudad del Este.'),
