@@ -1,0 +1,608 @@
+{
+ "TC": 6480.35,
+ "P_GS": 950000000,
+ "P": 146597.02022267316,
+ "TERRENO": 541.0,
+ "M2": 610.0,
+ "M2_AVISO": 300.0,
+ "UNITS": [
+  [
+   "PB frente",
+   1,
+   "Sal\u00f3n / oficina",
+   "Oficina con dep\u00f3sito en subsuelo",
+   90,
+   600000,
+   "COM"
+  ],
+  [
+   "PB frente",
+   2,
+   "Departamento",
+   "1 dormitorio",
+   46,
+   900000,
+   "VIV"
+  ],
+  [
+   "PB frente",
+   3,
+   "Departamento",
+   "Monoambiente",
+   27,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB lateral",
+   4,
+   "Departamento",
+   "2 dormitorios",
+   64,
+   1300000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   5,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   6,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   7,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   8,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   9,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   10,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   11,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   12,
+   "Departamento",
+   "Monoambiente",
+   20,
+   800000,
+   "VIV"
+  ],
+  [
+   "PB interior",
+   13,
+   "Departamento",
+   "1 dormitorio",
+   30,
+   800000,
+   "VIV"
+  ],
+  [
+   "PA frente",
+   14,
+   "Sal\u00f3n / oficina",
+   "Monoambiente, ba\u00f1o compartido",
+   40,
+   800000,
+   "COM"
+  ],
+  [
+   "PA frente",
+   15,
+   "Sal\u00f3n / oficina",
+   "Monoambiente, ba\u00f1o compartido",
+   30,
+   800000,
+   "COM"
+  ],
+  [
+   "PA frente",
+   16,
+   "Sal\u00f3n / oficina",
+   "Monoambiente",
+   24,
+   800000,
+   "COM"
+  ],
+  [
+   "PA fondo",
+   17,
+   "Departamento (proyecto)",
+   "1 dormitorio, sin cocina ni ba\u00f1o",
+   36,
+   800000,
+   "VIV"
+  ],
+  [
+   "PA fondo",
+   18,
+   "Departamento (proyecto)",
+   "Monoambiente, sin cocina ni ba\u00f1o",
+   27,
+   800000,
+   "VIV"
+  ],
+  [
+   "PA fondo",
+   19,
+   "Departamento (proyecto)",
+   "1 dormitorio, sin cocina ni ba\u00f1o",
+   36,
+   800000,
+   "VIV"
+  ]
+ ],
+ "N_HAB": 20,
+ "B_RENT_GS": 1400000,
+ "C_ADR": 22.0,
+ "C_OCC": 0.55,
+ "A_REFAC": 175.0,
+ "cx": {
+  "A": {
+   "parts": [
+    [
+     "Puesta en valor de 16 unidades existentes",
+     89425.0
+    ],
+    [
+     "Ba\u00f1o y kitchenette de 3 unidades de proyecto",
+     18000.0
+    ]
+   ],
+   "obra": 107425.0,
+   "imprev": 10742.5,
+   "total": 118167.50000000001
+  },
+  "B": {
+   "parts": [
+    [
+     "Obra civil, ba\u00f1os, electricidad y pintura (planilla)",
+     156380.0
+    ],
+    [
+     "Equipamiento de 20 habitaciones (planilla)",
+     24200.0
+    ],
+    [
+     "Honorarios, permisos, imprevistos y seguros (planilla)",
+     21729.4
+    ]
+   ],
+   "obra": 202309.4,
+   "imprev": 0,
+   "total": 202309.4
+  },
+  "C": {
+   "parts": [
+    [
+     "Obra civil, ba\u00f1os, electricidad y pintura (planilla)",
+     156380.0
+    ],
+    [
+     "Equipamiento de 20 habitaciones (planilla)",
+     24200.0
+    ],
+    [
+     "Honorarios, permisos, imprevistos y seguros (planilla)",
+     21729.4
+    ],
+    [
+     "Equipamiento de hostel y habilitaci\u00f3n tur\u00edstica",
+     16500.0
+    ]
+   ],
+   "obra": 218809.4,
+   "imprev": 0,
+   "total": 218809.4
+  }
+ },
+ "sens": {
+  "A|1.0|0.85": [
+   0.09273987807498806,
+   0.041593992680678656
+  ],
+  "A|1.0|1.0": [
+   0.10910573891175065,
+   0.052533311737682394
+  ],
+  "A|1.0|1.15": [
+   0.1254715997485132,
+   0.0634726307946861
+  ],
+  "A|1.25|0.85": [
+   0.08343083848196914,
+   0.03741887262732801
+  ],
+  "A|1.25|1.0": [
+   0.09815392762584606,
+   0.04726012517469096
+  ],
+  "A|1.25|1.15": [
+   0.11287701676972292,
+   0.057101377722053884
+  ],
+  "B|1.0|0.85": [
+   0.12631379391183126,
+   0.05112788018456113
+  ],
+  "B|1.0|1.0": [
+   0.1486044634256838,
+   0.06818024236265834
+  ],
+  "B|1.0|1.15": [
+   0.17089513293953637,
+   0.08523260454075554
+  ],
+  "B|1.25|0.85": [
+   0.11032161239981254,
+   0.044654744393809925
+  ],
+  "B|1.25|1.0": [
+   0.12979013223507357,
+   0.05954816206778461
+  ],
+  "B|1.25|1.15": [
+   0.1492586520703346,
+   0.0744415797417593
+  ],
+  "C|1.0|0.85": [
+   0.20547121190220763,
+   0.017241346359962672
+  ],
+  "C|1.0|1.0": [
+   0.24173083753200897,
+   0.03616887093871897
+  ],
+  "C|1.0|1.15": [
+   0.27799046316181025,
+   0.05509639551747525
+  ],
+  "C|1.25|0.85": [
+   0.1787168117442646,
+   0.01499635118275177
+  ],
+  "C|1.25|1.0": [
+   0.2102550726403113,
+   0.03145932337048814
+  ],
+  "C|1.25|1.15": [
+   0.24179333353635796,
+   0.0479222955582245
+  ]
+ },
+ "proj": {
+  "A": {
+   "Conservador": {
+    "tir": 0.05958710909993348,
+    "total": 81808.01412362256
+   },
+   "Base": {
+    "tir": 0.0709093241381632,
+    "total": 99645.87274377307
+   },
+   "Optimista": {
+    "tir": 0.08276867507593633,
+    "total": 119134.88711410889
+   }
+  },
+  "B": {
+   "Conservador": {
+    "tir": 0.06587532192876966,
+    "total": 121143.06893849064
+   },
+   "Base": {
+    "tir": 0.0770496662731831,
+    "total": 144988.36243547458
+   },
+   "Optimista": {
+    "tir": 0.08891343323274581,
+    "total": 171361.55847336736
+   }
+  },
+  "C": {
+   "Conservador": {
+    "tir": 0.04135788210752167,
+    "total": 78660.88858821485
+   },
+   "Base": {
+    "tir": 0.052857301607108,
+    "total": 102908.39452926419
+   },
+   "Optimista": {
+    "tir": 0.06472355085321257,
+    "total": 129049.12786210618
+   }
+  }
+ },
+ "planilla": {
+  "obra_civil": 90390,
+  "banos": 39250,
+  "electrico": 15800,
+  "pintura": 10940,
+  "equipamiento": 24200,
+  "arquitecto": 7819,
+  "permisos": 800,
+  "imprevistos": 12510.4,
+  "seguros": 600
+ },
+ "A": {
+  "inc": {
+   "G": 28887.32861650991,
+   "mes_gs": 15600000.0,
+   "pct": {
+    "IVA": 0.05961538461538462,
+    "Vacancia": 0.06769230769230769,
+    "Administraci\u00f3n": 0.08,
+    "Mantenimiento": 0.05
+   },
+   "fijos": {
+    "Gastos fijos": 6000
+   },
+   "lines": [
+    [
+     "Sal\u00f3n / oficina n.\u00ba 1",
+     "PB frente \u00b7 Oficina con dep\u00f3sito en subsuelo \u00b7 90 m\u00b2",
+     600000.0,
+     "COM"
+    ],
+    [
+     "Departamento n.\u00ba 2",
+     "PB frente \u00b7 1 dormitorio \u00b7 46 m\u00b2",
+     900000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 3",
+     "PB frente \u00b7 Monoambiente \u00b7 27 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 4",
+     "PB lateral \u00b7 2 dormitorios \u00b7 64 m\u00b2",
+     1300000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 5",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 6",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 7",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 8",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 9",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 10",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 11",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 12",
+     "PB interior \u00b7 Monoambiente \u00b7 20 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento n.\u00ba 13",
+     "PB interior \u00b7 1 dormitorio \u00b7 30 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Sal\u00f3n / oficina n.\u00ba 14",
+     "PA frente \u00b7 Monoambiente, ba\u00f1o compartido \u00b7 40 m\u00b2",
+     800000.0,
+     "COM"
+    ],
+    [
+     "Sal\u00f3n / oficina n.\u00ba 15",
+     "PA frente \u00b7 Monoambiente, ba\u00f1o compartido \u00b7 30 m\u00b2",
+     800000.0,
+     "COM"
+    ],
+    [
+     "Sal\u00f3n / oficina n.\u00ba 16",
+     "PA frente \u00b7 Monoambiente \u00b7 24 m\u00b2",
+     800000.0,
+     "COM"
+    ],
+    [
+     "Departamento (proyecto) n.\u00ba 17",
+     "PA fondo \u00b7 1 dormitorio, sin cocina ni ba\u00f1o \u00b7 36 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento (proyecto) n.\u00ba 18",
+     "PA fondo \u00b7 Monoambiente, sin cocina ni ba\u00f1o \u00b7 27 m\u00b2",
+     800000.0,
+     "VIV"
+    ],
+    [
+     "Departamento (proyecto) n.\u00ba 19",
+     "PA fondo \u00b7 1 dormitorio, sin cocina ni ba\u00f1o \u00b7 36 m\u00b2",
+     800000.0,
+     "VIV"
+    ]
+   ]
+  },
+  "ev": {
+   "G": 28887.32861650991,
+   "ded": {
+    "IVA": 1722.1292059842447,
+    "Vacancia": 1955.449937117594,
+    "Administraci\u00f3n": 2310.986289320793,
+    "Mantenimiento": 1444.3664308254956
+   },
+   "fijos": {
+    "Gastos fijos": 6000
+   },
+   "pre": 15454.396753261783,
+   "net": 13908.957077935605,
+   "ire": 1545.4396753261783,
+   "inv": 264764.5202226732,
+   "bruta": 0.10910573891175065,
+   "neta": 0.052533311737682394,
+   "neta_pre": 0.05837034637520266,
+   "max10": 170705.78616509907,
+   "max8": 242924.10770637385,
+   "payback": 19.03554082014394
+  }
+ },
+ "B": {
+  "inc": {
+   "G": 51849.0513629665,
+   "mes_gs": 28000000.0,
+   "pct": {
+    "IVA": 0.05,
+    "Vacancia": 0.1
+   },
+   "fijos": {
+    "Gastos del edificio (planilla)": 17640
+   }
+  },
+  "ev": {
+   "G": 51849.0513629665,
+   "ded": {
+    "IVA": 2592.452568148325,
+    "Vacancia": 5184.90513629665
+   },
+   "fijos": {
+    "Gastos del edificio (planilla)": 17640
+   },
+   "pre": 26431.693658521523,
+   "net": 23788.52429266937,
+   "ire": 2643.1693658521526,
+   "inv": 348906.42022267316,
+   "bruta": 0.1486044634256838,
+   "neta": 0.06818024236265834,
+   "neta_pre": 0.07575582484739815,
+   "max10": 316181.113629665,
+   "max8": 445803.74203708116,
+   "payback": 14.667005650711655
+  }
+ },
+ "C": {
+  "inc": {
+   "G": 88330.0,
+   "mes_gs": 47700776.291666664,
+   "pct": {
+    "IVA": 0.1,
+    "Comisi\u00f3n de plataformas": 0.15,
+    "Limpieza y lavander\u00eda": 0.12,
+    "Mantenimiento": 0.05
+   },
+   "fijos": {
+    "Personal de recepci\u00f3n": 18054.58038531869,
+    "Gastos del edificio y sistemas": 18492.0
+   }
+  },
+  "ev": {
+   "G": 88330.0,
+   "ded": {
+    "IVA": 8833.0,
+    "Comisi\u00f3n de plataformas": 13249.5,
+    "Limpieza y lavander\u00eda": 10599.6,
+    "Mantenimiento": 4416.5
+   },
+   "fijos": {
+    "Personal de recepci\u00f3n": 18054.58038531869,
+    "Gastos del edificio y sistemas": 18492.0
+   },
+   "pre": 14684.819614681306,
+   "net": 13216.337653213175,
+   "ire": 1468.4819614681307,
+   "inv": 365406.42022267316,
+   "bruta": 0.24173083753200897,
+   "neta": 0.03616887093871897,
+   "neta_pre": 0.04018763437635441,
+   "max10": 664490.6,
+   "max8": 885315.6,
+   "payback": 27.64808450046182
+  }
+ },
+ "C_occ": {
+  "0.45": 0.01322641690386284,
+  "0.55": 0.03616887093871897,
+  "0.6": 0.047640097956147036,
+  "0.69": 0.06828830658751751
+ },
+ "planilla_rent_usd": 255.71,
+ "planilla_total_usd": 329.21,
+ "B_req10": 942098.2167875001
+}
