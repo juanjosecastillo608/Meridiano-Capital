@@ -104,3 +104,12 @@
   - D-101 aplicada: IVA contenido con crédito fiscal de gastos, crédito de la obra en la TIR, IRE con depreciación y gastos fijos de A en USD 1.500.
   - Lámina 3 con la vista satelital y la foto del Hospital Militar Central. La foto es de un usuario de Google Maps; se recortaron los controles y se difuminaron la persona y las patentes.
   - La universidad de referencia es la UAP (confirmado por el founder).
+
+## D-101: nueva base bruta → neta (09/11/2026)
+La neta y la TIR de este README anteriores a esta fecha usaban la base vieja. Cifras vigentes, regeneradas con D-101 (IVA incluido en el alquiler con crédito fiscal, IRE con depreciación y crédito de la obra en la TIR):
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| Humaitá A | USD 160.000 | 10,38% | — | **6,82%** | — | 8,8% |
+| Humaitá B | USD 160.000 | 14,31% | — | **7,19%** | — | 8,2% |
+| Humaitá C | USD 160.000 | 23,32% | — | **4,81%** | — | 7,0% |

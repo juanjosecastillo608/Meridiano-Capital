@@ -1,6 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
+from rentabilidad import neto_d101, PARTE_EDIF  # D-101
 import json
 TC=TC_CFG
 precio_gs=1_600_000_000
@@ -10,10 +11,11 @@ G=renta_m*12/TC
 iva,vac,adm,man=0.05,0.04,0.08,0.05
 fijos_gs=6_000_000; F=fijos_gs/TC
 ire=0.10
+def calc(g):
+    return neto_d101(g, iva=iva, vac=vac, pct={'Administración': adm, 'Mantenimiento': man}, fijos=F, base_dep=PARTE_EDIF*P)
 def neto(g):
-    pre=g*(1-iva-vac-adm-man)-F
-    return pre, pre*(1-ire)
-pre,net=neto(G)
+    r=calc(g); return r['pre'], r['net']
+R=calc(G); pre,net=R['pre'],R['net']
 def irr(cfs):
     lo,hi=-0.9,1.0
     for _ in range(200):
@@ -22,7 +24,7 @@ def irr(cfs):
         else: hi=m
     return m
 out=dict(P=P,G=G,F=F,pre=pre,net=net,bruta=G/P,neta_pre=pre/P,neta=net/P,veces=P/G,
-  iva=G*iva,vac=G*vac,adm=G*adm,man=G*man,ire=pre*ire,net_mes=net/12,
+  iva=R['iva_u'],iva_ef=R['iva_u']/G,iva_deb=R['iva_deb'],iva_cred=R['iva_cred'],dep=R['dep'],vac=G*vac,adm=G*adm,man=G*man,ire=R['ire_u'],net_mes=net/12,
   usd_m2=P/600,costo_nuevo=600*650,pct_costo=P/(600*650),usd_unidad=P/11)
 proj={}
 for name,gr,val in [('Conservador',.03,.02),('Base',.05,.035),('Optimista',.08,.05)]:

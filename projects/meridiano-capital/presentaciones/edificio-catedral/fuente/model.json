@@ -6,8 +6,8 @@
   "gs_por_usd": 6480.35,
   "fecha": "2026-11-06",
   "fuente": "BCP, cotización referencial",
-  "verificado_el": "2026-11-07",
-  "nota_verificacion": "Referencial del viernes 06/11/2026 (último publicado al sábado 07/11) según la planilla de cotización referencial de monedas del BCP (bcp.gov.py/webapps/web/cotizacion/monedas), obtenida vía buscador y coincidente con el estudio de mercado del Edificio Catedral del 07/11/2026. El sitio del BCP no es accesible desde el entorno. Serie reciente: 05/11 Gs 6.388,47; 04/11 Gs 6.144,02; 03/11 Gs 6.060,86 (valor anterior en esta configuración)."
+  "verificado_el": "2026-11-09",
+  "nota_verificacion": "Referencial del viernes 06/11/2026 (último publicado al lunes 09/11 antes de las 13:00) según la planilla de cotización referencial de monedas del BCP (bcp.gov.py/webapps/web/cotizacion/monedas), obtenida vía buscador y coincidente con el estudio de mercado del Edificio Catedral del 07/11/2026. El sitio del BCP no es accesible desde el entorno. Serie reciente: 05/11 Gs 6.388,47; 04/11 Gs 6.144,02; 03/11 Gs 6.060,86 (valor anterior en esta configuración)."
  },
  "contacto": {
   "nombre": "Lic. Juan José Castillo",

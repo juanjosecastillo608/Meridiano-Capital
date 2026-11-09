@@ -1,6 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
+from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF  # D-101
 import json, os
 TC = TC_CFG                # Gs por USD: _config/meridiano.json (D-097)
 PRICES = {'pedido': 220_000, 'rapida': 185_000}   # confirmados por el founder, 15/10/2026
@@ -55,9 +56,11 @@ def capexC(desc=DESC):
     obra = base['obra'] + ASCENSOR
     return dict(table='clinica', rate=obra / M2, rate_base=base['rate'], obra=obra, obra_m2=base['obra'], ascensor=ASCENSOR,
                 imprev=obra * IMPREV, total=obra * (1 + IMPREV))
-def neto(G, iva, vac):
-    pre = G * (1 - iva - vac - ADM - MAN) - FIJOS
-    return pre, pre * (1 - IRE)
+def neto_r(G, iva, vac, base_dep=0.0, fijos=None):
+    # D-101: IVA contenido con crédito fiscal de administración y mantenimiento; IRE con depreciación
+    return neto_d101(G, iva=iva, vac=vac, pct={'Administración': ADM, 'Mantenimiento': MAN}, fijos=FIJOS if fijos is None else fijos, base_dep=base_dep)
+def neto(G, iva, vac, base_dep=0.0):
+    r = neto_r(G, iva, vac, base_dep); return r['pre'], r['net']
 
 def irr(c):
     lo, hi = -0.9, 1.0
@@ -69,15 +72,19 @@ def irr(c):
 
 def evaluate(alt, cx, P):
     G = alt['mes'] * 12 / TC
-    pre, net = neto(G, alt['iva'], alt['vac'])
+    R = neto_r(G, alt['iva'], alt['vac'], cx['total'] + PARTE_EDIF * P)
+    pre, net = R['pre'], R['net']
     inv = P + cx['total']
     return dict(P=P, G=G, pre=pre, net=net, inv=inv, bruta=G / inv, neta=net / inv, neta_pre=pre / inv,
-                iva_u=G * alt['iva'], vac_u=G * alt['vac'], adm_u=G * ADM, man_u=G * MAN, ire_u=pre * IRE,
+                iva_u=R['iva_u'], iva_deb=R['iva_deb'], iva_cred=R['iva_cred'], dep=R['dep'], vac_u=G * alt['vac'], adm_u=G * ADM, man_u=G * MAN, ire_u=R['ire_u'],
                 max_price10=G / 0.10 - cx['total'])
 
 def proj(alt, cx, P, gr, val):
     ev = evaluate(alt, cx, P)
-    nets = [neto(ev['G'] * (1 + gr) ** k, alt['iva'], alt['vac'])[1] for k in range(4)]
+    bd = cx['total'] + PARTE_EDIF * P
+    rs_ = [neto_r(ev['G'] * (1 + gr) ** k, alt['iva'], alt['vac'], bd) for k in range(4)]
+    ah = ahorro_iva(credito_obra(cx['total']), [r['iva_u'] for r in rs_])   # D-101: crédito fiscal de la obra
+    nets = [r['net'] + a_ for r, a_ in zip(rs_, ah)]
     V = ev['inv'] * (1 + val) ** 4
     ivav = V * 0.015
     cf = [-P, -cx['total']] + nets[:3] + [nets[3] + V - ivav]
@@ -103,7 +110,10 @@ out['req'] = {}
 for p, P in PRICES.items():
     for ref in 'AB':
         target = out[ref]['ev'][p]['neta'] * (P + cxC['total'])
-        G = (target / (1 - IRE) + FIJOS) / (1 - TAX['MED'][0] - TAX['MED'][1] - ADM - MAN)
+        lo, hi = 0.0, 1e7   # D-101: bisección sobre el neto (IVA con crédito e IRE con depreciación)
+        for _ in range(200):
+            G = (lo + hi) / 2
+            lo, hi = (G, hi) if neto(G, *TAX['MED'], cxC['total'] + PARTE_EDIF * P)[1] < target else (lo, G)
         out['req'][f'{ref}|{p}'] = G * TC / 12 / N_CONS
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 

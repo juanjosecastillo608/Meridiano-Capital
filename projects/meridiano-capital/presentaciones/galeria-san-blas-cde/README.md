@@ -110,3 +110,15 @@ Palancas acumuladas. Todas son supuestos a validar.
 3. B: sondear operadores de shopping o galería del microcentro, con su propuesta de canon, plazo y garantías.
 4. Medir la distancia al Puente de la Amistad; los 650 m vienen del aviso.
 5. Relevar locales de galería del microcentro con superficie y precio, para confirmar los USD 22–28/m² de PB.
+
+## D-101: nueva base bruta → neta (09/11/2026)
+La neta y la TIR de este README anteriores a esta fecha usaban la base vieja. Cifras vigentes, regeneradas con D-101 (IVA incluido en el alquiler con crédito fiscal, IRE con depreciación y crédito de la obra en la TIR):
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| Galería San Blas A | USD 2,5 M | 6,81% | 3,42% | **3,77%** | 5,1% | 5,6% |
+| Galería San Blas A | USD 1,7 M | 9,53% | 4,78% | **5,22%** | 6,2% | 6,8% |
+| Galería San Blas B | USD 2,5 M | 5,13% | 3,55% | **3,77%** | 5,2% | 5,7% |
+| Galería San Blas B | USD 1,7 M | 6,84% | 4,72% | **4,97%** | 6,1% | 6,8% |
+| Galería San Blas C | USD 2,5 M | 8,21% | 4,35% | **4,79%** | 5,6% | 6,3% |
+| Galería San Blas C | USD 1,7 M | 9,92% | 5,25% | **5,76%** | 6,3% | 7,1% |

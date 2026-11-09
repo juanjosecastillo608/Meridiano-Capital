@@ -190,7 +190,7 @@ S.append(slide(f'''{head('Mercado de consultorios', 'Demanda médica: consultori
 def er(a):
     e, alt = M[a]['ev']['pedido'], M[a]['alt']
     G = e['G']
-    return [(['Ingreso bruto anual', '100%', usd(G)], 'b'), (['IVA', pct(alt['iva'], 1), '– ' + usd(e['iva_u'])], ''),
+    return [(['Ingreso bruto anual', '100%', usd(G)], 'b'), (['IVA neto (incluido)', pct(e['iva_u'] / G, 1), '– ' + usd(e['iva_u'])], ''),
             (['Vacancia', pct(alt['vac'], 1), '– ' + usd(e['vac_u'])], ''), (['Administración', '8,0%', '– ' + usd(e['adm_u'])], ''), (['Mantenimiento', '5,0%', '– ' + usd(e['man_u'])], ''),
             (['Gastos fijos', pct(M['FIJOS'] / G, 1), '– ' + usd(M['FIJOS'])], ''), (['Antes de IRE', pct(e['pre'] / G, 1), usd(e['pre'])], 'b'),
             (['IRE estimado (10%)', pct(e['ire_u'] / G, 1), '– ' + usd(e['ire_u'])], ''), (['Neto anual', pct(e['net'] / G, 1), usd(e['net'])], 'tot')]
@@ -198,7 +198,7 @@ S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al res
 <div class="two alt3"><div><div class="altt">{ALT_NAMES['A']}</div>{table(['Concepto', '%', 'USD/año'], er('A'), 't sm ie')}</div>
 <div><div class="altt gold">{ALT_NAMES['B']}</div>{table(['Concepto', '%', 'USD/año'], er('B'), 't sm ie')}</div>
 <div><div class="altt">{ALT_NAMES['C']}</div>{table(['Concepto', '%', 'USD/año'], er('C'), 't sm ie')}</div></div>
-<p class="note2 sm">El resultado operativo no depende del precio de compra. IVA: 10% en oficinas, locales y consultorios, 5% en vivienda; vacancia de referencia de Meridiano: 10% oficinas, 8% locales, 4% vivienda y 15% consultorios (supuesto, producto nuevo en la zona), ponderada por ingreso en B. Gastos fijos: supuesto de Gs 9.000.000 por año. IRE: 10% estimado si se compra por sociedad; el contador define la base real.</p>''', num()))
+<p class="note2 sm">El resultado operativo no depende del precio de compra. IVA: 10% en oficinas, locales y consultorios, 5% en vivienda; vacancia de referencia de Meridiano: 10% oficinas, 8% locales, 4% vivienda y 15% consultorios (supuesto, producto nuevo en la zona), ponderada por ingreso en B. IVA incluido en el alquiler de mercado: se paga el contenido en lo cobrado menos el de administración y mantenimiento (crédito fiscal); el crédito del IVA de la obra cubre los primeros años y se suma en la TIR (D-101). Gastos fijos: supuesto de Gs 9.000.000 por año. IRE: 10% sobre el resultado menos la depreciación (2,5% anual sobre la obra y la mitad del precio, D-101); el contador define la base real.</p>''', num()))
 
 # 15 RENTABILIDAD
 def c(a, p, k): return pct(M[a]['ev'][p][k])

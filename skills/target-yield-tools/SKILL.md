@@ -29,14 +29,10 @@ Skill de la capa SKILLS. Implementa SS45-47 de
 Reutiliza — no duplica — `production/app/backend/calculadora.py`
 (`Calculadora.evaluar_renta()`) para toda la lógica de gastos/impuestos, con
 el mismo patrón de import entre paquetes que ya usa `dev_engine` con
-`calculadora.py`. La inversión es **exacta, en un solo paso, sin buscar por
-tanteo**, porque en `evaluar_renta()` todas las líneas de gasto son un
-porcentaje de la renta (nunca del precio):
-
-- `neto_anual` **no depende del precio de compra** → el precio máximo se
-  despeja directo: `precio_max = neto_anual / (target_yield_neto% / 100)`.
-- `neto_anual` **es lineal en la renta** → el alquiler requerido se despeja
-  calibrando la pendiente con una corrida de referencia, sin iterar.
+`calculadora.py`. Desde D-101 (09/11/2026), el IRE descuenta la depreciación,
+que depende del precio, y el IVA neto tiene un piso en cero. Por eso la
+inversión se hace por **bisección** sobre `evaluar_renta()`, que es monótona:
+el yield neto baja al subir el precio y el neto sube con la renta.
 
 Cada resultado se verifica re-evaluando con `evaluar_renta()` al precio o
 alquiler resultante — el `yield_neto_verificado_pct` del output siempre debe

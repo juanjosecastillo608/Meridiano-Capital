@@ -91,3 +91,12 @@ Los Gs 11 M por mes del aviso darían 8,15% bruto sobre USD 250.000 sin obra. No
   - Lámina 3 rehecha con el mapa aéreo y el QR de la ubicación. Según el mapa, el Ministerio de Salud está sobre Brasil, entre Herrera y Pettirossi, a menos de dos cuadras. En la misma cuadra de Herrera hay consultorios médicos.
   - Dirección corregida a Luis Alberto de Herrera casi Brasil, sobre la misma calle que la sede del Ministerio de Salud. El enlace de ubicación figura como texto en la lámina 3. Los salones de Eusebio Ayala (L1–L3) pasan a ser comparables de la zona, no del frente del edificio.
   - Vacancia de consultorios en 10%.
+
+## D-101: nueva base bruta → neta (09/11/2026)
+La neta y la TIR de este README anteriores a esta fecha usaban la base vieja. Cifras vigentes, regeneradas con D-101 (IVA incluido en el alquiler con crédito fiscal, IRE con depreciación y crédito de la obra en la TIR):
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| San Roque A | USD 250.000 | 6,05% | 3,42% | **3,75%** | 5,8% | 6,5% |
+| San Roque B | USD 250.000 | 6,89% | 4,45% | **4,74%** | 6,8% | 7,3% |
+| San Roque C | USD 250.000 | 6,10% | 3,50% | **3,86%** | 6,0% | 6,7% |

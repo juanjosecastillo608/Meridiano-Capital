@@ -204,13 +204,13 @@ S.append(slide(f'''{head('Referencias de alquiler', 'Locales, shopping y oficina
 def er(a):
     e, alt = ev[a], M[a]['alt']
     G = e['G']
-    return [(['Ingreso bruto anual', '100%', usd(G)], 'b'), (['IVA', pct(alt['iva'], 1), '– ' + usd(e['iva_u'])], ''),
+    return [(['Ingreso bruto anual', '100%', usd(G)], 'b'), (['IVA neto (incluido)', pct(e['iva_u'] / G, 1), '– ' + usd(e['iva_u'])], ''),
             (['Vacancia', pct(alt['vac'], 1), '– ' + usd(e['vac_u'])], ''), (['Administración', pct(e['adm'], 1), '– ' + usd(e['adm_u'])], ''), (['Mantenimiento', pct(e['man'], 1), '– ' + usd(e['man_u'])], ''),
             (['Gastos fijos', pct(M['FIJOS'] / G, 1), '– ' + usd(M['FIJOS'])], ''), (['Antes de IRE', pct(e['pre'] / G, 1), usd(e['pre'])], 'b'),
             (['IRE estimado (10%)', pct(e['ire_u'] / G, 1), '– ' + usd(e['ire_u'])], ''), (['Neto anual', pct(e['net'] / G, 1), usd(e['net'])], 'tot')]
 S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al resultado neto del propietario')}
 <div class="two alt3">{''.join(f'<div><div class="altt{" gold" if a == "B" else ""}">{ALT[a]}</div>{table(["Concepto", "%", "USD/año"], er(a), "t sm ie")}</div>' for a in 'ABC')}</div>
-<p class="note2 sm">IVA: 10% en alquiler comercial. Vacancia (supuesto): 15% en locales de galería y oficinas; 3% en B, porque la vacancia de los subalquileres la absorbe el operador. En B el operador administra y mantiene: el propietario solo reserva 2% de control y 1% de mantenimiento estructural. Gastos fijos: USD 12.000 por año. IRE: 10% estimado si se compra por sociedad; el contador define la base real.</p>''', num()))
+<p class="note2 sm">IVA: 10% en alquiler comercial. IVA incluido en el alquiler de mercado: se paga el contenido en lo cobrado menos el de administración y mantenimiento (crédito fiscal); el crédito del IVA de la obra cubre los primeros años y se suma en la TIR (D-101). Vacancia (supuesto): 15% en locales de galería y oficinas; 3% en B, porque la vacancia de los subalquileres la absorbe el operador. En B el operador administra y mantiene: el propietario solo reserva 2% de control y 1% de mantenimiento estructural. Gastos fijos: USD 12.000 por año. IRE: 10% sobre el resultado menos la depreciación (2,5% anual sobre la obra y la mitad del precio, D-101); el contador define la base real.</p>''', num()))
 
 # 17 RENTABILIDAD
 cols = [(a, e[a], ' gold' if a == 'B' else '', lab) for a in 'ABC' for e, lab in ((ev, '2,5 M'), (evr, '1,7 M'))]

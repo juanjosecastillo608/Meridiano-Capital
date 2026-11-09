@@ -1,6 +1,6 @@
 # Edificio Catedral — Control interno
 
-Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación `Edificio_Catedral_Meridiano_FINAL` (PPTX y PDF) y del Excel `Edificio_Catedral_Rentabilidad.xlsx`. Generado el 07/11/2026 desde `fuente/model.json`.
+Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación `Edificio_Catedral_Meridiano_FINAL` (PPTX y PDF) y del Excel `Edificio_Catedral_Rentabilidad.xlsx`. Generado el 09/11/2026 desde `fuente/model.json`.
 
 ## 1. Archivos recibidos
 | Archivo | Uso |
@@ -13,7 +13,7 @@ Uso interno de Meridiano Capital. Documento de trazabilidad de la presentación 
 | Estudio de mercado de alquileres (07/11/2026) y su planilla | Comparables R1–R12 y C1–C14, escenarios y recomendaciones. Guardado con el estándar de estudios: `knowledge-base/investment/market-intelligence/estudios/CDE-CATEDRAL-2026-11-07/` (D-100) |
 
 ## 2. Tipo de cambio
-- **Usado:** Gs 6.480,35 por USD. Fuente: BCP, cotización referencial del **06/11/2026**, verificado el 2026-11-07. Página: https://www.bcp.gov.py/webapps/web/cotizacion/monedas
+- **Usado:** Gs 6.480,35 por USD. Fuente: BCP, cotización referencial del **06/11/2026**, verificado el 2026-11-09. Página: https://www.bcp.gov.py/webapps/web/cotizacion/monedas
 - **Cómo se obtuvo:** la planilla del BCP se leyó vía buscador y coincide con el estudio de mercado del 07/11/2026. El sitio del BCP no resuelve desde el entorno de trabajo (DNS/proxy).
 - **Serie usada en la lámina 13:** 16/10/2026: Gs 5.770,91 → 7,80% / 9,75% · 03/11/2026: Gs 6.060,86 → 7,42% / 9,28% · 04/11/2026: Gs 6.144,02 → 7,32% / 9,16% · 05/11/2026: Gs 6.388,47 → 7,04% / 8,80% · 06/11/2026: Gs 6.480,35 → 6,94% / 8,68%.
 - **Hallazgo cambiario:** el referencial pasó de Gs 5.833,41 (26/10) a Gs 6.388,47 (05/11), +9,5% en diez días, y a Gs 6.480,35 el 06/11 (contexto: resolución sobre Ueno Bank y tensión política, según ABC Color del 06/11/2026). Con el mismo edificio y la misma renta, la bruta total pasó de 9,75% (TC del 16/10) a 8,68%. Antes de cada reunión hay que regenerar los materiales con el TC del día.

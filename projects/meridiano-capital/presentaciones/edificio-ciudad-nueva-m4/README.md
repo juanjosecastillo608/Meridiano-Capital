@@ -47,3 +47,10 @@ Es la **plantilla maestra** de las presentaciones de Meridiano Capital: un edifi
 - **2026-10-15 (v1 → v2):** tipografía corregida. Fraunces con el ajuste oficial de D-036 (`opsz 80 / SOFT 24 / WONK 0`); J y j de Lora, regla P-008 `[EXTENSION]`. En la v1, la J de "Juan José" se apoyaba sobre la línea base. Contenido sin cambios: mismos textos, cifras, fotos, mapa, enlace de ubicación y contacto.
 
 **Verificación de la v2 al TC de la v1 (Gs 5.694):** las 15 cifras de alquiler (totales por nivel 5,30 / 7,35 / 2,90 / 4,00 millones; promedios de Gs 1.158.333 para 1 dormitorio y Gs 1.516.667 para 2) reproducen exactamente la v1: bruta 12,12%, neta 8,25% y TIR de 10,2% / 11,7% / 13,5%.
+
+## D-101: nueva base bruta → neta (09/11/2026)
+La neta y la TIR de este README anteriores a esta fecha usaban la base vieja. Cifras vigentes, regeneradas con D-101 (IVA incluido en el alquiler con crédito fiscal, IRE con depreciación y crédito de la obra en la TIR):
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| M4 Ciudad Nueva | USD 340.000 | 10,65% | 7,21% | **7,49%** | 10,7% | 10,9% |

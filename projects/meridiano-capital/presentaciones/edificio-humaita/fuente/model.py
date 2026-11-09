@@ -1,6 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
+from rentabilidad import IVA_G as _IVA_G, DEP as _DEP, PARTE_EDIF as _PE  # D-101: misma fuente que calculadora.py
 import json
 
 # Edificio Humaitá (centro histórico de Asunción) — v1, 2026-11-08.
@@ -31,8 +32,8 @@ A_REFAC = 175.0              # USD/m²: 50% de la tabla básica de remodelación
 A_PROY = 6_000               # USD por unidad de proyecto: baño y kitchenette (supuesto; la tabla del founder estima Gs 10 M)
 A_FIJOS = 1_500              # USD/año: seguro e impuesto inmobiliario; las expensas las pagan los inquilinos (tabla del propietario). D-101: sin doble conteo
 # D-101 (P-009 aprobada por el founder, 09/11/2026): IVA contenido en el precio de mercado, crédito fiscal de gastos y obra, IRE con depreciación
-IVA_GASTOS = 0.10            # IVA de los gastos facturados que genera crédito fiscal
-DEP_TASA, DEP_EDIF = 0.025, 0.50   # depreciación anual (40 años) sobre la obra + la parte de edificio del precio (supuesto 50%); a confirmar con la contadora
+IVA_GASTOS = _IVA_G          # IVA de los gastos facturados que genera crédito fiscal
+DEP_TASA, DEP_EDIF = _DEP, _PE   # depreciación anual (40 años) sobre la obra + la parte de edificio del precio (supuesto 50%); a confirmar con la contadora
 
 # ---------------- B · 20 habitaciones en alquiler mensual (planilla del founder), todo incluido
 N_HAB = 20

@@ -1,6 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
+from rentabilidad import DEP, PARTE_EDIF  # D-101: IRE con depreciación
 import json
 # Edificio Barrio San Miguel (CDE), paquete de estudio v2.0 (17/10/2026).
 # Rentas, áreas y distribución: planilla por unidad (estudio/Datos_mercado_San_Miguel.json > units),
@@ -22,10 +23,13 @@ SALDO = G - GI                                   # saldo (no NOI auditado)
 vac, ire = 0.04, 0.10
 otros_gs = 6_000_000; OTROS = otros_gs / TC     # Gs 6 M por año (supuesto)
 
-def neto(g):
-    # IVA y administración son % del alquiler: los gastos informados escalan con la renta
+def neto(g, P=None):
+    # IVA y administración son % del alquiler: los gastos informados escalan con la renta.
+    # D-101: los gastos informados ya incluyen el IVA (founder); solo cambia el IRE, que descuenta la depreciación.
+    P = PRECIOS['pub'] if P is None else P
     pre = g * (1 - vac) - GI * g / G - OTROS
-    return pre, pre * (1 - ire)
+    ire_u = ire * max(0.0, pre - DEP * PARTE_EDIF * P)
+    return pre, pre - ire_u
 
 pre, net = neto(G)
 
@@ -38,11 +42,11 @@ def irr(cfs):
     return m
 
 out = dict(TC=TC, G=G, GI=GI, SALDO=SALDO, pre=pre, net=net, OTROS=OTROS, AREA=AREA, renta_m=renta_m,
-           vac=G * vac, ire=pre * ire,
+           vac=G * vac, ire=pre - net,
            gastos_ratio=gastos_m / renta_m, desc_rapida=1 - PRECIOS['rap'] / PRECIOS['pub'],
            costo_nuevo=AREA * 650)
 for k, P in PRECIOS.items():
-    out[k] = dict(P=P, Pgs=P * TC, bruta=G / P, saldo=SALDO / P, neta_pre=pre / P, neta=net / P, veces=P / G,
+    out[k] = dict(P=P, Pgs=P * TC, bruta=G / P, saldo=SALDO / P, neta_pre=pre / P, neta=neto(G, P)[1] / P, ire=pre - neto(G, P)[1], veces=P / G,
                   usd_m2=P / AREA, usd_unidad=P / 12, pct_costo=P / (AREA * 650))
 # Detalle por unidad y por tipología (sin promedios ni reparto uniforme)
 out['units'] = [dict(u, usd=u['monthly_rent_pyg'] / TC, gs_m2=u['monthly_rent_pyg'] / u['area_m2'],
@@ -67,9 +71,9 @@ out['sens'] = [dict(n=nm, ing=a, gas=b,
 # Retorno total hipotético a 5 años: inversión = precio, flujos = neta conservadora, salida al año 5
 proj = {}
 for name, gr, val in [('Conservador', 0.0, 0.0), ('Base', .03, .02), ('Optimista', .05, .035)]:
-    nets = [neto(G * (1 + gr) ** k)[1] for k in range(5)]
     proj[name] = {}
     for k, P in PRECIOS.items():
+        nets = [neto(G * (1 + gr) ** k_, P)[1] for k_ in range(5)]
         V = P * (1 + val) ** 5; ivav = V * 0.015
         cfs = [-P] + nets[:4] + [nets[4] + V - ivav]
         proj[name][k] = dict(nets=nets, V=V, plus=V - P, ivav=ivav, acum=sum(nets), total=V - P - ivav + sum(nets), tir=irr(cfs))

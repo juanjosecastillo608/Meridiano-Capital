@@ -1,6 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
+from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF  # D-101
 import json
 
 # Galería Av. San Blas – Camilo Recalde (Ciudad del Este) — v2, 2026-11-08.
@@ -59,9 +60,11 @@ def capexB(f=1.0): return mk([('Conversión a shopping', M2 * CONV_RATE * f), ('
 def capexC(f=1.0, pisos=3, rate=OF_NEW_RATE, refuerzo=REFUERZO):
     return mk([('Refacción de la galería', M2 * REFAC_RATE * f), ('Oficinas nuevas con refuerzo', pisos * 600 * rate * (1 + refuerzo) * f), ('Ascensores', ASCENSORES * f)])
 
-def neto(G, iva, vac, adm=ADM, man=MAN):
-    pre = G * (1 - iva - vac - adm - man) - FIJOS
-    return pre, pre * (1 - IRE)
+def neto_r(G, iva, vac, adm=ADM, man=MAN, base_dep=0.0):
+    # D-101: IVA contenido con crédito fiscal de administración y mantenimiento; IRE con depreciación
+    return neto_d101(G, iva=iva, vac=vac, pct={'Administración': adm, 'Mantenimiento': man}, fijos=FIJOS, base_dep=base_dep)
+def neto(G, iva, vac, adm=ADM, man=MAN, base_dep=0.0):
+    r = neto_r(G, iva, vac, adm, man, base_dep); return r['pre'], r['net']
 # En B, el operador administra y mantiene el shopping: el propietario solo paga 2% de control y 1% de mantenimiento estructural (supuesto)
 ADM_MAN = {'A': (ADM, MAN), 'B': (0.02, 0.01), 'C': (ADM, MAN)}
 
@@ -76,10 +79,11 @@ def irr(c):
 def evaluate(a, alt, cx, P):
     G = alt['mes'] * 12
     adm, man = ADM_MAN[a]
-    pre, net = neto(G, alt['iva'], alt['vac'], adm, man)
+    R = neto_r(G, alt['iva'], alt['vac'], adm, man, cx['total'] + PARTE_EDIF * P)
+    pre, net = R['pre'], R['net']
     inv = P + cx['total']
     return dict(P=P, G=G, pre=pre, net=net, inv=inv, bruta=G / inv, neta=net / inv, neta_pre=pre / inv, adm=adm, man=man,
-                iva_u=G * alt['iva'], vac_u=G * alt['vac'], adm_u=G * adm, man_u=G * man, ire_u=pre * IRE,
+                iva_u=R['iva_u'], iva_deb=R['iva_deb'], iva_cred=R['iva_cred'], dep=R['dep'], vac_u=G * alt['vac'], adm_u=G * adm, man_u=G * man, ire_u=R['ire_u'],
                 max8=G / 0.08 - cx['total'], max10=G / 0.10 - cx['total'])
 
 ALTS = {'A': (altA, capexA), 'B': (altB, capexB), 'C': (altC, capexC)}
@@ -90,12 +94,17 @@ def proj(a, P, gr, val):
     alt, cx = ALTS[a][0](), CX[a]
     ev = evaluate(a, alt, cx, P)
     adm, man = ADM_MAN[a]
-    nets = [neto(ev['G'] * (1 + gr) ** k, alt['iva'], alt['vac'], adm, man)[1] for k in range(4)]
+    bd = cx['total'] + PARTE_EDIF * P
+    rs_ = [neto_r(ev['G'] * (1 + gr) ** k, alt['iva'], alt['vac'], adm, man, bd) for k in range(4)]
+    pool = credito_obra(cx['total'])   # D-101: crédito fiscal de la obra contra el IVA de los primeros años
     if a == 'C':
-        ga = altA(); na = neto(ga['mes'] * 12, ga['iva'], ga['vac'])[1]
+        ga = altA(); ra = neto_r(ga['mes'] * 12, ga['iva'], ga['vac'], base_dep=bd)
+        ah = ahorro_iva(pool, [ra['iva_u']] + [r['iva_u'] for r in rs_[:3]])
+        na = ra['net'] + ah[0]; nets = [r['net'] + x for r, x in zip(rs_[:3], ah[1:])] + [rs_[3]['net']]
         cf = [-P - cx['total'] * 0.5, -cx['total'] * 0.5, na, nets[0], nets[1], nets[2]]
         rent = [na] + nets[:3]
     else:
+        nets = [r['net'] + x for r, x in zip(rs_, ahorro_iva(pool, [r['iva_u'] for r in rs_]))]
         cf = [-P - cx['total'], nets[0], nets[1], nets[2], nets[3]]
         rent = nets
     V = ev['inv'] * (1 + val) ** 4
@@ -145,8 +154,11 @@ cxo = capexC(**CO_C); alto = altC(**CO_A)
 out['Copt'] = dict(alt=alto, cx=cxo, ev={p: evaluate('C', alto, cxo, P) for p, P in PRICES.items()})
 def proj_opt(P, gr, val):
     ev = evaluate('C', alto, cxo, P)
-    nets = [neto(ev['G'] * (1 + gr) ** k, alto['iva'], alto['vac'])[1] for k in range(3)]
-    ga = altA(); na = neto(ga['mes'] * 12, ga['iva'], ga['vac'])[1]
+    bd = cxo['total'] + PARTE_EDIF * P
+    rs_ = [neto_r(ev['G'] * (1 + gr) ** k, alto['iva'], alto['vac'], base_dep=bd) for k in range(3)]
+    ga = altA(); ra = neto_r(ga['mes'] * 12, ga['iva'], ga['vac'], base_dep=bd)
+    ah = ahorro_iva(credito_obra(cxo['total']), [ra['iva_u']] + [r['iva_u'] for r in rs_])
+    na = ra['net'] + ah[0]; nets = [r['net'] + x for r, x in zip(rs_, ah[1:])]
     cf = [-P - cxo['total'] * 0.5, -cxo['total'] * 0.5, na, nets[0], nets[1], nets[2]]
     V = ev['inv'] * (1 + val) ** 4; cf[-1] += V - V * 0.015
     return dict(tir=irr(cf), total=V - ev['inv'] - V * 0.015 + na + sum(nets))

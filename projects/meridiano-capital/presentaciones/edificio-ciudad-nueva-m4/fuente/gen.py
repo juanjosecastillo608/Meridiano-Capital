@@ -97,12 +97,12 @@ S.append(slide(f'''{head('Alquileres vigentes', f"Ingreso mensual: {gs(M['mes'])
 <div class="two cmp2">{table(['Nivel', 'Concepto', 'Gs por mes', 'USD'], left, 't sm')}<div>{table(['Nivel', 'Concepto', 'Gs por mes', 'USD'], right, 't sm')}
 <p class="note2 sm">Montos en guaraníes según los contratos vigentes; equivalente en dólares al tipo de cambio del día: {TCTXT}.</p></div></div>''', 9))
 # 10
-er = [(['Ingreso bruto anual', '100%', usd(G)], 'b'), ([f'IVA (5% dptos. · 10% local y cocheras)', pct(M['IVA'], 1), '– ' + usd(M['iva_u'])], ''), (['Vacancia', '3,0%', '– ' + usd(M['vac_u'])], ''),
+er = [(['Ingreso bruto anual', '100%', usd(G)], 'b'), ([f'IVA neto (5% dptos. · 10% cocheras, incluido)', pct(M['IVA_EF'], 1), '– ' + usd(M['iva_u'])], ''), (['Vacancia', '3,0%', '– ' + usd(M['vac_u'])], ''),
       (['Administración', '8,0%', '– ' + usd(M['adm_u'])], ''), (['Mantenimiento', '5,0%', '– ' + usd(M['man_u'])], ''), (['Gastos fijos del edificio', pct(M['FIX'] / G, 1), '– ' + usd(M['FIX'])], ''),
       (['Resultado antes de impuesto a la renta', pct(pre / G, 1), usd(pre)], 'b'), (['Impuesto a la renta estimado (IRE 10%)', pct(M['ire_u'] / G, 1), '– ' + usd(M['ire_u'])], ''), (['Resultado neto anual', pct(net / G, 1), usd(net)], 'tot')]
 S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al resultado neto')}
 <div class="two d11">{table(['Concepto', '% del bruto', 'USD por año'], er, 't big')}
-{crit('Criterios', [('IVA', '5% departamentos; 10% local y cocheras.'), ('Vacancia 3%', 'Zona de alto tránsito y demanda: rotación rápida.'), ('Administración 8%', 'Cobranza, contratos e inquilinos.'), ('Mantenimiento 5%', 'Reparaciones menores y recambios entre inquilinos.'), ('Impuesto a la renta', '10% estimado si se compra por sociedad; el contador define la base real.')])}</div>''', 10))
+{crit('Criterios', [('IVA', '5% departamentos; 10% cocheras. Incluido en el alquiler; se paga el contenido en lo cobrado menos el IVA de administración y mantenimiento (crédito fiscal, D-101).'), ('Vacancia 3%', 'Zona de alto tránsito y demanda: rotación rápida.'), ('Administración 8%', 'Cobranza, contratos e inquilinos.'), ('Mantenimiento 5%', 'Reparaciones menores y recambios entre inquilinos.'), ('Impuesto a la renta', '10% sobre el resultado menos la depreciación (2,5% anual de la mitad del precio, D-101); el contador define la base real.')])}</div>''', 10))
 # 11
 S.append(slide(f'''{head('Rentabilidad', 'Indicadores sobre el precio de venta')}<div class="rule"></div>
 <div class="rg"><div><div class="bigv">{pct(M['bruta'])}</div><div class="bl2">Rentabilidad bruta</div><div class="bs">{usd(G)} de ingreso bruto anual ÷ USD 340.000</div></div>

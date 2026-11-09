@@ -74,3 +74,13 @@ Con el TC del 16/10 (Gs 5.770,91) eran 13,19% / 15,92% de bruta y 9,68% / 11,69%
   - Contratos vigentes verificados.
   - La neta conservadora sube de 6,99% a 8,66% (con USD 350.000) porque ya no se descuentan dos veces IVA, administración y mantenimiento.
 - **2026-10-16 (v1):** primera versión.
+
+## D-101: nueva base bruta → neta (09/11/2026)
+La neta y la TIR de este README anteriores a esta fecha usaban la base vieja. Cifras vigentes, regeneradas con D-101 (IVA incluido en el alquiler con crédito fiscal, IRE con depreciación y crédito de la obra en la TIR):
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| San Miguel (CDE) | USD 350.000 | 11,75% | 8,62% | **8,75%** | 10,5% | 10,7% |
+| San Miguel (CDE) | USD 290.000 | 14,18% | 10,41% | **10,53%** | 12,4% | 12,5% |
+
+En San Miguel los gastos informados ya incluyen el IVA (founder): solo cambia el IRE.

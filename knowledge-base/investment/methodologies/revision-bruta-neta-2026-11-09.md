@@ -60,4 +60,31 @@ El crédito fiscal de la obra no entra en la neta anual estabilizada: es un bene
 - [ ] Contadora: confirmar el crédito fiscal de la obra y de los gastos para una S.A. que alquila, y la vida útil y el método de depreciación en el IRE.
 - [x] Humaitá A: se toma la tabla del propietario (expensas a cargo de los inquilinos).
 - [x] Aplicado al Edificio Humaitá: A 6,82%, B 7,19%, C 4,81% de neta (antes 5,00 / 6,57 / 3,49%).
-- [ ] Extender a `calculadora.py` (con tests) y al resto de los decks.
+- [x] Extendido el 09/11/2026 a `calculadora.py` (con tests), `target-yield-tools` y todos los decks.
+
+## 5. Efecto en todos los decks (09/11/2026, TC Gs 6.480,35 del 06/11)
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| M4 Ciudad Nueva | USD 340.000 | 10,65% | 7,21% | **7,49%** | 10,7% | 10,9% |
+| San José (CDE) | Gs 1.600 M | 8,25% | 5,45% | **5,70%** | 8,9% | 9,1% |
+| San Miguel (CDE) | USD 350.000 | 11,75% | 8,62% | **8,75%** | 10,5% | 10,7% |
+| San Miguel (CDE) | USD 290.000 | 14,18% | 10,41% | **10,53%** | 12,4% | 12,5% |
+| Sajonia A | USD 220.000 | 11,85% | 6,87% | **7,38%** | 8,9% | 10,1% |
+| Sajonia B | USD 220.000 | 9,72% | 6,50% | **6,85%** | 8,7% | 9,3% |
+| Sajonia C | USD 220.000 | 9,79% | 5,24% | **5,75%** | 7,7% | 8,7% |
+| San Roque A | USD 250.000 | 6,05% | 3,42% | **3,75%** | 5,8% | 6,5% |
+| San Roque B | USD 250.000 | 6,89% | 4,45% | **4,74%** | 6,8% | 7,3% |
+| San Roque C | USD 250.000 | 6,10% | 3,50% | **3,86%** | 6,0% | 6,7% |
+| Galería San Blas A | USD 2,5 M | 6,81% | 3,42% | **3,77%** | 5,1% | 5,6% |
+| Galería San Blas A | USD 1,7 M | 9,53% | 4,78% | **5,22%** | 6,2% | 6,8% |
+| Galería San Blas B | USD 2,5 M | 5,13% | 3,55% | **3,77%** | 5,2% | 5,7% |
+| Galería San Blas B | USD 1,7 M | 6,84% | 4,72% | **4,97%** | 6,1% | 6,8% |
+| Galería San Blas C | USD 2,5 M | 8,21% | 4,35% | **4,79%** | 5,6% | 6,3% |
+| Galería San Blas C | USD 1,7 M | 9,92% | 5,25% | **5,76%** | 6,3% | 7,1% |
+| Humaitá A | USD 160.000 | 10,38% | — | **6,82%** | — | 8,8% |
+| Humaitá B | USD 160.000 | 14,31% | — | **7,19%** | — | 8,2% |
+| Humaitá C | USD 160.000 | 23,32% | — | **4,81%** | — | 7,0% |
+
+La bruta no cambia. La neta sube entre 0,1 y 0,5 puntos según el caso; la TIR, entre 0,1 y 1,2 puntos (más en los proyectos con obra, por el crédito fiscal de la obra). En el motor (`calculadora.py`, nivel 3, USD 100.000 y USD 1.000/mes): departamento sin muebles 7,22% → 7,57%, comercial 6,68% → 7,12%, amoblado 6,35% → 6,71%.
+

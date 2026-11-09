@@ -149,7 +149,7 @@ er = [('Ingreso bruto anual', '100%', usd(G), 'b'), ('Gastos informados (IVA, ma
 erh = ''.join(f'<tr class="{c}"><td>{a}</td><td>{b}</td><td>{d}</td></tr>' for a, b, d, c in er)
 S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al resultado neto conservador')}
 <div class="two d11"><table class="t big"><tr><th>Concepto</th><th>% del bruto</th><th>USD por año</th></tr>{erh}</table>
-<div class="crit"><div class="eb sm">Criterios</div>{crit([('Gastos informados', 'Gs 2.700.000 por mes, que ya incluyen IVA, mantenimiento y administración: no se vuelven a descontar.'), ('Vacancia 4%', 'Reserva prudente para rotación de inquilinos, aunque hoy los 12 contratos están vigentes.'), ('Otros gastos', 'Supuesto de Gs 6.000.000 por año (impuesto inmobiliario, seguros y otros), igual que en San José, hasta recibir el detalle.'), ('Impuesto a la renta', '10% estimado si se compra por sociedad; el contador define la base real.')])}</div></div>''', 11))
+<div class="crit"><div class="eb sm">Criterios</div>{crit([('Gastos informados', 'Gs 2.700.000 por mes, que ya incluyen IVA, mantenimiento y administración: no se vuelven a descontar.'), ('Vacancia 4%', 'Reserva prudente para rotación de inquilinos, aunque hoy los 12 contratos están vigentes.'), ('Otros gastos', 'Supuesto de Gs 6.000.000 por año (impuesto inmobiliario, seguros y otros), igual que en San José, hasta recibir el detalle.'), ('Impuesto a la renta', '10% sobre el resultado menos la depreciación (2,5% anual de la mitad del precio, D-101); el contador define la base real.')])}</div></div>''', 11))
 
 # 12 RENTABILIDAD (dos precios)
 def rrow(lbl, k, d=2, sub=''):

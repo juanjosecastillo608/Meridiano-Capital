@@ -1,6 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
+from rentabilidad import neto_d101, PARTE_EDIF  # D-101
 import json, os
 TC = TC_CFG; P = 340_000
 RENTS = [  # (nivel, concepto, Gs/mes, clase)
@@ -13,10 +14,12 @@ c10 = sum(r[2] for r in RENTS if r[3] == 'C')
 IVA = 0.05 + 0.05 * c10 / mes
 VAC, ADM, MAN, FIX, IRE = 0.03, 0.08, 0.05, 1200, 0.10
 G = mes * 12 / TC
+DEB_R = (mes - c10) / mes * 0.05 / 1.05 + c10 / mes * 0.10 / 1.10   # D-101: IVA contenido, por clase
+def calc(g):
+    return neto_d101(g, iva=0, vac=VAC, pct={'Administración': ADM, 'Mantenimiento': MAN}, fijos=FIX, base_dep=PARTE_EDIF * P, debito=g * (1 - VAC) * DEB_R)
 def neto(g):
-    pre = g * (1 - IVA - VAC - ADM - MAN) - FIX
-    return pre, pre * (1 - IRE)
-pre, net = neto(G)
+    r = calc(g); return r['pre'], r['net']
+R = calc(G); pre, net = R['pre'], R['net']
 def irr(c):
     lo, hi = -0.9, 1.0
     for _ in range(200):
@@ -31,10 +34,10 @@ for nm, gr, val in [('Conservador', .03, .02), ('Base', .05, .035), ('Optimista'
 lv = {}
 for r in RENTS: lv[r[0]] = lv.get(r[0], 0) + r[2]
 d1 = [r[2] for r in RENTS if r[1] == '1 dorm.']; d2 = [r[2] for r in RENTS if r[1] == '2 dorm.']
-out = dict(TC=TC, P=P, RENTS=RENTS, mes=mes, G=G, IVA=IVA, iva_u=G*IVA, vac_u=G*VAC, adm_u=G*ADM, man_u=G*MAN, FIX=FIX, pre=pre, net=net, ire_u=pre*IRE,
+out = dict(TC=TC, P=P, RENTS=RENTS, mes=mes, G=G, IVA=IVA, IVA_EF=R['iva_u']/G, iva_u=R['iva_u'], iva_deb=R['iva_deb'], iva_cred=R['iva_cred'], dep=R['dep'], vac_u=G*VAC, adm_u=G*ADM, man_u=G*MAN, FIX=FIX, pre=pre, net=net, ire_u=R['ire_u'],
            bruta=G/P, neta=net/P, neta_pre=pre/P, veces=P/G, lv=lv, avg1=sum(d1)/len(d1), avg2=sum(d2)/len(d2), n1=len(d1), n2=len(d2), proj=proj)
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 if __name__ == '__main__':
-    print('mes', mes, 'G', round(G), 'IVA %.4f' % IVA, 'iva', round(G*IVA), 'vac', round(G*VAC), 'adm', round(G*ADM), 'man', round(G*MAN), 'pre', round(pre), 'ire', round(pre*IRE), 'net', round(net))
+    print('mes', mes, 'G', round(G), 'IVA %.4f' % IVA, 'iva', round(R['iva_u']), 'vac', round(G*VAC), 'adm', round(G*ADM), 'man', round(G*MAN), 'pre', round(pre), 'ire', round(R['ire_u']), 'net', round(net))
     print('bruta %.4f neta %.4f pre %.4f veces %.2f' % (G/P, net/P, pre/P, P/G), 'lv', lv, 'avg1', out['avg1'], 'avg2', out['avg2'], len(d1), len(d2))
     for k, v in proj.items(): print(k, 'neto5', round(v['nets'][4]), 'V', round(v['V']), 'plus', round(v['plus']), 'iva', round(v['ivav']), 'acum', round(v['acum']), 'total', round(v['total']), 'tir %.4f' % v['tir'])

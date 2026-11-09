@@ -45,3 +45,10 @@ Este deck sigue la plantilla maestra del **Edificio Ciudad Nueva (zona M4)**: la
 - **Pendientes:** siguen abiertos la antigüedad (2006 o 9 a 15 años), la terraza de 200 m², los contratos y cobros, la renta de la habitación terminada y el costo de terminar la segunda.
 - **Mercado:** las referencias del barrio están normalizadas en el estudio `CDE-SAN-JOSE-2026-10-13` (estándar D-100). Para una nueva versión conviene sumar los comparables de Ciudad del Este de los estudios de Catedral y San Miguel.
 
+
+## D-101: nueva base bruta → neta (09/11/2026)
+La neta y la TIR de este README anteriores a esta fecha usaban la base vieja. Cifras vigentes, regeneradas con D-101 (IVA incluido en el alquiler con crédito fiscal, IRE con depreciación y crédito de la obra en la TIR):
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| San José (CDE) | Gs 1.600 M | 8,25% | 5,45% | **5,70%** | 8,9% | 9,1% |

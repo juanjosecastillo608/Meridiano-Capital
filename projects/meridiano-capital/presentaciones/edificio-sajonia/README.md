@@ -98,3 +98,12 @@ Este deck sigue la plantilla maestra M4 / Barrio San José. Tiene 22 láminas y 
 - Confirmar si las fotos de interiores con retoque corresponden al edificio.
 - Tipo de cambio: actualizar `../_config/meridiano.json` con el del día de envío (D-097).
 - Identificación catastral; el folleto dice barrio Dr. Francia.
+
+## D-101: nueva base bruta → neta (09/11/2026)
+La neta y la TIR de este README anteriores a esta fecha usaban la base vieja. Cifras vigentes, regeneradas con D-101 (IVA incluido en el alquiler con crédito fiscal, IRE con depreciación y crédito de la obra en la TIR):
+
+| Deck | Precio | Bruta | Neta antes | Neta D-101 | TIR base antes | TIR base D-101 |
+|---|---|---:|---:|---:|---:|---:|
+| Sajonia A | USD 220.000 | 11,85% | 6,87% | **7,38%** | 8,9% | 10,1% |
+| Sajonia B | USD 220.000 | 9,72% | 6,50% | **6,85%** | 8,7% | 9,3% |
+| Sajonia C | USD 220.000 | 9,79% | 5,24% | **5,75%** | 7,7% | 8,7% |

@@ -1,6 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
+from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF  # D-101
 import json
 
 # Edificio San Roque (Asunción) — v1, 2026-11-07. Mismo esquema que Edificio Sajonia v4.
@@ -55,9 +56,11 @@ def capexC(f=1.0):
     c = mk(M2 * TABLA['estandar'] * f, f'{M2:g} m² × USD {TABLA["estandar"] * f:g} (estándar)', ASCENSOR)
     c.update(obra_m2=M2 * TABLA['estandar'] * f, ascensor=ASCENSOR); return c
 
-def neto(G, iva, vac):
-    pre = G * (1 - iva - vac - ADM - MAN) - FIJOS
-    return pre, pre * (1 - IRE)
+def neto_r(G, iva, vac, base_dep=0.0, fijos=None):
+    # D-101: IVA contenido con crédito fiscal de administración y mantenimiento; IRE con depreciación
+    return neto_d101(G, iva=iva, vac=vac, pct={'Administración': ADM, 'Mantenimiento': MAN}, fijos=FIJOS if fijos is None else fijos, base_dep=base_dep)
+def neto(G, iva, vac, base_dep=0.0):
+    r = neto_r(G, iva, vac, base_dep); return r['pre'], r['net']
 
 def irr(c):
     lo, hi = -0.9, 1.0
@@ -69,16 +72,20 @@ def irr(c):
 
 def evaluate(alt, cx, P):
     G = alt['mes'] * 12 / TC
-    pre, net = neto(G, alt['iva'], alt['vac'])
+    R = neto_r(G, alt['iva'], alt['vac'], cx['total'] + PARTE_EDIF * P)
+    pre, net = R['pre'], R['net']
     inv = P + cx['total']
     return dict(P=P, G=G, pre=pre, net=net, inv=inv, bruta=G / inv, neta=net / inv, neta_pre=pre / inv,
-                iva_u=G * alt['iva'], vac_u=G * alt['vac'], adm_u=G * ADM, man_u=G * MAN, ire_u=pre * IRE)
+                iva_u=R['iva_u'], iva_deb=R['iva_deb'], iva_cred=R['iva_cred'], dep=R['dep'], vac_u=G * alt['vac'], adm_u=G * ADM, man_u=G * MAN, ire_u=R['ire_u'])
 
 # El salón de PB está terminado: en A y B renta durante la obra de los pisos altos (año 1). En C toda la planta entra en obra.
 PB_NET_Y1 = neto(PB_RENT * 12 / TC, *TAX["LOCAL"])[1]
 def proj(alt, cx, P, gr, val, pb_y1):
     ev = evaluate(alt, cx, P)
-    nets = [neto(ev['G'] * (1 + gr) ** k, alt['iva'], alt['vac'])[1] for k in range(4)]
+    bd = cx['total'] + PARTE_EDIF * P
+    rs_ = [neto_r(ev['G'] * (1 + gr) ** k, alt['iva'], alt['vac'], bd) for k in range(4)]
+    ah = ahorro_iva(credito_obra(cx['total']), [r['iva_u'] for r in rs_])   # D-101: crédito fiscal de la obra
+    nets = [r['net'] + a_ for r, a_ in zip(rs_, ah)]
     y1 = PB_NET_Y1 if pb_y1 else 0
     V = ev['inv'] * (1 + val) ** 4
     ivav = V * 0.015
@@ -110,7 +117,7 @@ out['aviso_bruta_sin_obra'] = 11_000_000 * 12 / TC / PRICES['pedido']
 AMP_M2 = 2 * 160
 amp_cx = AMP_M2 * TABLA['nueva'] * (1 + IMPREV)
 amp_G = 2 * 2 * D2_RENT * 12 / TC   # 2 pisos × 2 departamentos
-amp_net = neto(amp_G, *TAX['VIV'])[1] + FIJOS * (1 - IRE)   # incremental: sin gastos fijos adicionales
+amp_net = neto_r(amp_G, *TAX['VIV'], base_dep=amp_cx, fijos=0)['net']   # incremental: sin gastos fijos adicionales (D-101)
 out['amp'] = dict(n=4, m2=AMP_M2, rate=TABLA['nueva'], capex=amp_cx, G=amp_G, bruta=amp_G / amp_cx, neta=amp_net / amp_cx)
 
 # Alquiler por consultorio que iguala la neta de A y de B (herramienta inversa)
@@ -118,7 +125,10 @@ out['req'] = {}
 for p, P in PRICES.items():
     for ref in 'AB':
         target = out[ref]['ev'][p]['neta'] * (P + cx['C']['total'])
-        G = (target / (1 - IRE) + FIJOS) / (1 - TAX['MED'][0] - TAX['MED'][1] - ADM - MAN)
+        lo, hi = 0.0, 1e7   # D-101: bisección sobre el neto (IVA con crédito e IRE con depreciación)
+        for _ in range(200):
+            G = (lo + hi) / 2
+            lo, hi = (G, hi) if neto(G, *TAX['MED'], cx['C']['total'] + PARTE_EDIF * P)[1] < target else (lo, G)
         out['req'][f'{ref}|{p}'] = G * TC / 12 / N_CONS
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 

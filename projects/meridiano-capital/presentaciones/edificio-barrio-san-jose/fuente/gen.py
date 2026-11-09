@@ -127,14 +127,14 @@ S.append(slide(f'''{head('Alquileres vigentes', f'Ingreso mensual: Gs 11.000.000
 
 # 11 INGRESOS Y EGRESOS
 pre, net = M['pre'], M['net']
-er = [('Ingreso bruto anual', '100%', usd(G), 'b'), ('IVA (5% alquiler residencial)', pct(.05, 1), '– ' + usd(M['iva']), ''), ('Vacancia', pct(.04, 1), '– ' + usd(M['vac']), ''),
+er = [('Ingreso bruto anual', '100%', usd(G), 'b'), ('IVA neto (5% residencial, incluido)', pct(M['iva_ef'], 1), '– ' + usd(M['iva']), ''), ('Vacancia', pct(.04, 1), '– ' + usd(M['vac']), ''),
       ('Administración', pct(.08, 1), '– ' + usd(M['adm']), ''), ('Mantenimiento', pct(.05, 1), '– ' + usd(M['man']), ''), ('Gastos fijos del edificio', pct(M['F'] / G, 1), '– ' + usd(M['F']), ''),
       ('Resultado antes de impuesto a la renta', pct(pre / G, 1), usd(pre), 'b'), ('Impuesto a la renta estimado (IRE 10%)', pct(M['ire'] / G, 1), '– ' + usd(M['ire']), ''),
       ('Resultado neto anual', pct(net / G, 1), usd(net), 'tot')]
 erh = ''.join(f'<tr class="{c}"><td>{a}</td><td>{b}</td><td>{d}</td></tr>' for a, b, d, c in er)
-cr = [('IVA', '5% sobre alquiler residencial: departamentos, casa y habitaciones.'), ('Vacancia 4%', 'Supuesto de referencia para departamentos; a validar con datos del barrio.'),
+cr = [('IVA', '5% residencial, incluido en el alquiler; se descuenta el crédito fiscal de los gastos (D-101).'), ('Vacancia 4%', 'Supuesto de referencia para departamentos; a validar con datos del barrio.'),
       ('Administración 8%', 'Cobranza, contratos e inquilinos.'), ('Mantenimiento 5%', 'Reparaciones menores y recambios entre inquilinos.'),
-      ('Gastos fijos', 'Supuesto de Gs 6.000.000 por año; no informados por el propietario.'), ('Impuesto a la renta', '10% estimado si se compra por sociedad; el contador define la base real.')]
+      ('Gastos fijos', 'Supuesto de Gs 6.000.000 por año; no informados por el propietario.'), ('Impuesto a la renta', '10% sobre el resultado menos la depreciación (D-101); lo define el contador.')]
 crh = ''.join(f'<div class="ci"><b>{a}</b><span>{b}</span></div>' for a, b in cr)
 S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al resultado neto')}
 <div class="two d11"><table class="t big"><tr><th>Concepto</th><th>% del bruto</th><th>USD por año</th></tr>{erh}</table>
