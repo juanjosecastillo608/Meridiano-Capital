@@ -69,6 +69,9 @@ rows = [
     ('m2_tabla', 'Construidos según la tabla de unidades', 610, 'm²', 'Suma de las 19 unidades'),
     ('m2_obra', 'Superficie que dimensiona la obra de B y C', 600, 'm²', 'Planilla original: 600 m². Ajustar a la superficie real'),
     ('ire', 'IRE estimado', 0.10, '%', 'Si se compra por sociedad; lo define el contador'),
+    ('iva_g', 'IVA de los gastos y la obra (crédito fiscal)', 0.10, '%', 'D-101: el IVA pagado en gastos facturados y en la obra se descuenta del IVA cobrado'),
+    ('dep_tasa', 'Depreciación anual (base del IRE)', 0.025, '%', 'D-101: 40 años; a confirmar con la contadora'),
+    ('dep_edif', 'Parte de edificio dentro del precio', 0.50, '%', 'D-101: supuesto; el terreno no se deprecia'),
     ('notarial', 'Gastos notariales / escrituración', 0.02, '% del precio', 'Planilla original'),
     ('transf', 'Impuestos de transferencia', 0.015, '% del precio', 'Planilla original'),
     ('hon', 'Honorarios inmobiliarios a cargo del comprador', 0.0, '% del precio', 'La planilla ponía 5%; la comisión de venta la paga el vendedor (criterio de Meridiano)'),
@@ -89,7 +92,7 @@ rows = [
     ('a_vac_com', 'Vacancia de salones / oficinas', 0.10, '%', 'Supuesto'),
     ('a_adm', 'Administración', 0.08, '% del bruto', 'Criterio de Meridiano'),
     ('a_man', 'Mantenimiento', 0.05, '% del bruto', 'Criterio de Meridiano'),
-    ('a_fijos', 'Gastos fijos no trasladables', 6000, 'USD/año', 'Seguro, impuesto inmobiliario, áreas comunes (supuesto)'),
+    ('a_fijos', 'Seguro e impuesto inmobiliario', 1500, 'USD/año', 'D-101: las expensas las pagan los inquilinos (tabla del propietario); sin doble conteo'),
     ('— B · 20 HABITACIONES EN ALQUILER MENSUAL (todo incluido)', None, None, None, None),
     ('hab', 'Cantidad de habitaciones', 20, 'habitaciones', 'Planilla original (el aviso indica 16: 3 + 13)'),
     ('b_rent', 'Alquiler por habitación, todo incluido', 1_400_000, 'Gs/mes', 'Estudio: habitación Gs 0,5–1,2 M; monoambiente del centro Gs 1,4–1,5 M'),
@@ -101,6 +104,7 @@ rows = [
     ('op_adm', 'Administración', 400, 'USD/mes', 'Planilla original'),
     ('op_imp', 'Impuestos y tasas municipales', 120, 'USD/mes', 'Planilla original'),
     ('op_limp', 'Limpieza', 300, 'USD/mes', 'Planilla original'),
+    ('b_cred', 'Gastos del edificio con factura (crédito fiscal)', 1250, 'USD/mes', 'Servicios, mantenimiento, administración y limpieza (supuesto)'),
     ('b_meses', 'Meses de obra', 12, 'meses', 'Supuesto'),
     ('— C · HOSTEL DE 20 HABITACIONES PRIVADAS', None, None, None, None),
     ('c_adr', 'Tarifa promedio por noche', 22, 'USD', 'Estudio: privadas del centro USD 7–31'),
@@ -229,7 +233,7 @@ widths(iv, [7, 52, 9, 11, 17, 17, 34]); iv.freeze_panes = 'A4'
 # ------------------------------------------------------------------ Ingresos A (tabla de unidades)
 ia = wb.create_sheet('Ingresos A')
 title(ia, 'OPCIÓN A – TABLA DE UNIDADES (alquiler proyectado del propietario, editable)', 'Clase: VIV = vivienda (IVA 5%), COM = salón u oficina (IVA 10%)')
-hdr(ia, 3, ['Planta', 'N.º', 'Tipo', 'Detalle', 'm²', 'Alquiler (Gs/mes)', 'Clase', 'IVA (Gs/mes)', 'Vacancia (Gs/mes)'])
+hdr(ia, 3, ['Planta', 'N.º', 'Tipo', 'Detalle', 'm²', 'Alquiler (Gs/mes)', 'Clase', 'IVA contenido en lo cobrado (Gs/mes)', 'Vacancia (Gs/mes)'])
 sys.path.insert(0, B)
 import model as MD  # noqa: E402
 r = 4
@@ -237,7 +241,7 @@ for u in MD.UNITS:
     for j, v in enumerate(u[:5], 1): ia.cell(r, j, v)
     c = ia.cell(r, 6, u[5]); c.font = F_IN; c.fill = FILL_IN; c.number_format = '#,##0'
     c = ia.cell(r, 7, u[6]); c.font = F_IN; c.fill = FILL_IN
-    c = ia.cell(r, 8, f'=F{r}*IF(G{r}="COM",{S["a_iva_com"]},{S["a_iva_viv"]})'); c.number_format = '#,##0'
+    c = ia.cell(r, 8, f'=(F{r}-I{r})*IF(G{r}="COM",{S["a_iva_com"]}/(1+{S["a_iva_com"]}),{S["a_iva_viv"]}/(1+{S["a_iva_viv"]}))'); c.number_format = '#,##0'
     c = ia.cell(r, 9, f'=F{r}*IF(G{r}="COM",{S["a_vac_com"]},{S["a_vac_viv"]})'); c.number_format = '#,##0'
     r += 1
 ia.cell(r, 1, 'Total').font = F_B
@@ -259,7 +263,7 @@ GC = f'{S["hab"]}*{S["c_adr"]}*365*{S["c_occ"]}'
 R = {}
 spec = [
     ('G', 'Ingreso bruto anual', f'={GA}', f'={GB}', f'={GC}', 'A: tabla · B: habitaciones × alquiler · C: habitaciones × tarifa × 365 × ocupación'),
-    ('iva', 'IVA', f'={A_IVA}*12/{tc}', f'=C{{G}}*{S["b_iva"]}', f'=D{{G}}*{S["c_iva"]}', ''),
+    ('iva', 'IVA neto (débito − crédito)', '=MAX(0,B{deb}-B{credv}-B{credf})', '=MAX(0,C{deb}-C{credv}-C{credf})', '=MAX(0,D{deb}-D{credv}-D{credf})', 'D-101: IVA contenido en el alquiler cobrado, menos el crédito fiscal de los gastos'),
     ('vac', 'Vacancia', f'={A_VAC}*12/{tc}', f'=C{{G}}*{S["b_vac"]}', '=0', 'C: la ocupación ya descuenta la vacancia'),
     ('adm', 'Administración', f'=B{{G}}*{S["a_adm"]}', '=0', '=0', 'B: incluida en gastos del edificio · C: personal'),
     ('man', 'Mantenimiento', f'=B{{G}}*{S["a_man"]}', '=0', f'=D{{G}}*{S["c_man"]}', 'B: incluido en gastos del edificio'),
@@ -268,8 +272,13 @@ spec = [
     ('fijos', 'Gastos fijos / del edificio', f'={S["a_fijos"]}', f'={opexB}', f'=({S["op_serv"]}+{S["op_seg"]}+{S["op_man"]}+{S["op_imp"]}+{S["op_limp"]})*12*{S["c_opex_f"]}+{S["c_soft"]}', 'B: planilla original · C: planilla sin administración, ×factor hotelero'),
     ('staff', 'Personal de recepción', '=0', '=0', f'={S["c_staff_n"]}*{S["c_sueldo"]}*13/{tc}', ''),
     ('pre', 'Resultado antes de IRE', '=B{G}-SUM(B{iva}:B{staff})', '=C{G}-SUM(C{iva}:C{staff})', '=D{G}-SUM(D{iva}:D{staff})', ''),
-    ('ire', 'IRE estimado', f'=B{{pre}}*{ire}', f'=C{{pre}}*{ire}', f'=D{{pre}}*{ire}', ''),
+    ('dep', 'Depreciación (solo reduce la base del IRE)', f'={S["dep_tasa"]}*(B{{obra}}+{S["dep_edif"]}*{S["precio"]})', f'={S["dep_tasa"]}*(C{{obra}}+{S["dep_edif"]}*{S["precio"]})', f'={S["dep_tasa"]}*(D{{obra}}+{S["dep_edif"]}*{S["precio"]})', 'D-101: no es un gasto de caja'),
+    ('ire', 'IRE estimado', f'=MAX(0,B{{pre}}-B{{dep}})*{ire}', f'=MAX(0,C{{pre}}-C{{dep}})*{ire}', f'=MAX(0,D{{pre}}-D{{dep}})*{ire}', '10% sobre el resultado menos la depreciación'),
     ('net', 'Neto anual', '=B{pre}-B{ire}', '=C{pre}-C{ire}', '=D{pre}-D{ire}', ''),
+    (None,), ('deb', 'Detalle IVA · débito contenido en lo cobrado', f'={A_IVA}*12/{tc}', f'=(C{{G}}-C{{vac}})*{S["b_iva"]}/(1+{S["b_iva"]})', f'=D{{G}}*{S["c_iva"]}/(1+{S["c_iva"]})', 'Alquileres de mercado: precio final con IVA incluido'),
+    ('credv', 'Detalle IVA · crédito de gastos variables', f'=(B{{adm}}+B{{man}})*{S["iva_g"]}/(1+{S["iva_g"]})', '=0', f'=(D{{man}}+D{{ota}}+D{{limp}})*{S["iva_g"]}/(1+{S["iva_g"]})', ''),
+    ('credf', 'Detalle IVA · crédito de gastos fijos', '=0', f'={S["b_cred"]}*12*{S["iva_g"]}/(1+{S["iva_g"]})', f'=(({S["op_serv"]}+{S["op_man"]}+{S["op_limp"]})*12*{S["c_opex_f"]}+{S["c_soft"]})*{S["iva_g"]}/(1+{S["iva_g"]})', ''),
+    ('cobra', 'Crédito fiscal de la obra (se usa en los primeros años)', f'=B{{obra}}*{S["iva_g"]}/(1+{S["iva_g"]})', f'=C{{obra}}*{S["iva_g"]}/(1+{S["iva_g"]})', f'=D{{obra}}*{S["iva_g"]}/(1+{S["iva_g"]})', 'Entra en la TIR, no en la neta anual'),
     (None,), ('obra', 'Obra total', f'={OBRA_A}', f'={OBRA_B}', f'={OBRA_C}', 'Hoja Inversión'),
     ('inv', 'Inversión (precio + obra)', f'={S["precio"]}+B{{obra}}', f'={S["precio"]}+C{{obra}}', f'={S["precio"]}+D{{obra}}', 'Base de las rentabilidades'),
     ('invg', 'Inversión con gastos de compra', f'=B{{inv}}+{GCOMPRA}', f'=C{{inv}}+{GCOMPRA}', f'=D{{inv}}+{GCOMPRA}', ''),
@@ -298,23 +307,28 @@ for sp_ in spec:
             c.number_format = PCT if key in ('bruta', 'neta_pre', 'neta', 'netag') else ('0.0' if key == 'pay' else ('#,##0' if key in ('maxgs', 'req') else USD))
             if key in ('G', 'net', 'inv', 'bruta', 'neta'): c.fill = FILL_TOT; c.font = F_B
     rs.cell(r, 5, note).font = F_NOTE; r += 1
-# Flujo de caja y TIR
-r0 = r
+# Flujo de caja y TIR (incluye el ahorro de IVA por el crédito fiscal de la obra, D-101)
 rs.cell(r, 1, 'Año'); [rs.cell(r, 2 + i, i) for i in range(6)]
 y1 = {'B': f'{S["a_meses"]}', 'C': f'{S["b_meses"]}', 'D': f'{S["b_meses"]}'}
+g, val, ivv = S['g'], S['val'], S['iva_venta']
 for k, col in enumerate('BCD'):
-    rr = r + 1 + k
-    rs.cell(rr, 1, ['A', 'B', 'C'][k] + ' · flujo (USD)')
-    net, inv = f'{col}${R["net"]}', f'{col}${R["inv"]}'
-    g, val, ivv = S['g'], S['val'], S['iva_venta']
-    rs.cell(rr, 2, f'=-{inv}').number_format = USD
-    rs.cell(rr, 3, f'={net}*MAX(0,12-{y1[col]})/12').number_format = USD
-    for i in range(3): rs.cell(rr, 4 + i, f'={net}*(1+{g})^{i}').number_format = USD
-    rs.cell(rr, 7, f'={net}*(1+{g})^3+{inv}*(1+{val})^4*(1-{ivv})').number_format = USD
-rt = r + 5
+    ra, rf = r + 1 + k, r + 4 + k
+    rs.cell(ra, 1, ['A', 'B', 'C'][k] + ' · ahorro de IVA por crédito de la obra')
+    rs.cell(rf, 1, ['A', 'B', 'C'][k] + ' · flujo (USD)')
+    net, inv, ivn, pool = f'{col}${R["net"]}', f'{col}${R["inv"]}', f'{col}${R["iva"]}', f'{col}${R["cobra"]}'
+    for i in range(5):
+        L = get_column_letter(3 + i)
+        ivay = f'{ivn}*MAX(0,12-{y1[col]})/12' if i == 0 else f'{ivn}*(1+{g})^{i - 1}'
+        used = '0' if i == 0 else f'SUM($C{ra}:{get_column_letter(2 + i)}{ra})'
+        rs.cell(ra, 3 + i, f'=MIN({ivay},{pool}-{used})').number_format = USD
+        base = f'{net}*MAX(0,12-{y1[col]})/12' if i == 0 else f'{net}*(1+{g})^{i - 1}'
+        extra = f'+{inv}*(1+{val})^4*(1-{ivv})' if i == 4 else ''
+        rs.cell(rf, 3 + i, f'={base}+{L}{ra}{extra}').number_format = USD
+    rs.cell(rf, 2, f'=-{inv}').number_format = USD
+rt = r + 8
 rs.cell(rt, 1, 'TIR a 5 años (escenario base)').font = F_B
 for k, col in enumerate('BCD'):
-    c = rs.cell(rt, 2 + k, f'=IRR(B{r + 1 + k}:G{r + 1 + k})'); c.number_format = '0.0%'; c.font = F_B; c.fill = FILL_TOT
+    c = rs.cell(rt, 2 + k, f'=IRR(B{r + 4 + k}:G{r + 4 + k})'); c.number_format = '0.0%'; c.font = F_B; c.fill = FILL_TOT
 R['tir'] = rt
 for i, t in enumerate(['A y B: renta desde el fin de la obra (meses de obra en Supuestos). La valorización parte de la inversión total.',
                        'Cifras de referencia, no garantizadas. IVA e IRE son estimaciones: los define el contador.'], rt + 2):
@@ -326,14 +340,17 @@ se = wb.create_sheet('Sensibilidad')
 title(se, 'SENSIBILIDAD – NETA FINAL SEGÚN ALQUILER Y OBRA', 'Factor sobre el alquiler (o la tarifa) y sobre el costo de obra; resto de supuestos sin cambios')
 hdr(se, 3, ['Opción y obra', 'Alquiler −15%', 'Alquiler base', 'Alquiler +15%'])
 r = 4
+RS = lambda col, key: f"Resultados!{col}{R[key]}"
 for k, (nm, col) in enumerate([('A', 'B'), ('B', 'C'), ('C', 'D')]):
-    pct_cells = f"SUM(Resultados!{col}{R['iva']}:Resultados!{col}{R['limp']})/Resultados!{col}{R['G']}"
-    fixed = f"(Resultados!{col}{R['fijos']}+Resultados!{col}{R['staff']})"
+    pct_cells = f"SUM({RS(col, 'vac')}:{RS(col, 'limp')})/{RS(col, 'G')}"
+    fixed = f"({RS(col, 'fijos')}+{RS(col, 'staff')})"
     for fobra in (1.0, 1.25):
         se.cell(r, 1, f'{nm} · obra {"base" if fobra == 1 else "+25%"}')
         for j, kk in enumerate((0.85, 1.0, 1.15), 2):
-            G = f"Resultados!{col}{R['G']}*{kk}"
-            f = f"=(({G})*(1-{pct_cells})-{fixed})*(1-{ire})/({S['precio']}+Resultados!{col}{R['obra']}*{fobra})"
+            ivak = f"MAX(0,({RS(col, 'deb')}-{RS(col, 'credv')})*{kk}-{RS(col, 'credf')})"
+            pre = f"({RS(col, 'G')}*{kk}*(1-{pct_cells})-{ivak}-{fixed})"
+            dep = f"{S['dep_tasa']}*({RS(col, 'obra')}*{fobra}+{S['dep_edif']}*{S['precio']})"
+            f = f"=({pre}-{ire}*MAX(0,{pre}-{dep}))/({S['precio']}+{RS(col, 'obra')}*{fobra})"
             c = se.cell(r, j, f); c.number_format = PCT
         r += 1
 r += 1
@@ -341,9 +358,11 @@ se.cell(r, 1, 'Hostel: neta final según la ocupación').font = F_B; r += 1
 hdr(se, r, ['Ocupación', 'Neta final', '', '']); r += 1
 for occ in (0.45, 0.55, 0.60, 0.69):
     c = se.cell(r, 1, occ); c.number_format = '0%'; c.font = F_IN; c.fill = FILL_IN
-    G = f"{S['hab']}*{S['c_adr']}*365*A{r}"
-    pc = f"({S['c_iva']}+{S['c_ota']}+{S['c_limp']}+{S['c_man']})"
-    f = f"=(({G})*(1-{pc})-Resultados!D{R['fijos']}-Resultados!D{R['staff']})*(1-{ire})/Resultados!D{R['inv']}"
+    G = f"({S['hab']}*{S['c_adr']}*365*A{r})"
+    pc = f"({S['c_ota']}+{S['c_limp']}+{S['c_man']})"
+    iva = f"MAX(0,{G}*{S['c_iva']}/(1+{S['c_iva']})-{G}*{pc}*{S['iva_g']}/(1+{S['iva_g']})-{RS('D', 'credf')})"
+    pre = f"({G}*(1-{pc})-{iva}-{RS('D', 'fijos')}-{RS('D', 'staff')})"
+    f = f"=({pre}-{ire}*MAX(0,{pre}-{RS('D', 'dep')}))/{RS('D', 'inv')}"
     c = se.cell(r, 2, f); c.number_format = PCT; r += 1
 widths(se, [30, 18, 18, 18])
 

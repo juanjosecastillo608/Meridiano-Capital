@@ -58,11 +58,11 @@
 | Obra total | USD 118.168 | USD 202.309 | USD 218.809 |
 | Ingreso bruto mensual | Gs 15,6 M | Gs 28,0 M | Gs 47,7 M (USD 22 × 55%) |
 | Bruta | 10,38% | 14,31% | 23,32% |
-| Neta final | 5,00% | **6,57%** | 3,49% |
-| TIR base a 5 años | 6,9% | **7,5%** | 5,2% |
+| Neta final (D-101) | 6,82% | **7,19%** | 4,81% |
+| TIR base a 5 años (D-101) | **8,8%** | 8,2% | 7,0% |
 
 **Lectura:**
-- **B es la mejor opción**, con la mejor neta y la mejor TIR.
+- **B tiene la mejor neta y A la mejor TIR** (menos obra y renta desde el mes 7).
 - **La bruta del hostel (C) engaña:** las plataformas, la limpieza y el personal se llevan casi todo. Para igualar a B necesita alrededor de 69% de ocupación sostenida.
 - **A es la más simple**, con la obra más liviana.
 - **Precio máximo para un 10% bruto con A:** unos USD 170.706. A USD 160.000, A y B ya superan el 10% bruto.
@@ -100,3 +100,7 @@
   - Precio fijado en USD 160.000; regenerados el deck, la web y el Excel.
   - Revisión de la brecha bruta → neta registrada como P-009, pendiente de aprobación (`knowledge-base/investment/methodologies/revision-bruta-neta-2026-11-09.md`).
   - Las cifras del deck **no** aplican todavía esa propuesta.
+- **2026-11-09 (segunda entrega):**
+  - D-101 aplicada: IVA contenido con crédito fiscal de gastos, crédito de la obra en la TIR, IRE con depreciación y gastos fijos de A en USD 1.500.
+  - Lámina 3 con la vista satelital y la foto del Hospital Militar Central. La foto es de un usuario de Google Maps; se recortaron los controles y se difuminaron la persona y las patentes.
+  - La universidad de referencia es la UAP (confirmado por el founder).

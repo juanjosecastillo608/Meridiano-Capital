@@ -1,4 +1,4 @@
-Estado: PROPOSED (P-009), 2026-11-09. Pendiente de confirmación del founder y de la contadora.
+Estado: CURRENT (D-101), aprobada por el founder el 09/11/2026. Pendiente: confirmación de la contadora (crédito fiscal y depreciación).
 Dominio: INVESTMENT
 
 # Revisión de las bases de cálculo: de la rentabilidad bruta a la neta
@@ -56,7 +56,8 @@ Escenario de la propuesta: IVA contenido en el precio con crédito fiscal de los
 El crédito fiscal de la obra no entra en la neta anual estabilizada: es un beneficio de los primeros años. Debería sumarse al flujo de caja de la TIR.
 
 ## 4. Pendiente de decisión
-- [ ] Founder: aprobar el IVA "contenido" en el precio de mercado y el uso del crédito fiscal en el modelo.
+- [x] Founder: aprobado el 09/11/2026 (D-101).
 - [ ] Contadora: confirmar el crédito fiscal de la obra y de los gastos para una S.A. que alquila, y la vida útil y el método de depreciación en el IRE.
-- [ ] Founder: confirmar si en Humaitá A las expensas las pagan los inquilinos (como dice la tabla).
-- [ ] Al aprobarse: actualizar `calculadora.py` (con tests), los modelos de los decks y regenerar.
+- [x] Humaitá A: se toma la tabla del propietario (expensas a cargo de los inquilinos).
+- [x] Aplicado al Edificio Humaitá: A 6,82%, B 7,19%, C 4,81% de neta (antes 5,00 / 6,57 / 3,49%).
+- [ ] Extender a `calculadora.py` (con tests) y al resto de los decks.

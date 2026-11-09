@@ -67,18 +67,20 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Una casona del centro con 16 h
 <div class="box"><b>Propiedad ofrecida en su estado actual. Imágenes de transformación conceptuales.</b> Sin renta actual: toda rentabilidad es una estimación posterior a la obra, sobre el precio más la obra · Alquileres del estudio de mercado de Meridiano Capital · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
-loc = [('Dirección', 'Humaitá 978, entre Colón y Montevideo · Asunción (−25,28227, −57,64337)'), ('Hospital Militar', 'Referencia de demanda cercana: personal de salud, pacientes y familias'),
-       ('Universidades', 'Universidad Autónoma del Paraguay y su clínica, sobre Colón a pocas cuadras según el mapa; Universidad Autónoma de Asunción como referencia del propietario'), ('Entorno', 'Centro histórico: oficinas públicas, comercio, bancos y atractivos turísticos')]
-lh = ''.join(f'<div class="li" style="padding:10px 0 11px"><div class="eb sm">{a}</div><div class="lt" style="font-size:14.5px">{b}</div></div>' for a, b in loc)
-S.append(slide(f'''{head('Ubicación', 'Humaitá y Av. Colón, en el centro histórico')}
-<div class="two" style="margin-top:22px"><div><div class="mapimg"><img src="img/fachada.jpg" style="height:290px;object-position:50% 45%"><div class="cap">Fachada sobre la calle Humaitá</div></div>
-<div style="display:flex;gap:18px;align-items:center;margin-top:14px"><img src="img/qr_ubicacion.png" style="width:104px;height:104px"><div><div class="eb sm">Escanee para abrir la ubicación</div><a class="glink" style="margin-top:6px" href="{MAPS_QR}">{MAPS_QR.replace("https://", "")}</a>
-<div style="font-size:12px;margin-top:6px">Hospital Militar: <a href="{MAPS_HM}" style="color:var(--tierra)">{MAPS_HM.replace("https://", "")}</a><br>UAA: <a href="{MAPS_UAA}" style="color:var(--tierra)">{MAPS_UAA.replace("https://", "")}</a></div></div></div></div>
-<div class="locr">{lh}</div></div>
-<div class="src">Ubicación y puntos de referencia enviados por el founder el 08/11/2026; distancias a pie a medir. Identificación catastral a confirmar.</div>''', num()))
+loc = [('Dirección', 'Humaitá 978, entre Colón y Montevideo · Asunción'),
+       ('Universidad Autónoma del Paraguay', 'La universidad más cercana, con su clínica, sobre la Av. Colón a pocas cuadras (ver mapa)'),
+       ('Hospital Militar Central', 'Referencia de demanda: personal de salud, pacientes y familias'),
+       ('Entorno', 'Centro de Asunción: oficinas públicas, comercio, bancos y atractivos turísticos')]
+lh = ''.join(f'<div class="li" style="padding:7px 0 8px"><div class="eb sm">{a}</div><div class="lt" style="font-size:13.5px">{b}</div></div>' for a, b in loc)
+S.append(slide(f'''{head('Ubicación', 'Humaitá 978, entre Colón y Montevideo')}
+<div class="two" style="margin-top:18px;grid-template-columns:560px 1fr !important;gap:30px"><div><div class="mapimg"><img src="img/mapa_ubicacion.jpg" style="width:560px;height:262px;object-position:50% 40%"><div class="cap">Vista satelital: el marcador indica el edificio; arriba, la Universidad Autónoma del Paraguay sobre Colón · Imagen de Google Maps</div></div>
+<div style="display:flex;gap:16px;align-items:center;margin-top:12px"><img src="img/qr_ubicacion.png" style="width:96px;height:96px"><div><div class="eb sm">Escanee para abrir la ubicación</div><a class="glink" style="margin-top:4px" href="{MAPS_QR}">{MAPS_QR.replace("https://", "")}</a></div></div></div>
+<div><div class="mapimg"><img src="img/hospital_militar.jpg" style="width:100%;height:150px;object-position:50% 40%"><div class="cap">Hospital Militar Central · <a href="{MAPS_HM}" style="color:var(--tierra)">{MAPS_HM.replace("https://", "")}</a> · foto de un usuario de Google Maps (nov. 2021)</div></div>
+<div class="locr" style="margin-top:6px">{lh}</div></div></div>
+<div class="src">Dirección y enlaces enviados por el founder (08–09/11/2026); la UAP es la universidad más cercana, confirmada por el founder. Distancias a pie a medir. Identificación catastral a confirmar.</div>''', num()))
 
 # 04 ZONA
-zp = [('Estudiantes', 'La Universidad Autónoma de Asunción y otros institutos del centro generan demanda de habitaciones y monoambientes por semestre.'),
+zp = [('Estudiantes', 'La Universidad Autónoma del Paraguay, a pocas cuadras, y otros institutos del centro generan demanda de habitaciones y monoambientes por semestre.'),
       ('Salud', 'El Hospital Militar atrae personal médico, pacientes del interior y sus familias, que necesitan alojamiento cercano.'),
       ('Turismo y trabajo', 'El centro histórico concentra oficinas públicas y atractivos: base para estadías cortas y para oficinas o un centro de enseñanza.')]
 zh = ''.join(f'<div class="pt"><div class="pn">0{i+1}</div><div><div class="pth">{a}</div><div class="ptt">{b}</div></div></div>' for i, (a, b) in enumerate(zp))
@@ -195,7 +197,7 @@ def er(a):
     return rows + [(['Antes de IRE', pct(e['pre'] / G, 1), usd(e['pre'])], 'b'), (['IRE estimado (10%)', pct(e['ire'] / G, 1), '– ' + usd(e['ire'])], ''), (['Neto anual', pct(e['net'] / G, 1), usd(e['net'])], 'tot')]
 S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al resultado neto')}
 <div class="two alt3">{''.join(f'<div><div class="altt{" gold" if a == "B" else ""}">{ALT[a]}</div>{table(["Concepto", "%", "USD/año"], er(a), "t sm ie")}</div>' for a in 'ABC')}</div>
-<p class="note2 sm">IVA: 5% en vivienda y habitaciones mensuales, 10% en salones y en el hostel (D-045). A: vacancia de 6% en vivienda y 10% en salones; administración 8%, mantenimiento 5%. B: vacancia 10%; los gastos del edificio de la planilla (USD 1.470 por mes) incluyen servicios, limpieza, administración y mantenimiento. C: ocupación de 55% ya descontada; personal de recepción de 3 personas. IRE: 10% estimado; lo define el contador.</p>''', num()))
+<p class="note2 sm"><b>Criterios (D-101).</b> IVA: el alquiler de mercado ya incluye el IVA (5% vivienda y habitaciones, 10% salones y hostel); se paga la diferencia entre ese IVA y el de los gastos con factura (crédito fiscal). El crédito del IVA de la obra cubre el IVA de los primeros años y se suma en la TIR. IRE: 10% sobre el resultado menos la depreciación (2,5% anual sobre la obra y la mitad del precio). A: las expensas las pagan los inquilinos; vacancia 6–10%. B: gastos del edificio de la planilla (USD 1.470/mes), vacancia 10%. C: ocupación 55% y 3 recepcionistas. La contadora define la base fiscal real.</p>''', num()))
 
 # 14 RENTABILIDAD
 hdr = '<div></div>' + ''.join(f'<div class="bl2 c{" gold" if a == "B" else ""}">{ALT[a]}</div>' for a in 'ABC')
@@ -210,17 +212,18 @@ oc = M['C_occ']
 orows = [([f'Ocupación {pct(float(k), 0)}', pct(v)], 'b' if k == '0.55' else '') for k, v in oc.items()]
 S.append(slide(f'''{head('Habitaciones o hostel', 'Lo que decide entre B y C')}
 <div class="two cx2"><div><div class="altt">Hostel: neta final según la ocupación</div>{table(['Escenario', 'Neta final'], orows, 't big')}
-<p class="note2 sm">Con 55% de ocupación el hostel rinde menos que las habitaciones mensuales; necesita cerca de 69% sostenido, el techo de la banda, para igualarlas. A 45%, casi no deja resultado.</p></div>
-{crit('Lectura', [('Habitaciones mensuales (B)', 'Renta estable por semestre, demanda de estudiantes de la UAA y de personal del Hospital Militar, poca operación diaria.'), ('Hostel (C)', 'Ingreso bruto mayor, pero con plataformas, limpieza diaria, recepción y habilitación turística.'), ('Camino sugerido', 'Empezar con B y reservar algunas habitaciones para estadías cortas de familias de pacientes, si la demanda lo justifica.'), ('Alquiler de B', f"Con {gs(M['B_RENT_GS'])} por habitación, B rinde {pct(ev['B']['bruta'])} bruta; para un 10% bastaría con unos {gs(M['B_req10'])}.")])}</div>''', num()))
+<p class="note2 sm">Con 55% de ocupación el hostel rinde menos que las habitaciones mensuales; necesita cerca de 65% sostenido para igualarlas. A 45%, la neta cae a {pct(oc['0.45'], 1)}.</p></div>
+{crit('Lectura', [('Habitaciones mensuales (B)', 'Renta estable por semestre, demanda de estudiantes de la UAP y de personal del Hospital Militar, poca operación diaria.'), ('Hostel (C)', 'Ingreso bruto mayor, pero con plataformas, limpieza diaria, recepción y habilitación turística.'), ('Camino sugerido', 'Empezar con B y reservar algunas habitaciones para estadías cortas de familias de pacientes, si la demanda lo justifica.'), ('Alquiler de B', f"Con {gs(M['B_RENT_GS'])} por habitación, B rinde {pct(ev['B']['bruta'])} bruta; para un 10% bastaría con unos {gs(M['B_req10'])}.")])}</div>''', num()))
 
 # 16 SENSIBILIDAD
+CN0, CN15 = pct(M['sens']['C|1.0|1.0'][1], 1), pct(M['sens']['C|1.0|0.85'][1], 1)
 def srow(a, f):
     lbl = f'{ALT[a].split(" · ")[1]} · obra {"base" if f == 1.0 else "+25%"}'
     return ([lbl] + [pct(M['sens'][f'{a}|{f}|{k}'][0]) + ' · ' + pct(M['sens'][f'{a}|{f}|{k}'][1]) for k in ('0.85', '1.0', '1.15')], 'b' if f == 1.0 else '')
 srows = [srow(a, f) for a in 'ABC' for f in (1.0, 1.25)]
 S.append(slide(f'''{head('Qué mueve el resultado', 'Sensibilidad: alquiler y costo de obra')}
 <div class="two cx2"><div><div class="altt">Bruta · neta final sobre inversión total</div>{table(['Opción y obra', 'Alquiler −15%', 'Alquiler base', 'Alquiler +15%'], srows, 't big')}</div>
-{crit('Lectura', [('El alquiler', 'En el hostel, un 15% menos de tarifa baja la neta a la mitad (de 3,6% a 1,7%): sus costos fijos son altos.'), ('La obra', 'Un 25% más de obra resta entre 1,1 y 3,2 puntos brutos; pesa más en B y C.'), ('Presupuesto real', 'El presupuesto de la planilla supone 600 m² y 20 habitaciones: hay que ajustarlo a la superficie real.')])}</div>''', num()))
+{crit('Lectura', [('El alquiler', f'En el hostel, un 15% menos de tarifa baja la neta de {CN0} a {CN15}: sus costos fijos son altos.'), ('La obra', 'Un 25% más de obra resta entre 1,1 y 3,2 puntos brutos; pesa más en B y C.'), ('Presupuesto real', 'El presupuesto de la planilla supone 600 m² y 20 habitaciones: hay que ajustarlo a la superficie real.')])}</div>''', num()))
 
 # 17 TIR
 pr = M['proj']
@@ -228,7 +231,7 @@ bt = max('ABC', key=lambda a: pr[a]['Base']['tir'])
 trows = [([ALT[a]] + [pct(pr[a][k]['tir'], 1) for k in ('Conservador', 'Base', 'Optimista')] + [usd(pr[a]['Base']['total'])], 'b' if a == bt else '') for a in 'ABC']
 S.append(slide(f'''{head('Plusvalía y retorno total', 'TIR estimada a cinco años por opción')}
 <div class="two d15">{table(['Opción · compra a USD 160.000', 'Conservador', 'Base', 'Optimista', 'Ganancia base'], trows, 't big')}
-<div class="dbox"><div class="bigv bv2">{pct(pr[bt]['Base']['tir'], 1)}</div><div class="bs">TIR base de {ALT[bt].split(' · ')[1].lower()}: la más alta de las tres</div><p>A: 6 meses de obra. B y C: un año de obra. Luego renta neta y venta al valor estimado del año 5. Escenarios: alquileres +2/+3/+5% y valorización 2/3,5/5% anual.</p><p class="gold">Supuesto clave: el valor del inmueble parte de la inversión total y se valoriza desde el fin de la obra.</p></div></div>
+<div class="dbox"><div class="bigv bv2">{pct(pr[bt]['Base']['tir'], 1)}</div><div class="bs">TIR base de {ALT[bt].split(' · ')[1].lower()}: la más alta de las tres</div><p>A: 6 meses de obra. B y C: un año de obra. Luego renta neta y venta al valor estimado del año 5. Escenarios: alquileres +2/+3/+5% y valorización 2/3,5/5% anual. Incluye el ahorro de IVA por el crédito fiscal de la obra (D-101).</p><p class="gold">Supuesto clave: el valor del inmueble parte de la inversión total y se valoriza desde el fin de la obra.</p></div></div>
 <div class="src">Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. Ganancia base = plusvalía − IVA de la venta futura (1,5%) + renta neta acumulada. No incluyen gastos de adquisición ni comisión de venta.</div>''', num()))
 
 # 18 PRECIO

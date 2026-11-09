@@ -23,7 +23,7 @@ os.makedirs(os.path.join(WEB, 'assets'), exist_ok=True)
 os.makedirs(os.path.join(WEB, 'fonts'), exist_ok=True)
 for f in os.listdir(os.path.join(B, 'img', 'zip')):
     shutil.copyfile(os.path.join(B, 'img', 'zip', f), os.path.join(WEB, 'assets', f))
-for f in ('qr_ubicacion.png', 'patio.jpg', 'planta_alta.jpg', 'portrait.jpg'):
+for f in ('qr_ubicacion.png', 'patio.jpg', 'planta_alta.jpg', 'portrait.jpg', 'mapa_ubicacion.jpg', 'hospital_militar.jpg'):
     shutil.copyfile(os.path.join(B, 'img', f), os.path.join(WEB, 'assets', f))
 for f in os.listdir(os.path.join(B, 'fonts')):
     if f.endswith('.woff2'):
@@ -143,9 +143,10 @@ section{{padding:18mm 12mm;page-break-after:always;border:0}}.hero{{min-height:a
 <div class="note">Capacidad a conciliar: el aviso describe 3 ambientes + salón + 13 habitaciones posteriores; la tabla del propietario lista 19 unidades (3 en proyecto) y la planilla de obra supone 20 habitaciones.</div></section>
 
 <section id="ubicacion"><div class="eb">02 · Ubicación</div><h2>Humaitá, a metros de la Av. Colón</h2>
+<div class="two" style="margin-bottom:24px"><figure class="g" style="margin:0"><img src="assets/mapa_ubicacion.jpg" alt="Vista satelital con el marcador del edificio en Humaitá 978 y la UAP sobre Colón" style="height:300px"><figcaption><span class="badge real">Mapa</span> Humaitá 978, entre Colón y Montevideo · imagen de Google Maps</figcaption></figure><figure class="g" style="margin:0"><img src="assets/hospital_militar.jpg" alt="Hospital Militar Central" style="height:300px"><figcaption><span class="badge real">Fotografía</span> Hospital Militar Central · foto de un usuario de Google Maps (nov. 2021)</figcaption></figure></div>
 <div class="loc"><img src="assets/qr_ubicacion.png" alt="Código QR de la ubicación en Google Maps"><div>
 <p><b>Dirección:</b> Humaitá 978, entre Colón y Montevideo, Asunción (−25,28227, −57,64337).</p><p><b>Ubicación del inmueble:</b> <a href="{MAPS}">{MAPS.replace("https://", "")}</a></p>
-<p><b>Referencias de demanda</b> informadas por el propietario: Hospital Militar Central (<a href="{MAPS_HM}">mapa</a>) y Universidad Autónoma de Asunción (<a href="{MAPS_UAA}">mapa</a>). En el mapa también aparece, a pocas cuadras sobre Colón, la Universidad Autónoma del Paraguay con su clínica.</p>
+<p><b>Referencias de demanda:</b> la Universidad Autónoma del Paraguay (UAP), la más cercana, con su clínica sobre la Av. Colón, y el Hospital Militar Central (<a href="{MAPS_HM}">mapa</a>).</p>
 <p class="small">Las distancias a pie a estas instituciones todavía no se midieron y deben verificarse.</p></div></div></section>
 
 <section id="galeria"><div class="eb">03 · Galería</div><h2>El edificio hoy y su potencial</h2>
@@ -178,7 +179,7 @@ section{{padding:18mm 12mm;page-break-after:always;border:0}}.hero{{min-height:a
 
 <section id="inversion"><div class="eb">07 · Inversión</div><h2>Tres usos, con los números del estudio de mercado</h2>
 <div class="tw"><table><thead><tr><th>Uso</th><th>Obra estimada</th><th>Inversión (precio + obra)</th><th>Ingreso bruto mensual</th><th>Bruta</th><th>Neta final</th><th>TIR base 5 años</th></tr></thead><tbody>{rows}</tbody></table></div>
-<div class="note"><b>Hipótesis:</b> precio USD 160.000; alquileres en guaraníes al {tc_texto()}. A: alquileres proyectados de la tabla del propietario, vacancia 6–10%, administración 8%, mantenimiento 5%. B: Gs {n(M["B_RENT_GS"])} por habitación todo incluido, vacancia 10%, gastos del edificio USD 1.470 por mes. C: USD {n(M["C_ADR"])} por noche y {pct(M["C_OCC"], 0)} de ocupación, plataformas 15%, limpieza 12%, 3 recepcionistas. IVA 5% (vivienda) o 10% (salones y hostel), IRE 10%. Obra B y C: presupuesto de la planilla del propietario (600 m², 20 habitaciones), sin presupuesto de un constructor.<br>
+<div class="note"><b>Hipótesis:</b> precio USD 160.000; alquileres en guaraníes al {tc_texto()}. A: alquileres proyectados de la tabla del propietario, vacancia 6–10%, administración 8%, mantenimiento 5%. B: Gs {n(M["B_RENT_GS"])} por habitación todo incluido, vacancia 10%, gastos del edificio USD 1.470 por mes. C: USD {n(M["C_ADR"])} por noche y {pct(M["C_OCC"], 0)} de ocupación, plataformas 15%, limpieza 12%, 3 recepcionistas. IVA incluido en el alquiler de mercado (5% vivienda, 10% salones y hostel), con crédito fiscal de gastos y obra; IRE 10% sobre el resultado menos la depreciación (D-101). Obra B y C: presupuesto de la planilla del propietario (600 m², 20 habitaciones), sin presupuesto de un constructor.<br>
 <b>No es una rentabilidad garantizada.</b> No hay contratos ni renta vigente; los alquileres son precios pedidos del mercado (estudio de Meridiano del 08/11/2026). Las rentas del comercializador (Gs 13,2 M base y Gs 15,6 M proyectada) y su inversión declarada (Gs 14,2 M + Gs 30 M de obra) no son un presupuesto técnico.</div></section>
 
 <section id="pasos"><div class="eb">08 · Próximos pasos</div><h2>De activo existente a producto de renta</h2>
