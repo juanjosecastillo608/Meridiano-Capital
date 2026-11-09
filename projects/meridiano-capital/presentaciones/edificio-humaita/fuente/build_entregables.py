@@ -381,3 +381,4 @@ if shutil.which('soffice'):
         if os.path.exists(rec):
             shutil.copyfile(rec, OUT)
 print('XLSX:', os.path.abspath(OUT))
+import runpy, os; runpy.run_path(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'build_web.py'))

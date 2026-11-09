@@ -64,7 +64,7 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Una casona del centro con 16 h
 {kgrid([('Gs 950 M', f'Precio de venta · {usd(P)}'), ('541 m²', 'Terreno · 12,30 × 43 m'), ('300 · 610 m²', 'Construidos según el aviso · según la tabla de unidades'), ('16 + 1', 'Habitaciones con baño + salón con baños sexados'),
         (pct(ev['A']['bruta']) + ' · ' + pct(ev['A']['neta']), 'A · Departamentos y salones: bruta · neta'), (pct(ev['B']['bruta']) + ' · ' + pct(ev['B']['neta']), 'B · 20 habitaciones mensuales: bruta · neta'),
         (pct(ev['C']['bruta']) + ' · ' + pct(ev['C']['neta']), 'C · Hostel: bruta · neta'), ('USD ' + n(P / M['TERRENO']), 'Por m² de terreno')], 'kgrid ks')}
-<div class="box">Sin renta actual: toda rentabilidad es una estimación posterior a la obra, sobre el precio más la obra · Alquileres del estudio de mercado de Meridiano Capital · Tipo de cambio {TCTXT}</div>''', num()))
+<div class="box"><b>Propiedad ofrecida en su estado actual. Imágenes de transformación conceptuales.</b> Sin renta actual: toda rentabilidad es una estimación posterior a la obra, sobre el precio más la obra · Alquileres del estudio de mercado de Meridiano Capital · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
 loc = [('Dirección', 'Calle Humaitá, a metros de la Av. Colón · Centro histórico de Asunción'), ('Hospital Militar', 'Referencia de demanda cercana: personal de salud, pacientes y familias'),
@@ -111,6 +111,34 @@ S.append(slide(f'''{head('Recorrido fotográfico', 'Fachada e interiores')}
 S.append(slide(f'''{head('Recorrido fotográfico', 'Planta alta y patio')}
 <div class="ph"><figure style="width:310px"><img src="img/planta_alta.jpg" style="height:412px"><figcaption>Salón de planta alta</figcaption></figure>
 <figure style="width:310px"><img src="img/patio.jpg" style="height:412px"><figcaption>Galería y patio del área posterior</figcaption></figure></div>''', num(), dark=True))
+
+# 08b FOTOS: ACCESOS Y HABITACIONES
+S.append(slide(f'''{head('Recorrido fotográfico', 'Accesos y habitaciones, estado actual')}
+<div class="ph"><figure style="width:235px"><img src="img/zip/acceso_original.jpg" style="height:412px"><figcaption>Acceso con piso calcáreo</figcaption></figure>
+<figure style="width:235px"><img src="img/zip/habitacion_historica_1.jpg" style="height:412px"><figcaption>Ambiente con balcón a la calle</figcaption></figure>
+<figure style="width:235px"><img src="img/zip/habitacion_posterior.jpg" style="height:412px"><figcaption>Habitación del área posterior</figcaption></figure>
+<figure style="width:235px"><img src="img/zip/escalera_patio.jpg" style="height:412px"><figcaption>Escalera exterior al patio</figcaption></figure></div>''', num(), dark=True))
+
+# 08c CONCEPTO: FACHADA
+IA = 'Imágenes generadas con inteligencia artificial a partir de la foto actual, a modo ilustrativo: pueden diferir en detalles, no son planos ni obra presupuestada. Propiedad ofrecida en su estado actual.'
+S.append(slide(f'''{head('Potencial del espacio · concepto', 'Tres lecturas para la fachada')}
+<div class="ph"><figure style="width:330px"><img src="img/zip/fachada_concepto_a.jpg" style="height:250px"><figcaption>A · Patrimonial moderno: marfil, grafito y madera</figcaption></figure>
+<figure style="width:330px"><img src="img/zip/fachada_concepto_b.jpg" style="height:250px"><figcaption>B · Boutique urbano: piedra cálida e iluminación rasante</figcaption></figure>
+<figure style="width:330px"><img src="img/zip/fachada_concepto_c.jpg" style="height:250px"><figcaption>C · Contemporáneo cálido: arena, madera y verde</figcaption></figure></div>
+<p class="note2" style="color:#cfd6d7;margin-top:22px">{IA}</p>''', num(), dark=True))
+
+# 08d ANTES Y DESPUÉS
+S.append(slide(f'''{head('Potencial del espacio · concepto', 'Antes y después de una puesta en valor')}
+<div class="ph"><figure style="width:500px"><img src="img/zip/fachada_original.jpg" style="height:375px"><figcaption>Estado actual (fotografía)</figcaption></figure>
+<figure style="width:500px"><img src="img/zip/fachada_residencia.jpg" style="height:375px"><figcaption>Concepto de residencia de habitaciones (ilustración)</figcaption></figure></div>
+<p class="note2" style="color:#cfd6d7;margin-top:18px">{IA}</p>''', num(), dark=True))
+
+# 08e HABITACIÓN TIPO Y PATIO
+S.append(slide(f'''{head('Potencial del espacio · concepto', 'Habitación tipo y patio compartido')}
+<div class="ph"><figure style="width:250px"><img src="img/zip/habitacion_concepto.jpg" style="height:380px"><figcaption>Habitación con baño, escritorio y guardado</figcaption></figure>
+<figure style="width:400px"><img src="img/zip/patio_estudio.jpg" style="height:380px"><figcaption>Patio de estudio bajo el árbol existente</figcaption></figure>
+<figure style="width:340px"><img src="img/zip/patio_lounge.jpg" style="height:380px"><figcaption>Patio lounge con pérgola</figcaption></figure></div>
+<p class="note2" style="color:#cfd6d7;margin-top:18px">{IA}</p>''', num(), dark=True))
 
 # 09 OPCIONES
 def card(a, rows, gold=False):
