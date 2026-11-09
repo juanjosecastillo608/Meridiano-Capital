@@ -62,27 +62,27 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 
 # 02 RESUMEN
 S.append(slide(f'''{head('Resumen del inmueble', 'Una clínica pediátrica alquilada al 100%, con margen para crecer')}
-<p class="lead">Edificio médico de tres plantas en Asunción. En planta baja y primer piso funciona la clínica, con 11 consultorios con baño propio, todos alquilados; cinco tienen instalaciones de agua y desagüe para odontología. En el segundo piso hay un departamento donde vive la propietaria, que lo seguirá usando dos años. El núcleo del ascensor está previsto, pero el ascensor no está instalado.</p>
+<p class="lead">Edificio médico de tres plantas en Asunción. En planta baja y primer piso funciona la clínica, con 11 consultorios con baño propio, todos alquilados; cinco tienen instalaciones de agua y desagüe para odontología. En el segundo piso hay un departamento que se entrega libre: se propone que el nuevo propietario lo use como vivienda durante dos años. El núcleo del ascensor está previsto, pero el ascensor no está instalado.</p>
 {kgrid([(usd(PR['pedido']), 'Precio de venta'), (usd(PR['rapida']), 'Precio de venta rápida (−16%)'), ('11 / 11', 'Consultorios alquilados, sin mobiliario'), ('Gs 2,5 M', 'Por consultorio, IVA y expensas incluidos'),
         (pct(E['E0']['bruta']) + ' · ' + pct(E['E0']['neta']), 'Hoy, a USD 500.000: bruta · neta'), (pct(ER['E0']['bruta']) + ' · ' + pct(ER['E0']['neta']), 'Hoy, a USD 420.000: bruta · neta'),
         (pct(E['E2']['neta']) + ' · ' + pct(ER['E2']['neta']), 'Neta tras la etapa 2, a cada precio'), (pct(E['E3']['neta']) + ' · ' + pct(ER['E3']['neta']), 'Neta con el 2.º piso reconvertido (ilustrativo)')], 'kgrid ks')}
 <div class="box">Cifras de referencia, no garantizadas · Rentabilidad sobre el precio más las inversiones de cada etapa, con la base de cálculo D-101 de Meridiano · Gastos informados sin desglose · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
-loc = [('Ciudad', 'Asunción'), ('Ubicación', 'Esquina con accesos y cocheras sobre dos calles (según las fotos del propietario); barrio a confirmar'),
+loc = [('Ciudad', 'Asunción'), ('Barrio', 'San Cristóbal, vecino de Villa Morra'), ('Ubicación', 'Esquina con accesos y cocheras sobre dos calles'),
        ('Accesos', 'Ingreso de pacientes y estacionamiento de clientes; cocheras propias del departamento'), ('Perfil', 'Clínica pediátrica con consultorios de distintas especialidades')]
 lh = ''.join(f'<div class="li" style="padding:10px 0 11px"><div class="eb sm">{a}</div><div class="lt" style="font-size:14.5px">{b}</div></div>' for a, b in loc)
 fimg = foto('fachada.jpg')
 izq = f'<div class="mapimg"><img src="img/fachada.jpg" style="height:290px"><div class="cap">Fachada e ingreso de la clínica</div></div>' if fimg else ''
-S.append(slide(f'''{head('Ubicación', 'Una clínica en funcionamiento en Asunción')}
+S.append(slide(f'''{head('Ubicación', 'Barrio San Cristóbal, Asunción')}
 <div class="two" style="margin-top:22px"><div>{izq}<div style="display:flex;gap:18px;align-items:center;margin-top:14px"><img src="img/qr_ubicacion.png" style="width:120px;height:120px"><div><div class="eb sm">Escanee para abrir la ubicación</div><a class="glink" style="margin-top:6px" href="{MAPS_QR}">{MAPS_QR.replace("https://", "")}</a></div></div></div>
 <div class="locr">{lh}</div></div>
-<div class="src">Enlace de ubicación enviado por el founder el 09/11/2026; no se pudo abrir desde el entorno de trabajo. Barrio, catastro y entorno de salud a confirmar.</div>''', num()))
+<div class="src">Enlace de ubicación enviado por el founder el 09/11/2026; no se pudo abrir desde el entorno de trabajo. Barrio informado por el founder; catastro a confirmar.</div>''', num()))
 
 # 04 EL EDIFICIO HOY
 lv = [(['Planta baja', 'Clínica: recepción, sala de espera, consultorios con baño propio, baño infantil con cambiador y cocina del personal'], ''),
       (['Primer piso', 'Clínica: consultorios con baño propio y sala de espera'], ''),
-      (['Segundo piso', 'Departamento de la propietaria, que lo usará dos años más; sin renta'], ''),
+      (['Segundo piso', 'Departamento que se entrega libre; propuesto como vivienda del comprador durante dos años, sin renta'], ''),
       (['Núcleo vertical', 'Escaleras; hueco y estructura previstos para un ascensor, según el propietario'], '')]
 ft = [('Consultorios', '11, todos alquilados y con baño propio; se alquilan sin mobiliario.'), ('Odontología', '5 consultorios con agua y desagües previstos para sillones odontológicos.'),
       ('Alquiler', 'Gs 2.500.000 por consultorio por mes, IVA y expensas incluidos.'), ('Gastos', 'Administración Gs 10.450.000 por mes (con secretaria) e impuesto inmobiliario Gs 45 M por año, informados.')]
@@ -90,8 +90,16 @@ S.append(slide(f'''{head('El edificio hoy', 'Clínica en dos plantas y un depart
 <div class="two d10">{table(['Nivel', 'Uso actual'], lv, 't big lv')}{crit('Ficha técnica', ft)}</div>
 <p class="note2">Distribución según el propietario y los planos aportados; superficies a verificar con planos y mensura.</p>''', num()))
 
+# 04b PLANOS Y SUPERFICIES
+sup = M['SUP']
+srows = [([f"Consultorio {c}", ('PB' if int(c) <= 5 else '1.er piso'), n(m, 1).replace(',0', '') + ' m²', ('Sí' if int(c) in M['ODONTO'] else ''), 'Gs ' + n(M['gs_m2_hoy'][c], 0)], 'b' if int(c) in M['GRANDES'] else '') for c, m in sup.items()]
+S.append(slide(f'''{head('Planos y superficies', 'Once consultorios de 12 a 21 m², con baño propio')}
+<div class="two" style="margin-top:16px;grid-template-columns:1fr 1fr !important;gap:26px"><div class="ph" style="margin-top:0;gap:10px"><figure style="width:280px"><img src="img/plano_pb.jpg" style="height:330px;object-fit:contain;background:#fff"><figcaption>Planta baja</figcaption></figure><figure style="width:280px"><img src="img/plano_pa.jpg" style="height:330px;object-fit:contain;background:#fff"><figcaption>Primer piso</figcaption></figure></div>
+<div>{table(['Consultorio', 'Planta', 'Superficie aprox.', 'Odontología', 'Alquiler actual por m²'], srows, 't xs')}<p class="note2 sm">Total: unos {n(M['SUP_TOT'], 0)} m² de consultorios. En negrita, los tres más grandes.</p></div></div>
+<div class="src">Superficies aproximadas, incluido el baño, leídas de fotos de los planos impresos (cotas a escala 1:50); a verificar con un relevamiento. Odontología: consultorios con sillón dibujado en el plano. Las marcas verdes del plano son modificaciones indicadas a mano.</div>''', num()))
+
 # 05 FOTOS (si llegaron)
-for titulo, sub, files in [('Recorrido fotográfico', 'Fachada, accesos y salas de espera', ['fachada.jpg', 'sala_espera_pb.jpg', 'sala_espera_1p.jpg']),
+for titulo, sub, files in [('Recorrido fotográfico', 'Fachada y accesos', ['fachada.jpg', 'acceso.jpg', 'cocheras.jpg']), ('Recorrido fotográfico', 'Recepción y salas de espera', ['sala_espera_pb.jpg', 'sala_ascensor.jpg', 'sala_espera_1p.jpg']),
                            ('Recorrido fotográfico', 'Consultorios', ['consultorio_a.jpg', 'consultorio_b.jpg', 'consultorio_c.jpg']),
                            ('Recorrido fotográfico', 'Departamento del segundo piso', ['depto_a.jpg', 'depto_b.jpg', 'depto_c.jpg'])]:
     ok = [f for f in files if foto(f)]
@@ -124,12 +132,12 @@ rc = [('K1', 'Consultorio de unos 20 m² con secretaria, limpieza y seguridad', 
       ('K6', 'Consultorio montado por turno', 'Asunción', 'Gs 440.000–660.000 por cada día semanal')]
 S.append(slide(f'''{head('Mercado de consultorios', 'Los alquileres actuales están en la parte baja del mercado')}
 {table(['ID', 'Aviso', 'Barrio', 'Precio por mes'], [(list(r), '') for r in rc], 't sm refs')}
-<p class="note2 sm"><b>Lectura.</b> La clínica cobra Gs 2,5 M con IVA y expensas incluidos: unos Gs 2,27 M sin IVA, con baño propio y secretaria. Un consultorio comparable con secretaria en Villa Morra pide Gs 3,5 M más IVA. Hay margen para ajustar en dos pasos, a Gs 2,75 M y Gs 3,0 M, y quedar aún por debajo de ese techo. Los 5 consultorios para odontología podrían tener un canon diferencial.</p>
-<div class="src">Estudio de mercado de Meridiano Capital del 09/11/2026 (ASU-CONSULTORIOS-2026-11-09) en InfoCasas y NIP. Precios pedidos, no contratos; barrio del inmueble a confirmar para ajustar la comparación.</div>''', num()))
+<p class="note2 sm"><b>Lectura por m².</b> Los consultorios de la clínica miden entre 12 y 21 m² con baño (lámina de planos). Los chicos ya cobran unos Gs 180.000–200.000 por m², en línea con Villa Morra (K1: Gs 192.500 por m² con IVA). Los grandes (6, 7 y 8, de 18 a 21 m²) cobran Gs 121.000–135.000 por m²: ahí está el margen. Propuesta: alquiler según tamaño, Gs {n(M['TIER']['grande'] / 1e6, 1)} M los grandes y Gs {n(M['TIER']['resto'] / 1e6, 1)} M el resto ({gsm(M['TIER_TOT'])} por mes en total).</p>
+<div class="src">Estudio de mercado de Meridiano Capital del 09/11/2026 (ASU-CONSULTORIOS-2026-11-09) en InfoCasas y NIP. Precios pedidos, no contratos. Villa Morra es el barrio vecino de San Cristóbal.</div>''', num()))
 
 # 08 PLAN GRADUAL
 steps = [('Etapa 1 · 0 a 12 meses', f"Renovar los 11 contratos con un ajuste a {gsm(M['RENT1'])} (+10%); auditar los gastos con la planilla de desglose (objetivo −15%: {gsm(M['ADMIN1'])} por mes); pintura, iluminación LED, señalética pediátrica y salas de espera ({gsm(M['MEJ_GS'])}); instalar el ascensor de 3 paradas."),
-         ('Etapa 2 · 12 a 24 meses', f"Con ascensor y mejoras, segundo ajuste a {gsm(M['RENT2'])} por consultorio. Canon diferencial para los consultorios odontológicos. Medidores individuales de energía si la luz de los consultorios está dentro de las expensas."),
+         ('Etapa 2 · 12 a 24 meses', f"Con ascensor y mejoras, alquiler según tamaño: {gsm(M['TIER']['grande'])} los tres grandes y {gsm(M['TIER']['resto'])} el resto (promedio {gsm(M['RENT2'])}). Canon diferencial para los consultorios odontológicos. Medidores individuales de energía si la luz de los consultorios está dentro de las expensas."),
          ('Etapa 3 · desde el mes 25', f"Al liberarse el departamento, reconvertirlo en consultorios con baño propio. La cantidad se define con el plano: entre 3 y 5 en los escenarios; se toman {M['N_NEW_BASE']} a modo ilustrativo, con USD {n(M['CAPEX_NEW_USD'])} por consultorio.")]
 sh = ''.join(f'<div class="st" style="grid-column:1/-1"><div class="sth"><span class="pn">0{i+1}</span><b>{a}</b></div><p>{b}</p></div>' for i, (a, b) in enumerate(steps))
 S.append(slide(f'''{head('Plan de valorización', 'Tres etapas para aumentar la renta y bajar los costos')}<div class="steps">{sh}</div>
@@ -165,7 +173,7 @@ rv = M['reconv']
 rrows = [([f'{k} consultorios', usd(int(k) * M['CAPEX_NEW_USD']), gsm(rv['pedido'][k]['fact_mes']), pct(rv['pedido'][k]['neta']), pct(rv['rapida'][k]['neta'])], 'b' if int(k) == M['N_NEW_BASE'] else '') for k in rv['pedido']]
 S.append(slide(f'''{head('Reconversión del departamento', 'Nuevos consultorios en el segundo piso, desde el mes 25')}
 <div class="two cx2"><div>{table(['Escenario', 'Inversión', 'Facturación mensual', 'Neta · USD 500.000', 'Neta · USD 420.000'], rrows, 't big')}</div>
-{crit('Condiciones', [('Plano', 'La cantidad de consultorios depende de la superficie, los baños y la circulación del segundo piso: se define con un anteproyecto.'), ('Ascensor', 'Necesita el de 3 paradas para el acceso de pacientes.'), ('Habilitación', 'Ampliación de la habilitación sanitaria y municipal.'), ('Mientras tanto', 'Dos años de uso de la propietaria: se puede negociar que pague un alquiler o que lo compense en el precio.')])}</div>
+{crit('Condiciones', [('Plano', 'La cantidad de consultorios depende de la superficie, los baños y la circulación del segundo piso: se define con un anteproyecto.'), ('Ascensor', 'Necesita el de 3 paradas para el acceso de pacientes.'), ('Habilitación', 'Ampliación de la habilitación sanitaria y municipal.'), ('Mientras tanto', 'Dos años como vivienda del comprador: no se computa renta en ese período. Si prefiere alquilarlo o reconvertirlo antes, la renta sube antes.')])}</div>
 <div class="src">Inversión por consultorio: unos 25 m² a USD 450/m² (tabla de Meridiano) más baño, con 10% de imprevistos. Alquiler de los nuevos: {gsm(M['RENT2'])}. Supuestos a validar.</div>''', num()))
 
 # 13 TIR
@@ -178,7 +186,7 @@ S.append(slide(f'''{head('Plusvalía y retorno total', 'TIR estimada a cinco añ
 
 # 14 PRECIO
 info = [('Activo', 'Edificio médico de tres plantas: clínica en planta baja y primer piso con 11 consultorios alquilados, y departamento en el segundo piso.'),
-        ('Ocupación', '11 consultorios alquilados; el departamento seguirá en uso de la propietaria por dos años.'),
+        ('Ocupación', '11 consultorios alquilados; el departamento se entrega libre, para vivienda del comprador o para reconvertir.'),
         ('Venta rápida', f"{usd(PR['rapida'])} (−16%): escenario de cierre ágil."),
         ('Alquiler requerido', f"Para una neta de 8% en la etapa 2: unos {gsm(M['req8']['pedido'])} por consultorio a USD 500.000 y {gsm(M['req8']['rapida'])} a USD 420.000.")]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)

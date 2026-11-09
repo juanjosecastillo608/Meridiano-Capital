@@ -76,7 +76,7 @@ dialog{{border:0;padding:10px;background:#0b1d22;max-width:96vw}}dialog img{{max
 <nav aria-label="Secciones"><a href="#hoy">Hoy</a><a href="#mercado">Mercado</a><a href="#plan">Plan</a><a href="#ascensor">Ascensor</a><a href="#rentabilidad">Rentabilidad</a><a href="#simulador">Simulador</a><a href="#galeria">Fotos</a></nav></header>
 <main>
 <section class="hero"><div class="eb">Edificio médico en renta · Asunción</div><h1>Clínica<br>Magnificat</h1>
-<p>Clínica pediátrica en funcionamiento: 11 consultorios con baño propio, todos alquilados, cinco preparados para odontología, y un departamento en el segundo piso para reconvertir a partir del mes 25.</p>
+<p>Clínica pediátrica en funcionamiento: 11 consultorios con baño propio, todos alquilados, cinco preparados para odontología, y un departamento en el segundo piso que se entrega libre: vivienda del comprador por dos años y luego reconversión en consultorios.</p>
 <div class="stats"><div class="stat"><strong>{usd(M['PRICES']['pedido'])}</strong><small>Precio de venta</small></div><div class="stat"><strong>{usd(M['PRICES']['rapida'])}</strong><small>Venta rápida (−16%)</small></div>
 <div class="stat"><strong>{gsm(E['E0']['fact_mes'])}</strong><small>Facturación mensual, IVA y expensas incluidos</small></div><div class="stat"><strong>11 / 11</strong><small>Consultorios alquilados, sin mobiliario</small></div></div></section>
 
@@ -90,7 +90,7 @@ dialog{{border:0;padding:10px;background:#0b1d22;max-width:96vw}}dialog img{{max
 <div class="tw"><table><thead><tr><th>Aviso</th><th>Barrio</th><th>Precio por mes</th></tr></thead><tbody>
 <tr><td>Consultorio de unos 20 m² con secretaria, limpieza y seguridad</td><td>Villa Morra</td><td>Gs 3.500.000 + IVA</td></tr><tr><td>Consultorio de 16 m², apto médicos u odontólogos</td><td>Villa Morra</td><td>Gs 2.500.000 + gastos comunes</td></tr>
 <tr><td>Consultorio en clínica con secretaria, limpieza e internet</td><td>Bernardino Caballero</td><td>Gs 2.150.000</td></tr><tr><td>Consultorio en edificio médico profesional</td><td>San Roque</td><td>Gs 1.750.000</td></tr></tbody></table></div>
-<p>La clínica cobra Gs 2,5 M con IVA y expensas incluidos (unos Gs 2,27 M sin IVA), con baño propio y secretaria. Estudio de Meridiano del 09/11/2026; precios pedidos, no contratos.</p></section>
+<p>Por m², los consultorios chicos (12–14 m²) ya cobran unos Gs 180.000–200.000, en línea con Villa Morra; los tres grandes (18–21 m²) cobran Gs 121.000–135.000: ahí está el margen. Propuesta: alquiler según tamaño ({gsm(M['TIER']['grande'])} los grandes y {gsm(M['TIER']['resto'])} el resto). Estudio de Meridiano del 09/11/2026; precios pedidos, no contratos.</p></section>
 
 <section id="plan"><div class="eb">03 · Plan de valorización</div><h2>Tres etapas para aumentar la renta y bajar los costos</h2>
 <div class="steps"><div><h3>Etapa 1 · 0 a 12 meses</h3><p>Renovación de contratos con ajuste a {gsm(M['RENT1'])}; auditoría de gastos con la planilla de desglose (objetivo −15%); mejoras de áreas comunes; ascensor de 3 paradas.</p></div>
@@ -122,7 +122,7 @@ dialog{{border:0;padding:10px;background:#0b1d22;max-width:96vw}}dialog img{{max
 <div class="filters noprint" role="group" aria-label="Filtrar por ambiente"><button data-v="todos" aria-pressed="true">Todos</button><button data-v="exterior" aria-pressed="false">Exterior</button><button data-v="comunes" aria-pressed="false">Áreas comunes</button><button data-v="consultorios" aria-pressed="false">Consultorios</button><button data-v="departamento" aria-pressed="false">Departamento</button></div>
 <div class="gallery">{gal}</div></section>
 
-<section id="ubicacion"><div class="eb">08 · Ubicación</div><h2>Asunción</h2><div class="loc"><img src="assets/qr_ubicacion.png" alt="Código QR de la ubicación"><div><p><a href="{MAPS}">{MAPS.replace("https://", "")}</a></p><p>Barrio y entorno de salud a confirmar.</p></div></div></section>
+<section id="ubicacion"><div class="eb">08 · Ubicación</div><h2>Barrio San Cristóbal, Asunción</h2><div class="loc"><img src="assets/qr_ubicacion.png" alt="Código QR de la ubicación"><div><p><a href="{MAPS}">{MAPS.replace("https://", "")}</a></p><p>Barrio San Cristóbal, vecino de Villa Morra. Catastro a confirmar.</p></div></div></section>
 
 <section class="close"><div class="eb">Contacto</div><h2>Coordinemos su visita</h2><p>Lic. Juan José Castillo · Broker Inmobiliario | Meridiano Capital</p><p>{contacto_linea()}</p><button class="btn noprint" type="button" onclick="window.print()">Imprimir o guardar en PDF</button></section>
 </main><footer>{AVISO} Las tareas legales, notariales, contables y de obra las realizan el abogado, el escribano, el contador y el arquitecto; Meridiano Capital coordina y acompaña.</footer>

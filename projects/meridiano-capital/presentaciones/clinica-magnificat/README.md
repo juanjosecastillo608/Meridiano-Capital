@@ -1,13 +1,13 @@
 # Clínica Magnificat (Asunción) — presentación, modelo y planilla para el propietario v1
 
-**El inmueble:** clínica pediátrica en funcionamiento en Asunción. El barrio está por confirmar; según las fotos, es una esquina con cocheras sobre dos calles.
+**El inmueble:** clínica pediátrica en funcionamiento en Asunción. Barrio San Cristóbal (founder, 09/11/2026); esquina con cocheras sobre dos calles.
 - **Precio de venta:** USD 500.000. **Venta rápida:** USD 420.000 (founder, 09/11/2026).
 - **Planta baja y primer piso:** 11 consultorios con baño propio, todos alquilados, sin mobiliario. Cinco tienen instalaciones para odontología.
 - **Alquiler:** Gs 2.500.000 por consultorio y por mes, con IVA y expensas incluidos.
 - **Gastos informados:**
   - Administración: Gs 10.450.000 por mes, con secretaria y sin desglose.
   - Impuesto inmobiliario: Gs 45 M por año.
-- **Segundo piso:** departamento de la propietaria, que lo usa dos años más; no genera renta.
+- **Segundo piso:** departamento que se entrega libre; se propone como vivienda del comprador durante dos años (sin renta) y luego su reconversión en consultorios.
 - **Ascensor:** no está instalado. El hueco y la estructura están previstos, según el propietario.
 - **Ubicación (QR):** https://maps.app.goo.gl/kKoH14evyzGWSrUP9, verificado al decodificarlo. El enlace no se pudo abrir desde el entorno.
 
@@ -51,8 +51,15 @@ El `index.html`, el Excel y el prompt del paquete, y los dos presupuestos de asc
 
 ## Pendiente
 1. ZIP de fotos y planos: se incorporan como láminas y en la galería web.
-2. Barrio del inmueble, para ajustar la comparación de mercado.
 3. Planilla de desglose completada por el propietario, boleta del impuesto, contratos y cobranza.
 4. Estado de los contratos: según el paquete, están vencidos hace cuatro meses. Revisión con el abogado.
 5. Cotizaciones actualizadas del ascensor y factibilidad técnica.
 6. Plano y superficie del segundo piso, para definir cuántos consultorios entran.
+
+## Planos y superficies (09/11/2026)
+- Superficies aproximadas de cada consultorio, con baño, leídas de las fotos de los planos impresos (escala 1:50): entre 12,3 y 20,7 m², unos 165 m² en total.
+- Odontología: consultorios 1, 2, 3, 7 y 11, que tienen el sillón dibujado en el plano.
+- **Hallazgo:** por m², los consultorios chicos ya cobran unos Gs 180.000–200.000, en línea con Villa Morra. Los grandes (6, 7 y 8) cobran Gs 121.000–135.000. La etapa 2 se plantea con alquiler según tamaño: Gs 3,5 M los grandes y Gs 2,8 M el resto, unos Gs 32,9 M por mes.
+
+## Registro
+- 09/11/2026: ZIP de fotos 2, 3 y 5 incorporados (salas de espera, consultorios y departamento); faltan los ZIP 1 y 4 (fachada y accesos). Las fotos de cocheras tienen patentes visibles: se difuminan si se usan.

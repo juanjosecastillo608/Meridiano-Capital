@@ -27,6 +27,12 @@ N_NEW_BASE = 4
 CAPEX_NEW_USD = 12_000                                    # por consultorio nuevo: ~25 m² a USD 450/m² + baño, +10% (supuesto)
 ADMIN_NEW = 0.10                                          # +10% de administración al sumar consultorios (supuesto)
 
+# Superficies aproximadas por consultorio (m², incluido el baño), leídas de las fotos de los planos (09/11/2026); a verificar con relevamiento
+SUP = {1: 12.3, 2: 12.5, 3: 12.5, 4: 13.6, 5: 13.5, 6: 20.7, 7: 20.2, 8: 18.5, 9: 13.7, 10: 13.9, 11: 13.9}
+ODONTO = (1, 2, 3, 7, 11)                                  # sillón odontológico dibujado en el plano (5, coincide con el dato)
+GRANDES = (6, 7, 8)                                        # ~18–21 m²
+# Cómo llegar a la etapa 2 por tamaño (supuesto): grandes Gs 3,5 M y el resto Gs 2,8 M ≈ Gs 33 M por mes
+TIER = {'grande': 3_500_000, 'resto': 2_800_000}
 def etapa(n, rent, admin, asc_mant=0, obra_usd=0.0, P=500_000, n_new=0):
     G = (n + n_new) * rent * 12 / TC
     adm = (admin * (1 + ADMIN_NEW * (n_new > 0)) + asc_mant) * 12 / TC
@@ -96,6 +102,9 @@ for p, P in PRICES.items():
         r_ = (lo + hi) / 2
         lo, hi = (r_, hi) if etapa(N, r_, ADMIN1, ASC_MANT, obra_usd=OBRA1, P=P)['neta'] < 0.08 else (lo, r_)
     out['req8'][p] = r_
+out['SUP'] = SUP; out['SUP_TOT'] = sum(SUP.values()); out['ODONTO'] = ODONTO; out['GRANDES'] = GRANDES; out['TIER'] = TIER
+out['TIER_TOT'] = sum(TIER['grande'] if c in GRANDES else TIER['resto'] for c in SUP)
+out['gs_m2_hoy'] = {c: RENT0 / m for c, m in SUP.items()}
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1, default=float)
 
 if __name__ == '__main__':
