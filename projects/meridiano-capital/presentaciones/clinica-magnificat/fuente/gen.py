@@ -101,9 +101,12 @@ S.append(slide(f'''{head('Planos y superficies', 'Once consultorios de 12 a 21 m
 # 05 FOTOS (si llegaron)
 for titulo, sub, files in [('Recorrido fotográfico', 'Fachada y accesos', ['acceso.jpg', 'lateral.jpg', 'cocheras.jpg']), ('Recorrido fotográfico', 'Recepción y salas de espera', ['sala_espera_pb.jpg', 'sala_ascensor.jpg', 'sala_espera_1p.jpg']),
                            ('Recorrido fotográfico', 'Circulaciones', ['pasillo_pb.jpg', 'pasillo_1p.jpg', 'escalera.jpg']),
+                           ('Recorrido fotográfico', 'Cocheras y patio de servicio', ['cochera_cliente.jpg', 'cochera_fondo.jpg', 'patio_servicio.jpg']),
                            ('Recorrido fotográfico', 'Consultorios', ['consultorio_a.jpg', 'consultorio_b.jpg', 'consultorio_c.jpg']),
                            ('Recorrido fotográfico', 'Baños y circulaciones', ['banio_a.jpg', 'banio_b.jpg', 'banio_c.jpg']),
-                           ('Recorrido fotográfico', 'Departamento del segundo piso', ['depto_a.jpg', 'depto_b.jpg', 'depto_c.jpg'])]:
+                           ('Recorrido fotográfico', 'Baños propios de los consultorios', ['banio_d.jpg', 'banio_e.jpg']),
+                           ('Recorrido fotográfico', 'Departamento del segundo piso', ['depto_a.jpg', 'depto_b.jpg', 'depto_c.jpg']),
+                           ('Recorrido fotográfico', 'Departamento del segundo piso: dormitorios y baño', ['depto_d.jpg', 'depto_f.jpg', 'depto_e.jpg'])]:
     ok = [f for f in files if foto(f)]
     if ok:
         caps = json.load(open(os.path.join(B, 'img', 'leyendas.json'))) if os.path.exists(os.path.join(B, 'img', 'leyendas.json')) else {}
@@ -177,6 +180,23 @@ S.append(slide(f'''{head('Reconversión del departamento', 'Nuevos consultorios 
 <div class="two cx2"><div>{table(['Escenario', 'Inversión', 'Facturación mensual', 'Neta · USD 500.000', 'Neta · USD 420.000'], rrows, 't big')}</div>
 {crit('Condiciones', [('Plano', 'La cantidad de consultorios depende de la superficie, los baños y la circulación del segundo piso: se define con un anteproyecto.'), ('Ascensor', 'Necesita el de 3 paradas para el acceso de pacientes.'), ('Habilitación', 'Ampliación de la habilitación sanitaria y municipal.'), ('Mientras tanto', 'Dos años como vivienda del comprador: no se computa renta en ese período. Si prefiere alquilarlo o reconvertirlo antes, la renta sube antes.')])}</div>
 <div class="src">Inversión por consultorio: unos 25 m² a USD 450/m² (tabla de Meridiano) más baño, con 10% de imprevistos. Alquiler de los nuevos: {gsm(M['RENT2'])}. Supuestos a validar.</div>''', num()))
+
+# 12b RENTABILIDAD FUTURA (2.º piso reconvertido)
+E2p, E3p, E2r, E3r = E['E2'], E['E3'], ER['E2'], ER['E3']
+d_net = E3p['net'] - E2p['net']; d_inv = E3p['inv'] - E2p['inv']; d_G = E3p['G'] - E2p['G']
+r3, r5 = rv['pedido']['3'], rv['pedido']['5']; q3, q5 = rv['rapida']['3'], rv['rapida']['5']
+frows = [(['Consultorios en renta', '11', '11', str(E3p.get('n', 11 + M['N_NEW_BASE']))], ''),
+         (['Facturación mensual (IVA incluido)', gsm(E['E0']['fact_mes']), gsm(E2p['fact_mes']), gsm(E3p['fact_mes'])], ''),
+         (['Ingreso bruto anual', usd(E['E0']['G']), usd(E2p['G']), usd(E3p['G'])], ''),
+         (['Neto anual (base D-101)', usd(E['E0']['net']), usd(E2p['net']), usd(E3p['net'])], 'b'),
+         (['Bruta · neta, compra a USD 500.000', pct(E['E0']['bruta']) + ' · ' + pct(E['E0']['neta']), pct(E2p['bruta']) + ' · ' + pct(E2p['neta']), pct(E3p['bruta']) + ' · ' + pct(E3p['neta'])], ''),
+         (['Bruta · neta, compra a USD 420.000', pct(ER['E0']['bruta']) + ' · ' + pct(ER['E0']['neta']), pct(E2r['bruta']) + ' · ' + pct(E2r['neta']), pct(E3r['bruta']) + ' · ' + pct(E3r['neta'])], 'tot')]
+S.append(slide(f'''{head('Rentabilidad futura', 'El edificio con el segundo piso convertido en consultorios')}
+<div class="two d15">{table(['', 'Hoy', 'Tras la etapa 2', 'Con el 2.º piso reconvertido'], frows, 't big')}
+<div class="dbox"><div class="bs">Lo que agrega la reconversión</div><div class="bigv bv2">+{usd(d_net)}</div><div class="bs">de neto por año, con {M['N_NEW_BASE']} consultorios nuevos</div>
+<p>Inversión de la reconversión: {usd(d_inv)}. Rinde {pct(d_net / d_inv, 1)} neto por año sobre lo invertido (se recupera en unos {n(d_inv / d_net, 1)} años), porque usa la estructura, el ascensor y la administración que ya existen.</p>
+<p class="gold">Rango según el plano: con 3 consultorios, neta de {pct(r3['neta'])} · {pct(q3['neta'])}; con 5, de {pct(r5['neta'])} · {pct(q5['neta'])} (a USD 500.000 · 420.000).</p></div></div>
+<div class="src">Año estabilizado de cada etapa; el denominador es el precio más las inversiones acumuladas (mejoras, ascensor de 3 paradas y reconversión). La renta del 2.º piso empieza en el mes 25, cuando termina el uso como vivienda del comprador. Los consultorios nuevos se alquilan a {gsm(M['RENT2'])}. El ascensor no se carga a la reconversión porque ya se invierte en la etapa 1. No incluye la renta alternativa que daría el departamento como vivienda. Cifras de referencia, no garantizadas; supuestos a validar con el anteproyecto.</div>''', num()))
 
 # 13 TIR
 prj = M['proj']

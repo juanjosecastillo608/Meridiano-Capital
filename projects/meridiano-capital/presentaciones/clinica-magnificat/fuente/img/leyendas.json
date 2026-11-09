@@ -5,8 +5,8 @@
  "consultorio_a.jpg": "Consultorio 1, preparado para odontología (equipamiento del profesional, no incluido)",
  "consultorio_b.jpg": "Consultorio 7, de los más amplios (mobiliario del profesional)",
  "consultorio_c.jpg": "Consultorio 9 vacío: se alquila sin mobiliario",
- "depto_a.jpg": "Departamento: sala",
- "depto_b.jpg": "Departamento: cocina",
+ "depto_a.jpg": "Departamento: living comedor, con salida a la galería",
+ "depto_b.jpg": "Departamento: cocina con barra",
  "depto_c.jpg": "Departamento: dormitorio",
  "banio_a.jpg": "Baño propio de un consultorio (consultorio 9)",
  "banio_b.jpg": "Baño infantil de planta baja, con cambiador",
@@ -17,5 +17,13 @@
  "escalera.jpg": "Escalera al primer piso desde la sala de espera: hoy es el único acceso",
  "pasillo_pb.jpg": "Pasillo de consultorios de planta baja",
  "pasillo_1p.jpg": "Pasillo de consultorios del primer piso",
- "lateral.jpg": "Lateral del edificio, con estacionamiento sobre la calle"
+ "lateral.jpg": "Lateral del edificio, con estacionamiento sobre la calle",
+ "cochera_cliente.jpg": "Estacionamiento de clientes sobre el frente, visto desde el primer piso",
+ "cochera_fondo.jpg": "Cochera interior del fondo, con portón propio",
+ "patio_servicio.jpg": "Patio del fondo: salida de servicio de planta baja y equipos de aire acondicionado",
+ "banio_d.jpg": "Baño propio de un consultorio",
+ "banio_e.jpg": "Baño propio de otro consultorio",
+ "depto_d.jpg": "Departamento: living y acceso a los dormitorios",
+ "depto_e.jpg": "Departamento: baño con mampara",
+ "depto_f.jpg": "Departamento: dormitorio principal"
 }

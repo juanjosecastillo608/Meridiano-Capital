@@ -12,7 +12,7 @@
 - **Ubicación (QR):** https://maps.app.goo.gl/kKoH14evyzGWSrUP9, verificado al decodificarlo. El enlace no se pudo abrir desde el entorno.
 
 ## Entregables
-- `Clinica_Magnificat_Meridiano_Capital_v1.pdf`: presentación para el inversor (23 láminas, con 6 de recorrido fotográfico). Las láminas de fotos se arman solas a partir de `fuente/img/` y su `leyendas.json`.
+- `Clinica_Magnificat_Meridiano_Capital_v1.pdf`: presentación para el inversor (27 láminas, con 9 de recorrido fotográfico y una de rentabilidad futura). Las láminas de fotos se arman solas a partir de `fuente/img/` y su `leyendas.json`.
 - `web/index.html`: versión web hecha sobre el `index.html` del paquete. Tiene aviso, simulador de alquileres con la base D-101, filtros de galería y estilos de impresión. Se genera con `fuente/build_web.py`.
 - `entregables/Modelo_Inversion_Clinica_Magnificat.xlsx`: modelo con fórmulas vivas por etapa y por precio, con flujo y TIR. Está conciliado al decimal con `model.py`.
 - `entregables/Planilla_Desglose_Gastos_Clinica_Magnificat.xlsx`: **para enviar al propietario**. Pide el desglose de los Gs 10,45 M con factura sí/no, la boleta del impuesto inmobiliario, los datos de los consultorios (sin nombres) y los documentos. No contiene análisis de Meridiano.
@@ -64,3 +64,4 @@ El `index.html`, el Excel y el prompt del paquete, y los dos presupuestos de asc
 ## Registro
 - 09/11/2026: ZIP de fotos 2, 3 y 5 incorporados (salas de espera, consultorios y departamento); faltan los ZIP 1 y 4 (fachada y accesos). Las fotos de cocheras tienen patentes visibles: se difuminan si se usan.
 - 09/11/2026: ZIP 1, 4 y 6 incorporados. La fachada pasa a la portada y a la lámina de ubicación; nuevas láminas "Fachada y accesos" (frente en esquina, lateral y estacionamiento de clientes) y "Circulaciones" (pasillos de PB y del primer piso, y la escalera, hoy único acceso a la planta alta). Privacidad: se difuminaron las patentes de los autos (frente y lateral), el cartel de profesionales de la escalera y las placas con nombres de los médicos en las puertas del pasillo de PB.
+- 09/11/2026 (tarde): nueva lámina "Rentabilidad futura" con el 2.º piso reconvertido. Compara hoy, la etapa 2 y la etapa 3 a los dos precios. Con 4 consultorios nuevos, la reconversión agrega USD 15.602 netos por año sobre una inversión de USD 48.000: 32,5% neto sobre lo invertido, sin cargarle el ascensor de la etapa 1. Nuevas láminas de fotos: cocheras y patio de servicio, baños propios de los consultorios y una segunda lámina del departamento (living, dormitorio principal y baño). Se difuminaron las patentes de los dos autos de las cocheras.
