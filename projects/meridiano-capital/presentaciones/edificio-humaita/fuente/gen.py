@@ -52,7 +52,7 @@ num()
 S.append(f'''<section class="s cover"><div class="cl">{logo()}
 <div class="eb g" style="margin-top:96px">Casona del centro histórico para poner en renta · en venta</div>
 <h1>Edificio<br>Humaitá</h1>
-<div class="addr">Calle Humaitá, a metros de la Av. Colón · Centro histórico de Asunción</div>
+<div class="addr">Humaitá 978, entre Colón y Montevideo · Centro de Asunción</div>
 <div class="cvk"><div><div class="v" style="font-size:30px;white-space:nowrap">{usd(P)}</div><div class="l">Precio de venta · {gs(PGS)} al tipo de cambio vigente</div></div>
 <div><div class="v">541 m²</div><div class="l">De terreno, 12,30 × 43 m</div></div></div>
 <div class="cf">Hoy desocupado · Necesita remodelación · Tres opciones de renta · {tc_corto()}</div></div>
@@ -67,8 +67,8 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Una casona del centro con 16 h
 <div class="box"><b>Propiedad ofrecida en su estado actual. Imágenes de transformación conceptuales.</b> Sin renta actual: toda rentabilidad es una estimación posterior a la obra, sobre el precio más la obra · Alquileres del estudio de mercado de Meridiano Capital · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
-loc = [('Dirección', 'Calle Humaitá, a metros de la Av. Colón · Centro histórico de Asunción'), ('Hospital Militar', 'Referencia de demanda cercana: personal de salud, pacientes y familias'),
-       ('Universidad Autónoma de Asunción', 'Referencia de demanda cercana: estudiantes y docentes'), ('Entorno', 'Centro histórico: oficinas públicas, comercio, bancos y atractivos turísticos')]
+loc = [('Dirección', 'Humaitá 978, entre Colón y Montevideo · Asunción (−25,28227, −57,64337)'), ('Hospital Militar', 'Referencia de demanda cercana: personal de salud, pacientes y familias'),
+       ('Universidades', 'Universidad Autónoma del Paraguay y su clínica, sobre Colón a pocas cuadras según el mapa; Universidad Autónoma de Asunción como referencia del propietario'), ('Entorno', 'Centro histórico: oficinas públicas, comercio, bancos y atractivos turísticos')]
 lh = ''.join(f'<div class="li" style="padding:10px 0 11px"><div class="eb sm">{a}</div><div class="lt" style="font-size:14.5px">{b}</div></div>' for a, b in loc)
 S.append(slide(f'''{head('Ubicación', 'Humaitá y Av. Colón, en el centro histórico')}
 <div class="two" style="margin-top:22px"><div><div class="mapimg"><img src="img/fachada.jpg" style="height:290px;object-position:50% 45%"><div class="cap">Fachada sobre la calle Humaitá</div></div>

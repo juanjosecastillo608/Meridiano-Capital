@@ -144,8 +144,8 @@ section{{padding:18mm 12mm;page-break-after:always;border:0}}.hero{{min-height:a
 
 <section id="ubicacion"><div class="eb">02 · Ubicación</div><h2>Humaitá, a metros de la Av. Colón</h2>
 <div class="loc"><img src="assets/qr_ubicacion.png" alt="Código QR de la ubicación en Google Maps"><div>
-<p><b>Ubicación del inmueble:</b> <a href="{MAPS}">{MAPS.replace("https://", "")}</a></p>
-<p><b>Referencias de demanda</b> informadas por el propietario: Hospital Militar (<a href="{MAPS_HM}">mapa</a>) y Universidad Autónoma de Asunción (<a href="{MAPS_UAA}">mapa</a>).</p>
+<p><b>Dirección:</b> Humaitá 978, entre Colón y Montevideo, Asunción (−25,28227, −57,64337).</p><p><b>Ubicación del inmueble:</b> <a href="{MAPS}">{MAPS.replace("https://", "")}</a></p>
+<p><b>Referencias de demanda</b> informadas por el propietario: Hospital Militar Central (<a href="{MAPS_HM}">mapa</a>) y Universidad Autónoma de Asunción (<a href="{MAPS_UAA}">mapa</a>). En el mapa también aparece, a pocas cuadras sobre Colón, la Universidad Autónoma del Paraguay con su clínica.</p>
 <p class="small">Las distancias a pie a estas instituciones todavía no se midieron y deben verificarse.</p></div></div></section>
 
 <section id="galeria"><div class="eb">03 · Galería</div><h2>El edificio hoy y su potencial</h2>
