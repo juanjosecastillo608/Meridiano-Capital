@@ -4,7 +4,7 @@
 - Casona de 2 plantas sobre la calle Humaitá, a metros de la Av. Colón.
 - 541 m² de terreno (12,30 × 43 m).
 - Distribución: edificio principal con 3 ambientes y un salón con baños sexados, y un área posterior con 13 habitaciones con baño alrededor de un patio.
-- **Precio de venta: Gs 950.000.000**, unos USD 146.597 al TC del BCP del 06/11/2026.
+- **Precio de venta: USD 160.000**, fijado por el founder el 09/11/2026. Antes se ofrecía en Gs 950.000.000.
 - Está desocupada y necesita remodelación.
 - **Demanda cercana**, según el founder: el Hospital Militar y la Universidad Autónoma de Asunción.
 
@@ -42,7 +42,7 @@
 - Ningún enlace se pudo abrir desde este entorno: las distancias quedan por medir.
 
 **Paquete del founder (09/11/2026): diferencias con este proyecto**
-- **Precio:** el paquete indica USD 160.000; el founder había informado Gs 950.000.000 (unos USD 146.600 al TC vigente). Se mantiene Gs 950 M hasta que el founder confirme.
+- **Precio:** el paquete indicaba USD 160.000 y el founder lo confirmó el 09/11/2026. Reemplaza a los Gs 950 M anteriores.
 - **Nombre:** se usa "Humaitá", el nombre de la calle. El paquete dice "Humitá".
 - **Métricas:** el paquete pide no publicar ROI neto. Se mantiene el criterio de Meridiano: neta estimada con hipótesis explícitas y aviso de "no garantizada".
 - **Imágenes:** los renders del paquete (`fuente/img/zip/`) se rotulan como "Concepto IA" en el deck y en la web.
@@ -52,20 +52,20 @@
 - La planilla original del propietario: se reprodujeron sus ítems y precios en el modelo nuevo.
 - La captura de la tabla de unidades: su columna "Estado" incluye un nombre propio, y el edificio está desocupado.
 
-## Resultados (precio Gs 950 M; TC Gs 6.480,35 del 06/11/2026)
+## Resultados (precio USD 160.000; alquileres al TC Gs 6.480,35 del 06/11/2026)
 | | A · Departamentos y salones | B · 20 habitaciones mensuales | C · Hostel |
 |---|---|---|---|
 | Obra total | USD 118.168 | USD 202.309 | USD 218.809 |
 | Ingreso bruto mensual | Gs 15,6 M | Gs 28,0 M | Gs 47,7 M (USD 22 × 55%) |
-| Bruta | 10,91% | 14,86% | 24,17% |
-| Neta final | 5,25% | **6,82%** | 3,62% |
-| TIR base a 5 años | 7,1% | **7,7%** | 5,3% |
+| Bruta | 10,38% | 14,31% | 23,32% |
+| Neta final | 5,00% | **6,57%** | 3,49% |
+| TIR base a 5 años | 6,9% | **7,5%** | 5,2% |
 
 **Lectura:**
 - **B es la mejor opción**, con la mejor neta y la mejor TIR.
 - **La bruta del hostel (C) engaña:** las plataformas, la limpieza y el personal se llevan casi todo. Para igualar a B necesita alrededor de 69% de ocupación sostenida.
 - **A es la más simple**, con la obra más liviana.
-- **Precio máximo para un 10% bruto con A:** unos USD 170.706 (Gs 1.106 M). Con B, el precio actual ya rinde más del 10% bruto.
+- **Precio máximo para un 10% bruto con A:** unos USD 170.706. A USD 160.000, A y B ya superan el 10% bruto.
 
 ## Supuestos principales (a validar)
 - **Superficie:**
@@ -79,7 +79,7 @@
 - **IVA:** 5% en vivienda y habitaciones, 10% en salones y hostel (D-045). IRE de 10%.
 
 ## Correcciones a la planilla original (detalle en la hoja Observaciones)
-1. **Precio:** la planilla usa USD 175.000 en lugar de Gs 950 M, que son unos USD 146.600.
+1. **Precio:** la planilla usa USD 175.000; el precio vigente es USD 160.000.
 2. **Tipo de cambio:** estaba fijo en Gs 6.000.
 3. **Superficie y habitaciones:** no coinciden con el aviso.
 4. **Rentabilidad circular:** fija el alquiler para obtener 14% y después "verifica" ese mismo 14%. El alquiler resultante, unos Gs 2,1 M todo incluido, está por encima del mercado del centro.
@@ -94,3 +94,9 @@
 - Medir las distancias al Hospital Militar y a la UAA.
 - Sondear la demanda de habitaciones: residencias estudiantiles, convenios con la UAA y alojamiento de familias de pacientes.
 - Para C: habilitación turística y operador.
+
+## Registro de cambios
+- **2026-11-09:**
+  - Precio fijado en USD 160.000; regenerados el deck, la web y el Excel.
+  - Revisión de la brecha bruta → neta registrada como P-009, pendiente de aprobación (`knowledge-base/investment/methodologies/revision-bruta-neta-2026-11-09.md`).
+  - Las cifras del deck **no** aplican todavía esa propuesta.

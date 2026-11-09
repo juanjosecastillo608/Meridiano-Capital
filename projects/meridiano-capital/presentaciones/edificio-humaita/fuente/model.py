@@ -4,10 +4,10 @@ from comun import TC as TC_CFG  # D-096 / D-097
 import json
 
 # Edificio Humaitá (centro histórico de Asunción) — v1, 2026-11-08.
-# Precio en guaraníes (aviso); obra en USD (planilla del founder y tabla de Meridiano). Todo se evalúa en USD al TC vigente.
+# Precio en USD (founder, 09/11/2026); obra en USD (planilla del founder y tabla de Meridiano). Todo se evalúa en USD al TC vigente.
 TC = TC_CFG
-P_GS = 950_000_000
-P = P_GS / TC
+P = 160_000                  # USD, confirmado por el founder el 09/11/2026 (antes Gs 950 M)
+P_GS = P * TC
 TERRENO, M2_AVISO, M2_TABLA = 541.0, 300.0, 610.0   # aviso: 300 m² construidos; tabla de unidades: 610 m²; planilla: 600 m²
 M2 = M2_TABLA                # supuesto de trabajo: superficie de la tabla de unidades (a verificar con planos)
 IMPREV, IRE = 0.10, 0.10

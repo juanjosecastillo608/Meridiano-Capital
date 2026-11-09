@@ -63,7 +63,7 @@ S = {}
 rows = [
     ('— GENERAL', None, None, None, None),
     ('tc', 'Tipo de cambio', round(TC, 2), 'Gs/USD', f'BCP, cotización referencial del {CFG["tipo_cambio"]["fecha"]}'),
-    ('precio_gs', 'Precio de venta', 950_000_000, 'Gs', 'Aviso del inmueble'),
+    ('precio', 'Precio de venta', 160_000, 'USD', 'Fijado por el founder el 09/11/2026 (antes Gs 950 M)'),
     ('terreno', 'Terreno', 541, 'm²', 'Aviso (12,30 × 43 m)'),
     ('m2_aviso', 'Construidos según el aviso', 300, 'm²', 'A verificar con planos'),
     ('m2_tabla', 'Construidos según la tabla de unidades', 610, 'm²', 'Suma de las 19 unidades'),
@@ -127,8 +127,7 @@ for key, lab, val, uni, nota in rows:
     else: c.number_format = '#,##0.##'
     sp.cell(r, 3, uni); sp.cell(r, 4, nota).font = F_NOTE
     S[key] = f'Supuestos!$B${r}'; r += 1
-sp.cell(r + 1, 1, 'Precio de venta en USD'); c = sp.cell(r + 1, 2, f'={S["precio_gs"]}/{S["tc"]}'); c.number_format = USD; c.font = F_B
-S['precio'] = f'Supuestos!$B${r + 1}'
+sp.cell(r + 1, 1, 'Precio de venta en guaraníes (referencia)'); c = sp.cell(r + 1, 2, f'={S["precio"]}*{S["tc"]}'); c.number_format = '#,##0'; c.font = F_B
 widths(sp, [58, 18, 16, 80]); sp.freeze_panes = 'A4'
 
 # ------------------------------------------------------------------ Inversión (planilla B y C, cantidades ligadas)
@@ -353,7 +352,7 @@ ob = wb.create_sheet('Observaciones')
 title(ob, 'OBSERVACIONES A LA PLANILLA ORIGINAL Y CÓMO SE CORRIGIERON', 'Planilla “Inversión y Remodelación Edificio 2P y 20 Habitaciones” (2 hojas)')
 hdr(ob, 3, ['#', 'Observación', 'Impacto', 'Corrección en este modelo'])
 obs = [
-    ('Precio de compra en USD 175.000, que no coincide con el aviso (Gs 950 M).', 'Gs 950 M son unos USD 146.600 al TC vigente (USD 158.300 al TC de Gs 6.000 de la planilla). La inversión quedaba sobrestimada en unos USD 28.000.', 'El precio se carga en guaraníes y se convierte con el TC de Supuestos.'),
+    ('Precio de compra en USD 175.000.', 'El precio fijado por el propietario es USD 160.000 (09/11/2026): la inversión quedaba sobrestimada en USD 15.000.', 'Precio editable en USD en Supuestos.'),
     ('Tipo de cambio fijo en Gs 6.000.', 'Con el TC del BCP (Gs 6.480) cambian el precio en USD y los alquileres en USD.', 'TC editable en Supuestos, con fecha y fuente.'),
     ('Superficie: la planilla supone 600 m²; el aviso dice 300 m² y la tabla de unidades suma 610 m².', 'Las cantidades por m² (demolición, revoques, cielorrasos, pintura, techo) pueden estar duplicadas si el edificio tiene 300 m².', 'Las cantidades por m² se ligan a “Superficie que dimensiona la obra”: cambiándola, se reescala todo.'),
     ('Habitaciones: 20 en la planilla; el aviso describe 16 (3 + 13) y la tabla 19 unidades.', 'Puertas, baños, circuitos y equipamiento se multiplican por la cantidad de habitaciones.', 'Las cantidades por habitación se ligan a “Cantidad de habitaciones”.'),

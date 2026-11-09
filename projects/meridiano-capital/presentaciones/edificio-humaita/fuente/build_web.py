@@ -134,11 +134,11 @@ section{{padding:18mm 12mm;page-break-after:always;border:0}}.hero{{min-height:a
 <main id="main">
 <section class="hero"><div><div class="eb">Casona del centro histórico · venta en estado actual</div><h1>Edificio<br>Humaitá</h1>
 <p>Una casona de dos plantas con 16 habitaciones con baño, salón y patio arbolado, a metros de la Av. Colón. Hoy desocupada; con potencial de renta para estudiantes y profesionales.</p>
-<span class="pill">Gs 950.000.000 · {usd(M["P"])}</span><span class="pill">541 m² de terreno</span><span class="pill">100% desocupado</span></div></section>
+<span class="pill">{usd(M["P"])} · precio de venta</span><span class="pill">541 m² de terreno</span><span class="pill">100% desocupado</span></div></section>
 
 <section id="oportunidad"><div class="eb">01 · La oportunidad</div><h2>Comprar el presente, evaluar el potencial</h2>
 <p>El inmueble se vende en su estado actual. Su configuración de habitaciones con baño, salón y patio permite estudiar tres usos de renta, sujetos a verificación técnica, normativa y comercial.</p>
-<div class="stats"><div class="stat"><strong>Gs 950 M</strong><small>Precio de venta · {usd(M["P"])} al {tc_texto()}</small></div><div class="stat"><strong>541 m²</strong><small>Terreno · 12,30 × 43 m</small></div>
+<div class="stats"><div class="stat"><strong>{usd(M["P"])}</strong><small>Precio de venta en su estado actual</small></div><div class="stat"><strong>541 m²</strong><small>Terreno · 12,30 × 43 m</small></div>
 <div class="stat"><strong>300 · 610 m²</strong><small>Construidos según el aviso · suma de la tabla de unidades (a conciliar con planos)</small></div><div class="stat"><strong>0%</strong><small>Ocupación actual: no hay renta vigente</small></div></div>
 <div class="note">Capacidad a conciliar: el aviso describe 3 ambientes + salón + 13 habitaciones posteriores; la tabla del propietario lista 19 unidades (3 en proyecto) y la planilla de obra supone 20 habitaciones.</div></section>
 
@@ -178,7 +178,7 @@ section{{padding:18mm 12mm;page-break-after:always;border:0}}.hero{{min-height:a
 
 <section id="inversion"><div class="eb">07 · Inversión</div><h2>Tres usos, con los números del estudio de mercado</h2>
 <div class="tw"><table><thead><tr><th>Uso</th><th>Obra estimada</th><th>Inversión (precio + obra)</th><th>Ingreso bruto mensual</th><th>Bruta</th><th>Neta final</th><th>TIR base 5 años</th></tr></thead><tbody>{rows}</tbody></table></div>
-<div class="note"><b>Hipótesis:</b> precio Gs 950 M al {tc_texto()}. A: alquileres proyectados de la tabla del propietario, vacancia 6–10%, administración 8%, mantenimiento 5%. B: Gs {n(M["B_RENT_GS"])} por habitación todo incluido, vacancia 10%, gastos del edificio USD 1.470 por mes. C: USD {n(M["C_ADR"])} por noche y {pct(M["C_OCC"], 0)} de ocupación, plataformas 15%, limpieza 12%, 3 recepcionistas. IVA 5% (vivienda) o 10% (salones y hostel), IRE 10%. Obra B y C: presupuesto de la planilla del propietario (600 m², 20 habitaciones), sin presupuesto de un constructor.<br>
+<div class="note"><b>Hipótesis:</b> precio USD 160.000; alquileres en guaraníes al {tc_texto()}. A: alquileres proyectados de la tabla del propietario, vacancia 6–10%, administración 8%, mantenimiento 5%. B: Gs {n(M["B_RENT_GS"])} por habitación todo incluido, vacancia 10%, gastos del edificio USD 1.470 por mes. C: USD {n(M["C_ADR"])} por noche y {pct(M["C_OCC"], 0)} de ocupación, plataformas 15%, limpieza 12%, 3 recepcionistas. IVA 5% (vivienda) o 10% (salones y hostel), IRE 10%. Obra B y C: presupuesto de la planilla del propietario (600 m², 20 habitaciones), sin presupuesto de un constructor.<br>
 <b>No es una rentabilidad garantizada.</b> No hay contratos ni renta vigente; los alquileres son precios pedidos del mercado (estudio de Meridiano del 08/11/2026). Las rentas del comercializador (Gs 13,2 M base y Gs 15,6 M proyectada) y su inversión declarada (Gs 14,2 M + Gs 30 M de obra) no son un presupuesto técnico.</div></section>
 
 <section id="pasos"><div class="eb">08 · Próximos pasos</div><h2>De activo existente a producto de renta</h2>

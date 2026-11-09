@@ -53,7 +53,7 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 <div class="eb g" style="margin-top:96px">Casona del centro histórico para poner en renta · en venta</div>
 <h1>Edificio<br>Humaitá</h1>
 <div class="addr">Calle Humaitá, a metros de la Av. Colón · Centro histórico de Asunción</div>
-<div class="cvk"><div><div class="v" style="font-size:30px;white-space:nowrap">Gs 950 M</div><div class="l">Precio de venta · {usd(P)} al tipo de cambio vigente</div></div>
+<div class="cvk"><div><div class="v" style="font-size:30px;white-space:nowrap">{usd(P)}</div><div class="l">Precio de venta · {gs(PGS)} al tipo de cambio vigente</div></div>
 <div><div class="v">541 m²</div><div class="l">De terreno, 12,30 × 43 m</div></div></div>
 <div class="cf">Hoy desocupado · Necesita remodelación · Tres opciones de renta · {tc_corto()}</div></div>
 <div class="cr"><img src="img/fachada.jpg" style="object-position:45% 50%"></div></section>''')
@@ -61,7 +61,7 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 # 02 RESUMEN
 S.append(slide(f'''{head('Resumen del inmueble', 'Una casona del centro con 16 habitaciones para volver a rentar')}
 <p class="lead">Casona de dos plantas sobre la calle Humaitá, a metros de la Av. Colón, con un edificio principal de tres ambientes y un salón con baños, y un área posterior de 13 habitaciones con baño privado alrededor de un patio. Hoy está desocupada y necesita una remodelación para generar renta. Se analizan tres usos: departamentos y salones, habitaciones en alquiler mensual y hostel.</p>
-{kgrid([('Gs 950 M', f'Precio de venta · {usd(P)}'), ('541 m²', 'Terreno · 12,30 × 43 m'), ('300 · 610 m²', 'Construidos según el aviso · según la tabla de unidades'), ('16 + 1', 'Habitaciones con baño + salón con baños sexados'),
+{kgrid([(usd(P), f'Precio de venta · {gs(PGS)}'), ('541 m²', 'Terreno · 12,30 × 43 m'), ('300 · 610 m²', 'Construidos según el aviso · según la tabla de unidades'), ('16 + 1', 'Habitaciones con baño + salón con baños sexados'),
         (pct(ev['A']['bruta']) + ' · ' + pct(ev['A']['neta']), 'A · Departamentos y salones: bruta · neta'), (pct(ev['B']['bruta']) + ' · ' + pct(ev['B']['neta']), 'B · 20 habitaciones mensuales: bruta · neta'),
         (pct(ev['C']['bruta']) + ' · ' + pct(ev['C']['neta']), 'C · Hostel: bruta · neta'), ('USD ' + n(P / M['TERRENO']), 'Por m² de terreno')], 'kgrid ks')}
 <div class="box"><b>Propiedad ofrecida en su estado actual. Imágenes de transformación conceptuales.</b> Sin renta actual: toda rentabilidad es una estimación posterior a la obra, sobre el precio más la obra · Alquileres del estudio de mercado de Meridiano Capital · Tipo de cambio {TCTXT}</div>''', num()))
@@ -92,7 +92,7 @@ S.append(slide(f'''{head('La zona para el inversor', 'Tres demandas a pocas cuad
 S.append(slide(f'''{head('Superficies y valor', '541 m² de terreno en el centro histórico')}
 <div class="two d5"><div><div class="sup2"><div class="lot"><div class="rect" style="width:110px;height:320px"><span style="font-size:15px;line-height:1.2;text-align:center">541<br>m²</span></div><div class="dimr" style="left:160px">43 m<br>de fondo</div><div class="dimb" style="top:342px">12,30 m de frente</div></div>
 {kgrid([('USD ' + n(P / M['TERRENO']), 'Por m² de terreno'), ('USD ' + n(P / M['M2']), 'Por m² construido, sobre 610 m²'), (usd(P), f'Precio al {tc_corto()}'), ('2 plantas', 'Edificio principal y área posterior')], 'kgrid k2')}</div></div>
-<div>{crit('Cómo leer el precio', [('Terreno', 'USD 271 por m² de terreno: entre un lote sobre Humaitá junto al Hospital Militar (USD 234/m²) y un lote sobre Humaitá entre Colón y Montevideo (USD 452/m², aviso de 2017).'), ('Superficie a confirmar', 'El aviso indica 300 m² construidos; la tabla de unidades suma 610 m² y la planilla de obra supone 600 m². Se aclara con planos y mensura.'), ('Precio en guaraníes', 'Gs 950 M; en dólares varía con el tipo de cambio.'), ('Lectura', 'El valor está en el suelo del centro y en las habitaciones con baño ya construidas.')])}</div></div>
+<div>{crit('Cómo leer el precio', [('Terreno', f'USD {n(P / M["TERRENO"])} por m² de terreno: entre un lote sobre Humaitá junto al Hospital Militar (USD 234/m²) y un lote sobre Humaitá entre Colón y Montevideo (USD 452/m², aviso de 2017).'), ('Superficie a confirmar', 'El aviso indica 300 m² construidos; la tabla de unidades suma 610 m² y la planilla de obra supone 600 m². Se aclara con planos y mensura.'), ('Precio en dólares', 'USD 160.000, fijado por el propietario; antes se ofrecía en Gs 950 M.'), ('Lectura', 'El valor está en el suelo del centro y en las habitaciones con baño ya construidas.')])}</div></div>
 <div class="src">Superficies según el aviso y la tabla de unidades del propietario; sin planos ni mensura verificados. Comparables de venta: precios pedidos y antiguos (lámina 12).</div>''', num()))
 
 # 06 EL EDIFICIO HOY
@@ -156,7 +156,7 @@ def cxrows(a):
     rows = [([l, usd(v)], '') for l, v in c['parts']]
     if c['imprev']: rows.append((['Imprevistos (10%)', usd(c['imprev'])], ''))
     return rows + [(['Obra total', usd(c['total'])], 'b'), (['Inversión total', usd(c['total'] + P)], 'tot')]
-S.append(slide(f'''{head('Costo de la obra', 'Inversión total por opción, con el precio de Gs 950 M')}
+S.append(slide(f'''{head('Costo de la obra', 'Inversión total por opción, con el precio de USD 160.000')}
 <div class="two alt3">{''.join(f'<div><div class="altt{" gold" if a == "B" else ""}">{ALT[a]}</div>{table(["Concepto", "USD"], cxrows(a), "t big")}</div>' for a in 'ABC')}</div>
 <p class="note2 sm"><b>Criterios.</b> A: 50% de la tabla básica de remodelación (USD 350/m²) y USD 6.000 por unidad nueva, más 10% de imprevistos; 6 meses. B: presupuesto de la planilla del propietario, ya con imprevistos del 8% y sin gastos de compra; 12 meses. C: B más equipamiento hotelero. Sin presupuesto de un constructor.</p>''', num()))
 
@@ -201,7 +201,7 @@ S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al res
 hdr = '<div></div>' + ''.join(f'<div class="bl2 c{" gold" if a == "B" else ""}">{ALT[a]}</div>' for a in 'ABC')
 def rowr(lbl, key, cls):
     return f'<div class="rl">{lbl}</div>' + ''.join(f'<div class="{cls}">{usd(ev[a]["inv"]) if key == "inv" else pct(ev[a][key])}</div>' for a in 'ABC')
-S.append(slide(f'''{head('Rentabilidad estimada', 'Tres usos, con el precio de Gs 950 M')}<div class="rule"></div>
+S.append(slide(f'''{head('Rentabilidad estimada', 'Tres usos, con el precio de USD 160.000')}<div class="rule"></div>
 <div class="rg4" style="grid-template-columns:250px repeat(3,1fr)">{hdr}{rowr('Bruta sobre inversión total', 'bruta', 'bigv m4')}{rowr('Neta antes de IRE', 'neta_pre', 'midv')}{rowr('Neta final', 'neta', 'midv')}{rowr('Inversión total', 'inv', 'midv s2')}</div>
 <div class="bs how"><b>Cómo leer estas cifras.</b> El denominador es el precio más la obra, sin gastos de adquisición. La bruta del hostel es alta, pero sus costos (plataformas, limpieza, personal) se llevan la mayor parte: hay que comparar las netas. B es la de mejor neta. Estimaciones sin contratos que las respalden; cifras de referencia, no garantizadas.</div>''', num(), dark=True))
 
@@ -227,18 +227,18 @@ pr = M['proj']
 bt = max('ABC', key=lambda a: pr[a]['Base']['tir'])
 trows = [([ALT[a]] + [pct(pr[a][k]['tir'], 1) for k in ('Conservador', 'Base', 'Optimista')] + [usd(pr[a]['Base']['total'])], 'b' if a == bt else '') for a in 'ABC']
 S.append(slide(f'''{head('Plusvalía y retorno total', 'TIR estimada a cinco años por opción')}
-<div class="two d15">{table(['Opción · compra a Gs 950 M', 'Conservador', 'Base', 'Optimista', 'Ganancia base'], trows, 't big')}
+<div class="two d15">{table(['Opción · compra a USD 160.000', 'Conservador', 'Base', 'Optimista', 'Ganancia base'], trows, 't big')}
 <div class="dbox"><div class="bigv bv2">{pct(pr[bt]['Base']['tir'], 1)}</div><div class="bs">TIR base de {ALT[bt].split(' · ')[1].lower()}: la más alta de las tres</div><p>A: 6 meses de obra. B y C: un año de obra. Luego renta neta y venta al valor estimado del año 5. Escenarios: alquileres +2/+3/+5% y valorización 2/3,5/5% anual.</p><p class="gold">Supuesto clave: el valor del inmueble parte de la inversión total y se valoriza desde el fin de la obra.</p></div></div>
 <div class="src">Escenarios hipotéticos: no constituyen garantía de plusvalía ni de rentabilidad. Ganancia base = plusvalía − IVA de la venta futura (1,5%) + renta neta acumulada. No incluyen gastos de adquisición ni comisión de venta.</div>''', num()))
 
 # 18 PRECIO
 info = [('Activo', 'Casona de 2 plantas sobre 541 m² de terreno: edificio principal con salón y baños sexados, y 13 habitaciones con baño en el área posterior.'),
         ('Ocupación', 'Desocupado; entrega inmediata a confirmar.'),
-        ('Precio de referencia', f"Para una bruta de 10% con la opción A, el precio debería rondar {usd(ev['A']['max10'])}; con B, el precio actual ya rinde por encima."),
+        ('Precio de referencia', f"Con la opción A, la bruta se mantiene en 10% o más hasta un precio de {usd(ev['A']['max10'])}; a {usd(P)} ya lo supera, igual que B."),
         ('Forma de pago y entrega', 'A acordar en la negociación y el boleto de compraventa.')]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)
 S.append(slide(f'''{head('Precio y condiciones', 'Venta del inmueble completo')}
-<div class="two d16"><div class="dbox big"><div class="bigv">Gs 950.000.000</div><div class="bs">Precio de venta · {usd(P)}</div><p>Precio en guaraníes; obra estimada en dólares y convertida al {TCTXT}.</p><div class="dfoot">Neta final: A {pct(ev['A']['neta'])} · B {pct(ev['B']['neta'])} · C {pct(ev['C']['neta'])}</div></div>
+<div class="two d16"><div class="dbox big"><div class="bigv">{usd(P)}</div><div class="bs">Precio de venta · {gs(PGS)}</div><p>Precio y obra en dólares; alquileres en guaraníes, convertidos al {TCTXT}.</p><div class="dfoot">Neta final: A {pct(ev['A']['neta'])} · B {pct(ev['B']['neta'])} · C {pct(ev['C']['neta'])}</div></div>
 <div class="info">{ih}</div></div>''', num()))
 
 # 19 PROCESO
@@ -255,7 +255,7 @@ rk = [('Superficie y presupuesto', 'El aviso dice 300 m² construidos y la plani
       ('Centro histórico', 'Fachada y reformas pueden requerir aprobación municipal especial.'),
       ('Sin renta actual', 'Seis a doce meses sin ingresos entre compra, permisos y obra, más el tiempo de ocupar las habitaciones.'),
       ('Operación', 'Habitaciones y hostel exigen administración activa; el hostel, además, habilitación turística y personal.'),
-      ('Tipo de cambio', 'Precio en guaraníes, obra en dólares y alquileres en guaraníes: el tipo de cambio mueve la inversión y la renta.')]
+      ('Tipo de cambio', 'Precio y obra en dólares, alquileres en guaraníes: si sube el dólar, baja la renta medida en dólares.')]
 S.append(slide(f'''{head('Consideraciones', 'Riesgos a evaluar antes de ofertar')}<div class="rks c7">{''.join(f'<div class="rk"><b>{a}</b><span>{b}</span></div>' for a, b in rk)}</div>
 <div class="src">Cifras de referencia, no garantizadas. Se recomienda evaluar la operación con asesoría propia.</div>''', num()))
 
