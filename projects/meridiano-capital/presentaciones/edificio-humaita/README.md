@@ -9,7 +9,7 @@
 - **Demanda cercana**, según el founder: el Hospital Militar y la Universidad Autónoma de Asunción.
 
 **Entregables:**
-- `Edificio_Humaita_Meridiano_Capital_v1.pdf`: presentación para el inversor, 21 láminas. Compara tres usos:
+- `Edificio_Humaita_Meridiano_Capital_v1.pdf`: presentación para el inversor, 25 láminas desde el 09/11/2026. Se sumaron fotos de accesos y habitaciones, tres conceptos de fachada, un antes/después y la habitación tipo con patio. Compara tres usos:
   - A · Departamentos y salones: tabla de 19 unidades del propietario.
   - B · 20 habitaciones en alquiler mensual: planilla del propietario.
   - C · Hostel de 20 habitaciones con renta por noche.
@@ -24,9 +24,29 @@
 - **Regeneración:** `python projects/meridiano-capital/presentaciones/build_presentaciones.py edificio-humaita` corre el modelo, el deck y el Excel (`fuente/build_entregables.py`, recalculado con LibreOffice). Se verificó que el Excel reproduce las cifras del deck.
 - **Estudio de mercado (D-100):** `knowledge-base/investment/market-intelligence/estudios/ASU-CENTRO-HUMAITA-2026-11-08/`.
 
+- `web/index.html`: presentación web autocontenida, con imágenes y fuentes locales. Se construyó el 09/11/2026 tomando como base el `index.html` del paquete que envió el founder, con la marca de Meridiano. Incluye:
+  - Aviso fijo: «Propiedad ofrecida en su estado actual. Imágenes de transformación conceptuales.»
+  - Navegación con la sección activa.
+  - Filtros por ambiente, por tipo de imagen (fotografía o concepto IA) y por alternativa de fachada.
+  - Fichas de materiales con paletas HEX, alcance y restricciones.
+  - Comparador antes/después.
+  - Tabla de inversión tomada de `model.json`.
+  - QR de la ubicación.
+  - Estilos de impresión a PDF.
+  - Reemplazo local de imágenes con registro trazable, que se puede exportar como JSON. Los originales de `assets/` no se tocan.
+  - Se genera con `fuente/build_web.py`, que llama `build_entregables.py`. Ese script corre solo en la regeneración completa (`build_presentaciones.py` sin argumentos) o a mano.
+  - Revisado con Chromium en escritorio y en móvil: sin errores de consola y sin desborde horizontal.
+
 **Ubicación (QR):** https://maps.app.goo.gl/4nMui8uvZ9RYb6EeA, verificado al decodificarlo.
 - Referencias de demanda, enviadas por el founder: Hospital Militar (https://maps.app.goo.gl/nLyr38rbR7LSMgc58) y UAA (https://maps.app.goo.gl/L3SDhyebvBSkzJfA6).
 - Ningún enlace se pudo abrir desde este entorno: las distancias quedan por medir.
+
+**Paquete del founder (09/11/2026): diferencias con este proyecto**
+- **Precio:** el paquete indica USD 160.000; el founder había informado Gs 950.000.000 (unos USD 146.600 al TC vigente). Se mantiene Gs 950 M hasta que el founder confirme.
+- **Nombre:** se usa "Humaitá", el nombre de la calle. El paquete dice "Humitá".
+- **Métricas:** el paquete pide no publicar ROI neto. Se mantiene el criterio de Meridiano: neta estimada con hipótesis explícitas y aviso de "no garantizada".
+- **Imágenes:** los renders del paquete (`fuente/img/zip/`) se rotulan como "Concepto IA" en el deck y en la web.
+- **No versionados:** `datos_proyecto.json` y `planilla.jpeg`, porque contienen un nombre propio en la columna de estado.
 
 **Material no versionado:**
 - La planilla original del propietario: se reprodujeron sus ítems y precios en el modelo nuevo.
