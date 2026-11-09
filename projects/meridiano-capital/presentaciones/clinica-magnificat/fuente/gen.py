@@ -101,6 +101,7 @@ S.append(slide(f'''{head('Planos y superficies', 'Once consultorios de 12 a 21 m
 # 05 FOTOS (si llegaron)
 for titulo, sub, files in [('Recorrido fotográfico', 'Fachada y accesos', ['fachada.jpg', 'acceso.jpg', 'cocheras.jpg']), ('Recorrido fotográfico', 'Recepción y salas de espera', ['sala_espera_pb.jpg', 'sala_ascensor.jpg', 'sala_espera_1p.jpg']),
                            ('Recorrido fotográfico', 'Consultorios', ['consultorio_a.jpg', 'consultorio_b.jpg', 'consultorio_c.jpg']),
+                           ('Recorrido fotográfico', 'Baños y circulaciones', ['banio_a.jpg', 'banio_b.jpg', 'banio_c.jpg']),
                            ('Recorrido fotográfico', 'Departamento del segundo piso', ['depto_a.jpg', 'depto_b.jpg', 'depto_c.jpg'])]:
     ok = [f for f in files if foto(f)]
     if ok:
