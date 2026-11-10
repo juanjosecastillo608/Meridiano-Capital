@@ -69,8 +69,8 @@ S.append(slide(f'''{head('Resumen del inmueble', 'Una clínica pediátrica alqui
 <div class="box">Cifras de referencia, no garantizadas · Rentabilidad sobre el precio más las inversiones de cada etapa, con la base de cálculo D-101 de Meridiano · Gastos informados sin desglose · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
-loc = [('Ciudad', 'Asunción'), ('Barrio', 'San Cristóbal, vecino de Villa Morra'), ('Ubicación', 'Esquina con accesos y cocheras sobre dos calles'),
-       ('Accesos', 'Ingreso de pacientes y estacionamiento de clientes; cocheras propias del departamento'), ('Perfil', 'Clínica pediátrica con consultorios de distintas especialidades')]
+loc = [('Ciudad', 'Asunción'), ('Barrio', 'San Cristóbal, vecino de Villa Morra'), ('Ubicación', 'Esquina: frente corto de 9,60 m sobre calle Sucre y lado largo sobre calle Juan Mota'),
+       ('Accesos', 'Ingreso peatonal solo por Juan Mota; estacionamiento de clientes en una franja de 5 m sobre Sucre, sin entradas por esa calle'), ('Perfil', 'Clínica pediátrica con consultorios de distintas especialidades')]
 lh = ''.join(f'<div class="li" style="padding:10px 0 11px"><div class="eb sm">{a}</div><div class="lt" style="font-size:14.5px">{b}</div></div>' for a, b in loc)
 fimg = foto('fachada.jpg')
 izq = f'<div class="mapimg"><img src="img/fachada.jpg" style="height:290px"><div class="cap">Fachada e ingreso de la clínica</div></div>' if fimg else ''
@@ -143,7 +143,7 @@ S.append(slide(f'''{head('Mercado de consultorios', 'Los alquileres actuales est
 # 08 PLAN GRADUAL
 steps = [('Etapa 1 · 0 a 12 meses', f"Renovar los 11 contratos con un ajuste a {gsm(M['RENT1'])} (+10%); auditar los gastos con la planilla de desglose (objetivo −15%: {gsm(M['ADMIN1'])} por mes); pintura, iluminación LED, señalética pediátrica y salas de espera ({gsm(M['MEJ_GS'])}); instalar el ascensor de 3 paradas."),
          ('Etapa 2 · 12 a 24 meses', f"Con ascensor y mejoras, alquiler según tamaño: {gsm(M['TIER']['grande'])} los tres grandes y {gsm(M['TIER']['resto'])} el resto (promedio {gsm(M['RENT2'])}). Canon diferencial para los consultorios odontológicos. Medidores individuales de energía si la luz de los consultorios está dentro de las expensas."),
-         ('Etapa 3 · desde el mes 25', f"Al liberarse el departamento, reconvertirlo en consultorios con baño propio. La cantidad se define con el plano: entre 3 y 5 en los escenarios; se toman {M['N_NEW_BASE']} a modo ilustrativo, con USD {n(M['CAPEX_NEW_USD'])} por consultorio.")]
+         ('Etapa 3 · desde el mes 25', f"Al liberarse el departamento, reconvertirlo en consultorios con baño propio. El anteproyecto propone {M['N_NEW_BASE']} (consultorios 12 a 17, réplica del primer piso), a confirmar con el relevamiento; escenarios de 4 a 6, con USD {n(M['CAPEX_NEW_USD'])} por consultorio.")]
 sh = ''.join(f'<div class="st" style="grid-column:1/-1"><div class="sth"><span class="pn">0{i+1}</span><b>{a}</b></div><p>{b}</p></div>' for i, (a, b) in enumerate(steps))
 S.append(slide(f'''{head('Plan de valorización', 'Tres etapas para aumentar la renta y bajar los costos')}<div class="steps">{sh}</div>
 <div class="src">Todos los ajustes son propuestas de Meridiano Capital: dependen de la negociación con los médicos, de los contratos y de las cotizaciones de obra. No son resultados garantizados.</div>''', num()))
@@ -173,6 +173,26 @@ S.append(slide(f'''{head('Rentabilidad por etapa', 'De la renta de hoy a la rent
 <div class="rg4">{hdr}{rowr('Facturación mensual', lambda k: gsm(E[k]['fact_mes']), 'midv s2')}{rowr('Bruta · USD 500.000', lambda k: pct(E[k]['bruta']), 'bigv m4')}{rowr('Neta · USD 500.000', lambda k: pct(E[k]['neta']), 'midv')}{rowr('Neta · USD 420.000', lambda k: pct(ER[k]['neta']), 'midv')}{rowr('Inversión total · USD 500.000', lambda k: usd(E[k]['inv']), 'midv s2')}</div>
 <div class="bs how"><b>Cómo leer estas cifras.</b> Cada columna es un año estabilizado de esa etapa. El denominador es el precio más las inversiones acumuladas (mejoras, ascensor y, en la etapa 3, la reconversión). La etapa 3 supone {M['N_NEW_BASE']} consultorios nuevos, número ilustrativo a definir con el plano. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
 
+# 11b ANTEPROYECTO (anexo de corrección del 10/11/2026: 3 hojas)
+def fig(src, cap, w, h, fit='contain', bg='#fff'):
+    return f'<figure style="width:{w}px;margin:0"><img src="img/{src}" style="width:{w}px;height:{h}px;object-fit:{fit};background:{bg};display:block"><figcaption style="font-size:11px;margin-top:6px">{cap}</figcaption></figure>'
+S.append(slide(f"""{head('Anteproyecto · hoja 1 de 3', 'Planta baja: implantación y sanitarios')}
+<div class="two" style="grid-template-columns:360px 1fr !important;gap:34px;margin-top:14px">{fig('plano_pb_anotado.jpg', 'PLANO ORIGINAL fotografiado, sin alterar cotas ni geometría. Marcas agregadas por Meridiano Capital.', 360, 395)}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start">
+{crit('Implantación', [('Calle Sucre', 'Frente corto de 9,60 m. Estacionamiento de clientes en una franja de 5,00 m de profundidad en planta baja, sujeto a maniobras, retiro y habilitación. Sin entradas desde Sucre.'), ('Calle Juan Mota', 'Lado largo: único frente de acceso peatonal a la clínica. Sin estacionamientos.'), ('Pulmones de luz', 'Hacia el lindero vecino, nunca hacia la calle.')])}
+{crit('Sanitarios del plano original', [('Consultorios 1 a 5', 'Cada uno con su baño propio.'), ('A · Fondo del pasillo', 'Bloque adicional de sanitarios y depósito.'), ('B · Recepción y espera', 'Sanitario de uso común contiguo a la espera.'), ('C · Junto a la escalera', 'Sanitario marcado en verde en el plano.')])}</div></div>
+<div class="src">Esquema de revisión, no plano ejecutivo ni aprobación municipal. La foto del plano no permite certificar todas las cotas ni dimensionar las plazas de estacionamiento. Las calles se ubican según la corrección del propietario: la orientación del papel no coincide con la orientación vial. Aberturas y accesos actuales a verificar en sitio.</div>""", num()))
+S.append(slide(f"""{head('Anteproyecto · hoja 2 de 3', 'Primer piso: consultorios 6 a 11')}
+<div class="two" style="grid-template-columns:360px 1fr !important;gap:34px;margin-top:14px">{fig('plano_pa.jpg', 'PLANO ORIGINAL fotografiado: referencia geométrica para el segundo piso.', 360, 395)}
+<div>{crit('Elementos a preservar', [('Consultorios', 'Seis consultorios existentes: 6, 7, 8, 9, 10 y 11, cada uno con baño privado según el propietario; contrastar cada pieza con la planimetría.'), ('Circulación', 'Escalera, recepción, espera y pasillo central.'), ('Pulmones de luz', 'Patios interiores junto al lindero con el vecino.'), ('Núcleo vertical', 'Acceso desde calle Juan Mota; ascensor de 3 paradas como propuesta, sujeto a comprobación dimensional.'), ('A verificar', 'Ventilación de baños, bajadas, estructura, accesibilidad y ancho útil de puertas, en un relevamiento profesional.')])}</div></div>
+<div class="src">No modificar el perímetro ni trasladar patios al frente de calle. Corrección documental de anteproyecto, no plano ejecutivo.</div>""", num()))
+S.append(slide(f"""{head('Anteproyecto · hoja 3 de 3', 'Segundo piso: propuesta de consultorios 12 a 17')}
+<div class="two" style="grid-template-columns:1fr 360px !important;gap:30px;margin-top:18px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">{fig('render_fachada.jpg', 'RENDER CONCEPTUAL de la fachada propuesta: no es una foto ni una elevación medida.', 330, 150, 'cover')}{fig('fachada.jpg', 'FOTOGRAFÍA REAL de la fachada actual.', 330, 150, 'cover')}
+<div style="grid-column:1/-1">{crit('Programa propuesto · réplica funcional, no calco ejecutivo', [('Consultorios', 'C12 ↔ C6 · C13 ↔ C7 · C14 ↔ C8 · C15 ↔ C9 · C16 ↔ C10 · C17 ↔ C11, cada uno con baño individual; alineación sanitaria a estudiar.'), ('Circulación y acceso', 'Pasillo central, recepción y espera como en el primer piso; acceso solo desde Juan Mota por el núcleo vertical común. Estacionamiento solo sobre Sucre.')])}</div></div>
+{crit('Falta para un plano de ejecución', [('Relevamiento', 'Plano de la vivienda actual, perímetro del segundo piso, columnas, bajadas, núcleos húmedos, patios y cotas.'), ('Coordinación', 'Estructura, ventilación, desagües y habilitación sanitaria antes de fijar tabiques.'), ('Patios de luz', 'Sobre el lindero interior, nunca en la fachada de calle.'), ('Hasta entonces', 'No se pueden certificar seis consultorios con baño: la rentabilidad futura usa 6 como base y muestra también 4 y 5.')])}</div>
+<div class="src">La fachada propuesta no representa la obra existente y no está presupuestada en el modelo. Anteproyecto conceptual: no es plano ejecutivo ni aprobación municipal.</div>""", num()))
+
 # 12 RECONVERSIÓN
 rv = M['reconv']
 rrows = [([f'{k} consultorios', usd(int(k) * M['CAPEX_NEW_USD']), gsm(rv['pedido'][k]['fact_mes']), pct(rv['pedido'][k]['neta']), pct(rv['rapida'][k]['neta'])], 'b' if int(k) == M['N_NEW_BASE'] else '') for k in rv['pedido']]
@@ -184,7 +204,7 @@ S.append(slide(f'''{head('Reconversión del departamento', 'Nuevos consultorios 
 # 12b RENTABILIDAD FUTURA (2.º piso reconvertido)
 E2p, E3p, E2r, E3r = E['E2'], E['E3'], ER['E2'], ER['E3']
 d_net = E3p['net'] - E2p['net']; d_inv = E3p['inv'] - E2p['inv']; d_G = E3p['G'] - E2p['G']
-r3, r5 = rv['pedido']['3'], rv['pedido']['5']; q3, q5 = rv['rapida']['3'], rv['rapida']['5']
+r3, r5 = rv['pedido']['4'], rv['pedido']['5']; q3, q5 = rv['rapida']['4'], rv['rapida']['5']
 frows = [(['Consultorios en renta', '11', '11', str(E3p.get('n', 11 + M['N_NEW_BASE']))], ''),
          (['Facturación mensual (IVA incluido)', gsm(E['E0']['fact_mes']), gsm(E2p['fact_mes']), gsm(E3p['fact_mes'])], ''),
          (['Ingreso bruto anual', usd(E['E0']['G']), usd(E2p['G']), usd(E3p['G'])], ''),
@@ -195,7 +215,7 @@ S.append(slide(f'''{head('Rentabilidad futura', 'El edificio con el segundo piso
 <div class="two d15">{table(['', 'Hoy', 'Tras la etapa 2', 'Con el 2.º piso reconvertido'], frows, 't big')}
 <div class="dbox"><div class="bs">Lo que agrega la reconversión</div><div class="bigv bv2">+{usd(d_net)}</div><div class="bs">de neto por año, con {M['N_NEW_BASE']} consultorios nuevos</div>
 <p>Inversión de la reconversión: {usd(d_inv)}. Rinde {pct(d_net / d_inv, 1)} neto por año sobre lo invertido (se recupera en unos {n(d_inv / d_net, 1)} años), porque usa la estructura, el ascensor y la administración que ya existen.</p>
-<p class="gold">Rango según el plano: con 3 consultorios, neta de {pct(r3['neta'])} · {pct(q3['neta'])}; con 5, de {pct(r5['neta'])} · {pct(q5['neta'])} (a USD 500.000 · 420.000).</p></div></div>
+<p class="gold">Si el relevamiento da menos: con 4 consultorios, neta de {pct(r3['neta'])} · {pct(q3['neta'])}; con 5, de {pct(r5['neta'])} · {pct(q5['neta'])} (a USD 500.000 · 420.000).</p></div></div>
 <div class="src">Año estabilizado de cada etapa; el denominador es el precio más las inversiones acumuladas (mejoras, ascensor de 3 paradas y reconversión). La renta del 2.º piso empieza en el mes 25, cuando termina el uso como vivienda del comprador. Los consultorios nuevos se alquilan a {gsm(M['RENT2'])}. El ascensor no se carga a la reconversión porque ya se invierte en la etapa 1. No incluye la renta alternativa que daría el departamento como vivienda. Cifras de referencia, no garantizadas; supuestos a validar con el anteproyecto.</div>''', num()))
 
 # 13 TIR

@@ -22,8 +22,8 @@ ADMIN1 = round(ADMIN0 * 0.85, -4)                         # −15% tras la audit
 ASC_GS = 58_000_000 * 1.10 + 15_000_000                   # 3 paradas: cotización vencida +10% y obra eléctrica y civil (supuesto)
 MEJ_GS = 35_000_000                                       # pintura, iluminación LED, señalética pediátrica y salas de espera (supuesto)
 ASC_MANT = 500_000                                        # Gs/mes de mantenimiento del ascensor desde el año 2 (supuesto)
-N_NEW = (3, 4, 5)                                         # consultorios del 2.º piso: rango ilustrativo, a definir con el plano
-N_NEW_BASE = 4
+N_NEW = (4, 5, 6)                                         # consultorios del 2.º piso: el anteproyecto (10/11/2026) propone 6 (C12-C17, réplica del 1.er piso), sin medición todavía
+N_NEW_BASE = 6
 CAPEX_NEW_USD = 12_000                                    # por consultorio nuevo: ~25 m² a USD 450/m² + baño, +10% (supuesto)
 ADMIN_NEW = 0.10                                          # +10% de administración al sumar consultorios (supuesto)
 

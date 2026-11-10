@@ -95,7 +95,7 @@ dialog{{border:0;padding:10px;background:#0b1d22;max-width:96vw}}dialog img{{max
 <section id="plan"><div class="eb">03 · Plan de valorización</div><h2>Tres etapas para aumentar la renta y bajar los costos</h2>
 <div class="steps"><div><h3>Etapa 1 · 0 a 12 meses</h3><p>Renovación de contratos con ajuste a {gsm(M['RENT1'])}; auditoría de gastos con la planilla de desglose (objetivo −15%); mejoras de áreas comunes; ascensor de 3 paradas.</p></div>
 <div><h3>Etapa 2 · 12 a 24 meses</h3><p>Segundo ajuste a {gsm(M['RENT2'])}; canon diferencial para los consultorios odontológicos; medidores de energía por consultorio si corresponde.</p></div>
-<div><h3>Etapa 3 · desde el mes 25</h3><p>Reconversión del departamento en consultorios con baño propio; cantidad a definir con el plano (3 a 5 en los escenarios).</p></div></div></section>
+<div><h3>Etapa 3 · desde el mes 25</h3><p>Reconversión del departamento en consultorios con baño propio; el anteproyecto propone 6 (consultorios 12 a 17, réplica del primer piso), a confirmar con el relevamiento (escenarios de 4 a 6).</p></div></div></section>
 
 <section id="ascensor"><div class="eb">04 · Ascensor</div><h2>Conviene la cotización de tres paradas</h2>
 <div class="tw"><table><thead><tr><th>Concepto</th><th>2 paradas</th><th>3 paradas</th></tr></thead><tbody><tr><td>Precio, IVA incluido</td><td>Gs 42.000.000</td><td>Gs 58.000.000</td></tr><tr><td>Capacidad · velocidad</td><td>500 kg · 0,25 m/s</td><td>630 kg · 1,00 m/s</td></tr><tr><td>Recorrido</td><td>7,20 m</td><td>10,50 m (llega al 2.º piso)</td></tr><tr><td>Plazo · garantía</td><td>30 días hábiles · 2 años</td><td>30 días hábiles · 2 años</td></tr></tbody></table></div>
