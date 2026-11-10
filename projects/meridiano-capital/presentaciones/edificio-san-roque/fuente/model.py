@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
-from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF  # D-101
+from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF, registrar  # D-101 / D-103
 import json
 
 # Edificio San Roque (Asunción) — v1, 2026-11-07. Mismo esquema que Edificio Sajonia v4.
@@ -130,6 +130,12 @@ for p, P in PRICES.items():
             G = (lo + hi) / 2
             lo, hi = (G, hi) if neto(G, *TAX['MED'], cx['C']['total'] + PARTE_EDIF * P)[1] < target else (lo, G)
         out['req'][f'{ref}|{p}'] = G * TC / 12 / N_CONS
+# D-103: alertas de coherencia de cada alternativa y precio
+for a in ALTS:
+    for p, P in PRICES.items():
+        e = out[a]['ev'][p]
+        registrar(out, f'{a} · USD {P:,.0f}'.replace(',', '.'), e['G'], e['net'], e['inv'],
+                  gastos={'Administración': e['adm_u'], 'Mantenimiento': e['man_u'], 'Gastos fijos (supuesto, sin desglose)': FIJOS})
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 
 if __name__ == '__main__':

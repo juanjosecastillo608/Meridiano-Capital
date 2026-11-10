@@ -15,6 +15,10 @@ E, ER = M['etapas']['pedido'], M['etapas']['rapida']
 def n(x, d=0): return f"{x:,.{d}f}".replace(',', 'X').replace('.', ',').replace('X', '.')
 def usd(x): return 'USD ' + n(round(x))
 def pct(x, d=2): return n(x * 100, d) + '%'
+def pn(e, d=2):   # D-103: con alertas de coherencia abiertas, la neta se presenta como rango
+    if e.get('alertas') and e.get('neta_alta', e['neta']) - e['neta'] >= 0.0005:
+        return n(e['neta'] * 100, d) + '–' + pct(e['neta_alta'], d)
+    return pct(e['neta'], d)
 def gsm(x): return 'Gs ' + n(x / 1e6, 2).rstrip('0').rstrip(',') + ' M'
 
 os.makedirs(os.path.join(WEB, 'assets'), exist_ok=True); os.makedirs(os.path.join(WEB, 'fonts'), exist_ok=True)
@@ -35,7 +39,7 @@ def amb(nombre):
     return 'departamento' if 'depto' in t or 'departamento' in t else ('consultorios' if 'consultorio' in t else ('exterior' if any(k in t for k in ('fachada', 'exterior', 'cochera', 'frente', 'lateral')) else 'comunes'))
 gal = ''.join(f'<figure class="g" data-amb="{amb(f + c)}"><button class="zoom"><img src="assets/{f}" alt="{html.escape(c)} (fotografía)" loading="lazy"></button><figcaption>{html.escape(c)}</figcaption></figure>' for f, c in fotos) \
       or '<p class="note">Las fotografías del estado actual se incorporan con el ZIP de imágenes del propietario.</p>'
-et_rows = ''.join(f'<tr><th scope="row">{nm}</th><td>{gsm(E[k]["fact_mes"])}</td><td>{usd(E[k]["inv"])}</td><td>{pct(E[k]["bruta"])}</td><td>{pct(E[k]["neta"])}</td><td>{pct(ER[k]["neta"])}</td></tr>'
+et_rows = ''.join(f'<tr><th scope="row">{nm}</th><td>{gsm(E[k]["fact_mes"])}</td><td>{usd(E[k]["inv"])}</td><td>{pct(E[k]["bruta"])}</td><td>{pn(E[k])}</td><td>{pn(ER[k])}</td></tr>'
                   for k, nm in (('E0', 'Hoy'), ('E1', 'Etapa 1 · 0 a 12 meses'), ('E2', 'Etapa 2 · 12 a 24 meses'), ('E3', f'Etapa 3 · desde el mes 25 ({M["N_NEW_BASE"]} consultorios nuevos, ilustrativo)')))
 SIM = dict(tc=M['TC'], n=M['N'], rent=M['RENT0'], admin=M['ADMIN0'], imp=M['IMP_INMO'], vac=M['VAC'], mant=M['MANT'], fact=M['FACTURABLE'], ivag=IVA_G, ire=IRE, dep=DEP, pe=PARTE_EDIF, precio=M['PRICES']['pedido'], obra=0)
 
@@ -82,7 +86,7 @@ dialog{{border:0;padding:10px;background:#0b1d22;max-width:96vw}}dialog img{{max
 
 <section id="hoy"><div class="eb">01 · Ingresos y gastos hoy</div><h2>Dos gastos se llevan más de la mitad de la facturación</h2>
 <div class="stats"><div class="stat"><strong>{pct(M['peso_admin'], 0)}</strong><small>Administración: Gs 10.450.000 por mes, sin desglose (incluye secretaria)</small></div><div class="stat"><strong>{pct(M['peso_imp'], 0)}</strong><small>Impuesto inmobiliario informado: Gs 45 M por año, a verificar</small></div>
-<div class="stat"><strong>{pct(E['E0']['bruta'])}</strong><small>Bruta hoy a USD 500.000 ({pct(ER['E0']['bruta'])} a USD 420.000)</small></div><div class="stat"><strong>{pct(E['E0']['neta'])}</strong><small>Neta hoy a USD 500.000 ({pct(ER['E0']['neta'])} a USD 420.000)</small></div></div>
+<div class="stat"><strong>{pct(E['E0']['bruta_pura'])}</strong><small>Bruta de renta pura hoy a USD 500.000 ({pct(ER['E0']['bruta_pura'])} a USD 420.000); facturación {pct(E['E0']['bruta'])}, con servicios incluidos (D-103)</small></div><div class="stat"><strong>{pn(E['E0'])}</strong><small>Neta hoy a USD 500.000 ({pn(ER['E0'])} a USD 420.000), en rango hasta verificar gastos (D-103)</small></div></div>
 <div class="note warn"><b>Contratos:</b> según el paquete recibido, los 11 contratos vencieron hace cuatro meses y no se renovaron. No se supone su renovación automática: deben revisarse con el abogado antes de comprar.</div>
 <div class="note">Base de cálculo D-101 de Meridiano: el alquiler incluye IVA (10%); se paga el IVA contenido menos el crédito fiscal de los gastos facturados, y el IRE se aplica sobre el resultado menos la depreciación. Vacancia 5% y reserva de mantenimiento 2%: supuestos.</div></section>
 
@@ -102,7 +106,7 @@ dialog{{border:0;padding:10px;background:#0b1d22;max-width:96vw}}dialog img{{max
 <p>Cotizaciones del 17/08/2026 con validez de 10 días: hay que actualizarlas. La de 3 paradas es la condición para reconvertir el segundo piso.</p></section>
 
 <section id="rentabilidad"><div class="eb">05 · Rentabilidad por etapa</div><h2>De la renta de hoy a la renta estabilizada</h2>
-<div class="tw"><table><thead><tr><th>Etapa</th><th>Facturación mensual</th><th>Inversión total (USD 500.000)</th><th>Bruta</th><th>Neta · USD 500.000</th><th>Neta · USD 420.000</th></tr></thead><tbody>{et_rows}</tbody></table></div>
+<div class="tw"><table><thead><tr><th>Etapa</th><th>Facturación mensual</th><th>Inversión total (USD 500.000)</th><th>Facturación / inversión</th><th>Neta · USD 500.000</th><th>Neta · USD 420.000</th></tr></thead><tbody>{et_rows}</tbody></table></div>
 <p>TIR base a cinco años: {pct(M['proj']['pedido']['Base']['tir'], 1)} a USD 500.000 y {pct(M['proj']['rapida']['Base']['tir'], 1)} a USD 420.000. Alquileres en guaraníes al {tc_texto()}. Cifras de referencia, no garantizadas.</p></section>
 
 <section id="simulador" class="noprint"><div class="eb">06 · Simulador</div><h2>Pruebe sus propios supuestos</h2>

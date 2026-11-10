@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
-from rentabilidad import neto_d101, PARTE_EDIF  # D-101
+from rentabilidad import neto_d101, PARTE_EDIF, registrar, gastos_de  # D-101 / D-103
 import json, os
 TC = TC_CFG; P = 340_000
 RENTS = [  # (nivel, concepto, Gs/mes, clase)
@@ -36,6 +36,7 @@ for r in RENTS: lv[r[0]] = lv.get(r[0], 0) + r[2]
 d1 = [r[2] for r in RENTS if r[1] == '1 dorm.']; d2 = [r[2] for r in RENTS if r[1] == '2 dorm.']
 out = dict(TC=TC, P=P, RENTS=RENTS, mes=mes, G=G, IVA=IVA, IVA_EF=R['iva_u']/G, iva_u=R['iva_u'], iva_deb=R['iva_deb'], iva_cred=R['iva_cred'], dep=R['dep'], vac_u=G*VAC, adm_u=G*ADM, man_u=G*MAN, FIX=FIX, pre=pre, net=net, ire_u=R['ire_u'],
            bruta=G/P, neta=net/P, neta_pre=pre/P, veces=P/G, lv=lv, avg1=sum(d1)/len(d1), avg2=sum(d2)/len(d2), n1=len(d1), n2=len(d2), proj=proj)
+registrar(out, 'Precio pedido', G, net, P, gastos=gastos_de(R, fijos={'Seguro e impuesto inmobiliario': FIX}))  # D-103
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 if __name__ == '__main__':
     print('mes', mes, 'G', round(G), 'IVA %.4f' % IVA, 'iva', round(R['iva_u']), 'vac', round(G*VAC), 'adm', round(G*ADM), 'man', round(G*MAN), 'pre', round(pre), 'ire', round(R['ire_u']), 'net', round(net))

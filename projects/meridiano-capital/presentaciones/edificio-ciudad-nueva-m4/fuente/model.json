@@ -174,5 +174,21 @@
    "gr": 0.08,
    "val": 0.05
   }
- }
+ },
+ "coherencia": [
+  {
+   "ingreso": 36201.75,
+   "servicios": 0.0,
+   "ingreso_renta_pura": 36201.75,
+   "facturacion_pct": 10.65,
+   "bruta_renta_pura_pct": 10.65,
+   "neta_sobre_renta_pura_pct": 70.3,
+   "neta_pct": 7.49,
+   "neta_techo_pct": 7.49,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "Precio pedido"
+  }
+ ]
 }

@@ -156,3 +156,4 @@ h1,h2,.wm,.v,.bigv,.midv,.pn,.cn,.rect span{font-variation-settings:'opsz' 80,'S
 .rg6{display:grid;grid-template-columns:200px repeat(6,1fr);gap:12px 16px;margin-top:20px;align-items:baseline}
 .bigv.m6{font-size:34px}.rg6 .midv{font-size:24px}.rg6 .midv.s2{font-size:16px}.rg6 .bl2{font-size:12.5px}
 .kgrid.ks .k .v{font-size:27px}
+.t.cmp td{padding:7px 14px}

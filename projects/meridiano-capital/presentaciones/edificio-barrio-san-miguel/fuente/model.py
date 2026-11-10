@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
-from rentabilidad import DEP, PARTE_EDIF  # D-101: IRE con depreciación
+from rentabilidad import DEP, PARTE_EDIF, registrar  # D-101: IRE con depreciación / D-103
 import json
 # Edificio Barrio San Miguel (CDE), paquete de estudio v2.0 (17/10/2026).
 # Rentas, áreas y distribución: planilla por unidad (estudio/Datos_mercado_San_Miguel.json > units),
@@ -83,6 +83,9 @@ out['proj'] = proj
 out['park'] = {k: dict(T=P + PARKING, bruta=G / (P + PARKING), saldo=SALDO / (P + PARKING)) for k, P in PRECIOS.items()}
 out['park_hurdle'] = [dict(r=r, gs_mes=PARKING * r * TC / 12) for r in (.09, .10, .12)]
 out['cap'] = [dict(r=r, P=SALDO / r) for r in (.08, .09, .10, .11, .12)]
+for k, P in PRECIOS.items():  # D-103
+    registrar(out, f'USD {P:,.0f}'.replace(',', '.'), G, neto(G, P)[1], P,
+              gastos={'Gastos informados (IVA, mantenimiento y administración)': GI, 'Otros gastos (supuesto)': OTROS})
 json.dump(out, open(os.path.join(B, 'model.json'), 'w'))
 print({k: {x: round(v * 100, 2) for x, v in out[k].items() if x in ('bruta', 'saldo', 'neta_pre', 'neta')} for k in PRECIOS},
       {n: (round(p['pub']['tir'] * 100, 1), round(p['rap']['tir'] * 100, 1)) for n, p in proj.items() if n != 'gr'})

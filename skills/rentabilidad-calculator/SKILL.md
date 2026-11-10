@@ -48,7 +48,9 @@ Opción B — si `production/app/backend/server.py` ya está corriendo, usar la 
    - Si la clase es `temporal_*`: aviso de que el IVA residencial se aplicó por inferencia `[EXTENSION]`, no confirmado para renta temporal.
    - **D-002 (pisos brutos vs. netos) sigue UNRESOLVED** — cualquier veredicto `pasa_piso` debe presentarse con esa reserva explícita, nunca como cifra cerrada.
 3. **Para reventa/reventa-temprana**: presentar tanto las cifras brutas (auditadas contra Habitalis 9A / Edificio Austria) como las `_neto_iva` (nuevas, IVA de venta 5%) — nunca solo una de las dos.
-4. Si el usuario pide una cifra para un documento/deck externo a un inversor, recordar el disclaimer de marca ("cifras ilustrativas, no constituyen garantía" — `RB-05`, `knowledge-base/brand/09-cierres-y-firmas.md`).
+4. **Activos con servicios (D-103)**: consultorios con secretaria, coworking, habitaciones todo incluido. Pasar `--servicios` con el costo directo mensual de los servicios incluidos en el alquiler. Presentar la facturación y la **bruta de renta pura** por separado: el piso se compara con la renta pura (en `temporal_*`, con la facturación, como en D-044). Si se conoce la boleta, pasar `--impuesto-inmobiliario`.
+5. **Alertas de coherencia (D-103)**: si `alertas_coherencia` no está vacío (`presentar_como_rango: true`), la neta **no** se presenta como dato cerrado sino como rango, hasta verificar los datos que dispararon la alerta.
+6. Si el usuario pide una cifra para un documento/deck externo a un inversor, recordar el disclaimer de marca ("cifras ilustrativas, no constituyen garantía" — `RB-05`, `knowledge-base/brand/09-cierres-y-firmas.md`).
 
 ## Dependencias
 

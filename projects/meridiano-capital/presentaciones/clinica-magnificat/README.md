@@ -27,6 +27,11 @@
 | Etapa 2 (12–24 m): Gs 3,0 M por consultorio | Gs 33 M | 11,81% | 5,00% | 5,89% |
 | Etapa 3 (mes 25+): 6 consultorios nuevos (anteproyecto) | Gs 51 M | 16,02% | 8,48% | 9,79% |
 
+- **D-103 (10/11/2026):**
+  - La facturación incluye servicios. La bruta de renta pura (supuesto: el 60% de la administración son servicios) es 7,86% hoy a USD 500.000 y 9,36% a USD 420.000.
+  - Hay alertas de coherencia abiertas: neta al 42% de la renta pura, administración sin desglose e impuesto inmobiliario sobre el 1% del precio.
+  - Por eso el deck y la web muestran la neta como rango: hoy 3,27–3,95% a USD 500.000 y 3,87–4,85% a USD 420.000.
+  - El rango se cierra con la planilla de desglose y la boleta.
 - **TIR base a 5 años:** 9,7% a USD 500.000 y 10,8% a USD 420.000. Sin la reconversión del segundo piso: 7,8% y 8,6%.
 - **Peso de los gastos:** la administración es el 38% de la facturación y el impuesto inmobiliario el 13,6%. Si el impuesto fuera la mitad, la neta de hoy sería 3,89% a USD 500.000.
 

@@ -51,8 +51,40 @@
     "obra": 0.0,
     "bruta": 0.10184635089154134,
     "neta": 0.03268163563696405,
+    "serv_u": 11610.484001635714,
+    "bruta_pura": 0.07862538288826991,
     "neta_pre": 0.034924039596626724,
-    "fact_mes": 27500000
+    "fact_mes": 27500000,
+    "coherencia": {
+     "ingreso": 50923.18,
+     "servicios": 11610.48,
+     "ingreso_renta_pura": 39312.69,
+     "facturacion_pct": 10.18,
+     "bruta_renta_pura_pct": 7.86,
+     "neta_sobre_renta_pura_pct": 41.6,
+     "neta_pct": 3.27,
+     "neta_techo_pct": 3.95,
+     "alertas": [
+      "La neta es el 42% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+      "\u00abAdministraci\u00f3n (sin los servicios)\u00bb es el 19,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+      "\u00abImpuesto inmobiliario\u00bb es el 17,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+      "El impuesto inmobiliario es el 1,39% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "neta_baja",
+      "gasto_alto:Administraci\u00f3n (sin los servicios)",
+      "gasto_alto:Impuesto inmobiliario",
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "La neta es el 42% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+     "\u00abAdministraci\u00f3n (sin los servicios)\u00bb es el 19,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+     "\u00abImpuesto inmobiliario\u00bb es el 17,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+     "El impuesto inmobiliario es el 1,39% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.0395
    },
    "E1": {
     "G": 56015.49299034774,
@@ -77,8 +109,37 @@
     "obra": 17560.779896147582,
     "bruta": 0.10822978704373168,
     "neta": 0.044015872787310034,
+    "serv_u": 9866.133773638769,
+    "bruta_pura": 0.08916703314723573,
     "neta_pre": 0.04747051158428703,
-    "fact_mes": 30250000
+    "fact_mes": 30250000,
+    "coherencia": {
+     "ingreso": 56015.49,
+     "servicios": 9866.13,
+     "ingreso_renta_pura": 46149.36,
+     "facturacion_pct": 10.82,
+     "bruta_renta_pura_pct": 8.92,
+     "neta_sobre_renta_pura_pct": 49.4,
+     "neta_pct": 4.4,
+     "neta_techo_pct": 4.71,
+     "alertas": [
+      "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+      "\u00abImpuesto inmobiliario\u00bb es el 15,0% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+      "El impuesto inmobiliario es el 1,34% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "neta_baja",
+      "gasto_alto:Impuesto inmobiliario",
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+     "\u00abImpuesto inmobiliario\u00bb es el 15,0% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+     "El impuesto inmobiliario es el 1,34% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.0471
    },
    "E2": {
     "G": 61107.81053492481,
@@ -103,8 +164,31 @@
     "obra": 17560.779896147582,
     "bruta": 0.11806885859316184,
     "neta": 0.04995102842692084,
+    "serv_u": 9866.133773638769,
+    "bruta_pura": 0.09900610469666589,
     "neta_pre": 0.05406512896163236,
-    "fact_mes": 33000000
+    "fact_mes": 33000000,
+    "coherencia": {
+     "ingreso": 61107.81,
+     "servicios": 9866.13,
+     "ingreso_renta_pura": 51241.68,
+     "facturacion_pct": 11.81,
+     "bruta_renta_pura_pct": 9.9,
+     "neta_sobre_renta_pura_pct": 50.5,
+     "neta_pct": 5.0,
+     "neta_techo_pct": 5.3,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,34% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,34% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.053
    },
    "E3": {
     "G": 94439.3435539747,
@@ -129,8 +213,31 @@
     "obra": 89560.77989614758,
     "bruta": 0.16018593294250408,
     "neta": 0.08475607033301745,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.141777742436829,
     "neta_pre": 0.0925735350633563,
-    "fact_mes": 51000000
+    "fact_mes": 51000000,
+    "coherencia": {
+     "ingreso": 94439.34,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 83586.6,
+     "facturacion_pct": 16.02,
+     "bruta_renta_pura_pct": 14.18,
+     "neta_sobre_renta_pura_pct": 59.8,
+     "neta_pct": 8.48,
+     "neta_techo_pct": 8.64,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,18% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,18% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.0864
    }
   },
   "rapida": {
@@ -157,8 +264,40 @@
     "obra": 0.0,
     "bruta": 0.1212456558232635,
     "neta": 0.038668613853528634,
+    "serv_u": 11610.484001635714,
+    "bruta_pura": 0.09360164629555942,
     "neta_pre": 0.04157623761503181,
-    "fact_mes": 27500000
+    "fact_mes": 27500000,
+    "coherencia": {
+     "ingreso": 50923.18,
+     "servicios": 11610.48,
+     "ingreso_renta_pura": 39312.69,
+     "facturacion_pct": 12.12,
+     "bruta_renta_pura_pct": 9.36,
+     "neta_sobre_renta_pura_pct": 41.3,
+     "neta_pct": 3.87,
+     "neta_techo_pct": 4.85,
+     "alertas": [
+      "La neta es el 41% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+      "\u00abAdministraci\u00f3n (sin los servicios)\u00bb es el 19,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+      "\u00abImpuesto inmobiliario\u00bb es el 17,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+      "El impuesto inmobiliario es el 1,65% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "neta_baja",
+      "gasto_alto:Administraci\u00f3n (sin los servicios)",
+      "gasto_alto:Impuesto inmobiliario",
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "La neta es el 41% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+     "\u00abAdministraci\u00f3n (sin los servicios)\u00bb es el 19,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+     "\u00abImpuesto inmobiliario\u00bb es el 17,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+     "El impuesto inmobiliario es el 1,65% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.048499999999999995
    },
    "E1": {
     "G": 56015.49299034774,
@@ -183,8 +322,37 @@
     "obra": 17560.779896147582,
     "bruta": 0.12801762763939373,
     "neta": 0.05183483184437365,
+    "serv_u": 9866.133773638769,
+    "bruta_pura": 0.10546959722409818,
     "neta_pre": 0.0561496279521761,
-    "fact_mes": 30250000
+    "fact_mes": 30250000,
+    "coherencia": {
+     "ingreso": 56015.49,
+     "servicios": 9866.13,
+     "ingreso_renta_pura": 46149.36,
+     "facturacion_pct": 12.8,
+     "bruta_renta_pura_pct": 10.55,
+     "neta_sobre_renta_pura_pct": 49.1,
+     "neta_pct": 5.18,
+     "neta_techo_pct": 5.71,
+     "alertas": [
+      "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+      "\u00abImpuesto inmobiliario\u00bb es el 15,0% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+      "El impuesto inmobiliario es el 1,59% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "neta_baja",
+      "gasto_alto:Impuesto inmobiliario",
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+     "\u00abImpuesto inmobiliario\u00bb es el 15,0% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+     "El impuesto inmobiliario es el 1,59% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.0571
    },
    "E2": {
     "G": 61107.81053492481,
@@ -209,8 +377,31 @@
     "obra": 17560.779896147582,
     "bruta": 0.1396555937884295,
     "neta": 0.058855122333779625,
+    "serv_u": 9866.133773638769,
+    "bruta_pura": 0.117107563373134,
     "neta_pre": 0.06394995071818274,
-    "fact_mes": 33000000
+    "fact_mes": 33000000,
+    "coherencia": {
+     "ingreso": 61107.81,
+     "servicios": 9866.13,
+     "ingreso_renta_pura": 51241.68,
+     "facturacion_pct": 13.97,
+     "bruta_renta_pura_pct": 11.71,
+     "neta_sobre_renta_pura_pct": 50.3,
+     "neta_pct": 5.89,
+     "neta_techo_pct": 6.41,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,59% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,59% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.0641
    },
    "E3": {
     "G": 94439.3435539747,
@@ -235,8 +426,31 @@
     "obra": 89560.77989614758,
     "bruta": 0.18533479671104627,
     "neta": 0.09786635254116331,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.16403655795488745,
     "neta_pre": 0.10710739068422626,
-    "fact_mes": 51000000
+    "fact_mes": 51000000,
+    "coherencia": {
+     "ingreso": 94439.34,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 83586.6,
+     "facturacion_pct": 18.53,
+     "bruta_renta_pura_pct": 16.4,
+     "neta_sobre_renta_pura_pct": 59.7,
+     "neta_pct": 9.79,
+     "neta_techo_pct": 10.11,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,36% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,36% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.1011
    }
   }
  },
@@ -265,8 +479,31 @@
     "obra": 65560.77989614758,
     "bruta": 0.14733842145653417,
     "neta": 0.07329851639412042,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.12814906544603513,
     "neta_pre": 0.07989290471194174,
-    "fact_mes": 45000000
+    "fact_mes": 45000000,
+    "coherencia": {
+     "ingreso": 83328.83,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 72476.09,
+     "facturacion_pct": 14.73,
+     "bruta_renta_pura_pct": 12.81,
+     "neta_sobre_renta_pura_pct": 57.2,
+     "neta_pct": 7.33,
+     "neta_techo_pct": 7.53,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,23% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,23% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.0753
    },
    "5": {
     "G": 88884.08805079972,
@@ -291,8 +528,31 @@
     "obra": 77560.77989614758,
     "bruta": 0.15389564379143292,
     "neta": 0.07914632035782873,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.13510498568449897,
     "neta_pre": 0.08636495283205389,
-    "fact_mes": 48000000
+    "fact_mes": 48000000,
+    "coherencia": {
+     "ingreso": 88884.09,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 78031.34,
+     "facturacion_pct": 15.39,
+     "bruta_renta_pura_pct": 13.51,
+     "neta_sobre_renta_pura_pct": 58.6,
+     "neta_pct": 7.91,
+     "neta_techo_pct": 8.1,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,20% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,20% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.081
    },
    "6": {
     "G": 94439.3435539747,
@@ -317,8 +577,31 @@
     "obra": 89560.77989614758,
     "bruta": 0.16018593294250408,
     "neta": 0.08475607033301745,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.141777742436829,
     "neta_pre": 0.0925735350633563,
-    "fact_mes": 51000000
+    "fact_mes": 51000000,
+    "coherencia": {
+     "ingreso": 94439.34,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 83586.6,
+     "facturacion_pct": 16.02,
+     "bruta_renta_pura_pct": 14.18,
+     "neta_sobre_renta_pura_pct": 59.8,
+     "neta_pct": 8.48,
+     "neta_techo_pct": 8.64,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,18% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,18% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.0864
    }
   },
   "rapida": {
@@ -345,8 +628,31 @@
     "obra": 65560.77989614758,
     "bruta": 0.17161359812760668,
     "neta": 0.0851690824492339,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.14926264310746717,
     "neta_pre": 0.09305589612636847,
-    "fact_mes": 45000000
+    "fact_mes": 45000000,
+    "coherencia": {
+     "ingreso": 83328.83,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 72476.09,
+     "facturacion_pct": 17.16,
+     "bruta_renta_pura_pct": 14.93,
+     "neta_sobre_renta_pura_pct": 57.1,
+     "neta_pct": 8.52,
+     "neta_techo_pct": 8.9,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,43% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,43% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.08900000000000001
    },
    "5": {
     "G": 88884.08805079972,
@@ -371,8 +677,31 @@
     "obra": 77560.77989614758,
     "bruta": 0.17863965899673984,
     "neta": 0.09167083169476932,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.1568277566332379,
     "neta_pre": 0.10025108796514541,
-    "fact_mes": 48000000
+    "fact_mes": 48000000,
+    "coherencia": {
+     "ingreso": 88884.09,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 78031.34,
+     "facturacion_pct": 17.86,
+     "bruta_renta_pura_pct": 15.68,
+     "neta_sobre_renta_pura_pct": 58.5,
+     "neta_pct": 9.17,
+     "neta_techo_pct": 9.52,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,40% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,40% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.09519999999999999
    },
    "6": {
     "G": 94439.3435539747,
@@ -397,8 +726,31 @@
     "obra": 89560.77989614758,
     "bruta": 0.18533479671104627,
     "neta": 0.09786635254116331,
+    "serv_u": 10852.747151002646,
+    "bruta_pura": 0.16403655795488745,
     "neta_pre": 0.10710739068422626,
-    "fact_mes": 51000000
+    "fact_mes": 51000000,
+    "coherencia": {
+     "ingreso": 94439.34,
+     "servicios": 10852.75,
+     "ingreso_renta_pura": 83586.6,
+     "facturacion_pct": 18.53,
+     "bruta_renta_pura_pct": 16.4,
+     "neta_sobre_renta_pura_pct": 59.7,
+     "neta_pct": 9.79,
+     "neta_techo_pct": 10.11,
+     "alertas": [
+      "El impuesto inmobiliario es el 1,36% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+     ],
+     "codigos": [
+      "impuesto_alto"
+     ],
+     "presentar_como_rango": true
+    },
+    "alertas": [
+     "El impuesto inmobiliario es el 1,36% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+    ],
+    "neta_alta": 0.1011
    }
   }
  },
@@ -558,5 +910,172 @@
   "9": 182481.75182481753,
   "10": 179856.11510791368,
   "11": 179856.11510791368
- }
+ },
+ "SERVICIOS": 0.6,
+ "coherencia": [
+  {
+   "ingreso": 50923.18,
+   "servicios": 11610.48,
+   "ingreso_renta_pura": 39312.69,
+   "facturacion_pct": 10.18,
+   "bruta_renta_pura_pct": 7.86,
+   "neta_sobre_renta_pura_pct": 41.6,
+   "neta_pct": 3.27,
+   "neta_techo_pct": 3.95,
+   "alertas": [
+    "La neta es el 42% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+    "\u00abAdministraci\u00f3n (sin los servicios)\u00bb es el 19,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+    "\u00abImpuesto inmobiliario\u00bb es el 17,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+    "El impuesto inmobiliario es el 1,39% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "neta_baja",
+    "gasto_alto:Administraci\u00f3n (sin los servicios)",
+    "gasto_alto:Impuesto inmobiliario",
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Hoy \u00b7 USD 500.000"
+  },
+  {
+   "ingreso": 56015.49,
+   "servicios": 9866.13,
+   "ingreso_renta_pura": 46149.36,
+   "facturacion_pct": 10.82,
+   "bruta_renta_pura_pct": 8.92,
+   "neta_sobre_renta_pura_pct": 49.4,
+   "neta_pct": 4.4,
+   "neta_techo_pct": 4.71,
+   "alertas": [
+    "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+    "\u00abImpuesto inmobiliario\u00bb es el 15,0% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+    "El impuesto inmobiliario es el 1,34% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "neta_baja",
+    "gasto_alto:Impuesto inmobiliario",
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Etapa 1 \u00b7 USD 500.000"
+  },
+  {
+   "ingreso": 61107.81,
+   "servicios": 9866.13,
+   "ingreso_renta_pura": 51241.68,
+   "facturacion_pct": 11.81,
+   "bruta_renta_pura_pct": 9.9,
+   "neta_sobre_renta_pura_pct": 50.5,
+   "neta_pct": 5.0,
+   "neta_techo_pct": 5.3,
+   "alertas": [
+    "El impuesto inmobiliario es el 1,34% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Etapa 2 \u00b7 USD 500.000"
+  },
+  {
+   "ingreso": 94439.34,
+   "servicios": 10852.75,
+   "ingreso_renta_pura": 83586.6,
+   "facturacion_pct": 16.02,
+   "bruta_renta_pura_pct": 14.18,
+   "neta_sobre_renta_pura_pct": 59.8,
+   "neta_pct": 8.48,
+   "neta_techo_pct": 8.64,
+   "alertas": [
+    "El impuesto inmobiliario es el 1,18% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Etapa 3 \u00b7 USD 500.000"
+  },
+  {
+   "ingreso": 50923.18,
+   "servicios": 11610.48,
+   "ingreso_renta_pura": 39312.69,
+   "facturacion_pct": 12.12,
+   "bruta_renta_pura_pct": 9.36,
+   "neta_sobre_renta_pura_pct": 41.3,
+   "neta_pct": 3.87,
+   "neta_techo_pct": 4.85,
+   "alertas": [
+    "La neta es el 41% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+    "\u00abAdministraci\u00f3n (sin los servicios)\u00bb es el 19,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+    "\u00abImpuesto inmobiliario\u00bb es el 17,7% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+    "El impuesto inmobiliario es el 1,65% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "neta_baja",
+    "gasto_alto:Administraci\u00f3n (sin los servicios)",
+    "gasto_alto:Impuesto inmobiliario",
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Hoy \u00b7 USD 420.000"
+  },
+  {
+   "ingreso": 56015.49,
+   "servicios": 9866.13,
+   "ingreso_renta_pura": 46149.36,
+   "facturacion_pct": 12.8,
+   "bruta_renta_pura_pct": 10.55,
+   "neta_sobre_renta_pura_pct": 49.1,
+   "neta_pct": 5.18,
+   "neta_techo_pct": 5.71,
+   "alertas": [
+    "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+    "\u00abImpuesto inmobiliario\u00bb es el 15,0% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes.",
+    "El impuesto inmobiliario es el 1,59% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "neta_baja",
+    "gasto_alto:Impuesto inmobiliario",
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Etapa 1 \u00b7 USD 420.000"
+  },
+  {
+   "ingreso": 61107.81,
+   "servicios": 9866.13,
+   "ingreso_renta_pura": 51241.68,
+   "facturacion_pct": 13.97,
+   "bruta_renta_pura_pct": 11.71,
+   "neta_sobre_renta_pura_pct": 50.3,
+   "neta_pct": 5.89,
+   "neta_techo_pct": 6.41,
+   "alertas": [
+    "El impuesto inmobiliario es el 1,59% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Etapa 2 \u00b7 USD 420.000"
+  },
+  {
+   "ingreso": 94439.34,
+   "servicios": 10852.75,
+   "ingreso_renta_pura": 83586.6,
+   "facturacion_pct": 18.53,
+   "bruta_renta_pura_pct": 16.4,
+   "neta_sobre_renta_pura_pct": 59.7,
+   "neta_pct": 9.79,
+   "neta_techo_pct": 10.11,
+   "alertas": [
+    "El impuesto inmobiliario es el 1,36% del precio (m\u00e1ximo 1%): dato inconsistente con la valuaci\u00f3n fiscal; pedir la boleta."
+   ],
+   "codigos": [
+    "impuesto_alto"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "Etapa 3 \u00b7 USD 420.000"
+  }
+ ]
 }

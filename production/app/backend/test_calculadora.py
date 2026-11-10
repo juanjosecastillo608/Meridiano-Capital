@@ -93,6 +93,32 @@ r_obra = calc.evaluar_renta("comercial", 100000, 1000, nivel_neto=3, base_deprec
 if not (r_obra["neto_anual"] > r_comercial["neto_anual"]):
     fallos.append("una base depreciable mayor deberia bajar el IRE y subir el neto")
 
+# --- D-103 (founder, 10/11/2026): renta pura vs. servicios y alertas de coherencia ---
+# Sin servicios ni datos raros: la renta pura es la bruta y no hay alertas (resultados D-101 intactos).
+if r_comercial["yield_bruto_renta_pura_pct"] != r_comercial["yield_bruto_pct"]:
+    fallos.append("sin servicios, la bruta de renta pura deberia ser igual a la bruta")
+if r_comercial["alertas_coherencia"] or r_comercial["piso_comparado_con"] != "facturacion":
+    fallos.append(f"comercial por defecto no deberia tener alertas: {r_comercial['alertas_coherencia']}")
+# Consultorio con servicios: USD 300/mes de secretaria y limpieza sobre USD 1.000/mes de facturacion
+r_serv = calc.evaluar_renta("comercial", 100000, 1000, nivel_neto=3, costo_servicios_mensual=300)
+if not aprox(r_serv["yield_bruto_renta_pura_pct"], 8.4, 0.01):
+    fallos.append(f"bruta de renta pura deberia ser (12.000 - 3.600) / 100.000 = 8,4%: {r_serv['yield_bruto_renta_pura_pct']}")
+if r_serv["piso_comparado_con"] != "bruta_renta_pura" or r_serv["pasa_piso"] is not False:
+    fallos.append("con servicios, el piso comercial (10%) se compara con la renta pura (8,4%) y no pasa")
+if not aprox(r_comercial["neto_anual"] - r_serv["neto_anual"], 3600 * 0.9, 1.0):
+    fallos.append("los servicios bajan el neto en su costo menos el IRE (10%)")
+# Impuesto inmobiliario incoherente con el precio (USD 1.500 sobre USD 100.000 = 1,5%)
+r_imp = calc.evaluar_renta("comercial", 100000, 1000, nivel_neto=3, impuesto_inmobiliario_anual=1500)
+if not any("impuesto inmobiliario" in a for a in r_imp["alertas_coherencia"]) or not r_imp["presentar_como_rango"]:
+    fallos.append("impuesto inmobiliario > 1% del precio deberia generar alerta y rango")
+# Rango: techo = impuesto bajado al 1% del precio (USD 1.000), ahorro de USD 500 neto de IRE (10%)
+if not aprox(r_imp["yield_neto_techo_pct"] - r_imp["yield_neto_pct"], 0.45, 0.01):
+    fallos.append(f"techo del rango: +USD 450 sobre USD 100.000 = +0,45 pp: {r_imp['yield_neto_techo_pct']} vs {r_imp['yield_neto_pct']}")
+# Temporal: la renta pura es el ingreso a ocupacion real (60%) menos la limpieza
+r_tmp = calc.evaluar_renta("temporal_departamento", 100000, 1000)
+if not aprox(r_tmp["yield_bruto_renta_pura_pct"], (12000 * 0.6 - 1440) / 1000, 0.01) or r_tmp["piso_comparado_con"] != "facturacion":
+    fallos.append(f"temporal: renta pura = cobrado - limpieza y piso contra facturacion: {r_tmp['yield_bruto_renta_pura_pct']}")
+
 # --- IVA de venta (CORREGIDO 2026-08-23, D-082: 1,5% efectivo = 30% base x 5% tasa,
 # no 5% directo -- ver knowledge-base/investment/methodologies/iva-venta-de-inmuebles-paraguay.md) ---
 r_venta = calc.evaluar_reventa("tradicional", "pre_pozo", "vende_al_terminar", 80000, entrega_inicial_pct=20)

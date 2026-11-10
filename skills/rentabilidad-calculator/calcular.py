@@ -26,7 +26,9 @@ from advertencias import advertencias_renta, advertencias_venta  # noqa: E402
 
 def cmd_renta(calc, args):
     resultado = calc.evaluar_renta(args.clase, args.precio, args.renta, nivel_neto=args.nivel,
-                                    ocupacion_pct=args.ocupacion)
+                                    ocupacion_pct=args.ocupacion,
+                                    costo_servicios_mensual=args.servicios,
+                                    impuesto_inmobiliario_anual=args.impuesto_inmobiliario)
     resultado["advertencias"] = advertencias_renta(calc, args.clase, resultado)
     return resultado
 
@@ -71,6 +73,11 @@ def main():
                           help="Solo para clases temporal_*. Ocupacion real 0-100. "
                                "Si se omite, usa el punto medio del rango realista "
                                "(60%%, D-003/D-046).")
+    p_renta.add_argument("--servicios", type=float, default=None,
+                          help="D-103. Costo directo mensual (USD) de los servicios incluidos en el "
+                               "alquiler (secretaria, limpieza, consumos). Separa la renta pura.")
+    p_renta.add_argument("--impuesto-inmobiliario", type=float, default=None,
+                          help="D-103. Monto anual real de la boleta (USD). Se controla contra el 1%% del precio.")
     p_renta.set_defaults(func=cmd_renta)
 
     p_reventa = sub.add_parser("reventa", help="Plusvalia + TIR doble de una reventa")

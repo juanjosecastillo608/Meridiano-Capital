@@ -41,6 +41,22 @@ python build_presentaciones.py
   - Rechaza cualquier teléfono distinto del canónico.
   - Rechaza tipos de cambio escritos a mano.
   - Rechaza PDF generados con un tipo de cambio distinto del vigente.
+  - **Alertas de coherencia (D-103):** lista las alertas de `model.json` > `coherencia` de cada deck y rechaza el deck que tenga alertas abiertas sin presentar la neta como rango.
+
+## Renta pura y alertas de coherencia (D-103)
+- **Activos con servicios incluidos** (consultorios con secretaria, coworking, habitaciones todo incluido, hostel, renta temporal):
+  - se informa la facturación;
+  - se informa también la **bruta de renta pura**: facturación menos el costo de los servicios, sobre la inversión.
+- **Cada `model.py` registra sus escenarios** con `registrar(out, escenario, ingreso, neto, precio, servicios=..., gastos=..., impuesto_inmobiliario=...)`, que está en `_config/rentabilidad.py`. Usa la misma lógica que el motor (`production/app/backend/coherencia.py`).
+- **Hay alerta cuando:**
+  - la neta es menor que el 50% del ingreso de renta pura;
+  - una línea de gasto supera el 15% de ese ingreso;
+  - el impuesto inmobiliario supera el 1% del precio.
+- **Con una alerta abierta, la neta va como rango:**
+  - piso: el dato informado;
+  - techo: los gastos alertados bajados a su umbral.
+  - `gen.py` usa `pn(e)` y `deck.json` declara `"neta_en_rango_d103": true`.
+  - La regla completa está en `knowledge-base/investment/methodologies/renta-pura-y-alertas-de-coherencia.md`.
 
 ## Tipo de cambio vigente
 Gs 6.480,35 por USD: cotización referencial del BCP del **06/11/2026**, la última publicada al 07/11/2026.

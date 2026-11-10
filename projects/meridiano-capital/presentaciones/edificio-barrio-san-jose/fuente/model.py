@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG, tc_texto, tc_corto, contacto_linea  # D-096 / D-097
-from rentabilidad import neto_d101, PARTE_EDIF  # D-101
+from rentabilidad import neto_d101, PARTE_EDIF, registrar, gastos_de  # D-101 / D-103
 import json
 TC=TC_CFG
 precio_gs=1_600_000_000
@@ -36,5 +36,6 @@ out['proj']=proj
 # upside (received projection, not validated)
 for k,m in [('act',11e6),('int',8*1.8e6+3e6+1e6),('inf',19.4e6),('sup',19.9e6)]:
     out['up_'+k]=dict(m=m,usd=m/TC,anual=m*12,bruta=m*12/precio_gs,ret=precio_gs/(m*12))
+registrar(out, 'Precio pedido', G, net, P, gastos=gastos_de(R, fijos={'Otros gastos fijos (supuesto)': F}))  # D-103
 print(json.dumps(out,indent=1))
 json.dump(out,open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'model.json'),'w'))

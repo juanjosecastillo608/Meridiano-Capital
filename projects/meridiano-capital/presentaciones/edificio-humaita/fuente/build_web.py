@@ -17,6 +17,10 @@ def n(x, d=0):
     return s.replace(',', 'X').replace('.', ',').replace('X', '.')
 def usd(x): return 'USD ' + n(round(x))
 def pct(x, d=2): return n(x * 100, d) + '%'
+def pn(e, d=2):   # D-103: con alertas de coherencia abiertas, la neta se presenta como rango y no como dato
+    if e.get('alertas') and e.get('neta_alta', e['neta']) - e['neta'] >= 0.0005:
+        return n(e['neta'] * 100, d) + '–' + pct(e['neta_alta'], d)
+    return pct(e['neta'], d)
 
 # ---- archivos locales
 os.makedirs(os.path.join(WEB, 'assets'), exist_ok=True)
@@ -76,7 +80,7 @@ def matcard(k):
             f'<p class="small"><b>Alcance:</b> pintura, carpinterías, iluminación, cartelería y planta baja. <b>Restricciones:</b> fachada del centro histórico sujeta a aprobación municipal; materiales y precios a verificar en plaza.</p></div></article>')
 
 ALTN = {'A': 'A · Departamentos y salones', 'B': 'B · 20 habitaciones mensuales', 'C': 'C · Hostel de 20 habitaciones'}
-rows = ''.join(f'<tr><th scope="row">{ALTN[a]}</th><td>{usd(M["cx"][a]["total"])}</td><td>{usd(ev[a]["inv"])}</td><td>{usd(ev[a]["G"] / 12)}</td><td>{pct(ev[a]["bruta"])}</td><td>{pct(ev[a]["neta"])}</td><td>{pct(M["proj"][a]["Base"]["tir"], 1)}</td></tr>' for a in 'ABC')
+rows = ''.join(f'<tr><th scope="row">{ALTN[a]}</th><td>{usd(M["cx"][a]["total"])}</td><td>{usd(ev[a]["inv"])}</td><td>{usd(ev[a]["G"] / 12)}</td><td>{pct(ev[a]["bruta"])}</td><td>{pn(ev[a])}</td><td>{pct(M["proj"][a]["Base"]["tir"], 1)}</td></tr>' for a in 'ABC')
 
 page = f'''<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Edificio Humaitá | Meridiano Capital</title><meta name="description" content="Casona del centro histórico de Asunción en venta, con tres opciones de renta. Documento de referencia de Meridiano Capital.">

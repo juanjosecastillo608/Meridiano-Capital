@@ -7,6 +7,11 @@ Revisa los generadores (`*/fuente/*.py`) y, si existe `pdftotext`, el texto de c
     distinto del de _config/meridiano.json es un error (deck desactualizado);
   - generadores: no deben contener el teléfono ni el TC escritos a mano.
 
+Además (D-103, founder 10/11/2026) revisa las alertas de coherencia que cada model.py deja en
+model.json > coherencia: un deck con alertas abiertas tiene que presentar la neta como rango y
+declararlo en deck.json ("neta_en_rango_d103": true); si no, es un error. Las alertas se listan
+siempre, para que se vean antes de enviar un deck.
+
 Sale con status 1 si encuentra algo. Lo usan build_presentaciones.py y
 scripts/pre-commit-checks.py.
 """
@@ -46,6 +51,28 @@ def revisar_texto(nombre, texto, problemas, es_fuente):
                 problemas.append(f'{nombre}: tipo de cambio Gs {m.group(1)} distinto del vigente Gs {TC_TXT} (regenerar el deck)')
 
 
+def revisar_coherencia(problemas):
+    """D-103: alertas de coherencia de cada deck (model.json > coherencia)."""
+    import json
+    for dj in sorted(glob.glob(os.path.join(BASE, '*', 'fuente', 'deck.json'))):
+        src = os.path.dirname(dj)
+        deck = os.path.basename(os.path.dirname(src))
+        mj = os.path.join(src, 'model.json')
+        meta = json.load(open(dj, encoding='utf-8'))
+        coh = json.load(open(mj, encoding='utf-8')).get('coherencia') if os.path.exists(mj) else None
+        if coh is None:
+            print(f'Aviso: {deck} no registra control de coherencia (D-103) en model.json (deck sin neta o sin actualizar).')
+            continue
+        abiertas = [c for c in coh if c.get('alertas')]
+        for c in abiertas:
+            for a in c['alertas']:
+                print(f'  ⚠ {deck} · {c.get("escenario", "")}: {a}')
+        if abiertas and not meta.get('neta_en_rango_d103'):
+            problemas.append(f'{deck}: {len(abiertas)} escenario(s) con alertas de coherencia abiertas y la neta no se presenta como rango '
+                             '(D-103). Presentar la neta como rango en gen.py y declarar "neta_en_rango_d103": true en deck.json, '
+                             'o verificar los datos que disparan la alerta.')
+
+
 def main():
     problemas = []
     for f in glob.glob(os.path.join(BASE, '*', 'fuente', '*.py')):
@@ -56,6 +83,7 @@ def main():
             revisar_texto(os.path.relpath(f, BASE), re.sub(r'\s+', ' ', txt), problemas, False)
     else:
         print('Aviso: sin pdftotext no se revisa el texto de los PDF, solo los generadores.')
+    revisar_coherencia(problemas)
     for p in problemas:
         print('✗', p)
     if not problemas:

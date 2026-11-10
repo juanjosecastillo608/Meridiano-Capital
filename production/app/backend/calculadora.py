@@ -17,6 +17,8 @@ import json
 import os
 from pathlib import Path
 
+from coherencia import evaluar_coherencia  # D-103
+
 # ----------------------------------------------------------------------------
 # NUCLEO FINANCIERO — TIR / IRR
 # ----------------------------------------------------------------------------
@@ -125,7 +127,8 @@ class Calculadora:
     # ---- RENTA ----
     def evaluar_renta(self, clase, precio_compra, renta_mensual_bruta,
                       nivel_neto=3, gastos_reales=None, ocupacion_pct=None,
-                      base_depreciable=None):
+                      base_depreciable=None, costo_servicios_mensual=None,
+                      impuesto_inmobiliario_anual=None):
         """
         Evalua una operacion de renta.
 
@@ -153,6 +156,24 @@ class Calculadora:
                        parte_edificio_pct del precio de compra. Si hubo obra,
                        pasar obra + parte del precio.
 
+        costo_servicios_mensual: D-103. Costo directo (USD/mes) de los servicios
+                       incluidos en el precio del alquiler: secretaria, limpieza,
+                       consumos, personal (consultorios con servicios, coworking,
+                       habitaciones todo incluido). Se descuenta del neto como
+                       linea "servicios" (sin credito fiscal, conservador) y se
+                       resta del ingreso para obtener la bruta de renta pura. En
+                       temporal_* la limpieza ya es linea de servicio; este valor
+                       se suma a ella.
+        impuesto_inmobiliario_anual: D-103. Monto real (USD/año) de la boleta,
+                       si se conoce. Reemplaza el % por defecto y se controla
+                       contra el 1% del precio.
+
+        D-103 (founder, 10/11/2026): el resultado trae la bruta de renta pura
+        (yield_bruto_renta_pura_pct) y las alertas de coherencia
+        (alertas_coherencia). En clases no temporales con servicios, el piso
+        se compara con la bruta de renta pura; en temporal_* sigue contra la
+        facturacion, porque el piso de 15% (D-044) esta calibrado asi.
+
         D-101 (founder, 09/11/2026): el IVA es el contenido en el alquiler
         cobrado (tasa/(1+tasa)) menos el credito fiscal de las lineas
         facturadas, y el IRE se aplica sobre el neto menos la depreciacion.
@@ -173,6 +194,11 @@ class Calculadora:
         # --- Nivel 1: siempre ---
         desglose["expensas"] = bruto_anual * s["expensas_pct"] / 100.0
         desglose["impuesto_inmobiliario"] = bruto_anual * s["impuesto_inmobiliario_pct"] / 100.0
+        if impuesto_inmobiliario_anual is not None:  # D-103: dato real de la boleta
+            desglose["impuesto_inmobiliario"] = float(impuesto_inmobiliario_anual)
+        servicios_extra = 0.0 if costo_servicios_mensual is None else float(costo_servicios_mensual) * 12.0
+        if servicios_extra:
+            desglose["servicios"] = servicios_extra  # D-103: costo directo de los servicios incluidos
         tasa_iva = self.iva_alquiler_pct(clase) / 100.0
         desglose["iva"] = 0.0  # D-101: se calcula al final (debito - credito fiscal)
 
@@ -236,6 +262,22 @@ class Calculadora:
         # sin diferenciacion casa/depto en renta temporal). Sigue pendiente,
         # deliberadamente sin trabajo activo, la matriz por zona/calidad (P-004)
         # mas alla de Eje Corporativo. Ver knowledge-base/investment/05-matriz-pisos-techos.md.
+        # D-103: renta pura vs. servicios y alertas de coherencia
+        rcs = self.p.get("renta_con_servicios", {})
+        if es_temporal:
+            servicios = servicios_extra + sum(desglose.get(k, 0.0) for k in rcs.get("lineas_servicio_temporal", []))
+            ingreso = bruto_anual - desglose.get("vacancia", 0.0)  # ocupacion real (D-046)
+        else:
+            servicios = servicios_extra
+            ingreso = bruto_anual
+        excluir = {"iva", "impuesto_a_la_renta", "vacancia", "servicios", "impuesto_inmobiliario"} | set(rcs.get("lineas_servicio_temporal", []))
+        coh = evaluar_coherencia(ingreso, neto_anual, precio_compra, servicios=servicios,
+                                 gastos={k: v for k, v in desglose.items() if k not in excluir},
+                                 impuesto_inmobiliario=desglose["impuesto_inmobiliario"], p=self.p)
+        con_servicios = servicios > 0
+        yield_pura = (bruto_anual - servicios) / precio_compra * 100.0 if not es_temporal else coh["bruta_renta_pura_pct"]
+        yield_piso = yield_pura if (con_servicios and not es_temporal) else yield_bruto
+
         piso = self.p["pisos_renta_neta"].get(clase)
         resultado = {
             "clase": clase,
@@ -248,7 +290,15 @@ class Calculadora:
             "desglose_gastos": {k: round(v, 2) for k, v in desglose.items()},
             "total_gastos": round(gastos_pre_impuesto_renta + imp_renta, 2),
             "piso_pct": piso,
-            "pasa_piso": None if piso is None else round(yield_bruto, 2) >= piso,
+            "pasa_piso": None if piso is None else round(yield_piso, 2) >= piso,
+            "piso_comparado_con": "bruta_renta_pura" if (con_servicios and not es_temporal) else "facturacion",
+            "con_servicios": con_servicios,
+            "costo_servicios_anual": round(servicios, 2),
+            "yield_bruto_renta_pura_pct": round(yield_pura, 2),
+            "neta_sobre_renta_pura_pct": coh["neta_sobre_renta_pura_pct"],
+            "alertas_coherencia": coh["alertas"],
+            "yield_neto_techo_pct": coh["neta_techo_pct"],
+            "presentar_como_rango": coh["presentar_como_rango"],
             "iva_debito": round(iva_debito, 2),
             "iva_credito": round(iva_credito, 2),
             "depreciacion_ire": round(depreciacion, 2),

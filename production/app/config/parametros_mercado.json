@@ -296,5 +296,28 @@
       ],
       "_nota": "Alquiler tradicional: 5-7% neto (referencia de contraste)."
     }
+  },
+  "renta_con_servicios": {
+    "_nota": "D-103 (founder, 10/11/2026). Activos que alquilan CON servicios incluidos en el precio (consultorios con secretaria, coworking, hostel, renta temporal, habitaciones todo incluido): la facturacion total NO es una bruta de alquiler. Se separa el costo directo de los servicios (secretaria, limpieza, lavanderia, consumos, personal, comisiones de plataformas) y la bruta de renta pura = (ingreso - servicios) / precio. Para las clases no temporales, la bruta de renta pura es la que se compara con el piso de mercado (D-033/D-044). Para temporal_* el piso de 15% (D-044) ya esta calibrado sobre la facturacion de Airbnb, asi que el piso sigue comparando la facturacion; la renta pura se informa al lado.",
+    "tipos": [
+      "consultorios_con_servicios",
+      "coworking",
+      "hostel",
+      "renta_temporal",
+      "habitaciones_todo_incluido"
+    ],
+    "lineas_servicio_temporal": [
+      "limpieza"
+    ],
+    "_nota_temporal": "En temporal_* la base de renta pura es el ingreso a ocupacion REAL (D-046) menos las lineas de servicio (limpieza) y el costo_servicios_mensual extra si se pasa: la bruta a 100% de ocupacion no es un ingreso real."
+  },
+  "alertas_coherencia": {
+    "_nota": "D-103 (founder, 10/11/2026). Controles antes de presentar una cifra a un inversor. Con una alerta abierta, la neta se presenta como RANGO y no como dato (ver projects/meridiano-capital/presentaciones/README.md). Umbrales [EXTENSION] propuestos por Meridiano el 10/11/2026 y aprobados por el founder el mismo dia; recalibrar con casos reales.",
+    "neta_sobre_bruta_min_pct": 50.0,
+    "_neta_sobre_bruta_nota": "Neta / bruta de renta pura (si hay servicios, la base es el ingreso menos los servicios). Por debajo de este valor, revisar datos antes de presentar.",
+    "gasto_fijo_max_pct_bruto": 15.0,
+    "_gasto_fijo_nota": "Cualquier linea de gasto (administracion, impuesto inmobiliario, seguro, expensas, mantenimiento o gastos fijos sin desglose) que supere este % del ingreso de renta pura. No aplica a IVA, IRE, vacancia ni a las lineas de servicio ya separadas.",
+    "impuesto_inmobiliario_max_pct_precio": 1.0,
+    "_impuesto_nota": "El impuesto inmobiliario se calcula sobre la valuacion fiscal; si supera este % del precio de compra, el dato es inconsistente (pedir la boleta)."
   }
 }

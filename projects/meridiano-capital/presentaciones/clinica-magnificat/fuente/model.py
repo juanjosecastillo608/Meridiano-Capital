@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
-from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF  # D-101
+from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF, coherencia  # D-101 / D-103
 import json
 
 # Clínica Magnificat (pediatría, Asunción) — v1, 2026-11-09. Datos del founder y del paquete del propietario.
@@ -15,6 +15,7 @@ IMP_INMO = 45_000_000                                     # Gs/año, informado; 
 IVA = 0.10                                                # alquiler comercial (D-045)
 VAC = 0.05                                                # supuesto: hoy 100% ocupado, pero los contratos están vencidos
 MANT = 0.02                                               # supuesto: reserva de mantenimiento mayor (% del bruto)
+SERVICIOS = 0.60                                          # D-103, supuesto: parte de la administración que son servicios al inquilino (secretaria, limpieza, consumos); el resto es administración del activo. Reemplazar con la planilla de desglose
 FACTURABLE = 0.40                                         # supuesto: parte de la administración con factura e IVA (la nómina no genera crédito)
 # Etapas (supuestos de Meridiano, a validar)
 RENT1, RENT2 = 2_750_000, 3_000_000                       # +10% al renovar; +10% con ascensor y mejoras (Villa Morra con secretaria: Gs 3,85 M)
@@ -34,14 +35,21 @@ GRANDES = (6, 7, 8)                                        # ~18–21 m²
 # Cómo llegar a la etapa 2 por tamaño (supuesto): grandes Gs 3,5 M y el resto Gs 2,8 M ≈ Gs 33 M por mes
 TIER = {'grande': 3_500_000, 'resto': 2_800_000}
 def etapa(n, rent, admin, asc_mant=0, obra_usd=0.0, P=500_000, n_new=0):
+    imp = IMP_INMO
     G = (n + n_new) * rent * 12 / TC
     adm = (admin * (1 + ADMIN_NEW * (n_new > 0)) + asc_mant) * 12 / TC
-    fijos = adm + IMP_INMO / TC
+    fijos = adm + imp / TC
     r = neto_d101(G, iva=IVA, vac=VAC, pct={'Mantenimiento': MANT}, fijos=fijos, base_dep=obra_usd + PARTE_EDIF * P,
                   fijos_credito=adm * FACTURABLE)
     inv = P + obra_usd
-    r.update(n=n + n_new, rent=rent, admin=admin, adm_u=adm, imp_u=IMP_INMO / TC, inv=inv, obra=obra_usd, bruta=G / inv, neta=r['net'] / inv,
+    serv = admin * (1 + ADMIN_NEW * (n_new > 0)) * 12 / TC * SERVICIOS   # D-103: servicios incluidos en el alquiler
+    r.update(n=n + n_new, rent=rent, admin=admin, adm_u=adm, imp_u=imp / TC, inv=inv, obra=obra_usd, bruta=G / inv, neta=r['net'] / inv,
+             serv_u=serv, bruta_pura=(G - serv) / inv,
              neta_pre=r['pre'] / inv, fact_mes=(n + n_new) * rent)
+    # D-103: coherencia y rango (techo: cada gasto alertado bajado a su umbral, regla única de coherencia.py)
+    c = coherencia(G, r['net'], inv, servicios=serv, impuesto_inmobiliario=imp / TC,
+                   gastos={'Administración (sin los servicios)': adm - serv, 'Mantenimiento': r['ded']['Mantenimiento']})
+    r.update(coherencia=c, alertas=c['alertas'], neta_alta=c['neta_techo_pct'] / 100)
     return r
 
 OBRA1 = (ASC_GS + MEJ_GS) / TC
@@ -105,6 +113,11 @@ for p, P in PRICES.items():
 out['SUP'] = SUP; out['SUP_TOT'] = sum(SUP.values()); out['ODONTO'] = ODONTO; out['GRANDES'] = GRANDES; out['TIER'] = TIER
 out['TIER_TOT'] = sum(TIER['grande'] if c in GRANDES else TIER['resto'] for c in SUP)
 out['gs_m2_hoy'] = {c: RENT0 / m for c, m in SUP.items()}
+# D-103: renta pura vs. servicios y alertas de coherencia, por etapa y precio (cada etapa ya trae su rango)
+ETAPAS_TXT = {'E0': 'Hoy', 'E1': 'Etapa 1', 'E2': 'Etapa 2', 'E3': 'Etapa 3'}
+out['SERVICIOS'] = SERVICIOS
+out['coherencia'] = [dict(e['coherencia'], escenario=f'{ETAPAS_TXT[k]} · USD {P:,.0f}'.replace(',', '.'))
+                     for p, P in PRICES.items() for k, e in out['etapas'][p].items()]
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1, default=float)
 
 if __name__ == '__main__':

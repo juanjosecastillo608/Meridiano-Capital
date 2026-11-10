@@ -54,6 +54,17 @@ NOTA_OCUPACION_TEMPORAL = (
     "DECISION_REGISTER.md#D-046."
 )
 
+NOTA_RENTA_CON_SERVICIOS = (
+    "Activo con servicios incluidos (D-103): facturacion {facturacion}% sobre el precio, "
+    "bruta de renta pura {pura}% (facturacion menos el costo directo de los servicios). "
+    "El piso se comparo contra: {base}. La facturacion no es una bruta de alquiler."
+)
+NOTA_RANGO = (
+    "Hay alertas de coherencia abiertas: la neta se presenta al inversor como RANGO "
+    "({piso}% a {techo}%), no como dato, hasta verificar los datos que las disparan (D-103). "
+    "El techo es una estimacion: cada gasto alertado bajado a su umbral."
+)
+
 ADVERTENCIAS_VENTA = [
     (
         "IVA de venta aplicado: 1,5% efectivo sobre el valor de salida/cesion (30% "
@@ -92,6 +103,16 @@ def advertencias_renta(calc, clase, resultado=None):
             ocupacion = sum(rango) / len(rango)
         advertencias.append(NOTA_OCUPACION_TEMPORAL.format(ocupacion=ocupacion))
     advertencias.append(ADVERTENCIA_PISOS)
+    # D-103: renta pura vs. servicios y alertas de coherencia
+    if resultado:
+        if resultado.get("con_servicios"):
+            advertencias.append(NOTA_RENTA_CON_SERVICIOS.format(
+                facturacion=resultado["yield_bruto_pct"], pura=resultado["yield_bruto_renta_pura_pct"],
+                base=resultado.get("piso_comparado_con", "")))
+        for a in resultado.get("alertas_coherencia", []):
+            advertencias.append("ALERTA DE COHERENCIA (D-103): " + a)
+        if resultado.get("presentar_como_rango"):
+            advertencias.append(NOTA_RANGO.format(piso=resultado["yield_neto_pct"], techo=resultado.get("yield_neto_techo_pct")))
     return advertencias
 
 

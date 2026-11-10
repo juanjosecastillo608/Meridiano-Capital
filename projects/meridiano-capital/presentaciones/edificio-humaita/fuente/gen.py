@@ -17,6 +17,10 @@ def n(x, d=0):
     return s.replace(',', 'X').replace('.', ',').replace('X', '.')
 def usd(x): return 'USD ' + n(round(x))
 def pct(x, d=2): return n(x * 100, d) + '%'
+def pn(e, d=2):   # D-103: con alertas de coherencia abiertas, la neta se presenta como rango y no como dato
+    if e.get('alertas') and e.get('neta_alta', e['neta']) - e['neta'] >= 0.0005:
+        return n(e['neta'] * 100, d) + '–' + pct(e['neta_alta'], d)
+    return pct(e['neta'], d)
 def gs(x): return 'Gs ' + n(round(x, -3))
 
 
@@ -62,8 +66,8 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 S.append(slide(f'''{head('Resumen del inmueble', 'Una casona del centro con 16 habitaciones para volver a rentar')}
 <p class="lead">Casona de dos plantas sobre la calle Humaitá, a metros de la Av. Colón, con un edificio principal de tres ambientes y un salón con baños, y un área posterior de 13 habitaciones con baño privado alrededor de un patio. Hoy está desocupada y necesita una remodelación para generar renta. Se analizan tres usos: departamentos y salones, habitaciones en alquiler mensual y hostel.</p>
 {kgrid([(usd(P), f'Precio de venta · {gs(PGS)}'), ('541 m²', 'Terreno · 12,30 × 43 m'), ('300 · 610 m²', 'Construidos según el aviso · según la tabla de unidades'), ('16 + 1', 'Habitaciones con baño + salón con baños sexados'),
-        (pct(ev['A']['bruta']) + ' · ' + pct(ev['A']['neta']), 'A · Departamentos y salones: bruta · neta'), (pct(ev['B']['bruta']) + ' · ' + pct(ev['B']['neta']), 'B · 20 habitaciones mensuales: bruta · neta'),
-        (pct(ev['C']['bruta']) + ' · ' + pct(ev['C']['neta']), 'C · Hostel: bruta · neta'), ('USD ' + n(P / M['TERRENO']), 'Por m² de terreno')], 'kgrid ks')}
+        (pct(ev['A']['bruta']) + ' · ' + pn(ev['A']), 'A · Departamentos y salones: bruta · neta'), (pct(ev['B']['bruta_pura']) + ' · ' + pn(ev['B']), 'B · 20 habitaciones mensuales: bruta de renta pura · neta'),
+        (pct(ev['C']['bruta_pura']) + ' · ' + pn(ev['C']), 'C · Hostel: bruta de renta pura · neta'), ('USD ' + n(P / M['TERRENO']), 'Por m² de terreno')], 'kgrid ks')}
 <div class="box"><b>Propiedad ofrecida en su estado actual. Imágenes de transformación conceptuales.</b> Sin renta actual: toda rentabilidad es una estimación posterior a la obra, sobre el precio más la obra · Alquileres del estudio de mercado de Meridiano Capital · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
@@ -202,10 +206,10 @@ S.append(slide(f'''{head('Ingresos y egresos anuales', 'Del ingreso bruto al res
 # 14 RENTABILIDAD
 hdr = '<div></div>' + ''.join(f'<div class="bl2 c{" gold" if a == "B" else ""}">{ALT[a]}</div>' for a in 'ABC')
 def rowr(lbl, key, cls):
-    return f'<div class="rl">{lbl}</div>' + ''.join(f'<div class="{cls}">{usd(ev[a]["inv"]) if key == "inv" else pct(ev[a][key])}</div>' for a in 'ABC')
+    return f'<div class="rl">{lbl}</div>' + ''.join(f'<div class="{cls}">{usd(ev[a]["inv"]) if key == "inv" else (pn(ev[a]) if key == "neta" else pct(ev[a][key]))}</div>' for a in 'ABC')
 S.append(slide(f'''{head('Rentabilidad estimada', 'Tres usos, con el precio de USD 160.000')}<div class="rule"></div>
-<div class="rg4" style="grid-template-columns:250px repeat(3,1fr)">{hdr}{rowr('Bruta sobre inversión total', 'bruta', 'bigv m4')}{rowr('Neta antes de IRE', 'neta_pre', 'midv')}{rowr('Neta final', 'neta', 'midv')}{rowr('Inversión total', 'inv', 'midv s2')}</div>
-<div class="bs how"><b>Cómo leer estas cifras.</b> El denominador es el precio más la obra, sin gastos de adquisición. La bruta del hostel es alta, pero sus costos (plataformas, limpieza, personal) se llevan la mayor parte: hay que comparar las netas. B es la de mejor neta. Estimaciones sin contratos que las respalden; cifras de referencia, no garantizadas.</div>''', num(), dark=True))
+<div class="rg4" style="grid-template-columns:250px repeat(3,1fr)">{hdr}{rowr('Facturación sobre inversión total', 'bruta', 'midv s2')}{rowr('Bruta de renta pura', 'bruta_pura', 'bigv m4')}{rowr('Neta antes de IRE', 'neta_pre', 'midv')}{rowr('Neta final', 'neta', 'midv')}{rowr('Inversión total', 'inv', 'midv s2')}</div>
+<div class="bs how"><b>Cómo leer estas cifras.</b> El denominador es el precio más la obra, sin gastos de adquisición. La bruta del hostel es alta, pero sus costos (plataformas, limpieza, personal) se llevan la mayor parte: hay que comparar las netas. B y C alquilan con servicios incluidos: la bruta de renta pura descuenta esos servicios (D-103; supuesto: la mitad de los gastos del edificio son servicios) y sus netas van en rango hasta tener el desglose de los gastos de la planilla. B es la de mejor neta. Estimaciones sin contratos que las respalden; cifras de referencia, no garantizadas.</div>''', num(), dark=True))
 
 # 15 HOSTEL / HABITACIONES EN DETALLE
 oc = M['C_occ']
@@ -241,7 +245,7 @@ info = [('Activo', 'Casona de 2 plantas sobre 541 m² de terreno: edificio princ
         ('Forma de pago y entrega', 'A acordar en la negociación y el boleto de compraventa.')]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)
 S.append(slide(f'''{head('Precio y condiciones', 'Venta del inmueble completo')}
-<div class="two d16"><div class="dbox big"><div class="bigv">{usd(P)}</div><div class="bs">Precio de venta · {gs(PGS)}</div><p>Precio y obra en dólares; alquileres en guaraníes, convertidos al {TCTXT}.</p><div class="dfoot">Neta final: A {pct(ev['A']['neta'])} · B {pct(ev['B']['neta'])} · C {pct(ev['C']['neta'])}</div></div>
+<div class="two d16"><div class="dbox big"><div class="bigv">{usd(P)}</div><div class="bs">Precio de venta · {gs(PGS)}</div><p>Precio y obra en dólares; alquileres en guaraníes, convertidos al {TCTXT}.</p><div class="dfoot">Neta final: A {pn(ev['A'])} · B {pn(ev['B'])} · C {pn(ev['C'])}</div></div>
 <div class="info">{ih}</div></div>''', num()))
 
 # 19 PROCESO

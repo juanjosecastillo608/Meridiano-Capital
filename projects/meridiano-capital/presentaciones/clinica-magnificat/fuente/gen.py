@@ -16,6 +16,14 @@ def n(x, d=0):
 def usd(x): return 'USD ' + n(round(x))
 def pct(x, d=2): return n(x * 100, d) + '%'
 def gs(x): return 'Gs ' + n(round(x, -3))
+def alertas_txt(e):   # D-103: resumen corto de las alertas abiertas
+    t = {'neta_baja': 'neta bajo el 50% de la renta pura', 'impuesto_alto': 'impuesto inmobiliario sobre el 1% del precio', 'sin_renta_pura': 'sin renta pura'}
+    cs = [c for c in e['coherencia']['codigos'] if not (c == 'gasto_alto:Impuesto inmobiliario' and 'impuesto_alto' in e['coherencia']['codigos'])]
+    return ', '.join(t.get(c, c.replace('gasto_alto:', '').replace('_', ' ').lower() + ' sobre el 15% de la renta pura') for c in cs)
+def pn(e, d=2):   # D-103: con alertas de coherencia abiertas, la neta se presenta como rango y no como dato
+    if e.get('alertas') and e.get('neta_alta', e['neta']) - e['neta'] >= 0.0005:
+        return n(e['neta'] * 100, d) + '–' + pct(e['neta_alta'], d)
+    return pct(e['neta'], d)
 
 
 ISO_DARK = '<svg viewBox="0 0 120 120" class="iso"><path d="M60 6 L14 100 L106 100 Z" fill="none" stroke="#14313A" stroke-width="6" stroke-linejoin="round"/><line x1="4" y1="112" x2="116" y2="112" stroke="#14313A" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="72" r="9" fill="#C9982E"/></svg>'
@@ -64,9 +72,9 @@ S.append(f'''<section class="s cover"><div class="cl">{logo()}
 S.append(slide(f'''{head('Resumen del inmueble', 'Una clínica pediátrica alquilada al 100%, con margen para crecer')}
 <p class="lead">Edificio médico de tres plantas en Asunción. En planta baja y primer piso funciona la clínica, con 11 consultorios con baño propio, todos alquilados; cinco tienen instalaciones de agua y desagüe para odontología. En el segundo piso hay un departamento que se entrega libre: se propone que el nuevo propietario lo use como vivienda durante dos años. El núcleo del ascensor está previsto, pero el ascensor no está instalado.</p>
 {kgrid([(usd(PR['pedido']), 'Precio de venta'), (usd(PR['rapida']), 'Precio de venta rápida (−16%)'), ('11 / 11', 'Consultorios alquilados, sin mobiliario'), ('Gs 2,5 M', 'Por consultorio, IVA y expensas incluidos'),
-        (pct(E['E0']['bruta']) + ' · ' + pct(E['E0']['neta']), 'Hoy, a USD 500.000: bruta · neta'), (pct(ER['E0']['bruta']) + ' · ' + pct(ER['E0']['neta']), 'Hoy, a USD 420.000: bruta · neta'),
-        (pct(E['E2']['neta']) + ' · ' + pct(ER['E2']['neta']), 'Neta tras la etapa 2, a cada precio'), (pct(E['E3']['neta']) + ' · ' + pct(ER['E3']['neta']), 'Neta con el 2.º piso reconvertido (ilustrativo)')], 'kgrid ks')}
-<div class="box">Cifras de referencia, no garantizadas · Rentabilidad sobre el precio más las inversiones de cada etapa, con la base de cálculo D-101 de Meridiano · Gastos informados sin desglose · Tipo de cambio {TCTXT}</div>''', num()))
+        (pct(E['E0']['bruta_pura']) + ' · ' + pn(E['E0']), 'Hoy, a USD 500.000: bruta de renta pura · neta'), (pct(ER['E0']['bruta_pura']) + ' · ' + pn(ER['E0']), 'Hoy, a USD 420.000: bruta de renta pura · neta'),
+        (pn(E['E2']) + ' · ' + pn(ER['E2']), 'Neta tras la etapa 2, a cada precio'), (pn(E['E3']) + ' · ' + pn(ER['E3']), 'Neta con el 2.º piso reconvertido (ilustrativo)')], 'kgrid ks')}
+<div class="box">Cifras de referencia, no garantizadas · Rentabilidad sobre el precio más las inversiones de cada etapa, con la base de cálculo D-101 de Meridiano · El alquiler incluye secretaria, limpieza y expensas: la facturación ({pct(E['E0']['bruta'])} hoy a USD 500.000) no es una bruta de alquiler y se separa la renta pura (D-103) · Gastos informados sin desglose ni boleta: la neta se muestra como rango · Tipo de cambio {TCTXT}</div>''', num()))
 
 # 03 UBICACIÓN
 loc = [('Ciudad', 'Asunción'), ('Barrio', 'San Cristóbal, vecino de Villa Morra'), ('Ubicación', 'Esquina: frente corto de 9,60 m sobre calle Sucre y lado largo sobre calle Juan Mota'),
@@ -117,16 +125,17 @@ for titulo, sub, files in [('Recorrido fotográfico', 'Fachada y accesos', ['acc
 # 06 INGRESOS Y GASTOS HOY
 def er(e):
     G = e['G']
-    rows = [(['Facturación anual (IVA y expensas incluidos)', '100%', usd(G)], 'b'), (['IVA neto (10%, incluido en el alquiler)', pct(e['iva_u'] / G, 1), '– ' + usd(e['iva_u'])], ''),
-            (['Vacancia (supuesto)', pct(e['vac_u'] / G, 1), '– ' + usd(e['vac_u'])], ''), (['Administración informada (con secretaria)', pct(e['adm_u'] / G, 1), '– ' + usd(e['adm_u'])], ''),
+    rows = [(['Facturación anual (IVA, expensas y servicios)', '100%', usd(G)], 'b'), (['Ingreso de renta pura (D-103)', pct((G - e['serv_u']) / G, 1), usd(G - e['serv_u'])], ''), (['IVA neto (10%, incluido en el alquiler)', pct(e['iva_u'] / G, 1), '– ' + usd(e['iva_u'])], ''),
+            (['Vacancia (supuesto)', pct(e['vac_u'] / G, 1), '– ' + usd(e['vac_u'])], ''), (['Servicios incluidos (60% de la administración, supuesto)', pct(e['serv_u'] / G, 1), '– ' + usd(e['serv_u'])], ''),
+            (['Administración del activo (resto)', pct((e['adm_u'] - e['serv_u']) / G, 1), '– ' + usd(e['adm_u'] - e['serv_u'])], ''),
             (['Impuesto inmobiliario informado', pct(e['imp_u'] / G, 1), '– ' + usd(e['imp_u'])], ''), (['Reserva de mantenimiento mayor', pct(e['ded']['Mantenimiento'] / G, 1), '– ' + usd(e['ded']['Mantenimiento'])], ''),
             (['Resultado antes de IRE', pct(e['pre'] / G, 1), usd(e['pre'])], 'b'), (['IRE estimado', pct(e['ire_u'] / G, 1), '– ' + usd(e['ire_u'])], ''), (['Neto anual', pct(e['net'] / G, 1), usd(e['net'])], 'tot')]
     return rows
 e0 = E['E0']
 S.append(slide(f'''{head('Ingresos y gastos hoy', 'Dos gastos se llevan más de la mitad de la facturación')}
-<div class="two cx2"><div>{table(['Concepto', '% de la facturación', 'USD por año'], er(e0), 't big')}</div>
-{crit('Lectura', [('Administración', f"Gs 10.450.000 por mes: el {pct(M['peso_admin'], 0)} de la facturación, sin desglose. Una secretaria con aportes ronda Gs 3,4 M; el resto no está identificado."), ('Impuesto inmobiliario', f"Gs 45 M por año: el {pct(M['peso_imp'], 0)} de la facturación. Es alto para el valor del inmueble: hay que verificar la boleta. Si fuera la mitad, la neta de hoy subiría a {pct(M['imp_half']['pedido'])}."), ('Neta de hoy', f"{pct(e0['neta'])} a USD 500.000 y {pct(ER['E0']['neta'])} a USD 420.000. La bruta es {pct(e0['bruta'])} y {pct(ER['E0']['bruta'])}."), ('Conclusión', 'La mejora pasa por bajar gastos y ajustar alquileres, antes que por la obra.')])}</div>
-<div class="src">Base D-101: IVA incluido, crédito fiscal sobre el 40% de la administración (supuesto facturado); IRE sobre el resultado menos la depreciación. Vacancia 5% y reserva 2%: supuestos.</div>''', num()))
+<div class="two cx2"><div>{table(['Concepto', '% de la facturación', 'USD por año'], er(e0), 't cmp')}</div>
+{crit('Lectura', [('Administración', f"Gs 10.450.000 por mes: el {pct(M['peso_admin'], 0)} de la facturación, sin desglose. Una secretaria con aportes ronda Gs 3,4 M; el resto no está identificado."), ('Impuesto inmobiliario', f"Gs 45 M por año: el {pct(M['peso_imp'], 0)} de la facturación. Es alto para el valor del inmueble: hay que verificar la boleta. Si fuera la mitad, la neta de hoy subiría a {pct(M['imp_half']['pedido'])}."), ('Neta de hoy', f"{pn(e0)} a USD 500.000 y {pn(ER['E0'])} a USD 420.000, en rango hasta tener el desglose y la boleta."), ('Conclusión', 'Mejorar gastos y alquileres antes que hacer obra.')])}</div>
+<div class="src" style="max-width:640px">Base D-101 (IVA incluido, crédito fiscal sobre el 40% de la administración, IRE con depreciación); vacancia 5% y reserva 2%: supuestos. Alertas abiertas (D-103): {alertas_txt(e0)}.</div>''', num()))
 
 # 07 MERCADO
 rc = [('K1', 'Consultorio de unos 20 m² con secretaria, limpieza y seguridad', 'Villa Morra', 'Gs 3.500.000 + IVA (Gs 3.850.000)'),
@@ -170,8 +179,8 @@ hdr = '<div></div>' + ''.join(f'<div class="bl2 c{" gold" if k == "E2" else ""}"
 def rowr(lbl, f, cls):
     return f'<div class="rl">{lbl}</div>' + ''.join(f'<div class="{cls}">{f(k)}</div>' for k in ('E0', 'E1', 'E2', 'E3'))
 S.append(slide(f'''{head('Rentabilidad por etapa', 'De la renta de hoy a la renta estabilizada')}<div class="rule"></div>
-<div class="rg4">{hdr}{rowr('Facturación mensual', lambda k: gsm(E[k]['fact_mes']), 'midv s2')}{rowr('Bruta · USD 500.000', lambda k: pct(E[k]['bruta']), 'bigv m4')}{rowr('Neta · USD 500.000', lambda k: pct(E[k]['neta']), 'midv')}{rowr('Neta · USD 420.000', lambda k: pct(ER[k]['neta']), 'midv')}{rowr('Inversión total · USD 500.000', lambda k: usd(E[k]['inv']), 'midv s2')}</div>
-<div class="bs how"><b>Cómo leer estas cifras.</b> Cada columna es un año estabilizado de esa etapa. El denominador es el precio más las inversiones acumuladas (mejoras, ascensor y, en la etapa 3, la reconversión). La etapa 3 supone {M['N_NEW_BASE']} consultorios nuevos, número ilustrativo a definir con el plano. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
+<div class="rg4">{hdr}{rowr('Facturación mensual', lambda k: gsm(E[k]['fact_mes']), 'midv s2')}{rowr('Facturación / inversión · USD 500.000', lambda k: pct(E[k]['bruta']), 'midv s2')}{rowr('Bruta de renta pura · USD 500.000', lambda k: pct(E[k]['bruta_pura']), 'bigv m4')}{rowr('Neta · USD 500.000', lambda k: pn(E[k]), 'midv')}{rowr('Neta · USD 420.000', lambda k: pn(ER[k]), 'midv')}{rowr('Inversión total · USD 500.000', lambda k: usd(E[k]['inv']), 'midv s2')}</div>
+<div class="bs how"><b>Cómo leer estas cifras.</b> Cada columna es un año estabilizado de esa etapa. El denominador es el precio más las inversiones acumuladas (mejoras, ascensor y, en la etapa 3, la reconversión). La etapa 3 supone {M['N_NEW_BASE']} consultorios nuevos, número ilustrativo a definir con el plano. La bruta de renta pura descuenta los servicios incluidos en el alquiler (D-103). Netas en rango mientras haya alertas de coherencia abiertas. Cifras de referencia, no garantizadas.</div>''', num(), dark=True))
 
 # 11b ANTEPROYECTO (anexo de corrección del 10/11/2026: 3 hojas)
 def fig(src, cap, w, h, fit='contain', bg='#fff'):
@@ -195,7 +204,7 @@ S.append(slide(f"""{head('Anteproyecto · hoja 3 de 3', 'Segundo piso: propuesta
 
 # 12 RECONVERSIÓN
 rv = M['reconv']
-rrows = [([f'{k} consultorios', usd(int(k) * M['CAPEX_NEW_USD']), gsm(rv['pedido'][k]['fact_mes']), pct(rv['pedido'][k]['neta']), pct(rv['rapida'][k]['neta'])], 'b' if int(k) == M['N_NEW_BASE'] else '') for k in rv['pedido']]
+rrows = [([f'{k} consultorios', usd(int(k) * M['CAPEX_NEW_USD']), gsm(rv['pedido'][k]['fact_mes']), pn(rv['pedido'][k]), pn(rv['rapida'][k])], 'b' if int(k) == M['N_NEW_BASE'] else '') for k in rv['pedido']]
 S.append(slide(f'''{head('Reconversión del departamento', 'Nuevos consultorios en el segundo piso, desde el mes 25')}
 <div class="two cx2"><div>{table(['Escenario', 'Inversión', 'Facturación mensual', 'Neta · USD 500.000', 'Neta · USD 420.000'], rrows, 't big')}</div>
 {crit('Condiciones', [('Plano', 'La cantidad de consultorios depende de la superficie, los baños y la circulación del segundo piso: se define con un anteproyecto.'), ('Ascensor', 'Necesita el de 3 paradas para el acceso de pacientes.'), ('Habilitación', 'Ampliación de la habilitación sanitaria y municipal.'), ('Mientras tanto', 'Dos años como vivienda del comprador: no se computa renta en ese período. Si prefiere alquilarlo o reconvertirlo antes, la renta sube antes.')])}</div>
@@ -209,13 +218,13 @@ frows = [(['Consultorios en renta', '11', '11', str(E3p.get('n', 11 + M['N_NEW_B
          (['Facturación mensual (IVA incluido)', gsm(E['E0']['fact_mes']), gsm(E2p['fact_mes']), gsm(E3p['fact_mes'])], ''),
          (['Ingreso bruto anual', usd(E['E0']['G']), usd(E2p['G']), usd(E3p['G'])], ''),
          (['Neto anual (base D-101)', usd(E['E0']['net']), usd(E2p['net']), usd(E3p['net'])], 'b'),
-         (['Bruta · neta, compra a USD 500.000', pct(E['E0']['bruta']) + ' · ' + pct(E['E0']['neta']), pct(E2p['bruta']) + ' · ' + pct(E2p['neta']), pct(E3p['bruta']) + ' · ' + pct(E3p['neta'])], ''),
-         (['Bruta · neta, compra a USD 420.000', pct(ER['E0']['bruta']) + ' · ' + pct(ER['E0']['neta']), pct(E2r['bruta']) + ' · ' + pct(E2r['neta']), pct(E3r['bruta']) + ' · ' + pct(E3r['neta'])], 'tot')]
+         (['Bruta de renta pura · neta, compra a USD 500.000', pct(E['E0']['bruta_pura']) + ' · ' + pn(E['E0']), pct(E2p['bruta_pura']) + ' · ' + pn(E2p), pct(E3p['bruta_pura']) + ' · ' + pn(E3p)], ''),
+         (['Bruta de renta pura · neta, compra a USD 420.000', pct(ER['E0']['bruta_pura']) + ' · ' + pn(ER['E0']), pct(E2r['bruta_pura']) + ' · ' + pn(E2r), pct(E3r['bruta_pura']) + ' · ' + pn(E3r)], 'tot')]
 S.append(slide(f'''{head('Rentabilidad futura', 'El edificio con el segundo piso convertido en consultorios')}
 <div class="two d15">{table(['', 'Hoy', 'Tras la etapa 2', 'Con el 2.º piso reconvertido'], frows, 't big')}
 <div class="dbox"><div class="bs">Lo que agrega la reconversión</div><div class="bigv bv2">+{usd(d_net)}</div><div class="bs">de neto por año, con {M['N_NEW_BASE']} consultorios nuevos</div>
 <p>Inversión de la reconversión: {usd(d_inv)}. Rinde {pct(d_net / d_inv, 1)} neto por año sobre lo invertido (se recupera en unos {n(d_inv / d_net, 1)} años), porque usa la estructura, el ascensor y la administración que ya existen.</p>
-<p class="gold">Si el relevamiento da menos: con 4 consultorios, neta de {pct(r3['neta'])} · {pct(q3['neta'])}; con 5, de {pct(r5['neta'])} · {pct(q5['neta'])} (a USD 500.000 · 420.000).</p></div></div>
+<p class="gold">Si el relevamiento da menos: con 4 consultorios, neta de {pn(r3)} · {pn(q3)}; con 5, de {pn(r5)} · {pn(q5)} (a USD 500.000 · 420.000).</p></div></div>
 <div class="src">Año estabilizado de cada etapa; el denominador es el precio más las inversiones acumuladas (mejoras, ascensor de 3 paradas y reconversión). La renta del 2.º piso empieza en el mes 25, cuando termina el uso como vivienda del comprador. Los consultorios nuevos se alquilan a {gsm(M['RENT2'])}. El ascensor no se carga a la reconversión porque ya se invierte en la etapa 1. No incluye la renta alternativa que daría el departamento como vivienda. Cifras de referencia, no garantizadas; supuestos a validar con el anteproyecto.</div>''', num()))
 
 # 13 TIR
@@ -233,7 +242,7 @@ info = [('Activo', 'Edificio médico de tres plantas: clínica en planta baja y 
         ('Alquiler requerido', f"Para una neta de 8% en la etapa 2: unos {gsm(M['req8']['pedido'])} por consultorio a USD 500.000 y {gsm(M['req8']['rapida'])} a USD 420.000.")]
 ih = ''.join(f'<div class="ii"><div class="eb sm">{a}</div><div>{b}</div></div>' for a, b in info)
 S.append(slide(f'''{head('Precio y condiciones', 'Venta del edificio completo')}
-<div class="two d16"><div class="dbox big"><div class="bigv">{usd(PR['pedido'])}</div><div class="bs">Precio de venta · {gs(PR['pedido'] * TC)}</div><div class="bigv sm2">{usd(PR['rapida'])}</div><div class="bs">Precio de venta rápida</div><p>Precio en dólares; alquileres en guaraníes, convertidos al {TCTXT}.</p><div class="dfoot">Neta hoy: {pct(E['E0']['neta'])} · {pct(ER['E0']['neta'])} · tras la etapa 2: {pct(E['E2']['neta'])} · {pct(ER['E2']['neta'])}</div></div>
+<div class="two d16"><div class="dbox big"><div class="bigv">{usd(PR['pedido'])}</div><div class="bs">Precio de venta · {gs(PR['pedido'] * TC)}</div><div class="bigv sm2">{usd(PR['rapida'])}</div><div class="bs">Precio de venta rápida</div><p>Precio en dólares; alquileres en guaraníes, convertidos al {TCTXT}.</p><div class="dfoot">Neta hoy: {pn(E['E0'])} · {pn(ER['E0'])} · tras la etapa 2: {pn(E['E2'])} · {pn(ER['E2'])}</div></div>
 <div class="info">{ih}</div></div>''', num()))
 
 # 15 RIESGOS

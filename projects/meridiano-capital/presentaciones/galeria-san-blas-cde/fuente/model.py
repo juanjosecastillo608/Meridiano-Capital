@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
-from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF  # D-101
+from rentabilidad import neto_d101, credito_obra, ahorro_iva, PARTE_EDIF, registrar  # D-101 / D-103
 import json
 
 # Galería Av. San Blas – Camilo Recalde (Ciudad del Este) — v2, 2026-11-08.
@@ -164,6 +164,12 @@ def proj_opt(P, gr, val):
     return dict(tir=irr(cf), total=V - ev['inv'] - V * 0.015 + na + sum(nets))
 out['Copt']['p10'] = out['Copt']['ev']['pedido']['G'] / 0.10 - cxo['total']
 out['Copt']['proj'] = {p: {nm: proj_opt(P, gr, val) for nm, gr, val in [('Conservador', .02, .02), ('Base', .03, .035), ('Optimista', .05, .05)]} for p, P in PRICES.items()}
+# D-103: alertas de coherencia de cada alternativa y precio
+for a in ALTS:
+    for p, P in PRICES.items():
+        e = out[a]['ev'][p]
+        registrar(out, f'{a} · USD {P:,.0f}'.replace(',', '.'), e['G'], e['net'], e['inv'],
+                  gastos={'Administración': e['adm_u'], 'Mantenimiento': e['man_u'], 'Gastos fijos (supuesto, sin desglose)': FIJOS})
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1)
 
 if __name__ == '__main__':

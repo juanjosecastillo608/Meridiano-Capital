@@ -1,4 +1,4 @@
-Estado: PROPUESTA (pendiente de decisión del founder). Todo lo que no está en D-101 va marcado `[EXTENSION]`.
+Estado: HISTÓRICO como diagnóstico. Las propuestas 1 y 2 de la sección 6 fueron **aprobadas y aplicadas el 10/11/2026 (D-103)**: ver `renta-pura-y-alertas-de-coherencia.md`. La propuesta 3 quedó cubierta por D-103 (rango calculado con la regla única del techo: 3,27–3,95% hoy a USD 500.000). La propuesta 4 (IDU) sigue pendiente de la contadora.
 Dominio: INVESTMENT
 Base: D-101 (`revision-bruta-neta-2026-11-09.md`, rama `claude/brave-bell-uo88qf`), modelo `projects/meridiano-capital/presentaciones/clinica-magnificat/fuente/model.py`.
 
@@ -69,7 +69,7 @@ Aunque los dos datos se corrijan, la clínica no llega al 8% de neta a USD 500.0
 
 Los alquileres puros quedan entre 50% y 75%, que es lo esperable. Los dos casos que caen por debajo del 35% son negocios con servicios.
 
-## 6. Propuestas `[EXTENSION]` (no aplicadas; requieren decisión del founder)
+## 6. Propuestas `[EXTENSION]` (1 y 2 aplicadas como D-103 el 10/11/2026)
 
 1. **Separar la renta pura de los servicios** en todo activo que alquila "con servicios": consultorios con secretaria, oficinas equipadas, coworking, hostel o renta temporal.
    - Bruta de renta pura = (facturación − costo directo de los servicios) ÷ precio. Es la que se compara con el piso de bruta del mercado (D-002/D-044).

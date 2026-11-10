@@ -541,7 +541,12 @@
    "neta_pre": 0.07376495356817522,
    "max10": 170705.78616509907,
    "max8": 242924.10770637385,
-   "payback": 14.669324033942454
+   "payback": 14.669324033942454,
+   "alertas": [],
+   "codigos": [],
+   "neta_alta": 0.0682,
+   "bruta_pura": 0.1038,
+   "serv_u": 0
   }
  },
  "B": {
@@ -579,7 +584,16 @@
    "neta_pre": 0.07773930344903063,
    "max10": 316181.113629665,
    "max8": 445803.74203708116,
-   "payback": 13.905622234693311
+   "payback": 13.905622234693311,
+   "alertas": [
+    "\u00abGastos del edificio (planilla)\u00bb es el 20,5% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes."
+   ],
+   "codigos": [
+    "gasto_alto:Gastos del edificio (planilla)"
+   ],
+   "neta_alta": 0.07780000000000001,
+   "bruta_pura": 0.1188,
+   "serv_u": 8820.0
   }
  },
  "C": {
@@ -627,7 +641,18 @@
    "neta_pre": 0.05128307408362151,
    "max10": 664490.6,
    "max8": 885315.6,
-   "payback": 20.77844504812891
+   "payback": 20.77844504812891,
+   "alertas": [
+    "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+    "\u00abGastos del edificio y sistemas\u00bb es el 24,9% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes."
+   ],
+   "codigos": [
+    "neta_baja",
+    "gasto_alto:Gastos del edificio y sistemas"
+   ],
+   "neta_alta": 0.056799999999999996,
+   "bruta_pura": 0.09820000000000001,
+   "serv_u": 51149.680385318694
   }
  },
  "C_occ": {
@@ -648,5 +673,73 @@
  },
  "planilla_rent_usd": 255.71,
  "planilla_total_usd": 329.21,
- "B_req10": 978288.2167875001
+ "B_req10": 978288.2167875001,
+ "serv": {
+  "A": {
+   "servicios": 0,
+   "bruta_pura": 0.1038
+  },
+  "B": {
+   "servicios": 8820.0,
+   "bruta_pura": 0.1188
+  },
+  "C": {
+   "servicios": 51149.680385318694,
+   "bruta_pura": 0.09820000000000001
+  }
+ },
+ "coherencia": [
+  {
+   "ingreso": 28887.33,
+   "servicios": 0,
+   "ingreso_renta_pura": 28887.33,
+   "facturacion_pct": 10.38,
+   "bruta_renta_pura_pct": 10.38,
+   "neta_sobre_renta_pura_pct": 65.6,
+   "neta_pct": 6.82,
+   "neta_techo_pct": 6.82,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "A \u00b7 USD 160.000"
+  },
+  {
+   "ingreso": 51849.05,
+   "servicios": 8820.0,
+   "ingreso_renta_pura": 43029.05,
+   "facturacion_pct": 14.31,
+   "bruta_renta_pura_pct": 11.88,
+   "neta_sobre_renta_pura_pct": 60.6,
+   "neta_pct": 7.19,
+   "neta_techo_pct": 7.78,
+   "alertas": [
+    "\u00abGastos del edificio (planilla)\u00bb es el 20,5% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes."
+   ],
+   "codigos": [
+    "gasto_alto:Gastos del edificio (planilla)"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "B \u00b7 USD 160.000"
+  },
+  {
+   "ingreso": 88330.0,
+   "servicios": 51149.68,
+   "ingreso_renta_pura": 37180.32,
+   "facturacion_pct": 23.32,
+   "bruta_renta_pura_pct": 9.82,
+   "neta_sobre_renta_pura_pct": 49.0,
+   "neta_pct": 4.81,
+   "neta_techo_pct": 5.68,
+   "alertas": [
+    "La neta es el 49% del ingreso de renta pura (m\u00ednimo 50%): revisar los datos de gastos antes de presentar.",
+    "\u00abGastos del edificio y sistemas\u00bb es el 24,9% del ingreso de renta pura (m\u00e1ximo 15%): pedir el desglose y los comprobantes."
+   ],
+   "codigos": [
+    "neta_baja",
+    "gasto_alto:Gastos del edificio y sistemas"
+   ],
+   "presentar_como_rango": true,
+   "escenario": "C \u00b7 USD 160.000"
+  }
+ ]
 }

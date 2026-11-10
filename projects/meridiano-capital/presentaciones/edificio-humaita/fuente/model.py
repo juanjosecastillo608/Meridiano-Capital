@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '_config'))
 from comun import TC as TC_CFG  # D-096 / D-097
-from rentabilidad import IVA_G as _IVA_G, DEP as _DEP, PARTE_EDIF as _PE  # D-101: misma fuente que calculadora.py
+from rentabilidad import IVA_G as _IVA_G, DEP as _DEP, PARTE_EDIF as _PE, registrar, gastos_de  # D-101: misma fuente que calculadora.py / D-103
 import json
 
 # Edificio Humaitá (centro histórico de Asunción) — v1, 2026-11-08.
@@ -49,6 +49,8 @@ C_OTA = 0.15                 # comisión de plataformas (supuesto)
 C_LIMP = 0.12                # limpieza, lavandería y amenities (supuesto)
 C_STAFF = 3 * 3_000_000 * 13 / TC_CFG   # 3 recepcionistas a Gs 3,0 M con aguinaldo (supuesto)
 C_OPEX = (B_OPEX_MES - 400) * 12 * 1.3 + 1_800   # gastos del edificio de la planilla sin administración, +30% de consumo hotelero, más software y marketing
+# D-103: renta pura vs. servicios. B (todo incluido) y C (hostel) alquilan con servicios incluidos.
+SERV_OPEX = 0.50             # supuesto: parte de los gastos del edificio que son servicios al inquilino (luz, agua, internet, limpieza); a reemplazar con el desglose de la planilla
 C_EXTRA = 15_000             # USD: recepción, ropa blanca, TV, cerraduras, señalética y habilitación turística (supuesto)
 
 def capexA(f=1.0):
@@ -141,6 +143,20 @@ out['cred_obra'] = {a: CX[a]['total'] * IVA_GASTOS / (1 + IVA_GASTOS) for a in '
 out['cred_anios'] = {a: out['cred_obra'][a] / max(1, out[a]['ev']['ded']['IVA neto (débito − crédito)']) for a in 'ABC'}
 out['planilla_rent_usd'], out['planilla_total_usd'] = 255.71, 329.21
 out['B_req10'] = (0.10 * (P + CX['B']['total'])) / (N_HAB * 12) * TC   # Gs por habitación para 10% bruta (sobre ingreso bruto, sin vacancia)
+# D-103: coherencia. Servicios separados de la renta pura: B, la parte de servicios de los gastos del edificio;
+# C, plataformas, limpieza, personal y la parte de servicios de los gastos del edificio.
+SERV = {'A': {}, 'B': {'Gastos del edificio (planilla)': SERV_OPEX},
+        'C': {'Comisión de plataformas': 1.0, 'Limpieza y lavandería': 1.0, 'Personal de recepción': 1.0, 'Gastos del edificio y sistemas': SERV_OPEX}}
+out['serv'] = {}
+for a in 'ABC':
+    ev = out[a]['ev']
+    lineas = {**{k: v for k, v in ev['ded'].items()}, **ev['fijos']}
+    serv = sum(lineas[k] * f for k, f in SERV[a].items())
+    gastos = {k: v * (1 - SERV[a].get(k, 0.0)) for k, v in gastos_de(ev, fijos=ev['fijos']).items()}
+    gastos = {k: v for k, v in gastos.items() if v > 0}
+    c = registrar(out, f'{a} · USD {P:,.0f}'.replace(',', '.'), ev['G'], ev['net'], ev['inv'], servicios=serv, gastos=gastos)
+    out['serv'][a] = dict(servicios=serv, bruta_pura=c['bruta_renta_pura_pct'] / 100)
+    ev.update(alertas=c['alertas'], codigos=c['codigos'], neta_alta=c['neta_techo_pct'] / 100, bruta_pura=c['bruta_renta_pura_pct'] / 100, serv_u=serv)
 json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.json'), 'w'), indent=1, default=float)
 
 if __name__ == '__main__':

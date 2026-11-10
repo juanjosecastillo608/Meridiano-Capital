@@ -727,5 +727,91 @@
   "B|pedido": 1845942.476224411,
   "A|rapida": 1580929.3221306114,
   "B|rapida": 1957054.3555775296
- }
+ },
+ "coherencia": [
+  {
+   "ingreso": 22576.56,
+   "servicios": 0.0,
+   "ingreso_renta_pura": 22576.56,
+   "facturacion_pct": 6.05,
+   "bruta_renta_pura_pct": 6.05,
+   "neta_sobre_renta_pura_pct": 62.0,
+   "neta_pct": 3.75,
+   "neta_techo_pct": 3.75,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "A \u00b7 USD 250.000"
+  },
+  {
+   "ingreso": 22576.56,
+   "servicios": 0.0,
+   "ingreso_renta_pura": 22576.56,
+   "facturacion_pct": 7.7,
+   "bruta_renta_pura_pct": 7.7,
+   "neta_sobre_renta_pura_pct": 61.5,
+   "neta_pct": 4.74,
+   "neta_techo_pct": 4.74,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "A \u00b7 USD 170.000"
+  },
+  {
+   "ingreso": 28146.63,
+   "servicios": 0.0,
+   "ingreso_renta_pura": 28146.63,
+   "facturacion_pct": 6.89,
+   "bruta_renta_pura_pct": 6.89,
+   "neta_sobre_renta_pura_pct": 68.8,
+   "neta_pct": 4.74,
+   "neta_techo_pct": 4.74,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "B \u00b7 USD 250.000"
+  },
+  {
+   "ingreso": 28146.63,
+   "servicios": 0.0,
+   "ingreso_renta_pura": 28146.63,
+   "facturacion_pct": 8.57,
+   "bruta_renta_pura_pct": 8.57,
+   "neta_sobre_renta_pura_pct": 68.4,
+   "neta_pct": 5.87,
+   "neta_techo_pct": 5.87,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "B \u00b7 USD 170.000"
+  },
+  {
+   "ingreso": 33331.53,
+   "servicios": 0.0,
+   "ingreso_renta_pura": 33331.53,
+   "facturacion_pct": 6.1,
+   "bruta_renta_pura_pct": 6.1,
+   "neta_sobre_renta_pura_pct": 63.2,
+   "neta_pct": 3.86,
+   "neta_techo_pct": 3.86,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "C \u00b7 USD 250.000"
+  },
+  {
+   "ingreso": 33331.53,
+   "servicios": 0.0,
+   "ingreso_renta_pura": 33331.53,
+   "facturacion_pct": 7.14,
+   "bruta_renta_pura_pct": 7.14,
+   "neta_sobre_renta_pura_pct": 62.9,
+   "neta_pct": 4.5,
+   "neta_techo_pct": 4.5,
+   "alertas": [],
+   "codigos": [],
+   "presentar_como_rango": false,
+   "escenario": "C \u00b7 USD 170.000"
+  }
+ ]
 }
