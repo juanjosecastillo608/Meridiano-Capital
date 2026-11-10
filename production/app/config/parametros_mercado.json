@@ -166,7 +166,19 @@
     "impuesto_renta_pct": 10.0,
     "_impuesto_renta_nota": "IRP 10% aplicado sobre la renta NETA (no bruta).",
     "grava_ganancia_capital": false,
-    "_ganancia_capital_nota": "Confirmado por el usuario: la reventa NO se grava como actividad habitual (impuesto a la renta/ganancia de capital). El IVA de venta (iva_venta_pct) es un impuesto distinto, separado de este punto."
+    "_ganancia_capital_nota": "Confirmado por el usuario: la reventa NO se grava como actividad habitual (impuesto a la renta/ganancia de capital). El IVA de venta (iva_venta_pct) es un impuesto distinto, separado de este punto.",
+    "iva_alquiler_incluido_en_precio": true,
+    "iva_credito_gastos_pct": 10.0,
+    "lineas_con_credito_fiscal": [
+      "honorarios_administracion",
+      "honorarios_alquiler",
+      "mantenimiento",
+      "limpieza",
+      "canon_agencia"
+    ],
+    "depreciacion_anual_pct": 2.5,
+    "parte_edificio_pct": 50.0,
+    "_d101_nota": "D-101 (founder, 09/11/2026; P-009 aprobada): (1) el alquiler de mercado incluye el IVA -> IVA debito = cobrado x tasa/(1+tasa), cobrado = bruto - vacancia; (2) se descuenta el credito fiscal (iva_credito_gastos_pct/(1+...)) de las lineas facturadas listadas; (3) el IRE se aplica sobre el neto menos la depreciacion (depreciacion_anual_pct sobre la base depreciable: parte_edificio_pct del precio, o la base que se pase, p. ej. obra + parte del precio). Credito fiscal y depreciacion: A CONFIRMAR CON LA CONTADORA. Ver knowledge-base/investment/methodologies/revision-bruta-neta-2026-11-09.md"
   },
   "descuento_por_etapa_mercado": {
     "_nota": "Descuento tipico contra precio terminado, por etapa (dato de mercado Asuncion 2026). Referencia para calibrar la matriz de plusvalia.",

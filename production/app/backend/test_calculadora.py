@@ -70,13 +70,28 @@ rc = calc.evaluar_retorno_combinado("departamento_amoblado",99000,120000,12,950,
 if not aprox(rc["plusvalia_total_pct"], 21.21, 0.1): fallos.append(f"Habitalis plusvalia {rc['plusvalia_total_pct']}")
 if not (25 <= rc["retorno_combinado_periodo_pct"] <= 29): fallos.append(f"Habitalis combinado {rc['retorno_combinado_periodo_pct']}")
 
-# --- IVA diferenciado (resuelve D-001, confirmado por el founder 2026-08-02) ---
+# --- IVA diferenciado (D-001) con la base D-101 (founder, 09/11/2026): IVA contenido en lo
+# cobrado (bruto - vacancia 3%) menos el credito fiscal de las lineas facturadas
+# (administracion 10% + colocacion 0,5 mes + mantenimiento 5% = USD 2.300 sobre 12.000 de bruto).
 r_comercial = calc.evaluar_renta("comercial", 100000, 1000, nivel_neto=3)
-if not aprox(r_comercial["desglose_gastos"]["iva"], 1200.0, 1.0):
-    fallos.append(f"IVA comercial deberia ser 10% de 12000 bruto = 1200: {r_comercial['desglose_gastos']['iva']}")
+esperado_com = 11640 * 0.10 / 1.10 - 2300 * 0.10 / 1.10
+if not aprox(r_comercial["desglose_gastos"]["iva"], esperado_com, 1.0):
+    fallos.append(f"IVA comercial D-101 deberia ser {esperado_com:.2f}: {r_comercial['desglose_gastos']['iva']}")
+if not aprox(r_comercial["iva_debito"], 11640 * 0.10 / 1.10, 1.0):
+    fallos.append("IVA debito comercial deberia ser 10/110 de lo cobrado")
 r_residencial = calc.evaluar_renta("residencial_casa", 100000, 1000, nivel_neto=3)
-if not aprox(r_residencial["desglose_gastos"]["iva"], 600.0, 1.0):
-    fallos.append(f"IVA residencial deberia ser 5% de 12000 bruto = 600: {r_residencial['desglose_gastos']['iva']}")
+esperado_res = 11640 * 0.05 / 1.05 - 2300 * 0.10 / 1.10
+if not aprox(r_residencial["desglose_gastos"]["iva"], esperado_res, 1.0):
+    fallos.append(f"IVA residencial D-101 deberia ser {esperado_res:.2f}: {r_residencial['desglose_gastos']['iva']}")
+# IRE sobre el neto menos la depreciacion: 2,5% de la mitad del precio (USD 1.250)
+neto_pre = 12000 - sum(v for k, v in r_comercial["desglose_gastos"].items() if k != "impuesto_a_la_renta")
+if not aprox(r_comercial["desglose_gastos"]["impuesto_a_la_renta"], (neto_pre - 1250) * 0.10, 1.0):
+    fallos.append("IRE D-101 deberia ser 10% de (neto - depreciacion)")
+if not aprox(r_comercial["depreciacion_ire"], 1250.0, 0.01):
+    fallos.append("depreciacion por defecto = 2,5% x 50% del precio")
+r_obra = calc.evaluar_renta("comercial", 100000, 1000, nivel_neto=3, base_depreciable=150000)
+if not (r_obra["neto_anual"] > r_comercial["neto_anual"]):
+    fallos.append("una base depreciable mayor deberia bajar el IRE y subir el neto")
 
 # --- IVA de venta (CORREGIDO 2026-08-23, D-082: 1,5% efectivo = 30% base x 5% tasa,
 # no 5% directo -- ver knowledge-base/investment/methodologies/iva-venta-de-inmuebles-paraguay.md) ---

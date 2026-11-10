@@ -124,7 +124,8 @@ class Calculadora:
 
     # ---- RENTA ----
     def evaluar_renta(self, clase, precio_compra, renta_mensual_bruta,
-                      nivel_neto=3, gastos_reales=None, ocupacion_pct=None):
+                      nivel_neto=3, gastos_reales=None, ocupacion_pct=None,
+                      base_depreciable=None):
         """
         Evalua una operacion de renta.
 
@@ -147,6 +148,15 @@ class Calculadora:
                        vacancia real, no el vacancia_pct generico (3%) que
                        aplica a renta tradicional.
 
+        base_depreciable: D-101. Base (USD) sobre la que se calcula la
+                       depreciacion que reduce la base del IRE. Por defecto,
+                       parte_edificio_pct del precio de compra. Si hubo obra,
+                       pasar obra + parte del precio.
+
+        D-101 (founder, 09/11/2026): el IVA es el contenido en el alquiler
+        cobrado (tasa/(1+tasa)) menos el credito fiscal de las lineas
+        facturadas, y el IRE se aplica sobre el neto menos la depreciacion.
+
         Devuelve yield bruto, yield neto, desglose linea por linea y veredicto.
         """
         bruto_anual = renta_mensual_bruta * 12.0
@@ -163,7 +173,8 @@ class Calculadora:
         # --- Nivel 1: siempre ---
         desglose["expensas"] = bruto_anual * s["expensas_pct"] / 100.0
         desglose["impuesto_inmobiliario"] = bruto_anual * s["impuesto_inmobiliario_pct"] / 100.0
-        desglose["iva"] = bruto_anual * self.iva_alquiler_pct(clase) / 100.0
+        tasa_iva = self.iva_alquiler_pct(clase) / 100.0
+        desglose["iva"] = 0.0  # D-101: se calcula al final (debito - credito fiscal)
 
         if es_temporal:
             # Nivel 4: stack temporal propio
@@ -196,10 +207,24 @@ class Calculadora:
                     desglose["amortizacion_muebles"] = bruto_anual * s["amortizacion_muebles_pct"] / 100.0
             nivel_efectivo = nivel_neto
 
+        # D-101: IVA = contenido en lo cobrado - credito fiscal de las lineas facturadas
+        cobrado = bruto_anual - desglose.get("vacancia", 0.0)
+        if f.get("iva_alquiler_incluido_en_precio", False):
+            iva_debito = cobrado * tasa_iva / (1.0 + tasa_iva)
+            tasa_cred = f.get("iva_credito_gastos_pct", 0.0) / 100.0
+            base_cred = sum(desglose.get(k, 0.0) for k in f.get("lineas_con_credito_fiscal", []))
+            iva_credito = base_cred * tasa_cred / (1.0 + tasa_cred)
+        else:
+            iva_debito, iva_credito = bruto_anual * tasa_iva, 0.0
+        desglose["iva"] = max(0.0, iva_debito - iva_credito)
+
         gastos_pre_impuesto_renta = sum(desglose.values())
         neto_antes_renta = bruto_anual - gastos_pre_impuesto_renta
-        # Impuesto a la renta sobre el neto (solo si positivo)
-        imp_renta = max(0.0, neto_antes_renta) * f["impuesto_renta_pct"] / 100.0
+        # Impuesto a la renta sobre el neto menos la depreciacion (D-101), solo si positivo
+        if base_depreciable is None:
+            base_depreciable = precio_compra * f.get("parte_edificio_pct", 0.0) / 100.0
+        depreciacion = base_depreciable * f.get("depreciacion_anual_pct", 0.0) / 100.0
+        imp_renta = max(0.0, neto_antes_renta - depreciacion) * f["impuesto_renta_pct"] / 100.0
         desglose["impuesto_a_la_renta"] = imp_renta
         neto_anual = neto_antes_renta - imp_renta
         yield_neto = neto_anual / precio_compra * 100.0
@@ -224,6 +249,9 @@ class Calculadora:
             "total_gastos": round(gastos_pre_impuesto_renta + imp_renta, 2),
             "piso_pct": piso,
             "pasa_piso": None if piso is None else round(yield_bruto, 2) >= piso,
+            "iva_debito": round(iva_debito, 2),
+            "iva_credito": round(iva_credito, 2),
+            "depreciacion_ire": round(depreciacion, 2),
         }
         if es_temporal:
             resultado["ocupacion_pct"] = round(ocupacion_pct, 2)

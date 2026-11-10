@@ -18,20 +18,12 @@ Reutiliza -- no duplica -- production/app/backend/calculadora.py
 (Calculadora.evaluar_renta): mismo patron de import entre paquetes que ya usa
 production/app/backend/dev_engine/cashflow.py con calculadora.py.
 
-Por que la inversion es exacta y no una aproximacion iterativa: en
-evaluar_renta(), TODAS las lineas de gasto (expensas, impuesto inmobiliario,
-IVA, limpieza, seguros, mantenimiento, honorarios, amortizacion, vacancia,
-impuesto a la renta) son un porcentaje de bruto_anual o un multiplo de
-renta_mensual_bruta -- nunca dependen de precio_compra. Eso implica dos cosas
-utiles:
-  - `neto_anual` NO depende de precio_compra en absoluto (solo de la renta y
-    los supuestos de gasto) -- por eso "maximo precio de compra" se despeja
-    en un solo paso, sin iterar: precio_max = neto_anual / (target_pct/100).
-  - `neto_anual` es LINEAL en renta_mensual_bruta -- por eso "alquiler
-    requerido" tambien se despeja en un paso, calibrando la pendiente con una
-    corrida de referencia a renta=1000 (evaluar_renta ya hace todo el trabajo
-    de gastos/impuestos real, esto solo lee el resultado, no reimplementa
-    nada de esa logica).
+Como se invierte (D-101, 09/11/2026): desde D-101 el IRE se calcula sobre el
+neto menos la depreciacion, que depende del precio de compra, y el IVA tiene un
+piso en cero. Por eso neto_anual ya no es independiente del precio ni
+estrictamente lineal en la renta. Se usa biseccion sobre evaluar_renta(), que
+es monotona en ambas variables: el neto/precio baja al subir el precio y el
+neto sube con la renta. Cada resultado se verifica re-evaluando el motor.
 
 Uso:
     python herramientas.py precio-maximo --clase departamento_amoblado \
@@ -75,7 +67,14 @@ def precio_maximo_compra(clase, renta_mensual_bruta, target_yield_neto_pct, nive
                              f"No se inventa un numero (SS61)."),
             "neto_anual": round(neto_anual, 2),
         }
-    precio_max = neto_anual / (target_yield_neto_pct / 100.0)
+    def _yn(precio):
+        return calc.evaluar_renta(clase, precio_compra=precio, renta_mensual_bruta=renta_mensual_bruta, nivel_neto=nivel_neto,
+                                  gastos_reales=gastos_reales, ocupacion_pct=ocupacion_pct)["neto_anual"] / precio * 100.0
+    lo, hi = 1.0, max(10.0, neto_anual / (target_yield_neto_pct / 100.0) * 10)
+    for _ in range(200):  # D-101: biseccion (yield neto decreciente en el precio)
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if _yn(mid) > target_yield_neto_pct else (lo, mid)
+    precio_max = (lo + hi) / 2
     # Verificacion exacta: re-evaluar al precio resultante debe reproducir el target (dentro de redondeo).
     verificacion = calc.evaluar_renta(clase, precio_compra=precio_max, renta_mensual_bruta=renta_mensual_bruta,
                                        nivel_neto=nivel_neto, gastos_reales=gastos_reales, ocupacion_pct=ocupacion_pct)
@@ -84,10 +83,9 @@ def precio_maximo_compra(clase, renta_mensual_bruta, target_yield_neto_pct, nive
         "target_yield_neto_pct": target_yield_neto_pct,
         "yield_neto_verificado_pct": verificacion["yield_neto_pct"],
         "renta_mensual_bruta_usada": renta_mensual_bruta,
-        "neto_anual": round(neto_anual, 2),
-        "metodologia": ("neto_anual no depende de precio_compra en evaluar_renta() (todas las lineas de gasto son "
-                         "% de renta, no de precio) -- se despeja precio_max = neto_anual / (target/100) en un "
-                         "solo paso, sin iterar. Verificado re-evaluando al precio resultante (SS45)."),
+        "neto_anual": verificacion["neto_anual"],
+        "metodologia": ("D-101: el IRE descuenta la depreciacion (depende del precio), asi que precio_max se busca por "
+                         "biseccion sobre evaluar_renta(). Verificado re-evaluando al precio resultante (SS45)."),
     }
 
 
@@ -108,7 +106,14 @@ def alquiler_requerido(clase, precio_compra, target_yield_neto_pct, nivel_neto=3
                              f"(<=0) -- no existe un alquiler que rinda {target_yield_neto_pct}% neto sobre este "
                              f"precio. No se inventa un numero (SS61)."),
         }
-    rent_required = neto_objetivo / pendiente
+    def _neto(renta):
+        return calc.evaluar_renta(clase, precio_compra=precio_compra, renta_mensual_bruta=renta, nivel_neto=nivel_neto,
+                                  gastos_reales=gastos_reales, ocupacion_pct=ocupacion_pct)["neto_anual"]
+    lo, hi = 0.0, max(10.0, neto_objetivo / pendiente * 10)
+    for _ in range(200):  # D-101: biseccion (neto creciente en la renta)
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if _neto(mid) < neto_objetivo else (lo, mid)
+    rent_required = (lo + hi) / 2
 
     # Verificacion exacta.
     verificacion = calc.evaluar_renta(clase, precio_compra=precio_compra, renta_mensual_bruta=rent_required,
@@ -119,9 +124,8 @@ def alquiler_requerido(clase, precio_compra, target_yield_neto_pct, nivel_neto=3
         "target_yield_neto_pct": target_yield_neto_pct,
         "yield_neto_verificado_pct": verificacion["yield_neto_pct"],
         "precio_compra_usado": precio_compra,
-        "metodologia": ("neto_anual es lineal en renta_mensual_bruta en evaluar_renta() -- se calibra la pendiente "
-                         "con una corrida de referencia y se despeja rent_required en un solo paso, sin iterar. "
-                         "Verificado re-evaluando al alquiler resultante (SS46)."),
+        "metodologia": ("D-101: con depreciacion en el IRE y piso de IVA, rent_required se busca por biseccion sobre "
+                         "evaluar_renta() (neto creciente en la renta). Verificado re-evaluando al alquiler resultante (SS46)."),
     }
 
     # SS47 -- nunca manipular el mercado. Si hay renta de mercado (del AMC), comparar y avisar, no ajustar.

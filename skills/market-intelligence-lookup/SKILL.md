@@ -35,7 +35,9 @@ python skills/market-intelligence-lookup/consultar.py --barrio "Ycua Sati" --tip
 python skills/market-intelligence-lookup/consultar.py --barrio "Herrera" --dataset comparables
 ```
 
-Busca sin distinguir tildes/mayúsculas, por coincidencia parcial del nombre de barrio, sobre los 5 datasets de `market-intelligence/`: `rentals`, `airbnb`, `sales`, `comparables`, `neighborhoods`. Filtra automáticamente las filas categoría D vacías (sin dato real) para no ensuciar el resultado — el campo `_resumen.nota` avisa cuando eso pasó.
+Busca sin distinguir tildes/mayúsculas, por coincidencia parcial del nombre de barrio, sobre los 5 datasets de `market-intelligence/`: `rentals`, `airbnb`, `sales`, `comparables`, `neighborhoods`.
+
+Desde el 07/11/2026 también consulta las bases consolidadas de los **estudios de mercado estándar** (`market-intelligence/estudios/`, ver su `README.md`): `comparables_alquiler` (`rentals/data/comparables-alquiler.csv`) y `comparables_venta` (`sales/data/comparables-venta.csv`). Cubren Ciudad del Este (Catedral, San Miguel, San José) y Sajonia. Cada fila conserva la moneda original, el tipo de cambio y la fecha del estudio, la comparabilidad, la disponibilidad y el enlace. Ejemplo: `python skills/market-intelligence-lookup/consultar.py --barrio "CDE" --tipologia "3 dormitorios" --dataset comparables_alquiler`. Filtra automáticamente las filas categoría D vacías (sin dato real) para no ensuciar el resultado — el campo `_resumen.nota` avisa cuando eso pasó.
 
 ## Reglas no negociables al presentar un resultado
 

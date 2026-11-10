@@ -42,3 +42,6 @@ credentials.json
 secrets.json
 secrets.yml
 secrets.yaml
+
+# Presentaciones: HTML intermedio generado por fuente/gen.py
+projects/meridiano-capital/presentaciones/*/fuente/deck.html
