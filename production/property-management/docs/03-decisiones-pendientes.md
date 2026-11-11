@@ -23,3 +23,7 @@ sistema se comporta de la forma más conservadora indicada.
 | PD-16 | Oferta del proveedor de G. 16.550.000: ¿solo mano de obra o con materiales? | Founder + proveedor | Cotización registrada; nada aprobado |
 | PD-17 | ¿El usuario de la sociedad propietaria debe ver documentos sensibles (poder, representantes)? **[EXTENSION]** por defecto NO | Founder | PROPIETARIO_CONSULTA sin VER_DOCUMENTOS_SENSIBLES; ADMIN_SOCIEDAD sí |
 | PD-18 | Pagos importados de planilla quedan SIN_RESPALDO pero sí reducen el saldo **[EXTENSION]**; ¿conciliar contra extracto de la cuenta corriente de la sociedad? | Founder + contador/a | Alerta con el total sin respaldo |
+| PD-19 | Convención de cómputo del plazo contractual (aniversario inexistente → día 1 del mes siguiente) **[EXTENSION]** | Abogado/a | Implementada como default; ver `06-contrato-residencial-12m.md` |
+| PD-20 | Revisión jurídica de la plantilla `RESIDENCIAL_12M_v1` y cláusulas restantes | Abogado/a | Borradores marcados "no firmado, no vigente"; paso obligatorio antes de activar |
+| PD-21 | Validación del canon de las 7 unidades ocupadas de FRM y carga de la cuenta bancaria activa de la sociedad | Administración | Generación bloqueada hasta validar |
+| PD-22 | Domicilio fiscal, direcciones de edificios, CI/domicilio de inquilinos, representante con poder vigente | Administración | `[PENDIENTE]` en los borradores |

@@ -20,6 +20,7 @@ import { subirDocumento } from "../src/server/services/documentos";
 import { analizarArchivo, validarImportacion, confirmarImportacion, cancelarImportacion } from "../src/server/services/importacion";
 import { crearProyecto, importarChecklist, importarPresupuesto, importarListadosSector } from "../src/server/services/remodelaciones";
 import type { MapeoHoja } from "../src/import/procesar";
+import { configuracionVigente, nuevaVersionConfiguracion } from "../src/server/services/renovacion";
 
 const FUENTE = "Anexo de implementación Canarias Inversiones S.A. (founder, 2026-11-11)";
 const ARCHIVOS_ESPERADOS: [RegExp, string][] = [
@@ -63,6 +64,12 @@ async function main() {
     await declararInventario(s, p.id, { deptos: e.deptos, locales: e.locales, fuente: FUENTE });
     props[e.codigo] = p.id;
     console.log(`3. Edificio ${e.codigo}: inventario declarado ${e.deptos} deptos + ${e.locales} local`);
+  }
+
+  // Actualización contractual 03: configuración residencial versionada (solo si no existe)
+  if (!(await configuracionVigente(soc.id))) {
+    const c = await nuevaVersionConfiguracion(s, soc.id, { residentialLeaseDefaultTermMonths: 12, residentialLeaseInitialIncreasePercent: "0", residentialLeaseRentPolicy: "KEEP_VALIDATED_CURRENT_RENT", residentialLeaseAutoAdjustment: false, alertasDias: [90, 60, 30, 0], autorizadoPor: "Founder — Meridiano Capital", motivo: "Actualización contractual 03: decisión comercial aprobada (plazo residencial 12 meses, canon validado, 0 %, sin reajuste automático)" });
+    console.log(`3b. Configuración contractual residencial v${c.version} (12 meses, 0 %, KEEP_VALIDATED_CURRENT_RENT, sin reajuste automático)`);
   }
 
   // Expediente: RUC

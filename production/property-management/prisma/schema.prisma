@@ -127,19 +127,20 @@ model Sociedad {
   updatedAt          DateTime       @updatedAt
   deletedAt          DateTime?
 
-  cuentas        CuentaBancaria[]
-  propiedades    Propiedad[]
-  titularidades  Titularidad[]
-  asignaciones   AsignacionRol[]
-  contratos      Contrato[]
-  obligaciones   Obligacion[]
-  pagos          Pago[]
-  facturas       Factura[]
-  egresos        Egreso[]
-  importaciones  ImportBatch[]
-  documentos     Documento[]
-  timbrados      Timbrado[]
-  representantes Representante[]
+  cuentas         CuentaBancaria[]
+  propiedades     Propiedad[]
+  titularidades   Titularidad[]
+  asignaciones    AsignacionRol[]
+  contratos       Contrato[]
+  obligaciones    Obligacion[]
+  pagos           Pago[]
+  facturas        Factura[]
+  egresos         Egreso[]
+  importaciones   ImportBatch[]
+  documentos      Documento[]
+  timbrados       Timbrado[]
+  representantes  Representante[]
+  configuraciones ConfiguracionContractual[]
 }
 
 model CuentaBancaria {
@@ -158,6 +159,7 @@ model CuentaBancaria {
   sociedad    Sociedad    @relation(fields: [sociedadId], references: [id])
   pagos       Pago[]
   propiedades Propiedad[]
+  contratos   Contrato[]
 
   @@unique([sociedadId, banco, numero])
 }
@@ -375,45 +377,60 @@ enum TipoReajuste {
 }
 
 model Contrato {
-  id                       String                  @id @default(cuid())
-  codigo                   String                  @unique
-  sociedadId               String
-  propiedadId              String
-  estado                   EstadoContrato          @default(BORRADOR)
-  categoriaFiscal          CategoriaFiscalAlquiler
-  fechaFirma               DateTime?               @db.Date
-  fechaInicio              DateTime?               @db.Date // null solo en BORRADOR (p. ej. importado sin contrato original)
-  fechaFin                 DateTime?               @db.Date
-  fechaEntrega             DateTime?               @db.Date // entrega real de la unidad
-  fechaDevolucion          DateTime?               @db.Date // devolución real
-  fechaRescision           DateTime?               @db.Date
-  moneda                   Moneda
-  diaVencimiento           Int? // 1–31; obligatorio para activar
-  deposito                 Decimal?                @db.Decimal(18, 2)
-  reajusteTipo             TipoReajuste            @default(SIN_REAJUSTE)
-  reajusteFrecuenciaMeses  Int?
-  reajustePorcentaje       Decimal?                @db.Decimal(9, 6)
-  reajusteIndice           String?
-  reajusteValidado         Boolean                 @default(false) // sin esto no se reajusta nada automáticamente
-  responsabilidadExpensas  ResponsableGasto        @default(NO_DEFINIDO)
-  responsabilidadServicios ResponsableGasto        @default(NO_DEFINIDO)
-  penalidadesTexto         String?
-  moraTasaDiariaPct        Decimal?                @db.Decimal(9, 6) // solo si está pactada
-  moraValidada             Boolean                 @default(false)
-  periodoGraciaDias        Int                     @default(0)
-  condicionesRenovacion    String?
-  contratoAnteriorId       String?                 @unique // cadena de renovaciones
-  documentoId              String?
-  observaciones            String?
-  origenDato               OrigenDato              @default(MANUAL)
-  estadoDato               EstadoDato              @default(PENDIENTE_REVISION)
-  importBatchId            String?
-  createdAt                DateTime                @default(now())
-  updatedAt                DateTime                @updatedAt
-  deletedAt                DateTime?
+  id                        String                  @id @default(cuid())
+  codigo                    String                  @unique
+  sociedadId                String
+  propiedadId               String
+  estado                    EstadoContrato          @default(BORRADOR)
+  categoriaFiscal           CategoriaFiscalAlquiler
+  fechaFirma                DateTime?               @db.Date
+  fechaInicio               DateTime?               @db.Date // null solo en BORRADOR (p. ej. importado sin contrato original)
+  fechaFin                  DateTime?               @db.Date
+  fechaEntrega              DateTime?               @db.Date // entrega real de la unidad
+  fechaDevolucion           DateTime?               @db.Date // devolución real
+  fechaRescision            DateTime?               @db.Date
+  moneda                    Moneda
+  diaVencimiento            Int? // 1–31; obligatorio para activar
+  deposito                  Decimal?                @db.Decimal(18, 2)
+  reajusteTipo              TipoReajuste            @default(SIN_REAJUSTE)
+  reajusteFrecuenciaMeses   Int?
+  reajustePorcentaje        Decimal?                @db.Decimal(9, 6)
+  reajusteIndice            String?
+  reajusteValidado          Boolean                 @default(false) // sin esto no se reajusta nada automáticamente
+  responsabilidadExpensas   ResponsableGasto        @default(NO_DEFINIDO)
+  responsabilidadServicios  ResponsableGasto        @default(NO_DEFINIDO)
+  penalidadesTexto          String?
+  moraTasaDiariaPct         Decimal?                @db.Decimal(9, 6) // solo si está pactada
+  moraValidada              Boolean                 @default(false)
+  periodoGraciaDias         Int                     @default(0)
+  condicionesRenovacion     String?
+  contratoAnteriorId        String?                 @unique // cadena de renovaciones
+  documentoId               String?
+  cuentaBancariaId          String? // cuenta receptora elegida entre las activas de la sociedad
+  plazoMeses                Int?
+  /// Excepción al plazo calculado: solo con autorización expresa.
+  finExcepcion              Boolean                 @default(false)
+  finExcepcionMotivo        String?
+  finExcepcionAutorizadoPor String?
+  plantillaVersion          String? // p. ej. RESIDENCIAL_12M_v1 (redacción provisional, revisión jurídica pendiente)
+  configuracionVersion      Int? // versión de ConfiguracionContractual aplicada
+  canonOrigen               String? // de dónde sale el canon (condición validada del contrato anterior)
+  /// Procedimiento: ningún contrato generado es firmado/vigente hasta completar estas validaciones.
+  inicioConfirmado          Boolean                 @default(false)
+  depositoVerificado        Boolean                 @default(false)
+  revisionJuridicaAprobada  Boolean                 @default(false)
+  documentoFirmadoId        String?
+  observaciones             String?
+  origenDato                OrigenDato              @default(MANUAL)
+  estadoDato                EstadoDato              @default(PENDIENTE_REVISION)
+  importBatchId             String?
+  createdAt                 DateTime                @default(now())
+  updatedAt                 DateTime                @updatedAt
+  deletedAt                 DateTime?
 
   sociedad         Sociedad            @relation(fields: [sociedadId], references: [id])
   propiedad        Propiedad           @relation(fields: [propiedadId], references: [id])
+  cuentaBancaria   CuentaBancaria?     @relation(fields: [cuentaBancariaId], references: [id])
   contratoAnterior Contrato?           @relation("Renovacion", fields: [contratoAnteriorId], references: [id])
   renovacion       Contrato?           @relation("Renovacion")
   unidades         ContratoUnidad[]
@@ -458,18 +475,43 @@ enum MotivoCondicion {
 /// con vigenteDesde posterior. El importe de un período = última condición con
 /// vigenteDesde <= inicio del período.
 model CondicionContrato {
-  id            String          @id @default(cuid())
-  contratoId    String
-  vigenteDesde  DateTime        @db.Date
-  montoAlquiler Decimal         @db.Decimal(18, 2)
-  motivo        MotivoCondicion
-  referencia    String? // nº de adenda, fórmula aplicada
-  createdAt     DateTime        @default(now())
-  creadoPorId   String?
+  id               String          @id @default(cuid())
+  contratoId       String
+  vigenteDesde     DateTime        @db.Date
+  montoAlquiler    Decimal         @db.Decimal(18, 2)
+  motivo           MotivoCondicion
+  referencia       String? // nº de adenda, fórmula aplicada
+  createdAt        DateTime        @default(now())
+  creadoPorId      String?
+  /// Canon validado administrativamente (único origen admitido para el canon de un contrato nuevo).
+  validado         Boolean         @default(false)
+  validadoPorId    String?
+  validadoAt       DateTime?
+  validacionMotivo String?
 
   contrato Contrato @relation(fields: [contratoId], references: [id])
 
   @@unique([contratoId, vigenteDesde])
+}
+
+/// Parámetros contractuales por sociedad, VERSIONADOS: nunca se editan; cada cambio es una versión nueva con usuario, fecha y autorización.
+model ConfiguracionContractual {
+  id                                     String   @id @default(cuid())
+  sociedadId                             String
+  version                                Int
+  residentialLeaseDefaultTermMonths      Int
+  residentialLeaseInitialIncreasePercent Decimal  @db.Decimal(9, 4)
+  residentialLeaseRentPolicy             String // KEEP_VALIDATED_CURRENT_RENT
+  residentialLeaseAutoAdjustment         Boolean
+  alertasDias                            Int[] // 90, 60, 30, 0 (día del vencimiento)
+  autorizadoPor                          String // quién aprobó la decisión comercial
+  motivo                                 String
+  creadoPorId                            String?
+  createdAt                              DateTime @default(now())
+
+  sociedad Sociedad @relation(fields: [sociedadId], references: [id])
+
+  @@unique([sociedadId, version])
 }
 
 model ConfiguracionAlerta {

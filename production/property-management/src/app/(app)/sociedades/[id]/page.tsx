@@ -7,6 +7,9 @@ import { generarObligacionesMensuales } from "@/server/services/finanzas";
 import { puede } from "@/server/authz";
 import { Estado, Tarjeta, Titulo, Vacio } from "@/components/ui";
 import { periodoDe, hoyAsuncion } from "@/domain/periodo";
+import { historialConfiguracion, nuevaVersionConfiguracion } from "@/server/services/renovacion";
+import { redirect } from "next/navigation";
+import { ErrorNegocio } from "@/server/db";
 
 async function nuevaPropiedad(form: FormData) {
   "use server";
@@ -24,6 +27,24 @@ async function nuevaCuenta(form: FormData) {
   revalidatePath(`/sociedades/${v("sociedadId")}`);
 }
 
+async function nuevaConfig(form: FormData) {
+  "use server";
+  const s = await requerirSesion();
+  const sociedadId = String(form.get("sociedadId"));
+  try {
+    await nuevaVersionConfiguracion(s, sociedadId, {
+      residentialLeaseDefaultTermMonths: Number(form.get("term")), residentialLeaseInitialIncreasePercent: String(form.get("increase") ?? "0"),
+      residentialLeaseRentPolicy: "KEEP_VALIDATED_CURRENT_RENT", residentialLeaseAutoAdjustment: form.get("auto") === "on",
+      alertasDias: String(form.get("alertas") ?? "").split(",").map((x) => Number(x.trim())).filter((x) => !isNaN(x)),
+      autorizadoPor: String(form.get("autorizadoPor") ?? ""), motivo: String(form.get("motivo") ?? ""),
+    });
+  } catch (e) {
+    if (e instanceof ErrorNegocio || (e as Error).name === "ZodError") redirect(`/sociedades/${sociedadId}?error=${encodeURIComponent((e as Error).message.slice(0, 200))}`);
+    throw e;
+  }
+  revalidatePath(`/sociedades/${sociedadId}`);
+}
+
 async function generar(form: FormData) {
   "use server";
   const s = await requerirSesion();
@@ -36,6 +57,7 @@ export default async function Sociedad({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const s = await requerirSesion();
   const soc = await protegido(() => obtenerSociedad(s, id));
+  const configs = await historialConfiguracion(s, id);
   return (
     <>
       <Titulo eyebrow="Sociedad propietaria">{soc.razonSocial}</Titulo>
@@ -82,6 +104,34 @@ export default async function Sociedad({ params }: { params: Promise<{ id: strin
             <label className="campo md:col-span-2">Dirección<input name="direccion" /></label>
             <label className="campo">Cuenta receptora<select name="cuentaBancariaId"><option value="">—</option>{soc.cuentas.map((c) => <option key={c.id} value={c.id}>{c.banco} {c.numero}</option>)}</select></label>
             <div><button className="btn btn-sec">Agregar propiedad</button></div>
+          </form>
+        )}
+      </Tarjeta>
+
+      <Tarjeta titulo="Configuración contractual residencial (versionada)" className="mt-6">
+        {configs.length === 0 ? <Vacio>Sin configuración: no se pueden generar contratos residenciales.</Vacio> : (
+          <>
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm md:grid-cols-4">
+              <div><dt className="text-xs text-gris">residentialLeaseDefaultTermMonths</dt><dd className="font-medium">{configs[0].residentialLeaseDefaultTermMonths}</dd></div>
+              <div><dt className="text-xs text-gris">residentialLeaseInitialIncreasePercent</dt><dd className="font-medium">{configs[0].residentialLeaseInitialIncreasePercent.toString()} %</dd></div>
+              <div><dt className="text-xs text-gris">residentialLeaseRentPolicy</dt><dd className="font-medium">{configs[0].residentialLeaseRentPolicy}</dd></div>
+              <div><dt className="text-xs text-gris">residentialLeaseAutoAdjustment</dt><dd className="font-medium">{String(configs[0].residentialLeaseAutoAdjustment)}</dd></div>
+            </dl>
+            <p className="mt-2 text-xs text-gris">Versión {configs[0].version} · alertas {configs[0].alertasDias.join("/")} días · autorizada por {configs[0].autorizadoPor} · {configs[0].createdAt.toISOString().slice(0, 16).replace("T", " ")} UTC. Solo contratos residenciales (no locales comerciales).</p>
+            {configs.length > 1 && <details className="mt-2 text-xs"><summary className="cursor-pointer">Historial ({configs.length} versiones)</summary><ul className="mt-1 space-y-0.5">{configs.map((c) => <li key={c.id}>v{c.version} · {c.createdAt.toISOString().slice(0, 10)} · plazo {c.residentialLeaseDefaultTermMonths} m · incremento {c.residentialLeaseInitialIncreasePercent.toString()} % · {c.autorizadoPor} — {c.motivo}</li>)}</ul></details>}
+          </>
+        )}
+        <div className="mt-3 text-sm"><Link className="underline" href={`/contratos/renovacion?sociedadId=${id}`}>Generar borradores de contratos residenciales →</Link></div>
+        {puede(s, "CONFIGURAR_SOCIEDAD", id) && (
+          <form action={nuevaConfig} className="mt-4 grid gap-2 border-t border-linea pt-3 md:grid-cols-4">
+            <input type="hidden" name="sociedadId" value={id} />
+            <label className="campo">Plazo (meses)<input name="term" type="number" min={1} defaultValue={configs[0]?.residentialLeaseDefaultTermMonths ?? 12} required /></label>
+            <label className="campo">Incremento inicial %<input name="increase" defaultValue={configs[0]?.residentialLeaseInitialIncreasePercent.toString() ?? "0"} required /></label>
+            <label className="campo">Alertas (días)<input name="alertas" defaultValue={(configs[0]?.alertasDias ?? [90, 60, 30, 0]).join(", ")} required /></label>
+            <label className="flex items-end gap-2 text-sm"><input type="checkbox" name="auto" defaultChecked={configs[0]?.residentialLeaseAutoAdjustment ?? false} /> Reajuste automático</label>
+            <label className="campo md:col-span-2">Autorizado por *<input name="autorizadoPor" required /></label>
+            <label className="campo md:col-span-2">Motivo / documento de la decisión *<input name="motivo" required /></label>
+            <div><button className="btn btn-sec">Crear nueva versión</button></div>
           </form>
         )}
       </Tarjeta>

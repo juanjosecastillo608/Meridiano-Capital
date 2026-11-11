@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { requerirSesion } from "@/lib/sesion";
 import { listarContratos, alertasVencimiento } from "@/server/services/contratos";
 import { Dinero, Estado, Fecha, Titulo, Vacio, Tarjeta } from "@/components/ui";
@@ -8,7 +9,7 @@ export default async function Contratos() {
   const alertaDe = new Map(alertas.map((a) => [a.contrato.id, a.alerta]));
   return (
     <>
-      <Titulo eyebrow="Gestión contractual">Contratos</Titulo>
+      <Titulo eyebrow="Gestión contractual" acciones={<Link className="btn btn-sec" href="/contratos/renovacion">Contratos residenciales 12 meses</Link>}>Contratos</Titulo>
       {cs.length === 0 ? <Vacio>Sin contratos.</Vacio> : (
         <Tarjeta>
           <table className="tabla">
@@ -17,12 +18,12 @@ export default async function Contratos() {
               const a = alertaDe.get(c.id);
               return (
                 <tr key={c.id}>
-                  <td>{c.codigo}</td>
+                  <td><Link className="font-medium hover:underline" href={`/contratos/${c.id}`}>{c.codigo}</Link></td>
                   <td>{c.propiedad.codigo} · {c.unidades.map((u) => u.unidad.identificador).join(", ")}</td>
                   <td>{c.partes.filter((p) => p.rol === "INQUILINO").map((p) => p.persona.nombre).join(", ")}</td>
                   <td><Estado v={c.estado} /></td>
                   <td><Fecha v={c.fechaInicio} /></td><td><Fecha v={c.fechaFin} /></td>
-                  <td>{a ? (a.vencido ? <Estado v="VENCIDO" /> : <span className="text-xs">≤ {a.umbral} días ({a.diasRestantes})</span>) : "—"}</td>
+                  <td>{a ? (a.vencido ? <Estado v="VENCIDO" /> : <span className="text-xs">{a.umbral === 0 ? "Vence hoy" : `≤ ${a.umbral} días (${a.diasRestantes})`}</span>) : "—"}</td>
                   <td className="num">{c.condiciones[0] ? <Dinero v={c.condiciones[0].montoAlquiler} m={c.moneda} /> : "—"}</td>
                   <td className="text-xs">{c.categoriaFiscal.replaceAll("_", " ").toLowerCase()}</td>
                 </tr>

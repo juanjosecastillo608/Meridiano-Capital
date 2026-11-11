@@ -110,6 +110,12 @@ export async function cambiarEstadoContrato(s: Sesion, contratoId: string, nuevo
   };
   if (!permitidas[c.estado].includes(nuevo)) throw new ErrorNegocio(`Transición no permitida: ${c.estado} → ${nuevo}.`);
   if (nuevo === "VIGENTE" || nuevo === "PENDIENTE_FIRMA") validarParaActivar(c);
+  // Contratos generados desde plantilla: no pasan a firma/vigencia sin completar el procedimiento (Actualización contractual 03).
+  if (c.plantillaVersion && (nuevo === "PENDIENTE_FIRMA" || nuevo === "VIGENTE")) {
+    const faltan = [!c.inicioConfirmado && "fecha de inicio confirmada", !c.depositoVerificado && "depósito verificado", !c.revisionJuridicaAprobada && "revisión jurídica de la redacción", !c.cuentaBancariaId && "cuenta bancaria receptora"].filter(Boolean);
+    if (nuevo === "VIGENTE" && !c.documentoFirmadoId) faltan.push("contrato firmado incorporado");
+    if (faltan.length) throw new ErrorNegocio(`Procedimiento incompleto: falta ${faltan.join(", ")}.`, "VALIDACION", faltan);
+  }
   if (nuevo === "RESCINDIDO" && !opts.fechaRescision) throw new ErrorNegocio("La rescisión requiere fecha de rescisión.");
   return prisma.$transaction(async (tx) => {
     await bloquearUnidades(tx, c.unidades.map((u) => u.unidadId));

@@ -72,7 +72,8 @@ export function plazoMeses(inicio: Date, fin: Date): number {
 
 // ─────────────── Alertas de vencimiento (no confundir con estado jurídico) ───────────────
 
-export const ALERTAS_DEFAULT = [90, 60, 30];
+// 90, 60, 30 días antes y el día del vencimiento (Actualización contractual 03). Son avisos internos: no modifican el contrato.
+export const ALERTAS_DEFAULT = [90, 60, 30, 0];
 
 export interface AlertaVencimiento {
   diasRestantes: number;
