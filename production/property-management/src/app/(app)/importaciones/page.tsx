@@ -1,3 +1,4 @@
+import { puedeEnAlguna } from "@/lib/acceso";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requerirSesion } from "@/lib/sesion";
@@ -25,6 +26,7 @@ async function subir(form: FormData) {
 export default async function Importaciones({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;
   const s = await requerirSesion();
+  if (!puedeEnAlguna(s, "IMPORTAR")) return <Aviso tipo="info">Su rol no incluye importación de archivos.</Aviso>;
   const [lista, socs] = await Promise.all([listarImportaciones(s), listarSociedades(s)]);
   return (
     <>

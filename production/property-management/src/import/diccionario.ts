@@ -21,6 +21,8 @@ export type CampoDestino =
   | "periodo.expensas"
   | "periodo.marcaPago"
   | "periodo.fechaPago"
+  | "periodo.fechaProgramada"
+  | "periodo.bonificacion"
   | "periodo.montoFactura"
   | "periodo.iva"
   | "observaciones"
@@ -49,7 +51,10 @@ export const CAMPOS: DefCampo[] = [
   { campo: "periodo.pagoTotal", etiqueta: "Pago recibido del mes (total)", tipo: "importe", sinonimos: [/^pago( del)? mes/, /^importe pagado/, /^cobrado/] },
   { campo: "periodo.expensas", etiqueta: "Expensas del mes", tipo: "importe", sinonimos: [/^(pago |monto |importe )?expensas?( del)?( mes)?( [a-z]+)?( \d+)?$/, /^gastos comunes$/] },
   { campo: "periodo.marcaPago", etiqueta: "Marca de pago (OK/pendiente)", tipo: "texto", sinonimos: [/^pago$/, /^estado (de )?pago$/, /^pagado$/] },
-  { campo: "periodo.fechaPago", etiqueta: "Fecha de pago", tipo: "fecha", sinonimos: [/^fecha( de)? pago/, /^fecha cobro/] },
+  { campo: "periodo.fechaPago", etiqueta: "Fecha de pago (efectivamente recibido)", tipo: "fecha", sinonimos: [/^fecha( de)? pago$/, /^fecha( de)? cobro$/, /^fecha( de)? acreditacion$/] },
+  // Una fecha prevista NUNCA se interpreta como pago recibido: solo fija el vencimiento de la obligación.
+  { campo: "periodo.fechaProgramada", etiqueta: "Fecha programada / vencimiento (NO es pago)", tipo: "fecha", sinonimos: [/^fecha (programada|prevista|de vencimiento|limite)/, /^vencimiento$/, /^vence$/, /^fecha a pagar/] },
+  { campo: "periodo.bonificacion", etiqueta: "Bonificación / descuento sobre el alquiler", tipo: "importe", sinonimos: [/bonificacion/, /^descuento/] },
   { campo: "periodo.montoFactura", etiqueta: "Monto facturado", tipo: "importe", sinonimos: [/^(monto |importe )?factura(do)?$/] },
   { campo: "periodo.iva", etiqueta: "IVA", tipo: "importe", sinonimos: [/^(monto )?iva/] },
   { campo: "observaciones", etiqueta: "Observaciones", tipo: "texto", sinonimos: [/^obs/, /^nota/, /^comentario/] },

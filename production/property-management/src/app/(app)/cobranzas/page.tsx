@@ -1,3 +1,4 @@
+import { puedeEnAlguna } from "@/lib/acceso";
 import { redirect } from "next/navigation";
 import { requerirSesion } from "@/lib/sesion";
 import { listarPersonas, listarSociedades } from "@/server/services/nucleo";
@@ -35,8 +36,10 @@ async function revertir(form: FormData) {
 export default async function Cobranzas({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const s = await requerirSesion();
+  if (!puedeEnAlguna(s, "REGISTRAR_PAGO")) return <Aviso tipo="info">Su rol es de consulta: los saldos y pagos se consultan en cada unidad o inquilino.</Aviso>;
   const [personas, socs] = await Promise.all([listarPersonas(s), listarSociedades(s)]);
-  const sociedadId = sp.sociedadId ?? socs[0]?.id;
+  // La sociedad de la URL solo se acepta si está entre las autorizadas (no se confía en el parámetro).
+  const sociedadId = socs.some((x) => x.id === sp.sociedadId) ? sp.sociedadId : socs[0]?.id;
   const ec = sp.personaId && sociedadId ? await estadoDeCuenta(s, { personaId: sp.personaId, sociedadId }) : null;
   const cuentas = sociedadId ? await prisma.cuentaBancaria.findMany({ where: { sociedadId, deletedAt: null, activa: true } }) : [];
   const abiertas = ec?.obligaciones.filter((o) => o.estado === "PENDIENTE" || o.estado === "PARCIAL") ?? [];

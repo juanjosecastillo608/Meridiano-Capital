@@ -1,15 +1,20 @@
 import Link from "next/link";
 import { requerirSesion } from "@/lib/sesion";
 import { alcance, puede } from "@/server/authz";
+import { puedeEnAlguna } from "@/lib/acceso";
 
 const NAV: { href: string; label: string; permiso?: Parameters<typeof puede>[1] }[] = [
   { href: "/", label: "Panel general" },
   { href: "/sociedades", label: "Sociedades" },
   { href: "/contratos", label: "Contratos" },
   { href: "/inquilinos", label: "Inquilinos" },
-  { href: "/cobranzas", label: "Cobranzas" },
-  { href: "/importaciones", label: "Importar Excel" },
-  { href: "/auditoria", label: "Auditoría" },
+  { href: "/cobranzas", label: "Cobranzas", permiso: "REGISTRAR_PAGO" },
+  { href: "/documentos", label: "Documentos" },
+  { href: "/remodelaciones", label: "Remodelaciones" },
+  { href: "/alertas", label: "Alertas" },
+  { href: "/importaciones", label: "Importar Excel", permiso: "IMPORTAR" },
+  { href: "/auditoria", label: "Auditoría", permiso: "VER_AUDITORIA" },
+  { href: "/usuarios", label: "Usuarios", permiso: "ADMIN_USUARIOS" },
 ];
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
@@ -27,7 +32,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           </div>
         </Link>
         <nav className="flex-1 px-3">
-          {NAV.map((n) => (
+          {NAV.filter((n) => !n.permiso || puedeEnAlguna(s, n.permiso)).map((n) => (
             <Link key={n.href} href={n.href} className="block rounded px-3 py-2 text-sm text-white/85 hover:bg-petroleo-tint hover:text-white">
               {n.label}
             </Link>

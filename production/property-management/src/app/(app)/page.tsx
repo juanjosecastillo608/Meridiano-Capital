@@ -10,6 +10,9 @@ export default async function Panel({ searchParams }: { searchParams: Promise<Re
   const sp = await searchParams;
   const periodo = sp.periodo ?? periodoDe(hoyAsuncion());
   const moneda = (sp.moneda as "PYG" | "USD") ?? "PYG";
+  // Filtros de la URL: solo se aceptan sociedades autorizadas (no se confía en el parámetro).
+  const permitidas = await listarSociedades(s);
+  if (sp.sociedadId && !permitidas.some((x) => x.id === sp.sociedadId)) sp.sociedadId = undefined;
   const [p, sociedades, propiedades] = await Promise.all([
     panel(s, { periodo, moneda, sociedadId: sp.sociedadId || undefined, propiedadId: sp.propiedadId || undefined }),
     listarSociedades(s),

@@ -44,6 +44,8 @@ export interface RegistroFila {
   pagoTotal: Decimal | null;
   marcaPago: string | null;
   fechaPago: Date | null;
+  fechaProgramada: Date | null;
+  bonificacion: Decimal | null;
   montoFactura: Decimal | null;
   iva: Decimal | null;
   ivaFormula: string | null;
@@ -144,7 +146,7 @@ export function procesar(libro: Libro, analisis: AnalisisLibro, mapeo: MapeoHoja
 
     // Columnas por campo
     const colDe = (campo: CampoDestino) => Object.entries(m.columnas).filter(([, c]) => c === campo).map(([l]) => letraACol(l))[0];
-    const cols = Object.fromEntries((["unidad.identificador", "unidad.tipologia", "unidad.superficieM2", "unidad.piso", "unidad.medidorAnde", "inquilino.nombre", "inquilino.telefono", "inquilino.documento", "inquilino.email", "contrato.alquiler", "periodo.pagoTotal", "periodo.expensas", "periodo.marcaPago", "periodo.fechaPago", "periodo.montoFactura", "periodo.iva", "observaciones"] as CampoDestino[]).map((c) => [c, colDe(c)])) as Record<CampoDestino, number | undefined>;
+    const cols = Object.fromEntries((["unidad.identificador", "unidad.tipologia", "unidad.superficieM2", "unidad.piso", "unidad.medidorAnde", "inquilino.nombre", "inquilino.telefono", "inquilino.documento", "inquilino.email", "contrato.alquiler", "periodo.pagoTotal", "periodo.expensas", "periodo.marcaPago", "periodo.fechaPago", "periodo.fechaProgramada", "periodo.bonificacion", "periodo.montoFactura", "periodo.iva", "observaciones"] as CampoDestino[]).map((c) => [c, colDe(c)])) as Record<CampoDestino, number | undefined>;
     if (!cols["unidad.identificador"]) { problemasGenerales.push({ severidad: "ERROR", codigo: "SIN_COLUMNA_UNIDAD", hoja: m.hoja, mensaje: "No hay columna mapeada a Unidad." }); continue; }
 
     const formulasIva = new Map<string, number>();
@@ -175,6 +177,12 @@ export function procesar(libro: Libro, analisis: AnalisisLibro, mapeo: MapeoHoja
       const montoFactura = imp("periodo.montoFactura");
       const ivaC = g("periodo.iva");
       const iva = imp("periodo.iva");
+      const bonificacion = imp("periodo.bonificacion");
+      const fechaProgC = g("periodo.fechaProgramada");
+      const fechaProgramada = aFecha(fechaProgC);
+      if (fechaProgC && fechaProgC.valor !== null && !fechaProgramada) p("ERROR", "FECHA_INVALIDA", `Fecha no interpretable en ${fechaProgC.ref}: "${txt(fechaProgC)}".`, fechaProgC);
+      if (bonificacion && alquiler && bonificacion.abs().greaterThan(alquiler)) p("ERROR", "BONIFICACION_MAYOR_QUE_ALQUILER", `Bonificación ${bonificacion} mayor que el alquiler ${alquiler}.`, g("periodo.bonificacion"));
+      if (bonificacion && !bonificacion.isZero()) p("INFO", "BONIFICACION", `Bonificación de ${bonificacion.abs()} sobre el alquiler contractual: se registra como ajuste, el importe contractual no cambia.`, g("periodo.bonificacion"));
       const fechaPagoC = g("periodo.fechaPago");
       const fechaPago = aFecha(fechaPagoC);
       if (fechaPagoC && fechaPagoC.valor !== null && !fechaPago) p("ERROR", "FECHA_INVALIDA", `Fecha no interpretable en ${fechaPagoC.ref}: "${txt(fechaPagoC)}".`, fechaPagoC);
@@ -191,7 +199,7 @@ export function procesar(libro: Libro, analisis: AnalisisLibro, mapeo: MapeoHoja
       if (marca && /^ok$/i.test(marca) && (!pagoTotal || pagoTotal.isZero())) p("ADVERTENCIA", "MARCA_OK_SIN_PAGO", `Marca de pago "${marca}" pero el pago del mes es 0 o vacío.`, g("periodo.marcaPago"));
       if (pagoTotal && pagoTotal.greaterThan(0) && !fechaPago) p("ADVERTENCIA", "PAGO_SIN_FECHA", "Pago sin fecha: no se puede conciliar.");
       if (pagoTotal && pagoTotal.greaterThan(0) && alquiler) {
-        const esperado = alquiler.plus(expensas ?? 0);
+        const esperado = alquiler.minus(bonificacion?.abs() ?? 0).plus(expensas ?? 0);
         if (!pagoTotal.equals(esperado)) p("ADVERTENCIA", "PAGO_DISTINTO_ESPERADO", `Pago ${pagoTotal} ≠ alquiler + expensas (${esperado}). Posible pago parcial, en exceso o concepto adicional.`);
       }
       if (fechaPago && m.periodo && validarPeriodo(m.periodo)) {
@@ -220,6 +228,8 @@ export function procesar(libro: Libro, analisis: AnalisisLibro, mapeo: MapeoHoja
         pagoTotal,
         marcaPago: marca,
         fechaPago,
+        fechaProgramada,
+        bonificacion: bonificacion ? bonificacion.abs() : null,
         montoFactura,
         iva,
         ivaFormula: ivaC?.formula ?? null,

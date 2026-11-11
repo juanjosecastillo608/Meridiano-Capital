@@ -41,3 +41,34 @@ export async function planillaPrueba(): Promise<Buffer> {
   }
   return Buffer.from(await wb.xlsx.writeBuffer());
 }
+
+/** Checklist SINTÉTICO de alcance (estructura del real; contenido ficticio). */
+export async function checklistPrueba(): Promise<Buffer> {
+  const wb = new ExcelJS.Workbook();
+  const ws = wb.addWorksheet("Check List");
+  ws.getCell("B1").value = "PROVEEDOR DE PRUEBA";
+  const sectores = ["4", "13-14", "Terraza", "Local 1"];
+  ws.getCell("B5").value = "Ítem";
+  sectores.forEach((s, i) => (ws.getCell(5, 3 + i).value = s));
+  const filas: [string, string[]][] = [["Pintura general (interior)", ["☐", "☐", "—", "☐"]], ["Tapa de tanque", ["—", "—", "☐", "—"]]];
+  filas.forEach(([it, ms], r) => { ws.getCell(6 + r, 2).value = it; ms.forEach((m, i) => (ws.getCell(6 + r, 3 + i).value = m)); });
+  ws.getCell("B9").value = "Nota al pie de prueba";
+  return Buffer.from(await wb.xlsx.writeBuffer());
+}
+
+/** Presupuesto SINTÉTICO: materiales con precio bajo/objetivo/alto, mano de obra y oferta del proveedor. */
+export async function presupuestoPrueba(): Promise<Buffer> {
+  const wb = new ExcelJS.Workbook();
+  const mat = wb.addWorksheet("Materiales con Precio");
+  ["Rubro", "Ítem", "Cantidad", "Unidad", "Precio bajo", "Precio objetivo", "Precio alto", "Subtotal objetivo", "Confianza lectura", "Observación"].forEach((t, i) => (mat.getCell(3, 1 + i).value = t));
+  [["Albañilería", "Cemento", 5, "bolsa", 50000, 60000, 70000, null, "Alta", "ok"], ["Plomería", "Codo (diámetro a confirmar)", 10, "un", 3000, 4000, 5000, null, "Media", "Confirmar diámetro"], ["Revestimientos", "Cerámica dudosa", 4, "m²", 30000, 40000, 50000, null, "Baja", "Texto dudoso"]].forEach((f, r) => f.forEach((v, c) => { if (v !== null) mat.getCell(4 + r, 1 + c).value = v as ExcelJS.CellValue; }));
+  const mo = wb.addWorksheet("Mano_de_obra");
+  ["Trabajo", "Cantidad base", "Unidad", "Unitario bajo", "Unitario objetivo", "Unitario alto", "Subtotal objetivo"].forEach((t, i) => (mo.getCell(3, 1 + i).value = t));
+  [["Pintura", 50, "m²", 8000, 10000, 12000]].forEach((f, r) => f.forEach((v, c) => (mo.getCell(4 + r, 1 + c).value = v as ExcelJS.CellValue)));
+  const res = wb.addWorksheet("Resumen");
+  res.getCell("A3").value = "Concepto"; res.getCell("B3").value = "Valor"; res.getCell("D3").value = "Escenario";
+  res.getCell("A4").value = "Oferta manuscrita / mano de obra"; res.getCell("B4").value = 900000;
+  res.getCell("A13").value = "Criterio sugerido de contratación / pago";
+  res.getCell("A14").value = "1"; res.getCell("B14").value = "No cerrar precio definitivo hasta confirmar medidas en obra.";
+  return Buffer.from(await wb.xlsx.writeBuffer());
+}

@@ -1,3 +1,4 @@
+import { protegido } from "@/lib/acceso";
 import Link from "next/link";
 import { requerirSesion } from "@/lib/sesion";
 import { obtenerPersona } from "@/server/services/nucleo";
@@ -8,7 +9,7 @@ import { sumar } from "@/domain/money";
 export default async function Inquilino({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const s = await requerirSesion();
-  const p = await obtenerPersona(s, id);
+  const p = await protegido(() => obtenerPersona(s, id));
   const ec = await estadoDeCuenta(s, { personaId: id });
   return (
     <>

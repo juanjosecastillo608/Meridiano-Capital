@@ -127,18 +127,19 @@ model Sociedad {
   updatedAt          DateTime       @updatedAt
   deletedAt          DateTime?
 
-  cuentas       CuentaBancaria[]
-  propiedades   Propiedad[]
-  titularidades Titularidad[]
-  asignaciones  AsignacionRol[]
-  contratos     Contrato[]
-  obligaciones  Obligacion[]
-  pagos         Pago[]
-  facturas      Factura[]
-  egresos       Egreso[]
-  importaciones ImportBatch[]
-  documentos    Documento[]
-  timbrados     Timbrado[]
+  cuentas        CuentaBancaria[]
+  propiedades    Propiedad[]
+  titularidades  Titularidad[]
+  asignaciones   AsignacionRol[]
+  contratos      Contrato[]
+  obligaciones   Obligacion[]
+  pagos          Pago[]
+  facturas       Factura[]
+  egresos        Egreso[]
+  importaciones  ImportBatch[]
+  documentos     Documento[]
+  timbrados      Timbrado[]
+  representantes Representante[]
 }
 
 model CuentaBancaria {
@@ -164,34 +165,38 @@ model CuentaBancaria {
 // ───────────────────────────── Propiedades y unidades ─────────────────────────────
 
 model Propiedad {
-  id                     String     @id @default(cuid())
-  sociedadId             String // sociedad administradora principal (aislamiento)
-  codigo                 String
-  nombre                 String
-  direccion              String?
-  ciudad                 String?
-  barrio                 String?
-  catastro               String?
-  cantidadPisos          Int?
-  superficieConstruida   Decimal?   @db.Decimal(12, 2)
-  superficieAlquilable   Decimal?   @db.Decimal(12, 2)
-  superficieComun        Decimal?   @db.Decimal(12, 2)
-  fechaAdquisicion       DateTime?  @db.Date
-  valorAdquisicion       Decimal?   @db.Decimal(18, 2)
-  valorAdquisicionMoneda Moneda?
-  valorEstimado          Decimal?   @db.Decimal(18, 2)
-  valorEstimadoMoneda    Moneda?
-  valorEstimadoFuente    String? // obligatorio para usar el valor en rentabilidad
-  valorEstimadoFecha     DateTime?  @db.Date
-  responsableUsuarioId   String?
-  cuentaBancariaId       String?
-  observaciones          String?
-  origenDato             OrigenDato @default(MANUAL)
-  estadoDato             EstadoDato @default(PENDIENTE_REVISION)
-  importBatchId          String?
-  createdAt              DateTime   @default(now())
-  updatedAt              DateTime   @updatedAt
-  deletedAt              DateTime?
+  id                         String     @id @default(cuid())
+  sociedadId                 String // sociedad administradora principal (aislamiento)
+  codigo                     String
+  nombre                     String
+  direccion                  String?
+  ciudad                     String?
+  barrio                     String?
+  catastro                   String?
+  cantidadPisos              Int?
+  /// Inventario administrativo DECLARADO (p. ej. por el founder). Se concilia contra las unidades registradas.
+  inventarioDeptosDeclarado  Int?
+  inventarioLocalesDeclarado Int?
+  inventarioFuente           String?
+  superficieConstruida       Decimal?   @db.Decimal(12, 2)
+  superficieAlquilable       Decimal?   @db.Decimal(12, 2)
+  superficieComun            Decimal?   @db.Decimal(12, 2)
+  fechaAdquisicion           DateTime?  @db.Date
+  valorAdquisicion           Decimal?   @db.Decimal(18, 2)
+  valorAdquisicionMoneda     Moneda?
+  valorEstimado              Decimal?   @db.Decimal(18, 2)
+  valorEstimadoMoneda        Moneda?
+  valorEstimadoFuente        String? // obligatorio para usar el valor en rentabilidad
+  valorEstimadoFecha         DateTime?  @db.Date
+  responsableUsuarioId       String?
+  cuentaBancariaId           String?
+  observaciones              String?
+  origenDato                 OrigenDato @default(MANUAL)
+  estadoDato                 EstadoDato @default(PENDIENTE_REVISION)
+  importBatchId              String?
+  createdAt                  DateTime   @default(now())
+  updatedAt                  DateTime   @updatedAt
+  deletedAt                  DateTime?
 
   sociedad       Sociedad               @relation(fields: [sociedadId], references: [id])
   cuentaBancaria CuentaBancaria?        @relation(fields: [cuentaBancariaId], references: [id])
@@ -205,6 +210,7 @@ model Propiedad {
   ordenes        OrdenTrabajo[]
   remodelaciones ProyectoRemodelacion[]
   egresos        Egreso[]
+  documentos     Documento[]
 
   @@unique([sociedadId, codigo])
 }
@@ -262,6 +268,9 @@ model Unidad {
   coeficienteExpensas      Decimal?              @db.Decimal(9, 6)
   expensasAsignadas        Decimal?              @db.Decimal(18, 2)
   fechaUltimaRemodelacion  DateTime?             @db.Date
+  /// Situación declarada por una fuente (p. ej. "VACANTE" según el founder). No reemplaza la ocupación derivada: se contrasta con ella.
+  ocupacionDeclarada       String?
+  ocupacionDeclaradaFuente String?
   observaciones            String?
   origenDato               OrigenDato            @default(MANUAL)
   estadoDato               EstadoDato            @default(PENDIENTE_REVISION)
@@ -277,6 +286,8 @@ model Unidad {
   ordenes        OrdenTrabajo[]
   remodelaciones ProyectoRemodelacion[]
   egresos        Egreso[]
+  alcances       AlcanceRemodelacion[]
+  partidas       PartidaRemodelacion[]
 
   @@unique([propiedadId, identificador])
 }
@@ -371,8 +382,8 @@ model Contrato {
   estado                   EstadoContrato          @default(BORRADOR)
   categoriaFiscal          CategoriaFiscalAlquiler
   fechaFirma               DateTime?               @db.Date
-  fechaInicio              DateTime?                @db.Date // null solo en BORRADOR (p. ej. importado sin contrato original)
-  fechaFin                 DateTime?                @db.Date
+  fechaInicio              DateTime?               @db.Date // null solo en BORRADOR (p. ej. importado sin contrato original)
+  fechaFin                 DateTime?               @db.Date
   fechaEntrega             DateTime?               @db.Date // entrega real de la unidad
   fechaDevolucion          DateTime?               @db.Date // devolución real
   fechaRescision           DateTime?               @db.Date
@@ -545,36 +556,44 @@ enum MetodoPago {
   OTRO
 }
 
+enum RespaldoPago {
+  SIN_RESPALDO
+  COMPROBANTE
+  CONCILIADO
+}
+
 enum EstadoPago {
   REGISTRADO
   REVERTIDO
 }
 
 model Pago {
-  id                String     @id @default(cuid())
+  id                String       @id @default(cuid())
   sociedadId        String
   personaId         String
   propiedadId       String?
   unidadId          String?
   cuentaBancariaId  String?
-  fechaPago         DateTime   @db.Date // declarada
-  fechaAcreditacion DateTime?  @db.Date // real (conciliación)
+  fechaPago         DateTime     @db.Date // declarada
+  fechaAcreditacion DateTime?    @db.Date // real (conciliación)
   bancoOrigen       String?
   metodo            MetodoPago
   comprobante       String?
   moneda            Moneda
-  importe           Decimal    @db.Decimal(18, 2)
-  estado            EstadoPago @default(REGISTRADO)
-  conciliado        Boolean    @default(false)
-  claveDuplicado    String?    @unique // cuenta+comprobante+importe — evita doble registro
+  importe           Decimal      @db.Decimal(18, 2)
+  estado            EstadoPago   @default(REGISTRADO)
+  conciliado        Boolean      @default(false)
+  /// SIN_RESPALDO: declarado (p. ej. planilla) sin comprobante ni conciliación. COMPROBANTE: con nº/adjunto. CONCILIADO: verificado contra extracto.
+  respaldo          RespaldoPago @default(SIN_RESPALDO)
+  claveDuplicado    String?      @unique // cuenta+comprobante+importe — evita doble registro
   registradoPorId   String?
   documentoId       String?
   observaciones     String?
   motivoReversion   String?
-  origenDato        OrigenDato @default(MANUAL)
+  origenDato        OrigenDato   @default(MANUAL)
   importBatchId     String?
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
 
   sociedad       Sociedad         @relation(fields: [sociedadId], references: [id])
   persona        Persona          @relation(fields: [personaId], references: [id])
@@ -835,13 +854,16 @@ model OrdenTrabajo {
   fechaEjecucion       DateTime?          @db.Date
   estado               EstadoOrdenTrabajo @default(SOLICITADO)
   responsableEconomico ResponsableGasto   @default(NO_DEFINIDO)
+  proyectoId           String?
+  sector               String? // sector común cuando no es una unidad (Terraza, Fachada…)
   observaciones        String?
   createdAt            DateTime           @default(now())
   updatedAt            DateTime           @updatedAt
 
-  propiedad Propiedad  @relation(fields: [propiedadId], references: [id])
-  unidad    Unidad?    @relation(fields: [unidadId], references: [id])
-  proveedor Proveedor? @relation(fields: [proveedorId], references: [id])
+  propiedad Propiedad             @relation(fields: [propiedadId], references: [id])
+  unidad    Unidad?               @relation(fields: [unidadId], references: [id])
+  proveedor Proveedor?            @relation(fields: [proveedorId], references: [id])
+  proyecto  ProyectoRemodelacion? @relation(fields: [proyectoId], references: [id])
   egresos   Egreso[]
 }
 
@@ -897,26 +919,61 @@ model ProyectoRemodelacion {
   propiedad Propiedad             @relation(fields: [propiedadId], references: [id])
   unidad    Unidad?               @relation(fields: [unidadId], references: [id])
   partidas  PartidaRemodelacion[]
+  alcances  AlcanceRemodelacion[]
+  ordenes   OrdenTrabajo[]
   egresos   Egreso[]
 }
 
-model PartidaRemodelacion {
-  id             String      @id @default(cuid())
-  proyectoId     String
-  version        String      @default("INICIAL") // INICIAL | APROBADO
-  rubro          RubroObra
-  tipo           TipoPartida
-  descripcion    String
-  cantidad       Decimal?    @db.Decimal(14, 4)
-  unidadMedida   String?
-  precioUnitario Decimal?    @db.Decimal(18, 2)
-  total          Decimal?    @db.Decimal(18, 2) // null = INFORMACION_FALTANTE
-  calidadDato    CalidadDato
-  proveedorId    String?
-  fuente         String?
-  createdAt      DateTime    @default(now())
+/// Ítem de alcance (checklist): qué trabajo se hace en qué unidad o sector común. No tiene precio.
+model AlcanceRemodelacion {
+  id         String   @id @default(cuid())
+  proyectoId String
+  unidadId   String?
+  sector     String // identificador de la unidad o nombre del sector común tal como figura en la fuente
+  item       String
+  incluido   Boolean
+  fuente     String
+  nota       String?
+  createdAt  DateTime @default(now())
 
   proyecto ProyectoRemodelacion @relation(fields: [proyectoId], references: [id])
+  unidad   Unidad?              @relation(fields: [unidadId], references: [id])
+
+  @@index([proyectoId])
+}
+
+/// Etapas separadas: un ESTIMADO no es una COTIZACION_PROVEEDOR, y ninguna de las dos es un presupuesto APROBADO.
+enum EtapaPresupuesto {
+  ESTIMADO
+  COTIZACION_PROVEEDOR
+  APROBADO
+}
+
+model PartidaRemodelacion {
+  id              String           @id @default(cuid())
+  proyectoId      String
+  etapa           EtapaPresupuesto @default(ESTIMADO)
+  unidadId        String? // vínculo opcional a una unidad
+  sector          String? // o a un sector común
+  rubroOriginal   String? // texto del rubro en la fuente (p. ej. "Albañilería")
+  rubro           RubroObra
+  tipo            TipoPartida
+  descripcion     String
+  cantidad        Decimal?         @db.Decimal(14, 4)
+  unidadMedida    String?
+  precioUnitario  Decimal?         @db.Decimal(18, 2)
+  total           Decimal?         @db.Decimal(18, 2) // null = INFORMACION_FALTANTE
+  precioBajo      Decimal?         @db.Decimal(18, 2) // escenarios de un ESTIMADO (no son cotizaciones)
+  precioAlto      Decimal?         @db.Decimal(18, 2)
+  confianza       String? // lectura de la fuente: Alta / Media / Baja
+  calidadDato     CalidadDato
+  proveedorId     String?
+  fuente          String?
+  partidaOrigenId String? // en APROBADO: de qué partida estimada/cotizada se copió
+  createdAt       DateTime         @default(now())
+
+  proyecto ProyectoRemodelacion @relation(fields: [proyectoId], references: [id])
+  unidad   Unidad?              @relation(fields: [unidadId], references: [id])
 }
 
 // ───────────────────────────── Egresos (gastos y CAPEX) ─────────────────────────────
@@ -939,26 +996,31 @@ enum NaturalezaEgreso {
 }
 
 model Egreso {
-  id             String           @id @default(cuid())
-  sociedadId     String
-  propiedadId    String
-  unidadId       String?
-  fecha          DateTime         @db.Date
-  periodo        String
-  categoria      CategoriaEgreso
-  naturaleza     NaturalezaEgreso
-  descripcion    String
-  moneda         Moneda
-  importe        Decimal          @db.Decimal(18, 2)
-  proveedorId    String?
-  comprobante    String?
-  ordenTrabajoId String?
-  proyectoId     String?
-  aprobadoPorId  String?
-  origenDato     OrigenDato       @default(MANUAL)
-  importBatchId  String?
-  createdAt      DateTime         @default(now())
-  deletedAt      DateTime?
+  id                     String           @id @default(cuid())
+  sociedadId             String
+  propiedadId            String
+  unidadId               String?
+  fecha                  DateTime         @db.Date
+  periodo                String
+  categoria              CategoriaEgreso
+  naturaleza             NaturalezaEgreso
+  descripcion            String
+  moneda                 Moneda
+  importe                Decimal          @db.Decimal(18, 2)
+  proveedorId            String?
+  comprobante            String?
+  ordenTrabajoId         String?
+  proyectoId             String?
+  aprobadoPorId          String?
+  /// Gasto ejecutado ≠ pagado: el comprobante de pago es un documento aparte.
+  pagado                 Boolean          @default(false)
+  fechaPagoEgreso        DateTime?        @db.Date
+  documentoComprobanteId String?
+  sector                 String?
+  origenDato             OrigenDato       @default(MANUAL)
+  importBatchId          String?
+  createdAt              DateTime         @default(now())
+  deletedAt              DateTime?
 
   sociedad     Sociedad              @relation(fields: [sociedadId], references: [id])
   propiedad    Propiedad             @relation(fields: [propiedadId], references: [id])
@@ -972,22 +1034,64 @@ model Egreso {
 
 // ───────────────────────────── Documentos e importación ─────────────────────────────
 
-model Documento {
-  id            String   @id @default(cuid())
-  sociedadId    String?
-  entidad       String // CONTRATO, PAGO, IMPORTACION, PROPIEDAD, ...
-  entidadId     String?
-  nombreArchivo String
-  storageKey    String   @unique // ruta relativa en almacenamiento privado (fuera de /public)
-  sha256        String
-  mime          String
-  tamanoBytes   Int
-  subidoPorId   String?
-  createdAt     DateTime @default(now())
+enum TipoDocumento2 {
+  RUC
+  PODER
+  ESTATUTO
+  ACTA
+  PLANO
+  RESOLUCION_MUNICIPAL
+  MAPA_UBICACION
+  PLANILLA_ADMINISTRATIVA
+  PRESUPUESTO
+  CONTRATO_ALQUILER
+  COMPROBANTE
+  OTRO
+}
 
-  sociedad Sociedad? @relation(fields: [sociedadId], references: [id])
+model Documento {
+  id               String         @id @default(cuid())
+  sociedadId       String?
+  propiedadId      String?
+  entidad          String // EXPEDIENTE, CONTRATO, PAGO, IMPORTACION, PROPIEDAD, REMODELACION, EGRESO …
+  entidadId        String?
+  tipo             TipoDocumento2 @default(OTRO)
+  titulo           String?
+  fechaEmision     DateTime?      @db.Date
+  fechaVencimiento DateTime?      @db.Date // alerta documental
+  sensible         Boolean        @default(false) // poderes, actas, datos de representantes: requiere VER_DOCUMENTOS_SENSIBLES
+  observaciones    String?
+  deletedAt        DateTime?
+  nombreArchivo    String
+  storageKey       String         @unique // ruta relativa en almacenamiento privado (fuera de /public)
+  sha256           String
+  mime             String
+  tamanoBytes      Int
+  subidoPorId      String?
+  createdAt        DateTime       @default(now())
+
+  sociedad  Sociedad?  @relation(fields: [sociedadId], references: [id])
+  propiedad Propiedad? @relation(fields: [propiedadId], references: [id])
 
   @@index([sha256])
+  @@index([sociedadId, entidad])
+}
+
+/// Representantes y apoderados con vigencia (expediente societario).
+model Representante {
+  id           String     @id @default(cuid())
+  sociedadId   String
+  nombre       String
+  cargo        String // PRESIDENTE, APODERADO, DIRECTOR …
+  facultades   String?
+  documentoId  String? // poder / acta que lo respalda
+  vigenteDesde DateTime?  @db.Date
+  vigenteHasta DateTime?  @db.Date
+  estadoDato   EstadoDato @default(PENDIENTE_REVISION)
+  createdAt    DateTime   @default(now())
+  deletedAt    DateTime?
+
+  sociedad Sociedad @relation(fields: [sociedadId], references: [id])
 }
 
 enum EstadoImportacion {

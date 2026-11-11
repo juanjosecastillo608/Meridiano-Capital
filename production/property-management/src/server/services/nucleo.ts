@@ -110,6 +110,8 @@ export async function obtenerPropiedad(s: Sesion, id: string) {
   });
   if (!p) throw new ErrorNegocio("Propiedad no encontrada.", "NO_ENCONTRADO");
   exigir(s, "LEER", p.sociedadId, p.id);
+  // Orden natural de unidades: 2, 3, … 10, 11 (no "10" antes que "2"); locales y otros al final.
+  p.unidades.sort((a, b) => Number(a.tipo !== "DEPARTAMENTO") - Number(b.tipo !== "DEPARTAMENTO") || a.identificador.localeCompare(b.identificador, "es", { numeric: true }));
   return p;
 }
 

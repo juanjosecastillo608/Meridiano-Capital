@@ -12,6 +12,7 @@ Decisión de registro: `governance/decisions/DECISION_REGISTER.md` → **D-096**
 | `docs/02-reglas-de-negocio.md` | Reglas implementadas (RN-*) con su código y su test |
 | `docs/03-decisiones-pendientes.md` | Decisiones abiertas (PD-*) y comportamiento conservador mientras tanto |
 | `docs/04-informe-carga-fase3.md` | Carga de Canarias Inversiones S.A. (sin datos personales) |
+| `docs/05-anexo-canarias.md` | Anexo de implementación: estado de la primera entrega, reglas RN-ANX-*, archivos faltantes |
 
 ## Requisitos
 
@@ -51,6 +52,12 @@ confirma** salvo que se pida explícitamente:
 npx tsx scripts/cargar-sociedad.ts --razon "RAZÓN SOCIAL S.A." --ruc 12345678-9 --moneda PYG --iva-control 5 --archivo data/imports/originales/planilla.xlsx
 ```
 
+Carga del anexo de Canarias Inversiones S.A. (chequea los 11 archivos esperados, idempotente):
+
+```bash
+npx tsx scripts/cargar-anexo-canarias.ts --dir data/imports/originales --confirmar-frm
+```
+
 Análisis en seco, sin base de datos:
 
 ```bash
@@ -71,7 +78,7 @@ npm test               # unitarias (dominio + importador) + integración (Postgr
 npm run typecheck
 ```
 
-Estado al 2026-11-11: **52 tests en verde**, `tsc` sin errores, `next build` OK.
+Estado al 2026-11-11 (anexo D-097): **63 tests en verde**, `tsc` sin errores, `next build` OK.
 
 ## Plan por fases (§21)
 
@@ -79,10 +86,10 @@ Estado al 2026-11-11: **52 tests en verde**, `tsc` sin errores, `next build` OK.
 |---|---|
 | 1 · Análisis y arquitectura | ✅ `docs/01..03` |
 | 2 · Núcleo inmobiliario (sociedades, propiedades, unidades, personas, contratos) | ✅ servicios + UI + tests |
-| 3 · Importación Excel + carga Canarias | ✅ importador; ⏳ **confirmación de la planilla FRM pendiente de revisión del founder**; ⏳ planilla del segundo edificio no recibida (PD-01) |
+| 3 · Importación Excel + carga Canarias | ✅ importador; ✅ FRM cargado (anexo D-097); ⏳ planilla de MONTEVIDEO no recibida (PD-01) |
 | 4 · Gestión financiera (obligaciones, cobranzas, parciales, saldos, conciliación manual) | ✅ núcleo; ⏳ liquidación de expensas en UI, importación de extractos bancarios |
 | 5 · Facturación | 🟡 modelo (timbrado, factura, NC/ND, estados, `esPrueba`) y motor de IVA versionado; ⏳ UI de emisión, SIFEN (PD-05) |
-| 6 · Mantenimiento y remodelaciones | 🟡 modelo + reglas de dominio (calidad del dato, desviación, impacto proyectado); ⏳ servicios/UI, importador de presupuestos (insumo: cotización FRM recibida) |
+| 6 · Mantenimiento y remodelaciones | ✅ remodelaciones por etapas (estimado → cotización → aprobado → orden → gasto → comprobante → costo final), importadores de checklist y presupuesto; ⏳ órdenes de mantenimiento correctivo fuera de proyectos |
 | 7 · Dashboards e informes | 🟡 panel con indicadores (fórmula + origen), estado de cuenta Excel por unidad/inquilino; ⏳ PDF, reporte mensual a propietarios |
 | 8 · Pruebas y producción | ⏳ hosting, backups, RLS, almacenamiento cifrado (PD-10) |
 

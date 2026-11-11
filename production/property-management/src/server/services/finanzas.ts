@@ -121,6 +121,7 @@ export async function registrarPago(s: Sesion, input: z.input<typeof PagoInput>,
         fechaPago: parsearFechaISO(data.fechaPago), fechaAcreditacion: data.fechaAcreditacion ? parsearFechaISO(data.fechaAcreditacion) : null, bancoOrigen: data.bancoOrigen ?? null,
         metodo: data.metodo, comprobante: data.comprobante || null, moneda: data.moneda, importe: importe.toString(), claveDuplicado, registradoPorId: s.usuarioId === "sistema" ? null : s.usuarioId,
         observaciones: data.observaciones ?? null, origenDato: data.origenDato, importBatchId: data.importBatchId,
+        respaldo: data.comprobante ? "COMPROBANTE" : "SIN_RESPALDO",
       },
     });
     await imputar(tx, pago.id, r.aplicaciones);
@@ -171,7 +172,7 @@ export async function conciliarPago(s: Sesion, pagoId: string, fechaAcreditacion
     const p = await tx.pago.findUnique({ where: { id: pagoId } });
     if (!p) throw new ErrorNegocio("Pago no encontrado.");
     exigir(s, "REGISTRAR_PAGO", p.sociedadId);
-    const act = await tx.pago.update({ where: { id: pagoId }, data: { conciliado: true, fechaAcreditacion: parsearFechaISO(fechaAcreditacion) } });
+    const act = await tx.pago.update({ where: { id: pagoId }, data: { conciliado: true, respaldo: "CONCILIADO", fechaAcreditacion: parsearFechaISO(fechaAcreditacion) } });
     await auditar(tx, s, "PAGO_CONCILIAR", "Pago", pagoId, { sociedadId: p.sociedadId, antes: { conciliado: p.conciliado, fechaAcreditacion: p.fechaAcreditacion }, despues: { conciliado: true, fechaAcreditacion } });
     return act;
   });

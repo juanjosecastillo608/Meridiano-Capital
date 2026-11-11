@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+import { protegido } from "@/lib/acceso";
 import { redirect } from "next/navigation";
 import { requerirSesion } from "@/lib/sesion";
 import { prisma, ErrorNegocio } from "@/server/db";
@@ -32,7 +34,7 @@ async function confirmar(form: FormData) {
   const v = (k: string) => (String(form.get(k) ?? "").trim() || null);
   try {
     const propiedad = v("modo") === "EXISTENTE" ? { modo: "EXISTENTE" as const, propiedadId: v("propiedadId")! } : { modo: "NUEVA" as const, codigo: (v("codigo") ?? "").toUpperCase(), nombre: v("nombre")!, direccion: v("direccion") };
-    await confirmarImportacion(s, id, { propiedad, cuentaBancariaId: v("cuentaBancariaId"), importarObligaciones: form.get("importarObligaciones") === "on", importarPagos: form.get("importarPagos") === "on", confirmacionExplicita: (form.get("confirmo") === "on") as true });
+    await confirmarImportacion(s, id, { propiedad, cuentaBancariaId: v("cuentaBancariaId"), importarObligaciones: form.get("importarObligaciones") === "on", importarPagos: form.get("importarPagos") === "on", unidadesExcluidas: form.getAll("excluir").map(String), confirmacionExplicita: (form.get("confirmo") === "on") as true });
   } catch (e) {
     if (e instanceof ErrorNegocio || (e as Error).name === "ZodError") redirect(`/importaciones/${id}?error=${encodeURIComponent((e as Error).message.slice(0, 300))}`);
     throw e;
@@ -58,8 +60,8 @@ export default async function Importacion({ params, searchParams }: { params: Pr
   const sp = await searchParams;
   const s = await requerirSesion();
   const b = await prisma.importBatch.findUnique({ where: { id }, include: { sociedad: { include: { propiedades: { where: { deletedAt: null } }, cuentas: { where: { deletedAt: null } } } } } });
-  if (!b) return <Vacio>Importación no encontrada.</Vacio>;
-  exigir(s, "IMPORTAR", b.sociedadId);
+  if (!b) notFound();
+  await protegido(async () => exigir(s, "IMPORTAR", b.sociedadId));
   const analisis = b.analisis as unknown as AnalisisLibro;
   const mapeo = b.mapeo as unknown as MapeoHoja[];
   const informe = b.informe as unknown as (InformeImport & { opciones?: { moneda: string | null; tasaIvaControlPct?: number | null }; conflictosBase?: string[] }) | null;
@@ -159,6 +161,13 @@ export default async function Importacion({ params, searchParams }: { params: Pr
               <label className="flex items-center gap-2"><input type="checkbox" name="importarObligaciones" defaultChecked /> Importar obligaciones históricas (alquiler y expensas por período)</label>
               <label className="flex items-center gap-2"><input type="checkbox" name="importarPagos" defaultChecked /> Importar pagos declarados (sin duplicados)</label>
             </div>
+            {informe && (
+              <div className="mt-3">
+                <div className="text-sm font-medium">Unidades a EXCLUIR (no forman parte del inventario administrativo)</div>
+                <div className="mt-1 flex flex-wrap gap-3 text-sm">{[...new Set(informe.registros.map((r) => r.unidad.identificador))].map((u) => <label key={u} className="flex items-center gap-1"><input type="checkbox" name="excluir" value={u} defaultChecked={informe.registros.some((r) => r.unidad.identificador === u && r.problemas.some((p) => p.codigo === "INQUILINO_PARECE_DESCRIPCION"))} /> {u}</label>)}</div>
+                <p className="text-xs text-gris">Las excluidas no se crean; sus filas quedan registradas como OMITIDA con motivo.</p>
+              </div>
+            )}
             <ul className="mt-3 list-disc pl-5 text-xs text-gris">
               <li>Se crean unidades nuevas; las existentes no se modifican.</li>
               <li>Los inquilinos se crean sin documento (el Excel no lo trae) y quedan pendientes de revisión.</li>

@@ -91,6 +91,8 @@ export const ConfirmacionInput = z.object({
   cuentaBancariaId: z.string().optional().nullable(),
   importarObligaciones: z.boolean().default(true),
   importarPagos: z.boolean().default(true),
+  /** Unidades detectadas que NO forman parte del inventario administrativo (p. ej. áticos): no se crean; sus filas quedan OMITIDA. */
+  unidadesExcluidas: z.array(z.string()).default([]),
   confirmacionExplicita: z.literal(true, { errorMap: () => ({ message: "Debe confirmar explícitamente la importación." }) }),
 });
 
@@ -152,7 +154,9 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
 
       const res: ResultadoConfirmacion = { propiedadId, unidadesCreadas: 0, unidadesExistentes: 0, personasCreadas: 0, personasVinculadas: 0, contratosBorrador: 0, obligacionesCreadas: 0, pagosRegistrados: 0, filasOmitidas: 0 };
       // Filas con pago duplicado: se importan unidad/inquilino/obligación pero NO el pago.
-      const validos = informe.registros.filter((r) => r.pagoDuplicado || (r.estado !== "DUPLICADO" && r.estado !== "ERROR"));
+      const excluidas = new Set(conf.unidadesExcluidas.map((u) => u.trim().toLowerCase()));
+      const esExcluida = (r: RegistroFila) => excluidas.has(r.unidad.identificador.trim().toLowerCase());
+      const validos = informe.registros.filter((r) => !esExcluida(r) && (r.pagoDuplicado || (r.estado !== "DUPLICADO" && r.estado !== "ERROR")));
 
       // Unidades (nunca se sobrescriben)
       const unidadPorIdent = new Map<string, string>();
@@ -224,21 +228,24 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
         const unidadId = unidadPorIdent.get(r.unidad.identificador.toLowerCase())!;
         const personaId = personaDe(r);
         const contratoId = contratoPor.get(`${unidadId}|${personaId}`)!;
-        const venc = finPeriodo(r.periodo);
+        // Vencimiento: fecha programada de la planilla si existe; si no, fin de mes (marcado en la descripción). Nunca es un pago.
+        const venc = r.fechaProgramada ?? finPeriodo(r.periodo);
         const obligIds: string[] = [];
         if (conf.importarObligaciones) {
           const conceptos: ["ALQUILER" | "EXPENSAS", typeof r.alquiler][] = [["ALQUILER", r.alquiler], ["EXPENSAS", r.expensas]];
           for (const [concepto, monto] of conceptos) {
             if (!monto || monto.lessThanOrEqualTo(0)) continue;
             const clave = `${contratoId}:${r.periodo}:${concepto}`;
+            const bonif = concepto === "ALQUILER" && r.bonificacion && !r.bonificacion.isZero() ? r.bonificacion : null;
+            const total = bonif ? monto.minus(bonif) : monto;
             const nota = concepto === "ALQUILER" && r.iva ? ` IVA declarado en planilla: ${r.iva}${r.ivaFormula ? ` (=${r.ivaFormula})` : ""}; tratamiento a confirmar (PD-02).` : "";
             const o = await tx.obligacion.upsert({
               where: { claveIdempotencia: clave },
               update: {},
               create: {
                 sociedadId, propiedadId, unidadId, contratoId, personaId, periodo: r.periodo, concepto, fechaVencimiento: venc, moneda,
-                descripcion: `${concepto === "ALQUILER" ? "Alquiler" : "Expensas"} ${r.periodo} (importado: ${b.nombreArchivo}, hoja "${r.hoja}" fila ${r.fila}). Vencimiento real desconocido: se usa fin de mes.${nota}`,
-                importeNeto: monto.toString(), iva: "0", importeTotal: monto.toString(), saldo: monto.toString(), ivaPendiente: true, claveIdempotencia: clave,
+                descripcion: `${concepto === "ALQUILER" ? "Alquiler" : "Expensas"} ${r.periodo} (importado: ${b.nombreArchivo}, hoja "${r.hoja}" fila ${r.fila}).${r.fechaProgramada ? " Vencimiento según fecha programada de la planilla." : " Vencimiento real desconocido: se usa fin de mes."}${bonif ? ` Bonificación ${bonif} sobre alquiler contractual ${monto}.` : ""}${nota}`,
+                importeNeto: monto.toString(), iva: "0", ajustes: bonif ? bonif.negated().toString() : "0", importeTotal: total.toString(), saldo: total.toString(), ivaPendiente: true, claveIdempotencia: clave,
                 origenDato: "IMPORTADO", estadoDato: "PENDIENTE_REVISION", importBatchId: id,
               },
             });
@@ -249,7 +256,7 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
         if (conf.importarPagos && !r.pagoDuplicado && r.pagoTotal && r.pagoTotal.greaterThan(0) && r.fechaPago) {
           const claveDuplicado = `IMP:${b.sha256.slice(0, 16)}:${r.hoja}:${r.fila}`;
           if (await tx.pago.findUnique({ where: { claveDuplicado } })) continue;
-          const pago = await tx.pago.create({ data: { sociedadId, personaId, propiedadId, unidadId, cuentaBancariaId: cuenta?.id ?? null, fechaPago: r.fechaPago, metodo: "OTRO", moneda, importe: r.pagoTotal.toString(), claveDuplicado, origenDato: "IMPORTADO", importBatchId: id, observaciones: `Pago declarado en planilla (${r.hoja}, fila ${r.fila}${r.marcaPago ? `, marca "${r.marcaPago}"` : ""}). Sin comprobante: conciliar contra extracto.` } });
+          const pago = await tx.pago.create({ data: { sociedadId, personaId, propiedadId, unidadId, cuentaBancariaId: cuenta?.id ?? null, fechaPago: r.fechaPago, metodo: "OTRO", moneda, importe: r.pagoTotal.toString(), claveDuplicado, origenDato: "IMPORTADO", respaldo: "SIN_RESPALDO", importBatchId: id, observaciones: `Pago declarado en planilla (${r.hoja}, fila ${r.fila}${r.marcaPago ? `, marca "${r.marcaPago}"` : ""}). Sin comprobante: conciliar contra extracto.` } });
           const abiertas = await tx.obligacion.findMany({ where: { id: { in: obligIds }, estado: { in: ["PENDIENTE", "PARCIAL"] } } });
           const ap = aplicarPago(r.pagoTotal, moneda, abiertas.map((o) => ({ id: o.id, concepto: o.concepto, periodo: o.periodo, fechaVencimiento: o.fechaVencimiento, moneda: o.moneda, saldo: d(o.saldo.toString()), estado: o.estado })));
           for (const a of ap.aplicaciones) {
@@ -268,8 +275,8 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
         data: informe.registros.map((r) => ({
           batchId: id, hoja: r.hoja, fila: r.fila, entidad: "FILA_PLANILLA",
           crudo: aJson({ unidad: r.unidad, periodo: r.periodo, vacante: r.vacante, alquiler: r.alquiler, expensas: r.expensas, pagoTotal: r.pagoTotal, fechaPago: r.fechaPago }),
-          estado: r.estado === "OK" ? "OK" : r.estado === "ADVERTENCIA" ? "ADVERTENCIA" : r.estado === "DUPLICADO" ? "DUPLICADO" : "ERROR",
-          problemas: aJson(r.problemas),
+          estado: esExcluida(r) ? "OMITIDA" : r.estado === "OK" ? "OK" : r.estado === "ADVERTENCIA" ? "ADVERTENCIA" : r.estado === "DUPLICADO" ? "DUPLICADO" : "ERROR",
+          problemas: aJson(esExcluida(r) ? [...r.problemas, { severidad: "INFO", codigo: "UNIDAD_FUERA_DE_INVENTARIO", mensaje: `Unidad "${r.unidad.identificador}" excluida al confirmar: no figura en el inventario administrativo declarado.` }] : r.problemas),
           destinoId: unidadPorIdent.get(r.unidad.identificador.toLowerCase()) ?? null,
         })),
       });

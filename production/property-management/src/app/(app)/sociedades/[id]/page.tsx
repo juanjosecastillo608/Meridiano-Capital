@@ -1,3 +1,4 @@
+import { protegido } from "@/lib/acceso";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 import { requerirSesion } from "@/lib/sesion";
@@ -34,7 +35,7 @@ async function generar(form: FormData) {
 export default async function Sociedad({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const s = await requerirSesion();
-  const soc = await obtenerSociedad(s, id);
+  const soc = await protegido(() => obtenerSociedad(s, id));
   return (
     <>
       <Titulo eyebrow="Sociedad propietaria">{soc.razonSocial}</Titulo>

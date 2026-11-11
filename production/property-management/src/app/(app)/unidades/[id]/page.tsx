@@ -1,3 +1,4 @@
+import { protegido } from "@/lib/acceso";
 import Link from "next/link";
 import { requerirSesion } from "@/lib/sesion";
 import { obtenerUnidad } from "@/server/services/nucleo";
@@ -8,7 +9,7 @@ import { sumar } from "@/domain/money";
 export default async function Unidad({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const s = await requerirSesion();
-  const u = await obtenerUnidad(s, id);
+  const u = await protegido(() => obtenerUnidad(s, id));
   const ec = await estadoDeCuenta(s, { unidadId: id });
   const contratos = u.contratos.map((x) => x.contrato).sort((a, b) => (b.fechaInicio?.getTime() ?? 0) - (a.fechaInicio?.getTime() ?? 0));
   const actual = contratos.find((c) => ["VIGENTE", "VENCIDO", "PENDIENTE_FIRMA"].includes(c.estado)) ?? contratos[0];
