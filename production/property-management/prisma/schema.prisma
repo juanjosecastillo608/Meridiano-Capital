@@ -1,0 +1,1046 @@
+// MERIDIANO CAPITAL | PROPERTY MANAGEMENT — modelo de datos
+//
+// Jerarquía: Meridiano Capital → Sociedad → Propiedad → Unidad → Contrato →
+// Persona (inquilino/garante) → Obligación / Factura / Pago.
+//
+// Reglas transversales (ver docs/01-arquitectura.md y docs/02-reglas-de-negocio.md):
+// - Todo importe monetario es Decimal(18,2) (tasas: Decimal(9,6)). Nunca Float.
+// - Toda tabla con datos de negocio lleva sociedadId (directa o derivada) para
+//   aislamiento por sociedad en servicios, API y exportaciones.
+// - Eliminación lógica (deletedAt) en entidades principales; nunca DELETE físico.
+// - `origenDato` + `estadoDato` distinguen dato importado / validado / pendiente.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ───────────────────────────── Enums transversales ─────────────────────────────
+
+enum Moneda {
+  PYG
+  USD
+}
+
+enum OrigenDato {
+  MANUAL
+  IMPORTADO
+  GENERADO
+  SEED_PRUEBA // datos de prueba — nunca productivos
+}
+
+enum EstadoDato {
+  PENDIENTE_REVISION
+  VALIDADO
+}
+
+// ───────────────────────────── Usuarios y permisos ─────────────────────────────
+
+enum Rol {
+  SUPERADMIN // Superadministrador Meridiano Capital
+  ADMIN_GENERAL
+  ADMIN_SOCIEDAD
+  RESPONSABLE_PROPIEDAD
+  COBRANZAS
+  FACTURACION
+  MANTENIMIENTO
+  PROPIETARIO_CONSULTA
+  AUDITOR
+}
+
+model Usuario {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  nombre       String
+  passwordHash String
+  activo       Boolean   @default(true)
+  ultimoAcceso DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  asignaciones AsignacionRol[]
+  auditorias   AuditLog[]
+}
+
+/// Un rol global (sociedadId = null) solo es válido para SUPERADMIN, ADMIN_GENERAL y AUDITOR.
+/// El resto de roles se asigna siempre acotado a una sociedad (y opcionalmente a una propiedad).
+model AsignacionRol {
+  id          String  @id @default(cuid())
+  usuarioId   String
+  rol         Rol
+  sociedadId  String?
+  propiedadId String?
+
+  usuario   Usuario    @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  sociedad  Sociedad?  @relation(fields: [sociedadId], references: [id])
+  propiedad Propiedad? @relation(fields: [propiedadId], references: [id])
+
+  @@unique([usuarioId, rol, sociedadId, propiedadId])
+  @@index([sociedadId])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  usuarioId  String?
+  accion     String // p. ej. CONTRATO_MODIFICAR_ALQUILER, PAGO_REVERTIR
+  entidad    String
+  entidadId  String
+  sociedadId String?
+  antes      Json?
+  despues    Json?
+  motivo     String?
+
+  usuario Usuario? @relation(fields: [usuarioId], references: [id])
+
+  @@index([entidad, entidadId])
+  @@index([sociedadId, createdAt])
+}
+
+// ───────────────────────────── Sociedades ─────────────────────────────
+
+enum EstadoSociedad {
+  ACTIVA
+  EN_CONSTITUCION
+  INACTIVA
+}
+
+model Sociedad {
+  id                 String         @id @default(cuid())
+  razonSocial        String         @unique
+  ruc                String?        @unique
+  domicilioFiscal    String?
+  representanteLegal String?
+  telefono           String?
+  email              String?
+  monedaOperacion    Moneda         @default(PYG)
+  datosFacturacion   Json?
+  estado             EstadoSociedad @default(ACTIVA)
+  observaciones      String?
+  origenDato         OrigenDato     @default(MANUAL)
+  estadoDato         EstadoDato     @default(PENDIENTE_REVISION)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  deletedAt          DateTime?
+
+  cuentas       CuentaBancaria[]
+  propiedades   Propiedad[]
+  titularidades Titularidad[]
+  asignaciones  AsignacionRol[]
+  contratos     Contrato[]
+  obligaciones  Obligacion[]
+  pagos         Pago[]
+  facturas      Factura[]
+  egresos       Egreso[]
+  importaciones ImportBatch[]
+  documentos    Documento[]
+  timbrados     Timbrado[]
+}
+
+model CuentaBancaria {
+  id         String    @id @default(cuid())
+  sociedadId String
+  banco      String
+  numero     String
+  tipo       String? // caja de ahorro, cuenta corriente
+  moneda     Moneda
+  titular    String?
+  activa     Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+
+  sociedad    Sociedad    @relation(fields: [sociedadId], references: [id])
+  pagos       Pago[]
+  propiedades Propiedad[]
+
+  @@unique([sociedadId, banco, numero])
+}
+
+// ───────────────────────────── Propiedades y unidades ─────────────────────────────
+
+model Propiedad {
+  id                     String     @id @default(cuid())
+  sociedadId             String // sociedad administradora principal (aislamiento)
+  codigo                 String
+  nombre                 String
+  direccion              String?
+  ciudad                 String?
+  barrio                 String?
+  catastro               String?
+  cantidadPisos          Int?
+  superficieConstruida   Decimal?   @db.Decimal(12, 2)
+  superficieAlquilable   Decimal?   @db.Decimal(12, 2)
+  superficieComun        Decimal?   @db.Decimal(12, 2)
+  fechaAdquisicion       DateTime?  @db.Date
+  valorAdquisicion       Decimal?   @db.Decimal(18, 2)
+  valorAdquisicionMoneda Moneda?
+  valorEstimado          Decimal?   @db.Decimal(18, 2)
+  valorEstimadoMoneda    Moneda?
+  valorEstimadoFuente    String? // obligatorio para usar el valor en rentabilidad
+  valorEstimadoFecha     DateTime?  @db.Date
+  responsableUsuarioId   String?
+  cuentaBancariaId       String?
+  observaciones          String?
+  origenDato             OrigenDato @default(MANUAL)
+  estadoDato             EstadoDato @default(PENDIENTE_REVISION)
+  importBatchId          String?
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @updatedAt
+  deletedAt              DateTime?
+
+  sociedad       Sociedad               @relation(fields: [sociedadId], references: [id])
+  cuentaBancaria CuentaBancaria?        @relation(fields: [cuentaBancariaId], references: [id])
+  titularidades  Titularidad[]
+  unidades       Unidad[]
+  asignaciones   AsignacionRol[]
+  contratos      Contrato[]
+  obligaciones   Obligacion[]
+  gastosEdificio GastoEdificio[]
+  liquidaciones  LiquidacionExpensas[]
+  ordenes        OrdenTrabajo[]
+  remodelaciones ProyectoRemodelacion[]
+  egresos        Egreso[]
+
+  @@unique([sociedadId, codigo])
+}
+
+/// Cotitularidad: una propiedad puede tener uno o varios titulares con % de participación.
+model Titularidad {
+  id          String    @id @default(cuid())
+  propiedadId String
+  sociedadId  String
+  porcentaje  Decimal   @db.Decimal(7, 4) // 0–100
+  desde       DateTime? @db.Date
+  hasta       DateTime? @db.Date
+
+  propiedad Propiedad @relation(fields: [propiedadId], references: [id])
+  sociedad  Sociedad  @relation(fields: [sociedadId], references: [id])
+
+  @@unique([propiedadId, sociedadId, desde])
+}
+
+enum TipoUnidad {
+  DEPARTAMENTO
+  LOCAL_COMERCIAL
+  OFICINA
+  COCHERA
+  DEPOSITO
+  OTRO
+}
+
+/// Estado operativo manual. La OCUPACIÓN no se guarda: se deriva de contratos
+/// + fechas reales de entrega/devolución (ver src/domain/ocupacion.ts).
+enum EstadoOperativoUnidad {
+  OPERATIVA
+  RESERVADA
+  EN_MANTENIMIENTO
+  EN_REMODELACION
+  FUERA_DE_SERVICIO
+}
+
+model Unidad {
+  id                       String                @id @default(cuid())
+  propiedadId              String
+  identificador            String
+  piso                     String?
+  tipo                     TipoUnidad
+  superficieM2             Decimal?              @db.Decimal(10, 2)
+  dormitorios              Int?
+  banos                    Int?
+  estacionamientos         Int?
+  caracteristicas          String?
+  estadoFisico             String?
+  estadoOperativo          EstadoOperativoUnidad @default(OPERATIVA)
+  alquilerReferencia       Decimal?              @db.Decimal(18, 2)
+  alquilerReferenciaMoneda Moneda?
+  alquilerReferenciaFuente String?
+  coeficienteExpensas      Decimal?              @db.Decimal(9, 6)
+  expensasAsignadas        Decimal?              @db.Decimal(18, 2)
+  fechaUltimaRemodelacion  DateTime?             @db.Date
+  observaciones            String?
+  origenDato               OrigenDato            @default(MANUAL)
+  estadoDato               EstadoDato            @default(PENDIENTE_REVISION)
+  importBatchId            String?
+  createdAt                DateTime              @default(now())
+  updatedAt                DateTime              @updatedAt
+  deletedAt                DateTime?
+
+  propiedad      Propiedad                 @relation(fields: [propiedadId], references: [id])
+  contratos      ContratoUnidad[]
+  obligaciones   Obligacion[]
+  itemsExpensas  LiquidacionExpensasItem[]
+  ordenes        OrdenTrabajo[]
+  remodelaciones ProyectoRemodelacion[]
+  egresos        Egreso[]
+
+  @@unique([propiedadId, identificador])
+}
+
+// ───────────────────────────── Personas (inquilinos, garantes) ─────────────────────────────
+
+enum TipoPersona {
+  FISICA
+  JURIDICA
+}
+
+enum TipoDocumento {
+  CI
+  RUC
+  PASAPORTE
+  OTRO
+}
+
+model Persona {
+  id                   String         @id @default(cuid())
+  tipo                 TipoPersona
+  nombre               String // nombre completo o razón social
+  documentoTipo        TipoDocumento?
+  documentoNumero      String? // tal como se recibió
+  documentoNormalizado String?        @unique // sin puntos/guiones/espacios — evita duplicados
+  telefono             String?
+  email                String?
+  domicilio            String?
+  personaContacto      String?
+  datosFacturacion     Json? // { razonSocial, ruc, direccion }
+  contactoEmergencia   String?
+  referencias          String?
+  observaciones        String?
+  origenDato           OrigenDato     @default(MANUAL)
+  estadoDato           EstadoDato     @default(PENDIENTE_REVISION)
+  importBatchId        String?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  deletedAt            DateTime?
+
+  partes       ContratoParte[]
+  obligaciones Obligacion[]
+  pagos        Pago[]
+  facturas     Factura[]
+
+  @@index([nombre])
+}
+
+// ───────────────────────────── Contratos ─────────────────────────────
+
+enum EstadoContrato {
+  BORRADOR
+  PENDIENTE_FIRMA
+  VIGENTE
+  VENCIDO // plazo cumplido sin renovación ni finalización formal
+  RENOVADO
+  RESCINDIDO
+  FINALIZADO
+}
+
+enum RolParte {
+  INQUILINO
+  GARANTE
+  CODEUDOR
+}
+
+enum CategoriaFiscalAlquiler {
+  ALQUILER_RESIDENCIAL
+  ALQUILER_COMERCIAL
+  RENTA_TEMPORAL
+}
+
+enum ResponsableGasto {
+  INQUILINO
+  PROPIETARIO
+  COMPARTIDO
+  NO_DEFINIDO
+}
+
+enum TipoReajuste {
+  SIN_REAJUSTE
+  PORCENTAJE_FIJO
+  INDICE
+  MANUAL
+}
+
+model Contrato {
+  id                       String                  @id @default(cuid())
+  codigo                   String                  @unique
+  sociedadId               String
+  propiedadId              String
+  estado                   EstadoContrato          @default(BORRADOR)
+  categoriaFiscal          CategoriaFiscalAlquiler
+  fechaFirma               DateTime?               @db.Date
+  fechaInicio              DateTime?                @db.Date // null solo en BORRADOR (p. ej. importado sin contrato original)
+  fechaFin                 DateTime?                @db.Date
+  fechaEntrega             DateTime?               @db.Date // entrega real de la unidad
+  fechaDevolucion          DateTime?               @db.Date // devolución real
+  fechaRescision           DateTime?               @db.Date
+  moneda                   Moneda
+  diaVencimiento           Int? // 1–31; obligatorio para activar
+  deposito                 Decimal?                @db.Decimal(18, 2)
+  reajusteTipo             TipoReajuste            @default(SIN_REAJUSTE)
+  reajusteFrecuenciaMeses  Int?
+  reajustePorcentaje       Decimal?                @db.Decimal(9, 6)
+  reajusteIndice           String?
+  reajusteValidado         Boolean                 @default(false) // sin esto no se reajusta nada automáticamente
+  responsabilidadExpensas  ResponsableGasto        @default(NO_DEFINIDO)
+  responsabilidadServicios ResponsableGasto        @default(NO_DEFINIDO)
+  penalidadesTexto         String?
+  moraTasaDiariaPct        Decimal?                @db.Decimal(9, 6) // solo si está pactada
+  moraValidada             Boolean                 @default(false)
+  periodoGraciaDias        Int                     @default(0)
+  condicionesRenovacion    String?
+  contratoAnteriorId       String?                 @unique // cadena de renovaciones
+  documentoId              String?
+  observaciones            String?
+  origenDato               OrigenDato              @default(MANUAL)
+  estadoDato               EstadoDato              @default(PENDIENTE_REVISION)
+  importBatchId            String?
+  createdAt                DateTime                @default(now())
+  updatedAt                DateTime                @updatedAt
+  deletedAt                DateTime?
+
+  sociedad         Sociedad            @relation(fields: [sociedadId], references: [id])
+  propiedad        Propiedad           @relation(fields: [propiedadId], references: [id])
+  contratoAnterior Contrato?           @relation("Renovacion", fields: [contratoAnteriorId], references: [id])
+  renovacion       Contrato?           @relation("Renovacion")
+  unidades         ContratoUnidad[]
+  partes           ContratoParte[]
+  condiciones      CondicionContrato[]
+  obligaciones     Obligacion[]
+
+  @@index([sociedadId, estado])
+  @@index([fechaFin])
+}
+
+model ContratoUnidad {
+  contratoId String
+  unidadId   String
+
+  contrato Contrato @relation(fields: [contratoId], references: [id])
+  unidad   Unidad   @relation(fields: [unidadId], references: [id])
+
+  @@id([contratoId, unidadId])
+}
+
+model ContratoParte {
+  id         String   @id @default(cuid())
+  contratoId String
+  personaId  String
+  rol        RolParte
+
+  contrato Contrato @relation(fields: [contratoId], references: [id])
+  persona  Persona  @relation(fields: [personaId], references: [id])
+
+  @@unique([contratoId, personaId, rol])
+}
+
+enum MotivoCondicion {
+  INICIAL
+  ADENDA
+  REAJUSTE
+  CORRECCION
+}
+
+/// Historial de importes del contrato. Nunca se edita una fila: se agrega otra
+/// con vigenteDesde posterior. El importe de un período = última condición con
+/// vigenteDesde <= inicio del período.
+model CondicionContrato {
+  id            String          @id @default(cuid())
+  contratoId    String
+  vigenteDesde  DateTime        @db.Date
+  montoAlquiler Decimal         @db.Decimal(18, 2)
+  motivo        MotivoCondicion
+  referencia    String? // nº de adenda, fórmula aplicada
+  createdAt     DateTime        @default(now())
+  creadoPorId   String?
+
+  contrato Contrato @relation(fields: [contratoId], references: [id])
+
+  @@unique([contratoId, vigenteDesde])
+}
+
+model ConfiguracionAlerta {
+  id         String  @id @default(cuid())
+  sociedadId String? // null = default global
+  tipo       String // CONTRATO_VENCIMIENTO
+  dias       Int[] // p. ej. [90, 60, 30]
+
+  @@unique([sociedadId, tipo])
+}
+
+// ───────────────────────────── Obligaciones (cuentas por cobrar) ─────────────────────────────
+
+enum ConceptoObligacion {
+  ALQUILER
+  EXPENSAS
+  SERVICIOS
+  INTERESES
+  PENALIDAD
+  REPARACION_IMPUTABLE
+  OTRO
+}
+
+enum EstadoObligacion {
+  PENDIENTE
+  PARCIAL
+  PAGADA
+  ANULADA
+  EN_DISPUTA
+}
+
+// "VENCIDA" no se persiste: es PENDIENTE/PARCIAL con fechaVencimiento < hoy (derivado).
+
+model Obligacion {
+  id                String             @id @default(cuid())
+  sociedadId        String
+  propiedadId       String
+  unidadId          String?
+  contratoId        String?
+  personaId         String
+  periodo           String // YYYY-MM
+  concepto          ConceptoObligacion
+  descripcion       String?
+  fechaVencimiento  DateTime           @db.Date
+  moneda            Moneda
+  importeNeto       Decimal            @db.Decimal(18, 2) // base imponible
+  iva               Decimal            @db.Decimal(18, 2)
+  ajustes           Decimal            @default(0) @db.Decimal(18, 2)
+  importeTotal      Decimal            @db.Decimal(18, 2) // neto + iva + ajustes
+  saldo             Decimal            @db.Decimal(18, 2)
+  estado            EstadoObligacion   @default(PENDIENTE)
+  reglaFiscalId     String?
+  ivaPendiente      Boolean            @default(false) // sin regla fiscal validada
+  claveIdempotencia String             @unique // evita duplicados del proceso mensual
+  origenDato        OrigenDato         @default(GENERADO)
+  estadoDato        EstadoDato         @default(PENDIENTE_REVISION)
+  importBatchId     String?
+  motivoAnulacion   String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  sociedad     Sociedad         @relation(fields: [sociedadId], references: [id])
+  propiedad    Propiedad        @relation(fields: [propiedadId], references: [id])
+  unidad       Unidad?          @relation(fields: [unidadId], references: [id])
+  contrato     Contrato?        @relation(fields: [contratoId], references: [id])
+  persona      Persona          @relation(fields: [personaId], references: [id])
+  reglaFiscal  ReglaFiscal?     @relation(fields: [reglaFiscalId], references: [id])
+  aplicaciones AplicacionPago[]
+  itemsFactura FacturaItem[]
+
+  @@index([sociedadId, periodo])
+  @@index([personaId, estado])
+  @@index([unidadId])
+}
+
+// ───────────────────────────── Cobranzas ─────────────────────────────
+
+enum MetodoPago {
+  TRANSFERENCIA
+  DEPOSITO
+  EFECTIVO
+  CHEQUE
+  TARJETA
+  OTRO
+}
+
+enum EstadoPago {
+  REGISTRADO
+  REVERTIDO
+}
+
+model Pago {
+  id                String     @id @default(cuid())
+  sociedadId        String
+  personaId         String
+  propiedadId       String?
+  unidadId          String?
+  cuentaBancariaId  String?
+  fechaPago         DateTime   @db.Date // declarada
+  fechaAcreditacion DateTime?  @db.Date // real (conciliación)
+  bancoOrigen       String?
+  metodo            MetodoPago
+  comprobante       String?
+  moneda            Moneda
+  importe           Decimal    @db.Decimal(18, 2)
+  estado            EstadoPago @default(REGISTRADO)
+  conciliado        Boolean    @default(false)
+  claveDuplicado    String?    @unique // cuenta+comprobante+importe — evita doble registro
+  registradoPorId   String?
+  documentoId       String?
+  observaciones     String?
+  motivoReversion   String?
+  origenDato        OrigenDato @default(MANUAL)
+  importBatchId     String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  sociedad       Sociedad         @relation(fields: [sociedadId], references: [id])
+  persona        Persona          @relation(fields: [personaId], references: [id])
+  cuentaBancaria CuentaBancaria?  @relation(fields: [cuentaBancariaId], references: [id])
+  aplicaciones   AplicacionPago[]
+
+  @@index([sociedadId, fechaPago])
+  @@index([personaId])
+}
+
+/// Distribución de un pago entre obligaciones. Saldo a favor del pago =
+/// importe − Σ aplicaciones vigentes (no se guarda: se deriva).
+model AplicacionPago {
+  id           String    @id @default(cuid())
+  pagoId       String
+  obligacionId String
+  importe      Decimal   @db.Decimal(18, 2)
+  createdAt    DateTime  @default(now())
+  revertidaAt  DateTime?
+
+  pago       Pago       @relation(fields: [pagoId], references: [id])
+  obligacion Obligacion @relation(fields: [obligacionId], references: [id])
+
+  @@index([obligacionId])
+}
+
+// ───────────────────────────── Fiscal ─────────────────────────────
+
+enum EstadoValidacionFiscal {
+  PENDIENTE // no se usa para calcular: la obligación queda con ivaPendiente
+  CONFIRMADA_FOUNDER
+  VALIDADA_CONTADOR
+}
+
+/// Motor de impuestos versionado: una regla por (categoría, vigencia, versión).
+model ReglaFiscal {
+  id               String                 @id @default(cuid())
+  codigo           String // IVA_ALQUILER_RESIDENCIAL, IVA_EXPENSAS, ...
+  categoria        String
+  descripcion      String
+  tasaPct          Decimal                @db.Decimal(9, 6) // p. ej. 5.000000
+  baseImponiblePct Decimal                @default(100) @db.Decimal(9, 6)
+  ivaIncluido      Boolean                @default(false) // si el importe contractual ya incluye IVA
+  vigenteDesde     DateTime               @db.Date
+  vigenteHasta     DateTime?              @db.Date
+  version          Int
+  estadoValidacion EstadoValidacionFiscal @default(PENDIENTE)
+  fuente           String // decisión/ley/contador que la respalda
+  createdAt        DateTime               @default(now())
+
+  obligaciones Obligacion[]
+
+  @@unique([codigo, version])
+}
+
+model Timbrado {
+  id              String   @id @default(cuid())
+  sociedadId      String
+  numero          String
+  vigenciaDesde   DateTime @db.Date
+  vigenciaHasta   DateTime @db.Date
+  establecimiento String // 001
+  puntoExpedicion String // 001
+  proximoNumero   Int      @default(1)
+  electronico     Boolean  @default(false) // SIFEN
+  activo          Boolean  @default(true)
+
+  sociedad Sociedad  @relation(fields: [sociedadId], references: [id])
+  facturas Factura[]
+
+  @@unique([sociedadId, numero, establecimiento, puntoExpedicion])
+}
+
+enum TipoComprobante {
+  FACTURA
+  NOTA_CREDITO
+  NOTA_DEBITO
+}
+
+enum EstadoFactura {
+  PENDIENTE // preparada, sin número fiscal
+  EMITIDA
+  VALIDADA // aceptada (p. ej. SIFEN)
+  ANULADA
+}
+
+model Factura {
+  id              String          @id @default(cuid())
+  sociedadId      String
+  receptorId      String
+  timbradoId      String?
+  tipo            TipoComprobante @default(FACTURA)
+  numero          String? // 001-001-0000001, asignado al emitir
+  fechaEmision    DateTime?       @db.Date
+  moneda          Moneda
+  totalNeto       Decimal         @db.Decimal(18, 2)
+  totalIva        Decimal         @db.Decimal(18, 2)
+  total           Decimal         @db.Decimal(18, 2)
+  estado          EstadoFactura   @default(PENDIENTE)
+  facturaRefId    String? // para NC/ND
+  cdc             String? // código de control SIFEN
+  documentoId     String?
+  motivoAnulacion String?
+  esPrueba        Boolean         @default(true) // nunca comprobante fiscal real sin credenciales
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  sociedad   Sociedad      @relation(fields: [sociedadId], references: [id])
+  receptor   Persona       @relation(fields: [receptorId], references: [id])
+  timbrado   Timbrado?     @relation(fields: [timbradoId], references: [id])
+  facturaRef Factura?      @relation("Ajuste", fields: [facturaRefId], references: [id])
+  ajustes    Factura[]     @relation("Ajuste")
+  items      FacturaItem[]
+
+  @@unique([timbradoId, numero, tipo])
+}
+
+model FacturaItem {
+  id           String  @id @default(cuid())
+  facturaId    String
+  obligacionId String?
+  descripcion  String
+  neto         Decimal @db.Decimal(18, 2)
+  tasaIvaPct   Decimal @db.Decimal(9, 6)
+  iva          Decimal @db.Decimal(18, 2)
+  total        Decimal @db.Decimal(18, 2)
+
+  factura    Factura     @relation(fields: [facturaId], references: [id])
+  obligacion Obligacion? @relation(fields: [obligacionId], references: [id])
+}
+
+// ───────────────────────────── Expensas ─────────────────────────────
+
+enum TipoGastoEdificio {
+  ORDINARIO
+  EXTRAORDINARIO
+  PROPIETARIO // no trasladable al inquilino
+}
+
+enum CriterioDistribucion {
+  M2
+  COEFICIENTE
+  IMPORTE_FIJO
+  PARTES_IGUALES
+  MANUAL
+}
+
+model Proveedor {
+  id        String   @id @default(cuid())
+  nombre    String
+  ruc       String?  @unique
+  telefono  String?
+  email     String?
+  rubro     String?
+  createdAt DateTime @default(now())
+
+  gastos  GastoEdificio[]
+  ordenes OrdenTrabajo[]
+  egresos Egreso[]
+}
+
+model GastoEdificio {
+  id            String            @id @default(cuid())
+  propiedadId   String
+  periodo       String
+  concepto      String
+  tipo          TipoGastoEdificio
+  proveedorId   String?
+  comprobante   String?
+  moneda        Moneda
+  importe       Decimal           @db.Decimal(18, 2)
+  liquidacionId String?
+  createdAt     DateTime          @default(now())
+
+  propiedad   Propiedad            @relation(fields: [propiedadId], references: [id])
+  proveedor   Proveedor?           @relation(fields: [proveedorId], references: [id])
+  liquidacion LiquidacionExpensas? @relation(fields: [liquidacionId], references: [id])
+}
+
+model LiquidacionExpensas {
+  id               String               @id @default(cuid())
+  propiedadId      String
+  periodo          String
+  criterio         CriterioDistribucion
+  moneda           Moneda
+  total            Decimal              @db.Decimal(18, 2)
+  estado           String               @default("BORRADOR") // BORRADOR | APROBADA
+  aprobadaPorId    String?
+  fechaVencimiento DateTime?            @db.Date
+  createdAt        DateTime             @default(now())
+
+  propiedad Propiedad                 @relation(fields: [propiedadId], references: [id])
+  gastos    GastoEdificio[]
+  items     LiquidacionExpensasItem[]
+
+  @@unique([propiedadId, periodo, moneda])
+}
+
+model LiquidacionExpensasItem {
+  id                   String  @id @default(cuid())
+  liquidacionId        String
+  unidadId             String
+  base                 Decimal @db.Decimal(18, 6) // m², coeficiente o importe fijo usado
+  importe              Decimal @db.Decimal(18, 2)
+  trasladableInquilino Boolean @default(false) // solo con respaldo contractual
+  obligacionId         String?
+
+  liquidacion LiquidacionExpensas @relation(fields: [liquidacionId], references: [id])
+  unidad      Unidad              @relation(fields: [unidadId], references: [id])
+
+  @@unique([liquidacionId, unidadId])
+}
+
+// ───────────────────────────── Mantenimiento y remodelaciones ─────────────────────────────
+
+enum RubroObra {
+  AGUA_SANITARIA
+  ELECTRICIDAD
+  PINTURA
+  OBRA_CIVIL
+  VARIOS
+}
+
+enum EstadoOrdenTrabajo {
+  SOLICITADO
+  EN_EVALUACION
+  PRESUPUESTADO
+  PENDIENTE_APROBACION
+  APROBADO
+  EN_EJECUCION
+  FINALIZADO
+  CERRADO
+}
+
+enum Prioridad {
+  BAJA
+  MEDIA
+  ALTA
+  URGENTE
+}
+
+model OrdenTrabajo {
+  id                   String             @id @default(cuid())
+  sociedadId           String
+  propiedadId          String
+  unidadId             String?
+  fechaSolicitud       DateTime           @db.Date
+  descripcion          String
+  categoria            RubroObra
+  prioridad            Prioridad          @default(MEDIA)
+  responsableUsuarioId String?
+  proveedorId          String?
+  costoEstimado        Decimal?           @db.Decimal(18, 2)
+  costoReal            Decimal?           @db.Decimal(18, 2)
+  moneda               Moneda             @default(PYG)
+  aprobadoPorId        String?
+  fechaAprobacion      DateTime?
+  fechaEjecucion       DateTime?          @db.Date
+  estado               EstadoOrdenTrabajo @default(SOLICITADO)
+  responsableEconomico ResponsableGasto   @default(NO_DEFINIDO)
+  observaciones        String?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  propiedad Propiedad  @relation(fields: [propiedadId], references: [id])
+  unidad    Unidad?    @relation(fields: [unidadId], references: [id])
+  proveedor Proveedor? @relation(fields: [proveedorId], references: [id])
+  egresos   Egreso[]
+}
+
+enum EstadoRemodelacion {
+  EN_PRESUPUESTO
+  PENDIENTE_APROBACION
+  APROBADO
+  EN_EJECUCION
+  FINALIZADO
+  CANCELADO
+}
+
+enum CalidadDato {
+  DATO_RECIBIDO
+  COTIZACION_VERIFICADA
+  CALCULO
+  SUPUESTO
+  INFORMACION_FALTANTE
+  REVISION_TECNICA_REQUERIDA
+}
+
+enum TipoPartida {
+  MATERIAL
+  MANO_DE_OBRA
+  EQUIPO
+  SUBCONTRATO
+  INDIRECTO
+  CONTINGENCIA
+}
+
+model ProyectoRemodelacion {
+  id                        String             @id @default(cuid())
+  codigo                    String             @unique
+  sociedadId                String
+  propiedadId               String
+  unidadId                  String?
+  objetivo                  String
+  descripcion               String?
+  estado                    EstadoRemodelacion @default(EN_PRESUPUESTO)
+  moneda                    Moneda             @default(PYG)
+  presupuestoAprobado       Decimal?           @db.Decimal(18, 2)
+  aprobadoPorId             String?
+  fechaAprobacion           DateTime?
+  fechaInicio               DateTime?          @db.Date
+  fechaEntregaEstimada      DateTime?          @db.Date
+  fechaFinalizacion         DateTime?          @db.Date
+  alquilerAnterior          Decimal?           @db.Decimal(18, 2)
+  alquilerPosteriorEsperado Decimal?           @db.Decimal(18, 2)
+  alquilerPosteriorFuente   String?
+  createdAt                 DateTime           @default(now())
+  updatedAt                 DateTime           @updatedAt
+
+  propiedad Propiedad             @relation(fields: [propiedadId], references: [id])
+  unidad    Unidad?               @relation(fields: [unidadId], references: [id])
+  partidas  PartidaRemodelacion[]
+  egresos   Egreso[]
+}
+
+model PartidaRemodelacion {
+  id             String      @id @default(cuid())
+  proyectoId     String
+  version        String      @default("INICIAL") // INICIAL | APROBADO
+  rubro          RubroObra
+  tipo           TipoPartida
+  descripcion    String
+  cantidad       Decimal?    @db.Decimal(14, 4)
+  unidadMedida   String?
+  precioUnitario Decimal?    @db.Decimal(18, 2)
+  total          Decimal?    @db.Decimal(18, 2) // null = INFORMACION_FALTANTE
+  calidadDato    CalidadDato
+  proveedorId    String?
+  fuente         String?
+  createdAt      DateTime    @default(now())
+
+  proyecto ProyectoRemodelacion @relation(fields: [proyectoId], references: [id])
+}
+
+// ───────────────────────────── Egresos (gastos y CAPEX) ─────────────────────────────
+
+enum CategoriaEgreso {
+  MANTENIMIENTO
+  SERVICIOS
+  IMPUESTOS
+  SEGUROS
+  HONORARIOS_ADMINISTRACION
+  REMODELACION
+  EXPENSAS_PROPIETARIO
+  EXTRAORDINARIO
+  OTRO
+}
+
+enum NaturalezaEgreso {
+  OPEX
+  CAPEX
+}
+
+model Egreso {
+  id             String           @id @default(cuid())
+  sociedadId     String
+  propiedadId    String
+  unidadId       String?
+  fecha          DateTime         @db.Date
+  periodo        String
+  categoria      CategoriaEgreso
+  naturaleza     NaturalezaEgreso
+  descripcion    String
+  moneda         Moneda
+  importe        Decimal          @db.Decimal(18, 2)
+  proveedorId    String?
+  comprobante    String?
+  ordenTrabajoId String?
+  proyectoId     String?
+  aprobadoPorId  String?
+  origenDato     OrigenDato       @default(MANUAL)
+  importBatchId  String?
+  createdAt      DateTime         @default(now())
+  deletedAt      DateTime?
+
+  sociedad     Sociedad              @relation(fields: [sociedadId], references: [id])
+  propiedad    Propiedad             @relation(fields: [propiedadId], references: [id])
+  unidad       Unidad?               @relation(fields: [unidadId], references: [id])
+  proveedor    Proveedor?            @relation(fields: [proveedorId], references: [id])
+  ordenTrabajo OrdenTrabajo?         @relation(fields: [ordenTrabajoId], references: [id])
+  proyecto     ProyectoRemodelacion? @relation(fields: [proyectoId], references: [id])
+
+  @@index([sociedadId, periodo])
+}
+
+// ───────────────────────────── Documentos e importación ─────────────────────────────
+
+model Documento {
+  id            String   @id @default(cuid())
+  sociedadId    String?
+  entidad       String // CONTRATO, PAGO, IMPORTACION, PROPIEDAD, ...
+  entidadId     String?
+  nombreArchivo String
+  storageKey    String   @unique // ruta relativa en almacenamiento privado (fuera de /public)
+  sha256        String
+  mime          String
+  tamanoBytes   Int
+  subidoPorId   String?
+  createdAt     DateTime @default(now())
+
+  sociedad Sociedad? @relation(fields: [sociedadId], references: [id])
+
+  @@index([sha256])
+}
+
+enum EstadoImportacion {
+  ANALIZADO
+  MAPEADO
+  VALIDADO
+  CONFIRMADO
+  CANCELADO
+}
+
+model ImportBatch {
+  id              String            @id @default(cuid())
+  sociedadId      String?
+  nombreArchivo   String
+  sha256          String
+  documentoId     String?
+  estado          EstadoImportacion @default(ANALIZADO)
+  analisis        Json // hojas, encabezados, fórmulas, períodos detectados
+  mapeo           Json? // propuesta + correcciones manuales
+  informe         Json? // validación: errores, duplicados, inconsistencias
+  creadoPorId     String?
+  confirmadoPorId String?
+  confirmadoAt    DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  sociedad Sociedad?   @relation(fields: [sociedadId], references: [id])
+  filas    ImportRow[]
+
+  @@index([sha256])
+}
+
+enum EstadoFilaImport {
+  OK
+  ADVERTENCIA
+  ERROR
+  DUPLICADO
+  OMITIDA
+}
+
+model ImportRow {
+  id        String           @id @default(cuid())
+  batchId   String
+  hoja      String
+  fila      Int
+  entidad   String // UNIDAD, PERSONA, CONTRATO, OBLIGACION, PAGO, ...
+  crudo     Json
+  mapeado   Json?
+  estado    EstadoFilaImport
+  problemas Json?
+  destinoId String?
+
+  batch ImportBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  @@index([batchId, estado])
+}

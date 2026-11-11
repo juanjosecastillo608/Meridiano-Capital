@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Tokens de marca: knowledge-base/brand/05-sistema-cromatico.md (OFICIAL).
+   Dorado nunca como color de texto sobre fondo claro (falla WCAG). */
+@theme {
+  --color-petroleo: #14313A;
+  --color-petroleo-2: #0D2226;
+  --color-petroleo-tint: #1D414D;
+  --color-tierra: #8B3323;
+  --color-tierra-2: #6E2819;
+  --color-dorado: #C9982E;
+  --color-dorado-d: #A87D22;
+  --color-crema: #F3EDE3;
+  --color-gris: #6B6154;
+  --color-linea: #DAD2C0;
+  --color-fila: #F7F4EE;
+  --color-error-borde: #E7A090;
+  --font-sans: "Poppins", Calibri, Arial, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+}
+
+body { background: #fff; color: var(--color-petroleo); font-family: var(--font-sans); }
+.tabla { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.tabla th { text-align: left; font-weight: 500; color: var(--color-gris); border-bottom: 1px solid var(--color-linea); padding: 0.5rem 0.75rem; white-space: nowrap; }
+.tabla td { border-bottom: 1px solid var(--color-linea); padding: 0.5rem 0.75rem; vertical-align: top; }
+.tabla tbody tr:nth-child(even) { background: var(--color-fila); }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.campo { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.875rem; }
+.campo input, .campo select, .campo textarea { border: 1px solid var(--color-linea); border-radius: 0.375rem; padding: 0.45rem 0.6rem; background: #fff; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: 2px solid var(--color-petroleo-tint); outline-offset: 1px; }
+.btn { display: inline-flex; align-items: center; gap: .4rem; background: var(--color-petroleo); color: #fff; border-radius: .375rem; padding: .5rem 1rem; font-size: .875rem; font-weight: 500; }
+.btn:hover { background: var(--color-petroleo-tint); }
+.btn-sec { background: #fff; color: var(--color-petroleo); border: 1px solid var(--color-linea); }
+.btn-sec:hover { background: var(--color-fila); }
+.btn-cta { background: var(--color-tierra); }
+.btn-cta:hover { background: var(--color-tierra-2); }
