@@ -143,14 +143,23 @@ export async function candidatosRenovacion(s: Sesion, propiedadId: string): Prom
 
 export const BorradorInput = z.object({
   unidadId: z.string(),
-  fechaInicio: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Indique la fecha de inicio (no se asume)"),
+  fechaInicio: z.string({ required_error: "Indique la fecha de inicio (no se asume)" }).regex(/^\d{4}-\d{2}-\d{2}$/, "Indique la fecha de inicio (no se asume)"),
   fechaFirma: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().nullable(),
   cuentaBancariaId: z.string().optional().nullable(),
   diaVencimiento: z.coerce.number().int().min(1).max(31).optional().nullable(),
   deposito: z.string().regex(/^\d+(\.\d{1,2})?$/).optional().nullable(),
   /** Excepción expresamente aprobada a la fecha de fin calculada. */
   excepcionFin: z.object({ fechaFin: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), motivo: z.string().trim().min(5), autorizadoPor: z.string().trim().min(3) }).optional().nullable(),
+  /** Inicio anterior a hoy: solo con autorización expresa (Actualización contractual 04). */
+  autorizacionRetroactiva: z.object({ motivo: z.string().trim().min(5), autorizadoPor: z.string().trim().min(3) }).optional().nullable(),
 });
+
+/** Opciones internas cuando el borrador sale de un lote con fecha común. */
+export interface OpcionesLote {
+  batchId: string;
+  acuerdoEvidenciaId: string;
+  revisionAprobada: true;
+}
 
 export interface VistaPrevia {
   unidad: string;
@@ -183,6 +192,13 @@ async function preparar(s: Sesion, input: z.input<typeof BorradorInput>) {
   const faltantes: string[] = [];
   const advertencias: string[] = [];
   parsear(x.fechaInicio); // valida que la fecha exista
+  // Nunca se toma como inicio la fecha de importación ni el ingreso histórico: la fecha llega siempre explícita (no hay valor por defecto).
+  const hoyISO = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Asuncion" }).format(new Date());
+  if (x.fechaInicio < hoyISO) {
+    if (!x.autorizacionRetroactiva) bloqueos.push(`El inicio (${x.fechaInicio}) es anterior a hoy (${hoyISO}): no se aplican fechas retroactivas sin autorización expresa.`);
+    else if (!puede(s, "CONFIGURAR_SOCIEDAD", soc.id)) bloqueos.push("La autorización retroactiva requiere un usuario con permiso de configuración de la sociedad.");
+    else advertencias.push(`Inicio RETROACTIVO autorizado por ${x.autorizacionRetroactiva.autorizadoPor}: ${x.autorizacionRetroactiva.motivo}.`);
+  }
   const cfg = await configuracionVigente(soc.id);
   if (!cfg) bloqueos.push("La sociedad no tiene configuración contractual residencial vigente.");
   if (cfg && cfg.residentialLeaseRentPolicy !== POLITICA_CANON) bloqueos.push(`Política de canon no soportada: ${cfg.residentialLeaseRentPolicy}.`);
@@ -255,7 +271,7 @@ export async function previsualizarBorrador(s: Sesion, input: z.input<typeof Bor
  * DOCX provisional. Exige confirmación explícita de la vista previa: el fin
  * confirmado debe coincidir con el calculado (o con la excepción aprobada).
  */
-export async function generarBorradorResidencial(s: Sesion, input: z.input<typeof BorradorInput> & { confirmoFechaFin: string }) {
+export async function generarBorradorResidencial(s: Sesion, input: z.input<typeof BorradorInput> & { confirmoFechaFin: string }, lote?: OpcionesLote) {
   const { x, u, soc, ant, ult, cfg, cuenta, rep, vista } = await preparar(s, input);
   if (vista.bloqueos.length) throw new ErrorNegocio(`No se puede generar: ${vista.bloqueos.join(" ")}`, "BLOQUEADO", vista.bloqueos);
   if (input.confirmoFechaFin !== vista.fechaFin) throw new ErrorNegocio(`Confirme la vista previa: la fecha de fin calculada es ${vista.fechaFin}.`, "CONFIRMACION");
@@ -286,6 +302,8 @@ export async function generarBorradorResidencial(s: Sesion, input: z.input<typeo
         moneda: ant!.moneda, diaVencimiento: datos.diaVencimiento, deposito: x.deposito ?? null, cuentaBancariaId: cuenta?.id ?? null,
         reajusteTipo: "SIN_REAJUSTE", reajusteValidado: false, responsabilidadExpensas: ant!.responsabilidadExpensas, responsabilidadServicios: ant!.responsabilidadServicios,
         contratoAnteriorId: ant!.id, plantillaVersion: PLANTILLA_VERSION, configuracionVersion: cfg!.version,
+        dateSelectionMode: lote ? "COMUN" : "INDIVIDUAL", dateAgreementStatus: lote ? "ACEPTADO" : "NO_REQUERIDO", dateAgreementEvidenceId: lote?.acuerdoEvidenciaId ?? null,
+        legalReviewStatus: lote?.revisionAprobada ? "APROBADA" : "PENDIENTE", revisionJuridicaAprobada: !!lote?.revisionAprobada, contractBatchId: lote?.batchId ?? null,
         canonOrigen: `Condición ${ult!.id} del contrato ${ant!.codigo}, validada el ${ult!.validadoAt?.toISOString().slice(0, 10)}; incremento 0 %.`,
         observaciones: `Generado por la Actualización contractual 03 (config v${cfg!.version}). BORRADOR pendiente de validación: no firmado, no vigente, redacción sujeta a revisión jurídica.`,
         unidades: { create: { unidadId: u.id } },
@@ -293,6 +311,7 @@ export async function generarBorradorResidencial(s: Sesion, input: z.input<typeo
         condiciones: { create: { vigenteDesde: aDate(x.fechaInicio), montoAlquiler: ult!.montoAlquiler, motivo: "INICIAL", referencia: `Canon validado del contrato ${ant!.codigo} (sin incremento)`, creadoPorId: s.usuarioId === "sistema" ? null : s.usuarioId } },
       },
     });
+    await tx.contratoFechaVersion.create({ data: { contratoId: c.id, version: 1, fechaInicio: aDate(x.fechaInicio), fechaFin: aDate(vista.fechaFin), fechaFirma: x.fechaFirma ? aDate(x.fechaFirma) : null, plazoMeses: vista.plazoMeses, modo: lote ? "COMUN" : "INDIVIDUAL", motivo: lote ? `Fecha común del lote ${lote.batchId}` : "Fecha individual al generar el borrador", creadoPorId: s.usuarioId === "sistema" ? null : s.usuarioId } });
     if (x.excepcionFin) await auditar(tx, s, "CONTRATO_EXCEPCION_PLAZO", "Contrato", c.id, { sociedadId: soc.id, despues: { fechaFinCalculada: vista.fechaFinCalculada, fechaFin: vista.fechaFin }, motivo: `${x.excepcionFin.motivo} — autorizado por ${x.excepcionFin.autorizadoPor}` });
     await auditar(tx, s, "CONTRATO_GENERAR_BORRADOR", "Contrato", c.id, { sociedadId: soc.id, despues: { codigo, fechaInicio: x.fechaInicio, fechaFin: vista.fechaFin, canon: ult!.montoAlquiler.toString(), contratoAnterior: ant!.codigo, faltantes } });
     return c;
@@ -321,7 +340,7 @@ export async function registrarPasoValidacion(s: Sesion, contratoId: string, pas
     data.depositoVerificado = true;
     if (input.deposito) data.deposito = input.deposito;
   }
-  if (paso === "REVISION_JURIDICA") { exigir(s, "CONFIGURAR_SOCIEDAD", c.sociedadId); data.revisionJuridicaAprobada = true; }
+  if (paso === "REVISION_JURIDICA") { exigir(s, "CONFIGURAR_SOCIEDAD", c.sociedadId); data.revisionJuridicaAprobada = true; data.legalReviewStatus = "APROBADA"; }
   if (paso === "CUENTA") {
     const cu = await prisma.cuentaBancaria.findUnique({ where: { id: input.cuentaBancariaId ?? "" } });
     if (!cu || cu.sociedadId !== c.sociedadId || !cu.activa || cu.deletedAt) throw new ErrorNegocio("Seleccione una cuenta activa de la sociedad.");
@@ -344,7 +363,7 @@ export async function registrarPasoValidacion(s: Sesion, contratoId: string, pas
 export async function obtenerContrato(s: Sesion, id: string) {
   const c = await prisma.contrato.findFirst({
     where: { id, deletedAt: null },
-    include: { propiedad: { select: { codigo: true, nombre: true } }, unidades: { include: { unidad: true } }, partes: { include: { persona: true } }, condiciones: { orderBy: { vigenteDesde: "asc" } }, cuentaBancaria: true, contratoAnterior: { select: { id: true, codigo: true, estado: true } }, renovacion: { select: { id: true, codigo: true, estado: true } } },
+    include: { propiedad: { select: { codigo: true, nombre: true } }, unidades: { include: { unidad: true } }, partes: { include: { persona: true } }, condiciones: { orderBy: { vigenteDesde: "asc" } }, cuentaBancaria: true, versionesFecha: { orderBy: { version: "asc" } }, contractBatch: { select: { id: true, fechaComunPropuesta: true } }, contratoAnterior: { select: { id: true, codigo: true, estado: true } }, renovacion: { select: { id: true, codigo: true, estado: true } } },
   });
   if (!c) throw new ErrorNegocio("Contrato no encontrado.", "NO_ENCONTRADO");
   exigir(s, "LEER", c.sociedadId, c.propiedadId);

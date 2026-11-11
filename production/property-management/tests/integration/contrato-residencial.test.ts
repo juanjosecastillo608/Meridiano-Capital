@@ -10,6 +10,7 @@ import { nuevaVersionConfiguracion, configuracionVigente, validarCanon, candidat
 import { registrarPago } from "@/server/services/finanzas";
 import { alertasVencimiento } from "@/server/services/contratos";
 import { obtenerArchivo } from "@/server/services/documentos";
+import { aprobarFechasContrato } from "@/server/services/fechas";
 
 let soc: string, prop: string, uFirma: string, uMitad: string, uVencido: string, uLocal: string, uSinDoc: string, uConflicto: string;
 const contratos: Record<string, string> = {};
@@ -56,7 +57,7 @@ describe("configuración versionada", () => {
 
 describe("canon validado", () => {
   it("no se genera nada sin canon validado; la validación exige confirmar el importe exacto", async () => {
-    const v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01" });
+    const v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01" });
     expect(v.bloqueos.join(" ")).toMatch(/no está validado/);
     await expect(validarCanon(admin(), contratos["ED1-2-A"], { montoConfirmado: "880000", motivo: "Recibo" })).rejects.toThrow(/no coincide/); // 880.000 = alquiler + expensas: no es canon
     await validarCanon(admin(), contratos["ED1-2-A"], { montoConfirmado: "700000", motivo: "Contrato original (prueba)" });
@@ -73,23 +74,23 @@ describe("canon validado", () => {
   it("pagos parciales, anticipos y expensas no cambian el canon", async () => {
     const persona = (await prisma.contratoParte.findFirstOrThrow({ where: { contratoId: contratos["ED1-3-A"] } })).personaId;
     await registrarPago(admin(), { sociedadId: soc, personaId: persona, fechaPago: "2026-11-01", metodo: "EFECTIVO", moneda: "PYG", importe: "500000" }); // anticipo/parcial
-    const v = await previsualizarBorrador(admin(), { unidadId: uMitad, fechaInicio: "2026-11-16" });
+    const v = await previsualizarBorrador(admin(), { unidadId: uMitad, fechaInicio: "2030-11-16" });
     expect(v.canon).toBe("1600000");
   });
 });
 
 describe("cuentas bancarias", () => {
   it("sin cuentas: faltante; con varias: hay que elegir explícitamente; moneda y sociedad verificadas", async () => {
-    let v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01" });
+    let v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01" });
     expect(v.faltantes.some((f) => /no tiene cuentas activas/.test(f))).toBe(true);
     const c1 = await crearCuentaBancaria(admin(), { sociedadId: soc, banco: "BANCO PRUEBA A", numero: "001", moneda: "PYG" });
     await crearCuentaBancaria(admin(), { sociedadId: soc, banco: "BANCO PRUEBA B", numero: "002", moneda: "PYG" });
     const usd = await crearCuentaBancaria(admin(), { sociedadId: soc, banco: "BANCO PRUEBA C", numero: "003", moneda: "USD" });
-    v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01" });
+    v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01" });
     expect(v.bloqueos.join(" ")).toMatch(/varias cuentas activas/);
-    v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01", cuentaBancariaId: usd.id });
+    v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01", cuentaBancariaId: usd.id });
     expect(v.bloqueos.join(" ")).toMatch(/USD/);
-    v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01", cuentaBancariaId: c1.id });
+    v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01", cuentaBancariaId: c1.id });
     expect(v.bloqueos).toEqual([]);
     expect(v.cuenta).toMatch(/BANCO PRUEBA A/);
   });
@@ -99,17 +100,17 @@ describe("generación de borradores", () => {
   const cuenta = async () => (await prisma.cuentaBancaria.findFirstOrThrow({ where: { sociedadId: soc, numero: "001" } })).id;
 
   it("inicio el primer día del mes, firma distinta del inicio, canon exacto, 0 % y sin reajuste; BORRADOR pendiente", async () => {
-    const v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01", fechaFirma: "2026-11-20", cuentaBancariaId: await cuenta(), diaVencimiento: 10 });
-    expect(v).toMatchObject({ fechaInicio: "2026-12-01", fechaFin: "2027-11-30", plazoMeses: 12, canon: "700000", incrementoPct: "0", moneda: "PYG" });
+    const v = await previsualizarBorrador(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01", fechaFirma: "2030-11-20", cuentaBancariaId: await cuenta(), diaVencimiento: 10 });
+    expect(v).toMatchObject({ fechaInicio: "2030-12-01", fechaFin: "2031-11-30", plazoMeses: 12, canon: "700000", incrementoPct: "0", moneda: "PYG" });
     expect(v.advertencias.join(" ")).toMatch(/firma.*difiere del inicio/);
-    await expect(generarBorradorResidencial(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2027-12-01" })).rejects.toThrow(/Confirme la vista previa/);
-    const r = await generarBorradorResidencial(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01", fechaFirma: "2026-11-20", cuentaBancariaId: await cuenta(), diaVencimiento: 10, confirmoFechaFin: "2027-11-30" });
+    await expect(generarBorradorResidencial(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2031-12-01" })).rejects.toThrow(/Confirme la vista previa/);
+    const r = await generarBorradorResidencial(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01", fechaFirma: "2030-11-20", cuentaBancariaId: await cuenta(), diaVencimiento: 10, confirmoFechaFin: "2031-11-30" });
     const c = await prisma.contrato.findUniqueOrThrow({ where: { id: r.contrato.id }, include: { condiciones: true } });
     expect(c.estado).toBe("BORRADOR");
     expect(c.estadoDato).toBe("PENDIENTE_REVISION");
-    expect(c.fechaInicio!.toISOString().slice(0, 10)).toBe("2026-12-01");
-    expect(c.fechaFin!.toISOString().slice(0, 10)).toBe("2027-11-30");
-    expect(c.fechaFirma!.toISOString().slice(0, 10)).toBe("2026-11-20");
+    expect(c.fechaInicio!.toISOString().slice(0, 10)).toBe("2030-12-01");
+    expect(c.fechaFin!.toISOString().slice(0, 10)).toBe("2031-11-30");
+    expect(c.fechaFirma!.toISOString().slice(0, 10)).toBe("2030-11-20");
     expect(c.condiciones.map((x) => x.montoAlquiler.toString())).toEqual(["700000"]);
     expect(c.reajusteTipo).toBe("SIN_REAJUSTE");
     expect(c.reajusteValidado).toBe(false);
@@ -125,30 +126,30 @@ describe("generación de borradores", () => {
     expect(doc.documento.tipo).toBe("CONTRATO_ALQUILER");
     expect(doc.contenido.subarray(0, 2).toString()).toBe("PK"); // zip/docx
     // no se genera dos veces
-    await expect(generarBorradorResidencial(admin(), { unidadId: uFirma, fechaInicio: "2026-12-01", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2027-11-30" })).rejects.toThrow(/Ya existe un contrato nuevo/);
+    await expect(generarBorradorResidencial(admin(), { unidadId: uFirma, fechaInicio: "2030-12-01", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2031-11-30" })).rejects.toThrow(/Ya existe un contrato nuevo/);
   });
 
   it("inicio a mitad de mes", async () => {
-    const r = await generarBorradorResidencial(admin(), { unidadId: uMitad, fechaInicio: "2026-11-16", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2027-11-15" });
-    expect(r.contrato.fechaFin!.toISOString().slice(0, 10)).toBe("2027-11-15");
+    const r = await generarBorradorResidencial(admin(), { unidadId: uMitad, fechaInicio: "2030-11-16", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2031-11-15" });
+    expect(r.contrato.fechaFin!.toISOString().slice(0, 10)).toBe("2031-11-15");
   });
 
   it("contrato anterior vencido: no se superpone y se advierte el período sin contrato", async () => {
     const v1 = await previsualizarBorrador(admin(), { unidadId: uVencido, fechaInicio: "2026-05-01", cuentaBancariaId: await cuenta() });
     expect(v1.bloqueos.join(" ")).toMatch(/superpone/);
-    const v2 = await previsualizarBorrador(admin(), { unidadId: uVencido, fechaInicio: "2027-02-01", cuentaBancariaId: await cuenta() });
+    const v2 = await previsualizarBorrador(admin(), { unidadId: uVencido, fechaInicio: "2031-02-01", cuentaBancariaId: await cuenta() });
     expect(v2.bloqueos).toEqual([]);
     expect(v2.advertencias.join(" ")).toMatch(/VENCIDO/);
-    expect(v2.fechaFin).toBe("2028-01-31");
+    expect(v2.fechaFin).toBe("2032-01-31");
   });
 
   it("inicio en febrero de año bisiesto", async () => {
-    const v = await previsualizarBorrador(admin(), { unidadId: uVencido, fechaInicio: "2028-02-29", cuentaBancariaId: await cuenta() });
-    expect(v.fechaFin).toBe("2029-02-28");
+    const v = await previsualizarBorrador(admin(), { unidadId: uVencido, fechaInicio: "2032-02-29", cuentaBancariaId: await cuenta() });
+    expect(v.fechaFin).toBe("2033-02-28");
   });
 
   it("unidad sin documentación completa: se genera el borrador con datos PENDIENTES, nunca supuestos", async () => {
-    const r = await generarBorradorResidencial(admin(), { unidadId: uSinDoc, fechaInicio: "2027-01-01", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2027-12-31" });
+    const r = await generarBorradorResidencial(admin(), { unidadId: uSinDoc, fechaInicio: "2031-01-01", cuentaBancariaId: await cuenta(), confirmoFechaFin: "2031-12-31" });
     for (const f of ["documento de identidad de INQUILINO SIN DOCUMENTO", "domicilio de INQUILINO SIN DOCUMENTO", "día de vencimiento mensual", "depósito de garantía", "representante legal / apoderado con poder vigente"]) expect(r.faltantes.some((x) => x.includes(f))).toBe(true);
     const c = await prisma.contrato.findUniqueOrThrow({ where: { id: r.contrato.id } });
     expect(c.diaVencimiento).toBeNull();
@@ -160,14 +161,14 @@ describe("generación de borradores", () => {
     const local = cands.find((x) => x.identificador === "Salon")!;
     expect(local.elegible).toBe(false);
     expect(local.motivos.join(" ")).toMatch(/locales comerciales/);
-    const v = await previsualizarBorrador(admin(), { unidadId: uLocal, fechaInicio: "2026-12-01" });
+    const v = await previsualizarBorrador(admin(), { unidadId: uLocal, fechaInicio: "2030-12-01" });
     expect(v.bloqueos.join(" ")).toMatch(/no se aplican a locales comerciales/);
   });
 
   it("excepción al plazo solo con autorización expresa, auditada", async () => {
-    const v = await previsualizarBorrador(admin(), { unidadId: uVencido, fechaInicio: "2027-02-01", cuentaBancariaId: await cuenta(), excepcionFin: { fechaFin: "2028-02-29", motivo: "Ajuste a fin de mes acordado", autorizadoPor: "Founder (prueba)" } });
-    expect(v).toMatchObject({ excepcion: true, fechaFinCalculada: "2028-01-31", fechaFin: "2028-02-29" });
-    const sinAut = await previsualizarBorrador(sesionDe(soc, "RESPONSABLE_PROPIEDAD"), { unidadId: uVencido, fechaInicio: "2027-02-01", cuentaBancariaId: await cuenta(), excepcionFin: { fechaFin: "2028-02-29", motivo: "Ajuste a fin de mes", autorizadoPor: "Alguien" } });
+    const v = await previsualizarBorrador(admin(), { unidadId: uVencido, fechaInicio: "2031-02-01", cuentaBancariaId: await cuenta(), excepcionFin: { fechaFin: "2032-02-29", motivo: "Ajuste a fin de mes acordado", autorizadoPor: "Founder (prueba)" } });
+    expect(v).toMatchObject({ excepcion: true, fechaFinCalculada: "2032-01-31", fechaFin: "2032-02-29" });
+    const sinAut = await previsualizarBorrador(sesionDe(soc, "RESPONSABLE_PROPIEDAD"), { unidadId: uVencido, fechaInicio: "2031-02-01", cuentaBancariaId: await cuenta(), excepcionFin: { fechaFin: "2032-02-29", motivo: "Ajuste a fin de mes", autorizadoPor: "Alguien" } });
     expect(sinAut.bloqueos.join(" ")).toMatch(/autorización/);
   });
 });
@@ -181,6 +182,8 @@ describe("procedimiento: nada es firmado ni vigente sin completar los pasos", ()
     await expect(registrarPasoValidacion(sesionDe(soc, "RESPONSABLE_PROPIEDAD"), c.id, "REVISION_JURIDICA", { motivo: "x" })).rejects.toThrow(/permiso/);
     await registrarPasoValidacion(admin(), c.id, "DEPOSITO_VERIFICADO", { motivo: "Recibo de depósito", deposito: "700000" });
     await registrarPasoValidacion(admin(), c.id, "REVISION_JURIDICA", { motivo: "Dictamen del abogado (prueba)" });
+    await expect(cambiarEstadoContrato(admin(), c.id, "VIGENTE", { motivo: "x" })).rejects.toThrow(/aprobación definitiva de fechas/);
+    await aprobarFechasContrato(admin(), c.id, "Fechas aprobadas (prueba)");
     await expect(cambiarEstadoContrato(admin(), c.id, "VIGENTE", { motivo: "x" })).rejects.toThrow(/contrato firmado/);
     await registrarPasoValidacion(admin(), c.id, "FIRMADO", { motivo: "Firmado", archivoFirmado: { nombre: "firmado.pdf", buffer: Buffer.from("%PDF-1.4") } });
     const vig = await cambiarEstadoContrato(admin(), c.id, "VIGENTE", { motivo: "Procedimiento completo" });
@@ -190,7 +193,7 @@ describe("procedimiento: nada es firmado ni vigente sin completar los pasos", ()
   it("las alertas de vencimiento (90/60/30/día) no modifican el contrato", async () => {
     const c = await prisma.contrato.findFirstOrThrow({ where: { contratoAnteriorId: contratos["ED1-2-A"] } });
     const antes = await prisma.contrato.findUniqueOrThrow({ where: { id: c.id } });
-    const a = await alertasVencimiento(admin(), new Date("2027-11-30"));
+    const a = await alertasVencimiento(admin(), new Date("2031-11-30"));
     expect(a.find((x) => x.contrato.id === c.id)?.alerta.umbral).toBe(0);
     const despues = await prisma.contrato.findUniqueOrThrow({ where: { id: c.id } });
     expect(despues.estado).toBe(antes.estado);

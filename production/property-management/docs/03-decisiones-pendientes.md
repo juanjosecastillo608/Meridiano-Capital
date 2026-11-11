@@ -27,3 +27,5 @@ sistema se comporta de la forma más conservadora indicada.
 | PD-20 | Revisión jurídica de la plantilla `RESIDENCIAL_12M_v1` y cláusulas restantes | Abogado/a | Borradores marcados "no firmado, no vigente"; paso obligatorio antes de activar |
 | PD-21 | Validación del canon de las 7 unidades ocupadas de FRM y carga de la cuenta bancaria activa de la sociedad | Administración | Generación bloqueada hasta validar |
 | PD-22 | Domicilio fiscal, direcciones de edificios, CI/domicilio de inquilinos, representante con poder vigente | Administración | `[PENDIENTE]` en los borradores |
+| PD-23 | Quién firma la aprobación definitiva de fechas y la revisión jurídica (hoy: permiso `CONFIGURAR_SOCIEDAD`, es decir SUPERADMIN / ADMIN_GENERAL / ADMIN_SOCIEDAD) **[EXTENSION]** | Founder | Implementado así; ajustable por rol |
+| PD-24 | Forma admitida de evidencia del acuerdo del inquilino con la fecha común (nota firmada, mensaje, acta) **[EXTENSION]**: hoy cualquier archivo PDF/imagen | Founder + abogado/a | Archivo obligatorio para aceptar |

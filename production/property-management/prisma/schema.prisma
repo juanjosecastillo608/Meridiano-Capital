@@ -420,6 +420,14 @@ model Contrato {
   depositoVerificado        Boolean                 @default(false)
   revisionJuridicaAprobada  Boolean                 @default(false)
   documentoFirmadoId        String?
+  /// Actualización contractual 04 (LeaseContract): startDate=fechaInicio, endDate=fechaFin, signatureDate=fechaFirma, termMonths=plazoMeses.
+  dateSelectionMode         ModoFecha               @default(INDIVIDUAL)
+  dateAgreementStatus       EstadoAcuerdo           @default(NO_REQUERIDO)
+  dateAgreementEvidenceId   String? // documento del acuerdo del inquilino (obligatorio en fecha común)
+  legalReviewStatus         EstadoRevision          @default(PENDIENTE)
+  dateApprovedBy            String?
+  dateApprovedAt            DateTime?
+  contractBatchId           String?
   observaciones             String?
   origenDato                OrigenDato              @default(MANUAL)
   estadoDato                EstadoDato              @default(PENDIENTE_REVISION)
@@ -428,11 +436,13 @@ model Contrato {
   updatedAt                 DateTime                @updatedAt
   deletedAt                 DateTime?
 
-  sociedad         Sociedad            @relation(fields: [sociedadId], references: [id])
-  propiedad        Propiedad           @relation(fields: [propiedadId], references: [id])
-  cuentaBancaria   CuentaBancaria?     @relation(fields: [cuentaBancariaId], references: [id])
-  contratoAnterior Contrato?           @relation("Renovacion", fields: [contratoAnteriorId], references: [id])
-  renovacion       Contrato?           @relation("Renovacion")
+  sociedad         Sociedad               @relation(fields: [sociedadId], references: [id])
+  propiedad        Propiedad              @relation(fields: [propiedadId], references: [id])
+  cuentaBancaria   CuentaBancaria?        @relation(fields: [cuentaBancariaId], references: [id])
+  contractBatch    ContractBatch?         @relation(fields: [contractBatchId], references: [id])
+  versionesFecha   ContratoFechaVersion[]
+  contratoAnterior Contrato?              @relation("Renovacion", fields: [contratoAnteriorId], references: [id])
+  renovacion       Contrato?              @relation("Renovacion")
   unidades         ContratoUnidad[]
   partes           ContratoParte[]
   condiciones      CondicionContrato[]
@@ -440,6 +450,103 @@ model Contrato {
 
   @@index([sociedadId, estado])
   @@index([fechaFin])
+}
+
+enum ModoFecha {
+  INDIVIDUAL
+  COMUN // fecha común propuesta en un lote (requiere acuerdo individual)
+}
+
+enum EstadoAcuerdo {
+  NO_REQUERIDO
+  PENDIENTE
+  ACEPTADO
+  RECHAZADO
+}
+
+enum EstadoRevision {
+  PENDIENTE
+  APROBADA
+  OBSERVADA
+}
+
+/// Historial de fechas del contrato: cada edición agrega una versión; nunca se pisa la anterior.
+model ContratoFechaVersion {
+  id          String    @id @default(cuid())
+  contratoId  String
+  version     Int
+  fechaInicio DateTime? @db.Date
+  fechaFin    DateTime? @db.Date
+  fechaFirma  DateTime? @db.Date
+  plazoMeses  Int?
+  modo        ModoFecha
+  motivo      String
+  creadoPorId String?
+  createdAt   DateTime  @default(now())
+
+  contrato Contrato @relation(fields: [contratoId], references: [id])
+
+  @@unique([contratoId, version])
+}
+
+enum EstadoLote {
+  PREPARACION
+  CONFIRMADO
+  CANCELADO
+}
+
+enum EstadoItemLote {
+  PENDIENTE
+  AUTORIZADO
+  EXCLUIDO
+  GENERADO
+}
+
+/// ContractBatch: agrupa contratos preparados en una misma operación con una fecha común PROPUESTA.
+/// Cada contrato conserva sus propias fechas y autorizaciones.
+model ContractBatch {
+  id                  String     @id @default(cuid())
+  sociedadId          String
+  propiedadId         String
+  fechaComunPropuesta DateTime   @db.Date
+  plazoMeses          Int
+  motivo              String
+  estado              EstadoLote @default(PREPARACION)
+  creadoPorId         String?
+  confirmadoPorId     String?
+  confirmadoAt        DateTime?
+  createdAt           DateTime   @default(now())
+
+  items     ContractBatchItem[]
+  contratos Contrato[]
+}
+
+model ContractBatchItem {
+  id                     String         @id @default(cuid())
+  batchId                String
+  unidadId               String
+  contratoAnteriorId     String?
+  inicioAnterior         DateTime?      @db.Date // fecha anterior (contrato actual), para mostrar junto a la propuesta
+  finAnterior            DateTime?      @db.Date
+  inicioPropuesto        DateTime       @db.Date
+  finPropuesto           DateTime       @db.Date
+  acuerdoEstado          EstadoAcuerdo  @default(PENDIENTE)
+  acuerdoEvidenciaId     String?
+  acuerdoRegistradoPorId String?
+  acuerdoAt              DateTime?
+  acuerdoMotivo          String?
+  revisionEstado         EstadoRevision @default(PENDIENTE)
+  revisionMotivo         String?
+  revisionPorId          String?
+  revisionAt             DateTime?
+  estado                 EstadoItemLote @default(PENDIENTE)
+  motivoExclusion        String?
+  contratoGeneradoId     String?
+  createdAt              DateTime       @default(now())
+
+  batch ContractBatch @relation(fields: [batchId], references: [id])
+
+  @@unique([batchId, unidadId])
 }
 
 model ContratoUnidad {

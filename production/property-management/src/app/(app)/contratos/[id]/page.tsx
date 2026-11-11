@@ -4,6 +4,8 @@ import { requerirSesion } from "@/lib/sesion";
 import { protegido } from "@/lib/acceso";
 import { obtenerContrato, registrarPasoValidacion, type PasoValidacion } from "@/server/services/renovacion";
 import { cambiarEstadoContrato } from "@/server/services/contratos";
+import { editarFechasContrato, aprobarFechasContrato, motivosNoAprobable } from "@/server/services/fechas";
+import { formatoLocal, desdeDate } from "@/domain/plazos";
 import { listarDocumentos } from "@/server/services/documentos";
 import { prisma, ErrorNegocio } from "@/server/db";
 import { puede } from "@/server/authz";
@@ -17,6 +19,27 @@ async function paso(form: FormData) {
   try {
     await registrarPasoValidacion(s, id, String(form.get("paso")) as PasoValidacion, { motivo: String(form.get("motivo") ?? ""), deposito: String(form.get("deposito") ?? "").trim() || null, cuentaBancariaId: String(form.get("cuentaBancariaId") ?? "") || null, archivoFirmado: f && f.size ? { nombre: f.name, buffer: Buffer.from(await f.arrayBuffer()) } : undefined });
   } catch (e) { if (e instanceof ErrorNegocio) redirect(`/contratos/${id}?error=${encodeURIComponent(e.message)}`); throw e; }
+  redirect(`/contratos/${id}`);
+}
+
+async function editarFechas(form: FormData) {
+  "use server";
+  const s = await requerirSesion();
+  const id = String(form.get("id"));
+  const v = (k: string) => (String(form.get(k) ?? "").trim() || null);
+  try {
+    const ret = v("retroMotivo") && v("retroAutorizadoPor") ? { motivo: v("retroMotivo")!, autorizadoPor: v("retroAutorizadoPor")! } : null;
+    await editarFechasContrato(s, id, { fechaInicio: v("fechaInicio") ?? "", fechaFirma: v("fechaFirma"), motivo: v("motivo") ?? "", autorizacionRetroactiva: ret });
+  } catch (e) { if (e instanceof ErrorNegocio || /Fecha/.test((e as Error).message)) redirect(`/contratos/${id}?error=${encodeURIComponent((e as Error).message)}`); throw e; }
+  redirect(`/contratos/${id}`);
+}
+
+async function aprobarFechas(form: FormData) {
+  "use server";
+  const s = await requerirSesion();
+  const id = String(form.get("id"));
+  try { await aprobarFechasContrato(s, id, String(form.get("motivo") ?? "")); }
+  catch (e) { if (e instanceof ErrorNegocio) redirect(`/contratos/${id}?error=${encodeURIComponent(e.message)}`); throw e; }
   redirect(`/contratos/${id}`);
 }
 
@@ -37,6 +60,7 @@ export default async function Contrato({ params, searchParams }: { params: Promi
   const docs = (await listarDocumentos(s, { sociedadId: c.sociedadId, entidad: "CONTRATO", entidadId: c.id })).documentos;
   const cuentas = await prisma.cuentaBancaria.findMany({ where: { sociedadId: c.sociedadId, activa: true, deletedAt: null, moneda: c.moneda } });
   const gestiona = puede(s, "GESTIONAR_CONTRATOS", c.sociedadId, c.propiedadId);
+  const noAprobable = c.plantillaVersion ? await motivosNoAprobable(c.id) : [];
   const editable = gestiona && (c.estado === "BORRADOR" || c.estado === "PENDIENTE_FIRMA");
   const pasos: { k: PasoValidacion; label: string; ok: boolean; extra?: React.ReactNode }[] = [
     { k: "INICIO_CONFIRMADO", label: "Fecha de inicio confirmada", ok: c.inicioConfirmado },
@@ -94,6 +118,42 @@ export default async function Contrato({ params, searchParams }: { params: Promi
           <div className="mt-4 text-sm"><b>Documentos:</b> {docs.length ? docs.map((d) => <a key={d.id} className="mr-3 underline" href={`/api/documentos/${d.id}`}>{d.titulo}</a>) : <span className="text-gris">ninguno</span>}</div>
         </Tarjeta>
       </div>
+
+      {c.plantillaVersion && (
+        <div className="mt-6 grid gap-6 xl:grid-cols-2">
+          <Tarjeta titulo="Fechas del contrato (Actualización contractual 04)">
+            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <dt className="text-gris">startDate / endDate</dt><dd>{c.fechaInicio ? formatoLocal(desdeDate(c.fechaInicio)) : "—"} → {c.fechaFin ? formatoLocal(desdeDate(c.fechaFin)) : "—"}</dd>
+              <dt className="text-gris">signatureDate</dt><dd>{c.fechaFirma ? formatoLocal(desdeDate(c.fechaFirma)) : "—"}</dd>
+              <dt className="text-gris">termMonths</dt><dd>{c.plazoMeses ?? "—"}</dd>
+              <dt className="text-gris">dateSelectionMode</dt><dd>{c.dateSelectionMode}{c.contractBatch && <> · <Link className="underline" href={`/contratos/lotes/${c.contractBatch.id}`}>lote</Link></>}</dd>
+              <dt className="text-gris">dateAgreementStatus</dt><dd>{c.dateAgreementStatus}{c.dateAgreementEvidenceId && <> · <a className="underline" href={`/api/documentos/${c.dateAgreementEvidenceId}`}>evidencia</a></>}</dd>
+              <dt className="text-gris">legalReviewStatus</dt><dd>{c.legalReviewStatus}</dd>
+              <dt className="text-gris">dateApprovedAt</dt><dd>{c.dateApprovedAt ? c.dateApprovedAt.toISOString().slice(0, 16).replace("T", " ") + " UTC" : <span className="text-tierra">sin aprobación definitiva</span>}</dd>
+            </dl>
+            {!c.dateApprovedAt && (noAprobable.length ? <ul className="mt-3 list-disc pl-5 text-xs text-tierra">{noAprobable.map((m) => <li key={m}>{m}</li>)}</ul> : puede(s, "CONFIGURAR_SOCIEDAD", c.sociedadId) && (
+              <form action={aprobarFechas} className="mt-3 flex gap-2"><input type="hidden" name="id" value={c.id} /><input name="motivo" required placeholder="Respaldo de la aprobación" className="flex-1 rounded border border-linea px-2 text-sm" /><button className="btn">Aprobar fechas</button></form>
+            ))}
+            <div className="mt-4 text-xs"><b>Versiones de fechas</b> (se conservan todas):
+              <ul className="mt-1 space-y-0.5">{c.versionesFecha.map((v) => <li key={v.id}>v{v.version} · {v.fechaInicio ? formatoLocal(desdeDate(v.fechaInicio)) : "—"} → {v.fechaFin ? formatoLocal(desdeDate(v.fechaFin)) : "—"} · firma {v.fechaFirma ? formatoLocal(desdeDate(v.fechaFirma)) : "—"} · {v.modo.toLowerCase()} · {v.motivo} · {v.createdAt.toISOString().slice(0, 10)}</li>)}</ul>
+            </div>
+          </Tarjeta>
+          {editable && c.estado === "BORRADOR" && (
+            <Tarjeta titulo="Edición individual de fechas">
+              <form action={editarFechas} className="grid gap-2 md:grid-cols-2">
+                <input type="hidden" name="id" value={c.id} />
+                <label className="campo">Nueva fecha de inicio *<input type="date" name="fechaInicio" required /></label>
+                <label className="campo">Fecha de firma<input type="date" name="fechaFirma" /></label>
+                <label className="campo md:col-span-2">Motivo *<input name="motivo" required /></label>
+                <label className="campo">Autorización retroactiva — motivo<input name="retroMotivo" /></label>
+                <label className="campo">Autorizado por<input name="retroAutorizadoPor" /></label>
+                <p className="text-xs text-gris md:col-span-2">El fin se recalcula por meses calendario ({c.plazoMeses} meses). Editar crea una versión nueva y anula la aprobación de fechas y la confirmación de inicio.</p>
+                <div><button className="btn btn-sec">Guardar nueva versión</button></div>
+              </form>
+            </Tarjeta>
+          )}
+        </div>
+      )}
     </>
   );
 }

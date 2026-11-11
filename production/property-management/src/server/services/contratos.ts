@@ -113,6 +113,7 @@ export async function cambiarEstadoContrato(s: Sesion, contratoId: string, nuevo
   // Contratos generados desde plantilla: no pasan a firma/vigencia sin completar el procedimiento (Actualización contractual 03).
   if (c.plantillaVersion && (nuevo === "PENDIENTE_FIRMA" || nuevo === "VIGENTE")) {
     const faltan = [!c.inicioConfirmado && "fecha de inicio confirmada", !c.depositoVerificado && "depósito verificado", !c.revisionJuridicaAprobada && "revisión jurídica de la redacción", !c.cuentaBancariaId && "cuenta bancaria receptora"].filter(Boolean);
+    if (!c.dateApprovedAt) faltan.push("aprobación definitiva de fechas");
     if (nuevo === "VIGENTE" && !c.documentoFirmadoId) faltan.push("contrato firmado incorporado");
     if (faltan.length) throw new ErrorNegocio(`Procedimiento incompleto: falta ${faltan.join(", ")}.`, "VALIDACION", faltan);
   }

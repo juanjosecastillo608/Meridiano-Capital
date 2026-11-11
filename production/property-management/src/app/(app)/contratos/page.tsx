@@ -9,7 +9,7 @@ export default async function Contratos() {
   const alertaDe = new Map(alertas.map((a) => [a.contrato.id, a.alerta]));
   return (
     <>
-      <Titulo eyebrow="Gestión contractual" acciones={<Link className="btn btn-sec" href="/contratos/renovacion">Contratos residenciales 12 meses</Link>}>Contratos</Titulo>
+      <Titulo eyebrow="Gestión contractual" acciones={<><Link className="btn btn-sec" href="/contratos/calendario">Calendario de vencimientos</Link><Link className="btn btn-sec" href="/contratos/lotes">Preparación masiva (fecha común)</Link><Link className="btn btn-sec" href="/contratos/renovacion">Residenciales 12 meses</Link></>}>Contratos</Titulo>
       {cs.length === 0 ? <Vacio>Sin contratos.</Vacio> : (
         <Tarjeta>
           <table className="tabla">
