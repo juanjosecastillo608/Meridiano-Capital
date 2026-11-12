@@ -12,8 +12,7 @@ Dominio: AI
 
 1. En ChatGPT, crear un **Proyecto** (o un **GPT personalizado**) llamado "Meridiano Capital — Estudio de Marca".
 2. Adjuntar como archivos del proyecto/GPT:
-   - `assets/logos/meridiano-primario-horizontal.svg`, `meridiano-isotipo.svg`, `meridiano-isotipo-inverso.svg`
-   - `assets/logos/urbannit-primario-horizontal.svg`, `urbannit-isotipo.svg` (solo si va a trabajar piezas de Urbannit)
+   - **Todo el kit `assets/logos/kit-vigente/`** (`png/` y `svg/`): logo vigente D-034 con el wordmark convertido a curvas. Subir sobre todo los **PNG** (ChatGPT los inserta directo en .pptx y en video). Urbannit solo si se trabajan piezas de Urbannit.
    - `assets/brandbook/14_usage_correct.png`, `15_usage_incorrect.png`, `07_clearspace.png`, `24_color_ratio.png`, `22_typography_meridiano.png`, `19_app_instagram_post.png`
    - `assets/source-docs/Meridiano_Capital_Brand_Guidelines_v1.docx` (ver advertencia en la sección 3 del prompt: el .docx todavía muestra el logo y la tipografía viejos)
 3. Pegar el bloque de abajo en **Instrucciones** (o como primer mensaje).
@@ -72,7 +71,11 @@ Reglas:
 ==================================================
 3. LOGO
 ==================================================
-- Isotipo = "el mojón" geodésico, partido por una línea meridiana dorada continua, con un punto dorado en el cruce. Usá SOLO los SVG adjuntos. Ojo: el manual .docx todavía muestra la versión vieja (triángulo simétrico sin partir) — NO la uses.
+- Isotipo = "el mojón" geodésico, partido por una línea meridiana dorada continua, con un punto dorado en el cruce. Usá SOLO los archivos adjuntos del kit (preferí los PNG para insertar en .pptx y video; los SVG ya tienen las letras en curvas):
+  · meridiano-horizontal-claro → portada/documentos sobre crema o blanco
+  · meridiano-horizontal-inverso → sobre petróleo o tierra colorada (portada oscura, cierre)
+  · meridiano-isotipo-claro / -inverso → esquina de diapositivas, apertura y cierre de video, marca de agua
+  Si no encontrás el archivo del logo, NO lo redibujes ni lo reemplaces con texto: dejá el espacio marcado "[LOGO]" y avisame. Ojo: el manual .docx todavía muestra la versión vieja (triángulo simétrico sin partir) — NO la uses.
 - Versiones: primaria horizontal (por defecto), apilada (espacios cuadrados), isotipo solo (menos de 32 px de alto, avatar, marca de agua), monocromática.
 - Fondos claros → logo petróleo con punto dorado. Fondos oscuros o tierra → versión inversa crema con punto dorado.
 - Zona de protección: X = altura del triángulo del isotipo; dejá X libre en los 4 lados.
