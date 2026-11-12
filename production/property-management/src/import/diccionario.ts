@@ -13,6 +13,7 @@ export type CampoDestino =
   | "inquilino.nombre"
   | "inquilino.telefono"
   | "inquilino.documento"
+  | "inquilino.ruc"
   | "inquilino.email"
   | "contrato.alquiler"
   | "contrato.fechaInicio"
@@ -23,6 +24,8 @@ export type CampoDestino =
   | "periodo.fechaPago"
   | "periodo.fechaProgramada"
   | "periodo.bonificacion"
+  | "periodo.agua"
+  | "contrato.estadoDeclarado"
   | "periodo.montoFactura"
   | "periodo.iva"
   | "observaciones"
@@ -43,17 +46,20 @@ export const CAMPOS: DefCampo[] = [
   { campo: "unidad.medidorAnde", etiqueta: "NIS ANDE (medidor)", tipo: "texto", sinonimos: [/^nis( ande)?$/, /^(n[º°o]? )?medidor( ande)?$/] },
   { campo: "inquilino.nombre", etiqueta: "Inquilino (nombre / razón social)", tipo: "texto", sinonimos: [/^inquilino$/, /^locatario/, /^arrendatario/, /^nombre( inquilino)?$/, /^cliente$/] },
   { campo: "inquilino.telefono", etiqueta: "Teléfono", tipo: "texto", sinonimos: [/^tel(efono|\.)?/, /^celular/, /^whatsapp/] },
-  { campo: "inquilino.documento", etiqueta: "CI / RUC", tipo: "texto", sinonimos: [/^c\.?i\.?$/, /^ruc$/, /cedula/, /^documento/] },
+  { campo: "inquilino.ruc", etiqueta: "RUC (facturación; la CI se deriva sin guion ni DV)", tipo: "texto", sinonimos: [/^ruc( inquilino| factura)?$/] },
+  { campo: "inquilino.documento", etiqueta: "CI", tipo: "texto", sinonimos: [/^c\.?i\.?$/, /cedula/, /^documento/] },
   { campo: "inquilino.email", etiqueta: "Email", tipo: "texto", sinonimos: [/^e?-?mail/, /^correo/] },
   { campo: "contrato.alquiler", etiqueta: "Alquiler contractual", tipo: "importe", sinonimos: [/^monto alquiler/, /^alquiler( actual| mensual)?$/, /^canon/, /^precio alquiler/] },
   { campo: "contrato.fechaInicio", etiqueta: "Inicio de contrato", tipo: "fecha", sinonimos: [/^(fecha )?inicio/, /^desde$/] },
-  { campo: "contrato.fechaFin", etiqueta: "Fin de contrato", tipo: "fecha", sinonimos: [/^(fecha )?(fin|vencimiento contrato)/, /^hasta$/] },
+  { campo: "contrato.fechaFin", etiqueta: "Fin de contrato (anterior)", tipo: "fecha", sinonimos: [/^(fecha )?(fin|vencimiento) (de )?contrato/, /^hasta$/] },
+  { campo: "contrato.estadoDeclarado", etiqueta: "Contrato vigente (declarado en planilla)", tipo: "texto", sinonimos: [/^contrato vigente$/, /^estado (del )?contrato$/] },
   { campo: "periodo.pagoTotal", etiqueta: "Pago recibido del mes (total)", tipo: "importe", sinonimos: [/^pago( del)? mes/, /^importe pagado/, /^cobrado/] },
   { campo: "periodo.expensas", etiqueta: "Expensas del mes", tipo: "importe", sinonimos: [/^(pago |monto |importe )?expensas?( del)?( mes)?( [a-z]+)?( \d+)?$/, /^gastos comunes$/] },
   { campo: "periodo.marcaPago", etiqueta: "Marca de pago (OK/pendiente)", tipo: "texto", sinonimos: [/^pago$/, /^estado (de )?pago$/, /^pagado$/] },
   { campo: "periodo.fechaPago", etiqueta: "Fecha de pago (efectivamente recibido)", tipo: "fecha", sinonimos: [/^fecha( de)? pago$/, /^fecha( de)? cobro$/, /^fecha( de)? acreditacion$/] },
   // Una fecha prevista NUNCA se interpreta como pago recibido: solo fija el vencimiento de la obligación.
   { campo: "periodo.fechaProgramada", etiqueta: "Fecha programada / vencimiento (NO es pago)", tipo: "fecha", sinonimos: [/^fecha (programada|prevista|de vencimiento|limite)/, /^vencimiento$/, /^vence$/, /^fecha a pagar/] },
+  { campo: "periodo.agua", etiqueta: "Agua cobrada en el mes (servicio)", tipo: "importe", sinonimos: [/^pago (de )?agua/, /^agua( del)? mes/] },
   { campo: "periodo.bonificacion", etiqueta: "Bonificación / descuento sobre el alquiler", tipo: "importe", sinonimos: [/bonificacion/, /^descuento/] },
   { campo: "periodo.montoFactura", etiqueta: "Monto facturado", tipo: "importe", sinonimos: [/^(monto |importe )?factura(do)?$/] },
   { campo: "periodo.iva", etiqueta: "IVA", tipo: "importe", sinonimos: [/^(monto )?iva/] },

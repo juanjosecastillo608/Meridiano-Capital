@@ -31,6 +31,10 @@ export interface DatosContrato {
   diaVencimiento: number | null;
   cuenta: { banco: string; numero: string; titular: string | null; moneda: string } | null;
   deposito: string | null;
+  /** NIS ANDE de la unidad: la energía eléctrica es a cargo del inquilino y no está incluida en el canon. */
+  nisAnde?: string | null;
+  nisCompartidoCon?: string[];
+  expensas?: { monto: string | null; aCargoInquilino: boolean | null } | null;
 }
 
 const MESES_LETRAS: Record<number, string> = { 12: "DOCE (12)" };
@@ -51,10 +55,12 @@ export function textoContrato(x: DatosContrato): { parrafos: string[]; faltantes
     `Entre ${x.sociedad.razonSocial}, RUC ${P(x.sociedad.ruc, "RUC de la sociedad")}, con domicilio fiscal en ${P(x.sociedad.domicilioFiscal, "domicilio fiscal de la sociedad")}, representada en este acto por ${P(x.sociedad.representante, "representante legal / apoderado con poder vigente")}, en adelante LA LOCADORA; y ${inq}, en adelante LA PARTE LOCATARIA, se celebra el presente contrato de locación residencial sujeto a las siguientes cláusulas:`,
     `PRIMERA — OBJETO. LA LOCADORA da en locación a LA PARTE LOCATARIA, para uso exclusivo de vivienda, la unidad ${x.unidad.identificador}${x.unidad.piso ? `, piso ${x.unidad.piso}` : ""}, del ${x.edificio.nombre}, sito en ${P(x.edificio.direccion, "dirección del edificio")}, ${x.edificio.ciudad ?? "Asunción"}, Paraguay, sin muebles.`,
     `SEGUNDA — PLAZO. ${CLAUSULA_PLAZO.replace("DOCE (12)", MESES_LETRAS[x.plazoMeses]).replace("[FECHA_INICIO]", formatoLocal(x.fechaInicio)).replace("[FECHA_FIN]", formatoLocal(x.fechaFin))}`,
-    `TERCERA — PRECIO. El canon locativo mensual es de ${formatear(x.canon, x.moneda)}${canonLetras ? ` (${canonLetras})` : ""}, sin incremento durante el plazo de la presente locación. Cualquier reajuste futuro requerirá acuerdo expreso de las partes.`,
+    `TERCERA — PRECIO. El canon locativo mensual es de ${formatear(x.canon, x.moneda)}${canonLetras ? ` (${canonLetras})` : ""}, IVA incluido, sin incremento durante el plazo de la presente locación. Cualquier reajuste futuro requerirá acuerdo expreso de las partes.`,
     `CUARTA — FORMA Y LUGAR DE PAGO. El canon se abonará por mes adelantado hasta el día ${x.diaVencimiento ? String(x.diaVencimiento) : P(null, "día de vencimiento mensual")} de cada mes, mediante depósito o transferencia a la cuenta ${x.cuenta ? `${x.cuenta.banco} Nº ${x.cuenta.numero} (${x.cuenta.moneda})${x.cuenta.titular ? `, titular ${x.cuenta.titular}` : ""}` : P(null, "cuenta bancaria receptora")}.`,
     `QUINTA — DEPÓSITO DE GARANTÍA. LA PARTE LOCATARIA ${x.deposito ? `entrega en concepto de depósito de garantía la suma de ${formatear(x.deposito, x.moneda)}` : `entrega en concepto de depósito de garantía la suma de ${P(null, "importe del depósito de garantía (a verificar individualmente)")}`}.`,
-    `[PENDIENTE: demás cláusulas (expensas y servicios, destino, mejoras, garantes, rescisión, mora) — a definir en la revisión jurídica de la plantilla]`,
+    `SEXTA — SERVICIOS. La energía eléctrica de la unidad (NIS ANDE ${P(x.nisAnde ?? null, "NIS ANDE de la unidad")}) es a cargo de LA PARTE LOCATARIA y no está incluida en el canon locativo.${x.nisCompartidoCon?.length ? ` [PENDIENTE: el NIS es compartido con la(s) unidad(es) ${x.nisCompartidoCon.join(", ")}; definir prorrateo o independización del medidor]` : ""}`,
+    `SÉPTIMA — EXPENSAS. ${x.expensas?.aCargoInquilino ? `LA PARTE LOCATARIA abonará en concepto de expensas la suma mensual de ${x.expensas.monto ? formatear(x.expensas.monto, x.moneda) : P(null, "importe mensual de expensas")}, exenta de IVA, junto con el canon.` : x.expensas?.aCargoInquilino === false ? "Las expensas ordinarias son a cargo de LA LOCADORA." : P(null, "responsable e importe de las expensas")}`,
+    `[PENDIENTE: demás cláusulas (agua y otros servicios, destino, mejoras, garantes, rescisión, mora) — a definir en la revisión jurídica de la plantilla]`,
     `En prueba de conformidad se firman dos ejemplares de un mismo tenor y a un solo efecto, en la ciudad de Asunción, el día ${x.fechaFirma ? formatoLocal(x.fechaFirma) : P(null, "fecha de firma")}.`,
   ];
   if (!faltantes.includes("demás cláusulas")) faltantes.push("demás cláusulas de la plantilla (revisión jurídica)");

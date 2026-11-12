@@ -57,8 +57,9 @@ export async function nuevaVersionConfiguracion(s: Sesion, sociedadId: string, i
 
 /** Importes de alquiler observados en planillas importadas para este contrato (importe contractual, sin bonificaciones). */
 async function importesPlanilla(contratoId: string) {
-  const obls = await prisma.obligacion.findMany({ where: { contratoId, concepto: "ALQUILER", origenDato: "IMPORTADO" }, orderBy: { periodo: "asc" }, select: { periodo: true, importeNeto: true } });
-  return obls.map((o) => ({ periodo: o.periodo, monto: d(o.importeNeto.toString()) }));
+  // Importe contractual del período = total − ajustes (bonificaciones). Con IVA incluido el total ES el canon; nunca el neto.
+  const obls = await prisma.obligacion.findMany({ where: { contratoId, concepto: "ALQUILER", origenDato: "IMPORTADO" }, orderBy: { periodo: "asc" }, select: { periodo: true, importeTotal: true, ajustes: true } });
+  return obls.map((o) => ({ periodo: o.periodo, monto: d(o.importeTotal.toString()).minus(d(o.ajustes.toString())) }));
 }
 
 /**
@@ -286,6 +287,9 @@ export async function generarBorradorResidencial(s: Sesion, input: z.input<typeo
     plazoMeses: vista.plazoMeses, fechaInicio: x.fechaInicio, fechaFin: vista.fechaFin, fechaFirma: x.fechaFirma ?? null,
     canon: ult!.montoAlquiler.toString(), moneda: ant!.moneda, diaVencimiento: x.diaVencimiento ?? ant!.diaVencimiento ?? null,
     cuenta: cuenta ? { banco: cuenta.banco, numero: cuenta.numero, titular: cuenta.titular, moneda: cuenta.moneda } : null, deposito: x.deposito ?? null,
+    nisAnde: u.nisAnde,
+    nisCompartidoCon: u.nisAnde ? (await prisma.unidad.findMany({ where: { propiedadId: u.propiedadId, nisAnde: u.nisAnde, id: { not: u.id }, deletedAt: null } })).map((y) => y.identificador) : [],
+    expensas: { monto: u.propiedad.expensaMensualUnidad?.toString() ?? null, aCargoInquilino: ant!.responsabilidadExpensas === "INQUILINO" ? true : ant!.responsabilidadExpensas === "PROPIETARIO" ? false : null },
   };
   const { buffer, faltantes } = await generarDocx(datos);
 

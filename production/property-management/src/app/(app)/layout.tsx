@@ -6,6 +6,7 @@ import { puedeEnAlguna } from "@/lib/acceso";
 const NAV: { href: string; label: string; permiso?: Parameters<typeof puede>[1] }[] = [
   { href: "/", label: "Panel general" },
   { href: "/sociedades", label: "Sociedades" },
+  { href: "/expedientes", label: "Expedientes" },
   { href: "/contratos", label: "Contratos" },
   { href: "/inquilinos", label: "Inquilinos" },
   { href: "/cobranzas", label: "Cobranzas", permiso: "REGISTRAR_PAGO" },

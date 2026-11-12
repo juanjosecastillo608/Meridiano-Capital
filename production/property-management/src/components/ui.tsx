@@ -23,6 +23,7 @@ const TONOS: Record<string, string> = {
 const ESTADO_TONO: Record<string, keyof typeof TONOS> = {
   VIGENTE: "ok", PAGADA: "ok", OCUPADA: "ok", VALIDADO: "ok", CONFIRMADO: "ok", REGISTRADO: "ok", EMITIDA: "ok", VALIDADA: "ok", OK: "ok",
   PARCIAL: "alerta", PENDIENTE: "alerta", PENDIENTE_REVISION: "alerta", BORRADOR: "neutro", PENDIENTE_FIRMA: "alerta", ADVERTENCIA: "alerta", MAPEADO: "alerta", ANALIZADO: "info", SIN_FACTURAR: "alerta",
+  FALTA: "error", ALERTA: "alerta", OCUPADA_DECLARADA: "ok",
   VENCIDO: "error", VENCIDA: "error", ERROR: "error", DUPLICADO: "error", REVERTIDO: "error", ANULADA: "neutro", RESCINDIDO: "neutro", FINALIZADO: "neutro", CANCELADO: "neutro",
   DISPONIBLE: "info", RESERVADA: "info", EN_MANTENIMIENTO: "alerta", EN_REMODELACION: "alerta", FUERA_DE_SERVICIO: "neutro", EN_DISPUTA: "error", IMPORTADO: "info", MANUAL: "neutro", GENERADO: "neutro",
 };

@@ -13,6 +13,7 @@ Decisión de registro: `governance/decisions/DECISION_REGISTER.md` → **D-096**
 | `docs/03-decisiones-pendientes.md` | Decisiones abiertas (PD-*) y comportamiento conservador mientras tanto |
 | `docs/04-informe-carga-fase3.md` | Carga de Canarias Inversiones S.A. (sin datos personales) |
 | `docs/05-anexo-canarias.md` | Anexo de implementación: estado de la primera entrega, reglas RN-ANX-*, archivos faltantes |
+| `docs/08-conciliacion-y-expedientes.md` | Definiciones fiscales y operativas del 2026-11-12, importación de Montevideo, conciliación y expediente por inquilino |
 | `docs/07-fechas-individuales-y-comunes.md` | Actualización contractual 04: fechas individuales, lotes con fecha común, aprobación de fechas, calendario |
 | `docs/06-contrato-residencial-12m.md` | Actualización contractual 03: plazo residencial 12 meses, canon validado, plantilla, reglas RN-CR-* |
 
@@ -80,7 +81,7 @@ npm test               # unitarias (dominio + importador) + integración (Postgr
 npm run typecheck
 ```
 
-Estado al 2026-11-11 (actualización contractual 04, D-099): **96 tests en verde**, `tsc` sin errores, `next build` OK.
+Estado al 2026-11-12 (conciliación y expedientes, D-100): **108 tests en verde**, `tsc` sin errores, `next build` OK.
 
 ## Plan por fases (§21)
 

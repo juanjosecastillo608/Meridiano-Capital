@@ -180,6 +180,9 @@ model Propiedad {
   inventarioDeptosDeclarado  Int?
   inventarioLocalesDeclarado Int?
   inventarioFuente           String?
+  /// Expensa mensual por unidad definida por la sociedad (founder 2026-11-12: FRM 180.000, MONTEVIDEO 70.000). Exenta de IVA.
+  expensaMensualUnidad       Decimal?   @db.Decimal(18, 2)
+  expensaFuente              String?
   superficieConstruida       Decimal?   @db.Decimal(12, 2)
   superficieAlquilable       Decimal?   @db.Decimal(12, 2)
   superficieComun            Decimal?   @db.Decimal(12, 2)
@@ -273,6 +276,8 @@ model Unidad {
   /// Situación declarada por una fuente (p. ej. "VACANTE" según el founder). No reemplaza la ocupación derivada: se contrasta con ella.
   ocupacionDeclarada       String?
   ocupacionDeclaradaFuente String?
+  /// NIS de ANDE propio de la unidad. La energía eléctrica la paga el inquilino (no incluida en el alquiler).
+  nisAnde                  String?
   observaciones            String?
   origenDato               OrigenDato            @default(MANUAL)
   estadoDato               EstadoDato            @default(PENDIENTE_REVISION)
@@ -315,6 +320,8 @@ model Persona {
   documentoTipo        TipoDocumento?
   documentoNumero      String? // tal como se recibió
   documentoNormalizado String?        @unique // sin puntos/guiones/espacios — evita duplicados
+  /// RUC para facturación (con dígito verificador). La CI se deriva: RUC sin guion ni DV (founder, 2026-11-12).
+  ruc                  String?
   telefono             String?
   email                String?
   domicilio            String?

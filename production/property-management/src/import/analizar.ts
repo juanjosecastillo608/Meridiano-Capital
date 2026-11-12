@@ -129,7 +129,7 @@ export function analizarHoja(h: Hoja): AnalisisHoja {
   const primeraCol = encabezados[0]?.col ?? 1;
   for (let f = filaEnc + 1; f <= h.filas; f++) {
     const t = normalizarEncabezado(texto(celda(h, f, primeraCol)));
-    if (/^(ingresos? )?totales?|^total/.test(t)) { filaTotales = f; break; }
+    if (/^(ingresos? )?totales?|^total|\btotal(es)?$|^saldo deudor/.test(t)) { filaTotales = f; break; }
     if (!t) { vacias++; if (vacias >= 2) break; continue; }
     vacias = 0;
     filaFin = f;

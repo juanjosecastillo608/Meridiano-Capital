@@ -7,7 +7,8 @@ import { leerLibro } from "../../import/libro";
 import { analizarLibro } from "../../import/analizar";
 import { proponerMapeo, procesar, OPCIONES_DEFAULT, type MapeoHoja, type RegistroFila, type InformeImport } from "../../import/procesar";
 import { finPeriodo } from "../../domain/periodo";
-import { normalizarNombre, normalizarTelefono } from "../../domain/documentos";
+import { normalizarNombre, normalizarTelefono, normalizarDocumento, similitudNombres } from "../../domain/documentos";
+import { normalizarRuc } from "../../domain/ruc";
 import { estadoPorSaldo } from "../../domain/obligaciones";
 import { aplicarPago } from "../../domain/pagos";
 import { d } from "../../domain/money";
@@ -102,7 +103,7 @@ function tipoUnidad(r: RegistroFila): "DEPARTAMENTO" | "LOCAL_COMERCIAL" | "OFIC
   if (/oficina/.test(t)) return "OFICINA";
   if (/cochera|garage|estacionamiento/.test(t)) return "COCHERA";
   if (/dep[oó]sito|baulera/.test(t)) return "DEPOSITO";
-  if (/dormitorio|dpto|depto|departamento|monoambiente/.test(t)) return "DEPARTAMENTO";
+  if (/dormitorio|dpto|depto|departamento|monoambiente|\bmono\b|\b\d\s*d\b/.test(t)) return "DEPARTAMENTO";
   return "OTRO";
 }
 
@@ -115,6 +116,7 @@ export interface ResultadoConfirmacion {
   personasCreadas: number;
   personasVinculadas: number;
   contratosBorrador: number;
+  contratosHistoricos: number;
   obligacionesCreadas: number;
   pagosRegistrados: number;
   filasOmitidas: number;
@@ -152,7 +154,7 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
       }
       const prop = await tx.propiedad.findUniqueOrThrow({ where: { id: propiedadId } });
 
-      const res: ResultadoConfirmacion = { propiedadId, unidadesCreadas: 0, unidadesExistentes: 0, personasCreadas: 0, personasVinculadas: 0, contratosBorrador: 0, obligacionesCreadas: 0, pagosRegistrados: 0, filasOmitidas: 0 };
+      const res: ResultadoConfirmacion = { propiedadId, unidadesCreadas: 0, unidadesExistentes: 0, personasCreadas: 0, personasVinculadas: 0, contratosBorrador: 0, contratosHistoricos: 0, obligacionesCreadas: 0, pagosRegistrados: 0, filasOmitidas: 0 };
       // Filas con pago duplicado: se importan unidad/inquilino/obligación pero NO el pago.
       const excluidas = new Set(conf.unidadesExcluidas.map((u) => u.trim().toLowerCase()));
       const esExcluida = (r: RegistroFila) => excluidas.has(r.unidad.identificador.trim().toLowerCase());
@@ -166,26 +168,52 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
         const existente = await tx.unidad.findFirst({ where: { propiedadId, identificador: { equals: r.unidad.identificador, mode: "insensitive" }, deletedAt: null } });
         if (existente) { unidadPorIdent.set(k, existente.id); res.unidadesExistentes++; continue; }
         const obs = [r.unidad.medidorAnde && r.unidad.medidorAnde !== "0" ? `NIS ANDE: ${r.unidad.medidorAnde}` : null, r.unidad.tipologia ? `Tipología declarada: ${r.unidad.tipologia}` : null].filter(Boolean).join(" · ");
-        const u = await tx.unidad.create({ data: { propiedadId, identificador: r.unidad.identificador, tipo: tipoUnidad(r), dormitorios: dormitorios(r.unidad.tipologia), superficieM2: r.unidad.superficieM2 && !isNaN(Number(r.unidad.superficieM2)) ? r.unidad.superficieM2 : null, piso: r.unidad.piso ?? null, expensasAsignadas: r.expensas ? r.expensas.toString() : null, observaciones: obs || null, origenDato: "IMPORTADO", estadoDato: "PENDIENTE_REVISION", importBatchId: id } });
+        const u = await tx.unidad.create({ data: { propiedadId, identificador: r.unidad.identificador, tipo: tipoUnidad(r), dormitorios: dormitorios(r.unidad.tipologia), superficieM2: r.unidad.superficieM2 && !isNaN(Number(r.unidad.superficieM2)) ? r.unidad.superficieM2 : null, piso: r.unidad.piso ?? null, nisAnde: r.unidad.medidorAnde && r.unidad.medidorAnde !== "0" ? r.unidad.medidorAnde : null, expensasAsignadas: r.expensas ? r.expensas.toString() : null, observaciones: obs || null, origenDato: "IMPORTADO", estadoDato: "PENDIENTE_REVISION", importBatchId: id } });
         unidadPorIdent.set(k, u.id);
         res.unidadesCreadas++;
       }
 
       // Personas: sin documento en el archivo → coincidencia por nombre normalizado + teléfono; si no, nueva.
       const personaPorClave = new Map<string, string>();
+      // El RUC/CI puede aparecer solo en algunas hojas (p. ej. agosto/septiembre): se reúne por persona antes de crearla.
+      const docPorClave = new Map<string, { ruc?: string; documento?: string }>();
+      for (const r of validos) {
+        if (!r.inquilino) continue;
+        const k = normalizarNombre(r.inquilino.nombre);
+        const prev = docPorClave.get(k) ?? {};
+        docPorClave.set(k, { ruc: prev.ruc ?? r.inquilino.ruc, documento: prev.documento ?? r.inquilino.documento });
+      }
       for (const r of validos) {
         if (!r.inquilino) continue;
         const tel = normalizarTelefono(r.inquilino.telefono);
-        const clave = `${normalizarNombre(r.inquilino.nombre)}|${tel ?? ""}`;
+        // Clave = nombre normalizado: el teléfono puede faltar en algunas hojas y no debe partir a la persona en dos.
+        const clave = normalizarNombre(r.inquilino.nombre);
         if (personaPorClave.has(clave)) continue;
+        r.inquilino = { ...r.inquilino, ...Object.fromEntries(Object.entries(docPorClave.get(clave) ?? {}).filter(([, v]) => v)) };
+        // Identidad: RUC (factura) → CI = base del RUC (regla del founder 2026-11-12); si no hay RUC, CI de la columna CI.
+        const ruc = normalizarRuc(r.inquilino.ruc);
+        const ciTxt = ruc?.ci ?? (r.inquilino.documento ? r.inquilino.documento.replace(/\D/g, "") || null : null);
+        const docNorm = ruc?.probablePersonaJuridica ? normalizarDocumento("RUC", ruc.ruc) : normalizarDocumento("CI", ciTxt);
+        const porDoc = docNorm ? await tx.persona.findUnique({ where: { documentoNormalizado: docNorm } }) : null;
+        // Mismo documento y nombre compatible ⇒ misma persona. Mismo documento con OTRO nombre ⇒ no se fusiona: se crea sin documento y se alerta.
+        let docEnConflicto = false;
+        if (porDoc) {
+          if (similitudNombres(porDoc.nombre, r.inquilino.nombre) >= 0.75) { personaPorClave.set(clave, porDoc.id); res.personasVinculadas++; continue; }
+          docEnConflicto = true;
+        }
         const candidatos = await tx.persona.findMany({ where: { deletedAt: null, nombre: { equals: r.inquilino.nombre.trim(), mode: "insensitive" } } });
         const match = candidatos.find((c) => tel && normalizarTelefono(c.telefono) === tel);
         if (match) { personaPorClave.set(clave, match.id); res.personasVinculadas++; continue; }
-        const p = await tx.persona.create({ data: { tipo: "FISICA", nombre: r.inquilino.nombre.trim(), telefono: r.inquilino.telefono ?? null, email: r.inquilino.email ?? null, observaciones: "Importado de planilla sin documento de identidad: completar CI/RUC.", origenDato: "IMPORTADO", estadoDato: "PENDIENTE_REVISION", importBatchId: id } });
+        const p = await tx.persona.create({ data: {
+          tipo: ruc?.probablePersonaJuridica ? "JURIDICA" : "FISICA", nombre: r.inquilino.nombre.trim(), telefono: r.inquilino.telefono ?? null, email: r.inquilino.email ?? null,
+          ruc: ruc && !ruc.dvFaltante && !docEnConflicto ? ruc.ruc : null, documentoTipo: docEnConflicto ? null : ruc?.probablePersonaJuridica ? "RUC" : ciTxt ? "CI" : null, documentoNumero: docEnConflicto ? null : ruc?.probablePersonaJuridica ? ruc.ruc : ciTxt, documentoNormalizado: docEnConflicto ? null : docNorm,
+          datosFacturacion: ruc && !ruc.dvFaltante ? { ruc: ruc.ruc, razonSocial: r.inquilino.nombre.trim(), dvVerificado: ruc.dvValido } : undefined,
+          observaciones: docEnConflicto ? `⚠ La planilla asigna a esta persona el RUC/CI ${ruc?.base ?? ciTxt}, que ya pertenece a otra persona con otro nombre: verificar cuál es el correcto (no se fusionaron).` : ruc ? (ruc.dvFaltante ? `CI ${ruc.ci} derivada del RUC incompleto "${ruc.base}-" (sin DV en la planilla): completar el RUC para facturar.` : `CI derivada del RUC ${ruc.ruc} (sin guion ni DV).${ruc.dvValido ? "" : " ⚠ DV del RUC no coincide con el cálculo: verificar."}`) : ciTxt ? null : "Importado de planilla sin documento de identidad: completar RUC/CI.",
+          origenDato: "IMPORTADO", estadoDato: "PENDIENTE_REVISION", importBatchId: id } });
         personaPorClave.set(clave, p.id);
         res.personasCreadas++;
       }
-      const personaDe = (r: RegistroFila) => personaPorClave.get(`${normalizarNombre(r.inquilino!.nombre)}|${normalizarTelefono(r.inquilino!.telefono) ?? ""}`)!;
+      const personaDe = (r: RegistroFila) => personaPorClave.get(normalizarNombre(r.inquilino!.nombre))!;
 
       // Contratos BORRADOR: uno por (unidad, inquilino) observado. Sin fechas contractuales: no se inventan.
       const contratoPor = new Map<string, string>();
@@ -220,6 +248,40 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
         }
       }
 
+      // Ocupante ACTUAL = el del último período de cada unidad. Los ocupantes anteriores quedan como
+      // contratos FINALIZADO (historial de deudas y pagos conservado); no son base de un contrato nuevo.
+      const ultimoPeriodo = new Map<string, string>();
+      for (const r of validos) if (r.periodo) { const u = r.unidad.identificador.toLowerCase(); if ((ultimoPeriodo.get(u) ?? "") < r.periodo) ultimoPeriodo.set(u, r.periodo); }
+      const actuales = new Set<string>();
+      const periodosDe = new Map<string, string[]>();
+      for (const r of ocupados) {
+        if (!r.periodo) continue;
+        const uid = unidadPorIdent.get(r.unidad.identificador.toLowerCase())!;
+        const k = `${uid}|${personaDe(r)}`;
+        periodosDe.set(k, [...(periodosDe.get(k) ?? []), r.periodo]);
+        if (ultimoPeriodo.get(r.unidad.identificador.toLowerCase()) === r.periodo) actuales.add(k);
+      }
+      for (const [k, cid] of contratoPor) {
+        const ps = (periodosDe.get(k) ?? []).sort();
+        const unidadDelContrato = [...unidadPorIdent.entries()].find(([, uid]) => uid === k.split("|")[0])?.[0];
+        // Sin períodos propios (solo hoja de referencia): es actual solo si la unidad no tiene ningún período cargado.
+        if (actuales.has(k) || (!ps.length && !(unidadDelContrato && ultimoPeriodo.has(unidadDelContrato)))) continue;
+        const c = await tx.contrato.findUniqueOrThrow({ where: { id: cid } });
+        if (c.importBatchId !== id || c.estado !== "BORRADOR") continue;
+        await tx.contrato.update({ where: { id: cid }, data: { estado: "FINALIZADO", observaciones: `${c.observaciones ?? ""} Ocupante ANTERIOR según planilla (${ps.length ? `períodos ${ps[0]} a ${ps[ps.length - 1]}` : "solo en hoja de referencia"}); ya no figura en el último período. Contrato cerrado como histórico.`.trim() } });
+        res.contratosHistoricos++;
+      }
+
+      // Antecedentes del contrato anterior declarados en hojas de referencia (no son fechas del contrato nuevo).
+      for (const r of ocupados) {
+        if (!r.contratoAnterior) continue;
+        const unidadId = unidadPorIdent.get(r.unidad.identificador.toLowerCase())!;
+        const cid = contratoPor.get(`${unidadId}|${personaDe(r)}`)!;
+        const c = await tx.contrato.findUniqueOrThrow({ where: { id: cid } });
+        const txtAnt = `Antecedente según planilla (${r.hoja}): ${r.contratoAnterior.fechaFin ? `vencimiento del contrato anterior ${r.contratoAnterior.fechaFin.toISOString().slice(0, 10)}` : "sin fecha de vencimiento"}; contrato vigente declarado: ${r.contratoAnterior.estadoDeclarado ?? "s/d"}.`;
+        if (!c.observaciones?.includes(txtAnt)) await tx.contrato.update({ where: { id: cid }, data: { observaciones: `${c.observaciones ?? ""} ${txtAnt}`.trim() } });
+      }
+
       // Obligaciones históricas y pagos por período
       const cuenta = conf.cuentaBancariaId ? await tx.cuentaBancaria.findUnique({ where: { id: conf.cuentaBancariaId } }) : null;
       if (cuenta && (cuenta.sociedadId !== sociedadId || cuenta.moneda !== moneda)) throw new ErrorNegocio("La cuenta bancaria debe ser de la sociedad y de la misma moneda.");
@@ -232,7 +294,7 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
         const venc = r.fechaProgramada ?? finPeriodo(r.periodo);
         const obligIds: string[] = [];
         if (conf.importarObligaciones) {
-          const conceptos: ["ALQUILER" | "EXPENSAS", typeof r.alquiler][] = [["ALQUILER", r.alquiler], ["EXPENSAS", r.expensas]];
+          const conceptos: ["ALQUILER" | "EXPENSAS" | "SERVICIOS", typeof r.alquiler][] = [["ALQUILER", r.alquiler], ["EXPENSAS", r.expensas], ["SERVICIOS", r.agua]];
           for (const [concepto, monto] of conceptos) {
             if (!monto || monto.lessThanOrEqualTo(0)) continue;
             const clave = `${contratoId}:${r.periodo}:${concepto}`;
@@ -244,7 +306,7 @@ export async function confirmarImportacion(s: Sesion, id: string, input: z.input
               update: {},
               create: {
                 sociedadId, propiedadId, unidadId, contratoId, personaId, periodo: r.periodo, concepto, fechaVencimiento: venc, moneda,
-                descripcion: `${concepto === "ALQUILER" ? "Alquiler" : "Expensas"} ${r.periodo} (importado: ${b.nombreArchivo}, hoja "${r.hoja}" fila ${r.fila}).${r.fechaProgramada ? " Vencimiento según fecha programada de la planilla." : " Vencimiento real desconocido: se usa fin de mes."}${bonif ? ` Bonificación ${bonif} sobre alquiler contractual ${monto}.` : ""}${nota}`,
+                descripcion: `${concepto === "ALQUILER" ? "Alquiler" : concepto === "EXPENSAS" ? "Expensas" : "Agua (servicio)"} ${r.periodo} (importado: ${b.nombreArchivo}, hoja "${r.hoja}" fila ${r.fila}).${r.fechaProgramada ? " Vencimiento según fecha programada de la planilla." : " Vencimiento real desconocido: se usa fin de mes."}${bonif ? ` Bonificación ${bonif} sobre alquiler contractual ${monto}.` : ""}${nota}`,
                 importeNeto: monto.toString(), iva: "0", ajustes: bonif ? bonif.negated().toString() : "0", importeTotal: total.toString(), saldo: total.toString(), ivaPendiente: true, claveIdempotencia: clave,
                 origenDato: "IMPORTADO", estadoDato: "PENDIENTE_REVISION", importBatchId: id,
               },

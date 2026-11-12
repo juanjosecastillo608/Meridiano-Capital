@@ -54,8 +54,10 @@ describe("obligaciones, cobranzas y saldos", () => {
     expect(r2.creadas).toBe(0);
     expect(r2.yaExistentes).toBe(1);
     const o = await prisma.obligacion.findFirstOrThrow({ where: { contratoId: contrato, periodo: "2026-03" } });
-    expect(o.importeNeto.toString()).toBe("3000000");
-    expect(o.iva.toString()).toBe("150000"); // 5% residencial, regla del seed
+    // Founder 2026-11-12 (D-100): alquiler con IVA INCLUIDO → total = canon; neto = 3.000.000 / 1,05
+    expect(o.importeTotal.toString()).toBe("3000000");
+    expect(o.importeNeto.toString()).toBe("2857143");
+    expect(o.iva.toString()).toBe("142857");
     expect(o.fechaVencimiento.toISOString().slice(0, 10)).toBe("2026-03-10");
   });
 
@@ -81,15 +83,15 @@ describe("obligaciones, cobranzas y saldos", () => {
 
   it("anticipo/exceso queda como saldo a favor y se imputa después", async () => {
     const r = await registrarPago(admin(), { sociedadId: socA, personaId: inq, cuentaBancariaId: cuenta, fechaPago: "2026-04-20", metodo: "TRANSFERENCIA", comprobante: "TRX-2", moneda: "PYG", importe: "5000000" });
-    // Debía: marzo 3.150.000 + abril 1.000.000 + 500.000 = 4.650.000 → saldo a favor 350.000
-    expect(r.saldoAFavor.toString()).toBe("350000");
+    // Debía: marzo 3.000.000 (IVA incluido) + abril 1.000.000 + 500.000 = 4.500.000 → saldo a favor 500.000
+    expect(r.saldoAFavor.toString()).toBe("500000");
     const marzo = await prisma.obligacion.findFirstOrThrow({ where: { contratoId: contrato, periodo: "2026-03" } });
     expect(marzo.estado).toBe("PAGADA");
     await generarObligacionesMensuales(admin(), socA, "2026-05");
     const imp = await imputarSaldoAFavor(admin(), r.pago.id);
-    expect(imp.aplicaciones[0].importe.toString()).toBe("350000");
+    expect(imp.aplicaciones[0].importe.toString()).toBe("500000");
     const mayo = await prisma.obligacion.findFirstOrThrow({ where: { contratoId: contrato, periodo: "2026-05" } });
-    expect(mayo.saldo.toString()).toBe("2800000"); // 3.150.000 − 350.000
+    expect(mayo.saldo.toString()).toBe("2500000"); // 3.000.000 − 500.000
     expect(mayo.estado).toBe("PARCIAL");
   });
 
@@ -98,7 +100,7 @@ describe("obligaciones, cobranzas y saldos", () => {
     await expect(revertirPago(admin(), p.id, "")).rejects.toThrow(/motivo/);
     await revertirPago(admin(), p.id, "Transferencia rechazada por el banco (prueba)");
     const marzo = await prisma.obligacion.findFirstOrThrow({ where: { contratoId: contrato, periodo: "2026-03" } });
-    expect(marzo.saldo.toString()).toBe("3150000");
+    expect(marzo.saldo.toString()).toBe("3000000");
     expect(marzo.estado).toBe("PENDIENTE");
     const audit = await prisma.auditLog.findFirst({ where: { accion: "PAGO_REVERTIR", entidadId: p.id } });
     expect(audit?.motivo).toMatch(/rechazada/);
@@ -108,7 +110,8 @@ describe("obligaciones, cobranzas y saldos", () => {
     await modificarAlquiler(admin(), contrato, { vigenteDesde: "2026-07-01", montoAlquiler: "3300000", motivo: "ADENDA", referencia: "Adenda 1 (prueba)" });
     await generarObligacionesMensuales(admin(), socA, "2026-07");
     const julio = await prisma.obligacion.findFirstOrThrow({ where: { contratoId: contrato, periodo: "2026-07" } });
-    expect(julio.importeNeto.toString()).toBe("3300000");
+    expect(julio.importeTotal.toString()).toBe("3300000");
+    expect(julio.importeNeto.toString()).toBe("3142857");
     expect(await prisma.condicionContrato.count({ where: { contratoId: contrato } })).toBe(2);
   });
 });

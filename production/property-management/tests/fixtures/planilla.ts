@@ -72,3 +72,45 @@ export async function presupuestoPrueba(): Promise<Buffer> {
   res.getCell("A14").value = "1"; res.getCell("B14").value = "No cerrar precio definitivo hasta confirmar medidas en obra.";
   return Buffer.from(await wb.xlsx.writeBuffer());
 }
+
+/**
+ * Planilla SINTÉTICA con la estructura de la de Montevideo: hoja resumen sin período
+ * (con "Contrato Vigente" y "Fecha Vencimiento Contrato"), hojas mensuales con "Pago Agua",
+ * columna "Ruc" solo en la última hoja, estados escritos en la columna de inquilino,
+ * una unidad fuera de inventario y dos inquilinos distintos con el mismo RUC.
+ * Todos los datos son FICTICIOS.
+ */
+export async function planillaMontevideoPrueba(dv: (base: string) => number): Promise<Buffer> {
+  const wb = new ExcelJS.Workbook();
+  const ruc = (b: string) => `${b}-${dv(b)}`;
+  const resumen = wb.addWorksheet("Estructura Ingreso26 Detallada");
+  resumen.getCell("B2").value = "Edificio: PRUEBA MVD";
+  ["Unidad", "Inquilino", "Telefono", "Monto Alquiler Actual", "Pago Mes Marzo", "Pago Agua mes de Marzo", "PAGO", "Fecha Pago", "Obs", "Tipologia", "Fecha Vencimiento Contrato", "Contrato Vigente", "NIS ANDE"].forEach((t, i) => (resumen.getCell(10, 2 + i).value = t));
+  const filasRes: (string | number | Date | null)[][] = [
+    [" PB B  Dpto", "INQUILINO MVD UNO", "+595900000011", 630000, 665000, 35000, "OK", new Date(Date.UTC(2026, 2, 10)), null, "1 Dormitorio", new Date(Date.UTC(2023, 11, 31)), "No", 7000001],
+    [" PB C  Dpto", "INQUILINO MVD DOS", "+595900000012", 840000, 910000, 70000, "OK", new Date(Date.UTC(2026, 2, 12)), null, "1 Dormitorio", null, "S/D", 7000002],
+    [" 1 A  Dpto", "INQUILINO MVD TRES", "+595900000013", 1155000, 1225000, 70000, "OK", new Date(Date.UTC(2026, 2, 9)), null, "2 Dormitorio", null, "S/D", 7000003],
+    [" GAR A  Dpto", "INQUILINO MVD CUATRO", "+595900000014", 682500, 717500, 35000, "OK", new Date(Date.UTC(2026, 2, 10)), null, "Mono", null, "No", 7000004],
+    [12, "Esta desocupada Habitacion sin Baño", null, 0, 0, 0, null, null, null, null, null, "S/D", null],
+  ];
+  filasRes.forEach((f, r) => f.forEach((v, c) => { if (v !== null) resumen.getCell(11 + r, 2 + c).value = v as ExcelJS.CellValue; }));
+  resumen.getCell("B16").value = "Total";
+  const meses: [string, number, boolean][] = [["Estructura Ingresos Marzo", 3, false], ["Estructura Ingresos Abril", 4, true]];
+  for (const [nombre, mes, conRuc] of meses) {
+    const ws = wb.addWorksheet(nombre);
+    ws.getCell("B2").value = "Edificio: PRUEBA MVD";
+    ws.getCell("N7").value = new Date(Date.UTC(2026, mes - 1, 1));
+    const enc = ["Unidad", "Inquilino", "Telefono", ...(conRuc ? ["Ruc"] : []), "Monto Alquiler Actual", `Pago Mes ${mes}`, `Pago Agua mes de ${mes}`, "PAGO", "Fecha Pago", "Tipologia", "NIS ANDE"];
+    enc.forEach((t, i) => (ws.getCell(10, 2 + i).value = t));
+    const filas: (string | number | Date | null)[][] = [
+      [" PB B  Dpto", "INQUILINO MVD UNO", "+595900000011", ...(conRuc ? [ruc("3400001")] : []), 630000, 665000, 35000, "OK", new Date(Date.UTC(2026, mes - 1, 10)), "1 D", 7000001],
+      [" PB C  Dpto", "INQUILINO MVD DOS", "+595900000012", ...(conRuc ? ["3400002-"] : []), 840000, 910000, 70000, "OK", new Date(Date.UTC(2026, mes - 1, 12)), "1 D", 7000002],
+      [" 1 A  Dpto", "INQUILINO MVD TRES", "+595900000013", ...(conRuc ? [ruc("3400001")] : []), 1155000, 1225000, 70000, "OK", new Date(Date.UTC(2026, mes - 1, 9)), "2 D", 7000002],
+      [" GAR A  Dpto", mes === 4 ? "Esta Desocupado en Reparacion" : "INQUILINO MVD CUATRO", null, ...(conRuc ? [null] : []), mes === 4 ? 0 : 682500, mes === 4 ? 0 : 717500, mes === 4 ? 0 : 35000, null, mes === 4 ? null : new Date(Date.UTC(2026, mes - 1, 10)), "Mono", 7000004],
+      [12, "Desocupada Habitacion sin Baño", null, ...(conRuc ? [null] : []), 0, 0, 0, null, null, null, null],
+    ];
+    filas.forEach((f, r) => f.forEach((v, c) => { if (v !== null) ws.getCell(11 + r, 2 + c).value = v as ExcelJS.CellValue; }));
+    ws.getCell("B16").value = "Ingresos Total";
+  }
+  return Buffer.from(await wb.xlsx.writeBuffer());
+}

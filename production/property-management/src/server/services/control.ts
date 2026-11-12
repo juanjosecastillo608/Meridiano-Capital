@@ -95,6 +95,10 @@ export async function alertas(s: Sesion, sociedadId?: string): Promise<Alerta[]>
       else if (deptos !== p.inventarioDeptosDeclarado || locales !== p.inventarioLocalesDeclarado) out.push({ nivel: "ADVERTENCIA", categoria: "Inventario", mensaje: `${p.codigo}: declarado ${p.inventarioDeptosDeclarado} deptos + ${p.inventarioLocalesDeclarado} local(es); registrado ${deptos} + ${locales}.`, href: `/propiedades/${p.id}` });
     }
     if (otros.length) out.push({ nivel: "ADVERTENCIA", categoria: "Inventario", mensaje: `${p.codigo}: unidades de tipo no clasificado (${otros.map((u) => u.identificador).join(", ")}).`, href: `/propiedades/${p.id}` });
+    // NIS ANDE compartido: cada departamento debería tener el propio (founder 2026-11-12); hoy comparten el gasto de energía.
+    const porNis = new Map<string, string[]>();
+    for (const u of p.unidades) if (u.nisAnde) porNis.set(u.nisAnde, [...(porNis.get(u.nisAnde) ?? []), u.identificador]);
+    for (const [nis, us] of porNis) if (us.length > 1) out.push({ nivel: "ADVERTENCIA", categoria: "Energía (NIS compartido)", mensaje: `${p.codigo}: las unidades ${us.join(" y ")} comparten el NIS ANDE ${nis} — actualmente comparten el gasto de energía eléctrica.`, href: `/expedientes?propiedadId=${p.id}` });
     for (const u of p.unidades) {
       const cs = u.contratos.map((x) => x.contrato).filter((c) => c.fechaInicio && c.fechaFin);
       const occ = estadoOcupacion(u.estadoOperativo, cs.map((c) => ({ estado: c.estado, fechaInicio: c.fechaInicio!, fechaFin: c.fechaFin!, fechaRescision: c.fechaRescision, fechaEntrega: c.fechaEntrega, fechaDevolucion: c.fechaDevolucion })), hoy);
