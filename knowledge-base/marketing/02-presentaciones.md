@@ -8,10 +8,12 @@ Dominio: MARKETING
 
 > Estado de origen: **[EXTENSION]** — derivada de los modulos de tipografia y sistema cromatico (dominio brand), con ejemplo oficial ya producido: `Deck_Inversores_Coinversion.pptx` (14 diapositivas) es la referencia viva de aplicacion — consultarlo antes de crear un deck nuevo.
 
+> **Corregido 2026-11-12**: cierre alineado a `brand/09-cierres-y-firmas.md` (tierra colorada, no petroleo) y Lora → Fraunces segun D-036/D-040. Antes este archivo contradecia ambas fuentes.
+
 ## Reglas generales (aplican en Canva, PowerPoint, Google Slides o Keynote por igual)
 
-- **Sandwich de fondos**: portada y cierre en petroleo profundo (dark); contenido intermedio mayormente blanco/crema; 1-2 diapositivas de enfasis en petroleo profundo o tierra colorada para dar ritmo (ej. la diapositiva de retorno proyectado con grafico).
-- Titulares en Lora Bold, cuerpo/tablas en Poppins.
+- **Sandwich de fondos**: portada en petroleo profundo (dark); cierre en tierra colorada #8B3323 (color de cierre de marca, ver `brand/09-cierres-y-firmas.md`); contenido intermedio mayormente blanco/crema; 1-2 diapositivas de enfasis en petroleo profundo o tierra colorada para dar ritmo (ej. la diapositiva de retorno proyectado con grafico).
+- Titulares en Fraunces (D-036, reemplazo de Lora), cuerpo/tablas en Poppins. En .pptx/.docx generados, nunca Fraunces en negrita (D-040): jerarquia por tamaño y color.
 - Un mensaje central por diapositiva — evitar diapositivas con mas de 3 bloques de informacion compitiendo.
 - Logotipo: isotipo pequeño en esquina superior o inferior de diapositivas de contenido (nunca el lockup completo compitiendo con el titulo); lockup completo permitido en portada y cierre.
 
@@ -29,11 +31,11 @@ Obligatorias en cualquier deck que hable de coinversion o retornos — tono dire
 
 ## Especifico por herramienta
 
-**Canva**: cargar los HEX de la paleta oficial (dominio brand, sistema cromatico) como paleta de marca del equipo; cargar Lora y Poppins como fuentes de marca; subir los SVG de `assets/logos/` como logos de marca (Canva acepta SVG en la libreria de marca). Usar las plantillas de "Brand Kit" de Canva para fijar estos valores una sola vez y que se propaguen a cualquier diseño nuevo.
+**Canva**: cargar los HEX de la paleta oficial (dominio brand, sistema cromatico) como paleta de marca del equipo; cargar Fraunces y Poppins como fuentes de marca; subir los SVG de `assets/logos/` como logos de marca (Canva acepta SVG en la libreria de marca). Usar las plantillas de "Brand Kit" de Canva para fijar estos valores una sola vez y que se propaguen a cualquier diseño nuevo.
 
-**PowerPoint / Google Slides**: definir un Slide Master con los 3 fondos base (petroleo profundo, blanco, crema) y los estilos de titulo/cuerpo ya configurados con Lora/Poppins (o sus alternativas de sistema Cambria/Calibri si las fuentes no estan instaladas en la maquina que edita).
+**PowerPoint / Google Slides**: definir un Slide Master con los 3 fondos base (petroleo profundo, blanco, crema) y los estilos de titulo/cuerpo ya configurados con Fraunces/Poppins (o sus alternativas de sistema Georgia o Cambria / Calibri si las fuentes no estan instaladas en la maquina que edita).
 
-**Keynote**: mismo criterio de Slide Master; Keynote soporta Lora/Poppins si estan instaladas via Google Fonts en macOS — verificar antes de asumir disponibilidad.
+**Keynote**: mismo criterio de Slide Master; Keynote soporta Fraunces/Poppins si estan instaladas via Google Fonts en macOS — verificar antes de asumir disponibilidad.
 
 ## Tipos de presentacion y enfasis narrativo
 

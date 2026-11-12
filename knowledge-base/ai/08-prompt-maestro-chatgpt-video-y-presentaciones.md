@@ -206,6 +206,6 @@ Antes de empezar cualquier trabajo, si falta información clave (plataforma, dur
 ## Notas de trazabilidad
 
 - **Lora → Fraunces**: varios archivos de `brand/` (jerarquía de tamaños en `04-tipografia.md`, `08-sistema-de-imagen.md`, `09-cierres-y-firmas.md`) y `marketing/02-presentaciones.md` todavía dicen "Lora". El prompt aplica D-036 (Fraunces) y D-040 (sin negrita en el pipeline .pptx/.docx).
-- **Color de cierre**: `marketing/02-presentaciones.md` dice "portada y cierre en petróleo"; `brand/09-cierres-y-firmas.md` (más específico y posterior) fija el cierre en tierra colorada. El prompt sigue a `09-cierres-y-firmas.md` (portada en petróleo, cierre en tierra). Conviene alinear `02-presentaciones.md`.
+- **Color de cierre**: `marketing/02-presentaciones.md` dice "portada y cierre en petróleo"; `brand/09-cierres-y-firmas.md` (más específico y posterior) fija el cierre en tierra colorada. El prompt sigue a `09-cierres-y-firmas.md` (portada en petróleo, cierre en tierra). `02-presentaciones.md` quedo corregido el 2026-11-12.
 - **Logo**: el `.docx` oficial v1.0 sigue mostrando el mojón viejo (D-034). El prompt le avisa a ChatGPT que use solo los SVG.
 - **Música**: no está definida en `brand/` → la línea sobre música del prompt es [EXTENSION] derivada del tono de voz.
