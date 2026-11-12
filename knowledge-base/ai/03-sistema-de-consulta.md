@@ -21,6 +21,7 @@ Ante cualquiera de estas consultas (u otras equivalentes), el agente de IA debe 
 | "¿Que colores debo utilizar?" | 05 | `brand/05-sistema-cromatico.md` |
 | "¿Que version del logo corresponde?" | 03 | `brand/03-identidad-visual.md` |
 | "¿Esta pieza respeta la identidad de marca?" | 15 (Matriz de Decision) + Modulo 19 (Brand Guardian) | `ai/05-matriz-de-decision.md` + `ai/04-director-creativo-y-brand-guardian.md` (seccion Brand Guardian) |
+| "Necesito que ChatGPT (u otra IA externa) edite videos o presentaciones con nuestra marca" | 01-16 (sintesis) | `ai/08-prompt-maestro-chatgpt-video-y-presentaciones.md` — prompt listo para pegar + lista de archivos a adjuntar |
 
 ## Regla de enrutamiento por defecto
 
